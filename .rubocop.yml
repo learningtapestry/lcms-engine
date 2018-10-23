@@ -1,0 +1,12 @@
+AllCops:
+  TargetRubyVersion: 2.3
+
+  DisplayCopNames: true
+
+  DisplayStyleGuide: true
+
+Layout/ExtraSpacing:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 100
