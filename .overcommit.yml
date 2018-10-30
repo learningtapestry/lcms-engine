@@ -4,6 +4,7 @@ PreCommit:
     on_warn: fail
     exclude:
     - db/migrate/*
+    - spec/dummy/**/*
 
   BundleCheck:
     enabled: true
