@@ -5,6 +5,7 @@ PreCommit:
     exclude:
     - db/migrate/*
     - spec/dummy/**/*
+    - app/**/*
 
   BundleCheck:
     enabled: true
