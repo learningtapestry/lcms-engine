@@ -78,11 +78,13 @@ class Document < Lcms::Engine::ApplicationRecord
 
   def file_url
     return unless file_id.present?
+
     "#{GOOGLE_URL_PREFIX}/#{file_id}"
   end
 
   def file_fs_url
     return unless foundational_file_id.present?
+
     "#{GOOGLE_URL_PREFIX}/#{foundational_file_id}"
   end
 
