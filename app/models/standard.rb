@@ -85,7 +85,7 @@ class Standard < Lcms::Engine::ApplicationRecord
 
   # NOTE: #954 - to be removed?
   def self.filter_ccss_standards(name, subject)
-    name =~ ALT_NAME_REGEX[subject] ? name.upcase : nil
+    name&.match?(ALT_NAME_REGEX[subject]) ? name.upcase : nil
   end
 
   # NOTE: #954 - to be removed?

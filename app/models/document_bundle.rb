@@ -36,6 +36,7 @@ class DocumentBundle < Lcms::Engine::ApplicationRecord
 
   def self.update_gdoc_bundle(resource)
     return unless resource.unit?
+
     bundle_path = LessonsGdocBundler.new(resource).bundle
     return unless bundle_path
 
