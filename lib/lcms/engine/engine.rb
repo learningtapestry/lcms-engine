@@ -5,6 +5,7 @@ require 'carrierwave/orm/activerecord'
 require 'acts-as-taggable-on'
 require 'closure_tree'
 require 'validate_url'
+require 'virtus'
 
 module Lcms
   module Engine
