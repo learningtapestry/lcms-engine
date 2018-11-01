@@ -1,4 +1,5 @@
 .bundle/
+Gemfile.lock
 log/*.log
 pkg/
 spec/dummy/log/*.log
@@ -6,3 +7,6 @@ spec/dummy/node_modules/
 spec/dummy/yarn-error.log
 spec/dummy/storage/
 spec/dummy/tmp/
+
+# Ignore IDE specific files
+/.idea
