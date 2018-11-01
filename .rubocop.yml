@@ -1,12 +1,72 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  Include:
+    - '**/*.rb'
+    - '**/*.gemfile'
+    - '**/*.gemspec'
+    - '**/*.rake'
+    - '**/*.ru'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - '**/Rakefile'
+  Exclude:
+    - bin/*
+    - spec/dummy/db/schema.rb
+  TargetRubyVersion: 2.5
 
-  DisplayCopNames: true
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
 
-  DisplayStyleGuide: true
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
 
-Layout/ExtraSpacing:
-  Enabled: true
+Metrics/AbcSize:
+  Max: 39
+
+Metrics/BlockLength:
+  Exclude:
+    - '**/*_spec.rb'
+    - 'config/routes.rb'
+  ExcludedMethods: ['guard', 'included']
+
+Metrics/ClassLength:
+  Max: 250
+
+Metrics/CyclomaticComplexity:
+  Max: 9
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/PerceivedComplexity:
+  Max: 9
+
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 2
+
+Style/AndOr:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: nested
+
+Style/Documentation:
+  Enabled: false
+
+Style/DoubleNegation:
+  Enabled: false
+
+Style/NestedParenthesizedCalls:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: '()'
+    '%i': '()'
+    '%r': '{}'
+    '%w': '()'
+
+Style/RescueModifier:
+  Enabled: false

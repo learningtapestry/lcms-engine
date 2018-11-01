@@ -9,8 +9,8 @@ require 'lcms/engine/version'
 Gem::Specification.new do |s|
   s.name = 'lcms-engine'
   s.version = Lcms::Engine::VERSION
-  s.authors = ['Rômulo Saksida', 'Abraham Sánchez']
-  s.email = %w[rm@learningtapestry.com abraham@learningtapestry.com]
+  s.authors = ['Rômulo Saksida', 'Abraham Sánchez', 'Alexander Kuznetsov']
+  s.email = %w(rm@learningtapestry.com abraham@learningtapestry.com alexander@learningtapestry.com)
   s.homepage = 'https://github.com/learningtapestry/lcms-engine'
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
@@ -19,18 +19,19 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.3'
+  s.required_ruby_version = '>= 2.5'
 
   s.add_dependency 'rails', '>= 4.2.7.1'
 
   s.add_dependency 'acts-as-taggable-on', '~> 5.0'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'closure_tree', '~> 6.6'
-  s.add_dependency 'pg', '~> 0.21'
+  s.add_dependency 'pg', '0.20'
   s.add_dependency 'pg_search', '~> 2.1'
   s.add_dependency 'validate_url', '~> 1.0'
   s.add_dependency 'virtus', '~> 1.0.5'
 
+  s.add_development_dependency 'bundler-audit', '~> 0.6.0'
   s.add_development_dependency 'overcommit', '~> 0.46'
   s.add_development_dependency 'rspec-rails', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.59'
