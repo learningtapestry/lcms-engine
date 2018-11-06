@@ -15,3 +15,11 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
+
+gem 'lt-google-api',
+    git: 'https://github.com/learningtapestry/lt-google-api.git',
+    branch: 'refactoring'
+
+gem 'lt-lcms',
+    git: 'https://github.com/learningtapestry/lt-lcms.git',
+    branch: 'refactoring'

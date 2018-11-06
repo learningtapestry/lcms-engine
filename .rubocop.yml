@@ -11,6 +11,7 @@ AllCops:
   Exclude:
     - bin/*
     - spec/dummy/db/schema.rb
+    - templates/*
   TargetRubyVersion: 2.5
 
 Layout/MultilineMethodCallIndentation:

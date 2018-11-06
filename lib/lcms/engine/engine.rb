@@ -7,6 +7,9 @@ require 'closure_tree'
 require 'validate_url'
 require 'virtus'
 
+require 'lt/google/api'
+require 'lt/lcms'
+
 module Lcms
   module Engine
     # Top level engine class
