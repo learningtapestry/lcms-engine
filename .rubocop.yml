@@ -27,6 +27,8 @@ Metrics/BlockLength:
   Exclude:
     - '**/*_spec.rb'
     - 'config/routes.rb'
+    - 'lcms-engine.gemspec'
+    - 'lib/tasks/elasticsearch.rake'
   ExcludedMethods: ['guard', 'included']
 
 Metrics/ClassLength:
