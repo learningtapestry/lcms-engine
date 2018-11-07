@@ -26,17 +26,20 @@ class ResourcesController < ApplicationController
   def media
     resource = Resource.find(params[:id])
     return redirect_to resource_path(resource) unless resource.media?
+
     @resource = MediaPresenter.new(resource)
   end
 
   def generic
     resource = Resource.find(params[:id])
     return redirect_to resource_path(resource) unless resource.generic?
+
     @resource = GenericPresenter.new(resource)
   end
 
   def pdf_proxy
     return head(:not_found) if (url = params[:url]).blank?
+
     uri = URI.parse(Addressable::URI.escape url)
     send_data uri.open.read, disposition: :inline, file_name: url.split('/').last
   rescue StandardError => e

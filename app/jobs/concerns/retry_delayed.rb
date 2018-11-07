@@ -10,6 +10,7 @@ module RetryDelayed
 
     def self.should_retry?(retry_attempt, exception)
       return false if exception.message =~ /Script error message/ && exception.message =~ /PAGE_BREAK/
+
       retry_attempt <= RETRY_DELAYES.size
     end
 

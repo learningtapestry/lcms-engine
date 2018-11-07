@@ -27,6 +27,7 @@ class CurriculumForm
 
   def parse_change_log(params)
     return nil unless params && params[:change_log].present?
+
     JSON.parse(params[:change_log])
   end
 

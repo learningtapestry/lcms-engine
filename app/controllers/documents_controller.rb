@@ -41,6 +41,7 @@ class DocumentsController < ApplicationController
 
   def check_document_layout
     return if @document.layout('default').present?
+
     redirect_to admin_documents_path, alert: 'Document has to be re-imported.'
   end
 
