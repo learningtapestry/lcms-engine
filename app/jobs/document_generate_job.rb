@@ -40,6 +40,7 @@ class DocumentGenerateJob < Lcms::Engine::ApplicationJob
 
   def create_gdoc_folders
     return unless DocTemplate.document_contexts.include?('gdoc') || DocTemplate.material_contexts.include?('gdoc')
+
     DocumentExporter::Gdoc::Base.new(document).create_gdoc_folders("#{document.id}_v#{document.version}")
   end
 
@@ -56,6 +57,7 @@ class DocumentGenerateJob < Lcms::Engine::ApplicationJob
       queued ||=
         Resque::Worker.working.map(&:job).detect do |job|
           next unless job.is_a?(Hash) && (args = job.dig 'payload', 'args').is_a?(Array)
+
           args.detect { |x| same_material?(x, material.id) }
         end
 
@@ -85,6 +87,7 @@ class DocumentGenerateJob < Lcms::Engine::ApplicationJob
     DocumentGenerator::CONTENT_TYPES.each do |type|
       DocumentGenerator.document_generators.each do |klass|
         next if queued_or_running?(type, klass)
+
         klass.constantize.perform_later document, content_type: type
       end
     end
@@ -99,6 +102,7 @@ class DocumentGenerateJob < Lcms::Engine::ApplicationJob
 
     queued || Resque::Worker.working.map(&:job).detect do |job|
       next unless job.is_a?(Hash) && (args = job.dig 'payload', 'args').is_a?(Array)
+
       args.detect { |x| same_self?(x) }
     end
   end
@@ -111,6 +115,7 @@ class DocumentGenerateJob < Lcms::Engine::ApplicationJob
     queued ||
       Resque::Worker.working.map(&:job).detect do |job|
         next unless job.is_a?(Hash) && (args = job.dig 'payload', 'args').is_a?(Array)
+
         args.detect { |x| same_document?(x, type, klass) }
       end
   end

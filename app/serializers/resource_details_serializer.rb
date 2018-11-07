@@ -15,6 +15,7 @@ class ResourceDetailsSerializer < ResourceSerializer
   def downloads
     serialize_download = lambda do |download|
       next unless download.is_a?(ResourceDownload)
+
       indent = object.pdf_downloads? download.download_category
       {
         id: download.id,
@@ -38,6 +39,7 @@ class ResourceDetailsSerializer < ResourceSerializer
 
   def opr_standards
     return unless object.opr? && object.document.present?
+
     DocumentPresenter.new(object.document).standards
   end
 

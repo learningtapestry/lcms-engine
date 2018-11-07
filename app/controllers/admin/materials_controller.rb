@@ -76,6 +76,7 @@ module Admin
       @gdoc_files ||= begin
         link = form_params[:link]
         return [link] unless link =~ %r{/drive/(.*/)?folders/}
+
         folder_id = ::Lt::Google::Api::Drive.folder_id_for(link)
         if form_params[:source_type] == 'pdf'
           mime_type = Lt::Lcms::Lesson::Downloader::PDF::MIME_TYPE

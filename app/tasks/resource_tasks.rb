@@ -39,6 +39,7 @@ class ResourceTasks
     ActiveRecord::Base.transaction do
       Resource.lessons.find_each do |res|
         next if res.time_to_teach.present? && res.time_to_teach != 0
+
         res.update_attributes(time_to_teach: 60)
       end
 

@@ -39,6 +39,7 @@ class DocumentGenerateGdocJob < Lcms::Engine::ApplicationJob
 
   def create_gdoc_folders(document, options)
     return unless options[:excludes].present?
+
     DocumentExporter::Gdoc::Base.new(document).create_gdoc_folders(options[:gdoc_folder])
   end
 end

@@ -47,6 +47,7 @@ module Admin
 
     def bundle
       return redirect_to :admin_resources, notice: t('.fail') unless can_bundle?(@resource)
+
       # see settings loaded via `lcms.yml`
       generator = DocTemplate.config.dig('bundles', @resource.curriculum_type).constantize
       generator.perform(@resource)
@@ -150,6 +151,7 @@ module Admin
 
     def metadata(directory)
       return {} unless @resource.present?
+
       @resource.metadata.merge Resource.metadata_from_dir(directory)
     end
 

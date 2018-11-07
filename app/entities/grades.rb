@@ -41,11 +41,13 @@ class Grades
     grade = abbr.downcase
     return 'k' if grade == 'kindergarten'
     return 'pk' if grade == 'prekindergarten'
+
     grade[/\d+/]
   end
 
   def to_str
     return '' unless list.any?
+
     "Grade #{range}"
   end
 

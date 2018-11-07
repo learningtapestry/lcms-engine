@@ -11,6 +11,7 @@ class DocumentPresenter < ContentPresenter
     core_cc = ld_metadata.cc_attribution
     return core_cc if (fs_cc = fs_metadata.cc_attribution).blank?
     return core_cc if core_cc.casecmp(fs_cc).zero?
+
     "#{core_cc} #{fs_cc}"
   end
 

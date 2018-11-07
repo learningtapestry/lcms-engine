@@ -92,6 +92,7 @@ module ApplicationHelper
 
   def strip_tags_and_squish(str)
     return unless str.respond_to? :squish
+
     strip_tags(str).squish
   end
 
