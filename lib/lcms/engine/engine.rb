@@ -9,6 +9,7 @@ require 'validate_url'
 require 'virtus'
 
 require 'lt/google/api'
+require 'lt/google/api/auth/credentials'
 require 'lt/lcms'
 
 module Lcms
