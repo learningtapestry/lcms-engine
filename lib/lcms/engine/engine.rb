@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require 'acts-as-taggable-on'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
-require 'acts-as-taggable-on'
 require 'closure_tree'
+require 'resque/server'
 require 'validate_url'
 require 'virtus'
 
