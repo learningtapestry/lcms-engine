@@ -1,0 +1,16 @@
+<div class="o-ld-group" data-id="<%= @tmpl[:group].anchor %>" data-tag="<%= @tmpl[:placeholder] %>">
+  <div class="o-ld-hr--l2">
+    <hr>
+  </div>
+
+  <table class="o-simple-table u-pdf-nobreak--around">
+    <tr>
+      <td class="o-ld-title__title">
+        <h2 class="o-ld-title__title--h2" id="<%= @tmpl[:group].anchor %>"><%= @tmpl[:group].title %></h2>
+      </td>
+      <td class="o-ld-title__time o-ld-title__time--h2 u-text--right"><%= @tmpl[:group].time.zero? ? '&mdash;' : "#{@tmpl[:group].time} mins" %></td>
+    </tr>
+  </table>
+
+  <%= @tmpl[:content] %>
+</div>

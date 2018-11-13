@@ -1,0 +1,7 @@
+<% if @data[:prepend] %>
+  <span><%= @data[:prepend] %></span>
+<% end %>
+<span class="c-ld-keyword" <%= @preserved_style %>>(<%= @standard_shortcut %>)</span>
+<% if @data[:append] %>
+  <span <%= @preserved_style %>><%= @data[:append] %></span>
+<% end %>

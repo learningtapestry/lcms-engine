@@ -1,0 +1,81 @@
+<div class="o-ld-activity-wrapper <%= 'o-ld-activity-foundational-skills' if @tmpl[:foundational] %>"
+  data-id="<%= @tmpl[:activity].anchor %>"
+  data-tag="<%= @tmpl[:placeholder] %>"
+  <%= 'data-optional' if @tmpl[:activity].optional %>>
+  <hr class='o-ld-hr--l2'>
+
+  <% if @tmpl[:activity].alert.present? %>
+      <div class="o-ld-activity__optional text-center">
+        <%= @tmpl[:activity].alert %>
+      </div>
+  <% end %>
+
+  <div id="<%= @tmpl[:activity].anchor %>" class="o-ld-activity c-ld-toc">
+    <div>
+      <div class="u-pdf-nobreak o-ld-activity__title u-text--uppercase cs-txt--math-base u-txt--ld-activity-kicker u-margin-bottom--xs">
+        <%= @tmpl[:activity].activity_type %>
+      </div>
+      <h3 class="o-ld-title">
+        <div class="o-ld-title__title o-ld-title__title--h3">
+          <%= 'Optional: ' if @tmpl[:activity].optional %>
+          <%= @tmpl[:activity].activity_title %>
+          <% if @tmpl[:activity].activity_priority.present? %>
+            <% priority_id = "o-ld-p_#{SecureRandom.hex(4)}" %>
+            <div class="o-ld-icon__wrapper" data-toggle="<%= priority_id %>">
+              <span class="o-ld-icon o-ld-icon--base o-ld-icon--priority<%= @tmpl[:activity].activity_priority %>"></span>
+            </div>
+            <span class="dropdown-pane o-ld-dropdown bottom"
+                  data-dropdown
+                  data-hover="true"
+                  data-hover-delay="0"
+                  data-hover-pane="true"
+                  data-v-offset="8"
+                  id="<%= priority_id %>">
+              <%= @tmpl[:priority_description] %>
+            </span>
+          <% end %>
+        </div>
+        <div class="o-ld-title__time o-ld-title__time--h3"><%= @tmpl[:activity].time.zero? ? '&mdash;' : "#{@tmpl[:activity].time} mins" %></div>
+      </h3>
+
+      <% if @tmpl[:activity].activity_metacognition.present? %>
+        <div class="o-ld-activity__metacognition u-txt--ld-activity-teaser u-margin-bottom--base">
+          <%= @tmpl[:activity].activity_metacognition %>
+        </div>
+      <% end %>
+
+      <% if @tmpl[:activity].activity_guidance.present? %>
+        <div class="o-ld-activity__guidance">
+          <strong class="o-ld-activity__guidance--title u-text--uppercase cs-txt--math-base u-txt--title-type">Guidance</strong>
+          <%= @tmpl[:activity].activity_guidance %>
+        </div>
+      <% end %>
+
+      <% if @tmpl[:activity].activity_standard.present? %>
+        <p>
+          <strong>Standards: </strong>
+          <% (standard_infos = @tmpl[:activity].activity_standard_info).each_with_index do |activity, idx| %>
+            <% id = "cg-k_#{SecureRandom.hex(4)}" %>
+            <span class="c-ld-keyword" data-toggle="<%= id %>"><%= activity[:standard] %></span><%= ',' if idx + 1 < standard_infos.size %>
+            <% if activity[:description] %>
+              <span class="dropdown-pane o-ld-dropdown"
+                    data-dropdown
+                    data-hover="true"
+                    data-hover-delay="0"
+                    data-hover-pane="true"
+                    data-v-offset="12"
+                    id="<%= id %>">
+                    <b><%= activity[:standard] %></b><br />
+                    <span><%= h activity[:description] %></span>
+              </span>
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <%= @tmpl[:content] %>
+
+  <%= materials_container @tmpl[:react_props] %>
+</div>

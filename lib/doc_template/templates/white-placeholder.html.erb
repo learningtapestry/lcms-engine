@@ -1,0 +1,8 @@
+<div class="o-ld-white-placeholder o-ld-white-placeholder--<%= @tmpl[:css_class] %>">
+  <% if @tmpl[:title].present? %>
+    <p class="o-ld-white-placeholder__title o-ld-white-placeholder__title--<%= @tmpl[:subject] %> o-ld-white-placeholder__title--<%= @tmpl[:css_class] %>">
+      <%= @tmpl[:title] %>
+    </p>
+  <% end %>
+  <%= @tmpl[:content] %>
+</div>

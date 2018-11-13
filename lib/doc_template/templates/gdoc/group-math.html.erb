@@ -1,0 +1,48 @@
+<div class="o-ld-group" data-id="<%= @tmpl[:section].anchor %>" data-tag="<%= @tmpl[:placeholder] %>">
+  <% if @tmpl[:section].title.parameterize == 'foundational-skills' %>
+      <table class="o-simple-table cs-bg--math-activity-foundational o-ld-foundational-divider">
+        <tr>
+          <td class="u-text--centered u-txt--ld-math-foundational-divider o-ld-foundational-divider__item">
+            <h2>FOUNDATIONAL SKILLS LESSON</h2>
+          </td>
+        </tr>
+      </table>
+  <% else %>
+      <div class="o-ld-hr--l1">
+        <hr>
+      </div>
+  <% end %>
+
+  <table class="o-simple-table u-pdf-nobreak--around">
+    <tr>
+      <td class="o-ld-title__title">
+        <h2 class="o-ld-title__title--h2"><%= @tmpl[:section].title %></h2>
+      </td>
+      <td class="o-ld-title__time o-ld-title__time--h2 u-text--right"><%= @tmpl[:section].time.zero? ? '&mdash;' : "#{@tmpl[:section].time} mins" %></td>
+    </tr>
+  </table>
+
+  <% if @tmpl[:section].summary.present? %>
+    <p class="u-txt--ld-summary"><%= @tmpl[:section].summary %></p>
+  <% end %>
+
+  <% if @tmpl[:section].try(:lesson_objective).present? %>
+    <% unless @tmpl[:foundational_skills] %>
+        <h3>Lesson Summary:</h3>
+    <% end %>
+    <p><%= @tmpl[:section].lesson_objective %></p>
+  <% end %>
+
+  <% if @tmpl[:foundational_skills] %>
+    <% if (standards = @tmpl[:section].section_standard_info).any? %>
+      <p>
+        <strong>Standards: </strong>
+        <% standards.each_with_index do |data, idx| %>
+          <span class="c-ld-keyword"><%= data[:standard] %></span><%= ',' if idx + 1 < standards.size %>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= @tmpl[:content] %>
+</div>

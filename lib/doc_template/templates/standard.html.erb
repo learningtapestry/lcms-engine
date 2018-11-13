@@ -1,0 +1,20 @@
+<% id = "cg-k_#{SecureRandom.hex(4)}" %>
+<% if @data[:prepend] %>
+  <span><%= @data[:prepend] %></span>
+<% end %>
+<span class="c-ld-keyword" data-toggle="<%= id %>" <%= @preserved_style %>>(<%= @standard_shortcut %>)</span>
+<% if @description.present? %>
+  <span class="dropdown-pane o-ld-dropdown"
+  data-dropdown
+  data-hover="true"
+  data-hover-delay="0"
+  data-hover-pane="true"
+  data-v-offset="12"
+  id="<%= id %>">
+    <b><%= @standard_shortcut %></b><br />
+    <%= h @description %>
+  </span>
+<% end %>
+<% if @data[:append] %>
+  <span <%= @preserved_style %>><%= @data[:append] %></span>
+<% end %>

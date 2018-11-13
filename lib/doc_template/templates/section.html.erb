@@ -1,0 +1,51 @@
+<div class="o-ld-section-wrapper"
+     data-id="<%= @tmpl[:section].anchor %>"
+     <%= 'data-deselectable' if @tmpl[:section].deselectable %>
+     <%= 'data-optional' if @tmpl[:section].optional %>
+     data-tag="<%= @tmpl[:placeholder] %>">
+
+  <hr class="o-ld-hr--l2">
+
+  <% if @tmpl[:metacog].present? %>
+    <div class="o-ld-section__optional text-center">
+      <%= raw @tmpl[:metacog] %>
+    </div>
+  <% end %>
+
+  <div id="<%= @tmpl[:section].anchor %>" class="o-ld-section c-ld-toc <%= 'o-ld-section--bg-color' if @tmpl[:section][:use_color] %>">
+    <h3 class="o-ld-title u-margin-top--large">
+      <div class="o-ld-title__title o-ld-title__title--h3">
+        <% @tmpl[:section].icons.each do |icon| %>
+          <span class="o-m-icon o-m-icon--<%= icon %>"></span>
+        <% end %>
+        <%= @tmpl[:section].title %>
+        <% if @tmpl[:section].priority.present? %>
+          <% priority_id = "o-ld-p_#{SecureRandom.hex(4)}" %>
+          <div class="o-ld-icon__wrapper" data-toggle="<%= priority_id %>">
+            <span class="o-ld-icon o-ld-icon--base o-ld-icon--priority<%= @tmpl[:section].priority %>"></span>
+          </div>
+          <span class="dropdown-pane o-ld-dropdown bottom"
+                data-dropdown
+                data-hover="true"
+                data-hover-delay="0"
+                data-hover-pane="true"
+                data-v-offset="8"
+                id="<%= priority_id %>">
+          <%= @tmpl[:priority_description] %>
+          </span>
+        <% end %>
+      </div>
+      <div class="o-ld-title__time o-ld-title__time--h3"><%= @tmpl[:section].time.zero? ? '&mdash;' : "#{@tmpl[:section].time} mins" %></div>
+    </h3>
+
+    <% if (metacog = @tmpl[:section].metacognition.content) %>
+      <div class="o-ld-activity__metacognition hide">
+        <%= metacog %>
+      </div>
+    <% end %>
+
+    <%= @tmpl[:content] %>
+  </div>
+
+  <%= materials_container @tmpl[:react_props] %>
+</div>
