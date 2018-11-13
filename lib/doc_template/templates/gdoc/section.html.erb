@@ -1,0 +1,44 @@
+<div class="o-ld-section-wrapper" data-id="<%= @tmpl[:section].anchor %>" data-tag="<%= @tmpl[:placeholder] %>">
+  <div class="o-ld-hr--l2">
+    <hr>
+  </div>
+
+  <% if @tmpl[:metacog].present? %>
+    <table class="o-ld-section__optional text-center o-simple-table">
+      <tr>
+        <td><%= @tmpl[:metacog] %></td>
+      </tr>
+    </table>
+  <% end %>
+
+  <table id="<%= @tmpl[:section].anchor %>" class="o-simple-table <%= 'o-ld-section--bg-color' if @tmpl[:section][:use_color] %>">
+    <tr>
+      <td class="u-table-wrap--l2 <%= 'cs-border-top--ela' if @tmpl[:section][:use_color] %>">
+        <table class="o-simple-table">
+          <tr>
+            <td class="o-ld-title__title">
+              <h3 class="o-ld-title__title--h3">
+                <% @tmpl[:section_icons].each do |icon| %>
+                  <img src="<%= icon %>" class="o-ld-icon"/>
+                <% end %>
+                <%= @tmpl[:section].title %>
+                <% if @tmpl[:section].priority.present? %>
+                  <img src="<%= @tmpl[:priority_icon] %>" class="o-ld-icon"/>
+                <% end %>
+              </h3>
+            </td>
+            <td class="o-ld-title__time o-ld-title__time--h3 u-text--right"><%= @tmpl[:section].time.zero? ? '&mdash;' : "#{@tmpl[:section].time} mins" %></td>
+          </tr>
+        </table>
+
+        <% if @tmpl[:blockquote].present? %>
+          <div class="o-ld-section__quote">
+            <%= @tmpl[:blockquote].html_safe %>
+          </div>
+        <% end %>
+
+        <%= @tmpl[:content] %>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,25 @@
+<h2>Teacher Guidance</h2>
+<h3 class="u-margin-top--gutter">Pacing</h3>
+<% if @data.grade == '2' %>
+  <% if (@data.module.to_i == 1 && @data.unit.to_i >= 8) || @data.module.to_i > 1 %>
+    <%= I18n.t('teacher_guidance.ela_2_m1_u8_html') %>
+  <% else %>
+    <%= I18n.t('teacher_guidance.ela_2_html') %>
+  <% end %>
+<% else %>
+  <% if @data.module.to_i >= 4 %>
+    <%= I18n.t('teacher_guidance.ela_6_m4_html') %>
+  <% else %>
+    <%= I18n.t('teacher_guidance.ela_6_html') %>
+  <% end %>
+<% end %>
+<h3 class="u-margin-top--gutter">Materials</h3>
+<div>
+  <%= @data.materials %>
+</div>
+<% if @data.preparation.present? %>
+  <h3 class="u-margin-top--gutter">Preparation</h3>
+  <div>
+    <%= @data.preparation %>
+  </div>
+<% end %>

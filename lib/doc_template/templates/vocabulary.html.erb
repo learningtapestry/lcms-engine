@@ -1,0 +1,15 @@
+<h3 class="u-margin-top--gutter">Core Vocabulary</h3>
+<table>
+  <% @tmpl[:sections].each do |section| %>
+    <tr>
+      <td colspan="2"><strong><%= section[:title] %></strong></td>
+    </tr>
+    <% section[:words].each do |word| %>
+      <tr>
+        <td><%= word[:name] %></td>
+        <td><%= word[:definition] %></td>
+      </tr>
+    <% end  %>
+    </tr>
+  <% end %>
+</table>

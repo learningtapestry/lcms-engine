@@ -1,0 +1,7 @@
+<% if @tmpl[:prepend] %>
+  <span><%= @tmpl[:prepend] %></span>
+<% end %>
+<span class="c-ld-keyword c-ld-keyword--<%= @tmpl[:subject] %>"><%= h @tmpl[:definition] %></span>
+<% if @tmpl[:append] %>
+  <span <%= @tmpl[:preserved_style] %>><%= @tmpl[:append] %></span>
+<% end %>

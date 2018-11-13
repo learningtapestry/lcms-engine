@@ -1,0 +1,10 @@
+<div class="o-ld-expand o-ld-expand-<%= @tmpl[:subject] %>">
+  <div class="o-ld-expand__content"><%= @tmpl[:content] %></div>
+  <% if @tmpl[:content_hidden].present? %>
+    <div class="o-ld-expand__content--hidden"><%= @tmpl[:content_hidden] %></div>
+    <div class="o-ld-expand__toggler o-ld-expand__<%= @tmpl[:subject] %>-toggler">
+      <span class="o-ld-expand__toggler--hide">Show less</span>
+      <span class="o-ld-expand__toggler--show">Show more</span>
+    </div>
+  <% end %>
+</div>

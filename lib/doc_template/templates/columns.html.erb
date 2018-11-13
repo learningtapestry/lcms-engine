@@ -1,0 +1,13 @@
+<div class="o-ld-columns">
+  <table class="o-ld-columns-table">
+    <tbody>
+      <% @tmpl[:rows].each do |row| %>
+        <tr>
+          <% row.each do |cell| %>
+            <td class="<%= cell[:css_class] %>"><%= cell[:content] %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

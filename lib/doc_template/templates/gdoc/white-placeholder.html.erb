@@ -1,0 +1,15 @@
+<div class="o-ld-white-placeholder">
+  <table class="o-simple-table cs-bg--light">
+    <tr>
+      <td class="u-table-wrap <%= "cs-border-left--ela" if @tmpl[:css_class].to_s.casecmp('colored').zero? %>">
+        <% if @tmpl[:title].present? %>
+          <p class="u-txt--ld-white-placeholder-title <%= "cs-txt--#{@tmpl[:subject]}-base" unless @tmpl[:css_class].to_s.casecmp('colored').zero? %>">
+            <%= @tmpl[:title] %>
+          </p>
+        <% end %>
+        <%= @tmpl[:content] %>
+      </td>
+    </tr>
+  </table>
+  <p class="do-not-strip"></p>
+</div>

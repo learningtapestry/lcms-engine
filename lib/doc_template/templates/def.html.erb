@@ -1,0 +1,19 @@
+<% if @tmpl[:prepend] %>
+  <span><%= @tmpl[:prepend] %></span>
+<% end %>
+<% id = "cg-k_#{SecureRandom.hex(4)}" %>
+<span class="c-ld-keyword c-ld-keyword--<%= @tmpl[:subject] %>" data-toggle="<%= id %>"><%= @tmpl[:definition] %></span>
+<% if @tmpl[:description].present? %>
+  <span class="dropdown-pane o-ld-dropdown"
+        data-dropdown
+        data-hover="true"
+        data-hover-delay="0"
+        data-hover-pane="true"
+        data-v-offset="12"
+        id="<%= id %>">
+   <%= h @tmpl[:description] %>
+  </span>
+<% end %>
+<% if @tmpl[:append] %>
+  <span <%= @tmpl[:preserved_style] %>><%= @tmpl[:append] %></span>
+<% end %>

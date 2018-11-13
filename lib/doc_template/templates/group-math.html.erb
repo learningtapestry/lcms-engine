@@ -1,0 +1,59 @@
+<div class="o-ld-group" data-id="<%= @tmpl[:section].anchor %>" data-tag="<%= @tmpl[:placeholder] %>">
+  <% if @tmpl[:foundational_skills] %>
+    <div class="o-ld-foundational-divider">
+      <div class="o-ld-foundational-divider__delimeter"></div>
+      <div class="o-ld-foundational-divider__block">Foundational Skills Lesson</div>
+      <div class="o-ld-foundational-divider__delimeter"></div>
+    </div>
+  <% else %>
+      <hr class="o-ld-hr--l1">
+  <% end %>
+
+  <h2 id="<%= @tmpl[:section].anchor %>" class="o-ld-title c-ld-toc <%= 'c-foundational-section' if @tmpl[:foundational_skills] %>">
+    <div class="o-ld-title__title o-ld-title__title--h2"><%= @tmpl[:section].title %></div>
+    <div class="o-ld-title__time o-ld-title__time--h2">
+      <%= @tmpl[:section].time.zero? ? '&mdash;' : "#{@tmpl[:section].time} mins" %>
+    </div>
+  </h2>
+
+  <% if @tmpl[:section].summary.present? %>
+    <p class="u-txt--ld-summary"><%= @tmpl[:section].summary %></p>
+  <% end %>
+
+  <% if @tmpl[:section].try(:lesson_objective).present? %>
+    <% unless @tmpl[:foundational_skills] %>
+        <h3>Lesson Summary:</h3>
+    <% end %>
+    <p><%= @tmpl[:section].lesson_objective %></p>
+  <% end %>
+
+  <% if @tmpl[:foundational_skills] %>
+    <% if (standards = @tmpl[:section].section_standard_info).any? %>
+      <p>
+        <strong>Standards: </strong>
+        <% standards.each_with_index do |data, idx| %>
+          <% id = "cg-k_#{SecureRandom.hex(4)}" %>
+          <span class="c-ld-keyword" data-toggle="<%= id %>"><%= data[:standard] %></span><%= ',' if idx + 1 < standards.size %>
+          <% if data[:description] %>
+            <span class="dropdown-pane o-ld-dropdown"
+                  data-dropdown
+                  data-hover="true"
+                  data-hover-delay="0"
+                  data-hover-pane="true"
+                  data-v-offset="12"
+                  id="<%= id %>">
+                  <b><%= data[:standard] %></b><br />
+                  <span><%= h data[:description] %></span>
+            </span>
+          <% end %>
+        <% end %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= @tmpl[:before_materials] %>
+
+  <%= materials_container @tmpl[:react_props] if @tmpl[:with_materials] %>
+
+  <%= @tmpl[:content] %>
+</div>

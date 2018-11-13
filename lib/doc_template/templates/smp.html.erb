@@ -1,0 +1,13 @@
+<div class="o-ld-smp">
+  <div class="o-ld-smp__content">
+    <%= @tmpl[:content] %>
+  </div>
+  <div class="o-ld-smp__lines">
+    <div class="o-ld-smp-bracket"></div>
+    <div class="o-ld-smp-figure">
+      <% @tmpl[:smp].each do |smp| %>
+        <p class="o-ld-smp-figure__name"><%= smp %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
