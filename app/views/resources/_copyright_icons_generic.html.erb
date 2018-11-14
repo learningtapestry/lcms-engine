@@ -1,0 +1,9 @@
+<% cc_types = [{ icon: 'cc-zero', title: 'You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.' }] %>
+
+<% if resource.copyrights.present? %>
+  <% cc_types.each do |cc_type| %>
+    <span data-tooltip data-template-classes="u-resource-tooltip cs-tint-bg--<%= color_code(resource, base: true) %>" aria-haspopup="true" title="<%= cc_type[:title] %>">
+        <i class="fa-lg ub-<%= cc_type[:icon] %>"></i>
+    </span>
+  <% end %>
+<% end %>

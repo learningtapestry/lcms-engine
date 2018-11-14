@@ -1,0 +1,18 @@
+<div class="o-resource__item">
+  <h3>Tags</h3>
+  <% each_tags_cloud!(tag_clouds) do |tags, cloud_name = nil| %>
+    <ul class="o-resource__taglist o-resource__list--<%= color_code %>">
+      <% if cloud_name.present? %>
+        <li><strong><%= cloud_name %>:</strong></li>
+      <% end %>
+      <% tags.each_with_index do |tag, i| %>
+        <li>
+          <%= link_to tag, search_path(search_term: tag.downcase) %><%= ', ' if i != tags.size - 1  %>
+        </li>
+      <% end %>
+      <% if tags.empty? %>
+        <span>There are no tags for this resource</span>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

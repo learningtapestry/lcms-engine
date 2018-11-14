@@ -1,0 +1,20 @@
+<div>
+  <% if document.show_title? %>
+    <% if document.header? %>
+      <div class="u-pdf-txt--m-header-kicker"><%= document.header_breadcrumb %></div>
+      <h1 class="u-pdf-txt--m-header-title"><%= document.title %></h1>
+      <% if document.name_date? %>
+        <table class="o-m-header u-padding-top--base">
+          <td class="o-m-header__title u-pdf-txt--m-header-dt-title">Name</td>
+          <td class="o-m-header__name-value u-pdf-txt--m-header-dt-value"><%= 'Teacher Answer Sheet' if document.teacher_material? %></td>
+          <td class="o-m-header__title u-pdf-txt--m-header-dt-title">Date</td>
+          <td class="o-m-header__date-value"></td>
+        </table>
+      <% end %>
+    <% else %>
+      <h1 class="u-pdf-txt--m-header-title"><%= document.title %></h1>
+    <% end %>
+  <% else %>
+    <div class="u-pdf-txt--m-header-kicker"><%= document.header_breadcrumb %></div>
+  <% end %>
+</div>

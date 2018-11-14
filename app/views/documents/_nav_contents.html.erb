@@ -1,0 +1,16 @@
+<% document.toc.children.each do |heading| %>
+  <%= render('nav_item', heading: heading, math: document.math?) unless heading.anchor == '1-general' || heading.anchor == 'optbreak' %>
+  <%= render('nav_opt_break', foundational: document.math?, heading: heading) if heading.anchor == 'optbreak' %>
+<% end %>
+<%= render 'nav_resources' %>
+<% unless document.assessment? %>
+  <li class="o-ld-sidebar__block"><div class="o-ld-sidebar-item__hr"></div></li>
+  <li class="o-ld-sidebar__block">
+    <div class="o-ld-sidebar-item__content">
+      <div class="o-ld-sidebar-item__header o-ld-sidebar-item__header--summary">Total Instruction Time</div>
+      <div class="o-ld-sidebar-item__time o-ld-sidebar-item__time--summary">
+        <%= toc_time(document.toc.total_time) %>
+      </div>
+    </div>
+  </li>
+<% end %>

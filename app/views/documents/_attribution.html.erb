@@ -1,0 +1,9 @@
+<h3 class="c-ld-toc" id="<%= t('document.toc.credits').parameterize %>"><%= t('document.toc.credits') %></h3>
+<% if document.cc_attribution.present? %>
+    <div class="u-flex">
+      <i class="ub-cc-stamp fa-2x u-margin-right--small"></i>
+      <div>
+        <%= document.cc_attribution %>
+      </div>
+    </div>
+<% end %>

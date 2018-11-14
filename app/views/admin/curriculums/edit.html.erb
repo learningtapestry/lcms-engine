@@ -1,0 +1,13 @@
+<% set_page_title 'Curriculum Tree Manager' %>
+
+<div class="o-page">
+
+  <h1 class="text-center">Import Curriculum Tree</h1>
+
+  <% if @curriculum.present? %>
+    <h1 class="text-center">Curriculum Tree</h1>
+    <div class="row">
+      <%= react_component('CurriculumEditor', @curriculum.editor_props.merge(form_token: form_authenticity_token), prerender: true) %>
+    </div>
+  <% end %>
+</div>

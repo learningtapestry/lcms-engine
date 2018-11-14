@@ -1,0 +1,8 @@
+<div class="o-page">
+  <h2 class=text-center><%= t('.page_title') %></h2>
+
+  <%= simple_form_for @document, url: [:admin, :documents] do |f| %>
+      <%= f.input :link, error: f.object.errors[:link].first.try(:html_safe), label: t('ui.url') %>
+    <%= f.button :submit, t('.submit') %>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+<% lti = local_assigns[:lti] %>
+<div class="o-page__module u-bg--light c-ld u-padding-bottom--gutter">
+  <div class="o-page__wrap--row" <%= 'data-ela' if document.ela? %>>
+    <% unless request[:action].index('export') %>
+      <div class="c-ld__sidebar doc-subject-<%= document.math? ? 'math' : 'ela' %>">
+        <%= render 'documents/nav', document: document, lti: lti %>
+      </div>
+    <% end %>
+    <div id="c-ld-content" class="c-ld__body c-ld__body--general" <%= 'data-assessment' if document.assessment? %>>
+      <%= render 'helpdesk' if ENV['FRESHDESK_URL'].present? && !lti %>
+      <% if document.description.present? && !document.foundational? %>
+        <h2>Summary</h2>
+        <p><%= raw document.description %></p>
+      <% end %>
+      <%= raw document.render_content(:default, with_optional: true) %>
+      <%= render 'print_export', document: document %>
+    </div>
+  </div>
+</div>

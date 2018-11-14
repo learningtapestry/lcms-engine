@@ -1,0 +1,13 @@
+<% set_page_title @document.title.html_safe %>
+
+<style type="text/css">
+  <%= raw(@document.css_styles) %>
+</style>
+
+<div class="o-page o-page--margin-to-bottom o-page--ld c-ld--<%= @document.color_code_grade %>" data-scroll="cg-page" id="cg-page">
+  <%= render 'header', document: @document %>
+  <%= render 'content', document: @document %>
+  <div class="c-footer__item u-txt--footer-links">
+    <%= @document.metadata['cc-attribution'] %>
+  </div>
+</div>

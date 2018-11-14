@@ -1,0 +1,32 @@
+<%= simple_form_for :query, url: :admin_batch_reimport, html: { class: 'form-inline well o-admin-lessons-search', method: :post } do |f| %>
+
+  <div class="row align-bottom align-justify">
+    <button class="button o-admin-search-subject float-right" type="button" data-toggle="subject">Select Subject</button>
+    <div class="dropdown-pane bottom" id="subject" data-dropdown data-auto-focus="true">
+      <%= f.input :subject, label: 'Subject',
+                            required: false,
+                            as: :select,
+                            include_blank: true,
+                            collection: %w(math ela),
+                            label_method: :humanize %>
+    </div>
+
+    <button class="button o-admin-search-grades float-right" type="button" data-toggle="grade">Select Grade</button>
+    <div class="dropdown-pane bottom" id="grade" data-dropdown data-auto-focus="true">
+      <%= f.input :grade, label: 'Grades',
+                          required: false,
+                          as: :select,
+                          include_blank: true,
+                          collection: Grades::GRADES,
+                          label_method: :humanize %>
+    </div>
+
+    <%= f.input :module, placeholder: 'Module Number', required: false %>
+    <%= f.input :unit, placeholder: 'Unit/Topic Number', required: false %>
+    <%= f.input :type, label: nil, as: :select, include_blank: false,
+                collection: [['Lessons', 'documents'], ['Materials', 'materials']] %>
+
+    <%= f.button :submit, 'Reimport', class: 'o-admin-search-submit primary', name: nil, data: {confirm: 'Are you sure?'} %>
+  </div>
+
+<% end %>

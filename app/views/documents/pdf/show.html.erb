@@ -1,0 +1,12 @@
+<style type="text/css">
+  <%= raw document.css_styles %>
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<%= render 'documents/pdf/header', document: document unless document.content_type == 'sm' %>
+<div class="o-page--cg-<%= document.subject %>">
+  <div class="c-ld__body o-page--pdf-ld c-ld__body--pdf c-ld__body--<%= "#{document.subject}-#{document.content_type}"%>" style="<%= document.padding_styles %>">
+    <%= raw document.content_for(:default, options) %>
+  </div>
+</div>

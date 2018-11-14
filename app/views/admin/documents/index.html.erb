@@ -1,0 +1,86 @@
+<% set_page_title 'Lessons Manager' %>
+
+<div class="o-page o-adm-list o-adm-documents">
+
+  <h1 class=text-center><%= t('.title') %></h1>
+
+  <%= render 'search_form' %>
+
+  <div class=row>
+    <div class="flex-pull-left">
+      <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
+      <span class="c-reimport-with-materials__toggle"><%= check_box_tag 'reimport_with_materials', 1 %> Reimport with Materials</span>
+    </div>
+    <div class='flex-pull-right'>
+
+      <%= react_component 'MultiSelectedOperation', {
+            text: t('.reimport_selected'),
+            operation: 'reimport',
+            path: reimport_selected_admin_documents_path(query: params[:query]),
+            btn_style: 'primary' } %>
+      <%= react_component 'MultiSelectedOperation', {
+            text: t('.delete_selected'),
+            operation: 'delete',
+            path: delete_selected_admin_documents_path(query: params[:query]),
+            btn_style: 'alert'} %>
+
+      <%= link_to t('.new_lesson'), :new_admin_document, class: 'button primary' %>
+    </div>
+    <table class="lessons-table table">
+      <tr>
+        <th></th>
+        <th>ID</th>
+        <th>Curriculum</th>
+        <th>Title</th>
+        <th>File Name</th>
+        <th>Materials</th>
+        <th>Last Update</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+
+      <% @documents.each do |lesson| %>
+        <tr id=lesson_<%= lesson.id %>>
+          <td><%= check_box_tag 'selected_ids[]', lesson.id, selected_id?(lesson.id), class: 'c-selected-ids' %></td>
+          <td class="u-text--right"><%= lesson.id %></td>
+          <td><%= Breadcrumbs.new(lesson.resource).short_title if lesson.resource %></td>
+          <td><%= link_to lesson&.resource&.title, document_path(lesson, request.query_parameters), target: '_blank' %></td>
+          <td>
+            <% if lesson.math? %>
+              <% if lesson.file_url.present? %>
+                <strong>Core: </strong>
+                <%= link_to lesson.name, lesson.file_url, target: '_blank' %><br/>
+              <% end %>
+              <% if lesson.file_fs_url.present? %>
+                <strong>FS: </strong>
+                <%= link_to lesson.fs_name, lesson.file_fs_url, target: '_blank', style: 'word-break: break-word' %>
+              <% end %>
+            <% else %>
+              <%= link_to lesson.name, lesson.file_url, target: '_blank' %>
+            <% end %>
+          </td>
+          <td><%= render partial: 'admin/documents/materials_links', locals: { lesson: lesson } %></td>
+          <td class="u-text--small"><%= lesson.updated_at.to_s %></td>
+          <td class="lessons-table__status">
+            <%= lesson.active? ? 'active' : 'inactive' %>
+            <% unless lesson.reimported %>
+              <br/>
+              <span class="failed">failed</span>
+            <% end %>
+          </td>
+          <td class="lessons-table__btns">
+            <%= render partial: 'admin/documents/reimport', locals: {lesson: lesson} %>
+            <%= button_to t('ui.delete'), admin_document_path(lesson), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class='col-sm-12 text-center'>
+      <%= will_paginate @documents, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+
+</div>

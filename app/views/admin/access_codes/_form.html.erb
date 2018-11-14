@@ -1,0 +1,5 @@
+<%= simple_form_for [:admin, @access_code], html: { id: 'access_code_form' } do |f| %>
+  <%= f.input :code %>
+  <%= f.input :active %>
+  <%= f.button :submit, t('ui.save'), name: nil %>
+<% end %>

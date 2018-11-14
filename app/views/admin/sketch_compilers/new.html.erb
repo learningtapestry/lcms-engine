@@ -1,0 +1,9 @@
+<div class=o-page>
+  <h2 class=text-center><%= t'.page_title', version: @version %></h2>
+
+  <%= form_tag compile_admin_sketch_compiler_path(@version) do %>
+      <%= hidden_field_tag :version, @version %>
+      <%= render "compiler_#{@version}" %>
+      <%= submit_tag t('.submit'), disable_with: 'Compiling...' %>
+  <% end %>
+</div>

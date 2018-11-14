@@ -1,0 +1,9 @@
+<section class="o-helpdesk u-br--2xbase u-pd-content u-margin-bottom--large">
+  <div class="o-helpdesk__content">
+    <strong class="u-txt--helpdesk-title"><%= t('helpdesk.title') %></strong>
+    <p class="u-margin-top--tiny u-margin-bottom--zero">
+      <%= t('helpdesk.content') %>
+    </p>
+  </div>
+  <%= link_to t('helpdesk.cta'), ENV['FRESHDESK_URL'], class: 'o-ub-btn o-ub-btn--print o-ub-btn--helpdesk u-br--2xbase o-helpdesk__cta',  target: '_blank' %>
+</section>

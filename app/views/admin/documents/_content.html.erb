@@ -1,0 +1,11 @@
+<div class="o-page__module u-bg--light c-ld">
+  <div class="o-page__wrap--row">
+    <div id="c-ld-content" class="c-ld__body">
+      <% if document.description.present? %>
+        <h2>Lesson Summary</h2>
+        <p><%= raw document.description %></p>
+      <% end %>
+      <%= raw document.content %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<% url = @page.new_record? ? :admin_pages : admin_page_path(@page) %>
+
+<%= simple_form_for @page, url: url do |f| %>
+  <%= f.input :title %>
+  <%= f.input :slug %>
+  <%= f.input :body, as: :ckeditor, input_html: { rows: 10 } %>
+  <%= f.button :submit, t('ui.save'), name: nil %>
+<% end %>

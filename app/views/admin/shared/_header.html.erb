@@ -1,0 +1,59 @@
+<header class="c-header">
+  <div class="o-page__wrap--row-column">
+    <nav class="o-top-bar">
+      <div class="o-top-bar__item c-header-title">
+        <%= link_to main_app.root_path, class: 'c-header-title__logo c-header__link' do %>
+          <%= image_tag('logo-beta.svg') %>
+        <% end %>
+        <span class="c-header-title__h-menu" data-responsive-toggle="navbar">
+          <span class="menu-icon" data-toggle></span>
+        </span>
+      </div>
+      <div class="o-top-bar__wrapper" id="navbar">
+        <div class="o-top-bar__item c-header__menu">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="c-header__link">
+              <%= link_to t('admin.nav.curriculum'), main_app.edit_admin_curriculum_path %>
+            </li>
+
+            <li class="dropdown c-header__link">
+              <%= link_to t('admin.nav.pages'), main_app.admin_pages_path %>
+              <ul class="menu vertical">
+                <%= nav_link t('admin.nav.pages'), main_app.admin_pages_path %>
+              </ul>
+            </li>
+
+            <li class="dropdown c-header__link">
+              <%= link_to t('admin.nav.resources'), main_app.admin_resources_path %>
+              <ul class="menu vertical">
+                <%= nav_link t('admin.nav.resources'), main_app.admin_resources_path %>
+                <%= nav_link t('admin.nav.add_resource'), main_app.new_admin_resource_path %>
+                <%#= nav_link t('admin.nav.sketch_compilation', version: 'v1'), main_app.new_admin_sketch_compiler_path(:v1) %>
+                <%#= nav_link t('admin.nav.sketch_compilation', version: 'v2'), main_app.new_admin_sketch_compiler_path(:v2) %>
+                <%= nav_link t('admin.nav.lessons'), main_app.admin_documents_path %>
+                <%= nav_link t('admin.nav.materials'), main_app.admin_materials_path %>
+                <%= nav_link t('admin.nav.batch_reimport'), main_app.new_admin_batch_reimport_path %>
+              </ul>
+            </li>
+
+            <li class="c-header__link">
+              <%= link_to t('admin.nav.standards'), main_app.admin_standards_path %>
+            </li>
+
+            <li class="dropdown c-header__link">
+              <%= link_to t('admin.nav.users'), main_app.admin_users_path %>
+              <ul class="menu vertical">
+                <%= nav_link t('admin.nav.users'), main_app.admin_users_path %>
+                <%= nav_link t('admin.nav.access_codes'), main_app.admin_access_codes_path %>
+              </ul>
+            </li>
+
+            <li class="c-header__link">
+              <%= link_to t('admin.nav.sign_out'), main_app.destroy_user_session_path %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

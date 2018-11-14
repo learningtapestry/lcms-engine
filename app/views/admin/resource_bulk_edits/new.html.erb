@@ -1,0 +1,21 @@
+<div class=o-page>
+  <h2 class=text-center><%= t('.page_title') %></h2>
+
+  <%= simple_form_for @resource, url: :admin_resource_bulk_edits do |f| %>
+
+    <% @resources.each do |resource| %>
+      <%= hidden_field_tag 'ids[]', resource.id %>
+    <% end %>
+
+    <%= f.association :standards, as: :select, input_html: { class: 'selectize', multiple: true } %>
+
+    <%= f.input :grades, collection: Grades::GRADES, as: :select, value_method: :humanize, input_html: { class: 'selectize', id: 'grades_select', multiple: true } %>
+
+    <%= f.input :tag_list, collection: Tag.where_context('tags').select(:id, :name).distinct(:name), as: :select, value_method: :name, input_html: { class: 'selectize', id: 'subjects_select', multiple: true } %>
+
+    <%= f.input :resource_type_list, collection: Tag.where_context('resource_types').select(:id, :name).distinct(:name), value_method: :name, as: :select, input_html: { class: 'selectize', id: 'resource_types_select', multiple: true } %>
+
+    <%= f.button :submit, t('ui.save'), name: nil %>
+
+  <% end %>
+</div>

@@ -1,0 +1,50 @@
+<hr class="o-ld-hr--l1"/>
+<h2 class="c-ld-toc" id="<%= t('document.toc.resources').parameterize %>">
+  <%= t('document.toc.resources') %>
+</h2>
+<div class="u-txt--ld-resource-summary">
+  <%= t('document.resources_summary_html') %>
+</div>
+<%= t('document.resources_html') %>
+<div>
+  <% if document.links['pdf'].present? %>
+    <%= link_to t("ui.export_pdf"), document.links['pdf'], class: 'o-ub-btn o-ub-btn--print materials-all',
+                data: { no_turbolink: true, contenttype: 'full', context: 'pdf', customtitle: t('ui.export_custom_pdf'), href: document.links['pdf'] },
+                target: '_blank' %>
+  <% end %>
+  <% if document.links['gdoc_full'].present? %>
+    <%= link_to t('ui.export_gdoc'), document.links['gdoc_full'], class: 'o-ub-btn o-ub-btn--print materials-all',
+                data: { no_turbolink: true, contenttype: 'full', context: 'gdoc', customtitle: t('ui.export_custom_gdoc'), href: document.links['gdoc_full'] },
+                target: '_blank' %>
+  <% end %>
+</div>
+<hr class="o-ld-hr--l2">
+<h3 class="c-ld-toc" id="<%= t('document.toc.tm').parameterize %>"><%= t('document.toc.tm') %></h3>
+<%= t('document.tm_html') %>
+<%= t('document.tm_math_ela6_html') if document.math? || document.ela6? %>
+<%= t('document.tm_ela2_html', unit_dsc: document.unit.title, unit_href: show_resource_path(document.unit)) if document.ela2? && document.unit.present? %>
+<%= react_component('DocumentMaterialsList', document.teacher_materials_props, prerender: true) %>
+<div>
+  <% %w(pdf gdoc).each do |c_type| %>
+    <% if document.links["#{c_type}_tm"].present? %>
+      <%= link_to t("ui.export_#{c_type}"), document.links["#{c_type}_tm"], class: 'o-ub-btn o-ub-btn--print materials-t',
+                data: { no_turbolink: true, contenttype: 'tm', context: c_type, customtitle: t("ui.export_custom_#{c_type}"), href: document.links["#{c_type}_tm"] },
+                target: '_blank' %>
+    <% end %>
+  <% end %>
+</div>
+<hr class="o-ld-hr--l2">
+<h3 class="c-ld-toc" id="<%= t('document.toc.sm').parameterize %>"><%= t('document.toc.sm') %></h3>
+<%= t('document.sm_html') %>
+<%= react_component('DocumentMaterialsList', document.student_materials_props, prerender: true) %>
+<div>
+  <% %w(pdf gdoc).each do |c_type| %>
+    <% if document.links["#{c_type}_sm"].present? %>
+      <%= link_to t("ui.export_#{c_type}"), document.links["#{c_type}_sm"], class: 'o-ub-btn o-ub-btn--print materials-s',
+                  data: { no_turbolink: true, contenttype: 'sm', context: c_type, customtitle: t("ui.export_custom_#{c_type}"), href: document.links["#{c_type}_sm"] },
+                  target: '_blank' %>
+    <% end %>
+  <% end %>
+</div>
+<hr class="o-ld-hr--l2">
+<%= render 'attribution', document: document %>

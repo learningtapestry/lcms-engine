@@ -1,0 +1,9 @@
+<p>Welcome to the <%= ENV['APP_NAME'] %>!</p>
+
+<p>To complete your registration, please <%= link_to 'click here', user_confirmation_url(confirmation_token: @token) %> and log in.</p>
+
+<p>Once you've logged in for the first time, you'll be asked a few brief questions to help us better serve you. Then you can proceed to the beta.</p>
+
+<p>If you have any problem logging in, please contact us at pilot@<%= ENV['APPLICATION_DOMAIN'] %>.</p>
+
+<p>Thank you for participating in the <%= ENV['APP_NAME'] %>!</p>

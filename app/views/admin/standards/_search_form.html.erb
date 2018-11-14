@@ -1,0 +1,8 @@
+<%= simple_form_for :query, url: :admin_standards, html: { class: 'form-inline well o-admin-standards-search', method: :get } do |f| %>
+
+  <div class='row align-bottom align-justify'>
+    <%= f.input :name, label: 'Name', required: false, wrapper_html: { class: 'resource-search-title' } %>
+    <%= f.button :submit, t('ui.search'), class: 'resource-search-button', name: nil %>
+  </div>
+
+<% end %>

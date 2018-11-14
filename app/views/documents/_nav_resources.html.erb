@@ -1,0 +1,15 @@
+<li class="o-ld-sidebar__item">
+  <a class="o-ld-sidebar-item ">
+    <div class="o-ld-sidebar-item__icon"><i class="ub-angle-right"></i></div>
+    <div href="#<%= t('document.toc.resources').parameterize %>" class="o-ld-sidebar-item__content" data-duration="0" data-level="1">
+      <div class="o-ld-sidebar-item__header--l1">
+        <%= t('document.toc.resources') %>
+      </div>
+    </div>
+  </a>
+  <ul class="o-ld-sidebar__menu o-ld-sidebar__menu--nested nested">
+    <% DocumentPresenter::TOC_RESOURCES.each do |h| %>
+      <%= render 'nav_resources_item', title: h %>
+    <% end %>
+  </ul>
+</li>
