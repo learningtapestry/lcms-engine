@@ -1,0 +1,25 @@
+<% unless resource.lesson? %>
+  <h3><%= t('resources.title.children', type: type_name(resource)) %></h3>
+  <%= 'No children items.' if resource.children.blank? %>
+  <ul class="o-resource__list o-resource__list--icons o-resource__list--<%= color_code %>">
+    <% resource.children.each do |item| %>
+      <li>
+        <i class="fa fa-square"></i>
+        <span>
+          <% title = "#{item.short_title}: " %>
+          <% if item.document.present? %>
+            <%= link_to document_path(item.document) do %>
+              <span class="u-text--capitalized"><%= title %></span>
+              <%= item.title %>
+            <% end%>
+          <% else %>
+            <%= link_to show_with_slug_path(item.slug) do %>
+              <span class="u-text--capitalized"><%= title %></span>
+              <%= item.title %>
+            <% end%>
+          <% end%>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

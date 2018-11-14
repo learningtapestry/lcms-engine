@@ -1,0 +1,24 @@
+<div class="row u-od-margin-top--gutter2x u-od-margin-bottom--gutter">
+  <div class="columns u-od-padding-v--large">
+    <div class="o-od-devise-form__wrap">
+      <h1 class="u-od-margin-bottom--gutter">Forgot your password?</h1>
+
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= f.email_field :email, autofocus: true, class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:access_code].present? ? ' o-od-input-error' : ''), placeholder: 'Enter your email' %>
+        <% if resource.errors[:email].present? %>
+          <p class="u-od-cs-txt-link--alert">
+            Email <%= resource.errors[:email].first %>
+          </p>
+        <% end %>
+
+        <%= f.submit 'Send me reset password instructions', class: 'o-od-btn o-od-btn--xs-full o-od-btn--primary' %>
+      <% end %>
+
+      <% if false %>
+        <div class="u-od-margin-bottom--gutter u-od-margin-top--gutter">
+          <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

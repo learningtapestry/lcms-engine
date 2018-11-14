@@ -1,0 +1,28 @@
+<% cc_types = [{ icon: 'cc-stamp', title: 'Creative Commons' },
+               { icon: 'cc-by', title: 'Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.' },
+               { icon: 'cc-nc', title: 'NonCommercial — You may not use the material for commercial purposes.' },
+               { icon: 'cc-sa', title: 'ShareAlike — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.' },
+              ]
+%>
+
+<% if resource.engageny_url %>
+  <!-- "cc-nd", "cc-pd", "cc-zero", "cc-share", "cc-remix" -->
+  <ul class="menu horizontal">
+    <% cc_types.each do |cc_type| %>
+      <li>
+        <span data-tooltip data-template-classes="u-resource-tooltip cs-tint-bg--<%= color_code %>" aria-haspopup="true" title="<%= cc_type[:title] %>">
+          <i class="fa-lg ub-<%= cc_type[:icon] %>"></i>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+  <!--div class="o-resource__cc">From EngageNY.org of the New York State Education Department. <%= resource.engageny_title.strip %>.
+    <%# if url = resource.engageny_url %>
+      Available from <%#= url.gsub(/^(https?:\/\/)?(www\.)?/, '') %>; accessed 2015-05-29.
+    <%# end %>
+  </div-->
+<% end %>
+
+<div class=o-resource__cc>
+  <%= copyrights_text(resource) %>
+</div>

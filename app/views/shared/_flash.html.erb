@@ -1,0 +1,13 @@
+<%= yield(:above_flash) if content_for?(:above_flash) %>
+
+<% flash.to_hash.slice('alert', 'notice').each do |name, message| %>
+  <% if message.present? %>
+    <% klass = name == 'alert' ? 'alert' : 'success' %>
+    <div class='callout <%= klass %>' data-closable>
+      <%= raw message %>
+      <button aria-label='Dismiss alert' class=close-button data-close type=button>
+        <span aria-hidden=true>×</span>
+      </button>
+    </div>
+  <% end %>
+<% end %>

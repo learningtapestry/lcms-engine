@@ -1,0 +1,20 @@
+<%= render 'documents/gdoc/materials/header', document: document %>
+
+<% if document.vertical_text? %>
+  <% content = document.content_for(:gdoc).split(DocTemplate::Tags::PageBreakTag::TAG_SUB) %>
+  <% first_page = content.shift %>
+  <table class="o-simple-table">
+    <tbody>
+    <tr>
+      <td class="o-simple-table__v-text"><%= image_tag options[:vertical_text_image_url] %></td>
+      <td class="o-simple-table__content"><%= raw first_page %></td>
+    </tr>
+    </tbody>
+  </table>
+  <% if content.any? %>
+    <%= raw DocTemplate::Tags::PageBreakTag::TAG_SUB %>
+    <%= raw content.join(DocTemplate::Tags::PageBreakTag::TAG_SUB) %>
+  <% end %>
+<% else %>
+  <%= raw document.content_for(:gdoc) %>
+<% end %>

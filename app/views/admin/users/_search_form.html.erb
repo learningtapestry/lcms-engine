@@ -1,0 +1,10 @@
+<%= simple_form_for :query, url: :admin_users, html: { class: 'form-inline well o-admin-users-search', method: :get } do |f| %>
+
+  <div class='row align-bottom align-justify'>
+    <%= f.input :email, label: false, required: false, placeholder: 'Search by E-mail', wrapper_html: { class: 'o-admin-search-term' } %>
+    <%= f.input :access_code, label: false, required: false, placeholder: 'Enter Access Code', wrapper_html: { class: 'o-admin-search-term' } %>
+
+    <%= f.button :submit, t('ui.search'), class: 'o-admin-search-submit primary', name: nil %>
+  </div>
+
+<% end %>

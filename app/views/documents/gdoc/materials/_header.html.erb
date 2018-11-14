@@ -1,0 +1,29 @@
+<% if document.show_title? %>
+  <% if document.header? %>
+    <span class="u-txt--m-header-kicker"><%= document.header_breadcrumb %></span>
+    <h1 class="u-txt--m-header-title"><%= document.title %></h1>
+    <% if document.name_date? %>
+      <table class="o-m-header--gdoc">
+        <tr>
+          <td class="o-m-header__title u-txt--m-header-dt-title o-m-header--border-bottom">
+            <p>Name</p>
+          </td>
+          <td class="o-m-header__name-value u-txt--m-header-dt-value o-m-header--border-bottom">
+            <% if document.teacher_material? %>
+              <p>Teacher Answer Sheet</p>
+            <% end %>
+          </td>
+          <td class="o-m-header__title u-txt--m-header-dt-title o-m-header--border-bottom">
+            <p>Date</p>
+          </td>
+          <td class="o-m-header__date-value o-m-header--border-bottom"></td>
+        </tr>
+      </table>
+      <p class="do-not-strip"></p>
+    <% end %>
+  <% else %>
+    <h1 class="u-txt--m-header-title"><%= document.title %></h1>
+  <% end %>
+<% else %>
+  <span class="u-txt--m-header-kicker"><%= document.header_breadcrumb %></span>
+<% end %>

@@ -1,0 +1,29 @@
+<div class="o-unit-bundles">
+  <% if (dc = DownloadCategory.bundle) %>
+    <h4><%= dc.title %></h4>
+    <p><%= dc.description %></p>
+  <% end %>
+  <% DocumentBundle::CATEGORIES.each do |cat| %>
+    <% if (bundle = resource.document_bundles.detect { |b| b.content_type == 'pdf' && b.category == cat }) %>
+      <ul class="o-resource__list o-resource__list--icons o-resource__list--<%= color_code(resource, base: true) %>">
+        <li class="o-unit-bundles__item">
+          <div class="o-unit-bundles__item--links">
+            <%= link_to bundle.file&.url, data: { no_turbolink: true, heap_data: bundle_heap_data(resource, bundle, cat, 'pdf') } do %>
+              <i class="ub-icon fa-lg ub-file-zip"></i>
+            <% end %>
+            <% if (gdoc_bundle =  resource.document_bundles.detect { |b| b.content_type == 'gdoc' }) %>
+              <% if cat == 'full' %>
+                <%= link_to gdoc_bundle.url, target: '_blank', data: { no_turbolink: true, heap_data: bundle_heap_data(resource, gdoc_bundle, :full, 'gdoc') } do %>
+                  <i class="ub-icon fa-lg ub-file-gdoc"></i>
+                <% end %>
+              <% else %>
+                <span class="o-unit-bundles__item--placeholder"></span>
+              <% end %>
+            <% end %>
+            <span><%= t("bundles.#{cat}") %></span>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

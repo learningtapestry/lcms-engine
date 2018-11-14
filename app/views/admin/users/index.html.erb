@@ -1,0 +1,50 @@
+<% set_page_title 'Users' %>
+
+<div class="o-page">
+  <h1 class="text-center"><%= t('.page_title') %></h1>
+
+  <%= render 'search_form' %>
+
+  <div class="row">
+    <div class="flex-pull-right">
+      <%= link_to t('.new_user'), :new_admin_user, class: 'button primary' %>
+    </div>
+    <table class="table">
+      <tr>
+        <th><%= t('.id') %>
+        <th><%= t('.first_name') %>
+        <th><%= t('.last_name') %>
+        <th><%= t('.email') %>
+        <th><%= t('.role') %>
+        <th><%= t('.access_code') %>
+        <th><%= t('.confirmed') %>
+        <th><%= t('.registration') %>
+        <th>
+        <th>
+        <th>
+      </tr>
+
+      <% @users.each do |user| %>
+        <tr id="user_<%= user.id %>">
+          <td><%= link_to user.id, edit_admin_user_path(user) %>
+          <td><%= link_to user.survey&.fetch('first_name', nil) || user.name, edit_admin_user_path(user) %>
+          <td><%= raw user.survey&.fetch('last_name', nil) %>
+          <td><%= user.email %>
+          <td><%= user.role %>
+          <td><%= user.access_code.presence || '-' %>
+          <td><%= user.confirmed? ? 'YES' : 'NO' %>
+          <td class="u-txt--small"><%= user.created_at.to_s %>
+          <td><%= link_to content_tag(:i, nil, class: 'fa fa-pencil').html_safe, edit_admin_user_path(user), class: 'button small primary' %>
+          <td><%= button_to t('.reset_password_btn'), reset_password_admin_user_path(user), class: 'button small', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :post %>
+          <td><%= button_to t('ui.delete'), admin_user_path(user), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

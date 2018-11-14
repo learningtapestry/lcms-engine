@@ -1,0 +1,94 @@
+<% content_for :above_flash do %>
+  <div class="callout warning">
+    Thanks for registering!
+    <br>
+    Before you can access the beta, please answer a few brief questions to help us better serve you
+  </div>
+<% end %>
+
+<div class="o-page">
+  <div class="o-page__content u-pd-content">
+    <div class="u-container--condensed">
+      <div class="row">
+        <div class="medium-12 columns">
+          <h1 class="u-margin-bottom--large">Please Answer a Few Questions</h1>
+          <div class="u-hr-small u-margin-bottom--xlarge"></div>
+        </div>
+      </div>
+
+      <%= form_for(@form, url: survey_path, html: { class: 'o-survey-form' }) do |f| %>
+        <div class="row">
+          <div class="medium-6 small-12 columns">
+            <%= f.text_field :first_name, autofocus: true, class: 'o-input-placehoder--medium-gray' + (@form.errors[:first_name].present? ? ' o-input-error' : ''), placeholder: 'Enter First Name *' %>
+          </div>
+          <div class="medium-6 small-12 columns">
+            <%= f.text_field :last_name, autofocus: true, class: 'o-input-placehoder--medium-gray' + (@form.errors[:last_name].present? ? ' o-input-error' : ''), placeholder: 'Enter Last Name *' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= email_field_tag :email, current_user.email, disabled: true %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= f.select :district_or_system, SurveyForm::DISTRICT_OR_SCHOOL_SYSTEMS, { prompt: 'Select District / School System *' }, { class: (@form.errors[:district_or_system].present? ? ' o-input-error' : '') } %>
+          </div>
+          <div class="medium-12 columns o-survey-form__other <%=  @form.district_or_system != 'Other' ? 'o-survey-form__other--hide': '' %>">
+            <%= f.text_field :district_or_system_other, autofocus: true, class: 'o-input-placehoder--medium-gray', placeholder: 'Other' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= f.select :subject_or_grade, SurveyForm::SUBJECT_OR_GRADES, { prompt: 'Select Subject / Grade Taught This Year *' }, { class: (@form.errors[:subject_or_grade].present? ? ' o-input-error' : '') } %>
+          </div>
+          <div class="medium-12 columns o-survey-form__other <%=  @form.subject_or_grade != 'Other' ? 'o-survey-form__other--hide': '' %>">
+            <%= f.text_field :subject_or_grade_other, autofocus: true, class: 'o-input-placehoder--medium-gray', placeholder: 'Other' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= f.number_field :number_of_minutes, class: 'o-input-placehoder--medium-gray' + (@form.errors[:number_of_minutes].present? ? ' o-input-error' : ''), placeholder: 'Select Number of Minutes In a Core Class Periods / Block *' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <p>Is there an additional instructional period for students who need more academic support (e.g., AIS, Tier-II)?</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= f.select :additional_period, %w(Yes No), { prompt: 'Select Answer *' }, { class: (@form.errors[:additional_period].present? ? ' o-input-error' : '') } %>
+          </div>
+          <div class="medium-12 columns o-survey-form__other <%=  @form.additional_period != 'Yes' ? 'o-survey-form__other--hide': '' %>">
+            <%= f.number_field :additional_period_minutes, autofocus: true, class: 'o-input-placehoder--medium-gray', placeholder: 'How many minutes are in the additional instructional period?' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <p>Do you have prior experience using EngageNY, Eureka, Expeditionary Learning, or Core Knowledge curricular materials?</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 columns">
+            <%= f.select :prior_experience, SurveyForm::PRIOR_EXPERIENCES, { prompt: 'Select Answer *' }, { class: (@form.errors[:prior_experience].present? ? ' o-input-error' : '') } %>
+          </div>
+        </div>
+
+        <div class="row u-margin-top--small u-text--small">
+          <div class="medium-12 columns">
+            <sup>*</sup> Denoted required fields
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="medium-12 columns">
+            <div class="u-margin-top--xlarge">
+              <%= f.submit 'Proceed to Beta', class: 'o-btn o-btn--xs-full o-btn--yellow o-btn--xs-full' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class=o-page>
+
+  <h2 class=text-center>Standards</h2>
+
+  <%= render 'search_form' %>
+
+  <div class=row>
+    <div class="col-md-12 o-admin-standards-table">
+      <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Grades</th>
+          <th>Synonyms</th>
+          <th>Action</th>
+        </tr>
+
+        <% @standards.each do |std| %>
+          <tr id="std<%= std.id %>">
+            <td><b><%= std.name %></b></td>
+            <td><%= std.subject %></td>
+            <td><%= std.grades.join(', ') %></td>
+            <td><%= std.alt_names.join(' / ') %></td>
+            <td><%= link_to 'edit', edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class='col-sm-12 text-center'>
+      <%= will_paginate @standards, renderer: BootstrapPagination::Rails %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<%= simple_form_for :query, url: :admin_materials, html: { class: 'form-inline well o-admin-lessons-search', method: :get } do |f| %>
+
+  <div class="row align-bottom align-justify">
+    <%= f.input :search_term, label: 'Identifier', required: false,
+                              placeholder: 'Enter Search Terms',
+                              wrapper_html: { class: 'o-adm-material-search' } %>
+
+    <%= f.input :search_file_name, label: 'File Name', required: false,
+                              placeholder: 'Enter File Name',
+                              wrapper_html: { class: 'o-adm-material-search' } %>
+
+    <%= f.input :title, label: 'Title', required: false,
+                              placeholder: 'Enter Title',
+                              wrapper_html: { class: 'o-adm-material-search' } %>
+
+    <button class="button float-right" type="button" data-toggle="material-type">Type</button>
+    <div class="dropdown-pane bottom" id="material-type" data-dropdown data-auto-focus="true">
+      <%= f.input :type, label: 'Types',
+                           required: false,
+                           as: :select,
+                           include_blank: true,
+                           collection: %w(rubric tool reference_guide),
+                           label_method: :upcase %>
+    </div>
+
+  </div>
+  <div class="row align-bottom align-justify">
+    <button class="button o-admin-search-grades float-right" type="button" data-toggle="material-grade">Select Grade</button>
+    <div class="dropdown-pane bottom" id="material-grade" data-dropdown data-auto-focus="true">
+      <%= f.input :grade, label: 'Grades',
+                          required: false,
+                          as: :select,
+                          include_blank: true,
+                          collection: Grades::GRADES_ABBR.zip(Grades::GRADES.map(&:humanize)).last(4),
+                          label_method: :last,
+                          value_method: :first %>
+    </div>
+
+    <%= f.input :guidebook, placeholder: 'Guidebook', required: false %>
+    <%= f.input :section, placeholder: 'Section', required: false %>
+    <%= f.input :lesson, placeholder: 'Lesson', required: false %>
+    <%= f.input :activity, placeholder: 'Activity', required: false %>
+
+    <button class="button float-right" type="button" data-toggle="material-orientation">Page Orientation</button>
+    <div class="dropdown-pane bottom" id="material-orientation" data-dropdown data-auto-focus="true">
+      <%= f.input :orientation, label: 'Page Orientation',
+                           required: false,
+                           as: :select,
+                           include_blank: true,
+                           collection: %w(landscape portrait),
+                           label_method: :upcase %>
+    </div>
+
+    <button class="button float-right" type="button" data-toggle="material-name_date">Name Date</button>
+    <div class="dropdown-pane bottom" id="material-name_date" data-dropdown data-auto-focus="true">
+      <%= f.input :name_date, label: 'Name Date',
+                           required: false,
+                           as: :select,
+                           include_blank: true,
+                           collection: %w(yes no),
+                           label_method: :upcase %>
+    </div>
+
+    <button class="button float-right" type="button" data-toggle="material-header_footer">Header Footer</button>
+    <div class="dropdown-pane bottom" id="material-header_footer" data-dropdown data-auto-focus="true">
+      <%= f.input :header_footer, label: 'Header Footer',
+                           required: false,
+                           as: :select,
+                           include_blank: true,
+                           collection: %w(yes no),
+                           label_method: :upcase %>
+    </div>
+
+    <%= f.input :sort_by, label: false,
+                          required: false,
+                          as: :select,
+                          collection: %w(identifier last_update),
+                          include_blank: false,
+                          label_method: ->(s){ "Order by #{s.titleize}" },
+                          wrapper_html: { class: 'o-admin-sort-by' } %>
+
+    <%= f.button :submit, t('ui.search'), class: 'o-admin-search-submit primary', name: nil %>
+  </div>
+
+<% end %>

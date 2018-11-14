@@ -1,0 +1,6 @@
+<div class="c-sticky-header-summary__map o-ld-unit-map show-for-large">
+  <% document.resource.siblings.each do |lesson| %>
+    <div class="o-ld-unit-map__lesson <%= 'o-ld-unit-map__lesson--active' if lesson.id == document.resource.id %>">
+    </div>
+  <% end %>
+</div>

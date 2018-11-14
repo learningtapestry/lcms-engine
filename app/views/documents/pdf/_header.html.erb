@@ -1,0 +1,20 @@
+<div class="cs-bg--<%= document.color_code_grade %> c-pdf-header__wrap u-br-top--base">
+  <div class="o-page--pdf-ld c-pdf-header--ld u-text--capitalized" style="<%= document.padding_styles %>">
+    <%= document.pdf_header %>
+  </div>
+</div>
+
+<div class="c-ld__header--pdf o-page--pdf-ld" style="<%= document.padding_styles %>">
+  <h1 class="u-pdf-txt--ld-h1"><%= document.title %></h1>
+  <div class="u-txt--teaser">
+    <%= raw document.teaser %>
+  </div>
+  <div class="u-padding-top--large">
+    <% if document.standards.present? %>
+      <p class="u-text--uppercase"><strong>Standards: </strong><%= document.standards %></p>
+    <% end %>
+    <% if document.math_practice.present? %>
+      <p class="u-text--uppercase"><strong>Mathematical Practice Standards: </strong><%= document.math_practice %></p>
+    <% end %>
+  </div>
+</div>

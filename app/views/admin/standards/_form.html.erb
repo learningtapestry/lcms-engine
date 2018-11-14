@@ -1,0 +1,16 @@
+<%= simple_form_for @standard, as: :standard, url: admin_standard_path(@standard), html: { class: 'o-standard-form' } do |f| %>
+
+  <div class="row o-admin-standard-readonly">
+    <label>Name: </label>
+    <span><%= @standard.name %></span>
+  </div>
+
+  <div class="row o-admin-standard-readonly">
+    <label class="col-md-4">Synonyms: </label>
+    <div class="col-md-8"><%= @standard.alt_names.join(' | ') %></div>
+  </div>
+
+  <%= f.input :description, as: :ckeditor, input_html: { rows: 5 } %>
+
+  <%= f.button :submit, t('ui.save'), name: nil %>
+<% end %>

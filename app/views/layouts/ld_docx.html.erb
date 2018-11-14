@@ -1,0 +1,16 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <%= stylesheet_link_tag 'main', media: 'all' %>
+    <title><%= "#{t('ui.unbounded')} - #{page_title}" %></title>
+  </head>
+  <body>
+    <div class="u-page-wrap c-admin u-supported">
+      <div class=o-page>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>

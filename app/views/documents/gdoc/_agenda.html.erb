@@ -1,0 +1,70 @@
+<h2>Lesson Agenda</h2>
+<% excludes = options[:excludes] || [] %>
+
+<table class="o-agenda o-native-table">
+  <tr class="u-txt--agenda-header">
+    <td width="40%" class="o-agenda__item"><p>BLOCK / ACTIVITY</p></td>
+    <!-- <td>OBJECTIVE / DESCRIPTION</td>
+    <td>ALIGNMENT</td> -->
+    <td class="u-text--centered o-agenda__item" width="35%"><p>CCSS</p></td>
+    <td class="u-text--centered o-agenda__item"><p>PRIORITY</p></td>
+    <td class="u-text--right o-agenda__item"><p>TIME</p></td>
+  </tr>
+  <% document.toc.children.each do |l1| %>
+    <% l1_excluded = l1.excluded?(excludes, document.ela?) %>
+    <% l1_time = l1_excluded ? l1.time : l1.time_with(excludes) %>
+    <tr class="<%= 'u-text--strikethrough' if l1_excluded %>">
+      <td colspan="3" class="u-txt--agenda-l1-title o-agenda__item">
+        <p>
+          <%= l1.title %>
+        </p>
+      </td>
+      <td class="u-txt--agenda-l1-time u-text--right">
+        <p>
+          <%= "#{l1_time} mins" unless l1_time.zero? %>
+        </p>
+      </td>
+    </tr>
+    <% l1.children.each do |l2| %>
+      <% l2_excluded = l2.excluded?(excludes) %>
+      <% l2_time = l2_excluded ? l2.time : l2.time_with(excludes) %>
+      <tr class="u-txt--agenda-l2  <%= 'u-text--strikethrough' if l2_excluded %>">
+        <td class="u-txt--agenda-l2-title o-agenda__item">
+          <p>
+            <%= 'Optional: ' if l2.optional && document.math? %>
+            <%= l2.title %>
+          </p>
+        </td>
+        <!-- <td>tbd</td>
+        <td>tbd</td> -->
+        <td class="u-text--centered o-agenda__item">
+          <p>
+            <%= l2.standard %>
+          </p>
+       </td>
+        <td class="u-text--centered o-agenda__item">
+          <p>
+            <%= l2.priority unless l2.priority.to_i.zero? %>
+          </p>
+        </td>
+        <td class="u-txt--agenda-l2-time u-text--right o-agenda__item">
+          <p>
+            <%= "#{l2_time} mins" unless l2_time.zero? %>
+          </p>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+  <tr>
+    <td colspan="3" class="u-txt--agenda-l1-title u-border--none o-agenda__item">
+      <p>
+        Total Instruction Time
+      </p>
+    </td>
+    <td class="u-txt--agenda-l1-time u-text--right u-border--none o-agenda__item">
+      <p>
+        <%= document.toc.total_time_with(excludes) %> mins
+      </p>
+    </td>
+  </tr>
+</table>

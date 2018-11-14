@@ -1,0 +1,26 @@
+<style type="text/css">
+  <%= raw document.css_styles %>
+</style>
+<!-- TODO: this is quick fix for Oct 23, 2017 release. We do need to rethink this approach,
+  at least move styles to css after merging https://github.com/learningtapestry/unbounded/pull/622
+ -->
+<% if document.preserve_table_padding? %>
+  <style type="text/css">
+    table td { padding: 5px; }
+    table th { padding: 5px; }
+  </style>
+<% end %>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="c-ld__body o-page--pdf-ld c-ld__body--pdf" style="<%= document.padding_styles %>">
+  <%= render 'documents/pdf/materials/header', document: document %>
+  <div class="o-m-content">
+    <% if document.vertical_text? %>
+      <div class="o-m-content__vertical-text"><%= document.metadata['vertical_text'] %></div>
+    <% end %>
+    <div class="o-m-content__base <%= 'o-m-content__base--padded' if document.vertical_text? %>">
+      <%= raw document.content_for(:default) %>
+    </div>
+  </div>
+</div>

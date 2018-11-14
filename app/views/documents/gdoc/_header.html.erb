@@ -1,0 +1,22 @@
+<table class="c-gdoc-header cs-bg--<%= document.color_code_grade %> o-native-table">
+  <tr>
+    <td class="u-txt--header-breadcrumb c-gdoc-header__wrap">
+      <p><%= document.full_breadcrumb.titleize %></p>
+    </td>
+  </tr>
+</table>
+<p class="title u-txt--title"><span><%= document.title %></span></p>
+<% if document.teaser.present? %>
+  <p class="subtitle u-txt--header-teaser">
+    <%= raw document.teaser  %>
+  </p>
+<% end %>
+<% if document.standards.present? %>
+  <p><strong>STANDARDS: </strong><%= document.standards&.upcase %></p>
+<% end %>
+<% if document.math_practice.present? %>
+  <p><strong>MATHEMATICAL PRACTICE STANDARDS: </strong><%= document.math_practice&.upcase %></p>
+<% end %>
+<div class="o-ld-hr--l1">
+  <hr>
+</div>

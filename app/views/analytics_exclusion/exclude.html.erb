@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Disable analytics for this browser</title>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '<%= ga_id %>']);
+      _gaq.push(['_setCustomVar', 1, 'InternalUser', true, 1]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ?
+          'https://ssl' :
+          'http://www') + '.google-analytics.com/ga.js';
+      })();
+    </script>
+
+    <meta name="robots" content="noindex">
+  </head>
+  <body>
+    <h2>
+      Loading this page removes your internal traffic from Google Analytics
+      with _setCustomVar()
+    </h2>
+
+    Visit this page on every browser on every device you use.
+  </body>
+</html>

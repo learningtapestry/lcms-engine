@@ -1,0 +1,11 @@
+<% set_page_title 'Bulk Import' %>
+
+<div class="o-page">
+  <h2 class="text-center">Import Documents</h2>
+
+  <div class="row">
+    <%= link_to '<- Back', admin_documents_path, class: 'button primary' %>
+  </div>
+
+  <%= react_component('ImportStatus', @props, prerender: true) %>
+</div>

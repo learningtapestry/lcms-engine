@@ -1,0 +1,55 @@
+<div id="ld-sticky-header" class="c-sticky-header" data-sticky-container>
+  <div class="sticky is-anchored" data-sticky data-stick-to="top" data-anchor="ld-page" data-margin-top="0" data-sticky-on="small">
+    <div class="cs-rgba-bg--<%= document.color_code_grade %>">
+      <nav class="o-page c-sticky-header__wrap">
+        <div class="c-sticky-header__item cs-bg--<%= document.subject %>-dark show-for-large">
+          <%= link_to root_path, class: 'c-sticky-header__link' do %>
+            <%= image_tag('logo-beta.svg') %>
+          <% end %>
+        </div>
+        <div class="c-sticky-header__summary cs-bg--<%= document.color_code_grade %>">
+          <div class="o-page__wrap--row c-sticky-header__wrap">
+            <%= render 'sticky_unit_map', document: document if document.resource.present? %>
+            <div class="c-sticky-header-summary__content">
+              <div class="u-txt--ld-header-breadcrumb show-for-large <%= 'u-text--capitalized' unless document.ela? && document.prereq? %>">
+                <%= document.full_breadcrumb %>
+              </div>
+              <div class="u-txt--ld-header-breadcrumb u-text--capitalized hide-for-large">
+                <%= document.short_breadcrumb %>
+              </div>
+              <div class="c-sticky-header-title u-txt--ld-sticky-title">
+                <div class="c-sticky-header-title__header"><%= document.title unless document.foundational? %></div>
+                <div class="c-sticky-header-title__icon">
+                  <a data-toggle="ld-dropdown"><i class="ub-angle-dropdown"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="c-sticky-header__item c-sticky-header-toggle cs-bg--<%= document.color_code_grade %> show-for-large">
+          <div class="c-sticky-header-toggle__overlay" data-toggle="ld-sitemenu">
+          </div>
+          <span class="c-sticky-header-toggle__toggle" data-toggle="ld-sitemenu">
+            <i class="fa-2x ub-menu" aria-hidden="true"></i>
+          </span>
+        </div>
+      </nav>
+    </div>
+    <div class="c-sticky-header-dropdown__wrap">
+      <div class="o-page">
+        <div class="c-sticky-header-dropdown c-sticky-header-menu" id="ld-dropdown" data-toggler data-animate="fade-in fade-out">
+          <ul class="o-ld-sidebar__menu doc-subject-<%= document.math? ? 'math' : 'ela' %> o-ld-unit-map--padding<%= document.resource.siblings.count >= 5 ? 5 : document.resource.siblings.count % 5 %>" data-accordion-menu data-slide-speed="200">
+            <%= render 'nav_contents', document: document %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="c-sticky-header-sitemenu__wrap">
+      <div class="o-page">
+        <div class="c-sticky-header-sitemenu c-sticky-header-menu" id="ld-sitemenu" data-toggler data-animate="fade-in fade-out">
+           <%= render partial: 'sticky_site_menu' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

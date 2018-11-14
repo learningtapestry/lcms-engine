@@ -1,0 +1,14 @@
+<ul class="lessons-table__materials">
+<% lesson.materials.map do |m| %>
+  <% urls = material_urls(m, lesson) %>
+  <li class="u-text--small">
+    <% if urls[:gdoc].present? %>
+    <a class="lessons-table__materials--file" href="<%= urls[:gdoc] %>" target="_blank"> <i class="ub-icon ub-file-gdoc"></i></a>
+    <% end %>
+    <% if urls[:pdf].present? %>
+    <a class="lessons-table__materials--file" href="<%= urls[:pdf] %>" target="_blank"> <i class="ub-icon ub-file-pdf"></i></a>
+    <% end %>
+    <%= link_to(m.identifier, m, target: '_blank') %>
+  </li>
+<% end %>
+</ul>

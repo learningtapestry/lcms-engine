@@ -1,0 +1,9 @@
+<div class="o-page">
+  <h2 class="text-center"><%= t('.page_header', type: @material_form.source_type) %></h2>
+
+  <%= simple_form_for @material_form, url: [:admin, :materials] do |f| %>
+    <%= f.hidden_field :source_type, value: @material_form.source_type %>
+    <%= f.input :link, label: t('ui.url') %>
+    <%= f.button :submit, t('.submit') %>
+  <% end %>
+</div>

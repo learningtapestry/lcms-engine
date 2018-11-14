@@ -1,0 +1,19 @@
+<h4><strong>Download Categories</strong></h4>
+<div class="o-adm-download">
+  <%# TODO: Refactor to remove model call from here %>
+  <% DownloadCategory.select(:id, :title).each do |category| %>
+    <div class="o-adm-download__settings">
+      <span><%= category.title %>:</span>
+      <%
+        title = category.title.parameterize
+        prefix = "resource[download_categories_settings][#{title}]"
+        show_short = f.object.download_categories_settings[title].try(:[], 'show_short_description')
+        show_long = f.object.download_categories_settings[title].try(:[], 'show_long_description')
+      %>
+      <%= f.simple_fields_for :download_categories_settings do |settings| %>
+        <%= settings.input "show_#{title}_short_description", as: :boolean, input_html: { checked: show_short, name: "#{prefix}[show_short_description]"} %>
+        <%= settings.input "show_#{title}_long_description", as: :boolean, input_html: { checked: show_long, name: "#{prefix}[show_long_description]"} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

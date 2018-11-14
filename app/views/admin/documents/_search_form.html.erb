@@ -1,0 +1,52 @@
+<%= simple_form_for :query, url: :admin_documents, html: { class: 'form-inline well o-admin-lessons-search', method: :get } do |f| %>
+
+  <div class='row align-bottom align-justify'>
+    <button class="button o-admin-search-subject float-right" type="button" data-toggle="lesson-subject">Select Subject</button>
+    <div class="dropdown-pane bottom" id="lesson-subject" data-dropdown data-auto-focus="true">
+      <%= f.input :subject, label: 'Subject',
+                            required: false,
+                            as: :select,
+                            include_blank: true,
+                            collection: %w(math ela),
+                            label_method: :humanize %>
+    </div>
+
+
+    <button class="button o-admin-search-grades float-right" type="button" data-toggle="lesson-grade">Select Grade</button>
+    <div class="dropdown-pane bottom" id="lesson-grade" data-dropdown data-auto-focus="true">
+      <%= f.input :grade, label: 'Grades',
+                          required: false,
+                          as: :select,
+                          include_blank: true,
+                          collection: Grades::GRADES,
+                          label_method: :humanize %>
+    </div>
+
+    <%= f.input :module, placeholder: 'Number', required: false, wrapper_html: { class: 'o-admin-module' } %>
+    <%= f.input :unit, label: 'Unit / Topic', placeholder: 'Number or Letter', required: false, wrapper_html: { class: 'o-admin-unit' } %>
+
+    <%= f.input :sort_by, label: false,
+                      required: false,
+                      as: :select,
+                      collection: %w(curriculum last_update),
+                      include_blank: false,
+                      label_method: ->(s){ "Order by #{s.titleize}" },
+                      wrapper_html: { class: 'o-admin-sort-by' } %>
+
+    <%= f.input :inactive, label: 'Show inactive', required: false, as: :boolean, wrapper_html: { class: 'o-admin-option' } %>
+
+    <%= f.input :broken_materials, label: 'Only with broken materials', required: false, as: :boolean, wrapper_html: { class: 'o-admin-option' } %>
+  </div>
+  <div class="row align-bottom align-justify">
+    <%= f.input :search_term, label: false, required: false,
+                            placeholder: 'Enter Search Terms',
+                            wrapper_html: { class: 'o-admin-search-term' } %>
+
+    <%= f.input :only_failed, label: 'Only failed', required: false, as: :boolean, wrapper_html: { class: 'o-admin-option' } %>
+
+    <%= f.input :reimport_required, label: 'Reimport required (materials have been updated)', required: false, as: :boolean, wrapper_html: { class: 'o-admin-option' } %>
+
+    <%= f.button :submit, t('ui.search'), class: 'o-admin-search-submit primary', name: nil %>
+  </div>
+
+<% end %>

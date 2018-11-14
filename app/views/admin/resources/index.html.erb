@@ -1,0 +1,60 @@
+<% page_title %>
+
+<h2 class=text-center><%= t('.page_title') %></h2>
+
+<%= render 'search_form' %>
+
+<p class=text-right>
+  <%= link_to :toggle_editing_enabled_admin_settings, class: 'button', method: :patch do %>
+    <%= Settings[:editing_enabled] ? t('.disable_editing') : t('.enable_editing') %>
+  <% end %>
+
+<p class=text-right><%= page_entries_info @resources %>
+
+<%= form_tag :new_admin_resource_bulk_edits, method: :get do %>
+  <table class=table>
+    <tr>
+      <th><%= check_box_tag nil, nil, false, class: 'resource-list-select-all' %>
+      <th>ID
+      <th><%= t('.title') %>
+      <th><%= t('.teaser') %>
+      <th><%= t('.standards') %>
+      <th><%= t('.resource_types') %>
+      <th><%= t('.subjects') %>
+      <th><%= t('.url_slugs') %>
+      <th><%= t('.tree') %>
+      <th><%= t('.status') %>
+      <th>
+    </tr>
+
+    <% @resources.each do |resource| %>
+      <tr>
+        <% check_box_id = "ids_#{resource.id}" %>
+        <td><%= check_box_tag 'ids[]', resource.id, false, class: 'resource-checkbox', id: check_box_id %>
+        <td><%= label_tag check_box_id, resource.id, class: 'resource-id-label' %>
+        <td><%= link_to resource.title, [:edit, :admin, resource] %>
+        <td class="resource-tag-col"><%= strip_tags resource.teaser %>
+        <td class="resource-tag-col"><%= resource.standards.map(&:name).select(&:present?).join(', ') %>
+        <td class="resource-tag-col"><%= resource.resource_type %>
+        <td class="resource-tag-col"><%= resource.subject %>
+        <td class="resource-tag-col"><%= resource.slug %>
+        <td class="resource-tag-col"><%= resource.tree? ? 'yes' : 'no' %>
+        <td><%= resource_status(resource) %>
+        <td class="resource-btns-col">
+          <%= link_to t('ui.edit'), [:edit, :admin, resource], class: 'button small' %>
+          <% if can_bundle? resource %>
+            <%= link_to t('.bundle'), [:bundle, :admin, resource], class: 'button small primary', method: :post %>
+          <% end %>
+          <% if resource.module? %>
+            <%= link_to t('.export_lti_cartridge'), [:export_to_lti_cc, :admin, resource], class: 'button small primary', method: :post %>
+          <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= submit_tag 'Edit Selected', class: 'button', name: nil %>
+<% end %>
+
+<div class=text-center>
+  <%= will_paginate @resources, renderer: BootstrapPagination::Rails %>
+</div>

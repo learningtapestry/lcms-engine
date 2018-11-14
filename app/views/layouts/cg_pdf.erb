@@ -1,0 +1,50 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= params.key?('debug') ? stylesheet_link_tag('pdf', media: 'all') : stylesheet_link_tag(base64_encoded_asset('pdf.css')) %>
+    <style type="text/css" media="all">
+      .c-cg-standard--a {
+        background-image: url("<%= base64_encoded_asset('st_icon_a.svg') %>");
+      }
+      .c-cg-standard--m {
+        background-image: url("<%= base64_encoded_asset('st_icon_m.svg') %>");
+      }
+      .c-cg-standard--plus {
+        background-image: url("<%= base64_encoded_asset('st_icon_plus.svg') %>");
+      }
+      .c-cg-standard--s {
+        background-image: url("<%= base64_encoded_asset('st_icon_s.svg') %>");
+      }
+      .c-cg-icon--complexity {
+        background-image: url("<%= base64_encoded_asset('cg_icon_complexity.png') %>");
+      }
+      .c-cg-icon--instruction {
+        background-image: url("<%= base64_encoded_asset('cg_icon_instruction.png') %>");
+      }
+      .c-cg-icon--volume {
+        background-image: url("<%= base64_encoded_asset('cg_icon_volume.png') %>");
+      }
+      .o-ld-icon--priority1 {
+        background-image: url("<%= base64_encoded_asset('ld_p1.svg') %>");
+      }
+      .o-ld-icon--priority2 {
+        background-image: url("<%= base64_encoded_asset('ld_p2.svg') %>");
+      }
+      .o-ld-icon--priority3 {
+        background-image: url("<%= base64_encoded_asset('ld_p3.svg') %>");
+      }
+      .o-m-icon--tens {
+        background-image: url("<%= base64_encoded_asset('lessons/tens.png') %>");
+      }
+      .o-m-icon--wp {
+        background-image: url("<%= base64_encoded_asset('lessons/wp.svg') %>");
+      }
+    </style>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>
