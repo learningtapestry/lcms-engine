@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'concerns/retry_simple'
-
 class MaterialGeneratePDFJob < Lcms::Engine::ApplicationJob
   include ResqueJob
 

@@ -33,7 +33,7 @@ module DocTemplate
           before_materials: before_materials,
           # TODO: check maybe it's ok to move it somewhere else,
           # fixed at #692 bc with new section we always have some garbage before activity
-          content: HtmlSanitizer.strip_html(content),
+          content: DocTemplate.sanitizer.strip_html(content),
           foundational_skills: opts[:foundational_skills],
           placeholder: placeholder_id,
           react_props: {
@@ -60,10 +60,12 @@ module DocTemplate
 
         # Extend object to store `lesson_objective` (#162)
         section.class.attribute :lesson_objective, String
-        section.lesson_objective = HtmlSanitizer.strip_html_element(opts[:foundational_metadata].lesson_objective)
+        section.lesson_objective = DocTemplate.sanitizer
+                                     .strip_html_element(opts[:foundational_metadata].lesson_objective)
         # Extend object to store `lesson_standard` (#386)
         section.class.attribute :lesson_standard, String
-        section.lesson_standard = HtmlSanitizer.strip_html_element(opts[:foundational_metadata].lesson_standard)
+        section.lesson_standard = DocTemplate.sanitizer
+                                    .strip_html_element(opts[:foundational_metadata].lesson_standard)
         opts[:sections].add_break
         opts[:foundational_skills] = true
       end

@@ -19,7 +19,10 @@ module Lcms
       # TODO: Re-enable namespaces once engine extraction is more stable.
       # isolate_namespace Lcms::Engine
 
-      config.autoload_paths += Dir[config.root.join('lib')]
+      config.autoload_paths += [
+        config.root.join('lib'),
+        config.root.join('app', 'jobs', 'concerns')
+      ]
 
       config.assets.precompile += %w(*.svg *.ico)
 

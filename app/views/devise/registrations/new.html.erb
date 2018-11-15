@@ -1,37 +1,38 @@
-<div class="row u-od-margin-top--gutter2x">
-  <div class="columns u-od-padding-v--large">
-    <div class="o-od-devise-form__wrap">
-      <h1 class="u-od-margin-bottom--gutter">Register</h1>
+<div class="o-page">
+  <div class="o-page__content u-pd-content">
+    <div class="u-centered u-container--condensed">
+      <h1 class="u-margin-bottom--large">Register</h1>
+      <div class="u-hr-small u-margin-bottom--xlarge"></div>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= f.text_field :access_code, autofocus: true, class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:access_code].present? ? ' o-od-input-error' : ''), placeholder: 'Enter access code', value: @code %>
+        <%= f.text_field :access_code, autofocus: true, class: 'o-input-placehoder--medium-gray' + (resource.errors[:access_code].present? ? ' o-input-error' : ''), placeholder: 'Enter access code', value: @code %>
         <% if resource.errors[:access_code].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             Access code <%= resource.errors[:access_code].first %>
           </p>
         <% end %>
-        <%= f.email_field :email, class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:email].present? ? ' o-od-input-error' : ''), placeholder: 'Enter email address' %>
+        <%= f.email_field :email, class: 'o-input-placehoder--medium-gray' + (resource.errors[:email].present? ? ' o-input-error' : ''), placeholder: 'Enter email address' %>
         <% if resource.errors[:email].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             Email <%= resource.errors[:email].first %>
           </p>
         <% end %>
-        <%= f.password_field :password, autocomplete: 'off', class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:password].present? ? ' o-od-input-error' : ''), placeholder: 'Enter a password' %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'o-input-placehoder--medium-gray' + (resource.errors[:password].present? ? ' o-input-error' : ''), placeholder: 'Enter a password' %>
         <% if resource.errors[:password].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             Password <%= resource.errors[:password].first %>
           </p>
         <% end %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:password_confirmation].present? ? ' o-od-input-error' : ''), placeholder: 'Confirm your password' %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'o-input-placehoder--medium-gray' + (resource.errors[:password_confirmation].present? ? ' o-input-error' : ''), placeholder: 'Confirm your password' %>
         <% if resource.errors[:password_confirmation].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             <%= resource.errors[:password_confirmation].first %>
           </p>
         <% end %>
-        <%= f.submit 'Register', class: 'o-od-btn o-od-btn--xs-full o-od-btn--primary' %>
+        <%= f.submit 'Register', class: 'o-btn o-btn--xs-full o-btn--yellow o-btn--xs-full' %>
       <% end %>
 
-      <div class="u-od-margin-bottom--gutter u-od-margin-top--gutter">
+      <div class="u-margin-bottom--xlarge u-margin-top--xlarge">
         <%= link_to 'Back to Login', new_user_session_path %>
       </div>
     </div>

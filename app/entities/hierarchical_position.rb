@@ -64,7 +64,7 @@ class HierarchicalPosition
     val = if !resource.persisted? && resource.send(type)
             resource.level_position
           else
-            resource.self_and_ancestors.detect { |res| res.send type }&.level_position
+            resource.self_and_ancestors_not_persisted.detect { |res| res.send type }&.level_position
           end
     val ? val + 1 : 0
   end

@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
     render 'pages/not_found', status: :not_found
   end
 
+  # engine helpers to generate PDF
+  helper Openscied::Core::PdfHelper
+
   protected
 
   # Raise translation missing errors in controllers too

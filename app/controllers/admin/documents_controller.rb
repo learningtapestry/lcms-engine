@@ -23,7 +23,7 @@ module Admin
 
       @document = reimport_lesson
       if @document.save
-        redirect_to AdminController.document_path(@document.document.id),
+        redirect_to AdminController.document_path(@document.document),
                     notice: t('.success', name: @document.document.name)
       else
         render :new, alert: t('.error')
@@ -79,7 +79,9 @@ module Admin
         link = form_params[:link]
         if link.match?(%r{/drive/(.*/)?folders/})
           folder_id = ::Lt::Google::Api::Drive.folder_id_for(link)
-          ::Lt::Google::Api::Drive.new(google_credentials).list_file_ids_in(folder_id)
+          ::Lt::Google::Api::Drive.new(google_credentials)
+            .list_file_ids_in(folder_id)
+            .map { |id| Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
         else
           [link]
         end
