@@ -45,6 +45,10 @@ module DocTemplate
     def material_contexts
       @material_contexts ||= Array.wrap(config['material_contexts']).presence || DEFAULTS[:materials_contexts]
     end
+
+    def sanitizer
+      @sanitizer ||= config['sanitizer'].constantize
+    end
   end
 end
 

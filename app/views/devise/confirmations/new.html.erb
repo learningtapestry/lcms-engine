@@ -1,20 +1,21 @@
-<div class="row u-od-margin-top--gutter2x">
-  <div class="columns u-od-padding-v--large">
-    <div class="o-od-devise-form__wrap">
-      <h1 class="u-od-margin-bottom--gutter">Resend confirmation instructions</h1>
+<div class="o-page">
+  <div class="o-page__content u-pd-content">
+    <div class="u-centered u-container--condensed">
+      <h1 class="u-margin-bottom--large">Resend confirmation instructions</h1>
+      <div class="u-hr-small u-margin-bottom--xlarge"></div>
 
       <%= form_for(resource, as: resource_name, url: user_confirmation_path, html: { method: :post }) do |f| %>
-        <%= f.email_field :email, autofocus: true, class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:access_code].present? ? ' o-od-input-error' : ''), placeholder: 'Enter your email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <%= f.email_field :email, autofocus: true, class: 'o-input-placehoder--medium-gray' + (resource.errors[:access_code].present? ? ' o-input-error' : ''), placeholder: 'Enter your email', value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
         <% if resource.errors[:email].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             Email <%= resource.errors[:email].first %>
           </p>
         <% end %>
 
-        <%= f.submit 'Resend confirmation instructions', class: 'o-od-btn o-od-btn--xs-full o-od-btn--primary' %>
+        <%= f.submit 'Resend confirmation instructions', class: 'o-btn o-btn--xs-full o-btn--yellow o-btn--xs-full' %>
       <% end %>
 
-      <div class="u-od-margin-bottom--gutter u-od-margin-top--gutter">
+      <div class="u-margin-bottom--xlarge u-margin-top--xlarge">
         <%= link_to 'Back to Login', new_user_session_path %>
       </div>
     </div>

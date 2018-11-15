@@ -22,25 +22,21 @@ module DocTemplate
         @activity = @metadata.find_by_anchor(opts[:value])
         @anchor = @activity.anchor
 
-        content = content_until_break node
+        content = DocTemplate.sanitizer.strip_html(content_until_break(node))
         content = parse_nested content.to_s, opts
-        params = build_params(content)
-
-        @content = parse_template params, template_name(opts)
-        @materials = @activity.try(:material_ids) || []
-        replace_tag node
-        self
-      end
-
-      def build_params(content)
         params = {
           activity: @activity,
-          content: HtmlSanitizer.strip_html_element(content),
+          content: DocTemplate.sanitizer.strip_html_element(content),
           placeholder: placeholder_id
         }
 
         # Extend basic params set with additional which can be customized
         params.merge! extended_parse_params
+
+        @content = parse_template params, template_name(opts)
+        @materials = @activity.try(:material_ids) || []
+        replace_tag node
+        self
       end
 
       private
@@ -57,7 +53,7 @@ module DocTemplate
 
       def extended_params_default
         if @activity.respond_to?(:activity_guidance)
-          @activity[:activity_guidance] = HtmlSanitizer.strip_html_element(@activity[:activity_guidance])
+          @activity[:activity_guidance] = DocTemplate.sanitizer.strip_html_element(@activity[:activity_guidance])
         end
 
         {
