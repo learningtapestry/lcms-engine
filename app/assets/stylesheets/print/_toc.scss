@@ -1,0 +1,20 @@
+.c-pdf-toc {
+  h1 {
+    @include txt-pdf-element(h3);
+  }
+
+  @include e(l1) {
+    @include txt-pdf-element(toc-l1);
+  }
+
+  @include e(l2) {
+    @include txt-pdf-element(toc-l2);
+    margin-bottom: 30px;
+  }
+
+  ul { padding-left: 0; }
+  ul ul ul { display: none; }
+  span { float: right; }
+  li { list-style: none; }
+  a { text-decoration: none; }
+}

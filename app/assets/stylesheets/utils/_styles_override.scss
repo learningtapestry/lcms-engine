@@ -1,0 +1,57 @@
+@mixin inline-styles-override($txt-color: $ub-txt,
+                              $bg-color: $ub-white,
+                              $font-size: $global-font-size,
+                              $font-family: $body-font-family,
+                              $font-style: normal,
+                              $line-height: $global-lineheight)
+{
+  background-color: $bg-color !important;
+  color: $txt-color !important;
+  font-family: $font-family !important;
+  font-size: $font-size !important;
+  font-style: $font-style !important;
+  text-decoration: none !important;
+
+  a {
+    color: $anchor-color !important;
+    cursor: pointer !important;
+    line-height: inherit !important;
+    text-decoration: $anchor-text-decoration !important;
+
+    &:hover,
+    &:focus {
+      color: $anchor-color-hover !important;
+      @if $anchor-text-decoration-hover != $anchor-text-decoration {
+        text-decoration: $anchor-text-decoration-hover !important;
+      }
+    }
+
+    img {
+      border: 0 !important;
+    }
+  }
+
+  p {
+    font-size: inherit !important;
+    line-height: $line-height !important;
+    margin-bottom: $paragraph-margin-bottom !important;
+    text-rendering: $paragraph-text-rendering !important;
+  }
+}
+
+@mixin zero-margin-bottom() {
+  > *:last-child { margin-bottom: 0 !important; }
+}
+
+@mixin html-description() {
+  $base-typo: map-get($ub-element-typography, base);
+  @include inline-styles-override($font-size: map-get($base-typo, 'font-size'),
+                                  $font-family: map-get($base-typo, 'font-family'),
+                                  $line-height: map-get($base-typo, 'line-height'));
+  @include zero-margin-bottom();
+}
+
+.u-html-description {
+  @include inline-styles-override();
+  @include zero-margin-bottom();
+}

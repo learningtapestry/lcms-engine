@@ -1,0 +1,45 @@
+.o-ld-map-bg {
+  @include m(base) {
+    background-color: $ub-white;
+    opacity: .3;
+  }
+
+  @include m(active) {
+    background-color: $ub-white;
+    opacity: 1;
+  }
+  @include m(assessment) {
+    background-color: transparent;
+    border: 2px solid $ub-white;
+  }
+}
+
+
+.o-ld-map-module {
+  @include m(ela) {
+    &, &:hover, &:focus {
+      color: map-get($ub-colorcodes, ela-base) !important;
+    }
+  }
+  @include m(math) {
+    &, &:hover, &:focus {
+      color: map-get($ub-colorcodes, math-base) !important;
+    }
+  }
+}
+
+.o-ld-map-txt-link {
+  @include m(base) {
+    &, &:hover, &:focus {
+      color: $ub-white;
+      opacity: .5;
+    }
+  }
+
+  @include m(active) {
+    &, &:hover, &:focus {
+      color: $ub-white;
+      opacity: 1;
+    }
+  }
+}

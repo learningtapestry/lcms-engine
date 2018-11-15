@@ -1,0 +1,11 @@
+.o-ld-hr {
+  @include m(l1) {
+    @include add-top-bottom-margin(2);
+    border-top: 3px double $ub-hr;
+  }
+
+  @include m(l2) {
+    @include add-top-bottom-margin(1);
+    border-top: 1px solid $ub-hr;
+  }
+}

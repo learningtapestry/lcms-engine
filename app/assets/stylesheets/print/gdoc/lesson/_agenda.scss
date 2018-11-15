@@ -1,0 +1,12 @@
+.o-agenda {
+  @include e(item) {
+    padding: 5pt;
+    p { padding: 0; }
+  }
+
+  tr, td { border: 0; }
+
+  td {
+    border-bottom: 1pt dotted $ub-hr;
+  }
+}

@@ -1,0 +1,81 @@
+.o-ld-activity {
+  @include add-column-padding($x: 1);
+  @include clearfix;
+  @include flex;
+
+  background-color: map-get($ub-ld-colorcodes, math-activity-bg);
+  flex-flow: row wrap;
+
+  @include e(guidance) {
+    @include add-column-padding($x: 1);
+    @include add-gutter(margin, bottom, 1);
+    @include add-top-bottom-padding($y: .5);
+    background-color: map-get($ub-ld-colorcodes, math-activity-guidance-bg);
+
+    @include m(title) {
+      @include add-gutter(margin, bottom, .5);
+      display: block;
+
+      .o-ld-activity-foundational-skills & {
+        color: map-get($ub-ld-colorcodes, math-activity-foundational);
+      }
+    }
+
+    .o-ld-activity-foundational-skills & {
+      background-color: map-get($ub-ld-colorcodes, math-activity-foundational-guidance-bg);
+    }
+  }
+
+  @include e(optional) {
+    background-color: map-get($ub-ld-colorcodes, activity-optional);
+    margin: 2rem 0;
+    padding: 2rem;
+
+    p {
+      margin: 0 !important;
+    }
+  }
+
+  @include e(source) {
+    @include add-gutter(padding, bottom, 1);
+    display: block;
+
+    &.o-ld-activity-foundational-skills {
+      background-color: map-get($ub-ld-colorcodes, math-activity-foundational-bg);
+    }
+
+    // TODO: comment for now, bc it's adding big gaps btw elements
+    // p {
+    //   &:empty { line-height: 0; }
+    //
+    //   &::after {
+    //     content: '';
+    //     display: inline-block;
+    //     width: 0;
+    //   }
+    // }
+  }
+
+  @include e(title) {
+    .o-ld-activity-foundational-skills & {
+      color: map-get($ub-ld-colorcodes, math-activity-foundational);
+    }
+  }
+
+  &.c-ld-toc {
+    @include add-gutter(padding, top, 1);
+    border-top: 4px solid map-get($ub-colorcodes, math-base);
+
+    .o-ld-activity-foundational-skills & {
+      border-top: 4px solid map-get($ub-ld-colorcodes, math-activity-foundational);
+    }
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  .o-ld-activity-foundational-skills & {
+    background-color: map-get($ub-ld-colorcodes, math-activity-foundational-bg);
+  }
+}

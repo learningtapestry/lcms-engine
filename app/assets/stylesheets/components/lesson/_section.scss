@@ -1,0 +1,31 @@
+.o-ld-section {
+  @include clearfix;
+  @include add-column-padding($x: 1);
+  @include add-top-bottom-padding($y: 1);
+
+  @include e(optional) {
+    background-color: map-get($ub-ld-colorcodes, section-optional);
+    margin: 2rem 0;
+    padding: 2rem;
+  }
+
+  @include e(quote) {
+    @include clearfix;
+    border-color: map-get($ub-colorcodes, ela-base);
+    border-left: .125rem solid;
+    float: right;
+    font: italic 1.25rem / 1.3 $ub-serif;
+    margin: 1.5rem 0 1rem 3.25rem;
+    padding-left: 1.125rem;
+    width: 50%;
+
+    &, *, ul, li, ol {
+      &, * { color: map-get($ub-colorcodes, ela-base); }
+    }
+  }
+
+  @include m(bg-color) {
+    background-color: map-get($ub-ld-colorcodes, ela6-section-bg);
+    border-top: 4px solid map-get($ub-colorcodes, ela-base);
+  }
+}

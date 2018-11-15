@@ -1,0 +1,89 @@
+$ub-material-radius: 2px;
+$ub-material-card-margin: 2px;
+
+/// https://css-tricks.com/snippets/sass/material-shadows-mixin/
+/// Gives a card depth effect.
+/// @param {Number} $depth - depth level (between 1 and 5)
+/// @link http://www.google.com/design/spec/layout/layout-principles.html#layout-principles-dimensionality Google Design
+/// @requires {function} top-shadow
+/// @requires {function} bottom-shadow
+@mixin card($depth) {
+  @if $depth < 1 {
+    box-shadow: none;
+  } @else if $depth > 5 {
+    @warn "Invalid $depth `#{$depth}` for mixin `card`.";
+  } @else {
+    box-shadow: bottom-shadow($depth), top-shadow($depth);
+  }
+}
+/// Computes a top-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function top-shadow($depth) {
+  $primary-offset: nth(1.5 3 10 14 19, $depth) * 1px;
+  $blur: nth(1.5 3 10 14 19, $depth) * 4px;
+  $color: rgba(#000, nth(.12 .16 .19 .25 3, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+/// Computes a bottom-shadow for a card effect.
+/// @param {Number} $depth - depth level
+/// @return {List}
+@function bottom-shadow($depth) {
+  $primary-offset: nth(1.5 3 6 10 15, $depth) * 1px;
+  $blur: nth(1 3 3 5 6, $depth) * 4px;
+  $color: rgba(#000, nth(.24 .23 .23 .22 .22, $depth));
+
+  @return 0 $primary-offset $blur $color;
+}
+
+%material-card {
+  //box-shadow: 0 $ub-material-card-margin $ub-material-card-margin rgba(0, 0, 0, .12);
+  border-radius: $ub-material-radius;
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, .08);
+  margin-bottom: $ub-material-card-margin;
+}
+
+%map-transition {
+  transition-duration: .4s;
+  transition-property: width, height, min-height, padding;
+  transition-timing-function: ease;
+}
+
+%btn-transition {
+  transition-duration: .4s;
+  transition-property: min-width;
+  transition-timing-function: ease-out;
+}
+
+%btn-shadow {
+  //@include card(1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+}
+
+%tooltip-shadow {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .08);
+}
+
+@mixin base-shadow {
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, .08);
+}
+
+%popup-shadow {
+  box-shadow: 1px 2px 8px rgba(0, 0, 0, .35);
+}
+
+%base-shadow {
+  @include base-shadow;
+}
+
+// fadeIn transition
+.m-fadeIn-enter {
+  opacity: .01;
+}
+
+.m-fadeIn-enter.m-fadeIn-enter-active {
+  opacity: 1;
+  transition: opacity 400ms ease-in;
+}

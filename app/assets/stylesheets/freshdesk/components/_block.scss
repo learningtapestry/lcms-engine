@@ -1,0 +1,5 @@
+.o-block {
+  @extend %fd-card;
+  @include add-column-padding;
+  @include add-top-bottom-padding;
+}

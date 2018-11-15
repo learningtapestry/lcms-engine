@@ -1,0 +1,19 @@
+.nobreak {
+  page-break-before: avoid !important;
+}
+
+.u-pdf-alwaysbreak,
+%u-pdf-alwaysbreak {
+  page-break-before: always;
+}
+
+.u-pdf-nobreak,
+%u-pdf-nobreak {
+  &:before { clear: both; }
+  page-break-inside: avoid;
+}
+
+.u-pdf-nobreak--around {
+  page-break-after: avoid;
+  page-break-before: avoid;
+}

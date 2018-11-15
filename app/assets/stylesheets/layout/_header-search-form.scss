@@ -1,0 +1,30 @@
+.o-header-search-form {
+  $ub-search-form-bg: darken($ub-nav-bg, 5%);
+
+  @include placeholder($ub-nav-link);
+  height: 65px;
+  margin-bottom: 0;
+  input {
+    @include add-column-padding($x: 1);
+    @include add-top-bottom-padding($y: .5);
+    @include txt-element(subscribe-text);
+    max-width: 100% !important;
+    min-width: 1px;
+    &, &:focus {
+      background-color: $ub-search-form-bg;
+      border-color: $ub-search-form-bg;
+      box-shadow: none;
+      color: $ub-white;
+    }
+  }
+
+  @include e(submit) {
+    display: flex !important;
+    button {
+      @include button($background: $ub-search-form-bg, $background-hover: auto, $color: $ub-nav-link);
+      @include add-column-padding($x: 1);
+      //@include add-gutter(padding, right, 1);
+      margin: 0;
+    }
+  }
+}

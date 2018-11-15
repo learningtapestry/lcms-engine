@@ -1,0 +1,31 @@
+.o-material-wrapper {
+  @include m(math) {
+    background-color: map-get($ub-ld-colorcodes, math-activity-bg);
+  }
+
+  @include m(ela) {
+  }
+
+  @include m(bg-color) {
+    background-color: map-get($ub-ld-colorcodes, ela6-section-bg);
+  }
+
+  @include m(within-group) {
+    @include add-gutter(margin, top, 1.5);
+  }
+}
+
+.o-ld-activity-foundational-skills {
+  .o-material-wrapper {
+    @include m(math) {
+      background-color: map-get($ub-ld-colorcodes, math-activity-foundational-bg);
+    }
+  }
+}
+
+.o-m-title {
+  @include m(underlined) {
+    border-bottom: 1px solid $ub-hr;
+    margin-bottom: $ub-base-padding;
+  }
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="31px" height="31px" viewBox="0 0 31 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PD-/-Expand-Button">
+            <g id="Expand-Button">
+                <path d="M0,0 L27.9994225,0 C29.6565957,0 31,1.35196465 31,3.0005775 L31,31 L0,31 L0,0 Z" id="Rectangle-2" fill="#8E89A9"></path>
+                <path d="M21.0419378,10 L10.5506527,20.4216056" id="Stroke-2026" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
+                <polyline id="Stroke-2027" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" points="17.3257401 20.4216056 10.5504442 20.4216056 10.5504442 13.647562"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

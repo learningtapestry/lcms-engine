@@ -1,0 +1,18 @@
+.cs-s {
+  border-top: 0;
+
+  h3 {
+    border-bottom: 4px solid $fd-border;
+    border-top: 0;
+
+    a { @include txt-fd-element(tab-title); }
+  }
+
+  .cs-g-c {
+    border-top: 1px solid $fd-border;
+  }
+
+  .cs-g {
+    @include add-gutter(margin, top, .5);
+  }
+}

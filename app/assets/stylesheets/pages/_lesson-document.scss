@@ -1,0 +1,138 @@
+$ld-header-padding: 40px;
+
+$ld-header-column-gutter: (
+  small: $ub-nav-height + $ld-header-padding,
+  medium: $ub-nav-height + $ld-header-padding,
+);
+
+.c-ld {
+  color: $ub-heading-txt;
+  padding-top: 5rem;
+
+  @include breakpoint(large) {
+    @include add-gutter($type: padding, $subtype: top, $x: 2);
+  }
+
+  @include e(sidebar) {
+    display: none;
+
+    @include breakpoint(large) {
+      @include flex-grid-column(3, 0);
+      //@include add-gutter(padding, left);
+      display: block;
+    }
+  }
+
+  @include e(body) {
+    @include flex-grid-column(12, 2 * 1.75rem);
+    @include ld-custom-styles;
+
+    @include m(general) {
+      @include breakpoint(large) {
+        @include flex-grid-column(9, 0);
+        @include add-gutter(padding, left, 1);
+      }
+
+      @include breakpoint(large down) {
+        p { margin: 0; text-indent: 0; }
+        li { margin-left: 15px;}
+
+        table {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+
+    h2, h3 { clear: both; }
+    h2 { @include txt-heading(h1); }
+    h5 { @include txt-element(ld-h5); }
+
+    p, ol, ul {
+      &, *:not([class^="mjx-"]) {
+        @include txt-element-strict(ld-base);
+      }
+    }
+
+    ol, ul {
+      margin-bottom: 1rem;
+    }
+
+    img, span, td, table {
+      //max-width: 100%;
+    }
+    img { height: auto; }
+
+    i.fa { font: normal normal normal 14px/1 FontAwesome; }
+  }
+}
+
+.c-ld-header {
+  @include flex-grid-row(nest);
+
+  @include e(map) {
+    @include flex-grid-column(3, 0);
+    margin-top: -$ub-small-margin;
+    //width: map-get($curriculum-map-width, base) + 30px;
+
+    @include breakpoint(small only) {
+      @include flex-grid-column(12);
+      text-align: center;
+    }
+
+    .o-c-map {
+      @include e(prerequisite) {
+        &:not(.o-ld-map-bg--active):after { background-color: #777; }
+      }
+    }
+  }
+
+  @include e(content) {
+    @include flex-grid-column;
+    @include add-gutter(padding, left, 1);
+    @include add-gutter(padding, right, 1);
+
+    @include breakpoint(small only) {
+      @include flex-grid-column(12);
+      margin-top: $ub-base-margin;
+    }
+  }
+
+  @include e(curriculum-back) {
+    color: $ub-whitepure;
+    opacity: .3;
+
+    &:hover, &:focus {
+      color: $ub-whitepure;
+      opacity: 1;
+    }
+  }
+
+  @include e(links) {
+    @include flex-grid-column(shrink, 0);
+
+    @include breakpoint(ipad down) {
+      @include flex;
+      @include flex-grid-column(12);
+      flex-flow: row wrap;
+      margin-top: $ub-xs-padding;
+      > div { margin-right: $ub-xs-padding;}
+    }
+  }
+
+  @include e(hr) {
+    @include add-gutter($subtype: top, $x: 4/3);
+    border-bottom: 1px solid #b2b2b2;
+  }
+}
+
+.c-ld-page-header {
+  @include add-gutter(padding, top, 1, $ld-header-column-gutter);
+  display: none;
+  margin-top: -$ub-nav-height;
+  padding-bottom: $ld-header-padding;
+
+  @include breakpoint(large) {
+    display: block;
+  }
+}

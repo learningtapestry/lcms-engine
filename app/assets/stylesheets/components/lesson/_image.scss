@@ -1,0 +1,38 @@
+.o-ld-image {
+  @include m(clearfix) {
+    @include clearfix;
+  }
+
+  @include e(container) {
+    background-color: map-get($ub-ld-colorcodes, default-image-bg);
+
+    @include m(math) {
+      background-color: map-get($ub-ld-colorcodes, math-image-bg);
+    }
+
+    @include m(ela) {
+      background-color: map-get($ub-ld-colorcodes, ela-image-bg);
+    }
+
+    figure {
+      margin: 0;
+      overflow: hidden;
+
+      img {
+        margin-top: -5px;
+        width: 100%;
+
+        @include breakpoint(ipad) {
+          width: 30%;
+        }
+      }
+
+      figcaption {
+        display: inline-block;
+        font-weight: bold;
+        padding: 1.5em;
+        width: 69%;
+      }
+    }
+  }
+}

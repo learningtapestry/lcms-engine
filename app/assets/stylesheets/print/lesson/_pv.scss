@@ -1,0 +1,16 @@
+.o-ld-pv {
+  @extend %u-pdf-alwaysbreak;
+  page-break-after: always;
+
+  @include e(header) {
+    display: none;
+  }
+
+  @include e(row) {
+    @for $i from 1 through 10 {
+      @include m('#{$i}') {
+        height: $pdf-fulltable-height / $i;
+      }
+    }
+  }
+}

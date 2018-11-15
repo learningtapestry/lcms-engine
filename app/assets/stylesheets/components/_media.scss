@@ -1,0 +1,95 @@
+.o-media {
+  @include flex-grid-row;
+  @include add-gutter($x: .5);
+  border-radius: $panel-radius;
+
+  @include breakpoint(medium) {
+    @include add-gutter($x: 1);
+  }
+
+  @include e(img) {
+    @include flex-grid-column(12, 0);
+    border-top-left-radius: $panel-radius;
+    border-top-right-radius: $panel-radius;
+    height: 200px;
+    overflow: hidden;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(5, 0);
+      border-radius: 0;
+      height: auto;
+
+      @include m(left) {
+        border-bottom-left-radius: $panel-radius;
+        border-top-left-radius: $panel-radius;
+      }
+
+      @include m(right) {
+        border-bottom-right-radius: $panel-radius;
+        border-top-right-radius: $panel-radius;
+      }
+    }
+
+    @include breakpoint(small only) {
+      order: 1;
+    }
+
+    img { width: 100%;}
+
+    @include m(placeholder) {
+      background-image: image-url('professional_development');
+      background-size: cover;
+    }
+  }
+
+  @include e(body) {
+    @include flex-grid-column(12, $grid-column-2xgutter);
+    @include add-top-bottom-padding;
+    flex-shrink: 1;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(7, $grid-column-2xgutter);
+
+      @include m(full) {
+        @include flex-grid-column(12, $grid-column-2xgutter);
+      }
+    }
+
+    @include breakpoint(small only) {
+      order: 2;
+    }
+
+    h2 {
+      @include txt-element(media-header);
+      margin-bottom: $ub-base-margin;
+    }
+    &, p { @include txt-element(media-text); }
+    p { @include add-gutter; }
+
+    @include m(no-left) {
+      padding-left: 0;
+    }
+
+    @include m(no-padding) {
+      @include add-top-bottom-padding($y: 0);
+
+      @include breakpoint(medium down) {
+        @include add-gutter(padding, top, 2);
+      }
+    }
+
+    @include m(no-top-padding) {
+      @include breakpoint(medium) {
+        padding-top: 0;
+      }
+    }
+
+    @include m(no-right) {
+      padding-right: 0;
+
+      @include breakpoint(small only) {
+        padding-left: 0;
+      }
+    }
+  }
+}

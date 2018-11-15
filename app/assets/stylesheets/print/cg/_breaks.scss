@@ -1,0 +1,7 @@
+.c-cg-content__body h1, .c-cg-task { page-break-before: always; }
+
+.c-cg-blockquote, .c-cg-pullquote { page-break-inside: avoid; }
+
+.contengGuide__footnotes {
+  page-break-before: always;
+}

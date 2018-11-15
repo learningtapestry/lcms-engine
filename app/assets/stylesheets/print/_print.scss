@@ -1,0 +1,15 @@
+@page {
+  size: letter;
+}
+
+@media print {
+    // Unbounded specific
+    html, body {
+      background: none;
+    }
+
+    header, footer, .o-btn, .o-ub-btn, .o-filterbar, .o-sidebar-nav, .c-cg-content__sidebar, .c-ld__sidebar {
+      display: none;
+    }
+
+}

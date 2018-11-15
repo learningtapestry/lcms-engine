@@ -1,0 +1,244 @@
+@mixin header-link-padding {
+  @include add-column-padding;
+
+  @include breakpoint(xlarge) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include breakpoint(large) {
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+  }
+
+  @media screen and #{breakpoint(large)} and (max-width: 1110px) {
+    padding-left: .8rem;
+    padding-right: .8rem;
+  }
+}
+
+.c-header {
+  background-color: rgba($ub-primary, .9);
+
+  @include breakpoint(medium down) {
+    > .o-page {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @include e(menu) {
+    @include menu-direction(vertical);
+    > li > a { @include header-link-padding; }
+
+    @include breakpoint($topbar-unstack-breakpoint) {
+      @include menu-direction(horizontal);
+    }
+  }
+
+  @include e(left-menu) {
+    @include menu-direction(vertical);
+    position: relative;
+    > li > a { @include header-link-padding; }
+
+    @include breakpoint($topbar-unstack-breakpoint) {
+      @include menu-direction(horizontal);
+    }
+  }
+
+  @include e(submenu) {
+    @include menu-direction(horizontal);
+    @include add-column-padding;
+    background-color: rgba($ub-primary, .8) !important;
+    @include breakpoint($topbar-unstack-breakpoint) {
+      @include menu-direction(vertical);
+      @include add-column-padding(0);
+      background-color: $ub-white !important;
+      left: 0;
+      margin-top: 1px;
+      min-width: 1px;
+      top: auto;
+      &::before {
+        @include css-triangle($tooltip-pip-width, $ub-white, up);
+        bottom: 100%;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @include e(left-submenu) {
+    @include breakpoint($topbar-unstack-breakpoint) {
+      left: initial !important;
+      min-width: 250px;
+      right: 0 !important;
+      top: auto;
+
+      &::before {
+        bottom: 100%;
+        position: absolute;
+        right: 5px;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @include e(auth-submenu) {
+    @include breakpoint($topbar-unstack-breakpoint) {
+      @include menu-direction(vertical);
+      @include add-column-padding(0);
+      background-color: $ub-white !important;
+
+      &::before {
+        @include css-triangle($tooltip-pip-width, $ub-white, up);
+      }
+    }
+
+    > li > a {
+      padding-left: $ub-base-margin !important;
+      padding-right: $ub-base-margin !important;
+    }
+  }
+
+  @include e(helpdesk-hover) {
+    @include breakpoint($topbar-unstack-breakpoint) {
+      $tooltip-color: map-get($ub-ld-colorcodes, tooltip-bg);
+      background-color: $tooltip-color !important;
+      border-radius: 3px;
+      box-shadow: 0 0 8px 0 rgba(0, 0, 0, .25);
+      margin-top: 1rem;
+      padding: 1rem;
+
+      &::before {
+        @include css-triangle($tooltip-pip-width, $tooltip-color, up);
+      }
+    }
+  }
+
+  @include e(submenu-link) {
+    a i { margin-right: 0 !important; }
+    a, &.active a, a:hover, a:focus {
+      color: darken($ub-nav-bg, 5%) !important;
+    }
+
+    a { padding: 0.7rem 1rem .7rem 0 !important; }
+
+    .fa-header-bg { color: $ub-white; }
+    @include breakpoint($topbar-unstack-breakpoint) {
+      a {
+        height: auto !important;
+        justify-content: center !important;
+        margin: 0;
+        padding: .7rem 0 !important;
+      }
+      a, &.active a { color: $ub-primary !important; }
+      &.active a {
+        background-color: $ub-white;
+        font-weight: bold;
+      }
+      a:hover, a:focus {
+        background-color: $ub-panel-bg;
+        color: $ub-primary !important;
+      }
+    }
+  }
+
+  @include e(link) {
+    &, a { color: $ub-nav-link; }
+    &:hover, &:focus, a:hover, a:focus, &.active a { color: $ub-white; text-decoration: none; }
+
+    &.active {
+      a { background: none; }
+      @include breakpoint($topbar-unstack-breakpoint) {
+        background-color: darken($ub-nav-bg, 5%);
+      }
+    }
+    > a {
+      @include txt-element(nav-span);
+      font-size: 20px;
+      span:last-child:before { content: '\00a0'; }
+      @include breakpoint($topbar-unstack-breakpoint) {
+        @include txt-element(nav-span);
+        display: block;
+        padding-bottom: 1.5rem !important;
+        padding-top: 1.5rem !important;
+        span:first-child {
+          @include txt-element(nav-base);
+        }
+
+        span:last-child {
+          &:before { content: '\A'; white-space: pre; }
+        }
+      }
+    }
+
+    @include m(full) {
+      @include breakpoint($topbar-unstack-breakpoint) {
+        a {
+          align-items: center !important;
+          display: flex;
+          height: $ub-nav-height;
+        }
+      }
+    }
+
+    @include m(light) {
+      @include breakpoint($topbar-unstack-breakpoint) {
+        background-color: rgba($ub-primary, .8);
+      }
+    }
+
+    @include m(semi-dark) {
+      @include breakpoint($topbar-unstack-breakpoint) {
+        background-color: rgba($ub-nav-secondary, .3);
+      }
+    }
+
+    @include m(semi-light) {
+      @include breakpoint($topbar-unstack-breakpoint) {
+        background-color: rgba($ub-nav-secondary, .75);
+      }
+    }
+  }
+
+  @include m(documents) {
+    background-color: rgba($ub-primary, .9);
+    min-height: $ub-nav-height;
+    opacity: .9;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+.c-header-title {
+  @include breakpoint($topbar-unstack-breakpoint down) {
+    //@include top-bar-container;
+    @include flex;
+    @include flex-align($x: justify, $y: middle);
+    min-height: $ub-nav-height;
+  }
+
+  @include e(logo) {
+    @include add-column-padding;
+    @include breakpoint($topbar-unstack-breakpoint) {
+      img { margin-top: .4rem; }
+    }
+  }
+
+  @include e(h-menu) {
+    @include add-column-padding;
+    align-items: center;
+    display: flex;
+    min-height: $ub-nav-height;
+
+    @include breakpoint($topbar-unstack-breakpoint) {
+      //display: none;
+    }
+
+    @include m(expanded) {
+      background-color: darken($ub-nav-bg, 5%);
+    }
+  }
+}

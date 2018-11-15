@@ -1,0 +1,237 @@
+$c-hp-si-gradient: rgba(map-get($ub-mignight, base), .9);
+$c-hp-ela-gradient: rgba(map-get($ub-colorcodes, ela-base), .9);
+$c-hp-math-gradient: rgba(map-get($ub-colorcodes, math-base), .9);
+
+.c-hp {
+  @include add-gutter(margin, top, -2);
+  padding-bottom: $ub-large-margin * 2;
+}
+
+.c-hp-hero {
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include e(wrap) {
+    @include add-gutter(margin, top, 3.5);
+    @include add-gutter(margin, bottom, 3);
+
+    @include breakpoint(small) {
+      @include add-gutter(margin, bottom, 3.5);
+    }
+  }
+
+  @include breakpoint(large up) {
+    background-image: image-url('hp_hero_bg.jpg');
+  }
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-image: image-url('hp_hero_bg_medium.jpg');
+  }
+
+  @include breakpoint(small only) {
+    background-image: image-url('hp_hero_bg_small.jpg');
+  }
+
+
+  // $hp-marging-k: .5;
+  // $hp-screen-width: map-get($breakpoints, large);
+  // $hp-step: 50px;
+  //
+  // @for $i from 0 through 20 {
+  //   $k: $hp-marging-k * ($i/2 + 1);
+  //   $min-width: $i * $hp-step + $hp-screen-width;
+  //   $max-width: ($i + 1) * $hp-step + $hp-screen-width - 1px;
+  //   $str: '(min-width: #{$min-width}) and (max-width: #{$max-width})';
+  //   @media screen and #{$str} {
+  //     margin-bottom: $ub-large-margin * $k;
+  //     margin-top: $ub-large-margin * $k;
+  //   }
+  // }
+
+  @include e(body) {
+    @include grid-column-offset(0);
+    @include flex-grid-column(12, $grid-column-2xgutter);
+    @include add-top-bottom-padding;
+    background-color: rgba($ub-white, .45);
+    border-radius: $panel-radius;
+
+    h1 {
+      @include txt-element(hero-header);
+      color: $ub-primary;
+    }
+
+    p {
+      @include txt-element(hero-text);
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column-offset(1);
+      @include flex-grid-column(11, $grid-column-2xgutter);
+    }
+
+    @include breakpoint(large) {
+      @include grid-column-offset(5);
+      @include flex-grid-column(7, $grid-column-2xgutter);
+    }
+  }
+}
+
+.c-hp-register {
+  @include add-gutter($x: .5);
+  @include txt-element(media-text);
+  background-image: linear-gradient(to right, $c-hp-si-gradient, $c-hp-si-gradient), image-url('hp_si_bg.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+  border-radius: $panel-radius;
+  color: $ub-white;
+
+  @include breakpoint(medium) {
+    @include add-gutter($x: 1);
+  }
+
+  @include e(wrap) {
+    @include flex-align($y: middle);
+    min-height: 160px;
+  }
+
+  @include e(item) {
+    @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+    @include add-top-bottom-margin(0);
+    @include add-top-bottom-padding;
+    flex-shrink: 1;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(shrink, $grid-column-4xgutter);
+      @include add-top-bottom-margin;
+      @include add-top-bottom-padding(0);
+    }
+  }
+
+  @include e(text) {
+    @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+    @include add-top-bottom-margin(0);
+    @include add-top-bottom-padding;
+    border: 0;
+    border-top: 1px solid $ub-whitesmoke;
+    flex-shrink: 1;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(null, $gutter: $grid-column-2xgutter);
+      @include add-top-bottom-margin;
+      @include add-top-bottom-padding(0);
+      border: 0;
+      border-left: 1px solid $ub-whitesmoke;
+    }
+  }
+
+  @include e(btn) {
+    @include breakpoint(ipad down) {
+      @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+      margin-top: 0;
+      padding-top: 0;
+    }
+
+    @include breakpoint(ipad only) {
+      display: none;
+    }
+
+    @include m(ipad) {
+      display: none;
+      @include breakpoint(ipad only) {
+        display: block;
+        margin-top: $ub-small-margin;
+      }
+    }
+  }
+
+}
+
+.c-hp-panel {
+  @include flex;
+  @include flex-grid-column(12);
+  @include add-gutter($x: .5);
+  flex-shrink: 1;
+
+  @include breakpoint(medium) {
+    @include add-gutter($x: 1);
+  }
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(6);
+    flex-shrink: 1;
+  }
+
+  @include e(body) {
+    @include add-column-padding;
+    @include add-top-bottom-padding;
+    border-radius: $panel-radius;
+    flex-direction: column;
+    width: 100%;
+
+    @include breakpoint(medium) {
+      @include flex;
+    }
+
+    h2 {
+      @include txt-element(media-header);
+      color: $ub-white;
+    }
+
+    p {
+      @include txt-element(media-text);
+      @include add-gutter;
+      color: $ub-white;
+      flex: 1 1 auto;
+    }
+
+    @include m(ela) {
+      background-image: linear-gradient(to right, $c-hp-ela-gradient, $c-hp-ela-gradient), image-url('hp_ela_bg.jpg');
+      background-repeat: no-repeat, no-repeat;
+      background-size: cover;
+    }
+    @include m(math) {
+      background-image: linear-gradient(to right, $c-hp-math-gradient, $c-hp-math-gradient), image-url('hp_math_bg.jpg');
+      background-repeat: no-repeat, no-repeat;
+      background-size: cover;
+    }
+  }
+}
+
+.c-hp-media {
+  //max-height: 290px;
+}
+
+.c-hp-hr {
+  @include flex-grid-column(12);
+  hr {
+    margin-bottom: $ub-large-margin;
+    margin-top: $ub-xlarge-margin;
+  }
+}
+
+.c-hp-img--fl {
+  background-image: image-url('hp_find_lessons.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+}
+
+.c-hp-img--al {
+  background-image: image-url('hp_advance_leadership.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 50% 0%;
+  }
+}
+
+.c-hp-img--ei {
+  background-image: image-url('hp_enhance_instructions.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 50% 0%;
+  }
+}

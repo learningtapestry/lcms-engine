@@ -1,0 +1,263 @@
+$arrow-btn: (
+  ipad: (width: 50px, height: 60px),
+  large: (width: 78px, height: 72px),
+);
+
+.c-ls-hero {
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include e(wrap) {
+    @include add-gutter(margin, top, 4.5);
+    @include add-gutter(margin, bottom, 2);
+
+    @include breakpoint(ipad) {
+      @include add-gutter(margin, top, 6);
+      @include add-gutter(margin, bottom, 3.5);
+    }
+  }
+
+  @include breakpoint(large up) {
+    background-image: image-url('ls_hero_bg.jpg');
+    background-position: 0% 40%;
+  }
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-image: image-url('ls_hero_bg_medium.jpg');
+  }
+
+  @include breakpoint(small only) {
+    background-image: image-url('ls_hero_bg_small.jpg');
+    background-position: 40% 0%;
+  }
+
+  @include e(body) {
+    @include grid-column-offset(0);
+    @include flex-grid-column(12, $grid-column-2xgutter);
+    @include add-top-bottom-padding;
+    background-color: rgba($ub-white, .7);
+    border-radius: $panel-radius;
+
+    h1 {
+      @include txt-element(hero-header);
+      color: $ub-primary;
+    }
+
+    p {
+      @include txt-element(hero-text);
+      margin-bottom: 0;
+    }
+
+    @include breakpoint(medium) {
+      @include grid-column-offset(1);
+      @include flex-grid-column(11, $grid-column-2xgutter);
+    }
+
+    @include breakpoint(ipad) {
+      @include grid-column-offset(3);
+      @include flex-grid-column(9, $grid-column-2xgutter);
+    }
+
+
+    @include breakpoint(large) {
+      @include grid-column-offset(5);
+      @include flex-grid-column(7, $grid-column-2xgutter);
+    }
+
+    @include breakpoint(xlarge) {
+      @include grid-column-offset(6.5);
+      @include flex-grid-column(5.5, $grid-column-2xgutter);
+    }
+  }
+}
+
+.c-ls-block {
+  @include add-top-bottom-margin($y: 2);
+
+  @include breakpoint(ipad down) {
+    .o-btn { margin-bottom: $ub-xs-padding; }
+  }
+}
+
+.c-ls-cblock {
+  width: 100%;
+
+  h2 {
+    @include txt-element(media-header);
+    margin-bottom: $ub-base-margin;
+  }
+  &, p { @include txt-element(media-text); }
+  p { @include add-gutter; }
+
+  @include e(body) {
+    @include grid-column-position(center);
+    text-align: center;
+    width: 80%;
+
+    @include m(smaller) {
+      width: 77%;
+    }
+
+    @include breakpoint(medium down) {
+      width: 100%;
+    }
+  }
+
+  @include e(carousel) {
+    @include flex-grid-column(12, 0);
+    position: relative;
+  }
+
+}
+
+.c-lk-cta {
+  h2 { @include txt-element(media-header); }
+  p { @include txt-element(media-text); }
+}
+
+@mixin ls-arrows($color) {
+  @include button($background: $color, $background-hover: darken($color, 10%), $color: $ub-txt);
+  @include flex;
+  @include flex-align($x: center, $y: middle);
+  background-image: none;
+  border: 1px solid darken($color, 10%);
+  margin-bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  @each $breakpoint, $btn in $arrow-btn {
+    @include breakpoint($breakpoint) {
+      height: map-get($btn, height);
+      width: map-get($btn, width);
+    }
+  }
+}
+
+.touchevents {
+  .c-ls-slides {
+    @include e(overlay) {
+      display: block;
+    }
+  }
+}
+
+.c-ls-slides {
+  height: 100%;
+  width: 75%;
+
+  @include breakpoint(medium down) {
+    width: 100%;
+  }
+
+  @include e(overlay) {
+    bottom: 40px;
+    display: none;
+    height: auto;
+    position: absolute;
+    top: 50px;
+    width: 25%;
+    z-index: 9999;
+
+    @include m(left) {
+      left: 0;
+    }
+
+    @include m(right) {
+      right: 0;
+    }
+
+    @include breakpoint(ipad down) {
+      display: block;
+    }
+  }
+
+  @include e(wrap) {
+    @include flex-grid-row;
+    flex-wrap: nowrap;
+
+    @include m(1) {
+      justify-content: center;
+    }
+
+    @include m(2) {
+      @include breakpoint(large) {
+        justify-content: center;
+      }
+    }
+  }
+
+  @include e(slide) {
+    height: auto;
+  }
+
+  @include e(prev) {
+    left: 0;
+  }
+
+  @include e(next) {
+    right: 0;
+  }
+
+  @include m(a) {
+    @include e(slide) {
+      // uncomment for more than 1 video support
+      @include flex-grid-column(11, 0);
+      //@include flex-grid-column(12, 0);
+
+      @include breakpoint(ipad) {
+        @include flex-grid-column(12, 0);
+      }
+    }
+    @include e(btn) {
+      @include ls-arrows(map-get($ub-leadership, arrows1));
+    }
+  }
+
+  @include m(l) {
+    width: 100%;
+
+    @include breakpoint(ipad) {
+      width: 85%;
+    }
+
+    @include e(slide) {
+      @include flex-grid-column(11, 0);
+      @include flex;
+
+      @include breakpoint(ipad) {
+        @include flex-grid-column(6, 0);
+      }
+
+      @include breakpoint(large) {
+        @include flex-grid-column(4, 0);
+      }
+
+    }
+    @include e(btn) {
+      @include ls-arrows(map-get($ub-leadership, arrows2));
+    }
+  }
+
+}
+
+
+.c-ls-img--syt {
+  background-image: image-url('ls_team.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 80% 0%;
+  }
+}
+
+.c-ls-img--eyc {
+  background-image: image-url('ls_curriculum.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 0% 0%;
+  }
+}

@@ -1,0 +1,11 @@
+.u-ld-indent {
+  @for $i from 2 through 3 {
+    @include m('l#{$i}') {
+      margin-left: $list-side-margin * $i;
+    }
+  }
+}
+
+.u-ld-indented {
+  text-indent: $list-side-margin * 2;
+}

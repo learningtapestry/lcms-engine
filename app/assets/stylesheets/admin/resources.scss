@@ -1,0 +1,55 @@
+.resource-id-label {
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.resource-tag-col {
+  width: 15%;
+}
+
+.resource-search-button {
+  vertical-align: bottom;
+}
+
+.resource-search-select {
+  width: 100% !important; // sass-lint:disable-line no-important
+}
+
+.resource-search-url-slug,
+.resource-search-title {
+  flex-grow: 1;
+  padding: 0 1%;
+}
+
+.resource-search-wrap {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: 1%;
+  vertical-align: top !important; // sass-lint:disable-line no-important
+
+  &:last-child {
+    padding: 0;
+  }
+}
+
+.o-adm-download {
+  @include e(settings) {
+    @include flex;
+
+    input {
+      margin-left: 10px;
+    }
+  }
+
+  background-color: $ub-white;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.resource-btns-col {
+  .button { width: 80px; }
+}
+
+.c-admin > .o-page {
+  margin: 40px auto;
+}

@@ -1,0 +1,57 @@
+.o-tab {
+  @include e(navigation) {
+    border-bottom: 1px solid $ub-txt;
+    display: flex;
+  }
+
+  @include e(panel) {
+  }
+}
+
+.o-tab-menu {
+  display: flex;
+  flex-flow: row wrap;
+  list-style-type: none;
+  margin-bottom: 0 !important;
+  margin-left: 0;
+  min-width: 1px;
+
+  @include e(item) {
+    float: left;
+    margin-right: $ub-base-padding;
+    padding-bottom: $ub-xs-padding;
+
+    > a:hover { color: $ub-heading-txt; }
+    > a {
+      @include txt-element(tab-title);
+      color: map-get($ub-txt-colors, light);
+      padding: 0;
+    }
+
+    @include m(active) {
+      border-bottom: 4px solid $ub-heading-txt;
+      > a { color: $ub-heading-txt; }
+    }
+
+    &.is-active {
+      border-bottom: 4px solid $ub-heading-txt;
+      > a { color: $ub-heading-txt; }
+    }
+  }
+}
+
+
+.c-easytabs {
+  .o-tab-menu {
+    border-bottom: 1px solid $ub-txt;
+    display: flex;
+    margin-bottom: 1em;
+
+    @include e(item) {
+      &.active {
+        border-bottom: 4px solid $ub-heading-txt;
+        > a { color: $ub-heading-txt; }
+      }
+    }
+  }
+}

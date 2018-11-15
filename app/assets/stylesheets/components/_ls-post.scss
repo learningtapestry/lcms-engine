@@ -1,0 +1,38 @@
+$ls-img-height: 265px;
+
+.ls-post {
+  @extend %material-card;
+  @include add-column-margin(.5);
+  background-color: $ub-white;
+  border-radius: 2px;
+
+
+  @include e(img) {
+    //height: $ls-img-height;
+    //overflow: hidden;
+    img {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  @include e(body) {
+    @include add-column-padding(.5);
+    @include add-top-bottom-padding(.5);
+    @include txt-element(ls-post-txt);
+
+  }
+
+  @include e(title) {
+    @include txt-element(ls-post-title);
+  }
+
+  @include e(subtitle) {
+    @include txt-element(ls-post-subtitle);
+    text-transform: uppercase;
+  }
+
+  @include e(txt) {
+  }
+
+}

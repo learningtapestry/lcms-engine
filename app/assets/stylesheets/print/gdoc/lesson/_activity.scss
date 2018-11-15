@@ -1,0 +1,21 @@
+.o-ld-activity-wrapper {
+  .o-simple-table.o-ld-activity__optional {
+
+    td {
+      background-color: map-get($ub-ld-colorcodes, activity-optional);
+      padding: 20pt;
+      width: 100%;
+    }
+
+    p {
+      padding: 0 !important;
+      text-align: center !important;
+    }
+  }
+
+  .u-txt--ld-activity-teaser {
+    * {
+      background-color: initial !important;
+    }
+  }
+}

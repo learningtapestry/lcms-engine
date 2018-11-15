@@ -1,0 +1,27 @@
+.o-ld-white-placeholder {
+  @include add-gutter(margin, left);
+  @include add-gutter(margin, right);
+
+  background-color: $ub-white;
+  padding: 15px 30px;
+
+  @include e(title) {
+    @include txt-element(ld-white-placeholder-title);
+
+    @include m(ela) {
+      color: map-get($ub-colorcodes, ela-base);
+    }
+
+    @include m(math) {
+      color: map-get($ub-colorcodes, math-base);
+    }
+
+    @include m(colored) {
+      @include txt-element(ld-white-placeholder-colored-title);
+    }
+  }
+
+  @include m(colored) {
+    border-left: 4px solid map-get($ub-colorcodes, ela-base);
+  }
+}

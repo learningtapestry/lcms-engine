@@ -1,0 +1,19 @@
+// using freshdesk breakpoints here
+$breakpoints: (
+  small: 0,
+  medium: 45em,
+  large: 60em,
+);
+$breakpoint-classes: (small medium large);
+$grid-column-gutter: (
+  small: 20px,
+  medium: 30px,
+);
+$grid-column-2xgutter: (
+  small: 40px,
+  medium: 60px,
+);
+$grid-column-4xgutter: (
+  small: 2 * 40px,
+  medium: 2 * 60px,
+);

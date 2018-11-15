@@ -1,0 +1,42 @@
+//
+// This is classes for freshdesk portal for UB Theme
+// To build it use smth like scss ./freshdesk.scss > ./freshdesk.css and put result css at customize sectoion
+// Also check ./layout, ./pages for liquid templates that are different from default one, put them to freshdesk too
+// Check colors at ./base/colors, most of them need to be set at freshdesk
+//
+@charset "utf-8";
+
+@import
+  '../utils/variables',
+  '../utils/mixins',
+  'base/colors';
+
+@import
+  'themes/settings';
+
+@import
+  'utils/unit',
+  'utils/value',
+  'utils/breakpoint',
+  'utils/helpers';
+
+@import
+  'base/typography';
+
+// layout that will override common freshdesk classes to meet design
+@import
+  'layout/footer',
+  'layout/header',
+  'layout/page';
+
+// components that are used on most of pages,
+// overriding freshdesk classes for them
+@import
+  'components/block',
+  'components/buttons',
+  'components/help-center',
+  'components/tabs';
+
+// override freshdesk classes for specific page
+@import
+  'pages/portal-home';

@@ -1,0 +1,84 @@
+.o-pagination {
+  @include flex-align($x: justify, $y: middle);
+  list-style: none;
+  text-transform: uppercase;
+
+  @include breakpoint(medium) {
+    @include flex-align($x: center, $y: middle);
+  }
+
+  @include e(item) {
+    &, a { color: $ub-txt; }
+    a:hover, a:focus {
+      i { font-weight: bold; }
+    }
+
+    @include m(next) {
+      @include flex-grid-column(shrink);
+      line-height: 1;
+    }
+
+    @include m(middle) {
+      @include flex-grid-column(shrink, 0);
+      line-height: 2;
+      text-align: center;
+    }
+
+    @include m(prev) {
+      @include flex-grid-column(shrink);
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    @include m(disabled) {
+      &, a {
+        color: $medium-gray;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  @include e(break) {
+    display: block;
+    height: 2rem;
+    width: 2rem;
+  }
+
+  @include e(pages) {
+    @include txt-element(pagination);
+    display: inline-flex;
+    list-style: none;
+    margin-left: 0;
+    li {
+      display: none;
+      line-height: 2rem;
+      padding: 0 .35rem;
+
+      @include breakpoint(medium) {
+        display: block;
+        padding: 0 .7rem;
+      }
+    }
+    li.o-pagination__page--active { display: block; }
+    li a {
+      border-radius: 50%;
+      display: block;
+      height: 2rem;
+      width: 2rem;
+      &:hover, &:focus {
+        background-color: scale-color($ub-panel-bg, $lightness: 25%);
+        font-weight: bold;
+        transition: all .4s ease;
+      }
+    }
+  }
+
+  @include e(page) {
+    @include m(active) {
+      a {
+        background-color: $ub-panel-bg;
+        font-weight: bold;
+      }
+    }
+  }
+}

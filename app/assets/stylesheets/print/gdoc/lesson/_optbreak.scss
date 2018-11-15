@@ -1,0 +1,6 @@
+.o-ld-optbreak {
+  @include e(divider) {
+    border-bottom: 1pt dotted $ub-hr !important;
+    border-top: 1pt dotted $ub-hr !important;
+  }
+}

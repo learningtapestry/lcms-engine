@@ -1,0 +1,32 @@
+.o-ld-callout {
+  @extend %u-pdf-nobreak;
+  @include txt-gdoc-element(pullquote);
+
+  @include e(header) {
+    @include txt-gdoc-element(ld-callout-header);
+  }
+
+  @include e(wrap) {
+    padding-left: 18pt;
+  }
+
+  @include e(content) {
+    @include m(ela) {
+      &, *, ul, li, ol {
+        &, * {
+          background-color: initial !important;
+          color: map-get($ub-colorcodes, ela-base);
+        }
+      }
+    }
+
+    @include m(math) {
+      &, *, ul, li, ol {
+        &, * {
+          background-color: initial !important;
+          color: map-get($ub-colorcodes, math-base);
+        }
+      }
+    }
+  }
+}

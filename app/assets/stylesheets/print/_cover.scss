@@ -1,0 +1,83 @@
+body {
+  height: 100%;
+  position: relative;
+}
+
+%pdf-full-height {
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.c-pdf-title {
+  @include txt-pdf-element(cover-title);
+}
+
+.c-pdf-timestamp {
+  @include txt-pdf-element(cover-timestamp);
+  padding-top: $ub-small-padding;
+}
+
+.c-pdf-logo {
+  @include m(u) {
+    @include txt-pdf-element(cover-logo-u);
+  }
+  @include m(ed) {
+    @include txt-pdf-element(cover-logo-ed);
+  }
+}
+
+.c-pdf-cover {
+  height: 100%;
+
+  h1 {
+    @include txt-pdf-element(h1);
+    padding-top: 0;
+  }
+
+  h2 {
+    @include txt-pdf-element(h2);
+    padding-top: 0;
+  }
+
+  @include m(ela) {
+    @extend %pdf-full-height;
+    background: map-get($ub-cg-ela-colors, cover-bg);
+  }
+
+  @include m(math) {
+    @extend %pdf-full-height;
+    background: map-get($ub-cg-math-colors, cover-bg);
+  }
+
+  @include m(lead) {
+    @extend %pdf-full-height;
+    background: map-get($ub-cg-lead-colors, cover-bg);
+  }
+
+  @include e(wrap) {
+    margin-left: $pdf-margin;
+    margin-right: $pdf-margin;
+  }
+
+  @include e(img) {
+    background-size: cover;
+    height: 400px;
+    margin: 0;
+    min-width: 0;
+  }
+
+  @include e(content) {
+    padding: 30px;
+  }
+
+  @include e(title) {
+  }
+
+  @include e(logo) {
+    bottom: 30px;
+    position: absolute;
+  }
+}

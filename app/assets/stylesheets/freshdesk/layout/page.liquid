@@ -1,0 +1,22 @@
+{{ header }}
+
+<div class="o-page">
+	<!-- Search and page links for the page -->
+	{% if portal.current_tab %}
+		<section class="help-center">
+			<div class="hc-nav {% if portal.contact_info %} nav-with-contact {% endif %}">
+				{{ portal | helpcenter_navigation }}
+			</div>
+		</section>
+	{% endif %}
+
+	<!-- Notification Messages -->
+	{{ page_message }}
+
+	<div class="c-wrapper">
+		{{ content_for_layout }}
+	</div>
+
+	{{ footer }}
+
+</div>

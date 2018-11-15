@@ -1,0 +1,22 @@
+.o-ld-materials {
+  @include add-gutter(margin, top, .5);
+
+  @include e(content) {
+    padding: 10px;
+
+    @include m(hidden) {
+      display: none;
+      padding: 0 10px;
+    }
+  }
+
+  @include e(toggler) {
+    @include txt-element(base);
+    color: map-get($ub-colorcodes, math-base);
+    cursor: pointer;
+
+    @include m(hide) {
+      display: none;
+    }
+  }
+}

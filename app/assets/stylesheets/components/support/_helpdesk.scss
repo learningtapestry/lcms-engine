@@ -1,0 +1,25 @@
+.o-helpdesk {
+  @include add-column-padding;
+  background-color: $ub-helpblock;
+  display: flex;
+  flex-flow: row wrap;
+
+  @include e(content) {
+    flex: 0 0 100%;
+
+    @include breakpoint(ipad) {
+      flex: 1 1 auto;
+    }
+  }
+
+  @include e(cta) {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    margin-top: .5rem;
+
+    @include breakpoint(ipad) {
+      align-self: center;
+      margin-top: 0;
+    }
+  }
+}

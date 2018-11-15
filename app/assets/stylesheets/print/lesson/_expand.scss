@@ -1,0 +1,11 @@
+.o-ld-expand {
+  @include e(content) {
+    @include m(hidden) {
+      display: block;
+    }
+  }
+
+  @include e(toggler) {
+    display: none;
+  }
+}

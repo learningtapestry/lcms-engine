@@ -1,0 +1,50 @@
+.c-cg-scroll-wrap {
+  clear: both;
+  overflow-x: auto;
+
+  @include breakpoint(ipad down) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+.c-cg-single-cell-table {
+  tbody {
+    border: zero;
+  }
+}
+
+.c-cg-table {
+  p {
+    margin: 0;
+  }
+
+  tbody {
+    border: zero;
+  }
+
+  td {
+    border-left: 1px solid #cacaca;
+    font-size: 1.125rem;
+    padding: .875rem;
+    vertical-align: top;
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    &:first-child {
+      border-left: zero;
+      padding-left: 0;
+    }
+  }
+
+  tr {
+    background: #fff !important;
+    border-bottom: 1px solid #cacaca;
+
+    &:last-child {
+      border-bottom: zero;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.c-ld-keyword {
+  cursor: help;
+  font-weight: bold !important;
+  white-space: nowrap;
+
+  @include m(ela) {
+    color: map-get($ub-colorcodes, ela-base);
+  }
+
+  @include m(math) {
+    color: map-get($ub-colorcodes, math-base);
+  }
+}
+
+.o-ld-dropdown {
+  @include txt-element-strict(ld-tooltip);
+  background: map-get($ub-ld-colorcodes, tooltip-bg);
+  border: 0;
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+  padding: 1rem;
+
+  * {
+    word-wrap: break-word;
+  }
+
+  &::before {
+    @include css-triangle($tooltip-pip-width, map-get($ub-ld-colorcodes, tooltip-bg), up);
+    bottom: 100%;
+    left: $ld-tooltip-offset;
+    position: absolute;
+    transform: translateX(-50%);
+  }
+}

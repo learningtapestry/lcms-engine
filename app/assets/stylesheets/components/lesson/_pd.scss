@@ -1,0 +1,188 @@
+.o-ld-pd {
+  @include add-gutter(margin, bottom);
+  background-color: map-get($ub-ld-colorcodes, pd-bg);
+  color: $ub-white;
+
+  @include e(audio) {
+    padding-top: 1rem;
+  }
+
+  @include e(audio-placeholder) {
+    display: none;
+  }
+
+  @include e(container) {
+    padding: 0 1rem 1rem;
+  }
+
+  @include e(description) {
+    color: $ub-txt;
+    margin-top: 20px;
+
+    @include m(hidden) {
+      display: none;
+    }
+
+    h4 {
+      @include txt-element(ld-pd-description-title);
+      color: $ub-txt;
+      padding-bottom: 0;
+    }
+  }
+
+  @include e(expander) {
+    @include flex;
+
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  @include e(minimizer) {
+    @include flex;
+
+    align-items: center;
+    background-color: map-get($ub-ld-colorcodes, pd-bg-dark);
+    cursor: pointer;
+    height: 41px;
+    justify-content: center;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+
+    .o-ld-pd--collapsed & {
+      display: none;
+    }
+  }
+
+  @include e(title) {
+    @include txt-element(ld-pd-title);
+
+    padding-top: .5rem;
+
+    .o-ld-pd--collapsed & {
+      @include txt-element(ld-pd-title-collapsed);
+    }
+  }
+
+  @include e(video) {
+    padding-top: 1rem;
+  }
+
+  @include e(video-placeholder) {
+    display: none;
+  }
+
+  @include m(collapsed) {
+    @include add-gutter(margin, left);
+
+    float: right;
+    width: 35%;
+  }
+
+  @include m(expanded) {
+    @include add-gutter(margin, top);
+  }
+}
+
+.o-ld-pd-caption {
+  @include txt-element(ld-pd-caption);
+
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.o-ld-pd-toggler {
+  cursor: pointer;
+  height: 31px;
+  width: 31px;
+
+  .o-ld-pd--collapsed & {
+    background-image: asset-url('pd-expand.svg');
+  }
+
+  .o-ld-pd--expanded & {
+    background-image: asset-url('pd-collapse.svg');
+  }
+}
+
+.o-ld-pd-pdf {
+  height: 600px;
+  position: relative;
+
+  @include e(object) {
+    height: 100%;
+    max-width: 100%;
+    position: absolute !important;
+    width: 100%;
+  }
+
+  @include e(overlay) {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+
+    .o-ld-pd--expanded & {
+      display: none;
+    }
+  }
+
+  @include e(overlay-bg) {
+    background-color: $ub-primary;
+    opacity: .6;
+  }
+
+  @include e(overlay-icon) {
+    background: asset-url('pdf-icon.svg') no-repeat 50%;
+  }
+
+  .o-ld-pd--collapsed & {
+    height: 166px;
+  }
+}
+
+.o-ld-cg {
+  @include add-gutter(margin, bottom, .5);
+  @include add-gutter(margin, top, .5);
+  @include flex;
+  @include txt-element(ld-pd-cg);
+
+  flex-direction: row;
+
+  @include e(body) {
+    padding: $ub-base-padding $ub-base-padding 0;
+
+    .o-ld-pd--collapsed & {
+      display: none;
+    }
+  }
+
+  @include e(header) {
+    @include txt-element(ld-pd-cg-header);
+  }
+
+  @include e(title) {
+    @include txt-element(ld-pd-cg-title);
+
+    margin-bottom: 1rem !important;
+    margin-top: .5rem !important;
+  }
+
+  @include e(thumbnail) {
+    background-image: asset-url('pd-cg-placeholder.jpg');
+    background-size: cover;
+    max-width: 100%;
+    overflow: hidden;
+    width: 100%;
+
+    .o-ld-pd--collapsed & {
+      background-position-y: -50px;
+      height: 150px;
+    }
+
+    .o-ld-pd--expanded & {
+      max-width: 25%;
+    }
+  }
+}
