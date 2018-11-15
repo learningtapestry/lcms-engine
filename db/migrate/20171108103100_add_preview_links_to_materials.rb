@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddPreviewLinksToMaterials < ActiveRecord::Migration[4.2]
+class AddPreviewLinksToMaterials < Lcms::Engine::Migration
   def change
     add_column :materials, :preview_links, :jsonb, default: {}
   end

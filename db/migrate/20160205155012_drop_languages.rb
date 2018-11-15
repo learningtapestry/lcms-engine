@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropLanguages < ActiveRecord::Migration[4.2]
+class DropLanguages < Lcms::Engine::Migration
   def change
     drop_table :lobject_languages
     drop_table :languages

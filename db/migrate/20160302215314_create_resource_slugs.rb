@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateResourceSlugs < ActiveRecord::Migration[4.2]
+class CreateResourceSlugs < Lcms::Engine::Migration
   def up
     ActiveRecord::Base.connection.execute('drop table if exists resource_slugs;')
 

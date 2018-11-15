@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLearningObjects < ActiveRecord::Migration[4.2]
+class CreateLearningObjects < Lcms::Engine::Migration
   def change
     create_table :learning_objects do |t|
       t.string  :description

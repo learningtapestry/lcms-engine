@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateSourceDocuments < ActiveRecord::Migration[4.2]
+class CreateSourceDocuments < Lcms::Engine::Migration
   def up
     create_table :source_documents do |t|
       t.integer :source_id, index: true

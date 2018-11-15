@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLobjectCollections < ActiveRecord::Migration[4.2]
+class CreateLobjectCollections < Lcms::Engine::Migration
   def change
     create_table :lobject_collections do |t|
       t.references :lobject, index: true, foreign_key: true

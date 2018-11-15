@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RevertRawDocumentsResourceData < ActiveRecord::Migration[4.2]
+class RevertRawDocumentsResourceData < Lcms::Engine::Migration
   def change
     change_table :raw_documents do |t|
       t.json    :resource_data_json

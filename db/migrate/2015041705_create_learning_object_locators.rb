@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLearningObjectLocators < ActiveRecord::Migration[4.2]
+class CreateLearningObjectLocators < Lcms::Engine::Migration
   def change
     create_table :learning_object_locators do |t|
       t.references :learning_object, references: :learning_objects

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddCurriculumToResources < ActiveRecord::Migration[4.2]
+class AddCurriculumToResources < Lcms::Engine::Migration
   def change
     add_reference :resources, :curriculum, index: true
   end

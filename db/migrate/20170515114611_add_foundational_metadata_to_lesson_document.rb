@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddFoundationalMetadataToLessonDocument < ActiveRecord::Migration[4.2]
+class AddFoundationalMetadataToLessonDocument < Lcms::Engine::Migration
   def change
     add_column :lesson_documents, :foundational_metadata, :hstore
   end

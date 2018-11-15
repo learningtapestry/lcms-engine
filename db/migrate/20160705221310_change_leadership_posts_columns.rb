@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeLeadershipPostsColumns < ActiveRecord::Migration[4.2]
+class ChangeLeadershipPostsColumns < Lcms::Engine::Migration
   def change
     change_table :leadership_posts do |t|
       t.change :first_name, :string, null: false

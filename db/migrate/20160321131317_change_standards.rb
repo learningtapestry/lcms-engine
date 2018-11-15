@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeStandards < ActiveRecord::Migration[4.2]
+class ChangeStandards < Lcms::Engine::Migration
   def change
     change_column :standards, :name, :string, null: true
 

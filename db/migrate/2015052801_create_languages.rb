@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLanguages < ActiveRecord::Migration[4.2]
+class CreateLanguages < Lcms::Engine::Migration
   def change
     create_table :languages do |t|
       t.string :name, index: true

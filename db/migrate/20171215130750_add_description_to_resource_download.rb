@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddDescriptionToResourceDownload < ActiveRecord::Migration[4.2]
+class AddDescriptionToResourceDownload < Lcms::Engine::Migration
   def change
     add_column :resource_downloads, :description, :text
   end

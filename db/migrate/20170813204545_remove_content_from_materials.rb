@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveContentFromMaterials < ActiveRecord::Migration[4.2]
+class RemoveContentFromMaterials < Lcms::Engine::Migration
   def change
     remove_column :materials, :content, :text
   end

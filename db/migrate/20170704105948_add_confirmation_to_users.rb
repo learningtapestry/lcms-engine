@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddConfirmationToUsers < ActiveRecord::Migration[4.2]
+class AddConfirmationToUsers < Lcms::Engine::Migration
   def change
     change_table :users do |t|
       t.string   :confirmation_token

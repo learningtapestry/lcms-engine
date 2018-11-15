@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDocumentParts < ActiveRecord::Migration[4.2]
+class CreateDocumentParts < Lcms::Engine::Migration
   def change
     create_table :document_parts do |t|
       t.references :document, index: true, foreign_key: true

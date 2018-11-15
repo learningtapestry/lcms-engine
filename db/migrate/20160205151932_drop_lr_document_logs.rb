@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropLrDocumentLogs < ActiveRecord::Migration[4.2]
+class DropLrDocumentLogs < Lcms::Engine::Migration
   def change
     drop_table :lr_document_logs
   end

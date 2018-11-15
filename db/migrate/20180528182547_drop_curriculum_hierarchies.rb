@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropCurriculumHierarchies < ActiveRecord::Migration[4.2]
+class DropCurriculumHierarchies < Lcms::Engine::Migration
   def change
     drop_table :curriculum_hierarchies do |t|
       t.integer 'ancestor_id', null: false

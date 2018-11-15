@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateMaterials < ActiveRecord::Migration[4.2]
+class CreateMaterials < Lcms::Engine::Migration
   def change
     create_table :materials do |t|
       t.text :content

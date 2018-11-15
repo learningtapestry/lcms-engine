@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateEngagenyDocuments < ActiveRecord::Migration[4.2]
+class CreateEngagenyDocuments < Lcms::Engine::Migration
   def change
     create_table :engageny_documents do |t|
       t.integer :nid, index: true

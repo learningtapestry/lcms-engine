@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLessonDocuments < ActiveRecord::Migration[4.2]
+class CreateLessonDocuments < Lcms::Engine::Migration
   def change
     create_table :lesson_documents do |t|
       t.string :file_id, index: true

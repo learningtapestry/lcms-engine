@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropDocumentTables < ActiveRecord::Migration[4.2]
+class DropDocumentTables < Lcms::Engine::Migration
   def change
     remove_column :lobject_age_ranges, :document_id
     remove_column :lobject_alignments, :document_id

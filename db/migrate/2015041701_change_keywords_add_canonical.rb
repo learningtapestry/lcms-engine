@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeKeywordsAddCanonical < ActiveRecord::Migration[4.2]
+class ChangeKeywordsAddCanonical < Lcms::Engine::Migration
   def change
     change_table :keywords do |t|
       t.references :canonical, references: :keywords

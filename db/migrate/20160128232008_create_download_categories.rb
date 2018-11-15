@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDownloadCategories < ActiveRecord::Migration[4.2]
+class CreateDownloadCategories < Lcms::Engine::Migration
   def change
     create_table :download_categories do |t|
       t.string :name, null: false

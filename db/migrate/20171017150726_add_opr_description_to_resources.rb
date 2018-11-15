@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddOprDescriptionToResources < ActiveRecord::Migration[4.2]
+class AddOprDescriptionToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :opr_description, :string
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddContentToLessonDocuments < ActiveRecord::Migration[4.2]
+class AddContentToLessonDocuments < Lcms::Engine::Migration
   def change
     add_column :lesson_documents, :content, :text
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropDocColumnsFromDocuments < ActiveRecord::Migration[4.2]
+class DropDocColumnsFromDocuments < Lcms::Engine::Migration
   def change
     change_table :documents do |t|
       t.remove 'doc_id'

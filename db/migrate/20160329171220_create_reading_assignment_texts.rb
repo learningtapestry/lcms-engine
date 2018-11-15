@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateReadingAssignmentTexts < ActiveRecord::Migration[4.2]
+class CreateReadingAssignmentTexts < Lcms::Engine::Migration
   def change
     create_table :reading_assignment_texts do |t|
       t.string :name, index: true, null: false

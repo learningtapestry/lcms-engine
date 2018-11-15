@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddEngagenyTitleToLobjects < ActiveRecord::Migration[4.2]
+class AddEngagenyTitleToLobjects < Lcms::Engine::Migration
   def change
     add_column :lobjects, :engageny_title, :string
   end

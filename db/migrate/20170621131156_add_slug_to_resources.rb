@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddSlugToResources < ActiveRecord::Migration[4.2]
+class AddSlugToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :slug, :string, index: true
   end

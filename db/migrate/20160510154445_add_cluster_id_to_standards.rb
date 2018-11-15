@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddClusterIdToStandards < ActiveRecord::Migration[4.2]
+class AddClusterIdToStandards < Lcms::Engine::Migration
   def change
     add_column :standards, :cluster_id, :integer
     add_foreign_key :standards, :standards, column: :cluster_id

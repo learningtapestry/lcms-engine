@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddBreadcrumbShortTitleToCurriculums < ActiveRecord::Migration[4.2]
+class AddBreadcrumbShortTitleToCurriculums < Lcms::Engine::Migration
   def change
     add_column :curriculums, :breadcrumb_short_title, :string
   end

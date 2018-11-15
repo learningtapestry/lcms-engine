@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreatePages < ActiveRecord::Migration[4.2]
+class CreatePages < Lcms::Engine::Migration
   def change
     create_table :pages do |t|
       t.text :body, null: false

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropAsnIdentifier < ActiveRecord::Migration[4.2]
+class DropAsnIdentifier < Lcms::Engine::Migration
   def up
     remove_column :standards, :asn_identifier
   end

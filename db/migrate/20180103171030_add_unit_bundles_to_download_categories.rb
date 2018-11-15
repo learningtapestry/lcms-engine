@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddUnitBundlesToDownloadCategories < ActiveRecord::Migration[4.2]
+class AddUnitBundlesToDownloadCategories < Lcms::Engine::Migration
   def change
     add_column :download_categories, :bundle, :boolean, null: false, default: false
   end

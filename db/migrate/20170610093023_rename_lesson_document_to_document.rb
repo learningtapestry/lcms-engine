@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameLessonDocumentToDocument < ActiveRecord::Migration[4.2]
+class RenameLessonDocumentToDocument < Lcms::Engine::Migration
   def change
     rename_table :lesson_documents, :documents
   end

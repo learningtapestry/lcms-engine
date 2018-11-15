@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddFkToDownloadCategories < ActiveRecord::Migration[4.2]
+class AddFkToDownloadCategories < Lcms::Engine::Migration
   def up
     remove_foreign_key :resource_downloads, :download_categories
     add_foreign_key :resource_downloads, :download_categories, on_delete: :nullify

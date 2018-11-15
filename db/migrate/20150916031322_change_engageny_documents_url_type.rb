@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeEngagenyDocumentsUrlType < ActiveRecord::Migration[4.2]
+class ChangeEngagenyDocumentsUrlType < Lcms::Engine::Migration
   def change
     change_column :engageny_documents, :url, :text
   end

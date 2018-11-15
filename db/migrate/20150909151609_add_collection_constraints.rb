@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddCollectionConstraints < ActiveRecord::Migration[4.2]
+class AddCollectionConstraints < Lcms::Engine::Migration
   def up
     change_column :lobject_collections, :lobject_id, :integer, null: false
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropAgeRanges < ActiveRecord::Migration[4.2]
+class DropAgeRanges < Lcms::Engine::Migration
   def change
     drop_table :lobject_age_ranges
   end

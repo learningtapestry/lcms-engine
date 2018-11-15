@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddNameToIdentities < ActiveRecord::Migration[4.2]
+class AddNameToIdentities < Lcms::Engine::Migration
   def change
     change_table :identities do |t|
       t.string :name

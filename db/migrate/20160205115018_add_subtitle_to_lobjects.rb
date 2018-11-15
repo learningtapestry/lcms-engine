@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddSubtitleToLobjects < ActiveRecord::Migration[4.2]
+class AddSubtitleToLobjects < Lcms::Engine::Migration
   def change
     add_column :lobjects, :subtitle, :string
   end

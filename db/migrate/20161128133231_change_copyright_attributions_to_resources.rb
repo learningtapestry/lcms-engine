@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeCopyrightAttributionsToResources < ActiveRecord::Migration[4.2]
+class ChangeCopyrightAttributionsToResources < Lcms::Engine::Migration
   def change
     add_reference :copyright_attributions, :resource, foreign_key: true
   end

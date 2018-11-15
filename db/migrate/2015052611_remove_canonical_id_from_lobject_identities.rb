@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveCanonicalIdFromLobjectIdentities < ActiveRecord::Migration[4.2]
+class RemoveCanonicalIdFromLobjectIdentities < Lcms::Engine::Migration
   def change
     change_table :lobject_identities do |t|
       t.remove :canonical_id

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropStandardStrand < ActiveRecord::Migration[4.2]
+class DropStandardStrand < Lcms::Engine::Migration
   def change
     remove_column :standards, :standard_strand_id, :integer
     drop_table :standard_strands do |t|

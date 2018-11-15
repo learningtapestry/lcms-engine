@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddMainToDownloads < ActiveRecord::Migration[4.2]
+class AddMainToDownloads < Lcms::Engine::Migration
   def change
     add_column :downloads, :main, :boolean, null: false, default: false
   end

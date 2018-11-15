@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeRawDocumentsResourceData < ActiveRecord::Migration[4.2]
+class ChangeRawDocumentsResourceData < Lcms::Engine::Migration
   def change
     change_table :raw_documents do |t|
       t.remove :resource_data_json

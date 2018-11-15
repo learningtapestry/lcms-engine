@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateUsers < ActiveRecord::Migration[4.2]
+class CreateUsers < Lcms::Engine::Migration
   def change
     create_table :users do |t|
       t.string :name

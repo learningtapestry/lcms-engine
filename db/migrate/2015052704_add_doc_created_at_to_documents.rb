@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddDocCreatedAtToDocuments < ActiveRecord::Migration[4.2]
+class AddDocCreatedAtToDocuments < Lcms::Engine::Migration
   def change
     add_column :documents, :doc_created_at, :timestamp
   end

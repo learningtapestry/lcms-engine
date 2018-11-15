@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDocumentsMaterials < ActiveRecord::Migration[4.2]
+class CreateDocumentsMaterials < Lcms::Engine::Migration
   def change
     create_table :documents_materials, id: false do |t|
       t.references :document, foreign_key: true

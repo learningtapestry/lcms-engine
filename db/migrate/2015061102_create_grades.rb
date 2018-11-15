@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateGrades < ActiveRecord::Migration[4.2]
+class CreateGrades < Lcms::Engine::Migration
   def change
     create_table :grades do |t|
       t.string :grade

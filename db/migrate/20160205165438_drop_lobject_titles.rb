@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropLobjectTitles < ActiveRecord::Migration[4.2]
+class DropLobjectTitles < Lcms::Engine::Migration
   def change
     drop_table :lobject_titles
   end

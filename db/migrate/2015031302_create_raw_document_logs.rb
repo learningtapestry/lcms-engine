@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateRawDocumentLogs < ActiveRecord::Migration[4.2]
+class CreateRawDocumentLogs < Lcms::Engine::Migration
   def change
     create_table :raw_document_logs do |t|
       t.string  :action

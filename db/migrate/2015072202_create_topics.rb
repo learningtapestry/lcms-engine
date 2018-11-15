@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateTopics < ActiveRecord::Migration[4.2]
+class CreateTopics < Lcms::Engine::Migration
   def change
     create_table :topics do |t|
       t.string :name, index: true

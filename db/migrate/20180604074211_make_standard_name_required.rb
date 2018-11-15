@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MakeStandardNameRequired < ActiveRecord::Migration[4.2]
+class MakeStandardNameRequired < Lcms::Engine::Migration
   def up
     execute "UPDATE standards SET name = 'name' WHERE name is null;"
     change_column :standards, :name, :string, null: false

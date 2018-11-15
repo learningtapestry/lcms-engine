@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeLearningResourceLocatorsAddCanonical < ActiveRecord::Migration[4.2]
+class ChangeLearningResourceLocatorsAddCanonical < Lcms::Engine::Migration
   def change
     change_table :learning_resource_locators do |t|
       t.references :canonical, references: :learning_resource_locators

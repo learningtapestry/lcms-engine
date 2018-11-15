@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DeviseChangeUsers < ActiveRecord::Migration[4.2]
+class DeviseChangeUsers < Lcms::Engine::Migration
   def change
     change_table(:users) do |t|
       ## Database authenticatable

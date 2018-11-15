@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateOrganizations < ActiveRecord::Migration[4.2]
+class CreateOrganizations < Lcms::Engine::Migration
   def change
     create_table :organizations do |t|
       t.string :name

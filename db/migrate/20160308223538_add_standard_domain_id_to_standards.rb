@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddStandardDomainIdToStandards < ActiveRecord::Migration[4.2]
+class AddStandardDomainIdToStandards < Lcms::Engine::Migration
   def change
     add_reference :standards, :standard_domain, index: true, foreign_key: true
   end

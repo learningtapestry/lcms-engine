@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddNewStandardFields < ActiveRecord::Migration[4.2]
+class AddNewStandardFields < Lcms::Engine::Migration
   def change
     add_column :standards, :course, :string
     add_column :standards, :domain, :string

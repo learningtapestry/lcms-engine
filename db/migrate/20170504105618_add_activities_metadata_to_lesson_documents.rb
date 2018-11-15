@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddActivitiesMetadataToLessonDocuments < ActiveRecord::Migration[4.2]
+class AddActivitiesMetadataToLessonDocuments < Lcms::Engine::Migration
   def change
     add_column :lesson_documents, :activity_metadata, :jsonb
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateResourceTypes < ActiveRecord::Migration[4.2]
+class CreateResourceTypes < Lcms::Engine::Migration
   def change
     create_table :resource_types do |t|
       t.string :name, index: true

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddIndecesToLrDocuments < ActiveRecord::Migration[4.2]
+class AddIndecesToLrDocuments < Lcms::Engine::Migration
   def change
     add_index :lr_documents, :conformed_at
     add_index :lr_documents, :format_parsed_at

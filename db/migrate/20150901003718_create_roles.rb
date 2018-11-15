@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateRoles < ActiveRecord::Migration[4.2]
+class CreateRoles < Lcms::Engine::Migration
   def change
     create_table :roles do |t|
       t.string :name, null: false

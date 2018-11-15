@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddAccessCodeToUsers < ActiveRecord::Migration[4.2]
+class AddAccessCodeToUsers < Lcms::Engine::Migration
   def change
     add_column :users, :access_code, :string
   end

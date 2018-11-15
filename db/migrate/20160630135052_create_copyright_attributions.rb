@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateCopyrightAttributions < ActiveRecord::Migration[4.2]
+class CreateCopyrightAttributions < Lcms::Engine::Migration
   def change
     create_table :copyright_attributions do |t|
       t.references :curriculum, index: true, null: false

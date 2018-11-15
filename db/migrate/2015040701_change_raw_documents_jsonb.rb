@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeRawDocumentsJsonb < ActiveRecord::Migration[4.2]
+class ChangeRawDocumentsJsonb < Lcms::Engine::Migration
   def up
     execute 'alter table raw_documents alter column identity set data type jsonb using identity::jsonb;'
     execute 'alter table raw_documents alter column payload_schema set data type jsonb using payload_schema::jsonb;'

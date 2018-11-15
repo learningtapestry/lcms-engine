@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddTeaserToResources < ActiveRecord::Migration[4.2]
+class AddTeaserToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :teaser, :string
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeSettingsToJson < ActiveRecord::Migration[4.2]
+class ChangeSettingsToJson < Lcms::Engine::Migration
   def down
     add_column :settings, :created_at, :datetime
     add_column :settings, :editing_enabled, :boolean, default: true
