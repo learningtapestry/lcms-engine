@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateConformedDocumentIdentities < ActiveRecord::Migration[4.2]
+class CreateConformedDocumentIdentities < Lcms::Engine::Migration
   def change
     create_table :conformed_document_identities do |t|
       t.references :conformed_document, references: :conformed_documents

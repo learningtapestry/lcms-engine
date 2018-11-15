@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddParentToAlignments < ActiveRecord::Migration[4.2]
+class AddParentToAlignments < Lcms::Engine::Migration
   def change
     change_table :alignments do |t|
       t.references :parent, references: :alignments

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeLearningObjectsResourceLocator < ActiveRecord::Migration[4.2]
+class ChangeLearningObjectsResourceLocator < Lcms::Engine::Migration
   def change
     change_table :learning_objects do |t|
       t.remove :resource_locator

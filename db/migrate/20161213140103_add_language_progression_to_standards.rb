@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddLanguageProgressionToStandards < ActiveRecord::Migration[4.2]
+class AddLanguageProgressionToStandards < Lcms::Engine::Migration
   def change
     add_column :standards, :language_progression_file, :string
     add_column :standards, :language_progression_note, :string

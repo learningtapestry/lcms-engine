@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameLearningObjectColumns < ActiveRecord::Migration[4.2]
+class RenameLearningObjectColumns < Lcms::Engine::Migration
   def change
     rename_column :lobject_age_ranges, :learning_object_id, :lobject_id
     rename_column :lobject_documents, :learning_object_id, :lobject_id

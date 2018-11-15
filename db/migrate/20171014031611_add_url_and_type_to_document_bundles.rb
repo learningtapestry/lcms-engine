@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddUrlAndTypeToDocumentBundles < ActiveRecord::Migration[4.2]
+class AddUrlAndTypeToDocumentBundles < Lcms::Engine::Migration
   def change
     add_column :document_bundles, :url, :string
     add_column :document_bundles, :content_type, :string, null: false, default: 'pdf'

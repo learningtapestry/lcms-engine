@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddUrlToDocuments < ActiveRecord::Migration[4.2]
+class AddUrlToDocuments < Lcms::Engine::Migration
   def change
     change_table :documents do |t|
       t.remove :resource_locator

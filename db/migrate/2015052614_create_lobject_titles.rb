@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLobjectTitles < ActiveRecord::Migration[4.2]
+class CreateLobjectTitles < Lcms::Engine::Migration
   def change
     create_table :lobject_titles do |t|
       t.string :title

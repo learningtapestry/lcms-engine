@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLobjectCollectionTypes < ActiveRecord::Migration[4.2]
+class CreateLobjectCollectionTypes < Lcms::Engine::Migration
   def change
     create_table :lobject_collection_types do |t|
       t.string :name, null: false

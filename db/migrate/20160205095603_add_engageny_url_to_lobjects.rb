@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddEngagenyUrlToLobjects < ActiveRecord::Migration[4.2]
+class AddEngagenyUrlToLobjects < Lcms::Engine::Migration
   def change
     add_column :lobjects, :engageny_url, :string
   end

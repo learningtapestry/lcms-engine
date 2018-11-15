@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddIndexToOrganizations < ActiveRecord::Migration[4.2]
+class AddIndexToOrganizations < Lcms::Engine::Migration
   def change
     add_index :organizations, :name, unique: true
   end

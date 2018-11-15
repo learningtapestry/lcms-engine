@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateKeywords < ActiveRecord::Migration[4.2]
+class CreateKeywords < Lcms::Engine::Migration
   def change
     create_table :keywords do |t|
       t.string  :name

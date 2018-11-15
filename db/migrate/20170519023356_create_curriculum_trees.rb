@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateCurriculumTrees < ActiveRecord::Migration[4.2]
+class CreateCurriculumTrees < Lcms::Engine::Migration
   def change
     create_table :curriculum_trees do |t|
       t.string  :name,    null: false

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateDocumentBundles < ActiveRecord::Migration[4.2]
+class CreateDocumentBundles < Lcms::Engine::Migration
   def change
     create_table :document_bundles do |t|
       t.string :category, null: false

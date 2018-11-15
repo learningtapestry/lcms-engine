@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddIndexedAt < ActiveRecord::Migration[4.2]
+class AddIndexedAt < Lcms::Engine::Migration
   def change
     add_column :alignments, :indexed_at, :datetime
     add_column :keywords, :indexed_at, :datetime

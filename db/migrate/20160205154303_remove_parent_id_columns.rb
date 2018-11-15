@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveParentIdColumns < ActiveRecord::Migration[4.2]
+class RemoveParentIdColumns < Lcms::Engine::Migration
   def change
     remove_column :alignments, :parent_id
     remove_column :downloads, :parent_id

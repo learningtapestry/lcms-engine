@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateResourceHierarchies < ActiveRecord::Migration[4.2]
+class CreateResourceHierarchies < Lcms::Engine::Migration
   def change
     create_table :resource_hierarchies, id: false do |t|
       t.integer :ancestor_id, null: false

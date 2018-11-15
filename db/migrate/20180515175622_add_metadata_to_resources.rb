@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddMetadataToResources < ActiveRecord::Migration[4.2]
+class AddMetadataToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :metadata, :jsonb, default: {}, null: false
 

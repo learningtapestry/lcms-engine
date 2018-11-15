@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeSourceDocuments < ActiveRecord::Migration[4.2]
+class ChangeSourceDocuments < Lcms::Engine::Migration
   def change
     change_table :engageny_documents do |t|
       t.references :source_document, index: true, foreign_key: true

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateAuthors < ActiveRecord::Migration[4.2]
+class CreateAuthors < Lcms::Engine::Migration
   def change
     create_table :authors do |t|
       t.string :name

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeSubjectInStandards < ActiveRecord::Migration[4.2]
+class ChangeSubjectInStandards < Lcms::Engine::Migration
   def change
     ActiveRecord::Base.connection.execute(%{
       update standards set subject = 'ela' where substr(name,1,3) = 'ELA';

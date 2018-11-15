@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameLearningResourceLocators < ActiveRecord::Migration[4.2]
+class RenameLearningResourceLocators < Lcms::Engine::Migration
   def change
     rename_table :learning_resource_locators, :urls
     rename_table :lobject_resource_locators, :lobject_urls

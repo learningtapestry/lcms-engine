@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameLobjectTables < ActiveRecord::Migration[4.2]
+class RenameLobjectTables < Lcms::Engine::Migration
   def change
     rename_column :lobject_additional_lobjects, :lobject_id, :resource_id
     rename_column :lobject_additional_lobjects, :additional_lobject_id, :additional_resource_id

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameDocumentJoinTables < ActiveRecord::Migration[4.2]
+class RenameDocumentJoinTables < Lcms::Engine::Migration
   def change
     rename_table :documents_alignments, :document_alignments
     rename_table :documents_keywords, :document_keywords

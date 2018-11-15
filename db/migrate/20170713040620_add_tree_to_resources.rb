@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddTreeToResources < ActiveRecord::Migration[4.2]
+class AddTreeToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :tree, :boolean, default: false, null: false, index: true
   end

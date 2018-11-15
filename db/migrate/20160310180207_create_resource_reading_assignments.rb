@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateResourceReadingAssignments < ActiveRecord::Migration[4.2]
+class CreateResourceReadingAssignments < Lcms::Engine::Migration
   def change
     create_table :resource_reading_assignments do |t|
       t.references :resource, index: true, foreign_key: true, null: false

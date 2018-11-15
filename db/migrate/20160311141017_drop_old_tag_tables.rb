@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropOldTagTables < ActiveRecord::Migration[4.2]
+class DropOldTagTables < Lcms::Engine::Migration
   def change
     drop_table :resource_grades
     drop_table :grades

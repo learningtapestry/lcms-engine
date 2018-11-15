@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateStandardLinks < ActiveRecord::Migration[4.2]
+class CreateStandardLinks < Lcms::Engine::Migration
   def change
     create_table :standard_links do |t|
       t.integer :standard_begin_id, index: true, null: false

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateIdentities < ActiveRecord::Migration[4.2]
+class CreateIdentities < Lcms::Engine::Migration
   def change
     create_table :identities do |t|
       t.string  :url

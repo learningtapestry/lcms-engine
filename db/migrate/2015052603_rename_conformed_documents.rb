@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameConformedDocuments < ActiveRecord::Migration[4.2]
+class RenameConformedDocuments < Lcms::Engine::Migration
   def change
     rename_table :conformed_documents, :documents
     rename_table :conformed_document_age_ranges, :document_age_ranges

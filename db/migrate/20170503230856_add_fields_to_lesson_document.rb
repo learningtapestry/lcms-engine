@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddFieldsToLessonDocument < ActiveRecord::Migration[4.2]
+class AddFieldsToLessonDocument < Lcms::Engine::Migration
   def change
     enable_extension 'hstore'
     add_column :lesson_documents, :metadata, :hstore

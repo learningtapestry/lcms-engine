@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RenameKeywords < ActiveRecord::Migration[4.2]
+class RenameKeywords < Lcms::Engine::Migration
   def change
     rename_column :document_keywords, :keyword_id, :subject_id
     rename_column :lobject_keywords, :keyword_id, :subject_id

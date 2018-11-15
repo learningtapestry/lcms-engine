@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddHierarchicalPositionToCurriculums < ActiveRecord::Migration[4.2]
+class AddHierarchicalPositionToCurriculums < Lcms::Engine::Migration
   def change
     add_column :curriculums, :hierarchical_position, :string, index: true
   end

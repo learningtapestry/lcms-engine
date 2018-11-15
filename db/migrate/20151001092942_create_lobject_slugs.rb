@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLobjectSlugs < ActiveRecord::Migration[4.2]
+class CreateLobjectSlugs < Lcms::Engine::Migration
   def change
     create_table :lobject_slugs do |t|
       t.references :lobject, foreign_key: true, null: false

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeDocumentAgeRanges < ActiveRecord::Migration[4.2]
+class ChangeDocumentAgeRanges < Lcms::Engine::Migration
   def change
     change_table :document_age_ranges do |t|
       t.remove :age

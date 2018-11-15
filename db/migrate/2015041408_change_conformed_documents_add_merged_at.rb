@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeConformedDocumentsAddMergedAt < ActiveRecord::Migration[4.2]
+class ChangeConformedDocumentsAddMergedAt < Lcms::Engine::Migration
   def change
     change_table :conformed_documents do |t|
       t.timestamp :merged_at

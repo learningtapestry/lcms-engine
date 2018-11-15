@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddShortTitleToLobjects < ActiveRecord::Migration[4.2]
+class AddShortTitleToLobjects < Lcms::Engine::Migration
   def change
     add_column :lobjects, :short_title, :string
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddConfirmationToExistingUsers < ActiveRecord::Migration[4.2]
+class AddConfirmationToExistingUsers < Lcms::Engine::Migration
   def data
     User.find_each(&:confirm)
   end

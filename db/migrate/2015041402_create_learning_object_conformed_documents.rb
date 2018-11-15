@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLearningObjectConformedDocuments < ActiveRecord::Migration[4.2]
+class CreateLearningObjectConformedDocuments < Lcms::Engine::Migration
   def change
     create_table :learning_object_conformed_documents do |t|
       t.references :learning_object, references: :learning_objects

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddDescriptionToLobjects < ActiveRecord::Migration[4.2]
+class AddDescriptionToLobjects < Lcms::Engine::Migration
   def change
     add_column :lobjects, :description, :string
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NormalizeKeywords < ActiveRecord::Migration[4.2]
+class NormalizeKeywords < Lcms::Engine::Migration
   def up
     execute <<-SQL
       update

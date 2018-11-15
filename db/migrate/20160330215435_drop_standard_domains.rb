@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropStandardDomains < ActiveRecord::Migration[4.2]
+class DropStandardDomains < Lcms::Engine::Migration
   def change
     remove_column :standards, :standard_domain_id
     drop_table :standard_domains

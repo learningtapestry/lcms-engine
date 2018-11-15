@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddPositionToDownloadCategory < ActiveRecord::Migration[4.2]
+class AddPositionToDownloadCategory < Lcms::Engine::Migration
   def change
     add_column :download_categories, :position, :integer
     change_column :download_categories, :description, :text

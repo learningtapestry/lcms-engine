@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeUrlsUrlType < ActiveRecord::Migration[4.2]
+class ChangeUrlsUrlType < Lcms::Engine::Migration
   def change
     change_column :urls, :url, :text, null: false
   end

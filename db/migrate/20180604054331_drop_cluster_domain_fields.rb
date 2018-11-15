@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropClusterDomainFields < ActiveRecord::Migration[4.2]
+class DropClusterDomainFields < Lcms::Engine::Migration
   def up
     remove_columns :standards, :cluster_id, :domain_id
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateCurriculums < ActiveRecord::Migration[4.2]
+class CreateCurriculums < Lcms::Engine::Migration
   def change
     create_table :curriculums do |t|
       t.references :curriculum_type, index: true, foreign_key: true, null: false

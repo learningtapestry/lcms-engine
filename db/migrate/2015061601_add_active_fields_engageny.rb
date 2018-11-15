@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddActiveFieldsEngageny < ActiveRecord::Migration[4.2]
+class AddActiveFieldsEngageny < Lcms::Engine::Migration
   def change
     change_table :engageny_documents do |t|
       t.boolean :active

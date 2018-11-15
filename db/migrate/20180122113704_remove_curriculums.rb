@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveCurriculums < ActiveRecord::Migration[4.2]
+class RemoveCurriculums < Lcms::Engine::Migration
   def change
     # Resource has a tree field now
     remove_column :resources, :curriculum_tree_id

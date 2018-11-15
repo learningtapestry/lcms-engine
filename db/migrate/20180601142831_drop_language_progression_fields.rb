@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropLanguageProgressionFields < ActiveRecord::Migration[4.2]
+class DropLanguageProgressionFields < Lcms::Engine::Migration
   def change
     remove_column :standards, :language_progression_file, :string
     remove_column :standards, :language_progression_note, :string

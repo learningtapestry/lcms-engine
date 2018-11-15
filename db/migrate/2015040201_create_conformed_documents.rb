@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateConformedDocuments < ActiveRecord::Migration[4.2]
+class CreateConformedDocuments < Lcms::Engine::Migration
   def change
     create_table :conformed_documents do |t|
       t.string  :doc_id

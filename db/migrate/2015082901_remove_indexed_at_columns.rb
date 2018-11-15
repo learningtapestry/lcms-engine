@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class RemoveIndexedAtColumns < ActiveRecord::Migration[4.2]
+class RemoveIndexedAtColumns < Lcms::Engine::Migration
   def change
     remove_column :alignments, :indexed_at
     remove_column :identities, :indexed_at

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddThumbnailsLastUpdateToSettings < ActiveRecord::Migration[4.2]
+class AddThumbnailsLastUpdateToSettings < Lcms::Engine::Migration
   def change
     add_column :settings, :thumbnails_last_update, :datetime
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateAlignments < ActiveRecord::Migration[4.2]
+class CreateAlignments < Lcms::Engine::Migration
   def change
     create_table :alignments do |t|
       t.string  :name

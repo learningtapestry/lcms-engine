@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddEllAppropriateToResources < ActiveRecord::Migration[4.2]
+class AddEllAppropriateToResources < Lcms::Engine::Migration
   def change
     add_column :resources, :ell_appropriate, :boolean, null: false, default: false
   end

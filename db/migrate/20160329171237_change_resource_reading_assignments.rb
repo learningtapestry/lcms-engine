@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeResourceReadingAssignments < ActiveRecord::Migration[4.2]
+class ChangeResourceReadingAssignments < Lcms::Engine::Migration
   def change
     change_table :resource_reading_assignments do |t|
       t.remove :title

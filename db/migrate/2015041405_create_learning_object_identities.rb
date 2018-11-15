@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateLearningObjectIdentities < ActiveRecord::Migration[4.2]
+class CreateLearningObjectIdentities < Lcms::Engine::Migration
   def change
     create_table :learning_object_identities do |t|
       t.references :learning_object, references: :learning_objects
