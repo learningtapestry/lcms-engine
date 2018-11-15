@@ -1,0 +1,19 @@
+$ub-freshdesk-typography: (
+  breadcrumb: (color: #7f8184, font-size: 16px, font-weight: 600, line-height: 19px),
+  button: (font-size: 14px, font-weight: 600, line-height: 17px, text-align: center, text-transform: capitalize),
+  footer-links: (color: #fff, opacity: .4, font-size: 17px, font-weight: 600, line-height: 20px),
+  header: (color: #fff, font-size: 33px, font-weight: 500, line-height: 1),
+  lead: (color: #4c4c4c, font-size: 28px, font-weight: 500, line-height: 34px),
+  tab-title: (color: #4a4a4a, text-transform: uppercase, font-size: 14px, font-weight: bold, line-height: 32px),
+  title: (color: #423872, font-size: 30px, font-weight: 600, line-height: 36px)
+);
+
+@each $element, $typo in $ub-freshdesk-typography {
+  .u-fd-txt--#{$element} {
+    @include txt-element($element, $ub-freshdesk-typography);
+  }
+}
+
+@mixin txt-fd-element($element) {
+  @include txt-element($element, $ub-freshdesk-typography);
+}

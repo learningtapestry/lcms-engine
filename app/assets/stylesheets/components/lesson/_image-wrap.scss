@@ -1,0 +1,14 @@
+.o-ld-image-wrap {
+  @include m(math) {
+    @include add-top-bottom-padding(.5);
+    @include clearfix;
+    background: $ub-white;
+    display: inline-block;
+    width: 100%;
+
+    > img {
+      height: auto !important;
+      max-width: 70%;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@mixin annotation-number($size: 1.75rem) {
+  border-radius: 50%;
+  display: inline-block;
+  font: bold .875rem $ub-serif !important;
+  height: $size;
+  line-height: $size !important;
+  margin: 0 .5rem 1rem 0;
+  padding: 0;
+  text-align: center;
+  width: $size;
+}
+
+.c-cg-annotationBox {
+  background-color: #fff;
+  padding: 1rem;
+  padding-left: 3.5rem;
+  position: relative;
+
+  @include e(number) {
+    @include annotation-number;
+    cursor: pointer;
+    left: 1rem;
+    position: absolute;
+  }
+}
+
+.c-cg-annotationList {
+  margin: 1rem 1rem 0;
+
+  * {
+    color: #000;
+    font-size: .875rem !important;
+  }
+}
+
+.c-cg-annotationListItem {
+  display: table-row;
+
+  @include e(content) {
+    display: table-cell;
+    margin-bottom: 1rem;
+  }
+
+  @include e(number) {
+    @include annotation-number;
+    color: #fff;
+  }
+}

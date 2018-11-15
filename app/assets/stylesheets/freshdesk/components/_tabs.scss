@@ -1,0 +1,33 @@
+.page-tabs {
+  &, .nav-link a {
+    @include txt-fd-element(tab-title);
+    font-weight: normal;
+
+    &.active { font-weight: bold; }
+  }
+
+  @include breakpoint(medium) {
+    @include add-gutter(margin, top, 2);
+    @include add-gutter(margin, bottom, 1);
+    border: 0;
+    border-bottom: 1px solid $fd-border;
+    border-radius: 0;
+
+    .nav-link a {
+      border: 0;
+      font-weight: normal;
+      margin-right: 20px;
+      min-width: auto;
+      padding: 0;
+      text-align: left;
+
+      &:first-child {
+        border-radius: 0;
+      }
+
+      &.active {
+        border-bottom: 4px solid $fd-border;
+      }
+    }
+  }
+}

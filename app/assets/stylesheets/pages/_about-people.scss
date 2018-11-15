@@ -1,0 +1,115 @@
+$staff-img: 120px;
+
+.c-stp-header {
+  h1 { color: $ub-primary; }
+  @include e(title) {
+    font-family: $ub-serif;
+    font-weight: 600;
+    padding-bottom: $ub-small-padding;
+  }
+  @include breakpoint(large) {
+    p { width: 70%; }
+  }
+}
+
+@mixin staff-dsc($dsc-count) {
+  @for $i from 1 through $dsc-count {
+    &:nth-child(#{$dsc-count}n + #{$i}) {
+      .c-stp-staff__dsc {
+        margin-left: (1 - $i) * 100%;
+        width: $dsc-count * 100%;
+
+        &::before {
+          @include css-triangle($tooltip-pip-width, $ub-white, up);
+          bottom: 100%;
+          left: (100% / $dsc-count) * ($i - 1);
+          margin-left: $staff-img / 2;
+          position: absolute;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}
+
+.c-stp-staff {
+  @include e(item) {
+    @include flex-grid-column(12, 0);
+    @include staff-dsc(1);
+    flex-shrink: 1;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(6, 0);
+      @include staff-dsc(2);
+    }
+
+    @include breakpoint(large) {
+      @include flex-grid-column(4, 0);
+      @include staff-dsc(3);
+    }
+  }
+
+  @include e(dsc) {
+    @extend %material-card;
+    @extend %popup-shadow;
+    @include callout-base;
+    @include callout($ub-white);
+    @include add-column-padding;
+    @include add-top-bottom-padding;
+    display: none;
+
+    > div { @include txt-element(base); }
+
+    // @include breakpoint(large) {
+    //   > div { width: 75%;  }
+    // }
+    //
+    // @include breakpoint(medium) {
+    //   > div { width: 85%;  }
+    // }
+
+    .close-button {
+      color: map-get($ub-yellow, base);
+      font-size: xx-large;
+      font-weight: bold;
+    }
+  }
+}
+
+.c-stp-media {
+  @include media-object-container;
+  margin-bottom: .5rem;
+  margin-top: 1rem;
+
+  @include breakpoint(medium) {
+    @include add-gutter(margin, top, 1.5);
+    margin-bottom: 1rem;
+  }
+
+  @include e(img) {
+    @include media-object-section;
+    img {
+      @extend %material-card;
+      background-color: $ub-white;
+      border: 1px solid $medium-gray;
+      border-radius: 50%;
+      height: $staff-img;
+      width: $staff-img;
+    }
+  }
+
+  @include e(body) {
+    @include media-object-section;
+    flex: 1 1 0;
+    padding: $ub-base-padding $ub-xs-padding;
+
+    h3 {
+      @include txt-element(staff-name);
+      margin-bottom: .5rem;
+    }
+
+    h4 {
+      @include txt-element(staff-position);
+    }
+  }
+}

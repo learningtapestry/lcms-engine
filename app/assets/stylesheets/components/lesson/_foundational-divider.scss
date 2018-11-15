@@ -1,0 +1,21 @@
+.o-ld-foundational-divider {
+  @include add-gutter(margin, bottom);
+  @include add-gutter(margin, top);
+
+  @include e(block) {
+    @include add-gutter(margin, bottom);
+    @include add-gutter(margin, top);
+    @include txt-element(ld-math-foundational-divider);
+
+    background-color: map-get($ub-ld-colorcodes, math-activity-foundational);
+    padding: 1rem;
+  }
+
+  @include e(delimeter) {
+    border-bottom: 1px solid $ub-hr;
+    border-top: 1px solid $ub-hr;
+    flex: 1 1 auto;
+    height: 4px;
+  }
+}
+

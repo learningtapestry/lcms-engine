@@ -1,0 +1,65 @@
+$ub-cursive: 'Sriracha', cursive;
+
+$ub-gdoc-typography: (
+  // agenda
+  agenda-header: (font-size: 9pt, color: #7f8184, font-weight: bold, line-height: 1),
+  agenda-l1-title: (font-size: 14pt, color: #4c4c4c, font-weight: bold, line-height: 1),
+  agenda-l1-time: (font-size: 11pt, font-style: italic, line-height: 1),
+  agenda-l2: (font-size: 9pt, line-height: 1),
+  agenda-l2-title: (font-size: 11pt, line-height: 1),
+  agenda-l2-time: (font-style: italic),
+  // base
+  title: (color: #4c4c4c, font-weight: bold, font-size: 30pt, line-height: 1, padding-top: 20pt, padding-bottom: 10pt),
+  title-type: (font-weight: bold),
+  subtitle: (color: #7f8184, font-size: 14pt, line-height: 1, font-style: italic),
+  base: (line-height: 1, font-size: 11pt, color: #000, font-family: 'Calibri'),
+  h1: (color: #000, font-weight: bold, font-size: 22pt, line-height: 1, padding-top: 20pt, padding-bottom: 4pt, margin: 0),
+  h2: (color: #4c4c4c, font-weight: bold, font-size: 16pt, line-height: 1, text-transform: uppercase, padding-top: 18pt, padding-bottom: 6pt, margin: 0),
+  h3: (line-height: 1.15, color: #434343, font-weight: bold, font-size: 18pt, padding-top: 16pt, padding-bottom: 4pt, margin: 0 !important),
+  h4: (color: #4c4c4c, font-weight: bold, font-size: 14pt, line-height: 1.15, padding-top: 15pt, padding-bottom: 5pt, margin: 0),
+  h5: (color: #000, font-weight: bold, font-size: 11pt, line-height: 1.15, padding: 0, margin: 0),
+  h6: (color: #666, font-size: 8pt, line-height: 1.15, padding: 0, margin: 0),
+  header-breadcrumb: (color: #fff, font-size: 10pt, line-height: 1, font-weight: bold, padding: 0),
+  header-teaser: (color: #000, font-size: 14pt, font-style: italic, padding-bottom: 20pt),
+  // Lessons
+  ld-activity-h2: (font-size: 22pt, line-height: 1, padding-top: 0, padding-bottom: 0, margin: 0),
+  ld-activity-h3: (line-height: 1, padding-top: 0, padding-bottom: 4pt, margin: 0),
+  ld-activity-h2time: (font-size: 14pt, vertical-align: baseline, line-height: 1, color: #434343, font-style: italic, padding-top: 0, padding-bottom: 4pt, margin: 0),
+  ld-activity-h3time: (line-height: 1, color: #434343, font-style: italic, padding-top: 0, padding-bottom: 4pt, margin: 0),
+  ld-activity-teaser: (color: #7f8184, font-style: italic),
+  ld-callout-header: (font-weight: bold, font-style: italic, padding: 0, margin: 0),
+  pullquote: (color: #69618d, font-style: italic),
+  ld-math-foundational-divider: (color: $ub-white, font-size: 14.5pt, font-weight: bold, 'line-height': 1.4),
+  ld-optbreak: (color: #555, font-size: 14.5pt, line-height: 1, font-weight: bold, font-style: normal),
+  ld-pd-caption: (color: #8e89a9, font-weight: bold),
+  ld-pd-cg-header: (color: #69618d, font-style: italic),
+  ld-pd-cg-title: (color: #69618d, font-style: italic),
+  ld-pd-title: (color: #69618d, padding: 0, margin: 0, font-weight: bold),
+  ld-smp: ('font-size': 11pt, 'line-height': 1,'font-weight': bold, text-align: right, padding-right: 5pt),
+  ld-summary: (color: #7f8184, font-style: italic !important),
+  ld-white-placeholder-title: ('font-size': 12pt, 'font-weight': bold),
+  ld-white-placeholder-colored-title: ('font-size': initial !important, 'font-weight': bold, color: initial !important),
+  // Materials
+  m-footer-small: ('font-size': 6pt, 'line-height': 8pt, color: #7f8184),
+  m-footer-page: ('font-size': 11pt, 'line-height': 12pt, color: #7f8184, font-style: italic),
+  m-header-kicker: ('font-size': 11pt, 'line-height': 12pt, font-weight: bold, color: #7f8184),
+  m-header-title: ('font-size': 30pt, 'line-height': 1, font-weight: bold, color: $ub-pdf-black, padding-top: 0, margin-top: 0),
+  m-header-dt-title: (font-size: 15pt, 'line-height': 1, color: $ub-pdf-black),
+  m-header-dt-value: (font-size: 15pt, 'line-height': 1, font-family: $ub-cursive, color: #433a82),
+);
+
+p {
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  text-rendering: optimizeSpeed; //optimize-speed
+}
+
+@mixin txt-gdoc-element($element) {
+  @include txt-element($element, $ub-gdoc-typography);
+}
+
+@each $element, $typo in $ub-gdoc-typography {
+  .u-txt--#{$element} {
+    @include txt-element($element, $ub-gdoc-typography);
+  }
+}

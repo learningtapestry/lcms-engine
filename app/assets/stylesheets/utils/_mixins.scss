@@ -1,0 +1,194 @@
+// Block Element
+// @access public
+// @param {String} $element - Element's name
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+// Block Modifier
+// @access public
+// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+// @alias element
+@mixin e($element) {
+  @include element($element) {
+    @content;
+  }
+}
+// @alias modifier
+@mixin m($modifier) {
+  @include modifier($modifier) {
+    @content;
+  }
+}
+
+@mixin txt-element-base($typo) {
+  @each $style, $value in $typo {
+    #{$style}: $value;
+  }
+  @if not map-has-key($typo, 'font-weight') {
+    font-weight: normal;
+  }
+}
+
+@mixin txt-element-base-strict($typo) {
+  @each $style, $value in $typo {
+    #{$style}: $value;
+  }
+}
+
+@mixin txt-element($element, $ub-map: $ub-element-typography) {
+  $typo: map-get($ub-map, $element);
+  @if map-has-key($typo, small) {
+    @each $breakpoint, $value in $typo {
+      @include breakpoint($breakpoint) {
+        @include txt-element-base($value);
+      }
+    }
+  } @else {
+    @include txt-element-base($typo);
+  }
+}
+
+@mixin txt-element-strict($element, $ub-map: $ub-element-typography) {
+  $typo: map-get($ub-map, $element);
+  @if map-has-key($typo, small) {
+    @each $breakpoint, $value in $typo {
+      @include breakpoint($breakpoint) {
+        @include txt-element-base-strict($value);
+      }
+    }
+  } @else {
+    @include txt-element-base-strict($typo);
+  }
+}
+
+@mixin txt-heading-base($element) {
+  $typo: map-get($ub-heading-typography, $element);
+  color: map-get($ub-txt-colors, $element);
+  @each $style, $value in $typo {
+    #{$style}: $value;
+  }
+}
+
+@mixin txt-heading($element) {
+  @include txt-heading-base($element);
+  @each $size, $headers in $header-sizes {
+    @include breakpoint($size) {
+      $font-size: map-get($headers, $element);
+      font-size: rem-calc($font-size);
+    }
+  }
+}
+
+@mixin txt-pdf-element($element) {
+  @include txt-element($element, $ub-pdf-typography);
+}
+
+@mixin clamp($lines, $element) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  $typo: map-get($ub-element-typography, $element);
+  @if map-has-key($typo, small) {
+    @each $breakpoint, $value in $typo {
+      @include breakpoint($breakpoint) {
+        max-height: computed-height($value, $lines);
+      }
+    }
+  } @else {
+    max-height: computed-height($typo, $lines);
+  }
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin breakpoint-style-from-map($map, $style) {
+  @each $breakpoint, $value in $map {
+    @if ($breakpoint == small) {
+      #{$style}: $value;
+    } @else {
+      @include breakpoint($breakpoint) {
+        #{$style}: $value;
+      }
+    }
+  }
+}
+
+@mixin add-gutter($type: margin, $subtype: bottom, $x: 1, $gutter: $grid-column-gutter) {
+  @each $breakpoint, $value in $gutter {
+    $margin: rem-calc($value);
+
+    @include breakpoint($breakpoint) {
+      #{$type}-#{$subtype}: $margin * $x;
+    }
+  }
+}
+
+@mixin add-column-padding($x: 1) {
+  @include add-gutter(padding, left, $x);
+  @include add-gutter(padding, right, $x);
+}
+
+@mixin add-column-margin($x: 1) {
+  @include add-gutter(margin, left, $x);
+  @include add-gutter(margin, right, $x);
+}
+
+@mixin add-top-bottom-padding($y: 1) {
+  @include add-gutter(padding, bottom, $y);
+  @include add-gutter(padding, top, $y);
+}
+
+@mixin add-top-bottom-margin($y: 1) {
+  @include add-gutter(margin, bottom, $y);
+  @include add-gutter(margin, top, $y);
+}
+
+@mixin placeholder($color: $ub-txt){
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    padding-top: ($height / $width) * 100%;
+    width: 100%;
+  }
+
+  > .content {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

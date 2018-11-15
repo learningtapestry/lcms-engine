@@ -1,0 +1,174 @@
+$shadow-color: rgba(0, 0, 0, .3);
+
+.o-ld-selection {
+  @include flex;
+  flex: 1;
+  padding: 1em 2em;
+
+  @include e(label) {
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: .5em;
+  }
+
+  @include e(switch) {
+    border-radius: 1em;
+    cursor: pointer;
+    height: 1.1em;
+    position: relative;
+    top: .1em;
+    width: 2.5em;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      left: 0;
+      position: absolute;
+    }
+
+    &::before {
+      border-radius: 1em;
+      bottom: 0;
+      right: 0;
+      top: 0;
+    }
+
+    &::after {
+      background-color: currentColor;
+      border-radius: 100%;
+      bottom: -.15em;
+      box-shadow: 0 2px 5px $shadow-color;
+      left: -.15em;
+      margin-left: 1.3em;
+      top: -.15em;
+      transition: margin .15s;
+      width: 1.3em;
+    }
+  }
+}
+
+.deselected {
+  .o-ld-selection {
+    @include e(switch) {
+      &::after {
+        margin-left: .15em;
+      }
+    }
+  }
+}
+
+// ELA theme
+.doc-subject-ela {
+  .o-ld-selection {
+    background-color: map-get($ub-selection, ela-enabled-bg);
+    color: map-get($ub-selection, ela-enabled-fg);
+
+    @include e(switch) {
+      &::before {
+        background-color: map-get($ub-selection, ela-enabled-switch-bg);
+      }
+    }
+  }
+
+  .deselected {
+    .o-ld-section {
+      background-color: map-get($ub-selection, disabled-parent-bg);
+    }
+
+    .o-ld-selection {
+      color: map-get($ub-selection, ela-disabled-fg);
+
+      @include e(switch) {
+        &::before {
+          background-color: map-get($ub-selection, ela-disabled-switch-bg);
+        }
+      }
+    }
+
+    .o-material-wrapper,
+    .c-ld-toc > *:not(.u-txt--title-type):not(.o-ld-title) {
+      display: none;
+    }
+  }
+}
+
+// MATH theme
+.doc-subject-math {
+  .o-ld-selection {
+    background-color: map-get($ub-selection, math-enabled-bg);
+    color: map-get($ub-selection, math-enabled-fg);
+
+    @include e(switch) {
+      &::before {
+        background-color: map-get($ub-selection, math-enabled-switch-bg);
+      }
+    }
+  }
+
+  .o-ld-activity-foundational-skills {
+    .o-ld-selection {
+      background-color: map-get($ub-ld-colorcodes, math-activity-foundational);
+
+      @include e(switch) {
+        &::before {
+          background-color: map-get($ub-ld-colorcodes, math-activity-foundational-switch-bg);
+        }
+      }
+    }
+  }
+
+  .deselected {
+    .o-ld-activity {
+      background-color: map-get($ub-selection, disabled-parent-bg);
+    }
+
+    .o-ld-selection {
+      color: map-get($ub-selection, math-disabled-fg);
+
+      @include e(switch) {
+        &::before {
+          background-color: map-get($ub-selection, math-disabled-switch-bg);
+        }
+      }
+    }
+
+    &.o-ld-activity-foundational-skills {
+      .o-ld-selection {
+        color: map-get($ub-ld-colorcodes, math-activity-foundational-disabled-fg);
+
+        @include e(switch) {
+          &::before {
+            background-color: map-get($ub-ld-colorcodes, math-activity-foundational-disabled-bg);
+          }
+        }
+      }
+    }
+
+    .o-ld-activity__source,
+    .o-material-wrapper,
+    .o-ld-materials,
+    .c-ld-toc > div > *:not(.u-txt--title-type):not(.o-ld-title):not(.u-txt--ld-activity-teaser) {
+      display: none;
+    }
+  }
+}
+
+.o-ld-selection-modal {
+  @include add-top-bottom-padding($y: 1);
+  @include add-column-padding;
+
+  @include e(content) {
+    max-height: computed-height(map-get($ub-element-typography, base), 4);
+    overflow: scroll;
+
+    @include m(expanded) {
+      max-height: initial;
+    }
+  }
+
+  @include e(title) {
+    @include txt-element(lesson-title);
+    color: map-get($ub-selection, modal-title-fg) !important;
+  }
+}

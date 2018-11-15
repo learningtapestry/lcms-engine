@@ -1,0 +1,49 @@
+.c-header {
+  min-height: $ub-nav-height;
+
+  @include breakpoint(small down) {
+    &, .banner { background-color: $fd-header-logo; }
+  }
+
+  @include e(wrap) {
+    background-color: $fd-header-logo;
+    min-height: $ub-nav-height;
+
+    @include breakpoint(medium) {
+      background-color: $fd-header-bg;
+      opacity: .9;
+    }
+  }
+
+  .banner {
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0;
+    text-shadow: 0;
+
+    @include breakpoint(medium) {
+      padding: 0;
+    }
+  }
+
+  @include breakpoint(medium) {
+    h1 { padding-top: 30px; }
+
+    .portal-logo {
+      @include add-column-padding;
+      background-color: $fd-header-logo;
+      margin: 0;
+      margin-right: 60px;
+    }
+
+    .portal-img {
+      height: $ub-nav-height;
+      padding-top: 30px;
+      vertical-align: unset;
+    }
+  }
+}
+
+#header-tabs a:nth-child(2){
+  display: none;
+}

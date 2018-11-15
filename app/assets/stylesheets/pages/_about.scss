@@ -1,0 +1,64 @@
+.c-ap {
+}
+
+.c-ap-hero {
+  // margin-bottom: $ub-xlarge-margin * 2;
+  // margin-top: $ub-xlarge-margin * 3;
+  background: image-url('about_hero_bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+
+  @include e(body) {
+    @include grid-column-offset(4);
+    @include flex-grid-column(8);
+    background-color: rgba($ub-white, .45);
+    color: $ub-primary;
+
+    @include breakpoint(medium) {
+      @include grid-column-offset(6);
+      @include flex-grid-column(6);
+    }
+  }
+}
+
+.c-ap-cta {
+  @include add-gutter($type: margin, $subtype: bottom);
+  @include add-gutter($type: margin, $subtype: top);
+
+  h2 {
+    @include txt-element(media-header);
+    margin-bottom: 1rem;
+  }
+  p { @include txt-element(media-text); }
+}
+
+.c-ap-img--si {
+  background-image: image-url('about_standards_institute.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 40% 0%;
+  }
+}
+
+.c-ap-img--hwa {
+  background-image: image-url('about_who_we_are.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 100% 0%;
+  }
+}
+
+.c-ap-img--op {
+  background-image: image-url('about_partners.jpg');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+
+  @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
+    background-position: 70% 0%;
+  }
+}

@@ -1,0 +1,13 @@
+.o-ld-image-wrap {
+  @include m(math) {
+    background: $ub-white;
+
+    img {
+      display: block;
+      height: auto !important;
+      max-width: 100% !important;
+    }
+  }
+
+  @include e(img) { width: 100%; }
+}

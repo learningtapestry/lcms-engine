@@ -1,0 +1,61 @@
+.collection-tree {
+  label {
+    background: map-get($ub-ld-colorcodes, material-thumbnail-border);
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 3px;
+    text-align: center;
+    width: 1.5em;
+
+    &::before {
+      content: '▸';
+    }
+  }
+
+  ul {
+    display: none;
+  }
+}
+
+.collection-tree-opener {
+  display: none;
+
+  &:checked {
+    & ~ label {
+      &::before { // sass-lint:disable-line nesting-depth
+        content: '▾';
+      }
+    }
+
+    & ~ ul {
+      display: block;
+    }
+  }
+}
+
+.editable-tree {
+  .resource-title {
+    cursor: move;
+  }
+
+  li {
+    .deleted {
+      & > .restore-link {
+        display: inline;
+      }
+
+      .links {
+        display: none;
+      }
+
+      .resource-title {
+        cursor: default;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .restore-link {
+    display: none;
+  }
+}

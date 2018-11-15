@@ -1,0 +1,22 @@
+@mixin u-hr-small {
+  @include add-top-bottom-margin(.5);
+  background-color: $fd-yellow;
+  border-radius: 5px;
+  clear: both;
+  height: 4px;
+  margin-bottom: $ub-base-margin;
+  width: 35px;
+}
+
+.u-hr-small {
+  @include u-hr-small;
+}
+
+%fd-card {
+  border-radius: 3px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .08);
+}
+
+.u-margin-top--halfgutter {
+  @include add-gutter(margin, top, .5);
+}

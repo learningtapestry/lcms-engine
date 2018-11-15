@@ -1,0 +1,28 @@
+.o-top-scroll-button {
+  -moz-border-radius: 30px; /* initially hidden */
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -webkit-border-radius: 30px;
+  -webkit-transform: rotate(180deg);
+  background: rgba(0,0,0,0.3) no-repeat center 43%;
+  border-radius: 30px;
+  bottom: 30px;
+  color: #fff;
+  display: none;
+  font-size: 60px;
+  height: 60px;
+  line-height: 60px;
+  position: fixed;
+  right: 30px;
+  text-align: center;
+  transform: rotate(180deg);
+  vertical-align: bottom;
+  width: 60px;
+  z-index: 999;
+  &:hover {
+    background: rgba(0,0,0,0.5) no-repeat center 43%;
+     color: #fff;
+  }
+}
+

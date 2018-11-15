@@ -1,0 +1,15 @@
+.o-ld-position {
+  @include e(center) {
+    text-align: center;
+  }
+
+  @include e(left) {
+    float: left;
+    margin-right: 20px;
+  }
+
+  @include e(right) {
+    float: right;
+    margin-left: 20px;
+  }
+}

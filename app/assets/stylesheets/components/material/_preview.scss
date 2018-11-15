@@ -1,0 +1,24 @@
+$letter-height: 792;
+$letter-width: 612;
+$pdf-toolbar-height: 50;
+
+.o-m-preview {
+  @extend %map-transition;
+  border: 1px solid map-get($ub-buttons, show-more);
+  overflow-y: hidden;
+  position: absolute !important;
+
+  @include m(portrait) {
+    @include aspect-ratio($letter-width, $letter-height + $pdf-toolbar-height);
+    width: 100%;
+  }
+
+  @include m(landscape) {
+    @include aspect-ratio($letter-height, $letter-width + $pdf-toolbar-height);
+    width: 100%;
+  }
+
+  @include e(actions) {
+    @include button-group('a');
+  }
+}

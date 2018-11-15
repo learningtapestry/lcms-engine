@@ -1,0 +1,74 @@
+{% if portal.has_solutions %}
+<section class="main content min-height-on-desktop fc-portal-solution-home" id="solutions-index-home">
+	<h2 class="heading">{% translate portal.knowledge_base %}</h2>
+	{% for category in portal.solution_categories %}
+		{% if category.folders_count > 0 %}
+		<div class="cs-s">
+			<h3 class="heading u-fd-txt--tab-title">{{ category.name }}</h3>
+			<div class="cs-g-c">
+				{% for folder in category.folders %}
+	        {% if folder.articles_count == 1 %}
+						{% assign article = folder.articles[0] %}
+						<h2 class="heading u-not-hr u-margin-top--halfgutter">{{ article.title | h}}</h2>
+						{% if article.personalized_articles? %}
+						<div> {% translate portal.article.created_by %} {{ article.author }} </div>
+						{% endif %}
+						<p>{% translate portal.article.modified_on %} {{ article.modified_on | short_day_with_time }}</p>
+						<div class="u-hr-small"></div>
+						{% comment %}
+						<div>
+							{% for tag in article.tags %}
+								<span class="label label-info">{{tag.name | h}}</span>
+							{% endfor %}
+						</div>
+						{% endcomment %}
+
+						<article class="article-body" id="article-body" rel="image-enlarge">
+							{{ article.body }}
+						</article>
+	        {% else %}
+						<section class="cs-g article-list">
+								<div class="list-lead">
+										{{ folder | link_to_folder_with_count }}
+								</div>
+								{{ folder | article_list:5 }}
+						</section>
+	        {% endif %}
+				{% else %}
+					{{ portal | filler_for_solutions }}
+				{% endfor %}
+			</div>
+		</div>
+		{% endif %}
+	{% endfor %}
+</section>
+{% endif %}
+
+{% if portal.has_forums %}
+<section class="sidebar content community-sidebar rounded-6 min-height-on-desktop fc-community-sidebar" id="home-community-sidebar">
+	<h2 class="heading">{% translate portal.community_forums %}</h2>
+	{% if portal.topics_count > 0 %}
+		<p class="intro">{% translate portal.showing_recent_updates %}</p>
+		<div>{{ portal | link_to_start_topic }}</div>
+		{% for category in portal.forum_categories %}
+			{% if category.forums_count > 0 %}
+				<div class="cs-s">
+					<h3 class="heading u-fd-txt--tab-title">{{ category.name | link_to: category.url }}</h3>
+					<div class="cs-g-c">
+					{% for forum in category.forums %}
+						<section class="cs-g topic-list">
+							<div class="list-lead badge-{{ forum.type_name }}">
+								{{ forum | link_to_forum_with_count }}
+							</div>
+							{{ forum | topic_list:3 }}
+						</section>
+					{% endfor %}
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	{% else %}
+		{{ portal | filler_for_forums }}
+	{% endif %}
+</section>
+{% endif %}

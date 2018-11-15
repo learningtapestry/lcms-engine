@@ -1,0 +1,5 @@
+.o-survey-form {
+  @include e(other) {
+    @include m(hide) { display: none; }
+  }
+}

@@ -1,0 +1,12 @@
+.c-ld-keyword {
+  font-weight: bold !important;
+  white-space: nowrap;
+
+  @include m(ela) {
+    color: map-get($ub-colorcodes, ela-base);
+  }
+
+  @include m(math) {
+    color: map-get($ub-colorcodes, math-base);
+  }
+}

@@ -1,0 +1,31 @@
+.o-ld-unit-map {
+  $ld-lesson: 10px;
+  $ld-padding: 2px;
+  align-content: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  margin-right: 1rem;
+  width: ($ld-lesson + $ld-padding) * 5;
+
+  @include e(lesson) {
+    background-color: $ub-white;
+    height: $ld-lesson;
+    margin: $ld-padding;
+    opacity: .3;
+    width: $ld-lesson;
+
+    @include m(active) {
+      opacity: 1;
+    }
+  }
+
+  @for $i from 1 through 5 {
+    @include m('padding#{$i}') {
+      @include breakpoint(large) {
+        margin-left: 1rem;
+        padding-left: ($ld-lesson + $ld-padding) * $i;
+      }
+    }
+  }
+}

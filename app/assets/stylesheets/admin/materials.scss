@@ -1,0 +1,97 @@
+.o-adm-materials {
+  @include e(results) {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  @include e(result) {
+    @include m(ok) {
+      background-color: map-get($ub-green, sixty);
+    }
+
+    @include m(err) {
+      background-color: lighten(map-get($ub-colorcodes, error), 40%);
+    }
+
+    @include m(waiting) {
+      background-color: lighten($ub-dark-bg, 20%);
+    }
+
+    @include m(running) {
+      background-color: map-get($ub-yellow, sixty);
+    }
+
+    border-radius: .5rem;
+    margin-bottom: .5rem;
+    padding: .5rem 1rem;
+
+    p { margin-bottom: 0; }
+  }
+
+  @include e(link) {
+    display: block;
+    font-weight: bold;
+  }
+
+  @include e(spinner) {
+    background: none !important;
+  }
+
+  @include e(summary) {
+    @include m(aside) {
+      font-size: .9em;
+      text-align: center;
+    }
+
+    .summary-entry {
+      display: inline-block;
+      text-align: center;
+      width: 33%;
+    }
+  }
+
+  @include e(resource) {
+    border-radius: .5em;
+  }
+}
+
+.o-adm-material-search {
+  width: 25%;
+}
+
+.materials-table {
+  @include e(wrapper) {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  @include e(btns) {
+    .button { min-width: 80px; }
+
+    form {
+      &:last-child {
+        .button { margin-bottom: 0; }
+      }
+    }
+  }
+
+  @include e(lessons) {
+    @include m(file) {
+      margin-right: .3em;
+    }
+
+    list-style: none;
+  }
+}
+
+.c-multi-selected--select-all {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: .5em;
+  margin-top: 1.5em;
+  input { margin-right: .5em; }
+}
+
+.o-adm-list .table .c-selected-ids { // sass-lint:disable-line force-element-nesting
+  margin-bottom: .2em;
+}

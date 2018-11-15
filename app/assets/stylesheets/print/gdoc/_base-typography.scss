@@ -1,0 +1,15 @@
+h1, h2, h3, h4, h5 {
+  @extend %u-pdf-nobreak;
+}
+
+h1 { @include txt-gdoc-element(h1); }
+h2 { @include txt-gdoc-element(h2); }
+h3 { @include txt-gdoc-element(h3); }
+h4 { @include txt-gdoc-element(h4); }
+h5 { @include txt-gdoc-element(h5); }
+
+body {
+  @include txt-gdoc-element(base);
+  margin: 0;
+  padding: 0;
+}

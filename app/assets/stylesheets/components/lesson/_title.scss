@@ -1,0 +1,29 @@
+.o-ld-title {
+  @include flex;
+  @include flex-align($x: justify, $y: bottom);
+  flex: 0 0 100%;
+  width: 100%;
+
+  @include e(title) {
+    @include m(h2) {
+      @include txt-heading(h1);
+    }
+  }
+
+  @include e(time) {
+    font-style: italic;
+
+    @include m(h2) {
+      @include txt-element(ld-activity-h2time);
+    }
+    @include m(h3) {
+      @include txt-element(ld-activity-h3time);
+    }
+  }
+
+  &#foundational-skills:not(.c-foundational-section) {
+    border-top: 25px solid #00a699;
+    margin-top: 40px !important;
+    padding-top: 30px;
+  }
+}

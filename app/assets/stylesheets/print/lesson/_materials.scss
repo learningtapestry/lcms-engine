@@ -1,0 +1,13 @@
+.o-ld-materials {
+  @extend %u-pdf-alwaysbreak;
+
+  @include e(content) {
+    @include m(hidden) {
+      display: block;
+    }
+  }
+
+  @include e(toggler) {
+    display: none !important;
+  }
+}

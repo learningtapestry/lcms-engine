@@ -1,0 +1,14 @@
+{% if  portal.current_page != 'csat_survey' %}
+	<footer class="footer o-block">
+		<nav class="footer-links">
+			{% if portal.tabs.size > 0 %}
+					{% for tab in portal.tabs %}
+						<a href="{{tab.url}}" class="{% if tab.tab_type == current_tab %}active{% endif %}">{{ tab.label }}</a>
+					{% endfor %}
+			{% endif %}
+			{{ portal | link_to_privacy_policy }}
+			{{ portal | link_to_cookie_law }}
+		</nav>
+	</footer>
+	{{ portal | portal_copyright }}
+{% endif %}

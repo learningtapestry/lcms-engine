@@ -1,0 +1,43 @@
+.c-cg-task {
+  clear: both;
+
+  @include e(body) {
+    padding: 1.25rem 1.25rem .25rem;
+    span { text-decoration: none !important; }
+
+    a {
+      font-weight: bold;
+      text-decoration: none !important;
+    }
+  }
+
+  @include e(copyright) {
+    font-style: italic;
+    margin-top: 1rem;
+  }
+
+  @include e(hidden) {
+    display: none;
+    padding-top: 1em;
+  }
+
+  @include e(title) {
+    color: #555;
+    font: 1.5rem $ub-sanserif-condensed;
+    font-weight: 500 !important;
+    margin: 0;
+    padding: 1rem 1rem 0;
+  }
+
+  @include e(toggler) {
+    @include txt-element(button);
+    cursor: pointer;
+    display: block;
+    padding: .75rem 0;
+    text-align: center;
+  }
+
+  @include e(toggler__hide) {
+    display: none;
+  }
+}

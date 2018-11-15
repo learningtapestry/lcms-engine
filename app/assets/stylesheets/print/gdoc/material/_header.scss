@@ -1,0 +1,9 @@
+.o-m-header {
+  @include m(border-bottom) {
+    border-bottom: 1pt solid $ub-pdf-black !important;
+  }
+
+  @include m(gdoc) {
+    td, td p { padding: 0; }
+  }
+}

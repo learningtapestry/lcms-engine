@@ -1,0 +1,27 @@
+.o-ld-title {
+  @include e(title) {
+    width: 80%;
+
+    @include m(h2) {
+      @include txt-gdoc-element(ld-activity-h2);
+    }
+
+    @include m(h3) {
+      @include txt-gdoc-element(ld-activity-h3);
+    }
+  }
+
+  @include e(time) {
+    font-style: italic;
+    vertical-align: bottom;
+    width: 20%;
+
+    @include m(h2) {
+      @include txt-gdoc-element(ld-activity-h2time);
+    }
+
+    @include m(h3) {
+      @include txt-gdoc-element(ld-activity-h3time);
+    }
+  }
+}

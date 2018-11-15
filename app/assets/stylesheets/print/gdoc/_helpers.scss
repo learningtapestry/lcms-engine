@@ -1,0 +1,56 @@
+$list-side-margin: 18pt;
+
+$gdoc-spacing: (
+  'zero': 0,
+  'small': 5pt,
+  'base': 9pt,
+  'large': 18pt,
+);
+$gdoc-align: (top, bottom, right, left);
+
+@each $margin-type, $margin-value in $gdoc-spacing {
+  @each $align in $gdoc-align {
+    .u-gdoc-margin-#{$align}--#{$margin-type} {
+      margin-#{$align}: $margin-value !important;
+    }
+    .u-gdoc-padding-#{$align}--#{$margin-type} {
+      padding-#{$align}: $margin-value !important;
+    }
+  }
+  .u-gdoc-margin-vertical--#{$margin-type} {
+    margin-bottom: $margin-value;
+    margin-top: $margin-value;
+  }
+  %u-gdoc-padding-vertical--#{$margin-type},
+  .u-gdoc-padding-vertical--#{$margin-type} {
+    padding-bottom: $margin-value;
+    padding-top: $margin-value;
+  }
+  .u-gdoc-padding-horizontal--#{$margin-type} {
+    padding-bottom: $margin-value;
+    padding-top: $margin-value;
+  }
+}
+
+.u-border--none {
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+}
+
+.u-table-wrap {
+  padding: map-get($gdoc-spacing, large);
+
+  @include m(small) {
+    padding: map-get($gdoc-spacing, base);
+  }
+
+  @include m(l2) {
+    padding: 0 map-get($gdoc-spacing, large) map-get($gdoc-spacing, large);
+  }
+}
+
+.u-table-padding {
+  padding: 5pt;
+}

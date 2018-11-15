@@ -1,0 +1,63 @@
+.o-connect {
+  @include flex-grid-column(12, 0);
+  color: $ub-nav-link;
+  flex-direction: column;
+  padding-bottom: $ub-xlarge-padding;
+  padding-top: $ub-xlarge-padding;
+
+  @include breakpoint(medium) {
+    @include flex-grid-column(4, 0);
+  }
+
+  @include breakpoint(medium only) {
+  }
+
+  @include e(button) {
+    padding-bottom: .2rem;
+    padding-right: .2rem;
+  }
+
+  @include e(buttons) {
+    @include flex;
+    flex-wrap: wrap;
+  }
+
+  @include e(dsc) {
+    @include txt-element(connect-text);
+    margin-bottom: 1.5rem;
+    padding-right: $ub-base-padding;
+  }
+
+  @include e(list) {
+    @include menu-simple;
+    margin: 0;
+    li { margin-right: .75rem; }
+
+    i { font-size: 2.3rem; }
+
+    a {
+      color: $ub-nav-link;
+
+      &:hover {
+        color: scale-color($ub-nav-link, $lightness: -20%);
+      }
+    }
+  }
+
+  @include e(hr) {
+    border: 1px solid $ub-nav-link;
+    margin: 0;
+    opacity: .5;
+    width: 100%;
+
+    @include breakpoint(medium) {
+      display: none;
+    }
+  }
+
+  h2 {
+    @include txt-element(connect-header);
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+}

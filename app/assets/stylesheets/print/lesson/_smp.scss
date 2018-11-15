@@ -1,0 +1,6 @@
+.o-ld-smp-figure {
+  @include e(name) {
+    @include txt-pdf-element(ld-smp);
+    margin: 0;
+  }
+}

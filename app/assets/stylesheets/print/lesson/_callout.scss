@@ -1,0 +1,7 @@
+.o-ld-callout {
+  @include txt-pdf-element(pullquote);
+
+  @include e(header) {
+    @include txt-pdf-element(ld-callout-header);
+  }
+}

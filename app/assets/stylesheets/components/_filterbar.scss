@@ -1,0 +1,184 @@
+.o-filterbar-title {
+  @include add-gutter(padding, bottom);
+  @include add-gutter(padding, top, 2);
+  text-align: center;
+
+  h1, h2 { @include txt-element(filter-header); }
+
+  h2 {
+    margin-bottom: .5rem;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, .5);
+  }
+
+  @include e(subheader) {
+    @include txt-element(filter-subheader);
+
+    @include breakpoint(large) {
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    @include breakpoint(xlarge) {
+      padding-left: 20%;
+      padding-right: 20%;
+    }
+  }
+}
+
+.o-filterbar {
+  @include flex;
+  @include flex-align($x: justify, $y: top);
+  margin: $ub-small-margin 0;
+
+  @include breakpoint(medium down) {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  @include e(title) {
+    @include txt-element(filter-title);
+    text-align: center;
+    width: 100%;
+  }
+
+  @include e(list) {
+    @include button-group($child-selector: 'div');
+    @include flex-align($x: left, $y: top);
+    flex-wrap: wrap;
+    margin-bottom: $ub-base-margin;
+
+    > div { @include txt-element(filter-btn); border-radius: 0; }
+    > div:first-child { border-bottom-left-radius: $global-radius; border-top-left-radius: $global-radius; }
+    > div:last-child { border-bottom-right-radius: $global-radius; border-top-right-radius: $global-radius; }
+
+    @include m(facet) {
+
+    }
+
+    @include m(subjects) {
+      @include breakpoint(ipad only) {
+        max-width: map-get($filterbar-rectangle-2, ipad);
+      }
+    }
+
+    @include m(grades) {
+      @include breakpoint(ipad only) {
+        max-width: ($filterbar-square + 1) * 7;
+      }
+    }
+  }
+
+  @include e(item) {
+    @include flex;
+    @include flex-align($x: center, $y: middle);
+    height: $filterbar-height;
+    padding: 0 !important;
+
+    @include breakpoint(medium down) {
+      margin-bottom: 1px !important;
+    }
+
+    @each $code, $color in $ub-colorcodes {
+      @include m(#{$code}) {
+        @include button($background: $color, $background-hover: auto, $color: $ub-white);
+        @include flex;
+      }
+    }
+
+    @include m(facet) {
+      margin-bottom: 1px !important;
+    }
+
+    @include m(deselected) {
+      opacity: .35;
+    }
+
+    @include m(clear) {
+      font-weight: bold;
+      i { text-shadow: 0 1px 1px rgba(0, 0, 0, .3); }
+
+      @include breakpoint(medium down) {
+        @include button($background: map-get($ub-mignight, clear), $background-hover: auto, $color: $ub-white);
+        @include flex;
+      }
+    }
+
+    @include m(rectangle-2) {
+      @include breakpoint-style-from-map($filterbar-rectangle-2, width);
+    }
+
+    @include m(rectangle-3) {
+      @include breakpoint-style-from-map($filterbar-rectangle-3, width);
+    }
+
+    @include m(rectangle-big) {
+      @include breakpoint-style-from-map($filterbar-rectangle-big, width);
+    }
+
+    @include m(square) {
+      width: $filterbar-square;
+    }
+  }
+}
+
+.o-filterbar-search {
+  width: 100%;
+
+  @include e(label) {
+    @include flex-grid-column(12, 0);
+    @include txt-element(filter-label);
+    background-color: $ub-label-bg;
+    border-radius: 0;
+    border-top-left-radius: $global-radius;
+
+    color: $ub-white;
+    height: $filterbar-height;
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(shrink, 0);
+    }
+
+    span {
+      @include flex;
+      align-items: center;
+      height: 100%;
+      padding-left: $ub-xlarge-padding;
+      padding-right: $ub-xlarge-padding;
+    }
+  }
+
+  @include e(input) {
+    @include flex-grid-column(12, 0);
+    border-radius: 0;
+    border-top-right-radius: $global-radius;
+    position: relative;
+    > input {
+      @include txt-element(filter-input);
+      border-radius: 0;
+      border-top-right-radius: $global-radius;
+      margin-bottom: 0;
+      &, &:focus { border: 0; }
+    }
+
+    @include breakpoint(medium) {
+      @include flex-grid-column(null, 0);
+    }
+  }
+
+  @include e(field) {
+    border-right: 0;
+    box-shadow: none;
+    height: $filterbar-height;
+    padding-left: $ub-large-padding;
+    padding-right: 2rem;
+  }
+
+  @include e(icon) {
+    color: #757575;
+    font-size: 2rem;
+    font-weight: bold;
+    position: absolute;
+    right: .75rem;
+    top: .9rem;
+  }
+}

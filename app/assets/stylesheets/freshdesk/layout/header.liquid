@@ -1,0 +1,41 @@
+{% if  portal.current_page != 'csat_survey' %}
+<div class="c-header__wrap">
+	<div class="o-page c-header">
+		<header class="banner">
+			<div class="banner-wrapper">
+				<div class="c-header__title banner-title">
+					{{ portal | logo }}
+					<h1 class="u-fd-txt--header ellipsis heading">{{portal.name|h}}</h1>
+				</div>
+			</div>
+		</header>
+	</div>
+</div>
+<div class="o-page">
+	<nav class="page-tabs" >
+		{% if portal.tabs.size > 0 %}
+			<a data-toggle-dom="#header-tabs" href="#" data-animated="true" class="mobile-icon-nav-menu show-in-mobile"></a>
+			<div class="nav-link" id="header-tabs">
+				{% for tab in portal.tabs %}
+					{% if tab.url %}
+						<a href="{{tab.url}}" class="{% if tab.tab_type == portal.current_tab %}active{% endif %}">{{ tab.label }}</a>
+					{% endif %}
+				{% endfor %}
+			</div>
+		{% endif %}
+	</nav>
+</div>
+{% else %}
+<div class="c-header__wrap">
+	<div class="o-page c-header">
+		<header class="banner">
+			<div class="banner-wrapper">
+				<div class="c-header__title banner-title">
+					{{ portal | logo }}
+					<h1 class="u-fd-txt--header ellipsis heading">{{portal.name|h}}</h1>
+				</div>
+			</div>
+		</header>
+	</div>
+</div>
+{% endif %}

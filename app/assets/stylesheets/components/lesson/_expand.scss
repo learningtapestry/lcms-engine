@@ -1,0 +1,42 @@
+.o-ld-expand {
+  &.o-ld-expand-math {
+    background-color: map-get($ub-ld-colorcodes, math-expand-bg);
+  }
+
+  &.o-ld-expand-ela {
+    background-color: map-get($ub-ld-colorcodes, ela-expand-bg);
+  }
+
+  clear: both;
+
+  @include e(content) {
+    padding: 10px;
+
+    @include m(hidden) {
+      display: none;
+      padding: 0 10px;
+    }
+  }
+
+  @include e(toggler) {
+    @include txt-element(button);
+    cursor: pointer;
+    display: block;
+    padding: .75rem 0;
+    text-align: center;
+
+    @include m(hide) {
+      display: none;
+    }
+  }
+
+  @include e(ela-toggler) {
+    background-color: map-get($ub-ld-colorcodes, ela-toggler-bg);
+    color: map-get($ub-colorcodes, ela-base);
+  }
+
+  @include e(math-toggler) {
+    background-color: map-get($ub-ld-colorcodes, math-toggler-bg);
+    color: map-get($ub-colorcodes, math-base);
+  }
+}

@@ -1,0 +1,20 @@
+@mixin cg-pdf-color-scheme($map) {
+  h1 {
+    color: map-get($map, link);
+  }
+}
+
+.o-page--cg-ela {
+  @include cg-color-scheme($ub-cg-ela-colors);
+  @include cg-pdf-color-scheme($ub-cg-ela-colors);
+}
+
+.o-page--cg-math {
+  @include cg-color-scheme($ub-cg-math-colors);
+  @include cg-pdf-color-scheme($ub-cg-math-colors);
+}
+
+.o-page--cg-lead {
+  @include cg-color-scheme($ub-cg-lead-colors);
+  @include cg-pdf-color-scheme($ub-cg-lead-colors);
+}

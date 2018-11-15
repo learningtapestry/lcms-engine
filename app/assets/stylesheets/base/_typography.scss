@@ -1,0 +1,208 @@
+.st-logo {
+  @include e(standards) {
+    font-family: $ub-serif;
+    font-size: 125%;
+    font-weight: 600;
+  }
+  @include e(institute) {
+    font-family: $ub-serif;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+}
+
+$ub-heading-typography: (
+  h1: ('line-height': 36px, 'font-family': $ub-serif, 'font-weight': 500),
+  h2: ('line-height': 28px, 'font-family': $ub-serif, 'font-weight': 300),
+  h3: ('line-height': 28px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500),
+  h4: ('line-height': 26px, 'font-family': $ub-sanserif, 'font-weight': 300, 'font-style': italic),
+  h5: ('line-height': 24px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500)
+);
+
+@each $element, $typo in $ub-heading-typography {
+  #{$element} {
+    @include txt-heading-base($element);
+  }
+}
+
+$ub-element-typography: (
+  base: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-sanserif),
+  small: ('font-size': 13px, 'line-height': 18px, 'font-family': $ub-sanserif),
+  teaser: ('font-size': 22px, 'line-height': 28px, 'font-family': $ub-serif, color: #9a9a9a),
+  title-type: (
+    small: ('font-size': 15px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+    ipad: ('font-size': 16px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  ),
+  title-type-short: (
+    small: ('font-size': 15px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+    ipad: ('font-size': 14px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  ),
+  title-duration: ('font-size': 14px, 'line-height': 21px, 'font-family': $ub-sanserif, color: #929299),
+  breadcrumbs: ('font-size': 14px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  button: ('font-size': 14px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  button-register: ('font-size': 16px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  button-connect: ('font-size': 15px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600, color: #433c5d),
+  hero-header: ('font-size': 40px, 'line-height': 42px, 'font-family': $ub-serif, 'font-weight': 500),
+  hero-text: ('font-size': 21px, 'line-height': 27px, 'font-family': $ub-sanserif),
+  media-header: ('font-size': 30px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 600, color: #585858),
+  media-text: ('font-size': 24px, 'line-height': 30px, 'font-family': $ub-serif),
+  subscribe-header: ('font-size': 27px, 'line-height': 36px, 'font-family': $ub-serif, 'font-weight': 600),
+  subscribe-text: ('font-size': 21px, 'line-height': 24px, 'font-family': $ub-sanserif),
+  nav-base: ('font-size': 16px, 'line-height': 20px, 'font-family': $ub-serif),
+  nav-span: ('font-size': 20px, 'line-height': 20px, 'font-family': $ub-serif, 'font-weight': 600),
+  footer-links: ('font-size': 13px, 'line-height': 19px, 'font-family': $ub-sanserif),
+  related-header: ('font-size': 30px, 'line-height': 36px, 'font-family': $ub-serif, 'font-weight': 500, color: #555),
+  page-header: ('font-size': 32px, 'line-height': 32px, 'font-family': $ub-serif),
+  search-header: ('font-size': 20px, 'line-height': 20px, 'font-family': $ub-sanserif),
+  search-select: ('font-size': 16px, 'line-height': 20px, 'font-family': $ub-sanserif-condensed, color: #929299),
+  connect-header: (color: #ededed, 'font-size': 16px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 600),
+  connect-text: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-serif),
+  resource-map-header: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-serif, color: #898989),
+  resource-more: ('font-size': 18px, 'line-height': 24px, 'font-weight': 600, 'font-family': $ub-sanserif, 'font-style': italic),
+  filter-header: ('font-size': 32px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, color: $ub-primary1),
+  filter-subheader: ('font-size': 20px, 'line-height': 24px, 'font-family': $ub-serif, 'font-style': italic),
+  filter-btn: ('font-size': 18px, 'line-height': 18px, 'font-family': $ub-serif, 'font-weight': 600),
+  filter-label: ('font-size': 22px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 600),
+  filter-input: ('font-size': 20px, 'line-height': 20px, 'font-family': $ub-sanserif),
+  filter-title: ('font-size': 26px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, color: $ub-white),
+  lesson-hover: ('font-size': 15px, 'line-height': 18px, 'font-family': $ub-sanserif),
+  lesson-hover-standard: ('font-size': 14px, 'line-height': 14px, 'font-family': $ub-serif, 'font-weight': 600),
+  lesson-title: (
+    small: ('font-size': 26px, 'line-height': 26px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959),
+    ipad: ('font-size': 24px, 'line-height': 27px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959),
+  ),
+  lesson-duration: ('font-size': 14px, 'line-height': 16px, 'font-family': $ub-sanserif, color: #929299),
+  cg-card-teaser: ('font-size': 16px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 600, text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)),
+  cg-card-title: ('font-size': 30px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)),
+  media-card-title: ('font-size': 20px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 500, text-shadow: 1px 1px 1px rgba(0, 0, 0, .1)),
+  media-card-duration: ('font-size': 14px, 'line-height': 16px, 'font-family': $ub-sanserif),
+  tab-title: ('font-size': 20px, 'line-height': 24px, 'font-family': $ub-serif, 'font-weight': 600),
+  engageny: ('font-size': 14px, 'line-height': 18px, 'font-family': $ub-sanserif),
+  pagination: ('font-size': 16px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 600),
+  search-result-header: ('font-size': 18px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600),
+  search-result-subheader: ('font-size': 18px, 'line-height': 21px, 'font-family': $ub-serif),
+  search-result-title: ('font-size': 30px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 500),
+  search-result-teaser: ('font-size': 21px, 'line-height': 26px, 'font-family': $ub-sanserif),
+  arrow-header: (
+    small: ('font-size': 16px, 'line-height': 18px, 'font-family': $ub-serif, 'font-weight': 600),
+    ipad: ('font-size': 20px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 500),
+  ),
+  arrow-subheader: (
+    small: ('font-size': 16px, 'line-height': 18px, 'font-family': $ub-serif, 'font-weight': 600),
+    ipad: ('font-size': 14px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 600, color: #31424c),
+  ),
+  card-assesment-medium: (color: #4a4a4a, font-family: $ub-serif, font-size: 24px, font-weight: 500,	line-height: 27px),
+  card-assesment-short: (color: #4a4a4a, font-family: $ub-serif, font-size: 20px, font-weight: 500,	line-height: 24px),
+  card-title-medium: (
+    small: ('font-size': 26px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959),
+    ipad: ('font-size': 32px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959),
+  ),
+  card-title-short: (
+    small: ('font-size': 26px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959, 'margin-top': $curriculum-card-short-top),
+    ipad: ('font-size': 24px, 'line-height': 27px, 'font-family': $ub-serif, 'font-weight': 500, color: #595959, 'margin-top': $curriculum-card-short-top),
+  ),
+  card-dsc: (
+    small: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-sanserif),
+    ipad: ('font-size': 15px, 'line-height': 19px, 'font-family': $ub-sanserif),
+  ),
+  download-header: ('font-size': 32px, 'line-height': 32px, 'font-family': $ub-serif, 'font-weight': 600, color: $ub-primary1),
+  download-copyright: ('font-size': 11px, 'line-height': 14px, 'font-family': $ub-sanserif, color: #929299),
+  // content guides
+  cg-teaser: ('font-size': 16px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600, 'text-shadow': 1px 1px 1px rgba(0, 0, 0, .1)),
+  cg-title: ('font-size': 34px, 'line-height': 35px, 'font-family': $ub-serif, 'font-weight': 500, 'text-shadow': 1px 1px 1px rgba(0, 0, 0, .1)),
+  cg-sidebar-header: ('font-size': 20px, 'line-height': 24px, 'font-family': $ub-serif, 'font-weight': 600),
+  cg-sidebar-title-type: ('font-size': 14px, 'line-height': 24px, 'font-family': $ub-serif, 'font-weight': 600),
+  cg-sidebar-title: ('font-size': 24px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 500),
+  cg-sidebar-l1: ('font-size': 16px, 'line-height': 20px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500),
+  cg-sidebar-l2: ('font-size': 15px, 'line-height': 20px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500),
+  cg-sidebar-l3: ('font-size': 15px, 'line-height': 20px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500),
+  cg-faq-title: ('font-size': 24px, 'line-height': 26px, 'font-family': $ub-serif, 'font-weight': 600, color: #555),
+  cg-faq-body: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-sanserif),
+  cg-faq-q: ('font-size': 44px, 'line-height': 107px, 'font-family': $ub-serif, 'font-weight': 600),
+  // explore curriculum
+  ec-opr-title: (color: $ub-primary, font-family: $ub-serif, font-size: 24px, font-weight: 800),
+  // leaderhsip
+  ls-subhead: ('font-size': 20px, 'line-height': 23px, 'font-family': $ub-serif, 'font-weight': 600, color: map-get($ub-leadership, base)),
+  ls-post-title: ('font-size': 18px, 'line-height': 21px, 'font-family': $ub-serif, 'font-weight': 600, color: map-get($ub-leadership, base)),
+  ls-post-subtitle: ('font-size': 15px, 'line-height': 20px, 'font-family': $ub-serif, 'font-weight': 500, color: #4c4c4c),
+  ls-post-txt: ('font-size': 15px, 'line-height': 20px, 'font-family': $ub-sanserif, 'font-weight': 500, color: #555),
+  // nav search
+  nav-search: ('font-size': 21px, 'line-height': 24px, 'font-family': $ub-sanserif),
+  // home page
+  st-label: ('font-size': 18px, 'line-height': 21px, 'font-family': $ub-sanserif),
+  // resources
+  resource-preview-title: ('font-size': 17px, 'line-height': 20px, 'font-family': $ub-serif, 'font-weight': 600, color: #4c4c4c),
+  resource-preview-body: ('font-size': 16px, 'line-height': 20px, 'font-family': $ub-sanserif, color: #4c4c4c),
+  // generic card
+  generic-card-title: ('font-size': 14px, 'line-height': 30px, 'font-family': $ub-serif, 'font-weight': 600),
+  generic-card-teaser: ('font-size': 22px, 'line-height': 24px, 'font-family': $ub-serif, 'font-weight': 500),
+  // help desk
+  helpdesk-hover-title: (font-weight: 500),
+  helpdesk-title: (color: #423872, font-family: $ub-serif, font-size: 24px, font-weight: 600, line-height: 29px),
+  // about people
+  staff-name: ('font-size': 22px, 'line-height': 28px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500, color: $ub-primary),
+  staff-position: ('font-size': 18px, 'line-height': 22px, 'font-family': $ub-sanserif, 'font-weight': 300, 'font-style': italic, color: #666),
+  // Lessons
+  ld-activity-h2time: ('font-size': 22px, 'line-height': 1, 'font-family': $ub-sanserif, 'font-weight': bold, 'font-style': italic),
+  ld-activity-h3time: ('font-size': 16px, 'line-height': 1, 'font-family': $ub-sanserif, 'font-weight': bold, 'font-style': italic),
+  ld-activity-kicker: ('font-size': 14px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 600, letter-spacing: .3px),
+  ld-activity-teaser: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-sanserif, font-style: italic),
+  ld-base: (font-size: 1rem, font-family: $ub-sanserif),
+  ld-callout-header: ('font-size': 20px, 'line-height': 28px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500, font-style: normal),
+  ld-math-foundational-divider: (color: $ub-white, font-family: $ub-serif, font-size: 34px, font-weight: 600, text-transform: uppercase),
+  ld-h5: ('font-size': 17px, 'line-height': 1, 'font-family': $ub-sanserif, 'font-weight': bold),
+  ld-header-breadcrumb: (font-size: 17px, line-height: 20px, 'font-family': $ub-serif, font-weight: 600, 'text-shadow': 0 1px 0 rgba(0,0,0,0.15), color: $ub-white),
+  ld-header-title: (font-size: 40px, line-height: 40px, 'font-family': $ub-serif, font-weight: 500, 'text-shadow': 0 1px 0 rgba(0,0,0,0.15), color: $ub-white),
+  ld-header-teaser: (font-size: 20px, line-height: 28px, 'font-family': $ub-sanserif, text-shadow: 0 1px 0 rgba(0,0,0,0.15), color: $ub-white),
+  ld-header-standards: (font-size: 13px, line-height: 16px, 'font-family': $ub-sanserif, color: $ub-white),
+  ld-optbreak: ('font-size': 20px, 'line-height': 28px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500, font-style: normal),
+  ld-pd-caption: (color: #8e89a9, font-size: smaller !important, font-weight: 600, text-transform: uppercase),
+  ld-pd-cg: (font-family: $ub-serif),
+  ld-pd-cg-header: (font-family: inherit !important, font-weight: 600),
+  ld-pd-cg-title: (font-family: inherit !important, font-size: 28px !important, font-weight: 500, line-height: 1 !important),
+  ld-pd-title: (color: #453b74, font-family: $ub-sanserif-condensed !important, font-size: 28px !important, font-weight: 500, line-height: 1 !important),
+  ld-pd-title-collapsed: (color: #453b74, font-family: $ub-sanserif-condensed !important, font-size: 20px !important, font-weight: 500, line-height: 1 !important),
+  ld-pd-description-title: (color: $ub-white, font-style: initial !important, font-weight: bolder),
+  ld-resource-summary: (color: #7f8184, font-size: 24px, line-height: 30px),
+  ld-sidebar-break: ('font-size': 14px, 'line-height': 18px, 'font-family': $ub-sanserif, font-style: italic, color: #4c4c4c, opacity: .5),
+  ld-sidebar-break-foundational: (color: map-get($ub-ld-colorcodes, math-activity-foundational), font-size: 14px, line-height: 18px, font-family: $ub-sanserif, font-style: initial, font-weight: 600, opacity: 1, text-transform: uppercase),
+  ld-sidebar-header: ('font-size': 22px, 'line-height': 26px, 'font-family': $ub-serif, 'font-weight': 600, color: #4c4c4c),
+  ld-sidebar-icon: ('font-size': 12px, line-height: 22px, vertical-align: baseline),
+  ld-sidebar-l1: ('font-size': 18px, 'line-height': 22px, 'font-family': $ub-serif, 'font-weight': 500, color: #4c4c4c),
+  ld-sidebar-l1-mins: ('font-size': 14px, 'line-height': 18px, 'font-family': $ub-sanserif, font-style: italic, color: #4c4c4c),
+  ld-sidebar-l2: ('font-size': 14px, 'line-height': 17px, 'font-family': $ub-sanserif-condensed, 'font-weight': 500, color: #4c4c4c),
+  ld-sidebar-l2-mins: ('font-size': 12px, 'line-height': 14px, 'font-family': $ub-sanserif, font-style: italic, color: #4c4c4c),
+  ld-sidebar-toggle: ('font-size': 13px, 'line-height': 16px, 'font-family': $ub-sanserif, font-style: italic, color: #4c4c4c),
+  ld-sidebar-total: ('font-size': 18px, 'line-height': 18px, 'font-family': $ub-serif, 'font-weight': 500, color: #4c4c4c),
+  ld-sidebar-total-mins: ('font-size': 14px, 'line-height': 18px, 'font-family': $ub-sanserif, font-style: italic, 'font-weight': 600, color: #4c4c4c),
+  ld-smp: ('font-size': 16px, 'line-height': 1, 'font-family': $ub-serif, 'font-weight': 600, color: #fff),
+  ld-sticky-breadcrumb: (
+    large: (font-size: 15px, line-height: 15px, 'font-family': $ub-serif, font-weight: 600, text-shadow: 0 1px 0 rgba(0,0,0,0.25), color: $ub-white),
+    small: (font-size: 13px, line-height: 16px, 'font-family': $ub-serif, font-weight: 600, color: $ub-white)
+  ),
+  ld-sticky-icon: (
+    large: (font-size: 28px),
+    small: (font-size: 18px)
+  ),
+  ld-sticky-title: (
+    large: (font-size: 31px, line-height: 40px, 'font-family': $ub-serif, font-weight: 500, text-shadow: 0 1px 0 rgba(0,0,0,0.15), color: $ub-white),
+    small: (font-size: 21px, line-height: 25px, 'font-family': $ub-serif, font-weight: 500, color: $ub-white)
+  ),
+  ld-summary: ('font-size': 18px, 'line-height': 24px, 'font-family': $ub-sanserif),
+  ld-tooltip: ('font-size': 14px !important, line-height: 18px !important, font-family: $ub-sanserif !important,	color: #4c4c4c !important),
+  ld-white-placeholder-title: ('font-size': 1.2rem !important, 'font-weight': 600),
+  ld-white-placeholder-colored-title: ('font-size': initial !important, 'font-weight': bold, color: initial !important),
+  m-subtitle: (font-size: 11px, line-height: 13px, font-family: $ub-sanserif, font-weight: bold, color: #939597),
+  m-tab-title: (font-size: 24px, line-height: 28px, font-family: $ub-sanserif-condensed, font-weight: 500, color: #4c4c4c),
+  m-title: (font-size: 18px, line-height: 20px, font-family: $ub-sanserif-condensed, font-weight: 500, color: #4c4c4c),
+);
+
+@each $element, $typo in $ub-element-typography {
+  %txt-#{$element}, .u-txt--#{$element} {
+    @include txt-element($element);
+  }
+}
+
+body {
+  @include txt-element(base);
+}

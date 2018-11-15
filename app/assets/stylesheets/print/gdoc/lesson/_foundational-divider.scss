@@ -1,0 +1,15 @@
+.o-ld-foundational-divider {
+  padding: 0;
+
+  @include e(item) {
+    h2 {
+      color: #fff;
+      margin: 0;
+      padding: 5pt;
+
+      span {
+        padding: 0;
+      }
+    }
+  }
+}

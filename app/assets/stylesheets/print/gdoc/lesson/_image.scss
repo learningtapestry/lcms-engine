@@ -1,0 +1,20 @@
+.o-ld-image {
+  @include e(img) {
+    width: 30%;
+
+    img {
+      height: 110pt;
+      width: auto;
+    }
+  }
+  @include e(caption) {
+    padding-left: 9pt;
+    vertical-align: middle;
+    width: 70%;
+  }
+}
+
+.o-google-chart {
+  height: 50%;
+  vertical-align: middle !important;
+}

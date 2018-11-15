@@ -1,0 +1,74 @@
+.pdf-bullet {
+  padding-left: $ub-xs-padding / 2;
+  padding-right: $ub-xs-padding / 2;
+  &:after { content: '\2022'; }
+}
+
+.c-pdf-footer {
+  $m-footer-height: 6pt * 2;
+
+  border: 0;
+  border-collapse: separate;
+  border-radius: 0;
+  border-top: 1px solid $ub-hr;
+  box-shadow: none;
+  margin: 0;
+  margin-top: $ub-base-padding;
+  outline: 0;
+  padding: 0;
+  padding-top: $ub-small-padding;
+  width: 100%;
+
+  @include m(cg) {
+    @include txt-pdf-element(footer);
+  }
+
+  @include m(ld) {
+    &, a { @include txt-pdf-element(ld-footer); }
+  }
+
+  @include m(material) {
+    td {
+      min-height: $m-footer-height;
+      padding: 0 $ub-xs-padding / 2;
+      vertical-align: top;
+    }
+  }
+
+  @include e(wrap) {
+    margin-left: $pdf-margin;
+    margin-right: $pdf-margin;
+  }
+
+  @include e(cc-logo) {
+    $cc-logo-ratio: 88 / 31;
+    height: $m-footer-height;
+    width: $m-footer-height * $cc-logo-ratio;
+  }
+
+  @include e(logo) {
+    $logo-ratio: 200 / 28;
+    height: $m-footer-height;
+    width: $m-footer-height * $logo-ratio;
+  }
+
+  @include e(left) {
+    padding: 0;
+
+    @include m(draft) {
+      color: #f00;
+      padding-right: 5px;
+    }
+  }
+
+  @include e(page) {
+    min-width: 11pt * 5;
+    text-align: right;
+  }
+
+  @include e(right) {
+    padding: 0;
+    text-align: right;
+  }
+
+}

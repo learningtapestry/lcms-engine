@@ -1,0 +1,27 @@
+table {
+  td, tr { border: 0; }
+}
+
+a {
+  color: $ub-gdoc-link;
+  text-decoration: underline;
+}
+
+p {
+  padding-bottom: 11pt;
+  padding-top: 0;
+
+  &.u-gdoc-empty-p {
+    padding-bottom: 0;
+  }
+}
+
+span > p {
+  padding: 0;
+}
+
+ol {
+  &, li, li:before {
+    font-family: 'Calibri' !important;
+  }
+}

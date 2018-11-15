@@ -1,0 +1,43 @@
+.cs-border-top--ela {
+  border-top: 4px solid map-get($ub-colorcodes, ela-base) !important;
+}
+
+.cs-border-top--math-foundational {
+  border-top: 4px solid map-get($ub-ld-colorcodes, math-activity-foundational) !important;
+}
+
+.cs-border-top--math {
+  border-top: 4px solid map-get($ub-colorcodes, math-base) !important;
+}
+
+.cs-border-left--ela {
+  border-left: 4px solid map-get($ub-colorcodes, ela-base) !important;
+}
+
+.cs-border-left--math {
+  border-left: 4px solid map-get($ub-colorcodes, math-base) !important;
+}
+
+.cs-border-bottom--pd {
+  border-bottom: 4px solid map-get($ub-ld-colorcodes, pd-bg-dark) !important;
+}
+
+.o-simple-table {
+  @include gdoc-clearfix;
+
+  @include e(content) {
+    width: 90%;
+  }
+
+  @include e(v-text) {
+    width: 10%;
+  }
+
+  td, tr { border: 0; }
+}
+
+.o-native-table {
+  td, th {
+    p { padding: 0; }
+  }
+}

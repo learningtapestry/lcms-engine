@@ -1,0 +1,14 @@
+// redefine typography for pdf
+.c-cg-task {
+  @include e(title) {
+    @include txt-pdf-element(task-title);
+  }
+}
+
+.c-cg-blockquote {
+  @include txt-pdf-element(blockquote);
+}
+
+.c-cg-pullquote {
+  @include txt-pdf-element(pullquote);
+}
