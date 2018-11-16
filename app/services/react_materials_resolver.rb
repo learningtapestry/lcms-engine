@@ -25,10 +25,10 @@ class ReactMaterialsResolver
       props = PreviewsMaterialSerializer.new(raw_props, document)
       node.remove && return if props.data&.empty?
 
-      node.replace(component)
+      node.replace(component(props, document))
     end
 
-    def component
+    def component(props, document)
       h.react_component('MaterialsContainer', props, prerender: document.content_type != 'none')
     end
 
