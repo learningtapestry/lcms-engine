@@ -11,7 +11,6 @@ class Document < Lcms::Engine::ApplicationRecord
   before_save :set_resource_from_metadata
 
   store_accessor :foundational_metadata
-  store_accessor :metadata
   serialize :toc, DocTemplate::Objects::TOCMetadata
 
   scope :actives,   -> { where(active: true) }
@@ -19,7 +18,7 @@ class Document < Lcms::Engine::ApplicationRecord
 
   scope :failed, -> { where(reimported: false) }
 
-  scope :where_metadata, ->(key, val) { where('documents.metadata @> hstore(:key, :val)', key: key, val: val) }
+  scope :where_metadata, ->(key, val) { where('documents.metadata ->> ? = ?', key, val) }
 
   scope :order_by_curriculum, lambda {
     select('documents.*, resources.hierarchical_position')
@@ -36,13 +35,14 @@ class Document < Lcms::Engine::ApplicationRecord
   scope :filter_by_grade, ->(grade) { where_metadata(:grade, grade) }
 
   scope :filter_by_unit, lambda { |u|
-    where("(lower(documents.metadata -> 'unit') = :u OR lower(documents.metadata -> 'topic') = :u)", u: u.to_s.downcase)
+    where("(lower(documents.metadata ->> 'unit') = :u OR lower(documents.metadata ->> 'topic') = :u)",
+          u: u.to_s.downcase)
   }
 
   scope :filter_by_module, lambda { |mod|
     sql = <<-SQL
-      (documents.metadata @> hstore('subject', 'math') AND documents.metadata @> hstore('unit', :mod))
-        OR (documents.metadata @> hstore('subject', 'ela') AND documents.metadata @> hstore('module', :mod))
+      (documents.metadata ->> 'subject' <> 'ela' AND documents.metadata ->> 'unit' = :mod)
+        OR (documents.metadata ->> 'subject' = 'ela' AND documents.metadata ->> 'module' = :mod)
     SQL
     where(sql, mod: mod)
   }

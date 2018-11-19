@@ -42,7 +42,7 @@ module DocTemplate
         copy = Marshal.load Marshal.dump(data)
         sections = copy.map do |metadata|
           metadata[:template_type] = template_type
-          metadata[:summary] = HtmlSanitizer.strip_html_element(metadata[:summary])
+          metadata[:summary] = DocTemplate.sanitizer.strip_html_element(metadata[:summary])
           metadata.transform_keys { |k| k.to_s.gsub('section-', '').underscore }
         end
         new(set_index(children: sections))

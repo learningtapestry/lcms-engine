@@ -5,7 +5,6 @@ class MaterialPresenter < ContentPresenter
   attr_reader :parsed_document
 
   delegate :css_styles, :short_url, :subject, to: :lesson
-  delegate :sheet_type, to: :metadata
   delegate :parts, to: :parsed_document
 
   DEFAULT_TITLE = 'Material'
@@ -15,15 +14,11 @@ class MaterialPresenter < ContentPresenter
   end
 
   def base_filename(with_version: true)
-    name = identifier
+    name = metadata['identifier']
     unless name =~ /^(math|ela)/i || pdf?
       name = "#{lesson.short_breadcrumb(join_with: '_', with_short_lesson: true)}_#{name}"
     end
     with_version ? "#{name}_v#{version.presence || 1}" : name
-  end
-
-  def identifier
-    metadata['identifier']
   end
 
   def cc_attribution
@@ -100,6 +95,10 @@ class MaterialPresenter < ContentPresenter
   def render_content(context_type, options = {})
     options[:parts_index] = document_parts_index
     DocumentRenderer::Part.call(layout_content(context_type), options)
+  end
+
+  def sheet_type
+    metadata['sheet_type'].to_s
   end
 
   def show_title?

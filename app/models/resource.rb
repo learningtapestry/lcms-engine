@@ -64,6 +64,7 @@ class Resource < Lcms::Engine::ApplicationRecord
   validates :url, presence: true, url: true, if: %i(video? podcast?)
 
   scope :where_grade, ->(grades) { where_metadata_in :grade, grades }
+  scope :where_module, ->(modules) { where_metadata_in :module, modules }
   scope :where_subject, ->(subjects) { where_metadata_in :subject, subjects }
   scope :media, -> { where(resource_type: MEDIA_TYPES) }
   scope :generic_resources, -> { where(resource_type: GENERIC_TYPES) }
@@ -271,15 +272,18 @@ class Resource < Lcms::Engine::ApplicationRecord
     grade.save
   end
 
-  def update_metadata
+  def self_and_ancestors_not_persisted
     # during create we can't call self_and_ancestors directly on the resource
     # because this query uses the associations on resources_hierarchies
     # which are only created after the resource is persisted
-    chain = [self] + parent&.self_and_ancestors.to_a
+    [self] + parent&.self_and_ancestors.to_a
+  end
 
-    meta = chain.each_with_object({}) do |r, obj|
-      obj[r.curriculum_type] = r.short_title
-    end.compact
+  def update_metadata
+    meta = self_and_ancestors_not_persisted
+             .each_with_object({}) do |r, obj|
+               obj[r.curriculum_type] = r.short_title
+             end.compact
     metadata.merge! meta if meta.present?
   end
 

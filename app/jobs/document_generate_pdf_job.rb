@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'concerns/retry_simple'
-
 class DocumentGeneratePdfJob < Lcms::Engine::ApplicationJob
   include ResqueJob
 
@@ -11,8 +9,8 @@ class DocumentGeneratePdfJob < Lcms::Engine::ApplicationJob
 
   PDF_EXPORTERS = {
     'full' => DocumentExporter::PDF::Document,
-    'sm'   => DocumentExporter::PDF::StudentMaterial,
-    'tm'   => DocumentExporter::PDF::TeacherMaterial
+    'sm' => DocumentExporter::PDF::StudentMaterial,
+    'tm' => DocumentExporter::PDF::TeacherMaterial
   }.freeze
 
   def perform(doc, options)
