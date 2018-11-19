@@ -52,13 +52,13 @@ module DocTemplate
       return unless @opts[:metadata].try(:subject).to_s.casecmp('ela').zero?
       return unless ela_teacher_guidance_allowed?
 
-      HtmlSanitizer.strip_content(@nodes)
+      DocTemplate.sanitizer.strip_content(@nodes)
       @nodes.prepend_child ela_teacher_guidance(@opts[:metadata], @opts[:context_type])
     end
 
     def ela_teacher_guidance(metadata, _context_type)
       @data = metadata
-      @data.preparation = HtmlSanitizer.strip_html_element(@data.preparation)
+      @data.preparation = DocTemplate.sanitizer.strip_html_element(@data.preparation)
       template = File.read ELA_TG_TEMPLATE
       ERB.new(template).result(binding)
     end

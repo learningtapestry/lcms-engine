@@ -1,23 +1,24 @@
-<div class="row u-od-margin-top--gutter2x">
-  <div class="columns u-od-padding-v--large">
-    <div class="o-od-devise-form__wrap">
-      <h1 class="u-od-margin-bottom--gutter">Change your password</h1>
+<div class="o-page">
+  <div class="o-page__content u-pd-content">
+    <div class="u-centered u-container--condensed">
+      <h1 class="u-margin-bottom--large">Change your password</h1>
+      <div class="u-hr-small u-margin-bottom--xlarge"></div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
-        <%= f.password_field :password, autocomplete: 'off', autofocus: true, class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:password].present? ? ' o-od-input-error' : ''), placeholder: 'Enter new password' %>
+        <%= f.password_field :password, autocomplete: 'off', autofocus: true, class: 'o-input-placehoder--medium-gray' + (resource.errors[:password].present? ? ' o-input-error' : ''), placeholder: 'Enter new password' %>
         <% if resource.errors[:password].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             Password <%= resource.errors[:password].first %>
           </p>
         <% end %>
-        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'o-od-input-placeholder--medium-gray' + (resource.errors[:password_confirmation].present? ? ' o-od-input-error' : ''), placeholder: 'Confirm new password' %>
+        <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'o-input-placehoder--medium-gray' + (resource.errors[:password_confirmation].present? ? ' o-input-error' : ''), placeholder: 'Confirm new password' %>
         <% if resource.errors[:password_confirmation].present? %>
-          <p class="u-od-cs-txt-link--alert">
+          <p class="cs-txt-link--error">
             <%= resource.errors[:password_confirmation].first %>
           </p>
         <% end %>
-        <%= f.submit 'Change my password', class: 'o-od-btn o-od-btn--xs-full o-od-btn--primary' %>
+        <%= f.submit 'Change my password', class: 'o-btn o-btn--xs-full o-btn--yellow o-btn--xs-full' %>
       <% end %>
     </div>
   </div>

@@ -57,8 +57,8 @@ module Concerns
       def parse(source)
         doc = Nokogiri::HTML(source)
         # get css styles from head to keep classes for lists (preserve list-style-type)
-        doc = HtmlSanitizer.process_list_styles doc
-        @css_styles = HtmlSanitizer.sanitize_css(doc.xpath('//html/head/style/text()').to_s)
+        doc = DocTemplate.sanitizer.process_list_styles doc
+        @css_styles = DocTemplate.sanitizer.sanitize_css(doc.xpath('//html/head/style/text()').to_s)
 
         # initial content sanitization
         body_node = ::DocTemplate
@@ -108,7 +108,7 @@ module Concerns
 
       def render(options = {})
         type = options.fetch(:context_type, ::DocTemplate.context_types.first)
-        HtmlSanitizer.post_processing(@documents[type]&.render.presence || '', options)
+        DocTemplate.sanitizer.post_processing(@documents[type]&.render.presence || '', options)
       end
 
       module ClassMethods

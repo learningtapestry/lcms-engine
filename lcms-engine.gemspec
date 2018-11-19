@@ -37,5 +37,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler-audit', '~> 0.6.0'
   s.add_development_dependency 'overcommit', '~> 0.46'
   s.add_development_dependency 'rspec-rails', '~> 3.8'
-  s.add_development_dependency 'rubocop', '~> 0.59'
+  s.add_development_dependency 'rubocop', '~> 0.59.2'
 end

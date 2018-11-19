@@ -64,7 +64,7 @@ class ContentPresenter < BasePresenter
   def render_content(context_type, options = {})
     options[:parts_index] = document_parts_index
     rendered_layout = DocumentRenderer::Part.call(layout_content(context_type), options)
-    content = HtmlSanitizer.clean_content(rendered_layout, context_type)
+    content = DocTemplate.sanitizer.clean_content(rendered_layout, context_type)
     ReactMaterialsResolver.resolve(content, self)
   end
 end
