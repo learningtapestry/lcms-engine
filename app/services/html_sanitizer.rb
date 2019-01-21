@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class HtmlSanitizer # rubocop:disable Metrics/ClassLength
-  LIST_STYLE_RE = /\.lst-(\S+)[^\{\}]+>\s*(?:li:before)\s*{\s*content[^\{\}]+counter\(lst-ctn-\1\,([^\)]+)\)/
+  LIST_STYLE_RE = /\.lst-(\S+)[^{}]+>\s*(?:li:before)\s*{\s*content[^{}]+counter\(lst-ctn-\1,([^)]+)\)/
   CLEAN_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p table).join(',')
   GDOC_REMOVE_EMPTY_SELECTOR = '.o-ld-activity'
-  LINK_UNDERLINE_REGEX = /text\-decoration\s*:\s*underline/i
+  LINK_UNDERLINE_REGEX = /text-decoration\s*:\s*underline/i
   SKIP_P_CHECK = %w(ul ol table).freeze
   STRIP_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p span table).freeze
 
@@ -27,8 +27,10 @@ class HtmlSanitizer # rubocop:disable Metrics/ClassLength
       Sanitize::CSS.stylesheet(css, css_config)
     end
 
+    #
+    # Removes all empty nodes before first one filled in
+    #
     def strip_content(nodes)
-      # removes all empty nodes before first one filled in
       nodes.xpath('./*').each do |node|
         break if keep_node?(node)
 
@@ -73,7 +75,9 @@ class HtmlSanitizer # rubocop:disable Metrics/ClassLength
       html
     end
 
-    # config to keep list-style-type bc gdoc is doing this trough content/counter
+    #
+    # Config to keep list-style-type bc gdoc is doing this trough content/counter
+    #
     def css_config
       {
         css: {
@@ -82,7 +86,9 @@ class HtmlSanitizer # rubocop:disable Metrics/ClassLength
       }
     end
 
-    # config to preserve inline styling that we want to keep at p&span
+    #
+    # List of attributes we need to keep when all parsing jobs have been completed
+    #
     def css_inline_config
       {
         css: {
@@ -133,13 +139,26 @@ class HtmlSanitizer # rubocop:disable Metrics/ClassLength
       }
     end
 
+    protected
+
+    def post_clean_styles(nodes)
+      %w(p span sub sup).each do |tag|
+        nodes.xpath(".//#{tag}").each do |node|
+          next if node.ancestors('td').present?
+          # do not sanitize Mathjax elements
+          node['style'] = Sanitize::CSS.properties(node['style'], css_inline_config) if node['class']&.index('mjx').nil?
+          node.delete('style') if node['style'].blank?
+        end
+      end
+    end
+
     private
 
     FONT_STYLES_RE = [
       /font-weight:\s*(normal|[1-4]00);?/,
       /font-style:\s*normal;?/,
       /text-decoration:\s*none;?/,
-      /(?<!background-)(color:#000000;?)/
+      /(^|;)\s*color:#000000/
     ].freeze
     private_constant :FONT_STYLES_RE
 
@@ -261,15 +280,7 @@ class HtmlSanitizer # rubocop:disable Metrics/ClassLength
 
     def post_processing_base(nodes)
       # removes all style attributes allowed earlier
-      %w(p span sub sup).each do |tag|
-        nodes.xpath(".//#{tag}").each do |node|
-          next if node.ancestors('td').present?
-
-          # do not sanitize Mathjax elements
-          node['style'] = Sanitize::CSS.properties(node['style'], css_inline_config) if node['class']&.index('mjx').nil?
-          node.delete('style') if node['style'].blank?
-        end
-      end
+      post_clean_styles(nodes)
 
       # adjusts `class` attributes for all `ol` elements inside tables
       nodes.xpath('.//table//ol').each { |ol| ol['class'] = 'c-ld-ol' }
