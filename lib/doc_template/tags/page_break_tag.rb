@@ -3,6 +3,7 @@
 module DocTemplate
   module Tags
     class PageBreakTag < BaseTag
+      CSS_CLASS = 'u-pdf-alwaysbreak'
       TAG_NAME = /page(-|\s*)break/
       TAG_SUB = '<p>--GDOC-PAGE-BREAK--</p>'
 
@@ -11,7 +12,7 @@ module DocTemplate
         @content = if gdoc?(opts)
                      TAG_SUB
                    else
-                     '<div class="u-pdf-alwaysbreak do-not-strip"></div>'
+                     %(<div class="#{CSS_CLASS} do-not-strip"></div>)
                    end
         replace_tag node
         self

@@ -7,17 +7,13 @@ module DocTemplate
 
       def parse(node, opts = {})
         # preserve the node content and replace only the tag by the link
-        content = node.to_s.sub(self.class.link_tag_regex, link(opts))
+        content = node.to_s.sub(self.class.tag_with_html_regexp, link(opts))
 
         opts[:iteration] ||= 1
         opts[:parent_node] = content
         @content = parse_nested content, opts
         replace_tag node
         self
-      end
-
-      def self.link_tag_regex
-        @link_tag_regex ||= /\[[^\]]*#{self::TAG_NAME}:\s?[^\]]*\]/i
       end
 
       private
