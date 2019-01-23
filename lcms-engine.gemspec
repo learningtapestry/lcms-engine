@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.5'
 
-  s.add_dependency 'rails', '>= 4.2.7.1'
+  s.add_dependency 'rails', '>= 4.2.11'
 
   s.add_dependency 'acts-as-taggable-on', '~> 5.0'
   s.add_dependency 'carrierwave', '~> 1.0'
