@@ -3,7 +3,7 @@
 module DocTemplate
   module Tables
     class Base
-      SPLIT_REGEX = /[,;(\r\n|\n)]/i
+      SPLIT_REGEX = /[,;\r\n]/
 
       attr_reader :data
 
@@ -13,12 +13,14 @@ module DocTemplate
 
       def initialize
         @data = {}
+        @table_exists = false
       end
 
       def parse(fragment, _template_type)
         # get the table
         table = fragment.at_xpath("table//*[contains(., '#{self.class::HEADER_LABEL}')]")
-        return self unless table
+        @table_exists = table.present?
+        return self unless @table_exists
 
         table.search('br').each { |br| br.replace("\n") }
         @data = fetch table
@@ -37,7 +39,13 @@ module DocTemplate
         data
       end
 
+      def table_exist?
+        table_exists
+      end
+
       protected
+
+      attr_reader :table_exists
 
       def fetch(table)
         {}.tap do |result|

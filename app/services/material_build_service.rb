@@ -53,11 +53,12 @@ class MaterialBuildService
     @downloader = ::Lt::Lcms::Lesson::Downloader::Gdoc.new(@credentials, url, options)
     create_material
     content = @downloader.download.content
-    parsed_document = DocTemplate::Template.parse(content, type: :material)
+    template = DocTemplate::Template.parse(content, type: :material)
 
-    metadata = parsed_document.metadata_service.options_for(:default)[:metadata]
+    metadata = template.metadata_service.options_for(:default)[:metadata]
     material.update!(
       material_params.merge(
+        css_styles: template.css_styles,
         identifier: metadata['identifier'].downcase,
         metadata: metadata.to_json,
         original_content: content
@@ -66,7 +67,7 @@ class MaterialBuildService
 
     material.material_parts.delete_all
 
-    presenter = MaterialPresenter.new(material, parsed_document: parsed_document)
+    presenter = MaterialPresenter.new(material, parsed_document: template)
     DocTemplate.context_types.each do |context_type|
       material.material_parts.create!(
         active: true,
@@ -84,10 +85,10 @@ class MaterialBuildService
 
   def material_params
     {
-      name: downloader.file.name,
       last_modified_at: downloader.file.modified_time,
       last_author_email: downloader.file.last_modifying_user.try(:email_address),
       last_author_name: downloader.file.last_modifying_user.try(:display_name),
+      name: downloader.file.name,
       reimported_at: Time.current,
       version: downloader.file.version
     }

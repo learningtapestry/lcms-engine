@@ -45,6 +45,7 @@ module Lt
             resource = build_new_resource(parent, name, index)
             unless last_item?(index)
               resource.save!
+              update_grade_level_position if resource.grade?
               parent = resource
               next
             end
@@ -66,6 +67,20 @@ module Lt
           end
 
           update resource
+        end
+
+        protected
+
+        #
+        # Fix level position for grades in case when lower grade has
+        # been created after higher grades
+        #
+        def update_grade_level_position
+          ::Resource.grades.select(:id, :metadata)
+            .map { |m| { id: m.id, idx: Grades::GRADES.index(m.metadata['grade']) } }
+            .sort_by { |a| a[:idx] }.each_with_index do |data, idx|
+            ::Resource.find(data[:id]).update_columns level_position: idx
+          end
         end
 
         private

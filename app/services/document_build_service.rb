@@ -14,9 +14,10 @@ class DocumentBuildService
   def build_for(url, expand: false)
     @content = download url
     @expand_document = expand
-    @template = DocTemplate::Template.parse(content)
+    @template = DocTemplate::Template.parse @content
 
     create_document
+    clear_preview_link
 
     content_key = foundational? ? :foundational_content : :original_content
     @document.update! content_key => content
@@ -65,6 +66,12 @@ class DocumentBuildService
     params[:toc] = combine_toc
     params[:material_ids] = params[:toc].collect_material_ids
     params
+  end
+
+  def clear_preview_link
+    links = document.links
+    links['pdf']&.delete('preview')
+    document.links = links
   end
 
   def combine_activity_metadata
