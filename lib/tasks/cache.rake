@@ -7,6 +7,6 @@ namespace :cache do
   desc 'Reset Base64 cached assets'
   task reset_base64: :environment do
     redis = Rails.application.config.redis
-    redis.keys('ub-b64-asset:*').each { |key| redis.del key }
+    redis.keys("#{AssetHelper::REDIS_PREFIX}*").each { |key| redis.del key }
   end
 end

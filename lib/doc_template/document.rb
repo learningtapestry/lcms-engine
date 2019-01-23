@@ -10,9 +10,7 @@ module DocTemplate
       '#'
     ].freeze
 
-    ELA_TG_TEMPLATE = Lcms::Engine::Engine.root.join(
-      'lib', 'doc_template', 'templates', 'ela-teacher-guidance.html.erb'
-    )
+    ELA_TG_TEMPLATE = Rails.root.join 'lib', 'doc_template', 'templates', 'ela-teacher-guidance.html.erb'
 
     attr_accessor :parts
 
@@ -26,8 +24,8 @@ module DocTemplate
       @parts = @opts[:parts] || []
 
       # find all tags except ones which were marked as parsed first and nested levels
-      xpath = [%(*[not(contains(@data-parsed, "true"))]/#{DocTemplate::STARTTAG_XPATH}),
-               %(*//*[not(contains(@data-parsed, "true"))]/#{DocTemplate::STARTTAG_XPATH})]
+      xpath = [%(*[not(contains(@data-parsed, "true"))]/#{::DocTemplate::STARTTAG_XPATH}),
+               %(*//*[not(contains(@data-parsed, "true"))]/#{::DocTemplate::STARTTAG_XPATH})]
       while (node = @nodes.at_xpath(*xpath))
         # identify the tag, take the siblings or enclosing and send it to the
         # relative tag class to render it
@@ -52,13 +50,13 @@ module DocTemplate
       return unless @opts[:metadata].try(:subject).to_s.casecmp('ela').zero?
       return unless ela_teacher_guidance_allowed?
 
-      DocTemplate.sanitizer.strip_content(@nodes)
+      ::DocTemplate.sanitizer.strip_content(@nodes)
       @nodes.prepend_child ela_teacher_guidance(@opts[:metadata], @opts[:context_type])
     end
 
     def ela_teacher_guidance(metadata, _context_type)
       @data = metadata
-      @data.preparation = DocTemplate.sanitizer.strip_html_element(@data.preparation)
+      @data.preparation = ::DocTemplate.sanitizer.strip_html_element(@data.preparation)
       template = File.read ELA_TG_TEMPLATE
       ERB.new(template).result(binding)
     end
@@ -125,7 +123,6 @@ module DocTemplate
 
       true
     end
-
     # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 
     def find_tag(name, value = '')
@@ -143,8 +140,7 @@ module DocTemplate
     # catch invalid tags and report about them
     #
     def handle_invalid_tag(node)
-      return if DocTemplate::FULL_TAG.match(node.text).present?
-
+      return if ::DocTemplate::FULL_TAG.match(node.text).present?
       raise DocumentError, "No closing bracket for node:<br>#{node.to_html}"
     end
 
@@ -158,12 +154,14 @@ module DocTemplate
       parsed_tag = tag.parse(node, @opts.merge(parent_document: self, value: tag_value))
 
       parsed_content = parsed_tag.content.presence || parsed_tag.render.to_s
+      sanitized_content = ::DocTemplate.config['sanitizer'].constantize
+                            .post_processing(parsed_content, @opts)
 
       return if TAGS_WITHOUT_PARTS.include?(tag::TAG_NAME)
 
       parts << {
         anchor: parsed_tag.anchor.to_s,
-        content: sanitized_content(parsed_content).squish,
+        content: sanitized_content.squish,
         context_type: @opts[:context_type],
         data: parsed_tag.tag_data,
         materials: parsed_tag.materials,
@@ -171,11 +169,6 @@ module DocTemplate
         placeholder: parsed_tag.placeholder,
         part_type: tag_name.underscore
       }
-    end
-
-    def sanitized_content(parsed_content)
-      DocTemplate.config['sanitizer'].constantize
-        .post_processing(parsed_content, @opts)
     end
 
     def registered_tags

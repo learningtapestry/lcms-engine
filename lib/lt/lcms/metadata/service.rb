@@ -42,9 +42,11 @@ module Lt
             @material = material
             if material?
               @metadata = DocTemplate::Tables::MaterialMetadata.parse content
-              raise ::MaterialError, 'No metadata present' if @metadata.data.empty?
+              raise ::MaterialError, 'No metadata present' if !@metadata&.table_exist? || @metadata&.data&.empty?
             else
               @metadata = DocTemplate::Tables::Metadata.parse content
+              raise ::DocumentError, 'No metadata present' unless @metadata&.table_exist?
+
               @agenda = DocTemplate::Tables::Agenda.parse content
               @section_metadata = DocTemplate::Tables::Section.parse content, 'core', force_inject_section?
               @activity_metadata = DocTemplate::Tables::Activity.parse content, template_type

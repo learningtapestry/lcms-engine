@@ -14,8 +14,14 @@ module DocTemplate
           new.parse(node, opts)
         end
 
+        def tag_with_html_regexp
+          raise NotImplementedError unless const_defined?(:TAG_NAME)
+
+          @tag_with_html_regexp ||= /\[[^\]]*#{self::TAG_NAME}[[^\:]]*:?\s?[^\]]*\]/i
+        end
+
         def template_path_for(name)
-          File.join Lcms::Engine::Engine.root.join('lib', 'doc_template', 'templates'), name
+          File.join Rails.root.join('lib', 'doc_template', 'templates'), name
         end
       end
 
@@ -29,8 +35,7 @@ module DocTemplate
       def check_tag_soft_return(node)
         # need to remove unicode spaces bc they're not handled by [[:graph:]]
         return unless node.content.gsub(UNICODE_SPACES_RE, '') =~ SOFT_RETURN_RE
-
-        raise DocumentError,
+        raise ::DocumentError,
               "Soft return for #{self.class::TAG_NAME} detected: #{node.content}, use hard return instead"
       end
 
@@ -75,15 +80,13 @@ module DocTemplate
       end
 
       def include_break_for?(node, key)
-        result = node.content =~ /\[\s*(#{tags(key)})/i
+        tags =
+          ::DocTemplate::Tags.config[self.class::TAG_NAME.downcase][key].map do |stop_tag|
+            ::DocTemplate::Tags.const_get(stop_tag)::TAG_NAME
+          end.join('|')
+        result = node.content =~ /\[\s*(#{tags})/i
         check_tag_soft_return(node) if result
         result
-      end
-
-      def tags(key)
-        ::DocTemplate::Tags.config[self.class::TAG_NAME.downcase][key].map do |stop_tag|
-          ::DocTemplate::Tags.const_get(stop_tag)::TAG_NAME
-        end.join('|')
       end
 
       def materials
@@ -99,9 +102,9 @@ module DocTemplate
       def parse_nested(node, opts = {})
         if node == opts[:parent_node]
           opts[:iteration] = opts[:iteration].to_i + 1
-          raise DocumentError, "Loop detected for node:<br>#{node}" if opts[:iteration] > MAX_ITERATIONS
+          raise ::DocumentError, "Loop detected for node:<br>#{node}" if opts[:iteration] > MAX_ITERATIONS
         end
-        parsed = DocTemplate::Document.parse(Nokogiri::HTML.fragment(node), opts.merge(level: 1))
+        parsed = ::DocTemplate::Document.parse(Nokogiri::HTML.fragment(node), opts.merge(level: 1))
         # add the parts to the parent document
         opts[:parent_document].parts += parsed.parts if opts[:parent_document]
         parsed.render

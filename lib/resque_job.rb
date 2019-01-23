@@ -39,7 +39,7 @@ module ResqueJob
           next unless job.is_a?(Hash) && (args = job.dig 'payload', 'args').is_a?(Array)
 
           args.select { |x| x['job_class'] == job_class.to_s }
-        end
+        end.compact
       return result unless block_given?
 
       result.detect(&block)
@@ -71,6 +71,11 @@ module ResqueJob
 
   def result_key
     @result_key ||= self.class.result_key(job_id)
+  end
+
+  def store_initial_result(res, options = {})
+    key = self.class.result_key(options[:initial_job_id].presence || job_id)
+    Resque.redis.set(key, res.to_json, ex: 1.hour.to_i)
   end
 
   def store_result(res, options = {})

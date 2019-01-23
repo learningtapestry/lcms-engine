@@ -5,8 +5,9 @@ class ImportStatus extends React.Component {
     this.state = { jobs: props.jobs };
     this.pollingInterval = 5000;
     this.chunkSize = 50;
-    this.links =_.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
+    this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
     this.path = _.isEmpty(props.path) ? `/admin/${this.props.type}/import_status` : props.path;
+    this.withPdf = props.with_pdf || false;
   }
 
   componentDidMount() {
@@ -39,6 +40,13 @@ class ImportStatus extends React.Component {
   }
 
   resourceButton(job) {
+    if (this.withPdf) {
+      return (
+        <a href={job.link}
+          className="o-adm-materials__resource ub-icon ub-file-pdf button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
+        </a>
+      );
+    }
     return _.map(this.links, (link, idx) => (
       <a key={`pl-${idx}`}
         href={linkWithParams(link, { id: job.model.id })}
@@ -81,10 +89,12 @@ class ImportStatus extends React.Component {
       <div>
         <p className="o-adm-materials__summary">
           <span className='summary-entry'>• {waitingCount} Files(s) Processing</span>
-          <span className='summary-entry'>✓ {importedCount} File(s) Imported</span>
+          <span className='summary-entry'>{`✓ ${importedCount} File(s) ${this.withPdf ? 'Generated' : 'Imported'}`}</span>
           <span className='summary-entry'>x {failedCount} File(s) Failed</span>
         </p>
-        <aside className='o-adm-materials__summary--aside u-margin-bottom--small'>After the (re)import the files for export are still in process of being generated in the background. They will appear soon after.</aside>
+        <aside className='o-adm-materials__summary--aside u-margin-bottom--small'>
+          After the (re){`${this.withPdf ? 'generation' : 'import'}`} the files for export are still in process of being generated in the background. They will appear soon after.
+        </aside>
         <ul className="o-adm-materials__results">
           {results}
         </ul>
