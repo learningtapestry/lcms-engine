@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Lcms
-  # Top level module
   module Engine
-    # Your code goes here...
+    # TODO: Set the correct prefix after renaming all the tables?
+    def self.table_name_prefix
+      ''
+    end
   end
 end
 
