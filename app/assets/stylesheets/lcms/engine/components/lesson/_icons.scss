@@ -48,7 +48,7 @@ $icons-svg: (wp);
 @each $icon in $icons-png {
   .o-m-icon {
     @include m($icon) {
-      background-image: asset-data-url("lessons/#{$icon}.png");
+      background-image: asset-data-url("lcms/engine/lessons/#{$icon}.png");
     }
   }
 }
@@ -56,7 +56,7 @@ $icons-svg: (wp);
 @each $icon in $icons-svg {
   .o-m-icon {
     @include m($icon) {
-      background-image: asset-url("lessons/#{$icon}.svg");
+      background-image: asset-url("lcms/engine/lessons/#{$icon}.svg");
     }
   }
 }

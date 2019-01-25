@@ -1,4 +1,4 @@
-//= require vendor/pdf.js
+//= require ./vendor/pdf.js
 
 /**
  * Get page info from document, set scale/canvas accordingly, and render page.

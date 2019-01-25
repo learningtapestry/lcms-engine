@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require i18n/translations
-//= require jquery/foundation.initialize
+//= require ../jquery/foundation.initialize
 //= require ckeditor/init
 //= require foundation
 //= require microplugin
@@ -10,13 +10,13 @@
 //= require selectize
 //= require react
 //= require react_ujs
-//= require vendor/html.sortable.min
-//= require vendor/jquery.tagsinput
+//= require ../vendor/html.sortable.min
+//= require ../vendor/jquery.tagsinput
 //= require jstree
 //= require js-routes
 //= require ../components
 //= require_tree ./components
-//= require initializers/google_analytics
+//= require ../initializers/google_analytics
 
 document.addEventListener('DOMContentLoaded', function() {
   $(document).initFoundation();
