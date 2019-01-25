@@ -1,0 +1,22 @@
+.c-cg-content__body {
+  @import
+    'cg/annotations',
+    'cg/elements',
+    'cg/footnote',
+    'cg/icons',
+    'cg/keywords',
+    'cg/links',
+    'cg/quotes',
+    'cg/standards',
+    'cg/table',
+    'cg/task',
+    'cg/video';
+}
+
+@import
+  'cg/colorscheme',
+  'cg/contents-modal',
+  'cg/faq';
+
+@import
+  'cg/hacks';

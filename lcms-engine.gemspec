@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on', '~> 5.0'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'closure_tree', '~> 6.6'
+  s.add_dependency 'devise', '~> 4'
   s.add_dependency 'google-api-client', '~> 0.9'
   s.add_dependency 'pg', '0.20'
   s.add_dependency 'pg_search', '~> 2.1'

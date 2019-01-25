@@ -1,0 +1,79 @@
+<header class="c-header">
+  <div class="c-header--<%= header_mod %>"></div>
+  <div class="o-page">
+    <div class="o-top-bar">
+      <div class="o-top-bar__item c-header-title">
+        <%= link_to root_path, class: 'c-header-title__logo c-header__link' do %>
+          <%= image_tag('logo-beta.svg') %>
+        <% end %>
+        <% if current_user&.ready_to_go? %>
+          <span class="c-header-title__h-menu" data-responsive-toggle="navbar" data-hide-for="large">
+            <span class="c-header-title__h-icon c-header__link" data-toggle>
+              <i class="fa-2x ub-menu" aria-hidden="true"></i>
+            </span>
+          </span>
+        <% end %>
+      </div>
+      <div class="o-top-bar__wrapper" id="navbar">
+        <% if current_user&.ready_to_go? %>
+          <div class="o-top-bar__item">
+            <ul class="menu c-header__menu">
+              <li class="hide-for-large">
+                <%= render partial: 'lcms/engine/shared/search_form' %>
+              </li>
+              <%= nav_link t('nav.curriculum_html'), main_app.explore_curriculum_index_path, { class: "c-header__link #{add_class_for_action(:resources, :show, 'active')}" }, { class: 'u-show' } %>
+              <%= nav_link t('nav.lessons_html'), main_app.find_lessons_path, { class: 'c-header__link' }, { class: 'u-show' } %>
+              <%= nav_link t('nav.instructions_html'), main_app.enhance_instruction_index_path, { class: "c-header__link #{add_class_for_action(:resources, :media, 'active')}" }, { class: 'u-show' } %>
+              <%# nav_link t('nav.leadership_html'), main_app.leadership_path, { class: 'c-header__link' }, { class: 'u-show' } %>
+              <%# nav_link t('nav.about_html'), main_app.about_path, { class: "c-header__link #{add_class_for_path(about_people_path, 'active')}" }, { class: 'u-show' } %>
+              <%= nav_link t('nav.helpdesk'), ENV['FRESHDESK_URL'], { class: 'c-header__link hide-for-large' }, target: '_blank'  if ENV['FRESHDESK_URL'].present? %>
+              <%= nav_link t('nav.logout'), main_app.destroy_user_session_path, { class: 'c-header__link hide-for-large' } %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="o-top-bar__item">
+          <ul class="menu c-header__left-menu">
+            <% if current_user&.ready_to_go? %>
+              <li class="c-header__link show-for-large">
+                <%= link_to main_app.search_path do %>
+                  <i class="ub-search u-margin-right--zero"></i>
+                <% end %>
+              </li>
+              <% if ENV['FRESHDESK_URL'].present? %>
+                <li class="c-header__link c-header__link--full c-header__link--semi-dark show-for-large">
+                  <%= link_to ENV['FRESHDESK_URL'], target: '_blank', class: 'u-flex' do %>
+                    <i class="ub-helpdesk u-margin-right--zero"></i>
+                  <% end %>
+                  <ul class="c-header__left-submenu c-header__helpdesk-hover menu" data-turbolinks="false">
+                    <li class="u-txt--ld-tooltip">
+                      <%= t('nav.helpdesk_hover_html') %>
+                    </li>
+                  </ul>
+                </li>
+              <% end %>
+            <% end %>
+            <% if user_signed_in? %>
+              <li class="c-header__link c-header__link--full c-header__link--semi-light show-for-large">
+                <a class="u-flex" data-turbolinks="false"><i class="ub-user u-margin-right--zero"></i></a>
+                <ul class="c-header__left-submenu c-header__auth-submenu menu" data-turbolinks="false">
+                  <li class="c-header__submenu-link">
+                    <div class="cs-txt-link--base-txt u-margin-horizontal--base u-margin-vertical--small"><%= current_user.name.presence || current_user.email %></div>
+                  </li>
+                  <li class="c-header__submenu-link">
+                    <%= link_to t('nav.logout'), main_app.destroy_user_session_path, class: 'cs-bg--violet-light u-show u-margin-horizontal--base' %>
+                  </li>
+                </ul>
+              </li>
+            <% end %>
+            <%# if current_user&.ready_to_go? >
+              <li class="c-header__link c-header__link--full c-header__link--light">
+                <a class="u-flex show-for-large" data-turbolinks="false"><i class="ub-share"></i></a>
+                <%= render partial: 'lcms/engine/shared/social_sharing_menu', locals: { cls: 'c-header' } >
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
