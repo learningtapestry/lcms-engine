@@ -1,0 +1,129 @@
+<% set_page_title @resource.page_title %>
+<% set_social_media_sharing @resource %>
+
+<% set_canonical_url(show_with_slug_path @resource.slug) if @resource.slug %>
+
+<div class="o-page o-page--margin-to-bottom o-page--resource">
+  <div class="o-page__sticky">
+    <div class="o-sticky o-sticky--left <%= 'o-sticky--disabled' unless @resource.previous %>">
+      <a class="o-sticky__btn o-sticky--left__btn" href="<%= @resource.previous ? show_with_slug_path(@resource.previous.slug) : '#' %>">
+        <div class="o-page__wrap--row o-sticky__wrap o-sticky__wrap--left">
+          <div class="o-sticky__icon <%= 'u-link--disabled' unless @resource.previous %>">
+            <i class="fa-3x ub-angle-left"></i>
+          </div>
+          <% if @resource.previous %>
+            <div class="o-sticky__txt hide-for-small-only">
+              <div class="o-sticky__arrow-subheader"><%= t('resources.btn.arrow', dir: 'Previous', type: type_name(@resource.previous)) %></div>
+              <div class="o-sticky__arrow-header"><%= @resource.previous.title %></div>
+            </div>
+          <% end %>
+          <div class="o-sticky__txt show-for-small-only <%= 'u-link--disabled' unless @resource.previous %>">
+            <div class="o-sticky__arrow-subheader"><%= t('resources.btn.arrow-small', dir: 'Previous', type:  type_name(@resource)) %></div>
+            <div class="o-sticky__arrow-header"><%= t('resources.btn.arrow-txt-small') %></div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="o-page__module">
+    <div class="o-page__wrap--row">
+      <div class="o-page__module u-margin-bottom--gutter">
+        <%= link_to back_to_resource_path(@resource), class: 'o-btn o-btn--base o-btn--xs-full' do %>
+          <i class="fa-lg ub-arrow-left u-text--middled"></i> <%= t('resources.btn.back') %>
+        <% end %>
+        <% if user_signed_in? %>
+          <%= link_to edit_admin_resource_path(@resource), class: 'o-btn o-btn--base', target: '_blank' do %>
+            <%= t('ui.edit') %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= render partial: 'lcms/engine/resources/header', locals: { resource: @resource } %>
+      <div class="o-page__section u-padding-top--gutter u-bg--light u-br-top-right--base u-br-bottom--base">
+        <div class="o-resource-title">
+          <div class="o-resource-title__title">
+            <div class="o-title u-text--uppercase">
+              <span class="o-title__type cs-txt--<%= color_code(@resource) %>"><%= @resource.short_title %></span>
+              <span class="o-title__duration u-hidden">
+                <%= react_component('TimeToTeach', {duration: @resource.time_to_teach}, prerender: true) %>
+              </span>
+            </div>
+            <h1><%= @resource.title %></h1>
+            <div class="u-txt--teaser o-social-sharing__teaser">
+              <%= @resource.teaser %>
+            </div>
+          </div>
+          <div class="o-resource-title__links">
+            <div>
+              <%= link_to t('resources.btn.related'), '#related-instruction', class: 'o-ub-btn o-ub-btn--2bordered-gray' %>
+            </div>
+          </div>
+        </div>
+        <hr class="o-resource-hr">
+        <div class="o-resource-summary u-padding-bottom--gutter">
+          <div class="o-resource-summary__map">
+            <div class="o-resource-summary__title">
+              <strong><%= @resource.subject_and_grade_title %> Curriculum Map</strong>
+            </div>
+            <%= react_component('CurriculumMap', @props.merge(mapType: 'cs'), prerender: true) %>
+            <%= render partial: 'lcms/engine/shared/social_sharing', locals: { resource: @resource, cl: 'u-margin-top--base' } %>
+          </div>
+          <div class="o-resource-summary__content">
+            <div class="o-resource__item o-resource__item--description">
+              <h3>Description</h3>
+              <%= @resource.description.try(:html_safe) %>
+            </div>
+            <%= render partial: 'lcms/engine/resources/downloads', locals: { resource: @resource } %>
+            <%= render partial: 'lcms/engine/resources/prerequisites_standards', locals: { resource: @resource } %>
+            <%= render_tag_clouds(@resource) %>
+            <% if @resource.engageny_url %>
+            <div class="o-resource__item  o-resource__item--credits">
+              <h3>Credits</h3>
+              <%= render partial: 'lcms/engine/resources/engageny', locals: { resource: @resource, color_code: color_code(@resource) } %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <% unless @resource.lesson? %>
+          <div class="o-resource-summary--2x u-pd-content--xlarge cs-tint-bg--<%= color_code(@resource) %> u-br-bottom--base">
+            <div class="o-resource-summary__map o-resource-summary__map--2x"></div>
+            <div class="o-resource-summary__content--2x">
+              <%= render partial: 'lcms/engine/resources/children_list', locals: { resource: @resource, color_code: color_code(@resource, base: true) } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'lcms/engine/resources/download_form', locals: { resource: @resource } %>
+  </div>
+  <div class="o-page__sticky">
+    <div class="o-sticky o-sticky--right <%= 'o-sticky--disabled' unless @resource.next %>">
+      <a class="o-sticky__btn o-sticky--right__btn" href="<%= @resource.next ? show_with_slug_path(@resource.next.slug) : '#' %>">
+        <div class="o-page__wrap--row o-sticky__wrap o-sticky__wrap--right">
+          <% if  @resource.next %>
+            <div class="o-sticky__txt hide-for-small-only">
+              <div class="o-sticky__arrow-subheader"><%= t('resources.btn.arrow', dir: 'Next', type: type_name(@resource.next)) %></div>
+              <div class="o-sticky__arrow-header"><%= @resource.next.title %></div>
+            </div>
+          <% end %>
+          <div class="o-sticky__txt show-for-small-only <%= 'u-link--disabled' unless @resource.next %>">
+            <div class="o-sticky__arrow-subheader"><%= t('resources.btn.arrow-small', dir: 'Next', type: type_name(@resource)) %></div>
+            <div class="o-sticky__arrow-header"><%= t('resources.btn.arrow-txt-small') %></div>
+          </div>
+          <div class="o-sticky__icon <%= 'u-link--disabled' unless @resource.next %>">
+            <i class="fa-3x ub-angle-right"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div id="related-instruction" class="u-bg--light">
+  <div class="o-page">
+    <%= react_component('RelatedInstruction',
+                        { id: @resource.id,
+                          resource_type: @resource.curriculum_type,
+                          has_more: @related_instructions.has_more,
+                          instructions: @related_instructions.instructions },
+                          prerender: true) %>
+  </div>
+</div>

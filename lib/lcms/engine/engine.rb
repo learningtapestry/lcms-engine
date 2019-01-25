@@ -4,6 +4,7 @@ require 'acts-as-taggable-on'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
+require 'devise'
 require 'resque/server'
 require 'validate_url'
 require 'virtus'
@@ -16,8 +17,7 @@ module Lcms
   module Engine
     # Top level engine class
     class Engine < ::Rails::Engine
-      # TODO: Re-enable namespaces once engine extraction is more stable.
-      # isolate_namespace Lcms::Engine
+      isolate_namespace Lcms::Engine
 
       config.autoload_paths += [
         config.root.join('lib'),
@@ -26,11 +26,10 @@ module Lcms
 
       config.assets.precompile += %w(*.svg *.ico)
 
-      config.to_prepare do
-        Dir.glob(Rails.root + 'app/decorators/**/*_decorator*.rb').each do |c|
-          require_dependency(c)
-        end
-      end
+      # NOTE: Sample to customize the layout
+      # config.to_prepare do
+      #   Devise::SessionsController.layout "layout_for_sessions_controller"
+      # end
     end
   end
 end

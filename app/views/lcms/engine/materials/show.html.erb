@@ -1,0 +1,35 @@
+<% set_page_title @material.metadata['identifier'].html_safe %>
+
+<%if user_signed_in? && current_user.admin? %>
+  <div class="c-ld-page-header">
+    <div class="o-page o-materials-list">
+      <div>
+        <%= link_to 'Go to Materials Admin', admin_materials_path(request.query_parameters), class: 'button primary u-margin-right--base' %>
+        <%= link_to @material.file_url, class: 'button primary u-margin-right--base', target: '_blank' do %>
+            <i class="ub-icon ub-file-gdoc"></i> Google Doc
+        <% end %>
+        <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { material: @material, btn_size: 'default' } %>
+      </div>
+      <% unless @material.pdf? %>
+        <div>
+          <%= link_to @material.pdf_preview_title, preview_pdf_material_path(@material), class: 'button warning', target: '_blank' %>
+          <%= link_to @material.gdoc_preview_title, preview_gdoc_material_path(@material), class: 'button warning', target: '_blank' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="u-bg--light">
+  <div class="o-page o-page--ld">
+    <div class="o-page__module u-bg--light c-ld u-padding-bottom--gutter">
+      <h1>Material: <%= @material.metadata['identifier'] %> </h1>
+      <h2 class="u-pdf-txt--m-header-title"><%= @material.title %></h2>
+      <% if @material.pdf? %>
+        <%= link_to 'Source PDF', @material.file_url , target: '_blank' %>
+      <% else %>
+        <%= raw @material.content_for(:default) %>
+      <% end %>
+    </div>
+  </div>
+</div>
