@@ -26,6 +26,10 @@ module Lcms
 
       config.assets.precompile += %w(*.svg *.ico)
 
+      initializer 'lcms.engine.assets.precompile' do |app|
+        app.config.assets.precompile += %w(lcms_engine_manifest.js)
+      end
+
       # NOTE: Sample to customize the layout
       # config.to_prepare do
       #   Devise::SessionsController.layout "layout_for_sessions_controller"

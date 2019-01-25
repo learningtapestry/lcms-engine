@@ -1,9 +1,9 @@
 //= require react-server
 //= require react_ujs
-//= require prerender_polyfill
+//= require ./prerender_polyfill
 //= require js-routes
-//= require initializers/heap_analytics.js.jsx
-//= require components
+//= require ./initializers/heap_analytics.js.jsx
+//= require ./components
 //= require_tree ./admin/components/
 
 //
