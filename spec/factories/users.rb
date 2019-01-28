@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user, class: Lcms::Engine::User do
     access_code { create(:access_code).code }
     confirmed_at { Time.current }

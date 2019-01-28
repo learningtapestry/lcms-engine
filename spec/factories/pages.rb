@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :page, class: Lcms::Engine::Page do
     body { Faker::Lorem.sentence(100) }
     title { Faker::Lorem.sentence(10) }

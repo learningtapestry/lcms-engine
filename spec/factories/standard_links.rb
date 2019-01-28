@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :standard_link, class: Lcms::Engine::StandardLink do
   end
 end
