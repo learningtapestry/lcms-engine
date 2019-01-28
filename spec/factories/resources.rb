@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :resource, class: Lcms::Engine::Resource do
     curriculum { Curriculum.default || create(:curriculum) }
     curriculum_type 'lesson'
