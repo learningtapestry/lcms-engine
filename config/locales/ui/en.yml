@@ -1,0 +1,171 @@
+en:
+  curriculum:
+    ela: English Language Arts
+    math: Mathematics
+    ela_unit: unit
+    math_unit: topic
+    module: module
+    lesson: lesson
+    ela_module_label: "Module %{idx}"
+    math_module_label: "Module %{idx}"
+    ela_unit_label: "Unit %{idx}"
+    math_unit_label: "Topic %{idx}"
+    ela_lesson_label: "Lesson %{idx}"
+    math_lesson_label: "Lesson %{idx}"
+    resource_label: "%{title} of %{count}"
+    unit_x_label: "(Core Materials for %{lesson} above)"
+    unit_title: "Unit %{idx}"
+    module_title: "Module %{idx}"
+  footer:
+    address_html: >
+      123 Main Street, 12th fl, New York NY 10003
+    contact: Contact
+    copyright_html: © Copyright UnboundEd Learning. %{year}.
+    credits: Credits
+    credits_full_html: >
+      Design by <a href="https://www.linkedin.com/in/ryan-reynolds-0a67411/" target="_blank">Philament</a> and
+      <a href="https://constructive.co/" target="_blank">Constructive</a>; technology by
+      <a href="https://www.learningtapestry.com/" target="_blank">Learning Tapestry</a>. All photos copyright
+      <a href="https://www.unbounded.org/" target="_blank">UnboundEd</a> &
+      <a href="https://www.vertamaloney.com/" target="_blank">Verta Maloney</a>.
+    phone_html: (888)123-4567
+    privacy: Privacy
+    rights_html: All rights reserved.
+    search: Search
+    terms: Terms of Use
+  helpdesk:
+    title: Need help getting started?
+    content: Check out Help Desk for demo videos or to submit a question.
+    cta: Visit the Help Desk
+  layouts:
+    admin:
+      admin: Administration
+    application:
+      admin: Administration
+      tos: Terms of Service
+  nav:
+    about: About UnboundEd
+    about_dropdown:
+      careers: Careers
+      contact: Contact
+      institute: Standards Institute
+      mission: Mission & Vision
+      people: People & Partners
+    about_html: <span>About</span><span>UnboundEd</span>
+    curriculum: Explore Curriculum
+    curriculum_html: <span>Explore</span><span>Curriculum</span>
+    helpdesk: Support
+    helpdesk_hover_html: <span class='u-txt--helpdesk-hover-title'>UnboundEd Help Desk</span><br/>View demo videos or submit a question.
+    instructions: Enhance Instruction
+    instructions_html: <span>Enhance</span><span>Instruction</span>
+    leadership_html: <span>Advance</span><span>Leadership</span>
+    lessons: Find Lessons
+    lessons_html: <span>Find</span><span>Lessons</span>
+    logout: Logout
+    news: News
+    professional_development: Professional Development
+  instructions:
+    btn:
+      back: "Back to Instruction"
+  resources:
+    btn:
+      view: "View %{short_title}"
+      download: "Download %{title}"
+      related: "Related Resources"
+      back: "Back to Curriculum Map"
+      arrow: "%{dir} %{type} in Series"
+      arrow-small: "%{dir} %{type}"
+      arrow-txt-small: "in this Series"
+      explore: "Explore %{short_title}"
+    title:
+      children: "In This %{type}"
+      download_category: "General"
+    nav:
+      next_lesson: Next LESSON
+      next_module: Next MODULE
+      next_unit: Next UNIT
+      previous_lesson: Previous LESSON
+      previous_module: Previous MODULE
+      previous_unit: Previous UNIT
+    sidebar_lr_nav:
+      previous_link: "Previous %{title}"
+      next_link: "Next %{title}"
+    sidebar_up_nav:
+      up_link: "Previous %{title}"
+    sidebar_down_nav:
+      down_link: "Next %{title}"
+  title:
+    logo: UnboundEd Logo
+    subscribe: Get updates and stay connected
+    active: Document status
+    age_range: Age range
+    age_ranges: Age ranges
+    standard: Standard
+    standards: Standards
+    grade: Grade
+    grades: Grades
+    identity: Identity
+    identities: Identities
+    language: Language
+    languages: Languages
+    resource_type: Resource type
+    resource_types: Resource types
+    subject: Subject
+    subjects: Subjects
+    standard: Standard
+    standards: Standards
+    status: Document status
+    sources:
+      engageny: Document status
+    topic: Topic
+    topics: Topics
+  ui:
+    actions: Actions
+    add: Add
+    all: All
+    are_you_sure: Are you sure?
+    close: Close
+    contents: Contents
+    delete: Delete
+    download: Download
+    edit: Edit
+    export: Export
+    export_custom_gdoc: Generate Materials (GDOC)
+    export_custom_pdf: Generate Materials (PDF)
+    export_gdoc: View in Google Drive
+    export_pdf: Print / Open in PDF
+    export_resources: Export Resources
+    hide: Hide
+    import: Import
+    import_subtitles: 'Import subtitles & descriptions'
+    loading: Loading
+    reimport: Re-import
+    remove: Remove
+    save: Save
+    subscribe: Subscribe
+    search: Search
+    open_ela_grade: Open this Grade
+    open_ela_lesson: Open this Lesson
+    open_ela_module: Open this Module
+    open_ela_unit: Open this Unit
+    open_math_grade: Open this Grade
+    open_math_lesson: Open this Lesson
+    open_math_module: Open this Module
+    open_math_unit: Open this Topic
+    print: Print
+    show: Show
+    show_less: Show Less ...
+    show_more: Show More ...
+    url: URL
+    learn_more: Learn More
+    view_all_lessons: View All Lessons
+    view_all_instructions: View All Instructions
+    go: Go
+    register: Register Now
+    view_topics: View Topics
+    contact_us: Contact Us
+    questions: Questions?
+    guide: Guide
+    grade: Grade
+    unbounded: OpenSciEd
+    standards_institute: Standards Institute

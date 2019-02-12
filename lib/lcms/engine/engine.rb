@@ -14,6 +14,21 @@ require 'resque/server'
 require 'validate_url'
 require 'virtus'
 
+# UI and asset specific gems have to be required for host app to have access to its assets
+require 'ckeditor'
+require 'font-awesome-sass'
+require 'foundation-rails'
+require 'js-routes'
+require 'nested_form'
+require 'rails-assets-classnames'
+require 'rails-assets-es6-promise'
+require 'rails-assets-eventemitter3'
+require 'rails-assets-fetch'
+require 'rails-assets-jstree'
+require 'rails-assets-lodash'
+require 'rails-assets-selectize'
+
+# LearningTapestry gems
 require 'lt/google/api'
 require 'lt/google/api/auth/credentials'
 require 'lt/lcms'
@@ -70,6 +85,21 @@ module Lcms
         )
       end
 
+      initializer 'append_migrations' do |app|
+        unless app.root.to_s.match?(root.to_s)
+          config.paths['db/migrate'].expanded.each do |expanded_path|
+            app.config.paths['db/migrate'] << expanded_path
+          end
+        end
+      end
+
+      config.after_initialize do
+        ::Bullet.enable = true
+        ::Bullet.bullet_logger = true
+        ::Bullet.console = true
+        ::Bullet.rails_logger = true
+      end
+
       ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(
         ENV.fetch('ENABLE_CACHING', true)
       )
@@ -83,13 +113,6 @@ module Lcms
         }
       else
         config.cache_store = :null_store
-      end
-
-      config.after_initialize do
-        ::Bullet.enable = true
-        ::Bullet.bullet_logger = true
-        ::Bullet.console = true
-        ::Bullet.rails_logger = true
       end
 
       # NOTE: Sample to customize the layout

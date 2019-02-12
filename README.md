@@ -106,14 +106,14 @@ Or install it yourself as:
 $ gem install lcms-engine
 ```
 
+You may need to load the schema. Execute from your app's root directory:
+```bash
+$ bundle exec rake lcms_engine:load_default_schema
+```
+
 ### Migrations
 
-In order to use the migrations provided by the engine, first you need to copy them to your project
-by running:
-
-```bash
-bin/rake lcms_engine_engine:install:migrations
-```
+All migrations included in the gem are already available for you to run from inside host application. 
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
