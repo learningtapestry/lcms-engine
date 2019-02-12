@@ -26,14 +26,3 @@ gem 'lt-lcms',
 
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support', ref: '36b0e0e8'
-
-source 'https://rails-assets.org' do
-  gem 'rails-assets-classnames', '~> 2.2.3'
-  gem 'rails-assets-es6-promise', '~> 3.1.2'
-  gem 'rails-assets-eventemitter3', '~> 1.2.0'
-  gem 'rails-assets-fetch', '~> 0.11.0'
-  gem 'rails-assets-jstree', '~> 3.3.4'
-  gem 'rails-assets-knockout', '~> 3.3.0'
-  gem 'rails-assets-lodash', '~> 4.17.11'
-  gem 'rails-assets-selectize', '~> 0.12.1'
-end
