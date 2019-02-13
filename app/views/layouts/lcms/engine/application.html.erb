@@ -1,16 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Lcms engine</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= stylesheet_link_tag    "lcms/engine/application", media: "all" %>
-  <%= javascript_include_tag "lcms/engine/application" %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+<!doctype html>
+<!-- Site by Constructive & Learning Tapestry -->
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= page_title %></title>
+    <meta name="description" content="<%= page_description %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= redirect_meta_tag %>
+    <%= render partial: 'lcms/engine/shared/open_graph_meta' %>
+    <%= render partial: 'lcms/engine/shared/favicon' %>
+    <script>document.querySelector('html').className = 'js';</script>
+    <script>
+      window._PDFJSworkerSrc = '<%= asset_url('vendor/pdf.worker.js') %>'
+    </script>
+    <%= stylesheet_link_tag 'lcms/engine/main', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag '//s7.addthis.com/js/300/addthis_widget.js#async=1' %>
+    <%= javascript_include_tag 'lcms/engine/application', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'lcms/engine/pdf_js_preview', 'data-turbolinks-track' => 'reload' if generic_page? %>
+    <%= render partial: 'lcms/engine/shared/google_analytics' %>
+    <%= render partial: 'lcms/engine/shared/heap_analytics' %>
+    <%= csrf_meta_tags %>
+    <% if content_for?(:canonical_url) %>
+      <link rel=canonical href='<%= yield(:canonical_url) %>'>
+    <% end %>
+  </head>
+  <body>
+    <%= render partial: 'lcms/engine/shared/open_graph_meta_js' %>
+    <%= render partial: 'lcms/engine/shared/unsupported' %>
+    <div class="u-page-wrap u-supported<%= ' u-bg--light' if devise_controller? || controller.controller_name == 'surveys' %>">
+      <%= render partial: 'lcms/engine/shared/header' %>
+      <%= render partial: 'lcms/engine/shared/flash' %>
+      <%= yield %>
+    </div>
+    <%= render partial: 'lcms/engine/shared/footer' %>
+  </body>
 </html>

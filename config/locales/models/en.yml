@@ -1,0 +1,30 @@
+en:
+  activemodel:
+    errors:
+      models:
+        subtitles_importer:
+          attributes:
+            file:
+              incorrect_format: 'incorrect format: %{count} columns instead of %{limit}'
+              incorrect_type: has incorrect type
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: "Passwords don't match"
+    models:
+      resource: Resource
+    attributes:
+      resource:
+        additional_resources: Additional materials
+        resource_downloads: Downloadable resources
+        related_resources: Related materials
+        status: Status
+        url: URL
+      resource_child:
+        child_id: Resource
+      resource_collection:
+        resource: Root Resource
+        resource_collection_type: Collection Type

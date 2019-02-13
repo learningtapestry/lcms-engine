@@ -23,3 +23,6 @@ gem 'lt-google-api',
 gem 'lt-lcms',
     git: 'https://github.com/learningtapestry/lt-lcms.git',
     branch: 'refactoring'
+
+gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
+                  branch: 'puppeteer-support', ref: '36b0e0e8'

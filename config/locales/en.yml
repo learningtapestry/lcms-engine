@@ -1,0 +1,60 @@
+en:
+  bundles:
+    full: All Lesson Materials
+    sm: Student Materials Only
+    tm: Teacher Materials Only
+  content_type:
+    "application/zip": zip
+    "application/pdf": pdf
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": openoffice spreadsheet
+    "application/vnd.ms-excel": excel
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation": openoffice presentation
+    "application/msword": doc
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": openoffice document
+    "application/vnd.ms-powerpoint": powerpoint
+  download_categories:
+    rubrics_and_tools: Rubrics And Tools
+    texts: Texts
+  grades:
+    ela:
+      grade_9: Grade 9
+      grade_10: Grade 10
+      grade_11: Grade 11
+      grade_12: Grade 12
+    math:
+      grade_9: Algebra I
+      grade_10: Geometry
+      grade_11: Algebra II
+      grade_12: Precalculus
+  resources_count:
+    one: resource
+    other: resources
+  resource_statuses:
+    active: Active
+    hidden: Hidden
+  resource_types:
+    resource: Resource
+    podcast: Podcast
+    video: Video
+    quick_reference_guide: Quick Reference Guide
+    text_set: Text Set
+    resource_other: Resource
+  subjects:
+    ela: ELA
+    math: Math
+    lead: Lead
+  survey:
+    first_name: First Name
+    last_name: Last Name
+    district_or_system: District / School System
+    district_or_system_other: Other
+    subject_or_grade: Subject / Grade Taught This Year
+    subject_or_grade_other: Other
+    number_of_minutes: Number of Minutes In a Core Class Perios / Block
+    additional_period: Additional instructional period for students who need more academic support
+    additional_period_minutes: How many minutes are in the additional instructional period?
+    prior_experience: Prior experience using EngageNY, Eureka, Expeditionary Learning, or Core Knowledge
+
+  registrations:
+    access_code:
+      error: The code is invalid. Please try another

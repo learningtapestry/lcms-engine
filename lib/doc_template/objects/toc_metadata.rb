@@ -53,7 +53,7 @@ module DocTemplate
 
       class << self
         def dump(data)
-          data.to_json
+          data.as_json
         end
 
         def load(data)
