@@ -23,8 +23,8 @@ module Lcms
 
         def api_request(path, params = {})
           res = HTTParty.get api_url(path),
-            query: params,
-            headers: { 'Authorization' => "Token token=\"#{api_token}\"" }
+                             query: params,
+                             headers: { 'Authorization' => "Token token=\"#{api_token}\"" }
           parse_response(res)
         rescue URI::InvalidURIError, ComponentsAPIError => e
           Rails.logger.error("Error requesting the components API: path=#{path} params=#{params}")

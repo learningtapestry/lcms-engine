@@ -6,10 +6,10 @@ module Lcms
       def self.ngrams_multi_field
         {
           type: 'string', fields: {
-          full: { type: 'string', analyzer: 'full_str' },
-          partial: { type: 'string', analyzer: 'partial_str' },
-          key: { type: 'string', index: 'not_analyzed' }
-        }
+            full: { type: 'string', analyzer: 'full_str' },
+            partial: { type: 'string', analyzer: 'partial_str' },
+            key: { type: 'string', index: 'not_analyzed' }
+          }
         }
       end
 

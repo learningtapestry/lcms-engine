@@ -5,13 +5,10 @@ module Lcms
     class AnalyticsExclusionController < Lcms::Engine::ApplicationController
       def exclude
         render layout: false,
-          locals: {
-            ga_id: ENV['GOOGLE_ANALYTICS_ID']
-          }
+               locals: {
+                 ga_id: ENV['GOOGLE_ANALYTICS_ID']
+               }
       end
     end
   end
 end
-
-
-
