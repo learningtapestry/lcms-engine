@@ -29,7 +29,7 @@ class MaterialBuildService
     material.update!(
       material_params.merge(
         identifier: identifier,
-        metadata: DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier: identifier, title: title).to_json
+        metadata: DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier: identifier, title: title).as_json
       )
     )
 
@@ -60,7 +60,7 @@ class MaterialBuildService
       material_params.merge(
         css_styles: template.css_styles,
         identifier: metadata['identifier'].downcase,
-        metadata: metadata.to_json,
+        metadata: metadata.as_json,
         original_content: content
       )
     )
