@@ -10,7 +10,7 @@ FactoryBot.define do
     password_confirmation '12345678'
     survey { { key: 'value' } }
 
-    factory :admin, class: Lcms::Engine::admin do
+    factory :admin, class: Lcms::Engine::Admin do
       name 'Admin User'
       role 'admin'
     end

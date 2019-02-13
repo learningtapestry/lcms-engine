@@ -7,7 +7,7 @@ class BasePresenter < SimpleDelegator
       instance_variable_set("@#{key}", value)
     end
   end
-  
+
   def t(key, options = {})
     class_name = self.class.to_s.underscore
     options[:raise] = true
