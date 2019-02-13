@@ -2,7 +2,7 @@
 Implements a Rails engine for Learning Content Management System (LCMS) applications.
 
 Our initial goal is gathering the common code among the current LCMS implementations
-(Odell, Unbound ED and OpenSciEd) and provide a unified codebase that can be mantained and developed
+(Odell, Unbound ED and OpenSciEd) and provide a unified codebase that can be maintained and developed
 separately, simplifying the client applications in the process.
 
 ## Current development
@@ -39,7 +39,7 @@ specific versions that cater to individual Rails releases.
 In our opinion, the creation of separate gems in a given project only makes sense when the features
 to be extracted have enough weight to justify a separate development cycle, away from the original
 project, and are useful to more than one application at the same time. When that does not happen,
-the argument in favour of multiple gems per project becomes less convincing, and the downsides of
+the argument in favor of multiple gems per project becomes less convincing, and the downsides of
 this approach - like keeping compatibility with the dependencies or being forced to manage different
 versions - are more evident and, thus, make development harder for a minor benefit.
 
@@ -113,7 +113,7 @@ $ bundle exec rake lcms_engine:load_default_schema
 
 ### Migrations
 
-All migrations included in the gem are already available for you to run from inside host application. 
+All migrations included in the gem are already available for you to run from inside host application.
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).

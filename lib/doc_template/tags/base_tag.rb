@@ -35,6 +35,7 @@ module DocTemplate
       def check_tag_soft_return(node)
         # need to remove unicode spaces bc they're not handled by [[:graph:]]
         return unless node.content.gsub(UNICODE_SPACES_RE, '') =~ SOFT_RETURN_RE
+
         raise ::DocumentError,
               "Soft return for #{self.class::TAG_NAME} detected: #{node.content}, use hard return instead"
       end

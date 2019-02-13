@@ -26,7 +26,7 @@ module Lcms
           @document = reimport_lesson
           if @document.save
             redirect_to AdminController.document_path(@document.document),
-              notice: t('.success', name: @document.document.name)
+                        notice: t('.success', name: @document.document.name)
           else
             render :new, alert: t('.error')
           end

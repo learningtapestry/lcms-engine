@@ -141,6 +141,7 @@ module DocTemplate
     #
     def handle_invalid_tag(node)
       return if ::DocTemplate::FULL_TAG.match(node.text).present?
+
       raise DocumentError, "No closing bracket for node:<br>#{node.to_html}"
     end
 

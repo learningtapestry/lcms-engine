@@ -5,10 +5,10 @@ module Lcms
     module Admin
       class AssociationPickerController < AdminController
         VALID_ASSOCIATIONS = %w(
-      content_sources grades topics tags
-      reading_assignment_authors reading_assignment_texts
-      standards
-    ).freeze
+          content_sources grades topics tags
+          reading_assignment_authors reading_assignment_texts
+          standards
+        ).freeze
 
         def index
           @items = association_items
