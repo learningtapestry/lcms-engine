@@ -10,6 +10,7 @@ AllCops:
     - '**/Rakefile'
   Exclude:
     - bin/*
+    - db/schema.rb
     - spec/dummy/db/schema.rb
     - templates/*
   TargetRubyVersion: 2.5

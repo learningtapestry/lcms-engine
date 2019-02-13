@@ -1,0 +1,29 @@
+<!doctype html>
+<!-- Site by Constructive & Learning Tapestry -->
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= "#{t('ui.unbounded')} - #{page_title}" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : t('default_title') %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= render partial: 'lcms/engine/shared/favicon' %>
+    <script>document.querySelector('html').className = 'js';</script>
+    <%= stylesheet_link_tag 'lcms/engine/admin', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= render partial: 'lcms/engine/shared/google_analytics' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: 'lcms/engine/shared/unsupported' %>
+    <div class="u-page-wrap c-admin u-supported">
+      <%= render partial: 'lcms/engine/admin/shared/header' %>
+      <div class=o-page>
+        <%= render partial: 'lcms/engine/shared/flash' %>
+        <%= yield %>
+      </div>
+    </div>
+    <%= render partial: 'lcms/engine/shared/footer' %>
+
+    <%= javascript_include_tag 'lcms/engine/admin/application', 'data-turbolinks-track' => 'reload' %>
+  </body>
+</html>
