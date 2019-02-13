@@ -17,6 +17,7 @@ namespace :cleanup do # rubocop:disable Metrics/BlockLength
     task :pdf, [:s3_folder] => [:environment] do |_task, args|
       Document.find_each do |document|
         next if document.links.dig('pdf', 'preview').blank?
+
         links = document.links
         links['pdf']&.delete('preview')
         document.update_columns links: links

@@ -1,5 +1,6 @@
 PreCommit:
   RuboCop:
+    command: ['rubocop', '--force-exclusion']
     enabled: true
     on_warn: fail
     exclude:

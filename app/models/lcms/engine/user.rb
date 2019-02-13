@@ -8,7 +8,7 @@ module Lcms
       # Include default devise modules. Others available are:
       # :lockable, :timeoutable and :omniauthable
       devise :database_authenticatable, :registerable, :confirmable,
-        :recoverable, :rememberable, :trackable, :validatable
+             :recoverable, :rememberable, :trackable, :validatable
 
       enum role: { admin: 1, user: 0 }
 

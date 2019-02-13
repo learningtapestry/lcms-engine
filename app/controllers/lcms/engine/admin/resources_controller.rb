@@ -5,7 +5,7 @@ module Lcms
     module Admin
       class ResourcesController < AdminController
         CREATE_TAG_KEYS = %i(new_topic_names new_tag_names new_content_source_names
-                         new_standard_names).freeze
+                             new_standard_names).freeze
         CREATE_TAG_METHODS = {
           new_topic_names: 'topic',
           new_tag_names: 'tag',
@@ -57,7 +57,9 @@ module Lcms
         end
 
         def update
-          return redirect_to :admin_resources, alert: t('admin.common.editing_disabled') unless Settings[:editing_enabled]
+          unless Settings[:editing_enabled]
+            return redirect_to(:admin_resources, alert: t('admin.common.editing_disabled'))
+          end
 
           create_tags
           Array.wrap(create_params[:new_standard_names]).each do |std_name|
