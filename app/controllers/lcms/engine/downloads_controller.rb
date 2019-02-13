@@ -22,9 +22,9 @@ module Lcms
       def pdf_proxy
         uri = URI.parse attachment_url
         send_data uri.open.read,
-          disposition: :inline,
-          file_name: attachment_url.split('/').last,
-          type: 'application/pdf'
+                  disposition: :inline,
+                  file_name: attachment_url.split('/').last,
+                  type: 'application/pdf'
       end
 
       private

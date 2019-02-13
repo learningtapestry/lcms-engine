@@ -38,7 +38,7 @@ module Lcms
 
       scope :filter_by_unit, lambda { |u|
         where("(lower(documents.metadata ->> 'unit') = :u OR lower(documents.metadata ->> 'topic') = :u)",
-          u: u.to_s.downcase)
+              u: u.to_s.downcase)
       }
 
       scope :filter_by_module, lambda { |mod|

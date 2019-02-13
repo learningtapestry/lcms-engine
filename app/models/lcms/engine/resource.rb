@@ -52,9 +52,9 @@ module Lcms
       has_many :resource_related_resources, dependent: :destroy
       has_many :related_resources, through: :resource_related_resources, class_name: 'Resource'
       has_many :resource_related_resources_as_related,
-        class_name: 'ResourceRelatedResource',
-        foreign_key: 'related_resource_id',
-        dependent: :destroy
+               class_name: 'ResourceRelatedResource',
+               foreign_key: 'related_resource_id',
+               dependent: :destroy
 
       has_many :copyright_attributions, dependent: :destroy
       has_many :social_thumbnails, as: :target
@@ -75,7 +75,7 @@ module Lcms
       before_save :update_metadata, :update_slug, :update_position
 
       after_save :update_descendants_meta, :update_descendants_position,
-        :update_descendants_tree, :update_descendants_author
+                 :update_descendants_tree, :update_descendants_author
 
       before_destroy :destroy_additional_resources
 
@@ -200,10 +200,11 @@ module Lcms
       end
 
       def download_categories
-        @download_categories ||= resource_downloads.includes(:download_category).includes(:download)
-                                   .sort_by { |rd| rd.download_category&.position.to_i }
-                                   .group_by { |d| d.download_category&.title.to_s }
-                                   .transform_values { |v| v.sort_by { |d| [d.download.main ? 0 : 1, d.download.title] } }
+        @download_categories ||=
+          resource_downloads.includes(:download_category).includes(:download)
+            .sort_by { |rd| rd.download_category&.position.to_i }
+            .group_by { |d| d.download_category&.title.to_s }
+            .transform_values { |v| v.sort_by { |d| [d.download.main ? 0 : 1, d.download.title] } }
       end
 
       def pdf_downloads?(category = nil)
