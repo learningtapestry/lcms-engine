@@ -1,3 +1,5 @@
+verify_signatures: false
+
 PreCommit:
   RuboCop:
     command: ['rubocop', '--force-exclusion']
