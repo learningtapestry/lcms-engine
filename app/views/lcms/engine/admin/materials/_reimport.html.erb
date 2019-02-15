@@ -1,4 +1,4 @@
-<%= form_tag(main_app.admin_materials_path, method: :post, class: 'inline-form-btn', target: '_blank') do %>
+<%= form_tag(lcms_engine.admin_materials_path, method: :post, class: 'inline-form-btn', target: '_blank') do %>
   <%= hidden_field_tag('material_form[source_type]', material.source_type) %>
   <%= hidden_field_tag('material_form[link]', material.file_url) %>
   <%= submit_tag 'Reimport', class: "button primary #{local_assigns.fetch(:btn_size, 'small')}" %>

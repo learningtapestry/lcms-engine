@@ -21,7 +21,7 @@ module DocTemplate
         end
 
         def template_path_for(name)
-          File.join Rails.root.join('lib', 'doc_template', 'templates'), name
+          File.join ::Lcms::Engine::Engine.root.join('lib', 'doc_template', 'templates'), name
         end
       end
 

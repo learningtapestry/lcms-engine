@@ -1,4 +1,4 @@
-$(function () {
+(function () {
   const COMPONENT_PREFIX = '.o-ld';
 
   const eachNode = (selector, fn) => [].forEach.call(document.querySelectorAll(selector), fn);
@@ -58,12 +58,12 @@ $(function () {
       let url = el.dataset.url;
 
       if (!PDFObject.supportsPDFs) {
-        url = `${Routes.pdf_proxy_resources_path()}?url=${url}`;
+        url = `${Routes.lcms_engine_pdf_proxy_resources_path()}?url=${url}`;
       }
 
       PDFObject.embed(url, el, {
         pdfOpenParams: { page: 1, view: 'FitV' },
-        PDFJS_URL: Routes.pdfjs_full_path()
+        PDFJS_URL: Routes.lcms_engine_pdfjs_full_path()
       });
     };
 
@@ -280,4 +280,4 @@ $(function () {
     initToggler('expand');
     initToggler('materials');
   };
-});
+})();

@@ -1,7 +1,7 @@
 <h4><strong>Download Categories</strong></h4>
 <div class="o-adm-download">
   <%# TODO: Refactor to remove model call from here %>
-  <% DownloadCategory.select(:id, :title).each do |category| %>
+  <% Lcms::Engine::DownloadCategory.select(:id, :title).each do |category| %>
     <div class="o-adm-download__settings">
       <span><%= category.title %>:</span>
       <%

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'elasticsearch/persistence'
+
 module Lcms
   module Engine
     module Search
@@ -43,19 +45,20 @@ module Lcms
 
       class Repository
         include Elasticsearch::Persistence::Repository
+        include Elasticsearch::Persistence::Repository::DSL
 
         client Elasticsearch::Client.new(host: ENV['ELASTICSEARCH_ADDRESS'])
 
-        index :"unbounded_documents_#{Rails.env}"
+        index_name :"unbounded_documents_#{Rails.env}"
 
-        type :documents
+        document_type :document
 
-        klass ::Search::Document
+        klass Lcms::Engine::Search::Document
 
-        settings index: ::Search.index_settings do
+        settings index: Lcms::Engine::Search.index_settings do
           mappings dynamic: 'false' do
             indexes :breadcrumbs, type: 'string', index: 'not_analyzed'
-            indexes :description, **::Search.ngrams_multi_field
+            indexes :description, **Lcms::Engine::Search.ngrams_multi_field
             indexes :doc_type, type: 'string', index: 'not_analyzed' #  module | unit | lesson | video | etc
             indexes :document_metadata, type: 'string'
             indexes :grade, type: 'string', index: 'not_analyzed'
@@ -66,9 +69,9 @@ module Lcms
             indexes :tag_authors, type: 'string'
             indexes :tag_keywords, type: 'string'
             indexes :tag_standards, type: 'string', analyzer: 'keyword_str'
-            indexes :tag_texts, **::Search.ngrams_multi_field
-            indexes :teaser, **::Search.ngrams_multi_field
-            indexes :title, **::Search.ngrams_multi_field
+            indexes :tag_texts, **Lcms::Engine::Search.ngrams_multi_field
+            indexes :teaser, **Lcms::Engine::Search.ngrams_multi_field
+            indexes :title, **Lcms::Engine::Search.ngrams_multi_field
           end
         end
 

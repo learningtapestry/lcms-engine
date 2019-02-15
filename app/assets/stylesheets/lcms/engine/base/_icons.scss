@@ -2,11 +2,11 @@
   font-family: 'ubicons';
   font-style: normal;
   font-weight: normal;
-  src: font-url('icons/ubicons.eot?av3fvp');
-  src: font-url('icons/ubicons.eot?av3fvp#iefix') format('embedded-opentype'),
-       font-url('icons/ubicons.ttf?av3fvp') format('truetype'),
-       font-url('icons/ubicons.woff?av3fvp') format('woff'),
-       font-url('icons/ubicons.svg?av3fvp#ubicons') format('svg');
+  src: font-url('lcms/engine/icons/ubicons.eot?av3fvp');
+  src: font-url('lcms/engine/icons/ubicons.eot?av3fvp#iefix') format('embedded-opentype'),
+       font-url('lcms/engine/icons/ubicons.ttf?av3fvp') format('truetype'),
+       font-url('lcms/engine/icons/ubicons.woff?av3fvp') format('woff'),
+       font-url('lcms/engine/icons/ubicons.svg?av3fvp#ubicons') format('svg');
 }
 
 @mixin ub-icon {

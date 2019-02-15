@@ -16,8 +16,8 @@ function SearchResultsEmpty(props) {
       <h3 className='u-text--large'>Or, Maybe We Can Help</h3>
 
       <ul>
-        <li><a href={Routes.explore_curriculum_index_path()}>Explore Our Curriculum</a></li>
-        <li><a href={Routes.find_lessons_path()}>Find Lessons in our Library</a></li>
+        <li><a href={Routes.lcms_engine_explore_curriculum_index_path()}>Explore Our Curriculum</a></li>
+        <li><a href={Routes.lcms_engine_find_lessons_path()}>Find Lessons in our Library</a></li>
         <li><FreshdeskBtn text={contact} /></li>
       </ul>
     </div>

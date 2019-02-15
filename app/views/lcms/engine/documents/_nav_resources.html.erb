@@ -8,7 +8,7 @@
     </div>
   </a>
   <ul class="o-ld-sidebar__menu o-ld-sidebar__menu--nested nested">
-    <% DocumentPresenter::TOC_RESOURCES.each do |h| %>
+    <% Lcms::Engine::DocumentPresenter::TOC_RESOURCES.each do |h| %>
       <%= render 'nav_resources_item', title: h %>
     <% end %>
   </ul>

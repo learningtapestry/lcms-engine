@@ -6,13 +6,13 @@
 
 <%= f.input :teaser, as: :text %>
 
-<%= f.input :resource_type, as: :select, collection: Resource.resource_types, value_method: :first %>
+<%= f.input :resource_type, as: :select, collection: Lcms::Engine::Resource.resource_types, value_method: :first %>
 
 <%= f.input :tree, label: 'Belongs to Curriculum Tree?', as: :boolean %>
 
-<%= f.input :curriculum_type, as: :select, collection: Resource::HIERARCHY %>
+<%= f.input :curriculum_type, as: :select, collection: Lcms::Engine::Resource::HIERARCHY %>
 
-<%= f.input :opr_description, label: t('admin.resources.form.opr_description'), wrapper_html: {class: (resource.unit? ? '': 'c-hidden')} %>
+<%= f.input :opr_description, label: t('lcms.engine.admin.resources.form.opr_description'), wrapper_html: {class: (resource.unit? ? '': 'c-hidden')} %>
 
 <%= react_component('DirectoryPicker', directory_picker_props(resource), prerender: true) %>
 
@@ -50,11 +50,11 @@
 <%= f.input :image_file, as: :file %>
 
 <div class=form-group>
-  <%= render partial: 'lcms/engine/download_categories', locals: { f: f } %>
+  <%= render partial: 'download_categories', locals: { f: f } %>
   <%= f.label :resource_downloads %>
   <%= f.fields_for :resource_downloads do |resource_download_fields| %>
     <div class="o-adm-download">
-      <%= resource_download_fields.simple_fields_for :download, resource_download_fields.object&.download || Download.new do |download_fields| %>
+      <%= resource_download_fields.simple_fields_for :download, resource_download_fields.object&.download || Lcms::Engine::Download.new do |download_fields| %>
         <%= download_fields.input :title %>
         <% unless download_fields.object.new_record? %>
           <%= f.label :current_file %>
@@ -64,10 +64,10 @@
         <%= download_fields.input_field :filename_cache, as: :hidden %>
         <%= download_fields.input :main %>
       <% end %>
-      <%= resource_download_fields.input :description, label: t('admin.resources.downloadable.description') %>
+      <%= resource_download_fields.input :description, label: t('lcms.engine.admin.resources.downloadable.description') %>
       <%= resource_download_fields.association :download_category, as: :select %>
       <%= resource_download_fields.link_to_remove t('ui.remove'), class: 'small button' %>
     </div>
   <% end %>
-  <p><%= f.link_to_add t('admin.resources.form.add_download'), :resource_downloads, class: 'small button' %></p>
+  <p><%= f.link_to_add t('lcms.engine.admin.resources.form.add_download'), :resource_downloads, class: 'small button' %></p>
 </div>

@@ -6,7 +6,7 @@ module Lcms
   module Engine
     module Admin
       class DocumentsController < AdminController
-        include GoogleCredentials
+        include Lcms::Engine::GoogleCredentials
         include Reimportable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)

@@ -4,7 +4,7 @@ $arrow-btn: (
 );
 
 .c-ls-hero {
-  background-position: 0% 100%;
+  background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -19,17 +19,17 @@ $arrow-btn: (
   }
 
   @include breakpoint(large up) {
-    background-image: image-url('ls_hero_bg.jpg');
-    background-position: 0% 40%;
+    background-image: image-url('lcms/engine/ls_hero_bg.jpg');
+    background-position: 0 40%;
   }
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-image: image-url('ls_hero_bg_medium.jpg');
+    background-image: image-url('lcms/engine/ls_hero_bg_medium.jpg');
   }
 
   @include breakpoint(small only) {
-    background-image: image-url('ls_hero_bg_small.jpg');
-    background-position: 40% 0%;
+    background-image: image-url('lcms/engine/ls_hero_bg_small.jpg');
+    background-position: 40% 0;
   }
 
   @include e(body) {
@@ -243,21 +243,21 @@ $arrow-btn: (
 
 
 .c-ls-img--syt {
-  background-image: image-url('ls_team.jpg');
+  background-image: image-url('lcms/engine/ls_team.jpg');
   background-repeat: no-repeat, no-repeat;
   background-size: cover;
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-position: 80% 0%;
+    background-position: 80% 0;
   }
 }
 
 .c-ls-img--eyc {
-  background-image: image-url('ls_curriculum.jpg');
+  background-image: image-url('lcms/engine/ls_curriculum.jpg');
   background-repeat: no-repeat, no-repeat;
   background-size: cover;
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-position: 0% 0%;
+    background-position: 0 0;
   }
 }

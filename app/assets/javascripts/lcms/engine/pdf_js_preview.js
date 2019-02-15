@@ -33,7 +33,7 @@ function replacePDF(height) {
     e.preventDefault();
     const options = {
       pdfOpenParams: { page: 1, view: 'Fit' },
-      PDFJS_URL: Routes.pdfjs_full_path(),
+      PDFJS_URL: Routes.lcms_engine_pdfjs_full_path(),
     };
     $('.o-generic-preview').height(height);
     var myPDF = PDFObject.embed(pdfUrl, '.o-generic-preview', options);

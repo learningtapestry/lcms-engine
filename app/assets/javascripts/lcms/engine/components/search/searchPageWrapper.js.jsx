@@ -21,7 +21,7 @@ function searchPageWrapper(WrappedComponent) {
     }
 
     fetch(newState) {
-      const url = Routes.search_path({
+      const url = Routes.lcms_engine_search_path({
         per_page: newState.per_page,
         order: newState.order,
         page: newState.current_page,

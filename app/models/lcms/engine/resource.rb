@@ -119,7 +119,7 @@ module Lcms
         def tree(name = nil)
           if name.present?
             joins(:curriculum).where('curriculums.name = ? OR curriculums.slug = ?', name, name)
-          elsif (default = Curriculum.default)
+          elsif (default = Lcms::Engine::Curriculum.default)
             where(curriculum_id: default.id)
           else
             where(nil)

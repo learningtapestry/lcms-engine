@@ -1,4 +1,4 @@
-$(function () {
+(function () {
   function initSurvey() {
     $('.o-survey-form #survey_form_district_or_system').change(ev => toggleOther(ev.target));
     $('.o-survey-form #survey_form_subject_or_grade').change(ev => toggleOther(ev.target));
@@ -20,4 +20,4 @@ $(function () {
     if (!$('.o-survey-form').length) return;
     initSurvey();
   }
-})
+})();

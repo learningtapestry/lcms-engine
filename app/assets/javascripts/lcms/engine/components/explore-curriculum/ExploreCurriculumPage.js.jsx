@@ -134,12 +134,12 @@ class ExploreCurriculumPage extends React.Component {
 
   fetch(state) {
     const query = this.createQuery(state);
-    const url = Routes.explore_curriculum_index_path(query);
+    const url = Routes.lcms_engine_explore_curriculum_index_path(query);
     return $.getJSON(url);
   }
 
   fetchOne(id) {
-    const url = Routes.explore_curriculum_path(id);
+    const url = Routes.lcms_engine_explore_curriculum_path(id);
     return $.getJSON(url);
   }
 

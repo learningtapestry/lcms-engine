@@ -1,274 +1,276 @@
 en:
-  admin:
-    access_codes:
-      create:
-        success: New Access Code created successfully.
-      destroy:
-        success: Access Code deleted successfully.
-      edit:
-        page_title: Edit Access Code
-      index:
-        active: Active
-        code: Code
-        new_access_code: New Access Code
-        page_title: Access Codes
-      new:
-        page_title: New Access Code
-      update:
-        success: Access Code updated successfully.
-    common:
-      editing_disabled: Resource editing is disabled. Turn editing on in order to edit resources.
-    curriculums:
-      update:
-        success: Curriculum Tree saved successfully.
-        error: An error occured trying to save this entry.
-    download_categories:
-      create:
-        success: "Download category created successfully."
-      destroy:
-        success: "Category deleted successfully."
-      edit:
-        bundle: 'Bundles Category? (must be unique)'
-        description: 'Display short description'
-        long_description: 'Display long description'
-        page_title: "Edit download category '%{name}'"
-        position: 'Order'
-        title: 'Display Name'
-      index:
-        page_title: Downloadable Resource Categories
-        new_category: New Category
-      new:
-        page_title: New Downloadable Resource Category
-      update:
-        success: "Category updated successfully."
-    resource_bulk_edits:
-      create:
-        success: "%{count} %{resources_count} updated successfully."
-      new:
-        no_resources: No resources were selected.
-        page_title: Edit Tags
-    resources:
-      bundle:
-        success: "Resource enqueued to update lessons/materials bundle."
-        fail: "Invalid resource. Must be of type specified in the LCMS settings."
-      destroy:
-        success: "Resource #%{resource_id} was deleted successfully."
-      edit:
-        page_title: "Edit %{resource}"
-      form:
-        add_child_resources: Add Child Resources
-        add_download: Add Downloadable Resource
-        create_standard: Create Standard
-        create_grade: Create Grade
-        create_resource_type: Create Resource Type
-        create_subject: Create Subject
-        create_topic: Create Topic
-        opr_description: Optional Prerequisite description line
-      downloadable:
-        description: 'Short description'
-      index:
-        bundle: Bundle
-        disable_editing: Disable Resource Editing
-        enable_editing: Enable Resource Editing
-        export_lti_cartridge: LTI Thin CC
-        grade_levels: Grade Levels
-        new_resource: Add Resource
-        page_title: Content Administration
-        resource: Resource
-        resource_types: Resource Types
-        standards: Standards
-        status: Status
-        subjects: Subjects
-        teaser: Teaser
-        title: Title
-        tree: Curriculum?
-        url_slugs: URL slugs
-      new:
-        page_title: New Resource
-      search_form:
-        grades: Grades
-        resource_types: Resource Types
-        standards: Standards
-        subjects: Subjects
-        tags: Tags
-        title: Title
-        url_slug: URL slug
-      create:
-        success: "Resource #%{resource_id} was created successfully."
-      update:
-        success: "Resource #%{resource_id} was updated successfully."
-    pages:
-      create:
-        success: Page created successfully.
-      destroy:
-        success: Page deleted successfully.
-      edit:
-        page_title: "Edit %{page} Page"
-      index:
-        new_page: Add Page
-        page_title: Pages
-      new:
-        page_title: New Page
-      update:
-        success: Page updated successfully.
-    settings:
-      toggle_editing_enabled:
-        disabled: Resource editing disabled.
-        enabled: Resource editing enabled.
-    staff_members:
-      create:
-        success: Staff Member created successfully.
-      destroy:
-        success: Staff Member deleted successfully.
-      index:
-        new_staff_member: Add Staff Member
-        page_title: Staff Members
-      new:
-        page_title: New Staff Member
-      update:
-        success: Staff Member updated successfully.
-    leadership_posts:
-      create:
-        success: Leadership Post created successfully.
-      destroy:
-        success: Leadership Post deleted successfully.
-      index:
-        new_leadership_post: Add Leadership Post
-        page_title: Leadership Posts
-      new:
-        page_title: New Leadership Post
-      update:
-        success: Leadership Post updated successfully.
-    users:
-      create:
-        success: "User %{user} was created successfully."
-        error:  "User %{user} could not be created."
-      index:
-        access_code: Access Code
-        confirmed: Confirmed
-        email: E-mail
-        id: ID
-        name: Name
-        first_name: First Name
-        last_name: Last Name
-        new_user: New user
-        page_title: Users
-        registration: Registration
-        reset_password_btn: Reset password
-        role: Role
-      search_form:
-        email: E-mail
-        name: Name
-      destroy:
-        success: "User was deleted successfully."
-      edit:
-        page_title: "Edit user %{user}"
-      reset_password:
-        success: "User will receive a password reset e-mail."
-      update:
-        success: "Changes to %{user} were saved successfully."
-      new:
-        page_title: New user
-    reading_assignment_texts:
-      create:
-        success: "Reading assignment text was created successfully."
-        error:  "Reading assignment text could not be created."
-      index:
-        name: Name
-        new_reading_assignment_text: New reading assignment text
-        page_title: Reading assignments
-      search_form:
-        name: Name
-      destroy:
-        success: "Reading assignment text was deleted successfully."
-      edit:
-        page_title: "Edit reading assignment text"
-      update:
-        success: "Changes to reading assignment text were saved successfully."
-      new:
-        page_title: New reading assignment text
-    welcome:
-      index:
-        collection_types: Collection Types
-        collections: Collections
-        page_title: Admin
-        pages: Pages
-        resources: Resources
-        staff_members: Staff Members
-        users: Users
-    sketch_compilers:
-      compile:
-        compile_error: There was an error during compilation. Please contact administrator
-        error: Please specify the URL
-        success: Lesson has been compiled. You can see it in your <a href='%{url}' target='_blank'>Google Drive</a>
-      new:
-        page_title: Compile lesson sketch %{version}
-        submit: Compile
-    documents:
-      index:
-        delete_selected: Delete selected
-        new_lesson: Add new Lesson
-        reimport_selected: Reimport selected
-        title: Lesson Manager
-        unit_bundles: Generate Unit Bundles
-      create:
-        error: Error
-        success: Lesson %{name} parsed successfully.
-      new:
-        page_title: Add a lesson
-        submit: Parse
-      destroy:
-        success: Lesson deleted successfully.
-      destroy_selected:
-        success: '%{count} documents have been deleted successfully.'
-      unit_bundles:
-        success: "%{num} Units enqueued to update lessons bundle."
-    materials:
-      create:
-        bulk_import: Imported %{count} Materials from %{folder}
-        error: Error
-        success: Material %{name} parsed successfully.
-      destroy:
-        success: Material deleted successfully.
-      destroy_selected:
-        success: '%{count} materials have been deleted successfully.'
-      index:
-        delete_selected: Delete selected
-        new_material: Add new Material
-        new_material_pdf: Add PDF Material
-        reimport_selected: Reimport selected
-        title: Material Manager
-      new:
-        page_title: Add a material
-        page_header: "Add material(s) from %{type} or folder with %{type}s from gdrive"
-        submit: Parse
-    standards:
-      edit:
-        page_title: "Edit Standard"
-      update:
-        success: Standard updated
-    nav:
-      curriculum: Curriculum
-      add_curriculum: Add curriculum
-      resources: Resources
-      downloadable_resource_categories: Download Categories
-      add_resource: Add resource
-      import_resources: Import resources
-      export_resources: Export resources
-      reading_assignment_texts: Reading assignments
-      pages: Pages
-      staff_members: Staff members
-      leadership_posts: Leadership posts
-      users: Users
-      validate_links: Validate Links
-      glossary: Glossary
-      import_glossary: Import Glossary
-      sign_out: Sign out
-      standards: Standards
-      component_search: Search Component
-      sketch_compilation: Compile lesson sketch %{version}
-      import_lesson: Import Lesson
-      lessons: Lessons
-      materials: Materials
-      access_codes: Access Codes
-      batch_reimport: Batch Reimport
+  lcms:
+    engine:
+      admin:
+        access_codes:
+          create:
+            success: New Access Code created successfully.
+          destroy:
+            success: Access Code deleted successfully.
+          edit:
+            page_title: Edit Access Code
+          index:
+            active: Active
+            code: Code
+            new_access_code: New Access Code
+            page_title: Access Codes
+          new:
+            page_title: New Access Code
+          update:
+            success: Access Code updated successfully.
+        common:
+          editing_disabled: Resource editing is disabled. Turn editing on in order to edit resources.
+        curriculums:
+          update:
+            success: Curriculum Tree saved successfully.
+            error: An error occured trying to save this entry.
+        download_categories:
+          create:
+            success: "Download category created successfully."
+          destroy:
+            success: "Category deleted successfully."
+          edit:
+            bundle: 'Bundles Category? (must be unique)'
+            description: 'Display short description'
+            long_description: 'Display long description'
+            page_title: "Edit download category '%{name}'"
+            position: 'Order'
+            title: 'Display Name'
+          index:
+            page_title: Downloadable Resource Categories
+            new_category: New Category
+          new:
+            page_title: New Downloadable Resource Category
+          update:
+            success: "Category updated successfully."
+        resource_bulk_edits:
+          create:
+            success: "%{count} %{resources_count} updated successfully."
+          new:
+            no_resources: No resources were selected.
+            page_title: Edit Tags
+        resources:
+          bundle:
+            success: "Resource enqueued to update lessons/materials bundle."
+            fail: "Invalid resource. Must be of type specified in the LCMS settings."
+          destroy:
+            success: "Resource #%{resource_id} was deleted successfully."
+          edit:
+            page_title: "Edit %{resource}"
+          form:
+            add_child_resources: Add Child Resources
+            add_download: Add Downloadable Resource
+            create_standard: Create Standard
+            create_grade: Create Grade
+            create_resource_type: Create Resource Type
+            create_subject: Create Subject
+            create_topic: Create Topic
+            opr_description: Optional Prerequisite description line
+          downloadable:
+            description: 'Short description'
+          index:
+            bundle: Bundle
+            disable_editing: Disable Resource Editing
+            enable_editing: Enable Resource Editing
+            export_lti_cartridge: LTI Thin CC
+            grade_levels: Grade Levels
+            new_resource: Add Resource
+            page_title: Content Administration
+            resource: Resource
+            resource_types: Resource Types
+            standards: Standards
+            status: Status
+            subjects: Subjects
+            teaser: Teaser
+            title: Title
+            tree: Curriculum?
+            url_slugs: URL slugs
+          new:
+            page_title: New Resource
+          search_form:
+            grades: Grades
+            resource_types: Resource Types
+            standards: Standards
+            subjects: Subjects
+            tags: Tags
+            title: Title
+            url_slug: URL slug
+          create:
+            success: "Resource #%{resource_id} was created successfully."
+          update:
+            success: "Resource #%{resource_id} was updated successfully."
+        pages:
+          create:
+            success: Page created successfully.
+          destroy:
+            success: Page deleted successfully.
+          edit:
+            page_title: "Edit %{page} Page"
+          index:
+            new_page: Add Page
+            page_title: Pages
+          new:
+            page_title: New Page
+          update:
+            success: Page updated successfully.
+        settings:
+          toggle_editing_enabled:
+            disabled: Resource editing disabled.
+            enabled: Resource editing enabled.
+        staff_members:
+          create:
+            success: Staff Member created successfully.
+          destroy:
+            success: Staff Member deleted successfully.
+          index:
+            new_staff_member: Add Staff Member
+            page_title: Staff Members
+          new:
+            page_title: New Staff Member
+          update:
+            success: Staff Member updated successfully.
+        leadership_posts:
+          create:
+            success: Leadership Post created successfully.
+          destroy:
+            success: Leadership Post deleted successfully.
+          index:
+            new_leadership_post: Add Leadership Post
+            page_title: Leadership Posts
+          new:
+            page_title: New Leadership Post
+          update:
+            success: Leadership Post updated successfully.
+        users:
+          create:
+            success: "User %{user} was created successfully."
+            error:  "User %{user} could not be created."
+          index:
+            access_code: Access Code
+            confirmed: Confirmed
+            email: E-mail
+            id: ID
+            name: Name
+            first_name: First Name
+            last_name: Last Name
+            new_user: New user
+            page_title: Users
+            registration: Registration
+            reset_password_btn: Reset password
+            role: Role
+          search_form:
+            email: E-mail
+            name: Name
+          destroy:
+            success: "User was deleted successfully."
+          edit:
+            page_title: "Edit user %{user}"
+          reset_password:
+            success: "User will receive a password reset e-mail."
+          update:
+            success: "Changes to %{user} were saved successfully."
+          new:
+            page_title: New user
+        reading_assignment_texts:
+          create:
+            success: "Reading assignment text was created successfully."
+            error:  "Reading assignment text could not be created."
+          index:
+            name: Name
+            new_reading_assignment_text: New reading assignment text
+            page_title: Reading assignments
+          search_form:
+            name: Name
+          destroy:
+            success: "Reading assignment text was deleted successfully."
+          edit:
+            page_title: "Edit reading assignment text"
+          update:
+            success: "Changes to reading assignment text were saved successfully."
+          new:
+            page_title: New reading assignment text
+        welcome:
+          index:
+            collection_types: Collection Types
+            collections: Collections
+            page_title: Admin
+            pages: Pages
+            resources: Resources
+            staff_members: Staff Members
+            users: Users
+        sketch_compilers:
+          compile:
+            compile_error: There was an error during compilation. Please contact administrator
+            error: Please specify the URL
+            success: Lesson has been compiled. You can see it in your <a href='%{url}' target='_blank'>Google Drive</a>
+          new:
+            page_title: Compile lesson sketch %{version}
+            submit: Compile
+        documents:
+          index:
+            delete_selected: Delete selected
+            new_lesson: Add new Lesson
+            reimport_selected: Reimport selected
+            title: Lesson Manager
+            unit_bundles: Generate Unit Bundles
+          create:
+            error: Error
+            success: Lesson %{name} parsed successfully.
+          new:
+            page_title: Add a lesson
+            submit: Parse
+          destroy:
+            success: Lesson deleted successfully.
+          destroy_selected:
+            success: '%{count} documents have been deleted successfully.'
+          unit_bundles:
+            success: "%{num} Units enqueued to update lessons bundle."
+        materials:
+          create:
+            bulk_import: Imported %{count} Materials from %{folder}
+            error: Error
+            success: Material %{name} parsed successfully.
+          destroy:
+            success: Material deleted successfully.
+          destroy_selected:
+            success: '%{count} materials have been deleted successfully.'
+          index:
+            delete_selected: Delete selected
+            new_material: Add new Material
+            new_material_pdf: Add PDF Material
+            reimport_selected: Reimport selected
+            title: Material Manager
+          new:
+            page_title: Add a material
+            page_header: "Add material(s) from %{type} or folder with %{type}s from gdrive"
+            submit: Parse
+        standards:
+          edit:
+            page_title: "Edit Standard"
+          update:
+            success: Standard updated
+        nav:
+          curriculum: Curriculum
+          add_curriculum: Add curriculum
+          resources: Resources
+          downloadable_resource_categories: Download Categories
+          add_resource: Add resource
+          import_resources: Import resources
+          export_resources: Export resources
+          reading_assignment_texts: Reading assignments
+          pages: Pages
+          staff_members: Staff members
+          leadership_posts: Leadership posts
+          users: Users
+          validate_links: Validate Links
+          glossary: Glossary
+          import_glossary: Import Glossary
+          sign_out: Sign out
+          standards: Standards
+          component_search: Search Component
+          sketch_compilation: Compile lesson sketch %{version}
+          import_lesson: Import Lesson
+          lessons: Lessons
+          materials: Materials
+          access_codes: Access Codes
+          batch_reimport: Batch Reimport

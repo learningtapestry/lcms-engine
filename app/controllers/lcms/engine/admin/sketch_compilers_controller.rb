@@ -4,7 +4,7 @@ module Lcms
   module Engine
     module Admin
       class SketchCompilersController < AdminController
-        include GoogleCredentials
+        include Lcms::Engine::GoogleCredentials
 
         layout 'admin'
 

@@ -29,8 +29,8 @@ module Lti
     private
 
     LTI_LINK_RESOURCE_TYPE = 'imsbasiclti_xmlv1p0'
-    MANIFEST_FILEPATH = Rails.root.join 'lib', 'lti', 'xml', 'imsmanifest.xml'
-    LTI_LINK_FILEPATH = Rails.root.join 'lib', 'lti', 'xml', 'lti_link.xml'
+    MANIFEST_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'imsmanifest.xml'
+    LTI_LINK_FILEPATH = ::Lcms::Engine::Engine.root.join 'lib', 'lti', 'xml', 'lti_link.xml'
 
     attr_reader :items, :link_template, :xml
 

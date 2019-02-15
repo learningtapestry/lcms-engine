@@ -2,7 +2,7 @@
   <%= f.input :id, disabled: true %>
   <%= f.input :name %>
   <%= f.input :email %>
-  <%= f.input :role, collection: User.roles.keys, include_blank: false %>
+  <%= f.input :role, collection: Lcms::Engine::User.roles.keys, include_blank: false %>
   <%= f.input :access_code, disabled: @user.persisted? %>
   <%= f.input :confirmed_at, disabled: true, as: :text %>
 
@@ -14,7 +14,7 @@
          <dt class="u-text--small"><%= t("survey.#{key}") %></dt>
          <dd class="u-margin-bottom--small"><%= @user.survey[key] %></dd>
        <% end %>
-     </code>
+     </dl>
     <% else %>
       <code>not answered</code>
     <% end %>
