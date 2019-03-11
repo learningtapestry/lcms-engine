@@ -13,7 +13,7 @@ class RelatedInstruction extends React.Component {
   }
 
   fetch() {
-    return $.getJSON(Routes.related_instruction_path(this.state.id, {expanded: !this.state.expanded})).then(response => {
+    return $.getJSON(Routes.lcms_engine_related_instruction_path(this.state.id, {expanded: !this.state.expanded})).then(response => {
       let sum = 0;
       let sliceIdx = _.findIndex(response.instructions,
         item => { sum += item.instruction_type === 'instruction' ? 2 : 1;
@@ -34,7 +34,7 @@ class RelatedInstruction extends React.Component {
   }
 
   render () {
-    const allInstructionsPath = Routes.enhance_instruction_index_path();
+    const allInstructionsPath = Routes.lcms_engine_enhance_instruction_index_path();
     const instructions = this.state.instructions.map(
         item => <InstructionCard key={item.id} item={item} />
     );

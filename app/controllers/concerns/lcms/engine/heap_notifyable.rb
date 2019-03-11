@@ -3,8 +3,6 @@
 module Lcms
   module Engine
     module HeapNotifyable
-      extend ActiveSupport::Concern
-
       private
 
       def heap_notify(event)

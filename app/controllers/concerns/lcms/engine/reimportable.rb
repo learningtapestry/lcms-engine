@@ -3,8 +3,6 @@
 module Lcms
   module Engine
     module Reimportable
-      extend ActiveSupport::Concern
-
       private
 
       def import_status_for(job_class)

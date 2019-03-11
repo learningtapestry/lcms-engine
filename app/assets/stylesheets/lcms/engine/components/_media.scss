@@ -37,7 +37,7 @@
     img { width: 100%;}
 
     @include m(placeholder) {
-      background-image: image-url('professional_development');
+      background-image: image-url('lcms/engine/professional_development');
       background-size: cover;
     }
   }

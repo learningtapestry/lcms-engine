@@ -1,4 +1,4 @@
-$(function () {
+(function () {
   function initSwipers() {
     let swiperVideos = new Swiper('.c-ls-slides--a', {
         slidesPerView: 'auto',
@@ -18,4 +18,4 @@ $(function () {
     initSwipers();
   }
 
-})
+})();

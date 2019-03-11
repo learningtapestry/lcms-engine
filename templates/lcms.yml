@@ -1,0 +1,36 @@
+# What for and how bundles can be created? (i.e. 'Odell::BundleGenerator')
+#bundles:
+#  module:
+#  unit: ::BundleGenerator
+
+# Used to parse and store `DocumentPart` instances. `default` stands for `web view`
+contexts:
+  - default
+  - gdoc
+
+# Used to customize which format Lesson (`::Lcms::Engine::Document`) can be rendered.
+# `default` stands for `web view`
+document_contexts:
+  - default
+  - gdoc
+
+metadata:
+  # Used to customize service responsible for building the resource.
+  # Defaults to `Lt::Lcms::Metadata::Context`
+  context: '::Lt::Lcms::Metadata::Context'
+
+  # Used to customize service responsible for metadata parsing process.
+  # Defaults to `Lt::Lcms::Metadata::Service`
+  service: '::Lt::Lcms::Metadata::Service'
+
+# Used to customize which format `Material` can be rendered. Default stands for `web view`
+#material_contexts:
+#  - gdoc
+#  - pdf
+
+# Used to override presenter for `::Lcms::Engine::Material` (i.e. 'YourModule::MaterialPresenter')
+material_presenter: '::Lcms::Engine::MaterialPresenter'
+
+# Used to customize sanitizer in some places
+# By default `::HtmlSanitizer` from LCMS application is used
+sanitizer: '::Lcms::Engine::HtmlSanitizer'

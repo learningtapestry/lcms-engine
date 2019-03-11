@@ -15,12 +15,8 @@ module Lcms
       before_action :handle_x_frame_headers
 
       rescue_from ActiveRecord::RecordNotFound do
-        render 'pages/not_found', status: :not_found
+        render 'lcms/engine/pages/not_found', status: :not_found
       end
-
-      # TODO: Should be isolated and removed from this gem
-      # engine helpers to generate PDF
-      helper Openscied::Core::PdfHelper
 
       protected
 

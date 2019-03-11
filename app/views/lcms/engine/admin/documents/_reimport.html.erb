@@ -1,4 +1,4 @@
-<%= form_tag(main_app.admin_documents_path, method: :post, class: 'u-inline inline-form-btn c-reimport-doc-form', target: '_blank') do %>
+<%= form_tag(lcms_engine.admin_documents_path, method: :post, class: 'u-inline inline-form-btn c-reimport-doc-form', target: '_blank') do %>
   <%= hidden_field_tag('document_form[link]', lesson.file_url) %>
   <%= hidden_field_tag('document_form[link_fs]', lesson.file_fs_url) %>
   <%= hidden_field_tag('document_form[reimport]', 1) %>

@@ -2,10 +2,7 @@
 }
 
 .c-ap-hero {
-  // margin-bottom: $ub-xlarge-margin * 2;
-  // margin-top: $ub-xlarge-margin * 3;
-  background: image-url('about_hero_bg.jpg');
-  background-repeat: no-repeat;
+  background: image-url('lcms/engine/about_hero_bg.jpg'), no-repeat;
   background-size: cover;
   height: 300px;
 
@@ -34,31 +31,31 @@
 }
 
 .c-ap-img--si {
-  background-image: image-url('about_standards_institute.jpg');
+  background-image: image-url('lcms/engine/about_standards_institute.jpg');
   background-repeat: no-repeat, no-repeat;
   background-size: cover;
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-position: 40% 0%;
+    background-position: 40% 0;
   }
 }
 
 .c-ap-img--hwa {
-  background-image: image-url('about_who_we_are.jpg');
+  background-image: image-url('lcms/engine/about_who_we_are.jpg');
   background-repeat: no-repeat, no-repeat;
   background-size: cover;
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-position: 100% 0%;
+    background-position: 100% 0;
   }
 }
 
 .c-ap-img--op {
-  background-image: image-url('about_partners.jpg');
+  background-image: image-url('lcms/engine/about_partners.jpg');
   background-repeat: no-repeat, no-repeat;
   background-size: cover;
 
   @media screen and #{breakpoint(medium)} and #{breakpoint(ipad down)} {
-    background-position: 70% 0%;
+    background-position: 70% 0;
   }
 }

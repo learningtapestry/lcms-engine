@@ -1,5 +1,4 @@
-$(function () {
-
+(function () {
   let $elDropdown = null;
 
   function initDropdown() {
@@ -38,5 +37,4 @@ $(function () {
       $('.c-header-title__h-menu').toggleClass('c-header-title__h-menu--expanded');
     });
   }
-
-})
+})();

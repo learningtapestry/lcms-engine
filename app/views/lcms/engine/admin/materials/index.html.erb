@@ -49,7 +49,7 @@
         </tr>
 
         <% @materials.each do |material| %>
-          <% material = MaterialPresenter.new material %>
+          <% material = Lcms::Engine::MaterialPresenter.new material %>
           <tr id="material_<%= material.id %>">
             <td><%= check_box_tag 'selected_ids[]', material.id, selected_id?(material.id), class: 'c-selected-ids' %></td>
             <td><%= material.id %>
@@ -68,7 +68,7 @@
             <td>
               <ul class="materials-table__lessons">
                 <% material.documents.each do |lesson| %>
-                  <% lesson = DocumentPresenter.new lesson %>
+                  <% lesson = Lcms::Engine::DocumentPresenter.new lesson %>
                   <li class="u-text--small">
                     <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="ub-icon ub-file-gdoc"></i></a>
                     <%= link_to lesson.title, lesson, target: '_blank' %>

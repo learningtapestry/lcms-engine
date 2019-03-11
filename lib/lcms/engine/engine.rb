@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+require 'acts_as_list'
 require 'acts-as-taggable-on'
-require 'bullet' if ::Rails.env.development?
+require 'active_model_serializers'
+require 'backport_new_renderer'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
@@ -9,10 +11,13 @@ require 'devise'
 require 'heap'
 require 'i18n-js'
 require 'pdfjs_viewer-rails'
+require 'ransack'
 require 'react-rails'
 require 'resque/server'
 require 'validate_url'
 require 'virtus'
+require 'will_paginate'
+require 'will_paginate-bootstrap'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
@@ -55,17 +60,20 @@ module Lcms
 
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 
-      config.react.server_renderer_directories = ['lcms/engine/app/assets/javascripts']
+      initializer('lcms.engine.react-rails') do |app|
+        app.config.react.addons = true
 
-      # Fixes server rendering in production.
-      # Ref. https://github.com/reactjs/react-rails/issues/443#issuecomment-180544359
-      config.react.server_renderer_options = {
-        files: ['lcms/engine/server_rendering.js']
-      }
+        app.config.react.server_renderer_directories = ['lcms/engine/app/assets/javascripts']
 
-      config.react.jsx_transform_options = {
-        blacklist: %w(spec.functionName validation.react)
-      }
+        app.config.react.server_renderer_options = {
+          files: ['lcms/engine/server_rendering.js'],
+          replay_console: true
+        }
+
+        app.config.react.jsx_transform_options = {
+          blacklist: %w(spec.functionName validation.react)
+        }
+      end
 
       config.assets.paths << "#{config.root}/public/javascripts"
 
@@ -94,10 +102,20 @@ module Lcms
       end
 
       config.after_initialize do
-        ::Bullet.enable = true
-        ::Bullet.bullet_logger = true
-        ::Bullet.console = true
-        ::Bullet.rails_logger = true
+        if ::Rails.env.development? || ::Rails.env.test?
+          require 'bullet'
+
+          ::Bullet.enable = true
+          ::Bullet.bullet_logger = true
+          ::Bullet.console = true
+          ::Bullet.rails_logger = true
+        end
+      end
+
+      config.to_prepare do
+        Dir
+          .glob(Rails.root + "app/decorators/**/*_decorator*.rb")
+          .each(&method(:require_dependency))
       end
 
       ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(

@@ -22,7 +22,7 @@ function SearchDropdownResults(props) {
 
   const showMore = (
     <a className={resultMoreCls}
-      href={Routes.search_path({ search_term: props.search_term })}>
+      href={Routes.lcms_engine_search_path({ search_term: props.search_term })}>
       Show more results...
     </a>
   );

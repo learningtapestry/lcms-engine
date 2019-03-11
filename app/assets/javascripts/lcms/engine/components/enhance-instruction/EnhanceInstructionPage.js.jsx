@@ -34,7 +34,7 @@ class EnhanceInstructionPage extends React.Component {
   fetch(newState) {
     const tab = newState.activeTab;
     const current_page = newState.current_page || newState.tabs[tab].current_page;
-    const url = Routes.enhance_instruction_index_path({
+    const url = Routes.lcms_engine_enhance_instruction_index_path({
       per_page: newState.per_page,
       order: newState.order,
       page: current_page,

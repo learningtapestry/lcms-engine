@@ -1,4 +1,4 @@
-$(function () {
+(function () {
   window.initializeBundles = function() {
     if (!$('.o-unit-bundles').length) return;
 
@@ -8,4 +8,4 @@ $(function () {
       if (data) heapTrack('Download Unit Bundle', data);
     });
   };
-});
+})();;

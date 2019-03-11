@@ -2,9 +2,9 @@
 
 <%= simple_nested_form_for @resource, url: url, html: { id: 'resource_form' } do |f| %>
   <div class="large-10 columns">
-    <%= render partial: 'lcms/engine/fields', locals: { f: f, resource: @resource } %>
+    <%= render partial: 'fields', locals: { f: f, resource: @resource } %>
 
-    <% if Settings[:editing_enabled] %>
+    <% if Lcms::Engine::Settings[:editing_enabled] %>
       <%= f.button :submit, t('ui.save'), name: nil %>
 
       <% if @resource.persisted? %>

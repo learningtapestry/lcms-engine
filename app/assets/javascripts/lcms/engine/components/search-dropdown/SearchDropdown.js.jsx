@@ -126,7 +126,7 @@ class SearchDropdown extends React.Component {
   fetch(props = this.props) {
     this.setState({ ...this.state, isSearching: true });
 
-    const url = Routes.search_path({
+    const url = Routes.lcms_engine_search_path({
       per_page: this.perPage,
       search_term: props.filterbar.search_term,
       grades: props.filterbar.grades,

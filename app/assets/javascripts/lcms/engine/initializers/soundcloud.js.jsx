@@ -1,4 +1,4 @@
-$(function () {
+(function () {
   function initSCWidgets() {
     let arrWidgets = [];
     $('.c-cg-media__podcast').each((i, el) => {
@@ -46,4 +46,4 @@ $(function () {
     let sc = window.loadJSAsync('//w.soundcloud.com/player/api.js');
     sc.then(() => initSCWidgets());
   };
-});
+})();

@@ -1,5 +1,5 @@
 //= require turbolinks
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require i18n/translations
 //= require ./vendor/modernizr-custom

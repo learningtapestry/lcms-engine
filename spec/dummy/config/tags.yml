@@ -1,0 +1,176 @@
+activity-metadata-section:
+  stop_materials_tags:
+    - ActivityMetadataSectionTag
+    - ActivityMetadataTypeTag
+  stop_tags:
+    - ActivityMetadataSectionTag
+activity-metadata-type:
+  priority_descriptions:
+    - 'This is a Priority 1 activity that should not be skipped. It is tightly connected to the lesson objective.'
+    - 'This is a Priority 2 activity that can be skipped if running short on time. It is less tightly connected to the lesson objective. It might be designed as an extension or to ensure maintenance of prior skills.'
+    - 'This is a Priority 3 activity that can be skipped if running short on time. It is not connected to the lesson objective. It might be designed in anticipation of upcoming learning.'
+  stop_tags:
+    - ActivityMetadataSectionTag
+    - ActivityMetadataTypeTag
+assess:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+#default:
+#  remove: true # Do not remove `DefaultTag` from the source
+latex:
+  # RGB representation of the `math-base` color
+  color: '0,166,153'
+et:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+group:
+  stop_materials_tags:
+    - GroupTag
+    - SectionTag
+  stop_tags:
+    - GroupTag
+js:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+key:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+materials:
+  stop_tags:
+    - ActivityMetadataSectionTag
+    - ActivityMetadataTypeTag
+optbreak:
+  stop_tags:
+    - GroupTag
+    - SectionTag
+pdf_templates_path:
+photo:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+pv:
+  hundreds:
+    column_count: 1
+    row_count: 3
+    text_header: 'Unlabeled Hundreds Place Value Chart Template'
+    text_footer: 'unlabeled hundreds place value chart'
+  millions:
+    column_count: 2
+    row_count: 7
+    text_footer: 'unlabeled millions place value chart'
+    text_header: 'Unlabeled Millions Place Value Chart Template'
+  thousands:
+    column_count: 1
+    row_count: 4
+    text_footer: 'unlabeled thousands place value chart'
+    text_header: 'Unlabeled Thousands Place Value Chart Template'
+  hundred-thousands:
+    column_count: 2
+    column_width:
+      - 10%
+      - 85%
+    row_count: 6
+    text_footer: 'unlabeled hundred thousands place value chart'
+    text_header: 'Unlabeled Hundred Thousands Place Value Chart Template'
+rubric:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+section:
+  priority_descriptions:
+    - 'This is a Priority 1 activity that should not be skipped. It is tightly connected to the focus objective(s) of the lesson or unit.'
+    - 'This is a Priority 2 activity that can be moved or adapted if running short on time. It is less tightly connected to the focus objective(s) of the lesson or unit.'
+  stop_tags:
+    - OptBreakTag
+    - GroupTag
+    - SectionTag
+sh:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag
+source:
+  stop_tags:
+    - ActivityMetadataSectionTag
+    - ActivityMetadataTypeTag
+    - MaterialsTag
+templates_paths:
+th:
+  stop_tags:
+    - AssessTag
+    - EtTag
+    - OptBreakTag
+    - GroupTag
+    - JsTag
+    - KeyTag
+    - PhotoTag
+    - RubricTag
+    - SectionTag
+    - ShTag
+    - ThTag

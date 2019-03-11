@@ -27,4 +27,4 @@ gem 'lt-lcms',
     ref: '5db98467'
 
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
-                  branch: 'puppeteer-support', ref: '36b0e0e8'
+                  branch: 'puppeteer-support', ref: '1a1f02cc'

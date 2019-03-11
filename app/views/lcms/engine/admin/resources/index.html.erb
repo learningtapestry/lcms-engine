@@ -6,7 +6,7 @@
 
 <p class=text-right>
   <%= link_to :toggle_editing_enabled_admin_settings, class: 'button', method: :patch do %>
-    <%= Settings[:editing_enabled] ? t('.disable_editing') : t('.enable_editing') %>
+    <%= Lcms::Engine::Settings[:editing_enabled] ? t('.disable_editing') : t('.enable_editing') %>
   <% end %>
 
 <p class=text-right><%= page_entries_info @resources %>

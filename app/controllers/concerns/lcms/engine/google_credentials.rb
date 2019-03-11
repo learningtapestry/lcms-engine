@@ -5,8 +5,6 @@ require 'lt/google/api/auth/cli'
 module Lcms
   module Engine
     module GoogleCredentials
-      extend ActiveSupport::Concern
-
       protected
 
       def google_credentials

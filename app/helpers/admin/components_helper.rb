@@ -60,7 +60,7 @@ module Admin
           id: resource.parent_id,
           title: resource.parent.try(:title)
         },
-        tree: CurriculumPresenter.new.editor_props[:tree]
+        tree: Lcms::Engine::CurriculumPresenter.new.editor_props[:tree]
       }
     end
   end

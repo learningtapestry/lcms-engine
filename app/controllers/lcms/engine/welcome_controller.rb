@@ -3,9 +3,7 @@
 module Lcms
   module Engine
     class WelcomeController < Lcms::Engine::ApplicationController
-      def index
-        redirect_to root_path
-      end
+      def index; end
     end
   end
 end
