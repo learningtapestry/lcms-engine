@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'aws-sdk-rails', '~> 1.0'
   s.add_dependency 'backport_new_renderer', '~> 1.0.0'
   s.add_dependency 'bitly', '~> 1.0'
-  s.add_dependency 'bootstrap-sass', '~> 3.3.5.1'
+  s.add_dependency 'bootstrap-sass', '~> 3.4.1'
   s.add_dependency 'bullet', '~> 5.7.3'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'ckeditor'
