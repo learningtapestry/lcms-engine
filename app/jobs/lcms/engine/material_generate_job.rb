@@ -8,7 +8,9 @@ module Lcms
       queue_as :default
 
       def perform(material, document)
-        material.material_parts.default.each { |p| p.update!(content: EmbedEquations.call(p.content)) } if document.math?
+        if document.math?
+          material.material_parts.default.each { |p| p.update!(content: EmbedEquations.call(p.content)) }
+        end
 
         DocumentGenerator.material_generators.each do |klass|
           klass.constantize.perform_later material, document

@@ -1,4 +1,8 @@
 # LCMS Engine
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/9a41f6860cc4531fc27e/maintainability)](https://codeclimate.com/github/learningtapestry/lcms-engine/maintainability)
+[![Codeship Status for learningtapestry/lcms-engine](https://app.codeship.com/projects/d08d0660-26f7-0137-bc36-1692d0f2de6b/status?branch=master)](https://app.codeship.com/projects/330483)
+
 Implements a Rails engine for Learning Content Management System (LCMS) applications.
 
 Our initial goal is gathering the common code among the current LCMS implementations

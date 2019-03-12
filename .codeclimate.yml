@@ -1,0 +1,80 @@
+version: "2"
+checks:
+  argument-count:
+    enabled: true
+    config:
+      threshold: 5
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 4
+  file-lines:
+    enabled: true
+    config:
+      threshold: 1000
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 20
+  method-count:
+    enabled: true
+    config:
+      threshold: 45
+  method-lines:
+    enabled: false
+  nested-control-flow:
+    enabled: true
+    config:
+      threshold: 4
+  return-statements:
+    enabled: true
+    config:
+      threshold: 4
+  similar-code:
+    enabled: true
+    config:
+      threshold: 75
+  identical-code:
+    enabled: true
+    config:
+      threshold: 25
+engines:
+  duplication:
+    # Duplication analyzes JavaScript (including JSX and ES6), PHP, Python,
+    # and Ruby code for structural similarities.
+    enabled: true
+    config:
+      languages:
+        - ruby
+        - javascript
+  fixme:
+    enabled: true
+    config:
+      strings:
+        - BUG
+        - FIXME
+        - HACK
+  rubocop:
+    # Style and quality checks for Ruby code.
+    # Includes support for modern Rubies (2.2+).
+    enabled: true
+    channel: rubocop-0-59
+    exclude_paths:
+      - vendor/
+  eslint:
+    enabled: true
+ratings:
+  # to receive a letter grade for a particular file or overall GPA for your project
+  paths:
+    - "app/**/*"
+    - "lib/**/*"
+    - "**.rb"
+    - "**.js"
+exclude_paths:
+  - app/assets/javascripts/lcms/engine/vendor/**/*
+  - features/**/*
+  - spec/**/*
+  - vendor/**/*
+  - node_modules/**/*
+  - db/**/*
+  - config/**/*
