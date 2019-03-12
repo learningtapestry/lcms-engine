@@ -56,6 +56,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'jbuilder', '~> 2.0'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'js-routes', '~> 1.1.2'
+  s.add_dependency 'lt-google-api', '~> 0.1'
+  s.add_dependency 'lt-lcms', '~> 0.1'
   s.add_dependency 'migration_data', '~> 0.2.1'
   s.add_dependency 'mini_magick', '~> 4.8.0'
   s.add_dependency 'nested_form'
