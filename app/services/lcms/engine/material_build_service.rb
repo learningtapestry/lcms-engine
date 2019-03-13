@@ -6,6 +6,7 @@ require 'lt/lcms/lesson/downloader/pdf'
 module Lcms
   module Engine
     class MaterialBuildService
+      EVENT_BUILT = 'material:built'
       PDF_EXT_RE = /\.pdf$/
 
       def initialize(credentials, opts = {})
@@ -15,7 +16,9 @@ module Lcms
 
       def build(url)
         @url = url
-        pdf? ? build_from_pdf : build_from_gdoc
+        result = pdf? ? build_from_pdf : build_from_gdoc
+        ActiveSupport::Notifications.instrument EVENT_BUILT, id: result.id
+        result
       end
 
       private

@@ -20,7 +20,7 @@ module Lcms
 
       scope :failed, -> { where(reimported: false) }
 
-      scope :where_metadata, ->(key, val) { where('documents.metadata ->> ? = ?', key, val) }
+      scope :where_metadata, ->(key, val) { where('documents.metadata ->> ? = ?', key, val.to_s) }
 
       scope :order_by_curriculum, lambda {
         select('documents.*, resources.hierarchical_position')

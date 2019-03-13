@@ -5,6 +5,8 @@ require 'lt/lcms/lesson/downloader/gdoc'
 module Lcms
   module Engine
     class DocumentBuildService
+      EVENT_BUILT = 'document:built'
+
       def initialize(credentials, opts = {})
         @credentials = credentials
         @options = opts
@@ -26,6 +28,8 @@ module Lcms
 
         build
         create_parts
+
+        ActiveSupport::Notifications.instrument EVENT_BUILT, id: document.id
 
         document.activate!
         document
