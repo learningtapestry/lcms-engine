@@ -28,10 +28,11 @@ module Lcms
         title = @downloader.file.name.sub(PDF_EXT_RE, '')
         identifier = "#{title.downcase}#{ContentPresenter::PDF_EXT}"
 
+        metadata = DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier: identifier, title: title).as_json
         material.update!(
           material_params.merge(
             identifier: identifier,
-            metadata: DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier: identifier, title: title).as_json
+            metadata: metadata
           )
         )
 

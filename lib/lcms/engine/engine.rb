@@ -114,7 +114,7 @@ module Lcms
 
       config.to_prepare do
         Dir
-          .glob(Rails.root + "app/decorators/**/*_decorator*.rb")
+          .glob(Rails.root + 'app/decorators/**/*_decorator*.rb')
           .each(&method(:require_dependency))
       end
 

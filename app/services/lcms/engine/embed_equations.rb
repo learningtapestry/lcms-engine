@@ -37,7 +37,9 @@ module Lcms
 
           key = "#{REDIS_KEY_SVG}#{tex}#{preserve_color}#{custom_color}"
           if (svg = redis.get(key)).blank?
-            tex = "\\require{color}\\definecolor{math}{RGB}{#{custom_color}}\\color{math}{#{tex}}" if custom_color.present?
+            if custom_color.present?
+              tex = "\\require{color}\\definecolor{math}{RGB}{#{custom_color}}\\color{math}{#{tex}}"
+            end
             svg = `tex2svg -- '#{tex}'`
 
             #
