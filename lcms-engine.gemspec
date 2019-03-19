@@ -121,6 +121,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop', '~> 0.59.2'
   s.add_development_dependency 'safe_attributes', '~> 1.0.10'
   s.add_development_dependency 'sdoc', '~> 0.4.0'
+  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'spring'
   s.add_development_dependency 'traceroute'
 end

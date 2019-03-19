@@ -12,6 +12,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 
+require 'faker'
+
 Dir[File.expand_path('support/**/*.rb', __dir__)].each(&method(:require))
 
 # Checks for pending migrations and applies them before tests are run.

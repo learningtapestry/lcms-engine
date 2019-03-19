@@ -3,14 +3,14 @@
 require 'rails_helper'
 
 shared_examples_for 'searchable' do # rubocop:disable Metrics/BlockLength
-  let(:doc) { double Search::Document }
+  let(:doc) { double Lcms::Engine::Search::Document }
   let(:object) { create factory }
-  let(:repo) { double Search::Repository }
+  let(:repo) { double Lcms::Engine::Search::Repository }
 
   before do
-    allow(Search::Repository).to receive(:new).and_return(repo)
-    allow(described_class).to receive(:search_model).and_return(Search::Document)
-    allow(Search::Document).to receive(:build_from).and_return(doc)
+    allow(Lcms::Engine::Search::Repository).to receive(:new).and_return(repo)
+    allow(described_class).to receive(:search_model).and_return(Lcms::Engine::Search::Document)
+    allow(Lcms::Engine::Search::Document).to receive(:build_from).and_return(doc)
     allow(doc).to receive(:search)
   end
 
@@ -22,7 +22,7 @@ shared_examples_for 'searchable' do # rubocop:disable Metrics/BlockLength
     subject { described_class.search term, options }
 
     it 'searches the model' do
-      expect(Search::Document).to receive(:search).with(term, options)
+      expect(Lcms::Engine::Search::Document).to receive(:search).with(term, options)
       subject
     end
   end

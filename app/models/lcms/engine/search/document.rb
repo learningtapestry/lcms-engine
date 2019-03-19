@@ -31,10 +31,10 @@ module Lcms
 
         class << self
           def build_from(model)
-            if model.is_a?(Resource)
+            if model.is_a?(Lcms::Engine::Resource)
               new(**attrs_from_resource(model))
 
-            elsif model.is_a?(ExternalPage)
+            elsif model.is_a?(Lcms::Engine::ExternalPage)
               new(**attrs_from_page(model))
 
             else
@@ -65,10 +65,10 @@ module Lcms
           #   a resource with 3 different grades show after one with 2, (more specific
           #   at the top, more generic at the bottom)
           def grade_position(model)
-            if model.is_a?(Resource) && model.generic?
+            if model.is_a?(Lcms::Engine::Resource) && model.generic?
               rtype = model[:resource_type] || 0
               # for generic resource use the min grade, instead the avg
-              grade_pos = model.grades.list.map { |g| Grades::GRADES.index(g) }.compact.min || 0
+              grade_pos = model.grades.list.map { |g| Lcms::Engine::Grades::GRADES.index(g) }.compact.min || 0
               last_pos = model.grades.list.size
             else
               rtype = 0
@@ -124,7 +124,7 @@ module Lcms
             tags = model.named_tags
 
             {
-              breadcrumbs: Breadcrumbs.new(model).title,
+              breadcrumbs: Lcms::Engine::Breadcrumbs.new(model).title,
               description: model.description,
               doc_type: doc_type(model),
               document_metadata: document_metadata(model),
@@ -146,7 +146,7 @@ module Lcms
         end
 
         def grades
-          @grades ||= Grades.new(self)
+          @grades ||= Lcms::Engine::Grades.new(self)
         end
       end
     end

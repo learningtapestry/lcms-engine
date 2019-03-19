@@ -6,7 +6,7 @@ module Lcms
       class ElasticSearchDocument
         # return the corresponding repository
         def self.repository
-          @repository ||= ::Search::Repository.new
+          @repository ||= Lcms::Engine::Search::Repository.new
         end
 
         def repository
