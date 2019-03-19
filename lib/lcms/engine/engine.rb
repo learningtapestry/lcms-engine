@@ -118,6 +118,12 @@ module Lcms
           .each(&method(:require_dependency))
       end
 
+      config.generators do |g|
+        g.test_framework :rspec
+        g.fixture_replacement :factory_bot
+        g.factory_bot dir: 'spec/factories'
+      end
+
       ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(
         ENV.fetch('ENABLE_CACHING', true)
       )

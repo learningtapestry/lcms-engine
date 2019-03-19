@@ -24,5 +24,12 @@ module Dummy
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
+    config.active_record.raise_in_transactional_callbacks = true
+
+    config.autoload_paths += [
+      Rails.root.join('lib')
+    ]
   end
 end
