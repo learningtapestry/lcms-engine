@@ -91,7 +91,7 @@ module DocTemplate
 
       def embeded_object_soundcloud
         {
-          content: MediaEmbed.soundcloud(url, subject),
+          content: Lcms::Engine::MediaEmbed.soundcloud(url, subject),
           resource_url: (media_path(resource.id) if resource.present?),
           type: TYPE_PODCAST
         }
@@ -102,7 +102,7 @@ module DocTemplate
           q[:start] = start if start.present?
           q[:end] = stop if stop.present?
         end.compact
-        youtube_url = "https://www.youtube.com/embed/#{MediaEmbed.video_id(url)}?#{query.to_query}"
+        youtube_url = "https://www.youtube.com/embed/#{Lcms::Engine::MediaEmbed.video_id(url)}?#{query.to_query}"
         {
           resource_url: (media_path(resource.id) if resource.present?),
           type: TYPE_YOUTUBE,
@@ -111,7 +111,7 @@ module DocTemplate
       end
 
       def fetch_data
-        @resource = Resource.find_by url: url
+        @resource = Lcms::Engine::Resource.find_by url: url
         if (title.blank? || description.blank?) && resource
           @title = resource.title if title.blank?
           @description = resource.teaser if description.blank?

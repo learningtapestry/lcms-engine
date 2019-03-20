@@ -52,7 +52,7 @@ module DocTemplate
         return unless (matches = STANDARD_RE.match text)
 
         name = matches[2].downcase.to_sym
-        Standard.search_by_name(name).first.try(:description)
+        Lcms::Engine::Standard.search_by_name(name).first.try(:description)
       end
 
       def render_template(node, opts)

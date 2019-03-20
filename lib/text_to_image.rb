@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'mini_magick'
+
 #
 # Makes an image from the text given
 #

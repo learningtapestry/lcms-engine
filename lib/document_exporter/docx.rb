@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pandoc-ruby'
+
 module DocumentExporter
   class Docx
     def initialize(document)
