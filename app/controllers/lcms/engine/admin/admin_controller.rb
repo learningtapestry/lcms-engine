@@ -8,7 +8,7 @@ module Lcms
 
         DEFAULTS ||= {
           layout: 'admin',
-          materials_query: AdminMaterialsQuery
+          materials_query: Lcms::Engine::AdminMaterialsQuery
         }.freeze
 
         layout :customized_layout

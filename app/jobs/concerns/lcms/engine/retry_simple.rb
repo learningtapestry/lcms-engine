@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'activejob/retry'
+
 module Lcms
   module Engine
     module RetrySimple

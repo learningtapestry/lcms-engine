@@ -6,8 +6,6 @@ module Lcms
       class SketchCompilersController < AdminController
         include Lcms::Engine::GoogleCredentials
 
-        layout 'admin'
-
         before_action :validate_params, only: [:compile]
 
         def compile
