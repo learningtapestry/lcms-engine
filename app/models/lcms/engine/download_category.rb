@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'acts_as_list'
+
 module Lcms
   module Engine
     class DownloadCategory < ActiveRecord::Base

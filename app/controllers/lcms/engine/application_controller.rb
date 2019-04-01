@@ -5,7 +5,8 @@ module Lcms
     class ApplicationController < ActionController::Base
       protect_from_forgery with: :exception
 
-      # require auth for acessing the pilot
+      # NOTE: Temporary disabled
+      # require auth for accessing the pilot
       # before_action :pilot_authentication if Rails.env.production? || Rails.env.production_swap?
 
       before_action :authenticate_user!, unless: :pdf_request?

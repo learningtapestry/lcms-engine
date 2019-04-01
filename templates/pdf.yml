@@ -1,0 +1,21 @@
+default:
+  dpi: 72 # screen dpi to match font sizes
+  image_dpi: 300
+  header: true
+  name_date: false
+  margin:
+    top: 0.5in
+    right: 1in
+    bottom: 0.5in # to have 0.5in margin within 8pt footer + 7pt gap from footer to page content
+    left: 0.5in
+  orientation: portrait
+  padding:
+    right: 0
+    left: 0
+handout:
+  name_date: true
+  margin:
+    top: 1.25in
+    right: 1.25in
+    bottom: 1.25in # to have 1.25in margin within 8pt footer + 0.75in gap from footer to page content
+    left: 1.25in

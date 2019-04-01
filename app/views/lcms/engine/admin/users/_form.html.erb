@@ -10,7 +10,7 @@
     <%= f.label :survey %>
     <% if @user.survey %>
       <dl>
-       <% SurveyForm.new.attributes.keys.map(&:to_s).each do |key| %>
+       <% Lcms::Engine::SurveyForm.new.attributes.keys.map(&:to_s).each do |key| %>
          <dt class="u-text--small"><%= t("survey.#{key}") %></dt>
          <dd class="u-margin-bottom--small"><%= @user.survey[key] %></dd>
        <% end %>

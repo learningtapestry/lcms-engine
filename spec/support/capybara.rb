@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
-require 'capybara/rspec'
 require 'capybara/rails'
-require 'capybara/poltergeist'
+require 'capybara/rspec'
+require 'capybara-webkit'
+require 'capybara-screenshot/rspec'
 
-Capybara.register_driver :poltergeist do |app|
-  params = { timeout: 180, window_size: [1280, 1024] }
-  Capybara::Poltergeist::Driver.new app, params
+Capybara.javascript_driver = :webkit
+
+Capybara::Webkit.configure do |config|
+  config.block_unknown_urls
+  config.timeout = 20
+  config.ignore_ssl_errors
+  # NOTE: Do we need to raise them?
+  # config.raise_javascript_errors = true
 end
 
-Capybara.default_max_wait_time = 3
-Capybara.javascript_driver = :poltergeist
+Capybara::Screenshot.prune_strategy = :keep_last_run

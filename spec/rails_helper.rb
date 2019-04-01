@@ -12,6 +12,8 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 
+require 'email_spec'
+require 'email_spec/rspec'
 require 'faker'
 
 Dir[File.expand_path('support/**/*.rb', __dir__)].each(&method(:require))
@@ -27,8 +29,6 @@ end
 
 RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
-
-  config.use_transactional_fixtures = true
 
   config.filter_rails_from_backtrace!
 end
