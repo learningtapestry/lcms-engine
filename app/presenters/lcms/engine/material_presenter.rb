@@ -6,7 +6,7 @@ module Lcms
       attr_accessor :document
       attr_reader :parsed_document
 
-      delegate :css_styles, :short_url, :subject, to: :document
+      delegate :short_url, :subject, to: :document
       delegate :parts, to: :parsed_document
 
       DEFAULT_TITLE = 'Material'
