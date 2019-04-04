@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'acts_as_list'
+require 'active_job'
 require 'acts-as-taggable-on'
 require 'active_model_serializers'
 require 'backport_new_renderer'
@@ -10,10 +10,12 @@ require 'closure_tree'
 require 'devise'
 require 'heap'
 require 'i18n-js'
+require 'jquery-rails'
 require 'pdfjs_viewer-rails'
 require 'ransack'
 require 'react-rails'
 require 'resque/server'
+require 'turbolinks'
 require 'validate_url'
 require 'virtus'
 require 'will_paginate'
@@ -52,8 +54,6 @@ module Lcms
       ]
 
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
-
-      config.active_job.queue_adapter = :resque
 
       # Used by i18n-js gem
       config.middleware.use I18n::JS::Middleware
@@ -102,6 +102,8 @@ module Lcms
       end
 
       config.after_initialize do
+        config.active_job.queue_adapter = :resque
+
         if ::Rails.env.development? || ::Rails.env.test?
           require 'bullet'
 
@@ -116,6 +118,12 @@ module Lcms
         Dir
           .glob(Rails.root + 'app/decorators/**/*_decorator*.rb')
           .each(&method(:require_dependency))
+      end
+
+      config.generators do |g|
+        g.test_framework :rspec
+        g.fixture_replacement :factory_bot
+        g.factory_bot dir: 'spec/factories'
       end
 
       ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(

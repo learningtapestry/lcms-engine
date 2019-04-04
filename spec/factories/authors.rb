@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :author, class: Lcms::Engine::Author do
-    name 'Great Minds'
-    slug 'great-minds'
+    name { 'Great Minds' }
+    slug { 'great-minds' }
   end
 end

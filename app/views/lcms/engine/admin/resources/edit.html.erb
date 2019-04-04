@@ -5,7 +5,7 @@
 <div class=o-page>
   <h2 class=text-center><%= title %></h2>
 
-  <% unless Settings[:editing_enabled] %>
+  <% unless Lcms::Engine::Settings[:editing_enabled] %>
     <div class='callout warning'><%= t('admin.common.editing_disabled') %></div>
   <% end %>
 

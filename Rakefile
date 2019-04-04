@@ -22,3 +22,12 @@ load 'rails/tasks/engine.rake'
 load 'rails/tasks/statistics.rake'
 
 require 'bundler/gem_tasks'
+
+Bundler::GemHelper.install_tasks
+
+require 'rspec/core'
+require 'rspec/core/rake_task'
+
+desc 'Default: run all specs'
+RSpec::Core::RakeTask.new(rspec: 'app:db:test:prepare')
+task default: [:rspec]

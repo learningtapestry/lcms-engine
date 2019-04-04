@@ -30,13 +30,13 @@ module Lt
 
         def find_or_create_resource
           # if the resource exists, return it
-          resource = ::Resource.find_by_directory(directory)
+          resource = ::Lcms::Engine::Resource.find_by_directory(directory)
           return update(resource) if resource
 
           # else, build missing parents until we build the resource itself.
           parent = nil
           directory.each_with_index do |name, index|
-            resource = ::Resource.tree.find_by_directory(directory[0..index])
+            resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory[0..index])
             if resource
               parent = resource
               next
@@ -76,10 +76,10 @@ module Lt
         # been created after higher grades
         #
         def update_grade_level_position
-          ::Resource.grades.select(:id, :metadata)
-            .map { |m| { id: m.id, idx: Grades::GRADES.index(m.metadata['grade']) } }
+          ::Lcms::Engine::Resource.grades.select(:id, :metadata)
+            .map { |m| { id: m.id, idx: ::Lcms::Engine::Grades::GRADES.index(m.metadata['grade']) } }
             .sort_by { |a| a[:idx] }.each_with_index do |data, idx|
-            ::Resource.find(data[:id]).update_columns level_position: idx
+            ::Lcms::Engine::Resource.find(data[:id]).update_columns level_position: idx
           end
         end
 
@@ -91,14 +91,14 @@ module Lt
 
         def build_new_resource(parent, name, index)
           dir = directory[0..index]
-          resource = ::Resource.new(
+          resource = ::Lcms::Engine::Resource.new(
             curriculum_type: parent.next_hierarchy_level,
             level_position: parent.children.size,
             metadata: metadata,
             parent_id: parent.id,
             resource_type: :resource,
             short_title: name,
-            curriculum_id: Curriculum.default.id
+            curriculum_id: ::Lcms::Engine::Curriculum.default.id
           )
           if last_item?(index)
             resource.tag_list = tag_list if resource.lesson?
@@ -116,8 +116,8 @@ module Lt
           else
             # ELA G1 M1 U2 Lesson 1
             curr ||= directory
-            res = ::Resource.new(metadata: metadata)
-            Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.titleize).join(' ')
+            res = ::Lcms::Engine::Resource.new(metadata: metadata)
+            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.titleize).join(' ')
           end
         end
 
@@ -153,7 +153,7 @@ module Lt
             return nil if assessment? # assessment is a unit now, so lesson -> nil
 
             num = if ela? && prerequisite?
-                    RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
+                    ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
                   else
                     context[:lesson].presence
                   end
@@ -193,7 +193,7 @@ module Lt
         def subject
           @subject ||= begin
             value = context[:subject]&.downcase
-            value if ::Resource::SUBJECTS.include?(value)
+            value if ::Lcms::Engine::Resource::SUBJECTS.include?(value)
           end
         end
 

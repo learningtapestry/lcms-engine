@@ -7,15 +7,15 @@ FactoryBot.define do
     slug { Faker::Internet.slug }
 
     trait :about do
-      body 'About us'
-      title 'About'
-      slug 'about'
+      body { 'About us' }
+      title { 'About' }
+      slug { 'about' }
     end
 
     trait :tos do
-      body 'Terms of Service'
-      slug 'tos'
-      title 'Terms of Service'
+      body { 'Terms of Service' }
+      slug { 'tos' }
+      title { 'Terms of Service' }
     end
   end
 end

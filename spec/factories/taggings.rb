@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :tagging, class: Lcms::Engine::Tag do
+  factory :tagging, class: Lcms::Engine::Tagging do
     context { 'context' }
-    tag
+    tag { create :tag }
   end
 end

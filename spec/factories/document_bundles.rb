@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :document_bundle, class: Lcms::Engine::DocumentBundle do
-    category { DocumentBundle::CATEGORIES.sample }
-    content_type { DocumentBundle::CONTENT_TYPES.sample }
+    category { Lcms::Engine::DocumentBundle::CATEGORIES.sample }
+    content_type { Lcms::Engine::DocumentBundle::CONTENT_TYPES.sample }
     resource
   end
 end

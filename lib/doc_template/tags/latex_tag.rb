@@ -25,7 +25,7 @@ module DocTemplate
                 %(<img class="o-ld-latex" src="#{url}">)
               end
             else
-              EmbedEquations.tex_to_svg @value, preserve_color: preserve_color?
+              Lcms::Engine::EmbedEquations.tex_to_svg @value, preserve_color: preserve_color?
             end
           rescue StandardError => e
             raise if Rails.env.test?

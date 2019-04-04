@@ -4,12 +4,12 @@ module Lcms
   module Engine
     class PagesController < Lcms::Engine::ApplicationController
       def show
-        @page = Page.find(params[:id])
+        @page = Lcms::Engine::Page.find(params[:id])
       end
 
       def show_slug
         slug = params[:slug].to_s
-        @page = Page.find_by(slug: slug)
+        @page = Lcms::Engine::Page.find_by(slug: slug)
         render slug if template_exists?(slug, 'pages')
       end
 
