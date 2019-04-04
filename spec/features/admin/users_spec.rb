@@ -124,7 +124,7 @@ feature 'Admin users' do
 
   def navigate_to_edit_user
     visit lcms_engine.admin_users_path
-    click_link user.id
+    click_link user.id.to_s
     expect(current_path).to eq lcms_engine.edit_admin_user_path(user.id)
   end
 

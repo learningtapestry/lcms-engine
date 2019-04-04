@@ -127,5 +127,13 @@ inside dummy app.
 To be able to to run specs you need to create `/spec/dummy/.env.test` file and add there variables for database
 connection (see `spec/dummy/.env` as a template)
 
+`chromedriver` is required to run feature specs. You may find OS-specific instructions [here](https://sites.google.com/a/chromium.org/chromedriver/getting-started).
+For macOS it can be installed with Homebrew:
+
+```sh
+brew tap homebrew/cask
+brew cask install chromedriver
+```
+
 ## License
 The gem is available as open source under the terms of the [Apache License](https://github.com/learningtapestry/lcms-engine/blob/master/LICENSE).

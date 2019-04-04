@@ -104,7 +104,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap'
 
   s.add_development_dependency 'capybara-screenshot'
-  s.add_development_dependency 'capybara-webkit'
+  s.add_development_dependency 'capybara-selenium'
   s.add_development_dependency 'database_cleaner', '~> 1'
   s.add_development_dependency 'dotenv-rails', '~> 2.2'
   s.add_development_dependency 'email_spec', '~> 2.1'
