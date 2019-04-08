@@ -24,7 +24,7 @@ module Lcms
       mount_uploader :image_file, ResourceImageUploader
 
       acts_as_taggable_on :content_sources, :download_types, :resource_types, :tags, :topics
-      has_closure_tree order: :level_position, dependent: :destroy
+      has_closure_tree order: :level_position, dependent: :destroy, numeric_order: true
 
       belongs_to :parent, class_name: 'Resource', foreign_key: 'parent_id'
 
