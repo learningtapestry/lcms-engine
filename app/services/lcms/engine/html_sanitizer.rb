@@ -258,7 +258,7 @@ module Lcms
 
         def post_processing_default(nodes)
           post_processing_base(nodes)
-          if @options[:metadata]&.subject.to_s.casecmp('math').zero?
+          if @options[:metadata].try(:subject).to_s.casecmp('math').zero?
             # wrap all images for math except those inside table
             # handle images that should be cropped
             post_processing_images(nodes)

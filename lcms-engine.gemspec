@@ -112,7 +112,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'faker'
   s.add_development_dependency 'guard-livereload', '~> 2.5', '>= 2.5.2'
   s.add_development_dependency 'mailcatcher'
-  s.add_development_dependency 'overcommit', '~> 0.46'
+  s.add_development_dependency 'overcommit', '~> 0.47'
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
   s.add_development_dependency 'puma', '~> 3'

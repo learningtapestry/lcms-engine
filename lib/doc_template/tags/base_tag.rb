@@ -130,10 +130,12 @@ module DocTemplate
       end
 
       #
-      # Replaces the tag element with its placeholder
+      # Replace the tag element with its placeholder. Or inline the
+      # tag if requested
       #
       def replace_tag(node)
-        node.replace Nokogiri::HTML.fragment(placeholder)
+        replacement = @opts&.[](:explicit_render) ? content : Nokogiri::HTML.fragment(placeholder)
+        node.replace replacement
       end
 
       def tag_data
