@@ -29,6 +29,7 @@ module Lcms
         @material = service.build link
 
         material.update preview_links: {}
+        after_reimport_hook
       rescue StandardError => e
         Rails.logger.error e.message + "\n " + e.backtrace.join("\n ")
         errors.add(:link, e.message)
@@ -38,6 +39,8 @@ module Lcms
       private
 
       attr_reader :options
+
+      def after_reimport_hook; end
     end
   end
 end
