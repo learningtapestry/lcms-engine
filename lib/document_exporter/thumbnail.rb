@@ -9,7 +9,7 @@ module DocumentExporter
     end
 
     def export
-      pdf = MiniMagick::Image.read(@content)
+      pdf = ::MiniMagick::Image.read(@content)
       @width = pdf.pages[0][:width] / THUMBNAIL_RATIO
       @height = pdf.pages[0][:height] / THUMBNAIL_RATIO
       pdf.format('jpg', 0, density: 300, background: '#fff', alpha: 'remove', resize: "#{@width}x#{@height}").to_blob
