@@ -29,7 +29,8 @@ module DocumentExporter
       end
 
       def export
-        parent_folder = drive_service.file_id.blank? ? drive_service.parent : nil
+        file_id = @options[:file_id] || drive_service.file_id
+        parent_folder = file_id.blank? ? @options[:folder_id] || drive_service.parent : nil
 
         file_name = "#{@options[:prefix]}#{document.base_filename}"
         file_params = { name: file_name, mime_type: 'application/vnd.google-apps.document' }
@@ -41,10 +42,10 @@ module DocumentExporter
           upload_source: StringIO.new(content)
         }
 
-        @id = if drive_service.file_id.blank?
+        @id = if file_id.blank?
                 drive_service.service.create_file(metadata, params)
               else
-                drive_service.service.update_file(drive_service.file_id, metadata, params)
+                drive_service.service.update_file(file_id, metadata, params)
               end.id
 
         post_processing
@@ -105,7 +106,7 @@ module DocumentExporter
       end
 
       def drive_service
-        @drive_service ||= Google::DriveService.build(document, options)
+        @drive_service ||= Lcms::Engine::Google::DriveService.build(document, options)
       end
 
       def gdoc_folder
@@ -125,7 +126,7 @@ module DocumentExporter
       end
 
       def post_processing
-        Google::ScriptService.new(document).execute(@id)
+        Lcms::Engine::Google::ScriptService.new(document).execute(@id)
       end
     end
   end

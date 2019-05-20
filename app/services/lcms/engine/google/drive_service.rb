@@ -30,9 +30,10 @@ module Lcms
 
         def file_id
           @file_id ||= begin
+            folder = @options[:folder_id] || parent
             file_name = document.base_filename
             response = service.list_files(
-              q: "'#{parent}' in parents and name = '#{file_name}' and mimeType = '#{MIME_FILE}' and trashed = false",
+              q: "'#{folder}' in parents and name = '#{file_name}' and mimeType = '#{MIME_FILE}' and trashed = false",
               fields: 'files(id)'
             )
             return nil if response.files.empty?

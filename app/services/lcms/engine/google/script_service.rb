@@ -8,6 +8,7 @@ module Lcms
         include Lcms::Engine::GoogleCredentials
 
         SCRIPT_ID = ENV.fetch('GOOGLE_APPLICATION_SCRIPT_ID', 'PLEASE SET UP SCRIPT ID')
+        SCRIPT_FUNCTION = ENV.fetch('GOOGLE_APPLICATION_SCRIPT_FUNCTION', 'postProcessingUB')
 
         def initialize(document)
           @document = document
@@ -15,9 +16,9 @@ module Lcms
 
         def execute(id)
           # Create an execution request object.
-          request = Google::Apis::ScriptV1::ExecutionRequest.new(
-            function: 'postProcessingUB',
-            parameters: [id, gdoc_template_id, document.cc_attribution, document.full_breadcrumb, document.short_url]
+          request = ::Google::Apis::ScriptV1::ExecutionRequest.new(
+            function: SCRIPT_FUNCTION,
+            parameters: [id, gdoc_template_id, *Array.wrap(parameters)]
           )
           response = service.run_script(SCRIPT_ID, request)
           return unless response.error
@@ -31,7 +32,7 @@ module Lcms
               msg << "\t#{trace['function']}: #{trace['lineNumber']}"
             end
           end
-          raise Google::Apis::Error, msg
+          raise ::Google::Apis::Error, msg
         end
 
         private
@@ -42,10 +43,14 @@ module Lcms
           ENV.fetch("GOOGLE_APPLICATION_TEMPLATE_#{document&.orientation&.upcase || 'PORTRAIT'}")
         end
 
+        def parameters
+          [document.cc_attribution, document.full_breadcrumb, document.short_url]
+        end
+
         def service
           @service ||=
             begin
-              service = Google::Apis::ScriptV1::ScriptService.new
+              service = ::Google::Apis::ScriptV1::ScriptService.new
               service.authorization = google_credentials
               service
             end
