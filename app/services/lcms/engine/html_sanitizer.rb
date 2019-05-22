@@ -244,7 +244,7 @@ module Lcms
         def fix_table_styles(nodes, param, selector)
           attr_regex = /(^|;\s*)#{param}\s*:\s*([\w\.]+)\s*($|;)*/
           nodes.css(selector).each do |node|
-            node[param] = node['style'].match(attr_regex)[2]
+            node[param] = node['style'].match(attr_regex)&.[](2)
           end
         end
 
