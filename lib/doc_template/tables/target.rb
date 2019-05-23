@@ -6,7 +6,7 @@ module DocTemplate
       HEADER_LABEL_PIECE = 'Long-Term Targets Addressed'
       TEMPLATE = 'target-table.html.erb'
 
-      def parse(fragment, _template_type)
+      def parse(fragment, *_args)
         path = ".//table/*/tr[1]/td[1][case_insensitive_contains(.//*/text(), '#{HEADER_LABEL_PIECE}')]"
         return unless (element = fragment.at_xpath path, XpathFunctions.new)
         return unless (table = element.ancestors('table').first)
@@ -22,7 +22,7 @@ module DocTemplate
         el_next = table.next_element
         el_next.remove if el_next&.name == 'p' && el_next.content.blank?
 
-        table.replace content.render
+        table.replace content&.render
         content
       end
 

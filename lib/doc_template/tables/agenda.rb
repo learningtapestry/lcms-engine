@@ -9,7 +9,7 @@ module DocTemplate
       METADATA_HEADER_LABEL = 'metadata'
       GENERAL_TAG = 'general'
 
-      def parse(fragment, _template_type)
+      def parse(fragment, *_args)
         xpath = "table[.//*[case_insensitive_contains(text(), '#{HEADER_LABEL}')]]"
         table = fragment.at_xpath(xpath, XpathFunctions.new)
         return self unless table

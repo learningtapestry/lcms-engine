@@ -8,12 +8,12 @@ module DocTemplate
       HTML_VALUE_FIELDS = ['section-summary'].freeze
       MATERIALS_KEY = 'section-materials'
 
-      def parse(fragment, _template_type, force_inject)
+      def parse(fragment, *args)
         path = ".//table/*/tr[1]/td//*[case_insensitive_equals(text(),'#{HEADER_LABEL}')]"
         section_tables = fragment.xpath(path, XpathFunctions.new)
 
         # # Allows to handle ELA as Math:: inject fake section
-        return fake_section(fragment) if section_tables.empty? && force_inject
+        return fake_section(fragment) if section_tables.empty? && args.extract_options![:force_inject]
 
         [].tap do |result|
           section_tables.each do |el|
