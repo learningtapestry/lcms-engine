@@ -12,6 +12,7 @@ AllCops:
     - bin/*
     - db/schema.rb
     - spec/dummy/db/schema.rb
+    - spec/dummy/bin/*
     - templates/*
   TargetRubyVersion: 2.5
 

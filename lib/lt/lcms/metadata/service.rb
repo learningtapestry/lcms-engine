@@ -4,10 +4,8 @@
 module Lt
   module Lcms
     module Metadata
-      class Service
+      class Service < BaseService
         class << self
-          attr_reader :activity_metadata, :metadata, :section_metadata
-
           def agenda
             @agenda.data.presence || []
           end
@@ -21,7 +19,7 @@ module Lt
           end
 
           def options_for(context)
-            result =
+            super.merge(
               if material?
                 {
                   metadata: DocTemplate::Objects::MaterialMetadata.build_from(metadata.data),
@@ -34,12 +32,11 @@ module Lt
                   parts: @target_table.try(:parts)
                 }
               end
-            result.merge!(lesson_options) unless material?
-            result.merge(context_type: context)
+            )
           end
 
-          def parse(content, material: false)
-            @material = material
+          def parse(content, *args)
+            super
             if material?
               @metadata = DocTemplate::Tables::MaterialMetadata.parse content
               raise ::MaterialError, 'No metadata present' if !@metadata&.table_exist? || @metadata&.data&.empty?
@@ -48,8 +45,9 @@ module Lt
               raise ::DocumentError, 'No metadata present' unless @metadata&.table_exist?
 
               @agenda = DocTemplate::Tables::Agenda.parse content
-              @section_metadata = DocTemplate::Tables::Section.parse content, 'core', force_inject_section?
-              @activity_metadata = DocTemplate::Tables::Activity.parse content, template_type
+              @section_metadata = DocTemplate::Tables::Section.parse content,
+                                                                     force_inject_section: force_inject_section?
+              @activity_metadata = DocTemplate::Tables::Activity.parse content, template_type: template_type
               @target_table = DocTemplate::Tables::Target.parse(content) if target_table?
 
               @foundational_metadata = if foundational?
@@ -81,10 +79,6 @@ module Lt
               agenda: DocTemplate::Objects::AgendaMetadata.build_from(@agenda.data),
               sections: DocTemplate::Objects::SectionsMetadata.build_from(@section_metadata, template_type)
             }
-          end
-
-          def material?
-            !!@material
           end
 
           def target_table?

@@ -8,7 +8,8 @@ module DocTemplate
                              activity-guidance alert class-configuration-student reading-purpose).freeze
       MATERIALS_KEY = 'materials'
 
-      def parse(fragment, template_type = 'core')
+      def parse(fragment, *args)
+        template_type = args.extract_options![:template_type].presence || 'core'
         path = ".//table/*/tr[1]/td//*[case_insensitive_equals(text(),'#{HEADER_LABEL}')]"
         idx = 0
         [].tap do |result|

@@ -7,7 +7,7 @@ module DocTemplate
       HEADER_LABEL = 'material-metadata'
       HTML_VALUE_FIELDS = [].freeze
 
-      def parse(fragment, _template_type)
+      def parse(fragment, *_args)
         super
         if @data['sheet-type'].blank?
           @data['type'] ||= 'default'

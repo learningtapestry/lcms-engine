@@ -7,8 +7,8 @@ module DocTemplate
 
       attr_reader :data
 
-      def self.parse(fragment, template_type = 'core', *args)
-        new.parse(fragment, template_type, *args)
+      def self.parse(fragment, *args)
+        new.parse(fragment, *args)
       end
 
       def initialize
@@ -16,7 +16,9 @@ module DocTemplate
         @table_exists = false
       end
 
-      def parse(fragment, _template_type)
+      def parse(fragment, *args)
+        @options = args.extract_options!
+
         # get the table
         table = fragment.at_xpath("table//*[contains(., '#{self.class::HEADER_LABEL}')]")
         @table_exists = table.present?
@@ -45,7 +47,7 @@ module DocTemplate
 
       protected
 
-      attr_reader :table_exists
+      attr_reader :options, :table_exists
 
       def fetch(table)
         {}.tap do |result|
