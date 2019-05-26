@@ -17,7 +17,7 @@ module Lt
 
             {}.tap do |result|
               result.merge!(lesson_options) unless material?
-              result.merge(context_type: context)
+              result[:context_type] = context
             end
           end
 
