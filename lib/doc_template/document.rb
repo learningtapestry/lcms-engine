@@ -2,6 +2,8 @@
 
 module DocTemplate
   class Document
+    MAX_PARSE_ITERATIONS = 100
+
     # Contains the list of tags for which no parts should be created
     TAGS_WITHOUT_PARTS = [
       Tags::DefaultTag::TAG_NAME,
@@ -52,6 +54,16 @@ module DocTemplate
 
       ::DocTemplate.sanitizer.strip_content(@nodes)
       @nodes.prepend_child ela_teacher_guidance(@opts[:metadata], @opts[:context_type])
+    end
+
+    #
+    # Check if we're getting the same tag again
+    #
+    def check_loop_tag(name, value)
+      if @opts.dig(:last_tag, :name) == name && @opts.dig(:last_tag, :value) == value &&
+         @opts.dig(:last_tag, :iteration) > DocTemplate::Document::MAX_PARSE_ITERATIONS
+        raise ::DocumentError, "Loop detected for tag #{name} with value #{value}"
+      end
     end
 
     def ela_teacher_guidance(metadata, _context_type)
@@ -152,7 +164,11 @@ module DocTemplate
       tag_name, tag_value = matches.captures
       return unless (tag = find_tag tag_name.downcase, tag_value.downcase)
 
+      # Did we get the same tag as previous?
+      check_loop_tag tag_name, tag_value
+
       parsed_tag = tag.parse(node, @opts.merge(parent_document: self, value: tag_value))
+      store_last_tag tag_name, tag_value
 
       parsed_content = parsed_tag.content.presence || parsed_tag.render.to_s
       sanitized_content = ::DocTemplate.config['sanitizer'].constantize
@@ -174,6 +190,24 @@ module DocTemplate
 
     def registered_tags
       Template.tags
+    end
+
+    #
+    # Save info about the latest parsed tag
+    #
+    def store_last_tag(name, value)
+      iteration =
+        if @opts.dig(:last_tag, :name) != name && @opts.dig(:last_tag, :value) != value
+          0
+        else
+          @opts.dig(:last_tag, :iteration).to_i + 1
+        end
+
+      @opts[:last_tag] = {
+        iteration: iteration,
+        name: name,
+        value: value
+      }
     end
   end
 end
