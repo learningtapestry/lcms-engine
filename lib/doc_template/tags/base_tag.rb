@@ -3,7 +3,6 @@
 module DocTemplate
   module Tags
     class BaseTag
-      MAX_ITERATIONS = 100
       SOFT_RETURN_RE = /([[:graph:]]+\[|\][[:graph:]]+)/
       UNICODE_SPACES_RE = /(\u0020|\u00A0|\u1680|\u180E|[\u2000-\u200B]|\u202F|\u205F|\u3000|\uFEFF)/
 
@@ -103,7 +102,9 @@ module DocTemplate
       def parse_nested(node, opts = {})
         if node == opts[:parent_node]
           opts[:iteration] = opts[:iteration].to_i + 1
-          raise ::DocumentError, "Loop detected for node:<br>#{node}" if opts[:iteration] > MAX_ITERATIONS
+          if opts[:iteration] > DocTemplate::Document::MAX_PARSE_ITERATIONS
+            raise ::DocumentError, "Loop detected for node:<br>#{node}"
+          end
         end
         parsed = ::DocTemplate::Document.parse(Nokogiri::HTML.fragment(node), opts.merge(level: 1))
         # add the parts to the parent document
