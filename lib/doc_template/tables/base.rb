@@ -20,7 +20,8 @@ module DocTemplate
         @options = args.extract_options!
 
         # get the table
-        table = fragment.at_xpath("table//*[contains(., '#{self.class::HEADER_LABEL}')]")
+        table_key_cell = fragment.at_xpath("table//tr[1]/td[1][contains(., '#{self.class::HEADER_LABEL}')]")
+        table = table_key_cell&.ancestors('table')&.first
         @table_exists = table.present?
         return self unless @table_exists
 
