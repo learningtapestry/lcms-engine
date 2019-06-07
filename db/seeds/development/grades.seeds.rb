@@ -8,7 +8,7 @@ GRADES = [
 ].freeze
 
 Lcms::Engine::Resource.subjects.each do |subject|
-  Lcms::Engine::GRADES.each_with_index do |grade, index|
+  GRADES.each_with_index do |grade, index|
     puts "----> #{subject.title} #{grade[:name]}"
     res = subject.children.detect { |r| r.short_title == grade[:name] }
 
