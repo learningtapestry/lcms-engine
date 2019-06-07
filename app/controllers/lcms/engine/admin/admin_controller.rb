@@ -7,7 +7,7 @@ module Lcms
         CONFIG_PATH ||= Rails.root.join('config', 'lcms-admin.yml')
 
         DEFAULTS ||= {
-          layout: 'admin',
+          layout: 'lcms/engine/admin',
           materials_query: Lcms::Engine::AdminMaterialsQuery
         }.freeze
 
@@ -62,7 +62,7 @@ module Lcms
         end
 
         def customized_layout
-          AdminController.settings[:layout] || 'admin'
+          AdminController.settings[:layout] || DEFAULTS[:layout]
         end
 
         def customized_view
