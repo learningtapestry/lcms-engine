@@ -97,7 +97,7 @@ the same files, overwriting the ones provided by the engine.
 Include the gem in your Gemfile:
 
 ```ruby
-gem 'lcms-engine'
+gem 'lcms-engine', git: 'https://github.com/learningtapestry/lcms-engine.git', branch: 'master'
 ```
 
 And then execute:
@@ -118,6 +118,13 @@ $ bundle exec rake lcms_engine:load_default_schema
 ### Migrations
 
 All migrations included in the gem are already available for you to run from inside host application.
+
+### Using with Host app
+
+You need to run special rake task if default routes were overridden
+```bash
+bundle exec rake js-routes:generate
+```
 
 ## Developing and testing
 
