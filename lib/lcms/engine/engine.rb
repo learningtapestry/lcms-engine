@@ -61,8 +61,6 @@ module Lcms
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 
       initializer('lcms.engine.react-rails') do |app|
-        app.config.react.addons = true
-
         app.config.react.server_renderer_directories = ['lcms/engine/app/assets/javascripts']
 
         app.config.react.server_renderer_options = {

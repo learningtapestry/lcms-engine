@@ -110,6 +110,11 @@ Or install it yourself as:
 $ gem install lcms-engine
 ```
 
+Copying all required configuration files
+```bash
+$ bundle exec rails g lcms:engine:install
+```
+
 You may need to load the schema. Execute from your app's root directory:
 ```bash
 $ bundle exec rake lcms_engine:load_default_schema

@@ -20,7 +20,7 @@ feature 'Page Not Found' do
   def assert_not_found(path)
     visit path
     expect(page.status_code).to eq 404
-    expect(page.title).to eq I18n.t('pages.not_found.page_title')
+    expect(page.title).to eq I18n.t('lcms.engine.pages.not_found.page_title')
     expect(page.has_link?('Search page', href: lcms_engine.search_path)).to be_truthy
   end
 end

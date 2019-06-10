@@ -31,7 +31,7 @@
                           required: false,
                           as: :select,
                           include_blank: true,
-                          collection: Grades::GRADES_ABBR.zip(Grades::GRADES.map(&:humanize)).last(4),
+                          collection: Lcms::Engine::Grades::GRADES_ABBR.zip(Lcms::Engine::Grades::GRADES.map(&:humanize)).last(4),
                           label_method: :last,
                           value_method: :first %>
     </div>
