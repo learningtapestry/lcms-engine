@@ -115,6 +115,11 @@ You may need to load the schema. Execute from your app's root directory:
 $ bundle exec rake lcms_engine:load_default_schema
 ```
 
+Pre-load required data
+```bash
+$ bundle exec rake lcms_engine:seed_data
+```
+
 ### Migrations
 
 All migrations included in the gem are already available for you to run from inside host application.
