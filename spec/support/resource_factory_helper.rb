@@ -55,6 +55,25 @@ module ResourceFactoryHelper
       parent = res
     end
   end
+
+  def build_or_return_resources_chain(curr)
+    dir = []
+    parent = nil
+    ::Lcms::Engine::Resource::HIERARCHY.each_with_index do |type, idx|
+      next unless curr[idx]
+
+      dir.push curr[idx]
+      res = ::Lcms::Engine::Resource.find_by(short_title: curr[idx]) ||
+            create(:resource,
+                   title: "Test Resource #{dir.join('|')}",
+                   short_title: curr[idx],
+                   curriculum_type: type,
+                   parent: parent,
+                   metadata: ::Lcms::Engine::Resource.metadata_from_dir(dir))
+      parent = res
+    end
+    parent
+  end
 end
 
 RSpec.configure do |config|

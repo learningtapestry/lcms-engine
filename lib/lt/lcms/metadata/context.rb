@@ -9,6 +9,48 @@ module Lt
       class Context
         attr_reader :context
 
+        NUM_RE = /\d+/
+        private_constant :NUM_RE
+
+        class << self
+          #
+          # Fix level position for grades
+          # Is used inside `#find_or_create_resource` method
+          #
+          def update_grades_level_position_for(grades)
+            update_level_position_for(grades) { |m| ::Lcms::Engine::Grades::GRADES.index(m.metadata['grade']) }
+          end
+
+          #
+          # Fix level position for modules (guidebooks)
+          # Is used inside `#find_or_create_resource` method
+          #
+          def update_modules_level_position_for(modules)
+            indexes = modules.map(&:short_title).sort_by { |g| g.to_s[NUM_RE].to_i }
+            update_level_position_for(modules) { |m| indexes.index(m.metadata['module']) }
+          end
+
+          #
+          # Fix level position for units (sections)
+          # Is used inside `#find_or_create_resource` method
+          #
+          def update_units_level_position_for(units)
+            update_level_position_for(units) { |m| m.metadata['unit'][NUM_RE].to_i }
+          end
+
+          #
+          # Fix level position for in case when lower curriculum elements have
+          # been created after higher ones: Grade 8 was created before Grade 7
+          #
+          def update_level_position_for(resources)
+            resources.map { |m| { id: m.id, idx: yield(m) } }
+              .sort_by { |a| a[:idx] }.each_with_index do |data, idx|
+              resource = ::Lcms::Engine::Resource.find(data[:id])
+              resource.update_columns(level_position: idx) unless resource.level_position == idx
+            end
+          end
+        end
+
         def initialize(context = {})
           @context = context.with_indifferent_access
         end
@@ -30,7 +72,7 @@ module Lt
 
         def find_or_create_resource
           # if the resource exists, return it
-          resource = ::Lcms::Engine::Resource.find_by_directory(directory)
+          resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory)
           return update(resource) if resource
 
           # else, build missing parents until we build the resource itself.
@@ -45,20 +87,19 @@ module Lt
             resource = build_new_resource(parent, name, index)
             unless last_item?(index)
               resource.save!
-              update_grade_level_position if resource.grade?
+              unless resource.subject?
+                self.class.send("update_#{resource.curriculum_type}s_level_position_for", resource.self_and_siblings)
+              end
               parent = resource
               next
             end
 
             if mid_assessment?
               set_mid_assessment_position(parent, resource)
-
             elsif prerequisite?
               set_prerequisite_position(parent, resource)
-
             elsif opr?
               set_opr_position(parent, resource)
-
             else
               set_lesson_position(parent, resource)
             end
@@ -67,20 +108,6 @@ module Lt
           end
 
           update resource
-        end
-
-        protected
-
-        #
-        # Fix level position for grades in case when lower grade has
-        # been created after higher grades
-        #
-        def update_grade_level_position
-          ::Lcms::Engine::Resource.grades.select(:id, :metadata)
-            .map { |m| { id: m.id, idx: ::Lcms::Engine::Grades::GRADES.index(m.metadata['grade']) } }
-            .sort_by { |a| a[:idx] }.each_with_index do |data, idx|
-            ::Lcms::Engine::Resource.find(data[:id]).update_columns level_position: idx
-          end
         end
 
         private
