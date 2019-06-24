@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class DocumentPart < ActiveRecord::Base
+    class DocumentPart < ApplicationRecord
       belongs_to :renderer, polymorphic: true
 
       enum context_type: { default: 0, gdoc: 1 }

@@ -4,7 +4,7 @@ require 'acts_as_list'
 
 module Lcms
   module Engine
-    class DownloadCategory < ActiveRecord::Base
+    class DownloadCategory < ApplicationRecord
       has_many :resource_downloads
 
       default_scope { order(:position) }

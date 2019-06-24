@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class CopyrightAttribution < ActiveRecord::Base
+    class CopyrightAttribution < ApplicationRecord
       belongs_to :resource
       validates :resource_id, :value, presence: true
     end

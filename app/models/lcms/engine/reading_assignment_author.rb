@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class ReadingAssignmentAuthor < ActiveRecord::Base
+    class ReadingAssignmentAuthor < ApplicationRecord
       has_many :reading_assignment_texts
     end
   end

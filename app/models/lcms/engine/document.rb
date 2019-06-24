@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Document < ActiveRecord::Base
+    class Document < ApplicationRecord
       include Partable
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 

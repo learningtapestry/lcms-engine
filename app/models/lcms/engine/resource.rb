@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Resource < ActiveRecord::Base
+    class Resource < ApplicationRecord
       enum resource_type: {
         resource: 1,
         podcast: 2,

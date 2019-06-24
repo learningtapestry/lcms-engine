@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class DocumentBundle < ActiveRecord::Base
+    class DocumentBundle < ApplicationRecord
       CATEGORIES = %w(full tm sm).freeze
       CONTENT_TYPES = %w(pdf gdoc).freeze
 

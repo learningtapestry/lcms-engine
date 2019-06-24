@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Curriculum < ActiveRecord::Base
+    class Curriculum < ApplicationRecord
       has_many :resources, dependent: :nullify
       has_many :authors, -> { distinct }, through: :resources
 

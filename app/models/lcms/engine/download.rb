@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Download < ActiveRecord::Base
+    class Download < ApplicationRecord
       CONTENT_TYPES = {
         zip: 'application/zip',
         pdf: 'application/pdf',

@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class ResourceStandard < ActiveRecord::Base
+    class ResourceStandard < ApplicationRecord
       belongs_to :resource
       belongs_to :standard
     end

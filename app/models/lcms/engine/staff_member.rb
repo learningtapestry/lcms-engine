@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class StaffMember < ActiveRecord::Base
+    class StaffMember < ApplicationRecord
       validates :first_name, :last_name, presence: true
       validates :bio, length: { maximum: 4096 }
       enum staff_type: { staff: 1, board: 2 }
