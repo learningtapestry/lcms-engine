@@ -6,7 +6,7 @@ module Lcms
       # store location to use at after sign in or other devise callbacks
       include LocationStorable
 
-      protect_from_forgery with: :exception
+      protect_from_forgery prepend: true, with: :exception
 
       # NOTE: Temporary disabled
       # require auth for accessing the pilot
