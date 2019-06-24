@@ -2,11 +2,11 @@
 
 module Lcms
   module Engine
-    class Document < ActiveRecord::Base
+    class Document < ApplicationRecord
       include Partable
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 
-      belongs_to :resource
+      belongs_to :resource, optional: true
       has_many :document_parts, as: :renderer, dependent: :delete_all
       has_and_belongs_to_many :materials
 
@@ -55,7 +55,7 @@ module Lcms
           .joins('LEFT JOIN materials as m on m.id = links.key::integer')
           .where('((links.value -> ?)::text IS NULL) OR ((links.value -> ?)::text IS NULL)', 'gdoc', 'url')
           .where.not("m.metadata ->> 'type' = ?", 'pdf')
-          .uniq
+          .distinct
       }
 
       scope :with_updated_materials, lambda {

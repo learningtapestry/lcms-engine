@@ -16,13 +16,15 @@
         </tr>
 
         <% @standards.each do |std| %>
-          <tr id="std<%= std.id %>">
-            <td><b><%= std.name %></b></td>
-            <td><%= std.subject %></td>
-            <td><%= std.grades.join(', ') %></td>
-            <td><%= std.alt_names.join(' / ') %></td>
-            <td><%= link_to 'edit', edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
-          </tr>
+          <% cache std do %>
+            <tr id="std<%= std.id %>">
+              <td><b><%= std.name %></b></td>
+              <td><%= std.subject %></td>
+              <td><%= std.grades.join(', ') %></td>
+              <td><%= std.alt_names.join(' / ') %></td>
+              <td><%= link_to 'edit', edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
+            </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

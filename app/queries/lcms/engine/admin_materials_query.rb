@@ -45,7 +45,7 @@ module Lcms
       def sorted_scope
         @scope = @scope.reorder(:identifier) if q.sort_by.blank? || q.sort_by == 'identifier'
         @scope = @scope.reorder(updated_at: :desc) if q.sort_by == 'last_update'
-        @scope.uniq
+        @scope.distinct
       end
     end
   end

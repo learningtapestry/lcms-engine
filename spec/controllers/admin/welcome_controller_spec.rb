@@ -16,6 +16,6 @@ describe Lcms::Engine::Admin::WelcomeController do
       get :index
     end
 
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
   end
 end

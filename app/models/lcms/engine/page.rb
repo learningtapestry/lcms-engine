@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Page < ActiveRecord::Base
+    class Page < ApplicationRecord
       validates :body, :title, :slug, presence: true
 
       def full_title

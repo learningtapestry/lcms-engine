@@ -9,11 +9,11 @@ describe Lcms::Engine::Admin::UsersController do
 
   describe '#index' do
     subject { get :index }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe '#new' do
     subject { get :new }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 end

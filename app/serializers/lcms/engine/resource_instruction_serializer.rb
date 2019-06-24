@@ -5,8 +5,6 @@ module Lcms
     class ResourceInstructionSerializer < ActiveModel::Serializer
       include ResourceHelper
 
-      self.root = false
-
       attributes :id, :title, :subject, :teaser, :path, :img, :instruction_type,
                  :grade_avg, :time_to_teach
 

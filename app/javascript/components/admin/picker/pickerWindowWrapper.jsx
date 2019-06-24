@@ -1,6 +1,5 @@
 import React from 'react'
 import PaginationBoxView from '../../paginate/PaginationBoxView'
-// import Routes from '../../../js-routes.js.erb';
 
 // eslint-disable-next-line no-unused-vars
 function pickerWindowWrapper(WrappedComponent, path) {

@@ -1,6 +1,6 @@
 <div class=o-page>
   <div class=pull-right>
-    <%= link_to t('.new_page'), :new_admin_page, class: 'btn btn-success' %>
+    <%= link_to t('.new_page'), :new_admin_page, class: 'button success' %>
   </div>
 
   <h2 class=text-center><%= t('.page_title') %></h2>
@@ -17,8 +17,8 @@
         <td><%= page.id %>
         <td><%= page.title %>
         <td>
-          <%= link_to t('ui.edit'), edit_admin_page_path(page), class: 'btn btn-default' %>
-          <%= button_to t('ui.delete'), admin_page_path(page), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+          <%= link_to t('ui.edit'), edit_admin_page_path(page), class: 'button primary' %>
+          <%= button_to t('ui.delete'), admin_page_path(page), class: 'button alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
       </tr>
     <% end %>
   </table>

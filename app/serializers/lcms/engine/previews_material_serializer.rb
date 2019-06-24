@@ -3,7 +3,6 @@
 module Lcms
   module Engine
     class PreviewsMaterialSerializer < ActiveModel::Serializer
-      self.root = false
       attributes :activity, :color, :content_type, :data, :for_group, :lesson, :subject
       attr_reader :document
       delegate :content_type, :subject, to: :document

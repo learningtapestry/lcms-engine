@@ -13,7 +13,7 @@ module Lcms
         def index
           @items = association_items
           @items = @items.where('name ilike ?', "%#{params[:q]}%") if index_params[:q].present?
-          @items = @items.paginate(page: pagination.params[:page], per_page: 10).order('name asc')
+          @items = @items.paginate(page: params[:page], per_page: 10).order('name asc')
 
           respond_to do |format|
             format.json { render json: pagination.serialize(@items, AssociationItemSerializer) }
@@ -23,19 +23,20 @@ module Lcms
         private
 
         def pagination
-          @pagination ||= Pagination.new(params)
+          @pagination ||= Pagination.new params
         end
 
         def index_params
-          @index_params ||= begin
-            expected_params = params.slice(:association, :q).symbolize_keys
-            index_p = { q: nil }.merge(expected_params)
+          @index_params ||=
+            begin
+              expected_params = params.permit(:association, :q).to_h.symbolize_keys
+              index_p = { q: nil }.merge(expected_params)
 
-            raise StandardError unless VALID_ASSOCIATIONS.include?(index_p[:association])
+              raise StandardError unless VALID_ASSOCIATIONS.include?(index_p[:association])
 
-            index_p[:association] = index_p[:association].to_sym
-            index_p
-          end
+              index_p[:association] = index_p[:association].to_sym
+              index_p
+            end
         end
 
         def association_items

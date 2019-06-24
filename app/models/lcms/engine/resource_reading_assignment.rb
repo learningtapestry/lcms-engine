@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class ResourceReadingAssignment < ActiveRecord::Base
+    class ResourceReadingAssignment < ApplicationRecord
       belongs_to :reading_assignment_text
       belongs_to :resource
     end

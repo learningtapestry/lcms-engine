@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class AccessCode < ActiveRecord::Base
+    class AccessCode < ApplicationRecord
       validates :code, presence: true, uniqueness: true
 
       scope :active, -> { where(active: true) }

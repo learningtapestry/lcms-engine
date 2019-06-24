@@ -2,8 +2,8 @@
 
 require 'capybara/rails'
 require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
 require 'selenium/webdriver'
+require 'webdrivers/chromedriver'
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -17,5 +17,3 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Capybara.javascript_driver = :headless_chrome
-
-Capybara::Screenshot.prune_strategy = :keep_last_run

@@ -13,11 +13,6 @@ describe Lcms::Engine::DocumentBundle do
   end
 
   context 'cannot be created without' do
-    it 'resource' do
-      obj = build :document_bundle, resource: nil
-      expect(obj).to_not be_valid
-    end
-
     it 'category' do
       obj = build :document_bundle, category: nil
       expect(obj).to_not be_valid
@@ -93,7 +88,6 @@ describe Lcms::Engine::DocumentBundle do
       allow(bundler).to receive(:bundle).and_return(bundle)
       allow(File).to receive(:exist?).and_return(true)
       allow(File).to receive(:open).and_yield('zip content')
-      allow_any_instance_of(described_class).to receive(:file=)
       allow_any_instance_of(described_class).to receive(:save!)
       allow(FileUtils).to receive(:rm)
     end

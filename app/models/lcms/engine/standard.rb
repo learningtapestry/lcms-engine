@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Standard < ActiveRecord::Base
+    class Standard < ApplicationRecord
       # NOTE: #954 - to be removed?
       ALT_NAME_REGEX = {
         'ela' => /^[[:alpha:]]+\.(k|pk|\d+)\.\d+(\.[[:alnum:]]+)?$/,

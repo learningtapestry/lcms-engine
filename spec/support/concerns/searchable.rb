@@ -9,6 +9,8 @@ shared_examples_for 'searchable' do # rubocop:disable Metrics/BlockLength
 
   before do
     allow(Lcms::Engine::Search::Repository).to receive(:new).and_return(repo)
+    allow(repo).to receive(:index_exists?).and_return(true)
+    allow(repo).to receive(:save)
     allow(described_class).to receive(:search_model).and_return(Lcms::Engine::Search::Document)
     allow(Lcms::Engine::Search::Document).to receive(:build_from).and_return(doc)
     allow(doc).to receive(:search)

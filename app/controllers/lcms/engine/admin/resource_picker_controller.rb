@@ -24,7 +24,7 @@ module Lcms
         def index_params
           @index_params ||= begin
             default_params = { type: nil, subject: nil, grade: nil, q: nil }
-            expected_params = params.slice(:type, :subject, :grade, :q).symbolize_keys
+            expected_params = params.permit(:type, :subject, :grade, :q).to_h.symbolize_keys
             index_p = default_params.merge(expected_params)
 
             grade_ok = index_p[:grade].blank? || Filterbar::GRADES.include?(index_p[:grade])
@@ -38,7 +38,7 @@ module Lcms
         end
 
         def pagination
-          @pagination ||= Pagination.new(params)
+          @pagination ||= Pagination.new params
         end
 
         def grade_name

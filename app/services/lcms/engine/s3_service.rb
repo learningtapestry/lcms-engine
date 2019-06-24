@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'aws-sdk-rails'
+require 'aws-sdk-s3'
 
 module Lcms
   module Engine

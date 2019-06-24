@@ -24,7 +24,7 @@ module DocTemplate
         label = text.present? ? "<b>#{text}</b>" : ''
         href = build_href(title, opts[:metadata])
 
-        "<a href=\"#{href}\" target=\"_blank\" title=\"#{title}\"><i class=\"fa fa-book\"></i> #{label}</a>"
+        "<a href=\"#{href}\" target=\"_blank\" title=\"#{title}\"><i class=\"fas fa-book\"></i> #{label}</a>"
       end
 
       def build_href(title, metadata)

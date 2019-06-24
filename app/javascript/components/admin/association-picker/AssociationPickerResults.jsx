@@ -40,7 +40,7 @@ function AssociationPickerResults(props) {
         </tr>
       </thead>
       <tbody>
-        {items}
+        {items.length ? items : <tr><td>Nothing to select</td></tr> }
       </tbody>
     </table>
   )

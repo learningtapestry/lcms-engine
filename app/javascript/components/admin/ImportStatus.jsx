@@ -75,7 +75,7 @@ class ImportStatus extends React.Component {
   }
 
   spinner() {
-    return <span className="o-adm-materials__spinner button primary u-margin-bottom--zero"><i className="fa fa-spin fa-spinner" /></span>
+    return <span className="o-adm-materials__spinner button primary u-margin-bottom--zero"><i className="fas fa-spin fa-spinner" /></span>
   }
 
   render() {

@@ -11,7 +11,7 @@ xdescribe Lcms::Engine::FindLessonsController do
       let!(:serialized) { ResourceSerializer.new(resource).as_json }
       before { get :index }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template(:index) }
       it { expect(assigns(:props)).to be_present }
       it { expect(assigns(:props)[:results]).to include(serialized) }

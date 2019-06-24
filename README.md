@@ -83,13 +83,22 @@ the same files, overwriting the ones provided by the engine.
 
 ## Requirements
 - Ruby 2.5 or higher
-- Rails 4.2 or higher
+- Rails 5.2.4 or higher
 - Postgres 9.6 or higher
 
 ## Installation
-Include the gem in your Gemfile:
-
+Add this to the Gemfile:
 ```ruby
+source 'https://rails-assets.org' do
+  gem 'rails-assets-classnames', '~> 2.2.5'
+  gem 'rails-assets-es6-promise', '~> 4.2.4'
+  gem 'rails-assets-eventemitter3', '~> 3.1.2'
+  gem 'rails-assets-fetch', '~> 3.0.0'
+  gem 'rails-assets-jstree', '~> 3.3.8'
+  gem 'rails-assets-knockout', '~> 3.5.0'
+  gem 'rails-assets-lodash', '~> 4.17.15'
+  gem 'rails-assets-selectize', '~> 0.12.6'
+end
 gem 'lcms-engine', git: 'https://github.com/learningtapestry/lcms-engine.git', branch: 'master'
 ```
 

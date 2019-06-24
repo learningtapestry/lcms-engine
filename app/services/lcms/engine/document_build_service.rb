@@ -143,6 +143,7 @@ module Lcms
           last_author_email: downloader.file.last_modifying_user.try(:email_address),
           last_author_name: downloader.file.last_modifying_user.try(:display_name),
           metadata: template.metadata,
+          reimported_at: Time.current,
           sections_metadata: template.metadata_service.try(:section_metadata),
           version: downloader.file.version
         }

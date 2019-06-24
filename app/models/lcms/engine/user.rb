@@ -4,7 +4,7 @@ require 'devise'
 
 module Lcms
   module Engine
-    class User < ActiveRecord::Base
+    class User < ApplicationRecord
       # Include default devise modules. Others available are:
       # :lockable, :timeoutable and :omniauthable
       devise :database_authenticatable, :registerable, :confirmable,
@@ -12,9 +12,9 @@ module Lcms
 
       enum role: { admin: 1, user: 0 }
 
-      validates_presence_of :access_code, on: :create, unless: 'admin?'
+      validates_presence_of :access_code, on: :create, unless: :admin?
       validates_presence_of :email, :role
-      validate :access_code_valid?, on: :create, unless: 'admin?'
+      validate :access_code_valid?, on: :create, unless: :admin?
 
       def full_name
         [

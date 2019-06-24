@@ -15,7 +15,6 @@ module DocumentExporter
     private
 
     def content
-      # Using backport of Rails 5 Renderer here
       @content ||= ApplicationController.render(
         layout: 'ld_docx',
         locals: { :@document => @document },

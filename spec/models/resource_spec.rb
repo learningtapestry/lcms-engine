@@ -60,39 +60,6 @@ describe Lcms::Engine::Resource do
     end
   end
 
-  describe 'add author to grades and its descendants' do
-    let(:author) { create(:author) }
-    let(:dir) { ['math', 'grade 2', 'module 1', 'topic a', 'lesson 1'] }
-
-    before { build_resources_chain(dir) }
-
-    it 'set authorship on grades' do
-      grade = Lcms::Engine::Resource.find_by_directory dir[0..2]
-      lesson = Lcms::Engine::Resource.find_by_directory dir
-
-      expect(grade.author).to be_nil
-      expect(lesson.author).to be_nil
-
-      grade.add_grade_author(author)
-
-      expect(grade.reload.author_id).to eq author.id
-      expect(lesson.reload.author_id).to eq author.id
-    end
-
-    it 'set authorship on descendants' do
-      grade = Lcms::Engine::Resource.find_by_directory dir[0..2]
-      lesson = Lcms::Engine::Resource.find_by_directory dir
-
-      expect(grade.author).to be_nil
-      expect(lesson.author).to be_nil
-
-      lesson.add_grade_author(author)
-
-      expect(grade.reload.author_id).to eq author.id
-      expect(lesson.reload.author_id).to eq author.id
-    end
-  end
-
   describe 'update metadata on save' do
     let(:dir) { ['math', 'grade 2', 'module 1', 'topic a'] }
 

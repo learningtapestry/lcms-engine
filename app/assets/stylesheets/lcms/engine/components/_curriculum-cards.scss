@@ -87,7 +87,7 @@ $ub-cur-card-margin: 2px;
   }
 
   @include e(body) {
-    @include flex-grid-column($gutter: $grid-column-2xgutter);
+    @include flex-grid-column($gutters: $grid-column-2xgutter);
     @include zero-margin-bottom;
 
     h3 { margin-bottom: 0; }

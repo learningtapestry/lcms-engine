@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Author < ActiveRecord::Base
+    class Author < ApplicationRecord
       has_many :resources
       has_many :curriculums, -> { distinct }, through: :resources
     end
