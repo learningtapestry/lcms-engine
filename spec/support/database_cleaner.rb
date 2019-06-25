@@ -3,6 +3,8 @@
 require 'database_cleaner'
 
 RSpec.configure do |config|
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+
   config.use_transactional_fixtures = false
 
   config.before(:suite) do

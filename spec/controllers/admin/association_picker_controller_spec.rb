@@ -13,8 +13,8 @@ describe Lcms::Engine::Admin::AssociationPickerController do
   describe '#index' do
     ASSOCIATIONS.each do |assoc|
       it "list #{assoc} association items" do
-        get :index, association: assoc, format: :json
-        expect(response).to be_success
+        get :index, params: { association: assoc, format: :json }
+        expect(response).to be_successful
       end
     end
   end

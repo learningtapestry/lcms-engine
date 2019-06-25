@@ -14,7 +14,7 @@ describe Lcms::Engine::Admin::ResourceBulkEditsController do
 
   describe '#new' do
     subject { get :new, ids: ids }
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe '#create' do

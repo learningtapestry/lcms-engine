@@ -41,7 +41,7 @@ xdescribe Lcms::Engine::ResourcesController do
     context 'with slug' do
       before { get :show, slug: resource.slug }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(assigns(:resource)).to be_present }
       it { expect(assigns(:props)).to_not be_nil }
     end

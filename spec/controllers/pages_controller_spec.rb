@@ -15,21 +15,21 @@ describe Lcms::Engine::PagesController do
 
   describe 'about page' do
     before { get :show_slug, slug: 'about' }
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
   end
 
   describe 'about_people page' do
     before { get :show_slug, slug: 'about_people' }
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
   end
 
   describe 'tos page' do
     before { get :show_slug, slug: 'tos' }
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
   end
 
   describe 'privacy page' do
     before { get :show_slug, slug: 'privacy' }
-    it { expect(response).to be_success }
+    it { expect(response).to be_successful }
   end
 end

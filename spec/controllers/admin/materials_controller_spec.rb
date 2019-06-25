@@ -26,7 +26,7 @@ describe Lcms::Engine::Admin::MaterialsController do
   describe '#index' do
     subject { get :index }
 
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
 
     it { is_expected.to render_template :index }
   end

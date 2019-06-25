@@ -3,7 +3,6 @@
 require 'active_job'
 require 'acts-as-taggable-on'
 require 'active_model_serializers'
-require 'backport_new_renderer'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
@@ -130,9 +129,7 @@ module Lcms
         )
       end
 
-      ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(
-        ENV.fetch('ENABLE_CACHING', true)
-      )
+      ENABLE_CACHING = ActiveRecord::Type::Boolean.new.cast ENV.fetch('ENABLE_CACHING', true)
 
       if ENABLE_CACHING
         redis_url = ENV.fetch('REDIS_URL', 'redis://localhost:6379')
