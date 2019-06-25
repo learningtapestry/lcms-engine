@@ -52,7 +52,7 @@ module DocTemplate
 
       def fetch(table)
         {}.tap do |result|
-          table.xpath('.//tr[position() > 1]').each do |row|
+          table.xpath('./tbody/tr[position() > 1]').each do |row|
             key = row.at_xpath('./td[1]')&.text.to_s.squish.downcase
             next if key.blank?
 
