@@ -11,6 +11,5 @@ describe Lcms::Engine::Admin::CurriculumsController do
     subject { get :edit }
 
     it { is_expected.to be_successful }
-    it { is_expected.to render_template :edit }
   end
 end
