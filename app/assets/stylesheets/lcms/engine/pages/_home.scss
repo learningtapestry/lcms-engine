@@ -96,7 +96,7 @@ $c-hp-math-gradient: rgba(map-get($ub-colorcodes, math-base), .9);
   }
 
   @include e(item) {
-    @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+    @include flex-grid-column(12, $gutters: $grid-column-2xgutter);
     @include add-top-bottom-margin(0);
     @include add-top-bottom-padding;
     flex-shrink: 1;
@@ -109,7 +109,7 @@ $c-hp-math-gradient: rgba(map-get($ub-colorcodes, math-base), .9);
   }
 
   @include e(text) {
-    @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+    @include flex-grid-column(12, $gutters: $grid-column-2xgutter);
     @include add-top-bottom-margin(0);
     @include add-top-bottom-padding;
     border: 0;
@@ -117,7 +117,7 @@ $c-hp-math-gradient: rgba(map-get($ub-colorcodes, math-base), .9);
     flex-shrink: 1;
 
     @include breakpoint(medium) {
-      @include flex-grid-column(null, $gutter: $grid-column-2xgutter);
+      @include flex-grid-column(null, $gutters: $grid-column-2xgutter);
       @include add-top-bottom-margin;
       @include add-top-bottom-padding(0);
       border: 0;
@@ -127,7 +127,7 @@ $c-hp-math-gradient: rgba(map-get($ub-colorcodes, math-base), .9);
 
   @include e(btn) {
     @include breakpoint(ipad down) {
-      @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+      @include flex-grid-column(12, $gutters: $grid-column-2xgutter);
       margin-top: 0;
       padding-top: 0;
     }

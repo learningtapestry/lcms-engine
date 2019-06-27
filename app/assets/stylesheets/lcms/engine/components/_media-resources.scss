@@ -2,5 +2,5 @@
 }
 
 .o-media-video {
-  @include flex-video($flexvideo-ratio-widescreen);
+  @include responsive-embed(map-get($responsive-embed-ratios, 'widescreen'));
 }

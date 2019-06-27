@@ -29,15 +29,12 @@ Gem::Specification.new do |s|
   s.add_dependency 'airbrake'
   s.add_dependency 'autoprefixer-rails', '~> 9.6'
   s.add_dependency 'aws-sdk-rails', '~> 1.0'
-  # NOTE: Rails upgrade
-  # s.add_dependency 'backport_new_renderer', '~> 1.0.0'
   s.add_dependency 'bitly', '~> 1.0'
   s.add_dependency 'bootstrap-sass', '~> 3.4.1'
   s.add_dependency 'bullet', '~> 5.7.3'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'ckeditor', '~> 4'
   s.add_dependency 'closure_tree', '~> 7'
-  s.add_dependency 'coffee-rails', '~> 5.0.0'
   s.add_dependency 'combine_pdf', '~> 1.0.15'
   s.add_dependency 'daemons', '~> 1.2', '>= 1.2.3'
   s.add_dependency 'devise', '~> 4'
@@ -48,7 +45,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog-aws', '~> 2.0'
   s.add_dependency 'font-awesome-sass', '~> 4.7.0'
   s.add_dependency 'foreman', '~> 0.78.0'
-  s.add_dependency 'foundation-rails', '~> 6.2.1'
+  s.add_dependency 'foundation-rails', '~> 6.5.3'
   s.add_dependency 'google-api-client', '~> 0.30'
   s.add_dependency 'heap', '~> 1.0'
   s.add_dependency 'hiredis'
@@ -56,8 +53,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'i18n-js', '~> 3.0.2'
   s.add_dependency 'jbuilder', '~> 2.0'
   s.add_dependency 'jquery-rails'
-  # NOTE: Rails upgrade
-  # s.add_dependency 'js-routes', '~> 1.1.2'
   s.add_dependency 'js-routes', '~> 1.4.7'
   s.add_dependency 'lt-google-api', '~> 0.1'
   s.add_dependency 'lt-lcms', '~> 0.2'
@@ -73,8 +68,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'pdfjs_viewer-rails', '~> 0.0.9'
   s.add_dependency 'pg', '0.20'
   s.add_dependency 'pg_search', '~> 2.1'
-  # NOTE: Rails upgrade
-  # s.add_dependency 'postgres_ext', '~> 3.0'
   s.add_dependency 'rack-mini-profiler'
   s.add_dependency 'rails', '5.2.4.1'
   s.add_dependency 'rails-assets-classnames', '~> 2.2.3'
@@ -96,8 +89,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rubyzip', '>= 1.3.0'
   s.add_dependency 'sanitize', '~> 5.0'
   s.add_dependency 'sass-rails', '~> 5.0'
-  # NOTE: Rails upgrade
-  # s.add_dependency 'simple_form', '~> 3.5'
   s.add_dependency 'simple_form'
   s.add_dependency 'staccato', '~> 0.4.7'
   s.add_dependency 'thor', '0.19.1'
@@ -106,13 +97,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'uglifier', '~> 3.0', '>= 3.0.4'
   s.add_dependency 'validate_url', '~> 1.0'
   s.add_dependency 'virtus', '~> 1.0.5'
-  # NOTE: Rails upgrade
-  # s.add_dependency 'will_paginate', '~> 3.0.7'
   s.add_dependency 'will_paginate', '~> 3.1.0'
   s.add_dependency 'will_paginate-bootstrap'
 
   s.add_development_dependency 'capybara-screenshot'
-  # NOTE: Rails upgrade
   s.add_development_dependency 'capybara-selenium'
   s.add_development_dependency 'database_cleaner', '~> 1'
   s.add_development_dependency 'dotenv-rails', '~> 2.2'
