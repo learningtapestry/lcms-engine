@@ -104,11 +104,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate', '~> 3.1.0'
   s.add_dependency 'will_paginate-bootstrap'
 
-  s.add_development_dependency 'capybara-screenshot'
-  # NOTE: Rails upgrade: Need to remove
-  s.add_development_dependency 'capybara-selenium'
-  # NOTE: Rails upgrade: Need to remove - doesn't needed anymore with Rails 5
-  s.add_development_dependency 'database_cleaner', '~> 1'
+  s.add_development_dependency 'capybara'
   s.add_development_dependency 'dotenv-rails', '~> 2.2'
   s.add_development_dependency 'email_spec', '~> 2.1'
   s.add_development_dependency 'factory_bot'
@@ -119,6 +115,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.59.2'
   s.add_development_dependency 'sdoc', '~> 0.4.0'
+  s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'traceroute'
   s.add_development_dependency 'webpacker', '~> 4.0.6'
