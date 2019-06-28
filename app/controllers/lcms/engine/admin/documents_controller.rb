@@ -94,7 +94,7 @@ module Lcms
         def form_params
           @form_params ||=
             begin
-              data = params.require(:document_form).permit(:link, :link_fs, :reimport, :with_materials)
+              data = params.require(:document_form).permit(:link, :link_fs, :reimport, :with_materials).to_h
               data.delete(:with_materials) if data[:with_materials].to_i.zero?
               data
             end

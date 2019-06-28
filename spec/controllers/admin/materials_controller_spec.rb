@@ -10,14 +10,14 @@ describe Lcms::Engine::Admin::MaterialsController do
   describe '#destroy' do
     let!(:material) { create :material }
 
-    subject { delete :destroy, id: material.id }
+    subject { delete :destroy, params: { id: material.id } }
 
     it { expect { subject }.to change { Lcms::Engine::Material.count }.by(-1) }
 
     context 'when there was custom filter' do
       let(:query) { 'filter' }
 
-      subject { delete :destroy, id: material.id, query: query }
+      subject { delete :destroy, params: { id: material.id, query: query } }
 
       it { is_expected.to redirect_to admin_materials_path(query: query) }
     end

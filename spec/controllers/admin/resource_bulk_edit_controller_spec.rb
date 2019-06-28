@@ -13,7 +13,7 @@ describe Lcms::Engine::Admin::ResourceBulkEditsController do
   end
 
   describe '#new' do
-    subject { get :new, ids: ids }
+    subject { get :new, params: { ids: ids } }
     it { is_expected.to be_successful }
   end
 

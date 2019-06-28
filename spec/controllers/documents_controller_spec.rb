@@ -22,7 +22,7 @@ describe Lcms::Engine::DocumentsController do
     #   allow(Lcms::Engine::DocumentExporter::GDoc::Base).to receive_message_chain(:new, :export).and_return(exporter)
     # end
 
-    subject { get :export_gdoc, id: document.id }
+    subject { get :export_gdoc, params: { id: document.id } }
 
     it 'renders document content into a string' do
       expect(controller).to receive(:render).with(json: { url: nil }, status: :ok)
@@ -60,7 +60,7 @@ describe Lcms::Engine::DocumentsController do
         allow(Lcms::Engine::DocumentGeneratePdfJob).to receive_message_chain(:perform_later, :job_id).and_return(job_id)
       end
 
-      subject { post :export, id: document.id, type: type, excludes: excludes, context: 'pdf' }
+      subject { post :export, params: { id: document.id, type: type, excludes: excludes, context: 'pdf' } }
 
       it 'calls S3Service' do
         expect(Lcms::Engine::S3Service).to receive(:url_for)
@@ -100,7 +100,7 @@ describe Lcms::Engine::DocumentsController do
 
       before { allow(Lcms::Engine::DocumentGeneratePdfJob).to receive(:find) }
 
-      subject { get :export_status, context: 'pdf', id: document.id, jid: job_id }
+      subject { get :export_status, params: { context: 'pdf', id: document.id, jid: job_id } }
 
       it 'looks up job queue for the job' do
         expect(Lcms::Engine::DocumentGeneratePdfJob).to receive(:find).with(job_id)

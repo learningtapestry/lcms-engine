@@ -19,7 +19,7 @@ describe Lcms::Engine::Admin::DocumentsController do
       allow(Lcms::Engine::DocumentForm).to receive(:new).and_return(form)
     end
 
-    subject { post :create, document_form: params }
+    subject { post :create, params: { document_form: params } }
 
     it 'creates DocumentForm object' do
       expect(Lcms::Engine::DocumentForm).to receive(:new).with(params)
@@ -41,7 +41,7 @@ describe Lcms::Engine::Admin::DocumentsController do
   describe '#destroy' do
     let!(:document) { create :document }
 
-    subject { delete :destroy, id: document.id }
+    subject { delete :destroy, params: { id: document.id } }
 
     it 'deletes the document' do
       expect { subject }.to change(Lcms::Engine::Document, :count).by(-1)

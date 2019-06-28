@@ -15,7 +15,7 @@ xdescribe Lcms::Engine::ResourcesController do
 
     before { allow(URI).to receive_message_chain(:parse, :open, :read).and_return(data) }
 
-    subject { get :pdf_proxy, url: url }
+    subject { get :pdf_proxy, params: { url: url } }
 
     it 'proxies the request' do
       expect(controller).to receive(:send_data).with(data, params) do

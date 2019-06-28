@@ -9,7 +9,7 @@ describe Lcms::Engine::Admin::StandardsController do
   before { sign_in user }
 
   describe '#edit' do
-    subject { get :edit, id: standard.to_param }
+    subject { get :edit, params: { id: standard.to_param } }
 
     it { is_expected.to be_successful }
 
@@ -26,7 +26,7 @@ describe Lcms::Engine::Admin::StandardsController do
     context 'filters' do
       let(:scope) { double }
 
-      subject { get :index, query: params }
+      subject { get :index, params: { query: params } }
 
       context 'name' do
         let(:name) { 'standard-name' }
@@ -42,7 +42,7 @@ describe Lcms::Engine::Admin::StandardsController do
 
         before { allow(Lcms::Engine::Standard).to receive(:order).and_return(scope) }
 
-        subject { get :index, params }
+        subject { get :index, params: params }
 
         it { expect(scope).to receive(:paginate).with(page: page) }
       end
@@ -55,7 +55,7 @@ describe Lcms::Engine::Admin::StandardsController do
     let(:description) { 's-description' }
     let(:params) { { description: description } }
 
-    subject { post :update, id: standard.to_param, standard: params }
+    subject { post :update, params: { id: standard.to_param, standard: params } }
 
     context 'with valid params' do
       it { is_expected.to redirect_to admin_standards_path }

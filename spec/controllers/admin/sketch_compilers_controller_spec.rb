@@ -12,12 +12,12 @@ describe Lcms::Engine::Admin::SketchCompilersController do
     let(:url) { 'url' }
     let(:version) { 'v1' }
 
-    subject { post :compile, params }
+    subject { post :compile, params: params }
 
     context 'with valid params' do
       let(:api_response) { double }
       let(:compiler) { instance_double(Lcms::Engine::SketchCompiler, compile: api_response) }
-      let(:ip) { '127.0.0.1' }
+      let(:ip) { '0.0.0.0' }
 
       before do
         allow(Lcms::Engine::SketchCompiler).to receive_message_chain(:new, :compile).and_return(api_response)
@@ -77,7 +77,7 @@ describe Lcms::Engine::Admin::SketchCompilersController do
       context 'when version has been passed in' do
         let(:version) { 'v2' }
 
-        before { get :new, version: version }
+        before { get :new, params: { version: version } }
 
         it 'uses passed in version' do
           expect(assigns(:version)).to eq version
