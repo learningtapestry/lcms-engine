@@ -2,13 +2,10 @@
 
 require 'rails_helper'
 require 'rake'
-require 'seedbank'
 
 describe Lcms::Engine::PagesController do
   before(:all) do
-    Seedbank.load_tasks
-    Rake::Task.define_task(:environment)
-    Rake::Task['db:seed:pages'].invoke
+    load File.expand_path '../../db/seeds/pages.seeds.rb', __dir__
   end
 
   before { sign_in create :user }
