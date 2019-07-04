@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :document_part, class: Lcms::Engine::DocumentPart do
-    document { nil }
+    document { build :document }
     content { 'MyText' }
     part_type { 'layout' }
     active { true }

@@ -10,7 +10,7 @@ module Lcms
 
       mount_uploader :file, DocumentBundleUploader
 
-      validates :resource, :category, presence: true
+      validates :category, presence: true
       validates :category, inclusion: { in: CATEGORIES }
       validates :content_type, inclusion: { in: CONTENT_TYPES }
 

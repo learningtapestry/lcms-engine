@@ -6,7 +6,7 @@ module Lcms
       include Partable
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 
-      belongs_to :resource
+      belongs_to :resource, optional: true
       has_many :document_parts, as: :renderer, dependent: :delete_all
       has_and_belongs_to_many :materials
 
