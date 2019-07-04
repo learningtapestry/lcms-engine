@@ -3,15 +3,16 @@
 module Lcms
   module Engine
     class Pagination
+      PARAMS_DEFAULT = { page: 1, per_page: 20, order: :asc }.freeze
+
       def initialize(params)
-        @params = params
+        @params = handle_params params
       end
 
       def params(strict: false)
         @pagination_params ||= begin
-          default_params = { page: 1, per_page: 20, order: :asc }
-          expected_params = @params.slice(:page, :per_page, :order).symbolize_keys
-          pagination = default_params.merge(expected_params)
+          expected_params = @params.slice(*PARAMS_DEFAULT.keys).symbolize_keys
+          pagination = PARAMS_DEFAULT.merge(expected_params)
 
           pagination[:page] = pagination[:page].to_i
           pagination[:per_page] = pagination[:per_page].to_i
@@ -38,6 +39,14 @@ module Lcms
         }
         options[:each_serializer] = serializer
         ActiveModel::ArraySerializer.new(resources, options).as_json
+      end
+
+      private
+
+      def handle_params(params)
+        return params unless params.is_a?(ActionController::Parameters)
+
+        params.permit(*PARAMS_DEFAULT.keys).to_h
       end
     end
   end
