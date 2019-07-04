@@ -26,10 +26,10 @@ module Lcms
       acts_as_taggable_on :content_sources, :download_types, :resource_types, :tags, :topics
       has_closure_tree order: :level_position, dependent: :destroy, numeric_order: true
 
-      belongs_to :parent, class_name: 'Lcms::Engine::Resource', foreign_key: 'parent_id'
+      belongs_to :parent, class_name: 'Lcms::Engine::Resource', foreign_key: 'parent_id', optional: true
 
-      belongs_to :author
-      belongs_to :curriculum
+      belongs_to :author, optional: true
+      belongs_to :curriculum, optional: true
 
       # Additional resources
       has_many :resource_additional_resources, dependent: :destroy
