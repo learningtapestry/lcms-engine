@@ -62,7 +62,8 @@ describe Lcms::Engine::Admin::SketchCompilersController do
   describe '#new' do
     subject { get :new }
 
-    context 'with google credentials' do
+    # TODO: Rails upgrade - move to system spec
+    xcontext 'with google credentials' do
       let(:credentials) { 'credentials' }
 
       before { allow(controller).to receive(:google_credentials).and_return(credentials) }
