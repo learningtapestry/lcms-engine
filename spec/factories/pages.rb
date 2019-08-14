@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :page, class: Lcms::Engine::Page do
-    body { Faker::Lorem.sentence(100) }
-    title { Faker::Lorem.sentence(10) }
+    body { Faker::Lorem.sentence(word_count: 100) }
+    title { Faker::Lorem.sentence(word_count: 10) }
     slug { Faker::Internet.slug }
 
     trait :about do
