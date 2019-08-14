@@ -6,6 +6,8 @@ require 'google/apis/script_v1'
 module DocumentExporter
   module Gdoc
     class Base < DocumentExporter::Base
+      GOOGLE_API_CLIENT_UPLOAD_RETRIES = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RETRIES', 5).to_i
+      GOOGLE_API_CLIENT_UPLOAD_TIMEOUT = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_TIMEOUT', 60).to_i
       VERSION_RE = /_v\d+$/i
 
       attr_reader :document, :options
@@ -39,7 +41,13 @@ module DocumentExporter
 
         params = {
           content_type: 'text/html',
-          upload_source: StringIO.new(content)
+          upload_source: StringIO.new(content),
+          options: {
+            open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+            read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+            retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
+            send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
+          }
         }
 
         @id = if file_id.blank?
@@ -66,7 +74,13 @@ module DocumentExporter
 
         params = {
           content_type: 'text/html',
-          upload_source: StringIO.new(content)
+          upload_source: StringIO.new(content),
+          options: {
+            open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+            read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+            retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
+            send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
+          }
         }
 
         @id = if file_id.present?

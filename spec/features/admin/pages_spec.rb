@@ -6,8 +6,8 @@ feature 'Admin pages' do
   given(:admin) { create(:admin) }
   given(:ub_page) { create(:page) }
 
-  given(:body) { Faker::Lorem.sentence(100) }
-  given(:title) { Faker::Lorem.sentence(10) }
+  given(:body) { Faker::Lorem.sentence(word_count: 100) }
+  given(:title) { Faker::Lorem.sentence(word_count: 10) }
   given(:slug) { Faker::Internet.slug }
 
   background { login_as admin }
