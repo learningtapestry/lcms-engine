@@ -17,5 +17,8 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
+gem 'lt-lcms', git: 'https://github.com/learningtapestry/lt-lcms.git',
+               branch: 'master',
+               ref: 'e0816d56'
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support', ref: '1a1f02cc'

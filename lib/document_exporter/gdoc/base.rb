@@ -8,6 +8,14 @@ module DocumentExporter
     class Base < DocumentExporter::Base
       GOOGLE_API_CLIENT_UPLOAD_RETRIES = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RETRIES', 5).to_i
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_TIMEOUT', 60).to_i
+      GOOGLE_API_UPLOAD_OPTIONS = {
+        options: {
+          open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+          read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
+          retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
+          send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
+        }
+      }.freeze
       VERSION_RE = /_v\d+$/i
 
       attr_reader :document, :options
@@ -41,14 +49,8 @@ module DocumentExporter
 
         params = {
           content_type: 'text/html',
-          upload_source: StringIO.new(content),
-          options: {
-            open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
-            read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
-            retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
-            send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
-          }
-        }
+          upload_source: StringIO.new(content)
+        }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
         @id = if file_id.blank?
                 drive_service.service.create_file(metadata, params)
@@ -74,14 +76,8 @@ module DocumentExporter
 
         params = {
           content_type: 'text/html',
-          upload_source: StringIO.new(content),
-          options: {
-            open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
-            read_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
-            retries: GOOGLE_API_CLIENT_UPLOAD_RETRIES,
-            send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
-          }
-        }
+          upload_source: StringIO.new(content)
+        }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
         @id = if file_id.present?
                 drive_service.service.update_file(file_id, metadata, params)
