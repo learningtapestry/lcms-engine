@@ -67,7 +67,6 @@ class ExploreCurriculumItem extends React.Component {
       <div>
         {item}
         {opr}
-        {/*TODO: add React.addons.CSSTransitionGroup for animation*/}
         <div className={cssClasses}>
           {childrenElements}
         </div>

@@ -125,6 +125,15 @@ Pre-load required data
 $ bundle exec rake lcms_engine:seed_data
 ```
 
+Mount the engine in the `routes.rb`
+```ruby
+mount Lcms::Engine::Engine, at: '/lcms'
+```
+Pay attention that adding route alias is not supported. That said you **can't** mount the engine as follow:
+```ruby
+mount Engine, at: '/engine', as: :engine
+````
+
 ### Migrations
 
 All migrations included in the gem are already available for you to run from inside host application.

@@ -19,7 +19,7 @@ module Lcms
 
       def categorized_downloads_list
         @categorized_downloads_list ||= begin
-          downloads_list = DownloadCategory.all.map do |dc|
+          downloads_list = Lcms::Engine::DownloadCategory.all.map do |dc|
             downloads = Array.wrap(download_categories[dc.title])
             downloads.concat(document_bundles) if dc.bundle?
             settings = download_categories_settings[dc.title.parameterize] || {}

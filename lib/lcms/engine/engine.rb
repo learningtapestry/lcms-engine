@@ -38,7 +38,6 @@ require 'rails-assets-selectize'
 # LearningTapestry gems
 require 'lt/google/api'
 require 'lt/google/api/auth/credentials'
-require 'lt/lcms'
 
 module Lcms
   module Engine
