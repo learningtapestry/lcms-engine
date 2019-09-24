@@ -10,7 +10,6 @@ module Lt
         attr_reader :context
 
         NUM_RE = /\d+/
-        private_constant :NUM_RE
 
         class << self
           #

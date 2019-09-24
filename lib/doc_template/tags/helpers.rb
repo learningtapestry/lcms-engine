@@ -17,7 +17,7 @@ module DocTemplate
         return unless priority.present?
 
         config = Tags.config[self.class::TAG_NAME.downcase]
-        config['priority_descriptions'][priority - 1]
+        Array.wrap(config['priority_descriptions'])[priority - 1]
       end
 
       def priority_icon(activity)

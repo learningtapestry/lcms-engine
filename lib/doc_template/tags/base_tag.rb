@@ -80,10 +80,11 @@ module DocTemplate
       end
 
       def include_break_for?(node, key)
-        tags =
-          ::DocTemplate::Tags.config[self.class::TAG_NAME.downcase][key].map do |stop_tag|
-            ::DocTemplate::Tags.const_get(stop_tag)::TAG_NAME
-          end.join('|')
+        stop_tags = Array.wrap ::DocTemplate::Tags.config[self.class::TAG_NAME.downcase][key]
+        return false if stop_tags.empty?
+
+        tags = stop_tags.map { |t| ::DocTemplate::Tags.const_get(t)::TAG_NAME }.join('|')
+
         result = node.content =~ /\[\s*(#{tags})/i
         check_tag_soft_return(node) if result
         result

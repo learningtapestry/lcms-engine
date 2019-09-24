@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class DocumentPresenter < ContentPresenter
+    class DocumentPresenter < Lcms::Engine::ContentPresenter
       PDF_SUBTITLES = { full: '', sm: '_student_materials', tm: '_teacher_materials' }.freeze
       SUBJECT_FULL  = { 'ela' => 'ELA', 'math' => 'Math' }.freeze
       TOC_RESOURCES = [I18n.t('document.toc.tm'), I18n.t('document.toc.sm'), I18n.t('document.toc.credits')].freeze

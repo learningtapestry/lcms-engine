@@ -1,0 +1,38 @@
+{
+  "name": "lcms-engine",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@rails/webpacker": "^4.0.7",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react_ujs": "^2.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.40.2",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "scripts": {
+    "lint:scss": "sass-lint '**/*.scss' -v -q"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learningtapestry/lcms-engine.git"
+  },
+  "engines": {
+    "node": ">=10.16.1",
+    "yarn": ">=1.17.1"
+  },
+  "author": "Alexander Kuznetsov <paranoic.san@gmail.com>",
+  "contributors": ["Oksana Melnikova <oksana.melnikova@gmail.com>"],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/learningtapestry/lcms-engine/issues"
+  },
+  "homepage": "https://github.com/learningtapestry/lcms-engine#readme"
+}

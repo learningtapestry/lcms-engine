@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class GenericPresenter < ResourcePresenter
+    class GenericPresenter < Lcms::Engine::ResourcePresenter
       def generic_title
         "#{subject.try(:upcase)} #{grades.to_str}"
       end

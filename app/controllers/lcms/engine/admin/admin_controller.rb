@@ -21,7 +21,7 @@ module Lcms
           end
 
           def engine_klass
-            @engine_klass ||= settings[:engine]&.constantize
+            @engine_klass ||= settings[:engine]&.constantize || ::Lcms::Engine::Engine
           end
 
           def document_path(*args)

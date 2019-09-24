@@ -5,7 +5,7 @@ require 'pg_search'
 module Lcms
   module Engine
     class Material < ActiveRecord::Base
-      include PgSearch
+      include PgSearch::Model
 
       validates :file_id, presence: true
       validates :identifier, uniqueness: true

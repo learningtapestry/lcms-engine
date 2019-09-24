@@ -18,6 +18,7 @@ module DocTemplate
       end
 
       def parse(node, opts = {})
+        @opts = opts
         @metadata = opts[:activity]
         @activity = @metadata.find_by_anchor(opts[:value])
         @anchor = @activity.anchor
@@ -41,7 +42,7 @@ module DocTemplate
 
       private
 
-      attr_reader :activity
+      attr_reader :activity, :opts
 
       def extended_parse_params
         custom_params = ::DocTemplate::Tags.config[TAG_NAME]['extend-params-with'].to_s

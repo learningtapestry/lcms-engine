@@ -19,6 +19,8 @@ module Lcms
 
       class << self
         def generate_for(document)
+          return material_preview_job&.perform_later(document) if document.is_a?(Lcms::Engine::Material)
+
           reset_links document
           Lcms::Engine::DocumentGenerateJob.perform_later(document)
         end
@@ -31,6 +33,10 @@ module Lcms
           @material_generators ||= MATERIAL_GENERATORS.slice(*DocTemplate.material_contexts).values
         end
 
+        def material_form
+          @material_form ||= DocTemplate.config['material_form']&.constantize || ::Lcms::Engine::MaterialForm
+        end
+
         def material_presenter
           @material_presenter ||=
             begin
@@ -40,6 +46,10 @@ module Lcms
         end
 
         private
+
+        def material_preview_job
+          @material_preview_job ||= DocTemplate.config['material_preview_job']&.constantize
+        end
 
         # TODO: Refactor to address `DOCUMENT_GENERATORS` way here as well
         def reset_links(document)

@@ -11,7 +11,7 @@ module Admin
       computed_name = "#{base_name}[]"
 
       component = react_component(
-        'ResourcePicker',
+        'admin/resource-picker/ResourcePicker',
         name: computed_name,
         resources: collection.map { |i| { id: i.id, title: i.title } },
         allow_multiple: allow_multiple
@@ -35,7 +35,7 @@ module Admin
       scoped_create_name = scoped_name.gsub(name.to_s, create_name.to_s) if create_name
 
       component = react_component(
-        'AssociationPicker',
+        'admin/association-picker/AssociationPicker',
         name: scoped_name,
         create_name: scoped_create_name,
         association: path,

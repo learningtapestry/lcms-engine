@@ -18,7 +18,7 @@ module Lcms
         def create
           return bulk_import(gdoc_files) && render(:import) if gdoc_files.size > 1
 
-          @material_form = MaterialForm.new(form_params)
+          @material_form = DocumentGenerator.material_form.new(form_params)
           if @material_form.save
             material = @material_form.material
             redirect_to AdminController.material_path(material.id), notice: t('.success', name: material.name)

@@ -14,6 +14,12 @@ document_contexts:
   - default
   - gdoc
 
+# Used to customize which format `::Lcms::Engine::Material` can be rendered. Default stands for `web view`
+material_contexts:
+  - default
+  - gdoc
+  - pdf
+
 metadata:
   # Used to customize service responsible for building the resource.
   # Defaults to `Lt::Lcms::Metadata::Context`
@@ -31,6 +37,15 @@ metadata:
 # Used to override presenter for `::Lcms::Engine::Material` (i.e. 'YourModule::MaterialPresenter')
 material_presenter: '::Lcms::Engine::MaterialPresenter'
 
+# Used to override form for 'Material'
+# material_form:
+
 # Used to customize sanitizer in some places
 # By default `::HtmlSanitizer` from LCMS application is used
 sanitizer: '::Lcms::Engine::HtmlSanitizer'
+
+# Used to generate preview on import
+# material_preview_job:
+
+queries:
+  document: 'AdminDocumentsQuery'

@@ -34,14 +34,15 @@ require 'rails-assets-fetch'
 require 'rails-assets-jstree'
 require 'rails-assets-lodash'
 require 'rails-assets-selectize'
+require 'webpacker'
 
 # LearningTapestry gems
 require 'lt/google/api'
 require 'lt/google/api/auth/credentials'
+require 'lt/lcms'
 
 module Lcms
   module Engine
-    # Top level engine class
     class Engine < ::Rails::Engine
       isolate_namespace Lcms::Engine
 
@@ -59,44 +60,7 @@ module Lcms
 
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 
-      initializer('lcms.engine.react-rails') do |app|
-        app.config.react.server_renderer_directories = ['lcms/engine/app/assets/javascripts']
-
-        app.config.react.server_renderer_options = {
-          files: ['lcms/engine/server_rendering.js'],
-          replay_console: true
-        }
-
-        app.config.react.jsx_transform_options = {
-          blacklist: %w(spec.functionName validation.react)
-        }
-      end
-
       config.assets.paths << "#{config.root}/public/javascripts"
-
-      initializer 'lcms.engine.assets.precompile' do |app|
-        app.config.assets.precompile += %w(
-          admin.css
-          application_lti.js
-          ckeditor/*
-          gdoc.css
-          lcms_engine_manifest.js
-          main.css
-          pdf.css
-          pdf_js_preview.js
-          pdf_plain.css
-          server_rendering.js
-          vendor/pdf.worker.js
-        )
-      end
-
-      initializer 'append_migrations' do |app|
-        unless app.root.to_s.match?(root.to_s)
-          config.paths['db/migrate'].expanded.each do |expanded_path|
-            app.config.paths['db/migrate'] << expanded_path
-          end
-        end
-      end
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque
@@ -121,6 +85,49 @@ module Lcms
         g.test_framework :rspec
         g.fixture_replacement :factory_bot
         g.factory_bot dir: 'spec/factories'
+      end
+
+      initializer 'append_migrations' do |app|
+        unless app.root.to_s.match?(root.to_s)
+          config.paths['db/migrate'].expanded.each do |expanded_path|
+            app.config.paths['db/migrate'] << expanded_path
+          end
+        end
+      end
+
+      initializer 'lcms.engine.assets.precompile' do |app|
+        app.config.assets.precompile += %w(
+          lcms_engine_manifest.js
+        )
+        # app.config.assets.precompile += %w(
+        #   ckeditor/*
+        #   gdoc.css
+        # )
+      end
+
+      initializer 'webpacker.proxy' do |app|
+        insert_middleware =
+          begin
+            Lcms::Engine.webpacker.config.dev_server.present?
+          rescue StandardError
+            nil
+          end
+        next unless insert_middleware
+
+        app.middleware.insert_before(
+          0, Webpacker::DevServerProxy,
+          ssl_verify_none: true,
+          webpacker: Lcms::Engine.webpacker
+        )
+      end
+
+      # Serves the engine's webpack when requested
+      initializer 'webpacker.static' do |app|
+        app.config.middleware.use(
+          Rack::Static,
+          urls: ['/lcms_engine_packs'],
+          root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
+        )
       end
 
       ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(

@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- Site by Constructive & Learning Tapestry -->
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
@@ -12,9 +11,9 @@
     <%= render partial: 'lcms/engine/shared/favicon' %>
     <script>document.querySelector('html').className = 'js';</script>
     <script>
-      window._PDFJSworkerSrc = '<%= asset_url('vendor/pdf.worker.js') %>'
+      window._PDFJSworkerSrc = '<%= asset_url('pdf.worker.js') %>'
     </script>
-    <%= stylesheet_link_tag 'lcms/engine/main', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= stylesheet_link_tag 'lcms/engine/application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag '//s7.addthis.com/js/300/addthis_widget.js#async=1' %>
     <%= javascript_include_tag 'lcms/engine/application', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag 'lcms/engine/pdf_js_preview', 'data-turbolinks-track' => 'reload' if generic_page? %>

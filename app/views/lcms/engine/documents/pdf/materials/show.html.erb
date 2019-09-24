@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="c-ld__body o-page--pdf-ld c-ld__body--pdf" style="<%= document.padding_styles %>">
-  <%= render 'documents/pdf/materials/header', document: document %>
+  <%= render 'lcms/engine/documents/pdf/materials/header', document: document %>
   <div class="o-m-content">
     <% if document.vertical_text? %>
       <div class="o-m-content__vertical-text"><%= document.metadata['vertical_text'] %></div>

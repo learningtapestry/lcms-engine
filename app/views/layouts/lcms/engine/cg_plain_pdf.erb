@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= params.key?('debug') ? stylesheet_link_tag('pdf_plain', media: 'all') : stylesheet_link_tag(base64_encoded_asset('pdf_plain.css')) %>
+    <%= params.key?('debug') ? stylesheet_link_tag('lcms/engine/pdf_plain', media: 'all') : stylesheet_link_tag(base64_encoded_asset('lcms/engine/pdf_plain.css')) %>
     <style type="text/css" media="all">
       .c-pdf-cc-logo {
-        background-image: url("<%= base64_encoded_asset('cc_logo.png') %>");
+        background-image: url("<%= base64_encoded_asset('lcms/engine/cc_logo.png') %>");
         background-repeat: no-repeat;
         background-size: cover;
       }
       .c-pdf-ub-logo {
-        background-image: url("<%= base64_encoded_asset('logo_pdf.svg') %>");
+        background-image: url("<%= base64_encoded_asset('lcms/engine/logo_pdf.svg') %>");
         background-repeat: no-repeat;
         background-size: cover;
       }
