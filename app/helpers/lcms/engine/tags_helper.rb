@@ -13,7 +13,7 @@ module Lcms
 
       def render_tag_clouds(resource)
         named_tags = resource.filtered_named_tags
-        render partial: 'resources/tags',
+        render partial: 'lcms/engine/resources/tags',
                locals: { tag_clouds: tag_clouds(named_tags), color_code: color_code(resource) }
       end
 

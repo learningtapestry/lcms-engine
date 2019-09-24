@@ -82,7 +82,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails-assets-lodash', '~> 4.17.11'
   s.add_dependency 'rails-assets-selectize', '~> 0.12.1'
   s.add_dependency 'ransack', '~> 1.7.0'
-  s.add_dependency 'react-rails', '~> 2.3.1'
+  s.add_dependency 'react-rails', '~> 2.6.0'
   s.add_dependency 'readthis'
   s.add_dependency 'redis', '< 4'
   s.add_dependency 'resque'

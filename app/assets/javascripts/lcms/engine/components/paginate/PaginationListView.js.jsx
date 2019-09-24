@@ -71,9 +71,22 @@ class PaginationListView extends React.Component {
       }
     }
 
+    let itemsToRender = []
+    for (let key in Object.keys(items)) {
+      itemsToRender.push({
+        key: key,
+        value: items[key]
+      })
+    }
+
     return (
       <ul className={this.props.subContainerClassName}>
-        {React.addons.createFragment(items)}
+        {itemsToRender.map(item => (
+          <React.Fragment key={item.key}>
+            {item.value}
+          </React.Fragment>
+        ))}
+        {/*{React.addons.createFragment(items)}*/}
       </ul>
     );
   }

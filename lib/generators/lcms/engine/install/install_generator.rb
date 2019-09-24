@@ -12,11 +12,6 @@ module Lcms
           directory File.expand_path('templates/config', __dir__), Rails.root.join('config')
         end
 
-        def update_application
-          application 'config.react.addons = true'
-          application '# Added by `lcms-engine` install generator'
-        end
-
         def update_gemfile
           # Rails-assets.org is needed to fetch required gems (rails-assets-*)
           add_source 'https://rails-assets.org'

@@ -63,9 +63,7 @@ class RelatedInstruction extends React.Component {
           {instructions}
         </div>
         <div className="o-related-instruction__list">
-          <React.addons.CSSTransitionGroup transitionName="m-fadeIn" transitionEnterTimeout={400} transitionLeaveTimeout={0} component="div" className="o-page__wrap--row-nest">
-            {expandedInstructions}
-          </React.addons.CSSTransitionGroup>
+          {expandedInstructions}
         </div>
         {actions}
       </div>
