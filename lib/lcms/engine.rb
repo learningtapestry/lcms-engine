@@ -2,9 +2,22 @@
 
 module Lcms
   module Engine
-    # TODO: Set the correct prefix after renaming all the tables?
-    def self.table_name_prefix
-      ''
+    class << self
+      # TODO: Set the correct prefix after renaming all the tables?
+      def table_name_prefix
+        ''
+      end
+
+      def webpacker
+        @webpacker ||=
+          begin
+            root_path = Pathname.new File.expand_path('../..', __dir__)
+            ::Webpacker::Instance.new(
+              root_path: root_path,
+              config_path: root_path.join('config/webpacker.yml')
+            )
+          end
+      end
     end
   end
 end

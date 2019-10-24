@@ -11,6 +11,7 @@ AllCops:
   Exclude:
     - bin/*
     - db/schema.rb
+    - node_modules/**/*
     - spec/dummy/db/schema.rb
     - spec/dummy/bin/*
     - templates/*

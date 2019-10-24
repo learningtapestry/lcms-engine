@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class MaterialPresenter < ContentPresenter
+    class MaterialPresenter < Lcms::Engine::ContentPresenter
       attr_accessor :document
       attr_reader :parsed_document
 
@@ -147,7 +147,7 @@ module Lcms
       end
 
       def material_links
-        @material_links ||= document.links['materials']&.dig(id.to_s)
+        @material_links ||= (document || @lesson).links['materials']&.dig(id.to_s)
       end
 
       def material_url(key)

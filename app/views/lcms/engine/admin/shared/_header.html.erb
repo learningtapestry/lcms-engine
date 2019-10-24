@@ -13,43 +13,43 @@
         <div class="o-top-bar__item c-header__menu">
           <ul class="dropdown menu" data-dropdown-menu>
             <li class="c-header__link">
-              <%= link_to t('admin.nav.curriculum'), edit_admin_curriculum_path %>
+              <%= link_to t('lcms.engine.admin.nav.curriculum'), edit_admin_curriculum_path %>
             </li>
 
             <li class="dropdown c-header__link">
-              <%= link_to t('admin.nav.pages'), admin_pages_path %>
+              <%= link_to t('lcms.engine.admin.nav.pages'), admin_pages_path %>
               <ul class="menu vertical">
-                <%= nav_link t('admin.nav.pages'), admin_pages_path %>
+                <%= nav_link t('lcms.engine.admin.nav.pages'), admin_pages_path %>
               </ul>
             </li>
 
             <li class="dropdown c-header__link">
-              <%= link_to t('admin.nav.resources'), admin_resources_path %>
+              <%= link_to t('lcms.engine.admin.nav.resources'), admin_resources_path %>
               <ul class="menu vertical">
-                <%= nav_link t('admin.nav.resources'), admin_resources_path %>
-                <%= nav_link t('admin.nav.add_resource'), new_admin_resource_path %>
-                <%#= nav_link t('admin.nav.sketch_compilation', version: 'v1'), new_admin_sketch_compiler_path(:v1) %>
-                <%#= nav_link t('admin.nav.sketch_compilation', version: 'v2'), new_admin_sketch_compiler_path(:v2) %>
-                <%= nav_link t('admin.nav.lessons'), admin_documents_path %>
-                <%= nav_link t('admin.nav.materials'), admin_materials_path %>
-                <%= nav_link t('admin.nav.batch_reimport'), new_admin_batch_reimport_path %>
-              </ul>
-            </li>
-
-            <li class="c-header__link">
-              <%= link_to t('admin.nav.standards'), admin_standards_path %>
-            </li>
-
-            <li class="dropdown c-header__link">
-              <%= link_to t('admin.nav.users'), admin_users_path %>
-              <ul class="menu vertical">
-                <%= nav_link t('admin.nav.users'), admin_users_path %>
-                <%= nav_link t('admin.nav.access_codes'), admin_access_codes_path %>
+                <%= nav_link t('lcms.engine.admin.nav.resources'), admin_resources_path %>
+                <%= nav_link t('lcms.engine.admin.nav.add_resource'), new_admin_resource_path %>
+                <%#= nav_link t('lcms.engine.admin.nav.sketch_compilation', version: 'v1'), new_admin_sketch_compiler_path(:v1) %>
+                <%#= nav_link t('lcms.engine.admin.nav.sketch_compilation', version: 'v2'), new_admin_sketch_compiler_path(:v2) %>
+                <%= nav_link t('lcms.engine.admin.nav.lessons'), admin_documents_path %>
+                <%= nav_link t('lcms.engine.admin.nav.materials'), admin_materials_path %>
+                <%= nav_link t('lcms.engine.admin.nav.batch_reimport'), new_admin_batch_reimport_path %>
               </ul>
             </li>
 
             <li class="c-header__link">
-              <%= link_to t('admin.nav.sign_out'), destroy_user_session_path %>
+              <%= link_to t('lcms.engine.admin.nav.standards'), admin_standards_path %>
+            </li>
+
+            <li class="dropdown c-header__link">
+              <%= link_to t('lcms.engine.admin.nav.users'), admin_users_path %>
+              <ul class="menu vertical">
+                <%= nav_link t('lcms.engine.admin.nav.users'), admin_users_path %>
+                <%= nav_link t('lcms.engine.admin.nav.access_codes'), admin_access_codes_path %>
+              </ul>
+            </li>
+
+            <li class="c-header__link">
+              <%= link_to t('lcms.engine.admin.nav.sign_out'), destroy_user_session_path %>
             </li>
           </ul>
         </div>

@@ -23,7 +23,7 @@
 <%= t('document.tm_html') %>
 <%= t('document.tm_math_ela6_html') if document.math? || document.ela6? %>
 <%= t('document.tm_ela2_html', unit_dsc: document.unit.title, unit_href: show_resource_path(document.unit)) if document.ela2? && document.unit.present? %>
-<%= react_component('DocumentMaterialsList', document.teacher_materials_props, prerender: true) %>
+<%= react_component('DocumentMaterialsList', document.teacher_materials_props) %>
 <div>
   <% %w(pdf gdoc).each do |c_type| %>
     <% if document.links["#{c_type}_tm"].present? %>
@@ -36,7 +36,7 @@
 <hr class="o-ld-hr--l2">
 <h3 class="c-ld-toc" id="<%= t('document.toc.sm').parameterize %>"><%= t('document.toc.sm') %></h3>
 <%= t('document.sm_html') %>
-<%= react_component('DocumentMaterialsList', document.student_materials_props, prerender: true) %>
+<%= react_component('DocumentMaterialsList', document.student_materials_props) %>
 <div>
   <% %w(pdf gdoc).each do |c_type| %>
     <% if document.links["#{c_type}_sm"].present? %>

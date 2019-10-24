@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class MediaPresenter < ResourcePresenter
+    class MediaPresenter < Lcms::Engine::ResourcePresenter
       def media_title
         [subject, resource_type].compact.join(' ').titleize
       end

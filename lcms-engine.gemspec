@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'js-routes', '~> 1.1.2'
   s.add_dependency 'lt-google-api', '~> 0.1'
+  # NOTE: Uncomment after new version of lt-lcms will be released
   # s.add_dependency 'lt-lcms', '~> 0.1'
   s.add_dependency 'migration_data', '~> 0.2.1'
   s.add_dependency 'mini_magick', '>= 4.9.4'
@@ -127,4 +128,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'spring'
   s.add_development_dependency 'spring-commands-rspec'
   s.add_development_dependency 'traceroute'
+  s.add_development_dependency 'webpacker', '~> 4.0.6'
 end

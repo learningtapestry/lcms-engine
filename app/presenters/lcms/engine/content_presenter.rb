@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class ContentPresenter < BasePresenter
+    class ContentPresenter < Lcms::Engine::BasePresenter
       CONFIG_PATH = Rails.root.join('config', 'pdf.yml')
       DEFAULT_CONFIG = :default
       MATERIALS_CONFIG_PATH = Rails.root.join('config', 'materials_rules.yml')

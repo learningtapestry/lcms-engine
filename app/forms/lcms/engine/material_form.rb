@@ -40,6 +40,8 @@ module Lcms
 
       attr_reader :options
 
+      protected
+
       def after_reimport_hook; end
     end
   end

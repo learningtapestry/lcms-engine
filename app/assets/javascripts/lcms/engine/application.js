@@ -2,20 +2,18 @@
 //= require jquery2
 //= require jquery_ujs
 //= require i18n/translations
-//= require ./vendor/modernizr-custom
-//= require ./vendor/swiper.jquery
-//= require ./vendor/pdfobject.js
-//= require ./jquery/smoothscrolling
+//= require modernizr-custom
+//= require swiper.jquery
+//= require pdfobject.js
+//= require smoothscrolling
+//= require lodash
 //= require foundation
-//= require ./jquery/foundation.magellanex
-//= require ./jquery/foundation.initialize
-//= require ./jquery/tabs
-//= require ./prerender_polyfill
-//= require react
-//= require react_ujs
+//= require foundation.initialize
+//= require foundation.magellanex
+//= require foundation.initialize
+//= require tabs
 //= require js-routes
 //= require ./initializers/heap_analytics
-//= require ./components
 //= require ./initializers/about_people
 //= require ./initializers/bundles
 //= require ./initializers/google_analytics
@@ -31,7 +29,7 @@
 //= require ./initializers/survey
 //= require_tree ./initializers/sidebar
 
-document.addEventListener('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function () {
   $(document).initFoundation();
   $('.o-page--resource').smoothscrolling();
   window.initializeHeaderDropdown();

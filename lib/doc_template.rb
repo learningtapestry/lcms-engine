@@ -12,7 +12,7 @@ module DocTemplate
       context: 'Lt::Lcms::Metadata::Context',
       service: 'Lt::Lcms::Metadata::Service'
     },
-    sanitizer: '::HtmlSanitizer'
+    sanitizer: 'Lcms::Engine::HtmlSanitizer'
   }.freeze
 
   FULL_TAG ||= /\[([^\]:\s]*)?\s*:?\s*([^\]]*?)?\]/mo

@@ -44,7 +44,7 @@
             <div class="o-title u-text--uppercase">
               <span class="o-title__type cs-txt--<%= color_code(@resource) %>"><%= @resource.short_title %></span>
               <span class="o-title__duration u-hidden">
-                <%= react_component('TimeToTeach', {duration: @resource.time_to_teach}, prerender: true) %>
+                <%= react_component('TimeToTeach', {duration: @resource.time_to_teach}) %>
               </span>
             </div>
             <h1><%= @resource.title %></h1>
@@ -64,7 +64,7 @@
             <div class="o-resource-summary__title">
               <strong><%= @resource.subject_and_grade_title %> Curriculum Map</strong>
             </div>
-            <%= react_component('CurriculumMap', @props.merge(mapType: 'cs'), prerender: true) %>
+            <%= react_component('CurriculumMap', @props.merge(mapType: 'cs')) %>
             <%= render partial: 'lcms/engine/shared/social_sharing', locals: { resource: @resource, cl: 'u-margin-top--base' } %>
           </div>
           <div class="o-resource-summary__content">
@@ -123,7 +123,6 @@
                         { id: @resource.id,
                           resource_type: @resource.curriculum_type,
                           has_more: @related_instructions.has_more,
-                          instructions: @related_instructions.instructions },
-                          prerender: true) %>
+                          instructions: @related_instructions.instructions }) %>
   </div>
 </div>
