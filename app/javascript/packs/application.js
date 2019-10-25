@@ -15,8 +15,10 @@
 // const imagePath = (name) => images(name, true)
 
 // Support component names relative to this directory:
-const componentRequireContext = require.context('components', true);
-const ReactRailsUJS = require('react_ujs');
-ReactRailsUJS.useContext(componentRequireContext);
+// eslint-disable-next-line no-undef
+const componentRequireContext = require.context('components', true)
+// eslint-disable-next-line no-undef
+const ReactRailsUJS = require('react_ujs')
+ReactRailsUJS.useContext(componentRequireContext)
 
-console.debug('Hello World from Webpacker FROM INSIDE `lcms-engine` gem!');
+console.debug('Hello World from Webpacker FROM INSIDE `lcms-engine` gem!')

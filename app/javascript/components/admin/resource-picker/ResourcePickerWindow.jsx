@@ -1,20 +1,20 @@
-import React from 'react';
+import React from 'react'
 
 class ResourcePickerWindow extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.typeOptions = [
       ['subject', 'subject'],
       ['grade', 'grade'],
       ['module', 'module'],
-      ['unit', 'unit']
-    ];
+      ['unit', 'unit'],
+    ]
 
     this.subjectOptions = [
       ['ela', 'ELA'],
-      ['math', 'Math']
-    ];
+      ['math', 'Math'],
+    ]
 
     this.gradeOptions = [
       ['pk', 'prekindergarten'],
@@ -30,22 +30,22 @@ class ResourcePickerWindow extends React.Component {
       ['9', 'grade 9'],
       ['10', 'grade 10'],
       ['11', 'grade 11'],
-      ['12', 'grade 12']
-    ];
+      ['12', 'grade 12'],
+    ]
 
     const initialState = {
       pagination: {
         current_page: 1,
-        total_pages: 0
+        total_pages: 0,
       },
       results: [],
       type: null,
       subject: null,
       grade: null,
-      q: null
-    };
+      q: null,
+    }
 
-    this.state = { ...initialState, ...props };
+    this.state = { ...initialState, ...props }
   }
 
   filterElement(title, value, type, data) {
@@ -58,17 +58,17 @@ class ResourcePickerWindow extends React.Component {
           ))}
         </select>
       </label>
-    );
+    )
   }
 
   selectResource(resource) {
     if ('onSelectResource' in this.props) {
-      this.props.onSelectResource(resource);
+      this.props.onSelectResource(resource)
     }
   }
 
   render() {
-    const { grade, q, subject, type } = this.props;
+    const { grade, q, subject, type } = this.props
 
     return (
       <div className="o-assocpicker">
@@ -81,7 +81,7 @@ class ResourcePickerWindow extends React.Component {
               { this.filterElement('Grade', grade, 'grade', this.gradeOptions) }
 
               <label className="medium-3 columns">Title
-              <input type="text" value={q || ''} onChange={ this.props.onFilterChange.bind(this, 'q') } />
+                <input type="text" value={q || ''} onChange={ this.props.onFilterChange.bind(this, 'q') } />
               </label>
             </div>
           </div>
@@ -108,8 +108,8 @@ class ResourcePickerWindow extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default ResourcePickerWindow;
+export default ResourcePickerWindow

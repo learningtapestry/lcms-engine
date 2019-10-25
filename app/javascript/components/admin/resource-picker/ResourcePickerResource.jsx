@@ -1,5 +1,3 @@
-import React from 'react';
-
 function ResourcePickerResource(props) {
   return (
     <div className="o-assocpicker-selection">
@@ -9,7 +7,7 @@ function ResourcePickerResource(props) {
         <span className="o-assocpicker-close" onClick={props.onClickClose}>×</span>
       </div>
     </div>
-  );
+  )
 }
 
-export default ResourcePickerResource;
+export default ResourcePickerResource

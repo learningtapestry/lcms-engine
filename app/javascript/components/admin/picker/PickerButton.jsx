@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react' // eslint-disable-line no-unused-vars
 
 function PickerButton(props) {
   return (
@@ -16,7 +16,7 @@ function PickerButton(props) {
         ref={props.onRef}>
       </div>
     </div>
-  );
+  )
 }
 
-export default PickerButton;
+export default PickerButton

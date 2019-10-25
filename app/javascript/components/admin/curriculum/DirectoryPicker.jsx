@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 class DirectoryPicker extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       tree: props.tree,
       directory: props.directory,
-      parent: props.parent
-    };
+      parent: props.parent,
+    }
   }
 
   componentDidMount() {
-    const $this = $(ReactDOM.findDOMNode(this));
-    $this.parent().addClass('o-curriculum-tree-picker__container');
+    const $this = $(ReactDOM.findDOMNode(this))
+    $this.parent().addClass('o-curriculum-tree-picker__container')
 
     // start jstree
-    const editor = $this.find('#curriculum-tree-picker');
+    const editor = $this.find('#curriculum-tree-picker')
     editor
       .on('changed.jstree', this.onChanged.bind(this))
       .jstree({
@@ -24,42 +24,42 @@ class DirectoryPicker extends React.Component {
           animation : 0,
           themes: { dots: true },
           check_callback: true,
-          data : this.state.tree
+          data : this.state.tree,
         },
-        plugins : ['wholerow', 'changed']
-      });
+        plugins : ['wholerow', 'changed'],
+      })
 
     // preserve jsTree reference so we can call methods directly
-    this.jsTree = editor.data('jstree');
+    this.jsTree = editor.data('jstree')
 
     // start tagsinput
-    this.dirTags = $this.find('#resource_directory');
+    this.dirTags = $this.find('#resource_directory')
     this.dirTags.tagsInput({
       height: '2.5em',
       width:'65%',
-    });
+    })
 
     // start modal
-    this.jqmodal = $this.find('#curriculum-picker-modal');
-    new Foundation.Reveal(this.jqmodal, null);
+    this.jqmodal = $this.find('#curriculum-picker-modal')
+    new Foundation.Reveal(this.jqmodal, null)
   }
 
   closeModal() {
-    this.jqmodal.foundation('close');
+    this.jqmodal.foundation('close')
   }
 
   onChanged(_e, data) {
-    const dir = this.directory(data.node);
-    this.dirTags.importTags(dir.join(','));
+    const dir = this.directory(data.node)
+    this.dirTags.importTags(dir.join(','))
 
-    const parent = { id: data.node.id, title: data.node.li_attr.title, directory: dir };
-    this.setState({ ...this.state, parent: parent });
-    this.closeModal();
+    const parent = { id: data.node.id, title: data.node.li_attr.title, directory: dir }
+    this.setState({ ...this.state, parent: parent })
+    this.closeModal()
   }
 
   onClick(e) {
-    e.preventDefault();
-    this.jqmodal.foundation('open');
+    e.preventDefault()
+    this.jqmodal.foundation('open')
   }
 
   directory(node) {
@@ -67,13 +67,13 @@ class DirectoryPicker extends React.Component {
       .map(el => this.jsTree.get_node(el, null).text)
       .reverse()
       .slice(1)
-      .concat(node.text);
+      .concat(node.text)
   }
 
   render() {
-    const dir = this.state.directory.join(',');
-    const curr = this.state.parent.directory;
-    const parent_aside = (curr.length > 0) ? `(${curr.join(' | ')}) : ` : '';
+    const dir = this.state.directory.join(',')
+    const curr = this.state.parent.directory
+    const parent_aside = (curr.length > 0) ? `(${curr.join(' | ')}) : ` : ''
     return (
       <div>
         <div className="input text optional resource_parent_id">
@@ -91,8 +91,8 @@ class DirectoryPicker extends React.Component {
           <div id="curriculum-tree-picker" className="o-curriculum-tree-picker"></div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default DirectoryPicker;
+export default DirectoryPicker

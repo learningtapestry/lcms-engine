@@ -63,6 +63,7 @@ engines:
       - vendor/
   eslint:
     enabled: true
+    channel: eslint-5
 ratings:
   # to receive a letter grade for a particular file or overall GPA for your project
   paths:

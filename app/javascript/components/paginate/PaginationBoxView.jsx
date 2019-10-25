@@ -1,17 +1,17 @@
 // from https://github.com/AdeleD/react-paginate (converted)
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import PaginationListView from './PaginationListView';
-import classNames from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+// import PaginationListView from './PaginationListView'
+import classNames from 'classnames'
 
 class PaginationBoxView extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      selected: props.initialSelected ? props.initialSelected : 0
-    };
+      selected: props.initialSelected ? props.initialSelected : 0,
+    }
   }
 
   componentDidMount() {
@@ -22,43 +22,43 @@ class PaginationBoxView extends React.Component {
   }
 
   handlePreviousPage(evt) {
-    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
+    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false)
     if (this.state.selected > 0) {
-      this.handlePageSelected(this.state.selected - 1, evt);
+      this.handlePageSelected(this.state.selected - 1, evt)
     }
   }
 
   handleNextPage(evt) {
-    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
+    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false)
     if (this.state.selected < this.props.pageNum - 1) {
-      this.handlePageSelected(this.state.selected + 1, evt);
+      this.handlePageSelected(this.state.selected + 1, evt)
     }
   }
 
   handlePageSelected(selected, evt) {
-    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false);
+    evt.preventDefault ? evt.preventDefault() : (evt.returnValue = false)
 
-    if (this.state.selected === selected) return;
+    if (this.state.selected === selected) return
 
-    this.setState({ selected: selected });
+    this.setState({ selected: selected })
 
     // Call the callback with the new selected item:
-    this.callCallback(selected);
+    this.callCallback(selected)
   }
 
   callCallback(selectedItem) {
     if (typeof(this.props.clickCallback) !== 'undefined' &&
         typeof(this.props.clickCallback) === 'function') {
-      this.props.clickCallback({ selected: selectedItem });
+      this.props.clickCallback({ selected: selectedItem })
     }
   }
 
   render() {
     const previousClasses = classNames(this.props.itemClassName, this.props.previousClassName,
-      { [`${this.props.itemClassName}--disabled`]: this.state.selected === 0 });
+      { [`${this.props.itemClassName}--disabled`]: this.state.selected === 0 })
 
     const nextClasses = classNames(this.props.itemClassName, this.props.nextClassName,
-      { [`${this.props.itemClassName}--disabled`]: this.state.selected === this.props.pageNum - 1 });
+      { [`${this.props.itemClassName}--disabled`]: this.state.selected === this.props.pageNum - 1 })
 
     return (
       <ul className={this.props.containerClassName}>
@@ -68,6 +68,7 @@ class PaginationBoxView extends React.Component {
 
         <li className={classNames(this.props.itemClassName, this.props.pagesClassName)}>
           <PaginationListView
+            // eslint-disable-next-line react/jsx-no-bind
             onPageSelected={this.handlePageSelected.bind(this)}
             selected={this.state.selected}
             pageNum={this.props.pageNum}
@@ -85,12 +86,12 @@ class PaginationBoxView extends React.Component {
           <a href="" className={this.props.nextLinkClassName}>{this.props.nextLabel}</a>
         </li>
       </ul>
-    );
+    )
   }
 
   componentWillReceiveProps(nextProps) {
     if (typeof nextProps.forceSelected !== 'undefined' && nextProps.forceSelected !== this.state.selected) {
-      this.setState({ selected: nextProps.forceSelected });
+      this.setState({ selected: nextProps.forceSelected })
     }
   }
 }
@@ -116,8 +117,8 @@ PaginationBoxView.propTypes = {
   itemClassName         : PropTypes.string,
   previousLinkClassName : PropTypes.string,
   nextLinkClassName     : PropTypes.string,
-  disabledClassName     : PropTypes.string
-};
+  disabledClassName     : PropTypes.string,
+}
 
 PaginationBoxView.defaultProps = {
   pageNum              : 10,
@@ -129,7 +130,7 @@ PaginationBoxView.defaultProps = {
   previousLabel        : 'Previous',
   nextLabel            : 'Next',
   breakLabel           : '...',
-  disabledClassName    : 'disabled'
-};
+  disabledClassName    : 'disabled',
+}
 
-export default PaginationBoxView;
+export default PaginationBoxView
