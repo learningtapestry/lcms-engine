@@ -44,7 +44,7 @@
           <td><%= check_box_tag 'selected_ids[]', lesson.id, selected_id?(lesson.id), class: 'c-selected-ids' %></td>
           <td class="u-text--right"><%= lesson.id %></td>
           <td><%= Lcms::Engine::Breadcrumbs.new(lesson.resource).short_title if lesson.resource %></td>
-          <td><%= link_to lesson&.resource&.title, document_path(lesson, request.query_parameters), target: '_blank' %></td>
+          <td><%= link_to lesson&.resource&.title, ::Lcms::Engine::Admin::AdminController.document_path(lesson, request.query_parameters), target: '_blank' %></td>
           <td>
             <% if lesson.math? %>
               <% if lesson.file_url.present? %>

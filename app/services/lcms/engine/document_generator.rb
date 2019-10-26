@@ -10,6 +10,8 @@ module Lcms
         pdf: 'DocumentGeneratePdfJob'
       }.with_indifferent_access.freeze
 
+      DOCUMENT_PRESENTER = 'DocumentPresenter'
+
       MATERIAL_GENERATORS = {
         gdoc: 'MaterialGenerateGdocJob',
         pdf: 'MaterialGeneratePDFJob'
@@ -27,6 +29,14 @@ module Lcms
 
         def document_generators
           @document_generators ||= DOCUMENT_GENERATORS.slice(*DocTemplate.document_contexts).values
+        end
+
+        def document_presenter
+          @document_presenter ||=
+            begin
+              klass = DocTemplate.config['document_presenter'].presence || DOCUMENT_PRESENTER
+              klass.constantize
+            end
         end
 
         def material_generators
