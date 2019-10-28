@@ -44,7 +44,7 @@ module Lcms
         raise "Unknown Resource slug value: '#{slug_param}'" unless target
 
         grade = target.parents.detect(&:grade?)
-        depth = Resource::HIERARCHY.index(target.curriculum_type.to_sym)
+        depth = Resource.hierarchy.index(target.curriculum_type.to_sym)
 
         # self and ancestors, except the subject
         active_branch = target.self_and_ancestors.reject(&:subject?).map(&:id).reverse

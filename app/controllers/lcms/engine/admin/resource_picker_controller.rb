@@ -28,7 +28,7 @@ module Lcms
             index_p = default_params.merge(expected_params)
 
             grade_ok = index_p[:grade].blank? || Filterbar::GRADES.include?(index_p[:grade])
-            type_ok = index_p[:type].blank? || Resource::HIERARCHY.include?(index_p[:type].to_sym)
+            type_ok = index_p[:type].blank? || Resource.hierarchy.include?(index_p[:type].to_sym)
             subject_ok = index_p[:subject].blank? || Resource::SUBJECTS.include?(index_p[:subject])
 
             raise StandardError unless grade_ok && type_ok && subject_ok

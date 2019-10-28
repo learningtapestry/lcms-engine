@@ -42,11 +42,12 @@ module Lt
           # been created after higher ones: Grade 8 was created before Grade 7
           #
           def update_level_position_for(resources)
-            resources.map { |m| { id: m.id, idx: yield(m) } }
+            resources
+              .map { |m| { id: m.id, idx: yield(m) } }
               .sort_by { |a| a[:idx] }.each_with_index do |data, idx|
-              resource = ::Lcms::Engine::Resource.find(data[:id])
-              resource.update_columns(level_position: idx) unless resource.level_position == idx
-            end
+                resource = ::Lcms::Engine::Resource.find(data[:id])
+                resource.update_columns(level_position: idx) unless resource.level_position == idx
+              end
           end
         end
 
@@ -117,11 +118,12 @@ module Lt
 
         def build_new_resource(parent, name, index)
           dir = directory[0..index]
+          curriculum_type = parent.nil? ? Lcms::Engine::Resource.hierarchy.first : parent.next_hierarchy_level
           resource = ::Lcms::Engine::Resource.new(
-            curriculum_type: parent.next_hierarchy_level,
-            level_position: parent.children.size,
+            curriculum_type: curriculum_type,
+            level_position: parent&.children&.size.to_i,
             metadata: metadata,
-            parent_id: parent.id,
+            parent_id: parent&.id,
             resource_type: :resource,
             short_title: name,
             curriculum_id: ::Lcms::Engine::Curriculum.default.id

@@ -87,7 +87,7 @@ module Lcms
         end
 
         def metadata_from_dir(dir)
-          pairs = HIERARCHY[0...dir.size].zip(dir)
+          pairs = hierarchy[0...dir.size].zip(dir)
           Hash[pairs].compact.stringify_keys
         end
 
@@ -95,7 +95,7 @@ module Lcms
           dir = dir&.flatten&.select(&:present?)
           return unless dir.present?
 
-          type = HIERARCHY[dir.size - 1]
+          type = hierarchy[dir.size - 1]
           meta = metadata_from_dir(dir).to_json
           where('metadata @> ?', meta).where(curriculum_type: type).first
         end
@@ -107,6 +107,10 @@ module Lcms
         def find_video_by_url(url)
           video_id = MediaEmbed.video_id(url)
           video.where("url ~ '#{video_id}(&|$)'").first
+        end
+
+        def hierarchy
+          Lcms::Engine::Resource::HIERARCHY
         end
 
         # used for ransack search on the admin
@@ -171,7 +175,7 @@ module Lcms
       end
 
       def directory
-        @directory ||= HIERARCHY.map do |key|
+        @directory ||= Lcms::Engine::Resource.hierarchy.map do |key|
           key == :grade ? grades.average(abbr: false) : metadata[key.to_s]
         end.compact
       end
@@ -259,8 +263,8 @@ module Lcms
       end
 
       def next_hierarchy_level
-        index = HIERARCHY.index(curriculum_type.to_sym)
-        HIERARCHY[index + 1]
+        index = Lcms::Engine::Resource.hierarchy.index(curriculum_type.to_sym)
+        Lcms::Engine::Resource.hierarchy[index + 1]
       end
 
       def unit_bundles?
