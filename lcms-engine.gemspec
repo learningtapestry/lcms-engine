@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'resque-scheduler'
   s.add_dependency 'rest-client', '~> 1.8'
   s.add_dependency 'ruby-progressbar', '~> 1.7', '>= 1.7.5'
-  s.add_dependency 'rubyzip', '~> 1.2.1'
+  s.add_dependency 'rubyzip', '>= 1.3.0'
   s.add_dependency 'sanitize', '~> 5.0'
   s.add_dependency 'sass-rails', '~> 5.0'
   s.add_dependency 'simple_form', '~> 3.5'
