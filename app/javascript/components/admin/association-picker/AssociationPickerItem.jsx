@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 function AssociationPickerItem(props) {
-  let input;
+  let input
 
   if (props.item._create) {
-    input = <input type="hidden" name={`${props.createName}[]`} value={props.item.name} />;
+    input = <input type="hidden" name={`${props.createName}[]`} value={props.item.name} />
   } else if (props.allowMultiple) {
-    input = <input type="hidden" name={`${props.name}[]`} value={props.item.id} />;
+    input = <input type="hidden" name={`${props.name}[]`} value={props.item.id} />
   } else {
-    input = <input type="hidden" name={props.name} value={props.item.id} />;
+    input = <input type="hidden" name={props.name} value={props.item.id} />
   }
 
   return (
@@ -18,7 +18,7 @@ function AssociationPickerItem(props) {
         <span className="o-assocpicker-close" onClick={props.onClickClose}>×</span>
       </div>
     </div>
-  );
+  )
 }
 
-export default AssociationPickerItem;
+export default AssociationPickerItem

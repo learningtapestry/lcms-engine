@@ -1,35 +1,35 @@
-import React from 'react';
-import AssociationPickerResults from './AssociationPickerResults';
+import React from 'react'
+// import AssociationPickerResults from './AssociationPickerResults'
 
 class AssociationPickerWindow extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { ...props, selectedItems: [] };
+    this.state = { ...props, selectedItems: [] }
   }
 
   selectItem(item) {
-    const operation = this.updateSelectedItems(item);
+    const operation = this.updateSelectedItems(item)
     if ('onSelectItem' in this.props) {
-      this.props.onSelectItem(item, operation);
+      this.props.onSelectItem(item, operation)
     }
   }
 
   updateSelectedItems(item) {
-    let operation, newItems;
+    let operation, newItems
     if (item._selected) {
-      newItems = _.filter(this.state.selectedItems, r => r.id !== item.id);
-      operation = 'removed';
+      newItems = _.filter(this.state.selectedItems, r => r.id !== item.id)
+      operation = 'removed'
     } else {
-      newItems = [...this.state.selectedItems, item];
-      operation = 'added';
+      newItems = [...this.state.selectedItems, item]
+      operation = 'added'
     }
-    this.setState(...this.state, { selectedItems: newItems });
-    return operation;
+    this.setState(...this.state, { selectedItems: newItems })
+    return operation
   }
 
   render() {
-    const { q, results } = this.props;
+    const { q, results } = this.props
 
     return (
       <div className="o-assocpicker">
@@ -38,7 +38,7 @@ class AssociationPickerWindow extends React.Component {
             <h4 className="text-center">Select item</h4>
             <div className="row">
               <label className="medium-3 columns">Name
-              <input type="text" value={q || ''} onChange={ this.props.onFilterChange.bind(this, 'q') }/>
+                <input type="text" value={q || ''} onChange={ this.props.onFilterChange.bind(this, 'q') }/>
               </label>
             </div>
           </div>
@@ -51,6 +51,7 @@ class AssociationPickerWindow extends React.Component {
               items={results}
               selectedItems={this.state.selectedItems}
               allowCreate={this.props.allowCreate}
+              // eslint-disable-next-line react/jsx-no-bind
               onSelectItem={this.selectItem.bind(this)}
             />
 
@@ -65,8 +66,8 @@ class AssociationPickerWindow extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default AssociationPickerWindow;
+export default AssociationPickerWindow

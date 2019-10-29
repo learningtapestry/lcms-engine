@@ -14,6 +14,9 @@
     "react_ujs": "^2.6.0"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.16.0",
     "webpack": "^4.40.2",
     "webpack-dev-server": "^3.8.1"
   },
@@ -29,7 +32,9 @@
     "yarn": ">=1.17.1"
   },
   "author": "Alexander Kuznetsov <paranoic.san@gmail.com>",
-  "contributors": ["Oksana Melnikova <oksana.melnikova@gmail.com>"],
+  "contributors": [
+    "Oksana Melnikova <oksana.melnikova@gmail.com>"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/learningtapestry/lcms-engine/issues"

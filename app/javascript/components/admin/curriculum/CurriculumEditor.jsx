@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 class CurriculumEditor extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       data: props.tree,
       changeLog: [],
       createdIds: [],
-    };
+    }
   }
 
   componentDidMount() {
-    const $this = $(ReactDOM.findDOMNode(this));
-    $this.parent().addClass('o-curriculum-tree-editor__container');
+    const $this = $(ReactDOM.findDOMNode(this))
+    $this.parent().addClass('o-curriculum-tree-editor__container')
 
-    const editor = $this.find('#curriculum-tree-editor');
+    const editor = $this.find('#curriculum-tree-editor')
     editor
       .on('rename_node.jstree', this.onRenameNode.bind(this))
       .on('move_node.jstree', this.onMoveNode.bind(this))
@@ -26,13 +26,13 @@ class CurriculumEditor extends React.Component {
           animation : 0,
           themes: { dots: true },
           check_callback: true,
-          data : this.state.data
+          data : this.state.data,
         },
-        plugins : [ "contextmenu", "dnd", "wholerow", "changed" ]
-      });
+        plugins : [ 'contextmenu', 'dnd', 'wholerow', 'changed' ],
+      })
 
     // preserve jsTree reference so we can call methods directly
-    this.jsTree = editor.data('jstree');
+    this.jsTree = editor.data('jstree')
   }
 
   onRenameNode(_e, data) {
@@ -43,9 +43,9 @@ class CurriculumEditor extends React.Component {
         parent: data.node.parent,
         curriculum: this.hierarchy(data.node.parent),
         op: 'create',
-        name: data.node.text
-      });
-      this.setState({...this.state, createdIds: _.pull(this.state.createdIds, data.node.id) });
+        name: data.node.text,
+      })
+      this.setState({...this.state, createdIds: _.pull(this.state.createdIds, data.node.id) })
 
     } else {
       this.appendToChangelog({
@@ -53,8 +53,8 @@ class CurriculumEditor extends React.Component {
         curriculum: this.hierarchy(data.node.parent),
         op: 'rename',
         from: data.old,
-        to: data.text
-      });
+        to: data.text,
+      })
     }
   }
 
@@ -66,13 +66,13 @@ class CurriculumEditor extends React.Component {
       old_parent: data.old_parent,
       curriculum: this.hierarchy(data.old_parent).concat(data.node.text),
       parent_curriculum: this.hierarchy(data.parent),
-      position: data.position
-    });
+      position: data.position,
+    })
   }
 
   onCreateNode(_e, data) {
-    const createdIds = this.state.createdIds.concat(data.node.id);
-    this.setState({...this.state, createdIds: createdIds});
+    const createdIds = this.state.createdIds.concat(data.node.id)
+    this.setState({...this.state, createdIds: createdIds})
   }
 
   onDeleteNode(_e, data) {
@@ -80,32 +80,32 @@ class CurriculumEditor extends React.Component {
       id: data.node.id,
       op: 'remove',
       curriculum: this.hierarchy(data.node),
-      name: data.node.text
-    });
+      name: data.node.text,
+    })
   }
 
   hierarchy(node) {
     if (typeof node === 'string') {
-      node = this.jsTree.get_node(node, false);
+      node = this.jsTree.get_node(node, false)
     }
     return node.parents
-               .map(el => this.jsTree.get_node(el, false).text)
-               .reverse()
-               .slice(1)
-               .concat(node.text);
+      .map(el => this.jsTree.get_node(el, false).text)
+      .reverse()
+      .slice(1)
+      .concat(node.text)
   }
 
   appendToChangelog(newEntry) {
-    const changeLog = this.state.changeLog.concat(newEntry);
-    this.setState({...this.state, changeLog: changeLog});
+    const changeLog = this.state.changeLog.concat(newEntry)
+    this.setState({...this.state, changeLog: changeLog})
   }
 
   onSubmit(_e) {
-    $(_e.target).find('input[type=submit]').prop('disabled', true);
+    $(_e.target).find('input[type=submit]').prop('disabled', true)
   }
 
   render() {
-    const jsonChangeLog = JSON.stringify(this.state.changeLog);
+    const jsonChangeLog = JSON.stringify(this.state.changeLog)
     return (
       <div>
         <form action={this.props.form_url} acceptCharset="UTF-8" method="post" onSubmit={this.onSubmit.bind(this)}>
@@ -118,8 +118,8 @@ class CurriculumEditor extends React.Component {
         <p className="o-curriculum-tree-editor__menu-info">(Click on a node with the right button to add/edit/remove)</p>
         <div id="curriculum-tree-editor" className="o-curriculum-tree-editor"></div>
       </div>
-    );
+    )
   }
 }
 
-export default CurriculumEditor;
+export default CurriculumEditor

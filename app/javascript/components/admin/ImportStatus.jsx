@@ -1,25 +1,26 @@
-// eslint-disable-next-line no-unused-vars
+import React from 'react'
+
 class ImportStatus extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { jobs: props.jobs };
-    this.pollingInterval = 5000;
-    this.chunkSize = 50;
-    this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
-    this.path = _.isEmpty(props.path) ? `/admin/${this.props.type}/import_status` : props.path;
-    this.withPdf = props.with_pdf || false;
+    super(props)
+    this.state = { jobs: props.jobs }
+    this.pollingInterval = 5000
+    this.chunkSize = 50
+    this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links
+    this.path = _.isEmpty(props.path) ? `/admin/${this.props.type}/import_status` : props.path
+    this.withPdf = props.with_pdf || false
   }
 
   componentDidMount() {
-    this.intervalFn = setInterval(this.poll.bind(this), this.pollingInterval);
+    this.intervalFn = setInterval(this.poll.bind(this), this.pollingInterval)
   }
 
   poll() {
-    const pendingJobs = _.compact(_.map(this.state.jobs, (job, jid) => job.status !== 'done' ? jid : null));
+    const pendingJobs = _.compact(_.map(this.state.jobs, (job, jid) => job.status !== 'done' ? jid : null))
     if (pendingJobs.length > 0) {
-      _.each(_.chunk(pendingJobs, this.chunkSize), jids => this.updateChunkStatus(jids));
+      _.each(_.chunk(pendingJobs, this.chunkSize), jids => this.updateChunkStatus(jids))
     } else {
-      clearInterval(this.intervalFn);
+      clearInterval(this.intervalFn)
     }
   }
 
@@ -29,14 +30,14 @@ class ImportStatus extends React.Component {
       type: this.props.type,
       _: Date.now(), // prevent cached response
     }).done(res => {
-      let updatedJobs = {};
+      let updatedJobs = {}
       _.each(res, (val, jid) => {
-        updatedJobs[jid] = _.extend(this.state.jobs[jid], { status: val.status }, val.result);
-      });
-      this.setState({ jobs: _.extend(this.state.jobs, updatedJobs) });
+        updatedJobs[jid] = _.extend(this.state.jobs[jid], { status: val.status }, val.result)
+      })
+      this.setState({ jobs: _.extend(this.state.jobs, updatedJobs) })
     }).fail(res => {
-      console.warn('check content export status', res);
-    });
+      console.warn('check content export status', res)
+    })
   }
 
   resourceButton(job) {
@@ -45,31 +46,40 @@ class ImportStatus extends React.Component {
         <a href={job.link}
           className="o-adm-materials__resource ub-icon ub-file-pdf button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
         </a>
-      );
+      )
     }
+
+    let linkWithParams = function(route, params = {}) {
+      let path = route
+      _.each(params, (v, k) => {
+        path = _.replace(path, `:${k}`, v)
+      })
+      return path
+    }
+
     return _.map(this.links, (link, idx) => (
       <a key={`pl-${idx}`}
         href={linkWithParams(link, { id: job.model.id })}
         className="o-adm-materials__resource ub-icon ub-eye button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
       </a>
-    ));
+    ))
   }
 
   spinner() {
-    return <span className="o-adm-materials__spinner button primary u-margin-bottom--zero"><i className="fa fa-spin fa-spinner" /></span>;
+    return <span className="o-adm-materials__spinner button primary u-margin-bottom--zero"><i className="fa fa-spin fa-spinner" /></span>
   }
 
   render() {
-    const waitingCount = _.filter(this.state.jobs, (job) =>  job.status !== 'done').length;
-    const importedCount = _.filter(this.state.jobs, (job) =>  job.status === 'done' && job.ok ).length;
-    const failedCount = _.filter(this.state.jobs, (job) =>  job.status === 'done' && !job.ok ).length;
+    const waitingCount = _.filter(this.state.jobs, (job) =>  job.status !== 'done').length
+    const importedCount = _.filter(this.state.jobs, (job) =>  job.status === 'done' && job.ok ).length
+    const failedCount = _.filter(this.state.jobs, (job) =>  job.status === 'done' && !job.ok ).length
 
     const results = _.map(this.state.jobs, (job, key) => {
-      let status;
+      let status
       if (job.status === 'done') {
-        status = job.ok ? 'ok' : 'err';
+        status = job.ok ? 'ok' : 'err'
       } else {
-        status = job.status;
+        status = job.status
       }
       return (
         <li className={`o-adm-materials__result o-adm-materials__result--${status}`} key={key}>
@@ -82,8 +92,8 @@ class ImportStatus extends React.Component {
           </div>
           {job.errors ? (<p dangerouslySetInnerHTML={{__html: _.join(job.errors, '<br/>')}}></p>) : null}
         </li>
-      );
-    });
+      )
+    })
 
     return (
       <div>
@@ -99,6 +109,8 @@ class ImportStatus extends React.Component {
           {results}
         </ul>
       </div>
-    );
+    )
   }
 }
+
+export default ImportStatus

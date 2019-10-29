@@ -37,5 +37,5 @@ function initializeSelectAll() {
 export default {
   initializeResourcesList,
   initializeResourcesForm,
-  initializeSelectAll
+  initializeSelectAll,
 }
