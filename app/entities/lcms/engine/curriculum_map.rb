@@ -42,7 +42,7 @@ module Lcms
                   .take
         CurriculumResourceSerializer.new(
           grade,
-          depth: full_depth? ? Resource::HIERARCHY.size : 1,
+          depth: full_depth? ? Resource.hierarchy.size : 1,
           depth_branch: active_branch + target_branch
         ).as_json
       end

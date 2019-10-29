@@ -10,14 +10,14 @@ module Lcms
       end
 
       def full_title
-        hierarchy.map do |key|
+        Lcms::Engine::Resource.hierarchy.map do |key|
           val = resource.metadata[key.to_s]
           key == :subject ? val&.upcase : val&.humanize
         end.compact.join(' / ')
       end
 
       def pieces
-        hierarchy.map do |key|
+        Lcms::Engine::Resource.hierarchy.map do |key|
           if resource.curriculum_type&.to_sym == key
             value = resource.metadata[key.to_s]
             value.match?(/topic/i) ? value.upcase.sub('TOPIC', 'topic') : value
@@ -28,7 +28,7 @@ module Lcms
       end
 
       def short_pieces
-        hierarchy.map { |key| send(:"#{key}_abbrv", short: true) }.compact
+        Lcms::Engine::Resource.hierarchy.map { |key| send(:"#{key}_abbrv", short: true) }.compact
       end
 
       def short_title
@@ -41,10 +41,6 @@ module Lcms
       end
 
       private
-
-      def hierarchy
-        Resource::HIERARCHY
-      end
 
       def subject_abbrv(short: false)
         if short

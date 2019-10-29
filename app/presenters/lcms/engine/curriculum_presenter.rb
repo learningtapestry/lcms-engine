@@ -4,7 +4,7 @@ module Lcms
   module Engine
     # Simple presenter for Curriculum (resources tree)
     class CurriculumPresenter
-      UNIT_LEVEL = Resource::HIERARCHY.index(:unit)
+      UNIT_LEVEL = Lcms::Engine::Resource.hierarchy.index(:unit)
 
       def editor_props
         @editor_props ||= {
@@ -23,7 +23,7 @@ module Lcms
       def opened?(node)
         return false if node.curriculum_type.blank?
 
-        level = Resource::HIERARCHY.index(node.curriculum_type.to_sym)
+        level = Lcms::Engine::Resource.hierarchy.index(node.curriculum_type.to_sym)
         level < UNIT_LEVEL
       end
 

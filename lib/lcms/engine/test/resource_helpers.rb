@@ -45,7 +45,7 @@ module Lcms
         def build_resources_chain(curr)
           dir = []
           parent = nil
-          ::Lcms::Engine::Resource::HIERARCHY.each_with_index do |type, idx|
+          ::Lcms::Engine::Resource.hierarchy.each_with_index do |type, idx|
             next unless curr[idx]
 
             dir.push curr[idx]
@@ -62,7 +62,7 @@ module Lcms
         def build_or_return_resources_chain(curr)
           dir = []
           parent = nil
-          ::Lcms::Engine::Resource::HIERARCHY.each_with_index do |type, idx|
+          ::Lcms::Engine::Resource.hierarchy.each_with_index do |type, idx|
             next unless curr[idx]
 
             dir.push curr[idx]
