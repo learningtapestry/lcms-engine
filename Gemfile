@@ -19,6 +19,6 @@ gemspec
 
 gem 'lt-lcms', git: 'https://github.com/learningtapestry/lt-lcms.git',
                branch: 'master',
-               ref: 'e0816d56'
+               ref: '4aac707'
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support', ref: '67f73d3'
