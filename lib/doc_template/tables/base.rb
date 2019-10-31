@@ -16,6 +16,40 @@ module DocTemplate
         @table_exists = false
       end
 
+      #
+      # Inside each field in `fields` +Array+ splits the string by `separator` +String+ or
+      # +RegExp+. Clean the each chunk and keep only clear fragment:
+      # `<p><span>[tag]</span></p>`
+      #
+      # Used when field contain only tags separated with separator. If there is any other
+      # text content - use #parse_in_context
+      #
+      # @param data [Hash] resulting hash of #parse method
+      # @param fields [Array] array of fields to clean tags in
+      # @param opts [Hash] Additional options
+      # @return modified `data` parameter
+      #
+      def collect_and_render_tags(data, fields, opts = {})
+        fields.each do |field|
+          (data[field] = []) && next if (row = data[field]).blank?
+
+          tags = row
+                   .split(opts[:separator].presence || SPLIT_REGEX)
+                   .map(&:squish)
+                   .reject(&:blank?)
+
+          data[field] =
+            tags.map do |tag|
+              html = Nokogiri::HTML.fragment "<p><span>#{tag}</span></p>"
+              parsed_html = DocTemplate::Document.parse(html).render
+              # NOTE: Allow HTML tags which present in the tag only
+              keep = opts[:keep_elements] || []
+              Sanitize.fragment(parsed_html, elements: keep).squish
+            end
+        end
+        data
+      end
+
       def parse(fragment, *args)
         @options = args.extract_options!
 
@@ -30,6 +64,31 @@ module DocTemplate
 
         table.remove
         self
+      end
+
+      #
+      # Update content of the field with parsed data
+      # Generates nested +Hash+ for each of supported context types.
+      #
+      # Use case: In case when nested Tags should be parsed differently for different context
+      # types we need explicitly specify each supported context type.
+      #
+      # @param content [String] HTML content to parse and render tags from
+      # @param opts [Hash] Additional options
+      # @return [Hash] nested Hash for each of supported context types
+      #
+      def parse_in_context(content, opts = {})
+        # do not generate parts placeholder - inline all the tags
+        opts[:explicit_render] = true
+        html = Nokogiri::HTML.fragment content
+
+        {}.tap do |result|
+          ::DocTemplate.context_types.each do |context_type|
+            opts[:context_type] = context_type
+            rendered_content = DocTemplate::Document.parse(html.dup, opts).render
+            result[context_type] = DocTemplate.sanitizer.post_processing(rendered_content, opts)
+          end
+        end
       end
 
       def fetch_materials(data, key)

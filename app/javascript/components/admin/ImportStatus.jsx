@@ -7,7 +7,12 @@ class ImportStatus extends React.Component {
     this.pollingInterval = 5000
     this.chunkSize = 50
     this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links
-    this.path = _.isEmpty(props.path) ? `/admin/${this.props.type}/import_status` : props.path
+    if (_.isEmpty(props.path)) {
+      const k = `lcms_engine_import_status_admin_${this.props.type}_path`
+      this.path = Routes[k].call()
+    } else {
+      this.path = props.path
+    }
     this.withPdf = props.with_pdf || false
   }
 
