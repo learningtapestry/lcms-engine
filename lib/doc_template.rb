@@ -12,6 +12,10 @@ module DocTemplate
       context: 'Lt::Lcms::Metadata::Context',
       service: 'Lt::Lcms::Metadata::Service'
     },
+    queries: {
+      document: 'Lcms::Engine::AdminDocumentsQuery',
+      material: 'Lcms::Engine::AdminMaterialsQuery'
+    },
     sanitizer: 'Lcms::Engine::HtmlSanitizer'
   }.freeze
 
@@ -30,6 +34,10 @@ module DocTemplate
   config['metadata'] ||= {}
   config['metadata']['context'] ||= DEFAULTS[:metadata][:context]
   config['metadata']['service'] ||= DEFAULTS[:metadata][:service]
+
+  config['queries'] ||= {}
+  config['queries']['document'] ||= DEFAULTS[:queries][:document]
+  config['queries']['material'] ||= DEFAULTS[:queries][:material]
 
   config['sanitizer'] ||= DEFAULTS[:sanitizer]
 

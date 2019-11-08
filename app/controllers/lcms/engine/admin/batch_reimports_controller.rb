@@ -11,9 +11,9 @@ module Lcms
         def create
           @query = OpenStruct.new params[:query].except(:type)
           entries = if materials?
-                      AdminMaterialsQuery.call(@query)
+                      DocTemplate.config['queries']['material'].constantize.call(@query)
                     else
-                      AdminDocumentsQuery.call(@query)
+                      DocTemplate.config['queries']['document'].constantize.call(@query)
                     end
           bulk_import entries
           render :import

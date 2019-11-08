@@ -13,7 +13,7 @@ module Lcms
 
         def index
           @query = OpenStruct.new(params[:query])
-          @documents = AdminDocumentsQuery.call(@query, page: params[:page])
+          @documents = DocTemplate.config['queries']['document'].constantize.call(@query, page: params[:page])
           render_customized_view
         end
 
