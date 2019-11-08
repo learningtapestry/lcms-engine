@@ -11,7 +11,7 @@ module Lcms
 
         def index
           @query = OpenStruct.new params[:query]
-          @materials = AdminMaterialsQuery.call(@query, page: params[:page])
+          @materials = DocTemplate.config['queries']['material'].constantize.call(@query, page: params[:page])
           render_customized_view
         end
 
