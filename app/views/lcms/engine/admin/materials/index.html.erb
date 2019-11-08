@@ -13,12 +13,12 @@
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
     </div>
     <div class="flex-pull-right">
-      <%= react_component 'MultiSelectedOperation', {
+      <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.reimport_selected'),
             operation: 'reimport',
             path: reimport_selected_admin_materials_path(query: params[:query]),
             btn_style: 'primary' } %>
-      <%= react_component 'MultiSelectedOperation', {
+      <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.delete_selected'),
             operation: 'delete',
             path: delete_selected_admin_materials_path(query: params[:query]),
