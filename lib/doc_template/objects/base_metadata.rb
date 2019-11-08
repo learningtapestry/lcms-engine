@@ -24,9 +24,24 @@ module DocTemplate
       attribute :type, String, default: 'core'
       attribute :unit, String, default: ''
 
-      def self.build_from(data)
-        copy = data&.transform_keys { |k| k.to_s.underscore }
-        new(copy.presence || {})
+      class << self
+        def build_from(data)
+          copy = data&.transform_keys { |k| k.to_s.underscore }
+          new(copy.presence || {})
+        end
+
+        #
+        # Splits the text by separator removing empty parts
+        #
+        # @param text [String] text to be split
+        # @param separator [String]
+        # @return [Array] array of parts
+        #
+        def split_field(text, separator = DocTemplate::Tables::Base::SPLIT_REGEX)
+          text.to_s
+            .split(separator)
+            .map(&:squish).reject(&:blank?)
+        end
       end
     end
   end
