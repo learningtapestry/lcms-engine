@@ -4,6 +4,7 @@ module DocTemplate
   class Template
     class TagRegistry
       include Enumerable
+      delegate :delete, to: :@tags
 
       def initialize
         @tags = {}
@@ -38,17 +39,24 @@ module DocTemplate
       end
 
       def register_tag(name, klass)
-        key = name.is_a?(Regexp) ? name : name.to_s
-        tags[key] = klass
+        tags[key_for(name)] = klass
       end
 
       def tags
         @tags ||= TagRegistry.new
       end
 
+      def unregister_tag(name)
+        tags.delete(key_for(name))
+      end
+
       private
 
       attr_accessor :content
+
+      def key_for(name)
+        name.is_a?(Regexp) ? name : name.to_s
+      end
     end
 
     def initialize(type = :document)
