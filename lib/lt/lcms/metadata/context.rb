@@ -118,11 +118,11 @@ module Lt
 
         def build_new_resource(parent, name, index)
           dir = directory[0..index]
-          curriculum_type = parent.nil? ? Lcms::Engine::Resource.hierarchy.first : parent.next_hierarchy_level
+          curriculum_type = parent.nil? ? ::Lcms::Engine::Resource.hierarchy.first : parent.next_hierarchy_level
           resource = ::Lcms::Engine::Resource.new(
             curriculum_type: curriculum_type,
             level_position: parent&.children&.size.to_i,
-            metadata: metadata,
+            metadata: metadata.to_a[0..index].to_h,
             parent_id: parent&.id,
             resource_type: :resource,
             short_title: name,
