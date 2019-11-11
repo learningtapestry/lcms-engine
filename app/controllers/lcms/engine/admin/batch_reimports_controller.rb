@@ -27,7 +27,7 @@ module Lcms
             job_id = job_class.perform_later(doc).job_id
             jobs[job_id] = { link: doc.file_url, status: 'waiting' }
           end
-          @props = { jobs: jobs, type: params.dig(:query, :type), links: [] }
+          @props = { jobs: jobs, type: params.dig(:query, :type), links: view_links }
         end
 
         def job_class
