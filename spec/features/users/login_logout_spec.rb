@@ -14,7 +14,7 @@ feature 'Login/logout functionality' do
     fill_in 'user_email', with: email
     fill_in 'user_password', with: password
     click_on 'Log in'
-    expect(current_path).to eq lcms_engine.root_path
+    expect(current_path).to eq lcms_engine.admin_path
   end
 
   scenario 'logout' do
