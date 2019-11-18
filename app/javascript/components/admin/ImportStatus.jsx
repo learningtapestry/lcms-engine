@@ -20,6 +20,10 @@ class ImportStatus extends React.Component {
     this.intervalFn = setInterval(this.poll.bind(this), this.pollingInterval)
   }
 
+  componentWillUnmount() {
+    clearInterval(this.intervalFn)
+  }
+
   poll() {
     const pendingJobs = _.compact(_.map(this.state.jobs, (job, jid) => job.status !== 'done' ? jid : null))
     if (pendingJobs.length > 0) {
