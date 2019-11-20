@@ -46,12 +46,14 @@ Lcms::Engine::Engine.routes.draw do
     end
   end
 
-  devise_for :users, class_name: 'Lcms::Engine::User',
-                     controllers: {
-                       registrations: 'lcms/engine/registrations',
-                       sessions: 'lcms/engine/sessions'
-                     },
-                     module: :devise
+  unless ENV.fetch('DEVISE_ROUTES_REDEFINED', false)
+    devise_for :users, class_name: 'Lcms::Engine::User',
+                       controllers: {
+                         registrations: 'lcms/engine/registrations',
+                         sessions: 'lcms/engine/sessions'
+                       },
+                       module: :devise
+  end
 
   authenticate :user do
     mount Resque::Server, at: '/queue'

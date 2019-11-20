@@ -58,7 +58,7 @@ module Lcms
         private
 
         def authenticate_admin!
-          redirect_to root_path, alert: 'Access denied' unless current_user&.admin?
+          redirect_to self.class.root_path, alert: 'Access denied' unless current_user&.admin?
         end
 
         def customized_layout

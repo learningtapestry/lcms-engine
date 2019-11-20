@@ -5,11 +5,6 @@ module Lcms
     class SessionsController < Devise::SessionsController
       include HeapNotifyable
 
-      def new
-        @from = stored_location_for resource_name
-        super
-      end
-
       def create
         super
         heap_notify 'Login'

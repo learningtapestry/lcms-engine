@@ -134,6 +134,56 @@ Pay attention that adding route alias is not supported. That said you **can't** 
 mount Engine, at: '/engine', as: :engine
 ````
 
+If you need to redefine devise routes set up env `DEVISE_ROUTES_REDEFINED` as true and define devise related routes at host app.
+
+Host app routes examples:
+1. host app will have own routes on upper than engine level:
+```
+Lcms::Engine::Engine.routes.draw do
+  devise_for :users, class_name: 'Lcms::Engine::User',
+                     router_name: :main_app,
+                     skip: %i(sessions registrations passwords)
+end
+
+# define scope at host level to avoid engine prefix at routes
+devise_scope :user do
+  get '/login', to: 'lcms/engine/sessions#new', as: :new_user_session
+  post '/login', to: 'lcms/engine/sessions#create', as: :user_session
+  get '/logout', to: 'lcms/engine/sessions#destroy', as: :destroy_user_session
+  post '/password', to: 'devise/passwords#create', as: :user_password
+  get '/password/new', to: 'devise/passwords#new', as: :new_user_password
+  get '/password/edit', to: 'devise/passwords#edit', as: :edit_user_password
+  patch '/password', to: 'devise/passwords#update'
+  put '/password', to: 'devise/passwords#update'
+  get '/register/cancel', to: 'lcms/engine/registrations#cancel', as: :cancel_user_registration
+  post '/register', to: 'lcms/engine/registrations#create', as: :user_registration
+  get '/register/sign_up', to: 'lcms/engine/registrations#new', as: :new_user_registration
+  get '/register/edit', to: 'lcms/engine/registrations#edit', as: :edit_user_registration
+  patch '/register', to: 'lcms/engine/registrations#edit'
+  put '/register', to: 'lcms/engine/registrations#update'
+  delete '/register', to: 'lcms/engine/registrations#destroy'
+end
+```
+2. host app is ok with `/lcms` devise routes but want to redefine paths after that:
+```
+Lcms::Engine::Engine.routes.draw do
+  devise_for :users, class_name: 'Lcms::Engine::User',
+                     controllers: {
+                       registrations: 'lcms/engine/registrations',
+                       sessions: 'lcms/engine/sessions'
+                     },
+                     module: :devise,
+                     path: '',
+                     path_names: {
+                       sign_in: 'login',
+                       sign_out: 'logout',
+                       password: 'secret',
+                       registration: 'register',
+                       sign_up:  'sign_up'
+                     }
+end
+```
+
 ### Migrations
 
 All migrations included in the gem are already available for you to run from inside host application.

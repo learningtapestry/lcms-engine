@@ -3,6 +3,9 @@
 module Lcms
   module Engine
     class ApplicationController < ActionController::Base
+      # store location to use at after sign in or other devise callbacks
+      include LocationStorable
+
       protect_from_forgery with: :exception
 
       # NOTE: Temporary disabled
@@ -42,8 +45,14 @@ module Lcms
         response.headers.delete('X-Frame-Options') if params[:controller].index('pdfjs_viewer').present?
       end
 
-      def pdf_request?
-        request.path.index('pdfjs').present? || request.path.index('pdf-proxy').present?
+      private
+
+      def after_sign_in_path_for(resource_or_scope)
+        stored_location_for(resource_or_scope) || main_app.root_path
+      end
+
+      def after_sign_out_path_for(resource_or_scope)
+        session_path(resource_or_scope)
       end
 
       # NOTE: Temporary disabled
