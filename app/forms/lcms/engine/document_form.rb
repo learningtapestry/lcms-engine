@@ -25,7 +25,7 @@ module Lcms
         return false unless valid?
 
         @document = build_document
-        DocumentGenerator.generate_for(@document)
+        after_reimport_hook
         @document.update(reimported: true)
       rescue StandardError => e
         @document&.update(reimported: false)
@@ -37,6 +37,10 @@ module Lcms
       private
 
       attr_reader :is_reimport, :options
+
+      def after_reimport_hook
+        DocumentGenerator.generate_for(@document)
+      end
 
       def build_document
         service = document_build_service

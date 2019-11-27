@@ -31,7 +31,7 @@ module Lcms
         end
 
         def job_class
-          materials? ? MaterialParseJob : DocumentParseJob
+          materials? ? DocumentGenerator.material_parse_job : DocumentGenerator.document_parse_job
         end
 
         def materials?

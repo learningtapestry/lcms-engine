@@ -45,7 +45,7 @@ module Lcms
       end
 
       def material_presenter(material, document)
-        DocumentGenerator.material_presenter.new material, lesson: DocumentPresenter.new(document)
+        DocumentGenerator.material_presenter.new material, lesson: DocumentGenerator.document_presenter.new(document)
       end
 
       def links_from_metadata(material)

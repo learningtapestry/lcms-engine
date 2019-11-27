@@ -16,7 +16,7 @@ module Lcms
 
       def perform(doc, options)
         content_type = options[:content_type]
-        document = DocumentPresenter.new doc.reload, content_type: content_type
+        document = DocumentGenerator.document_presenter.new doc.reload, content_type: content_type
         filename = options[:filename].presence || "#{DocumentExporter::PDF::Base.s3_folder}/#{document.pdf_filename}"
         pdf = PDF_EXPORTERS[content_type].new(document, options).export
         url = S3Service.upload filename, pdf

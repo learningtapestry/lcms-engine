@@ -10,6 +10,7 @@ module Lcms
         pdf: 'DocumentGeneratePdfJob'
       }.with_indifferent_access.freeze
 
+      DOCUMENT_PARSE_JOB = '::Lcms::Engine::DocumentParseJob'
       DOCUMENT_PRESENTER = 'DocumentPresenter'
 
       MATERIAL_GENERATORS = {
@@ -17,6 +18,7 @@ module Lcms
         pdf: 'MaterialGeneratePDFJob'
       }.with_indifferent_access.freeze
 
+      MATERIAL_PARSE_JOB = '::Lcms::Engine::MaterialParseJob'
       MATERIAL_PRESENTER = 'MaterialPresenter'
 
       class << self
@@ -29,6 +31,14 @@ module Lcms
 
         def document_generators
           @document_generators ||= DOCUMENT_GENERATORS.slice(*DocTemplate.document_contexts).values
+        end
+
+        def document_parse_job
+          @document_parse_job ||=
+            begin
+              klass = DocTemplate.config['document_parse_job'].presence || DOCUMENT_PARSE_JOB
+              klass.constantize
+            end
         end
 
         def document_presenter
@@ -45,6 +55,14 @@ module Lcms
 
         def material_form
           @material_form ||= DocTemplate.config['material_form']&.constantize || ::Lcms::Engine::MaterialForm
+        end
+
+        def material_parse_job
+          @material_parse_job ||=
+            begin
+              klass = DocTemplate.config['material_parse_job'].presence || MATERIAL_PARSE_JOB
+              klass.constantize
+            end
         end
 
         def material_presenter
