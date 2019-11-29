@@ -11,7 +11,10 @@ module Lcms
       def perform(material, document)
         return if material.pdf?
 
-        material = MaterialPresenter.new material, document: DocumentPresenter.new(document)
+        material = DocumentGenerator.material_presenter.new(
+          material,
+          document: DocumentGenerator.document_presenter.new(document)
+        )
 
         # Check if material is optional for current document
         options = {}.tap do |x|

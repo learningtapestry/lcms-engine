@@ -44,7 +44,7 @@ module Lcms
         end
 
         def import_status
-          data = import_status_for DocumentParseJob
+          data = import_status_for DocumentGenerator.document_parse_job
           render json: data, status: :ok
         end
 
@@ -62,7 +62,8 @@ module Lcms
         def bulk_import(docs)
           reimport_materials = params[:with_materials].to_i.nonzero?
           jobs = docs.each_with_object({}) do |doc, jobs_|
-            job_id = DocumentParseJob.perform_later(doc, reimport_materials: reimport_materials).job_id
+            job_id = DocumentGenerator.document_parse_job
+                       .perform_later(doc, reimport_materials: reimport_materials).job_id
             link = doc.is_a?(Document) ? doc.file_url : doc
             jobs_[job_id] = { link: link, status: 'waiting' }
           end

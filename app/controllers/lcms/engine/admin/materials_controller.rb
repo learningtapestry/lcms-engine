@@ -39,7 +39,7 @@ module Lcms
         end
 
         def import_status
-          data = import_status_for MaterialParseJob
+          data = import_status_for DocumentGenerator.material_parse_job
           render json: data, status: :ok
         end
 
@@ -57,7 +57,7 @@ module Lcms
         def bulk_import(files)
           jobs = {}
           files.each do |url|
-            job_id = MaterialParseJob.perform_later(url).job_id
+            job_id = DocumentGenerator.material_parse_job.perform_later(url).job_id
             jobs[job_id] = { link: url, status: 'waiting' }
           end
           @props = { jobs: jobs, type: :materials, links: view_links }
