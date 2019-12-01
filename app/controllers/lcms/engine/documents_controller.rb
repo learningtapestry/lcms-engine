@@ -88,7 +88,7 @@ module Lcms
 
       def set_document
         @doc = Document.find params[:id]
-        @document = DocumentPresenter.new @doc, content_type: params[:type]
+        @document = DocumentGenerator.document_presenter.new @doc, content_type: params[:type]
       end
     end
   end

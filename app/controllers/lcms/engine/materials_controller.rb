@@ -42,7 +42,7 @@ module Lcms
       end
 
       def set_material
-        @material = MaterialPresenter.new(Material.find params[:id])
+        @material = DocumentGenerator.material_presenter.new(Material.find params[:id])
       end
     end
   end
