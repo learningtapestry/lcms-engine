@@ -42,7 +42,7 @@ module Lcms
       def opr_standards
         return unless object.opr? && object.document.present?
 
-        DocumentPresenter.new(object.document).standards
+        DocumentGenerator.document_presenter.new(object.document).standards
       end
 
       private

@@ -30,7 +30,7 @@ module Lcms
           .sort_by { |m| ordered_ids.index(m.id) }
           .map do |material|
           MaterialSerializer.new(
-            MaterialPresenter.new material, document: @document
+            DocumentGenerator.material_presenter.new material, document: @document
           ).as_json
         end
       end

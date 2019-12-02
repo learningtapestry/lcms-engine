@@ -41,7 +41,7 @@ module Lcms
 
         material.material_parts.delete_all
 
-        basename = MaterialPresenter.new(material).material_filename
+        basename = DocumentGenerator.material_presenter.new(material).material_filename
         pdf_filename = "#{basename}#{ContentPresenter::PDF_EXT}"
         thumb_filename = "#{basename}#{ContentPresenter::THUMB_EXT}"
 
@@ -73,7 +73,7 @@ module Lcms
 
         material.material_parts.delete_all
 
-        presenter = MaterialPresenter.new(material, parsed_document: template)
+        presenter = DocumentGenerator.material_presenter.new(material, parsed_document: template)
         DocTemplate.context_types.each do |context_type|
           material.material_parts.create!(
             active: true,

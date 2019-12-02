@@ -19,7 +19,7 @@ module Lcms
           .sort_by { |m| ordered_ids.index(m.id) }
           .map do |material|
           MaterialSerializer.new(
-            MaterialPresenter.new material, document: @document, anchors: anchors[material.id] || []
+            DocumentGenerator.material_presenter.new material, document: @document, anchors: anchors[material.id] || []
           ).as_json
         end
       end

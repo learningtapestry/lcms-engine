@@ -36,7 +36,7 @@ module Lcms
           @error = "Can't generate PDF for preview: no documents exist"
           return false
         end
-        material.document = DocumentPresenter.new document
+        material.document = DocumentGenerator.document_presenter.new document
 
         true
       end

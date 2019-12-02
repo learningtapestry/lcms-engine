@@ -6,20 +6,20 @@ module Lcms
       CONTENT_TYPES = %w(full tm sm).freeze
 
       DOCUMENT_GENERATORS = {
-        gdoc: 'DocumentGenerateGdocJob',
-        pdf: 'DocumentGeneratePdfJob'
+        gdoc: '::Lcms::Engine::DocumentGenerateGdocJob',
+        pdf: '::Lcms::Engine::DocumentGeneratePdfJob'
       }.with_indifferent_access.freeze
 
       DOCUMENT_PARSE_JOB = '::Lcms::Engine::DocumentParseJob'
-      DOCUMENT_PRESENTER = 'DocumentPresenter'
+      DOCUMENT_PRESENTER = '::Lcms::Engine::DocumentPresenter'
 
       MATERIAL_GENERATORS = {
-        gdoc: 'MaterialGenerateGdocJob',
-        pdf: 'MaterialGeneratePDFJob'
+        gdoc: '::Lcms::Engine::MaterialGenerateGdocJob',
+        pdf: '::Lcms::Engine::MaterialGeneratePDFJob'
       }.with_indifferent_access.freeze
 
       MATERIAL_PARSE_JOB = '::Lcms::Engine::MaterialParseJob'
-      MATERIAL_PRESENTER = 'MaterialPresenter'
+      MATERIAL_PRESENTER = '::Lcms::Engine::MaterialPresenter'
 
       class << self
         def generate_for(document)
