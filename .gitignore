@@ -18,10 +18,11 @@ spec/dummy/storage/
 spec/dummy/tmp/
 spec/dummy/public/assets/
 
-# Ignore IDE specific files
+# Ignore IDE and OS specific files
 /.idea
 /.generators
 /.rakeTasks
+.DS_Store
 
 coverage
 /yarn-error.log
