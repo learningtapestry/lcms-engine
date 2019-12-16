@@ -21,6 +21,11 @@ module DocTemplate
       # +RegExp+. Clean the each chunk and keep only clear fragment:
       # `<p><span>[tag]</span></p>`
       #
+      # options:
+      #   :skip_sanitize - to skip sanitization
+      #   :separator - separator to split the input
+      #   :keep_elements - +Array+ of HTML elements to keep during sanitizing
+      #
       # Used when field contain only tags separated with separator. If there is any other
       # text content - use #parse_in_context
       #
@@ -41,10 +46,12 @@ module DocTemplate
           data[field] =
             tags.map do |tag|
               html = Nokogiri::HTML.fragment "<p><span>#{tag}</span></p>"
-              parsed_html = DocTemplate::Document.parse(html).render
+              parsed_html = DocTemplate::Document.parse(html).render.squish
+              next parsed_html if opts.key?(:skip_sanitize)
+
               # NOTE: Allow HTML tags which present in the tag only
               keep = opts[:keep_elements] || []
-              Sanitize.fragment(parsed_html, elements: keep).squish
+              Sanitize.fragment(parsed_html, elements: keep)
             end
         end
         data
