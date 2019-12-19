@@ -20,6 +20,17 @@ describe DocTemplate::Tables::Base do
       expect(::Sanitize).to receive(:fragment).with(html_rendered, elements: opts[:keep_elements]).and_return('')
       subject
     end
+
+    context 'when skip_sanitize option is passed in' do
+      let(:opts) { { skip_sanitize: true } }
+
+      it 'skips sanitization' do
+        expect(Nokogiri::HTML).to receive(:fragment).with(html).and_return(Nokogiri::HTML.fragment(html))
+        expect(DocTemplate::Document).to receive_message_chain(:parse, :render).and_return(html_rendered)
+        expect(::Sanitize).to_not receive(:fragment)
+        subject
+      end
+    end
   end
 
   describe '#fetch_materials' do
