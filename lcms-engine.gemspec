@@ -73,7 +73,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg_search', '~> 2.1'
   s.add_dependency 'postgres_ext', '~> 3.0'
   s.add_dependency 'rack-mini-profiler'
-  s.add_dependency 'rails', '4.2.11'
+  s.add_dependency 'rails', '4.2.11.1'
   s.add_dependency 'rails-assets-classnames', '~> 2.2.3'
   s.add_dependency 'rails-assets-es6-promise', '~> 3.1.2'
   s.add_dependency 'rails-assets-eventemitter3', '~> 1.2.0'
