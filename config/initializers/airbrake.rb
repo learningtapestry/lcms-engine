@@ -18,6 +18,8 @@ if AIRBRAKE_ENABLED
     c.blacklist_keys = Rails.application.config.filter_parameters
 
     c.ignore_environments = %w(test)
+
+    c.performance_stats = true
   end
 
   ignore_errors = %w(
