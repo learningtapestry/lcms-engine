@@ -9,8 +9,8 @@ require 'lcms/engine/version'
 Gem::Specification.new do |s|
   s.name = 'lcms-engine'
   s.version = Lcms::Engine::VERSION
-  s.authors = ['Rômulo Saksida', 'Abraham Sánchez', 'Alexander Kuznetsov']
-  s.email = %w(rm@learningtapestry.com abraham@learningtapestry.com alexander@learningtapestry.com)
+  s.authors = ['Alexander Kuznetsov', 'Abraham Sánchez', 'Rômulo Saksida']
+  s.email = %w(alexander@learningtapestry.com abraham@learningtapestry.com rm@learningtapestry.com)
   s.homepage = 'https://github.com/learningtapestry/lcms-engine'
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
@@ -57,8 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'js-routes', '~> 1.1.2'
   s.add_dependency 'lt-google-api', '~> 0.1'
-  # NOTE: Uncomment after new version of lt-lcms will be released
-  # s.add_dependency 'lt-lcms', '~> 0.1'
+  s.add_dependency 'lt-lcms', '~> 0.2'
   s.add_dependency 'migration_data', '~> 0.2.1'
   s.add_dependency 'mini_magick', '>= 4.9.4'
   s.add_dependency 'nested_form'
@@ -113,7 +112,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'faker'
   s.add_development_dependency 'guard-livereload', '~> 2.5', '>= 2.5.2'
   s.add_development_dependency 'mailcatcher'
-  s.add_development_dependency 'overcommit', '~> 0.47'
+  s.add_development_dependency 'overcommit', '~> 0.49.1'
   s.add_development_dependency 'pry-byebug'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
   s.add_development_dependency 'puma', '~> 3'
