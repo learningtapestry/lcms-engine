@@ -6,11 +6,12 @@ module Lcms
   module Engine
     class Material < ActiveRecord::Base
       include PgSearch::Model
+      include Partable
 
       validates :file_id, presence: true
       validates :identifier, uniqueness: true
 
-      has_many :material_parts, dependent: :delete_all
+      has_many :document_parts, as: :renderer, dependent: :delete_all
       has_and_belongs_to_many :documents
 
       store_accessor :metadata
@@ -31,11 +32,6 @@ module Lcms
 
       def file_url
         "https://docs.google.com/#{pdf? ? 'file' : 'document'}/d/#{file_id}"
-      end
-
-      def layout(context_type)
-        # TODO: Move to concern with the same method in `Document`
-        material_parts.where(part_type: :layout, context_type: DocumentPart.context_types[context_type.to_sym]).last
       end
 
       # Material is optional if it's included in optional activity only

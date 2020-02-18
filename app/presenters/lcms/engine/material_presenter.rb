@@ -4,10 +4,8 @@ module Lcms
   module Engine
     class MaterialPresenter < Lcms::Engine::ContentPresenter
       attr_accessor :document
-      attr_reader :parsed_document
 
       delegate :short_url, :subject, to: :document
-      delegate :parts, to: :parsed_document
 
       DEFAULT_TITLE = 'Material'
 
@@ -28,7 +26,7 @@ module Lcms
       end
 
       def content_for(context_type)
-        layout(context_type)&.content
+        render_content(context_type)
       end
 
       def content_type
@@ -137,14 +135,6 @@ module Lcms
       end
 
       private
-
-      def document_parts_index
-        @document_parts_index ||= parts.map { |p| [p[:placeholder], { anchor: p[:anchor], content: p[:content] }] }.to_h
-      end
-
-      def layout_content(context_type)
-        parts.find { |p| p[:part_type] == :layout && p[:context_type] == context_type }&.dig(:content) || ''
-      end
 
       def material_links
         @material_links ||= (document || @lesson).links['materials']&.dig(id.to_s)

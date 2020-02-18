@@ -39,7 +39,7 @@ module Lcms
           )
         )
 
-        material.material_parts.delete_all
+        material.document_parts.delete_all
 
         basename = DocumentGenerator.material_presenter.new(material).material_filename
         pdf_filename = "#{basename}#{ContentPresenter::PDF_EXT}"
@@ -71,17 +71,8 @@ module Lcms
           )
         )
 
-        material.material_parts.delete_all
-
-        presenter = DocumentGenerator.material_presenter.new(material, parsed_document: template)
-        DocTemplate.context_types.each do |context_type|
-          material.material_parts.create!(
-            active: true,
-            content: presenter.render_content(context_type),
-            context_type: context_type,
-            part_type: :layout
-          )
-        end
+        material.document_parts.delete_all
+        material.create_parts_for(template)
         material
       end
 

@@ -9,7 +9,7 @@ module Lcms
 
       def perform(material, document)
         if document.math?
-          material.material_parts.default.each { |p| p.update!(content: EmbedEquations.call(p.content)) }
+          material.document_parts.default.each { |p| p.update!(content: EmbedEquations.call(p.content)) }
         end
 
         DocumentGenerator.material_generators.each do |klass|
