@@ -1,0 +1,29 @@
+version: '3'
+services:
+  db:
+    image: postgres:11.5-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:5.0.5-alpine
+    ports:
+      - 6379
+
+  app:
+    build: .
+    command: bash -c "bundle install && yarn && tail -f /dev/null"
+    env_file:
+      - spec/dummy/.env.docker
+    environment:
+      REDIS_URL: redis://redis:6379/1
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres:

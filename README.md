@@ -192,7 +192,7 @@ All migrations included in the gem are already available for you to run from ins
 
 You need to run special rake task if default routes were overridden
 ```bash
-bundle exec rake js-routes:generate
+$ bundle exec rake js-routes:generate
 ```
 
 ## Developing and testing
@@ -206,10 +206,23 @@ connection (see `spec/dummy/.env` as a template)
 `chromedriver` is required to run feature specs. You may find OS-specific instructions [here](https://sites.google.com/a/chromium.org/chromedriver/getting-started).
 For macOS it can be installed with Homebrew:
 
-```sh
-brew tap homebrew/cask
-brew cask install chromedriver
+```bash
+$ brew tap homebrew/cask
+$ brew cask install chromedriver
 ```
+
+#### Using Docker
+
+Launch the containers
+```sh
+$ docker-compose start app
+```
+
+Start the specs
+```sh
+$ docker-compose exec app sh -c 'bundle exec rspec'
+```
+
 
 ## License
 The gem is available as open source under the terms of the [Apache License](https://github.com/learningtapestry/lcms-engine/blob/master/LICENSE).

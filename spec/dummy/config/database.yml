@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: localhost
+  host: <%= ENV.fetch('POSTGRESQL_ADDRESS', 'localhost') %>
   username: <%= ENV['POSTGRESQL_USERNAME'] %>
   password: <%= ENV['POSTGRESQL_PASSWORD'] %>
 
