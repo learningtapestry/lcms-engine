@@ -27,7 +27,7 @@ module Lcms
         @document.update! content_key => content
 
         build
-        create_parts
+        @document.create_parts_for(template)
 
         ActiveSupport::Notifications.instrument EVENT_BUILT, id: document.id
 
@@ -129,22 +129,6 @@ module Lcms
 
           @document[id_field] = downloader.file_id if @document.present?
           @document ||= Document.actives.find_or_initialize_by(id_field => downloader.file_id)
-        end
-      end
-
-      def create_parts
-        template.parts.each do |part|
-          document.document_parts.create!(
-            active: true,
-            anchor: part[:anchor],
-            content: part[:content],
-            context_type: part[:context_type],
-            data: part[:data],
-            materials: part[:materials],
-            optional: part[:optional],
-            part_type: part[:part_type],
-            placeholder: part[:placeholder]
-          )
         end
       end
 

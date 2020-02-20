@@ -3,10 +3,11 @@
 module Lcms
   module Engine
     class Document < ActiveRecord::Base
+      include Partable
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 
       belongs_to :resource
-      has_many :document_parts, dependent: :delete_all
+      has_many :document_parts, as: :renderer, dependent: :delete_all
       has_and_belongs_to_many :materials
 
       before_save :clean_curriculum_metadata
@@ -96,11 +97,6 @@ module Lcms
 
       def gdoc_material_ids
         materials.gdoc.pluck(:id)
-      end
-
-      def layout(context_type)
-        # TODO: Move to concern with the same method in `Material`
-        document_parts.where(part_type: :layout, context_type: DocumentPart.context_types[context_type.to_sym]).last
       end
 
       def materials_anchors

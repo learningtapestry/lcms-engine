@@ -63,11 +63,15 @@ module Lcms
         config[:padding].map { |k, v| "#{align_type}-#{k}:#{v};" }.join
       end
 
-      def render_content(context_type, options = {})
-        options[:parts_index] = document_parts_index
-        rendered_layout = DocumentRenderer::Part.call(layout_content(context_type), options)
-        content = DocTemplate.sanitizer.clean_content(rendered_layout, context_type)
-        Lcms::Engine::ReactMaterialsResolver.resolve(content, self)
+      private
+
+      def document_parts_index
+        @document_parts_index ||= document_parts.pluck(:placeholder, :anchor, :content, :optional)
+                                    .map { |p| [p[0], { anchor: p[1], content: p[2], optional: p[3] }] }.to_h
+      end
+
+      def layout_content(context_type)
+        layout(context_type).content
       end
     end
   end

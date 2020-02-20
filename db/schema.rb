@@ -62,24 +62,25 @@ ActiveRecord::Schema.define(version: 0) do
   add_index "document_bundles", ["resource_id"], name: "index_document_bundles_on_resource_id", using: :btree
 
   create_table "document_parts", force: :cascade do |t|
-    t.integer  "document_id"
     t.text     "content"
     t.string   "part_type"
     t.boolean  "active"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "placeholder"
-    t.text     "materials",    default: [],    null: false, array: true
-    t.integer  "context_type", default: 0
+    t.text     "materials",     default: [],    null: false, array: true
+    t.integer  "context_type",  default: 0
     t.string   "anchor"
-    t.boolean  "optional",     default: false, null: false
-    t.jsonb    "data",         default: {},    null: false
+    t.boolean  "optional",      default: false, null: false
+    t.jsonb    "data",          default: {},    null: false
+    t.integer  "renderer_id"
+    t.string   "renderer_type"
   end
 
   add_index "document_parts", ["anchor"], name: "index_document_parts_on_anchor", using: :btree
   add_index "document_parts", ["context_type"], name: "index_document_parts_on_context_type", using: :btree
-  add_index "document_parts", ["document_id"], name: "index_document_parts_on_document_id", using: :btree
   add_index "document_parts", ["placeholder"], name: "index_document_parts_on_placeholder", using: :btree
+  add_index "document_parts", ["renderer_type", "renderer_id"], name: "index_document_parts_on_renderer_type_and_renderer_id", using: :btree
 
   create_table "documents", force: :cascade do |t|
     t.string   "file_id"
@@ -151,18 +152,6 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_index "leadership_posts", ["order", "last_name"], name: "index_leadership_posts_on_order_and_last_name", using: :btree
-
-  create_table "material_parts", force: :cascade do |t|
-    t.integer  "material_id"
-    t.text     "content"
-    t.integer  "context_type", default: 0
-    t.string   "part_type"
-    t.boolean  "active"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "material_parts", ["material_id"], name: "index_material_parts_on_material_id", using: :btree
 
   create_table "materials", force: :cascade do |t|
     t.string   "file_id",                        null: false
@@ -431,10 +420,8 @@ ActiveRecord::Schema.define(version: 0) do
 
   add_foreign_key "copyright_attributions", "resources"
   add_foreign_key "document_bundles", "resources"
-  add_foreign_key "document_parts", "documents"
   add_foreign_key "documents_materials", "documents"
   add_foreign_key "documents_materials", "materials"
-  add_foreign_key "material_parts", "materials"
   add_foreign_key "reading_assignment_texts", "reading_assignment_authors"
   add_foreign_key "resource_additional_resources", "resources"
   add_foreign_key "resource_additional_resources", "resources", column: "additional_resource_id"
