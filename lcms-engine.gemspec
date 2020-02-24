@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass'
   s.add_dependency 'bullet'
   s.add_dependency 'carrierwave'
-  s.add_dependency 'ckeditor'
+  s.add_dependency 'ckeditor', '~> 4'
   s.add_dependency 'closure_tree'
   s.add_dependency 'combine_pdf'
   s.add_dependency 'daemons'
