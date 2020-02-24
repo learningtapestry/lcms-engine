@@ -82,6 +82,7 @@ module Lcms
           .glob(Rails.root + 'app/decorators/**/*_decorator*.rb')
           .each(&method(:require_dependency))
       rescue ActiveRecord::NoDatabaseError
+        puts 'ActiveRecord::NoDatabaseError thrown!'
       end
 
       config.generators do |g|
