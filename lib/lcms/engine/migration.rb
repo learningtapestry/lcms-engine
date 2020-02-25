@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'version'
+
 module Lcms
   module Engine
     if Rails::VERSION::MAJOR >= 5
