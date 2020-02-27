@@ -143,9 +143,6 @@ $media-img-height: 110px;
 
     @include e(icon) {
       @include fa-icon;
-      &:before {
-        content: $fa-var-play-circle-o;
-      }
     }
   }
 
