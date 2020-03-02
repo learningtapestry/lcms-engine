@@ -99,10 +99,6 @@ module Lcms
         strip_tags(str).squish
       end
 
-      def generic_page?
-        controller.controller_name == 'resources' && controller.action_name == 'generic'
-      end
-
       def set_social_media_sharing(target) # rubocop:disable Naming/AccessorMethodName
         @social_media_presenter = SocialMediaPresenter.new(target: target, view: self)
       end

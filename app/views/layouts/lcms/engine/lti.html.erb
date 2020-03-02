@@ -5,13 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>document.querySelector('html').className = 'js';</script>
-    <script>
-      window._PDFJSworkerSrc = '<%= asset_url('pdf.worker.js') %>'
-    </script>
     <%= stylesheet_link_tag 'lcms/engine/application', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= javascript_include_tag '//s7.addthis.com/js/300/addthis_widget.js#async=1' %>
     <%= javascript_include_tag 'lcms/engine/application_lti', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_include_tag 'lcms/engine/pdf_js_preview', 'data-turbolinks-track' => 'reload' if generic_page? %>
     <%= csrf_meta_tags %>
     <% if content_for?(:canonical_url) %>
       <link rel=canonical href='<%= yield(:canonical_url) %>'>

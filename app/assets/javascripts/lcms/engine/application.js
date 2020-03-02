@@ -4,7 +4,6 @@
 //= require i18n/translations
 //= require modernizr-custom
 //= require swiper.jquery
-//= require pdfobject.js
 //= require smoothscrolling
 //= require lodash
 //= require foundation

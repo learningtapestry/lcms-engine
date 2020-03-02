@@ -14,7 +14,6 @@
 //= require jquery.tagsinput
 //= require jstree
 //= require js-routes
-//= require ../initializers/google_analytics
 
 document.addEventListener('turbolinks:load', function () {
   $(document).initFoundation();
@@ -24,5 +23,10 @@ document.addEventListener('turbolinks:load', function () {
     plugins: ['remove_button']
   });
 
-  window.initializeGoogleAnalytics();
+  if (window.ga) {
+    ga('set', 'location', location.href.split('#')[0]);
+    ga('send', 'pageview', {
+      "title": document.title
+    });
+  }
 });
