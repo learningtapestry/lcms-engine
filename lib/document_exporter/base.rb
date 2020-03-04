@@ -51,10 +51,7 @@ module DocumentExporter
     def render_template(path, layout:)
       field = path.starts_with?('/') ? :file : :template
       # Using backport of Rails 5 Renderer here
-      ApplicationController.class_eval do
-        helper ::Lcms::Engine::Engine.helpers
-      end
-      ApplicationController.render(
+      Lcms::Engine::ApplicationController.render(
         field => path,
         layout: layout,
         locals: { document: @document, options: @options }
