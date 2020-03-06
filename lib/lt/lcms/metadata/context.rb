@@ -167,7 +167,7 @@ module Lt
         def grade
           @grade ||= begin
             value = context[:grade].try(:downcase)
-            value = "grade #{value}" if number?(value)
+            value = "grade #{value.to_i}" if number?(value)
             value # if Grades::GRADES.include?(value)
           end
         end

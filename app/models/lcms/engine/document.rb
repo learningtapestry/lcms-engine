@@ -136,7 +136,7 @@ module Lcms
         metadata['subject'] = metadata['subject']&.downcase
 
         /(\d+)/.match(metadata['grade']) do |m|
-          metadata['grade'] = "grade #{m[1]}"
+          metadata['grade'] = "grade #{m[1].to_i}"
         end
 
         # store only the lesson number
