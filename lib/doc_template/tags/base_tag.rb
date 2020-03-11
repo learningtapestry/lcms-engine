@@ -16,7 +16,7 @@ module DocTemplate
         def tag_with_html_regexp
           raise NotImplementedError unless const_defined?(:TAG_NAME)
 
-          @tag_with_html_regexp ||= /\[[^\]]*#{self::TAG_NAME}[[^\:]]*:?\s?[^\]]*\]/i
+          @tag_with_html_regexp ||= /\[[^\]]*#{self::TAG_NAME}[[^\:,;.]]*:?\s?[^\]]*\]/i
         end
 
         def template_path_for(name)
