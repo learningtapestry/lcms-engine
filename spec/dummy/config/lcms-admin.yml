@@ -10,12 +10,12 @@ engine: 'Lcms::Engine::Engine'
 # Redirects
 redirect:
   host:
-    # TODO: Check the handle of chained path here
     root_path: 'admin_path'
-  engine:
-    # TODO: Check the handle of chained path here
     document_path: 'document_path'
-    # TODO: Check the handle of chained path here
+    material_path: 'material_path'
+  engine:
+    root_path: 'admin_path'
+    document_path: 'document_path'
     material_path: 'material_path'
 
 # TODO: Check the default values handling

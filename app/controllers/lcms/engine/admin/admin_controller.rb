@@ -25,11 +25,11 @@ module Lcms
           end
 
           def document_path(*args)
-            host_engine_path(:document_path, args).presence || url_helpers.document_path(args)
+            host_engine_path(:document_path, *args).presence || url_helpers.document_path(*args)
           end
 
           def material_path(*args)
-            host_engine_path(:material_path, args).presence || url_helpers.material_path(args)
+            host_engine_path(:material_path, *args).presence || url_helpers.material_path(*args)
           end
 
           def root_path
@@ -38,9 +38,9 @@ module Lcms
 
           def host_engine_path(key, *args)
             if (host_route = settings.dig(:redirect, :host, key)).present?
-              Rails.application.routes.url_helpers.send(host_route, args)
+              Rails.application.routes.url_helpers.send(host_route, *args)
             elsif (engine_route = settings.dig(:redirect, :engine, key)).present?
-              engine_klass.routes.url_helpers.send(engine_route, args)
+              engine_klass.routes.url_helpers.send(engine_route, *args)
             end
           end
 

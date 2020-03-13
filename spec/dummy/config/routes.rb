@@ -3,4 +3,6 @@
 Rails.application.routes.draw do
   mount Lcms::Engine::Engine => '/lcms-engine'
   root to: redirect('/lcms-engine/')
+
+  get '/admin', to: 'welcome#index', as: :admin
 end
