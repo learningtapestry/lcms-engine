@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Assets optimization [@paranoicsan](https://github.com/paranoicsan)
 
 ### Fixed
+- Fix preview path on admin panel documents and materials index page [@paranoicsan](https://github.com/paranoicsan)
 - Fix parse loop when content of the tag  contains tag name [@paranoicsan](https://github.com/paranoicsan)
 - Fix possible grade leading zeros [@shlag3n](https://github.com/shlag3n)
 - Fix nested jobs concern [@shlag3n](https://github.com/shlag3n)
