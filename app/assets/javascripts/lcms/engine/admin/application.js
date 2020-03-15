@@ -2,7 +2,6 @@
 //= require jquery2
 //= require jquery_ujs
 //= require jquery_nested_form
-//= require i18n/translations
 //= require lodash
 //= require foundation.initialize
 //= require ckeditor/init

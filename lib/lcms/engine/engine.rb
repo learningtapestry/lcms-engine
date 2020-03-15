@@ -9,7 +9,6 @@ require 'carrierwave/orm/activerecord'
 require 'closure_tree'
 require 'devise'
 require 'heap'
-require 'i18n-js'
 require 'jquery-rails'
 require 'pdfjs_viewer-rails'
 require 'ransack'
@@ -54,9 +53,6 @@ module Lcms
       ]
 
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
-
-      # Used by i18n-js gem
-      config.middleware.use I18n::JS::Middleware
 
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 

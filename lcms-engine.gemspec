@@ -52,7 +52,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'heap', '~> 1.0'
   s.add_dependency 'hiredis'
   s.add_dependency 'httparty'
-  s.add_dependency 'i18n-js', '~> 3.0.2'
   s.add_dependency 'jbuilder', '~> 2.0'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'js-routes', '~> 1.1.2'
