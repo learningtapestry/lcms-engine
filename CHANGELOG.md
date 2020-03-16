@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Docker support [@paranoicsan](https://github.com/paranoicsan)
 
 ### Changed
+- Remove [I18n.js gem](https://github.com/fnando/i18n-js) [@paranoicsan](https://github.com/paranoicsan)
 - Assets optimization [@paranoicsan](https://github.com/paranoicsan)
 
 ### Fixed
