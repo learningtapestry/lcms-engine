@@ -18,4 +18,5 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
-                  branch: 'puppeteer-support', ref: '67f73d3'
+                  branch: 'puppeteer-support',
+                  ref: '964a090'
