@@ -21,7 +21,7 @@ describe Lcms::Engine::Admin::ResourceBulkEditsController do
     it 'updates resources' do
       grades = resources.flat_map { |r| r.grades.list }
       expect(grades).to_not include('grade 11')
-      post :create, ids: ids, resource: { grades: ['grade 11'] }
+      post :create, params: { ids: ids, resource: { grades: ['grade 11'] } }
       expect(response).to redirect_to(:admin_resources)
       resources.each do |r|
         expect(r.reload.grades.list).to include('grade 11')

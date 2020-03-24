@@ -8,8 +8,6 @@ module Lcms
     class ResourceDetailsSerializer < ResourceSerializer
       include ResourceHelper
 
-      self.root = false
-
       attributes :breadcrumb_title, :copyright, :downloads, :grade, :has_related, :id,
                  :opr_description, :opr_standards, :path, :short_title, :subject, :teaser, :time_to_teach,
                  :title, :type

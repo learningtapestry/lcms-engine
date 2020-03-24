@@ -11,22 +11,22 @@ describe Lcms::Engine::PagesController do
   before { sign_in create :user }
 
   describe 'about page' do
-    before { get :show_slug, slug: 'about' }
+    before { get :show_slug, params: { slug: 'about' } }
     it { expect(response).to be_successful }
   end
 
   describe 'about_people page' do
-    before { get :show_slug, slug: 'about_people' }
+    before { get :show_slug, params: { slug: 'about_people' } }
     it { expect(response).to be_successful }
   end
 
   describe 'tos page' do
-    before { get :show_slug, slug: 'tos' }
+    before { get :show_slug, params: { slug: 'tos' } }
     it { expect(response).to be_successful }
   end
 
   describe 'privacy page' do
-    before { get :show_slug, slug: 'privacy' }
+    before { get :show_slug, params: { slug: 'privacy' } }
     it { expect(response).to be_successful }
   end
 end

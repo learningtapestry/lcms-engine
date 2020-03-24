@@ -271,14 +271,6 @@ module Lcms
         unit? && document_bundles.any?
       end
 
-      def add_grade_author(author)
-        grade = grade? ? self : ancestors.detect(&:grade?)
-        raise 'Grade not found for this resource' unless grade
-
-        grade.author_id = author.is_a?(Integer) ? author : author.id
-        grade.save
-      end
-
       def self_and_ancestors_not_persisted
         # during create we can't call self_and_ancestors directly on the resource
         # because this query uses the associations on resources_hierarchies

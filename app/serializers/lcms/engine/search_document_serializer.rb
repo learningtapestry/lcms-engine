@@ -3,8 +3,6 @@
 module Lcms
   module Engine
     class SearchDocumentSerializer < ActiveModel::Serializer
-      self.root = false
-
       attributes :id, :model_id, :model_type, :title, :path, :type_name, :teaser,
                  :breadcrumbs, :subject, :grade
 

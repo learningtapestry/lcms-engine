@@ -3,8 +3,6 @@
 module Lcms
   module Engine
     class CurriculumResourceSerializer < ActiveModel::Serializer
-      self.root = false
-
       attributes :children, :id, :lesson_count, :module_count, :module_sizes,
                  :resource,  :type, :unit_count, :unit_sizes
 

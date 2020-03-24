@@ -38,7 +38,7 @@ module Lcms
           total_hits: resources.total_entries
         }
         options[:each_serializer] = serializer
-        ActiveModel::ArraySerializer.new(resources, options).as_json
+        ActiveModel::Serializer::CollectionSerializer.new(resources, options).as_json
       end
 
       private
