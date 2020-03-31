@@ -1,3 +1,5 @@
+import React from 'react';
+
 function AssociationPickerResults(props) {
   let items
 
