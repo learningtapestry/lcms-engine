@@ -1,5 +1,5 @@
 import React from 'react'
-// import AssociationPickerResults from './AssociationPickerResults'
+import AssociationPickerResults from './AssociationPickerResults'
 
 class AssociationPickerWindow extends React.Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ResourcePickerWindow from './ResourcePickerWindow'
-// import ResourcePickerResource from './ResourcePickerResource'
-// import PickerButton from '../picker/PickerButton'
+import ResourcePickerResource from './ResourcePickerResource'
+import PickerButton from '../picker/PickerButton'
 import pickerWindowWrapper from '../picker/pickerWindowWrapper'
 import pickerModal from '../picker/pickerModal'
 

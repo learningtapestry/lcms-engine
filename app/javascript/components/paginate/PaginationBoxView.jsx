@@ -2,7 +2,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-// import PaginationListView from './PaginationListView'
+import PaginationListView from './PaginationListView'
 import classNames from 'classnames'
 
 class PaginationBoxView extends React.Component {

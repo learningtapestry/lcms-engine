@@ -1,7 +1,7 @@
 // from https://github.com/AdeleD/react-paginate (converted)
 
 import React from 'react'
-// import PageView from './PageView'
+import PageView from './PageView'
 
 class PaginationListView extends React.Component {
   lessPageRangeItems() {
