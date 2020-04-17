@@ -20,3 +20,7 @@ gemspec
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support',
                   ref: '964a090'
+
+gem 'lt-lcms', git: 'https://github.com/learningtapestry/lt-lcms.git',
+               branch: 'add-drawings-dpi-support',
+               ref: 'db5d49b'

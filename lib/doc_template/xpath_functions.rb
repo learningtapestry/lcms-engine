@@ -3,7 +3,9 @@
 module DocTemplate
   class XpathFunctions
     def case_insensitive_equals(node_set, str_to_match)
-      node_set.find_all { |node| node.to_s.casecmp(str_to_match).zero? }
+      return node_set.to_s.squish.casecmp(str_to_match).zero? if node_set.is_a?(String)
+
+      node_set.find_all { |node| node.to_s.squish.casecmp(str_to_match).zero? }
     end
 
     def case_insensitive_contains(node_set, str_to_match)
