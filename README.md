@@ -11,6 +11,11 @@ separately, simplifying the client applications in the process.
 
 ## Current development
 
+|Branch|Rails version|
+|------|-------------|
+|master|Rails 5.2.4.2|
+|0.1.x|Rails 4.2.11|
+
 This is still a [work in progress](https://github.com/learningtapestry/lcms-engine/issues/3). The
 initial phase of the project consisted in extracting as much code as possible from the client
 projects and set the engine as the core foundation for further development and optimizations.
@@ -25,18 +30,6 @@ options.
 
 The following are a few recommendations and guidelines to keep in mind when modifying code in the
 engine as well as making the client projects aware of these changes.
-
-## Targeting Rails versions
-
-For the most part, the engine targets Rails version 5, but it's also compatible with version 4.2.
-
-So far, we have not encountered any major obstacles to guarantee compatibility with both versions,
-but in some cases we can all agree that total compatibility can be difficult to achieve.
-
-Overall, it's fine to add a few conditionals here and there to check the running version of the
-framework, like [in this case](https://github.com/learningtapestry/lcms-engine/blob/master/lib/lcms/engine/migration.rb).
-However, when you feel you're adding too many conditionals, perhaps it's time to consider creating
-specific versions that cater to individual Rails releases.
 
 ## Use of separate gems
 
