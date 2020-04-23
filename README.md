@@ -83,14 +83,14 @@ the same files, overwriting the ones provided by the engine.
 
 ## Requirements
 - Ruby 2.5 or higher
-- Rails 4.2 or higher
+- Rails 4.2.11.x
 - Postgres 9.6 or higher
 
 ## Installation
 Include the gem in your Gemfile:
 
 ```ruby
-gem 'lcms-engine', git: 'https://github.com/learningtapestry/lcms-engine.git', branch: 'master'
+gem 'lcms-engine', git: 'https://github.com/learningtapestry/lcms-engine.git', branch: '0.1.x'
 ```
 
 And then execute:
