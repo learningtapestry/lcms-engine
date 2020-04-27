@@ -27,36 +27,11 @@
       margin-left: $w-offset;
     }
   }
-
-  @for $i from 1 through 3 {
-    @include m('priority#{$i}') {
-      background-image: asset-url('ld_p#{$i}.svg');
-    }
-  }
 }
-
-$icons-png: (tens);
-$icons-svg: (wp);
 
 .o-m-icon {
   background-size: contain;
   display: inline-block;
   height: 20px;
   width: 20px;
-}
-
-@each $icon in $icons-png {
-  .o-m-icon {
-    @include m($icon) {
-      background-image: asset-data-url("lcms/engine/lessons/#{$icon}.png");
-    }
-  }
-}
-
-@each $icon in $icons-svg {
-  .o-m-icon {
-    @include m($icon) {
-      background-image: asset-url("lcms/engine/lessons/#{$icon}.svg");
-    }
-  }
 }

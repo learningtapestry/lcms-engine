@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_130652) do
+ActiveRecord::Schema.define(version: 2020_04_29_130353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -166,14 +166,6 @@ ActiveRecord::Schema.define(version: 2020_04_22_130652) do
     t.index ["file_id"], name: "index_materials_on_file_id"
     t.index ["identifier"], name: "index_materials_on_identifier"
     t.index ["metadata"], name: "index_materials_on_metadata", using: :gin
-  end
-
-  create_table "pages", force: :cascade do |t|
-    t.text "body", null: false
-    t.string "title", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug", null: false
   end
 
   create_table "reading_assignment_authors", force: :cascade do |t|

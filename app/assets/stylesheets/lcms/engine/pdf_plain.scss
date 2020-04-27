@@ -2,10 +2,7 @@
 
 @import
   'utils/variables',
-  'utils/mixins',
-  'base/colors',
-  'base/cg-colors',
-  'base/ld-colors';
+  'utils/mixins';
 
 @import
   'themes/settings';
@@ -17,17 +14,12 @@
   'utils/colorcodes',
   'utils/helpers';
 
-@import
-  //'print/b64-fonts',
-  'print/typography';
+@import 'print/typography';
 
-@import
-  'components/cg/colorscheme',
-  'components/lesson/override';
+@import 'components/lesson/override';
 
 @import
   'print/base',
-  'print/cg-base',
   'print/cover',
   'print/colorscheme',
   'print/footer',

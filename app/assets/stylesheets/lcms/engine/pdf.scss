@@ -2,10 +2,7 @@
 
 @import
   'utils/variables',
-  'utils/mixins',
-  'base/colors',
-  'base/cg-colors',
-  'base/ld-colors';
+  'utils/mixins';
 
 @import
   'themes/settings';
@@ -20,34 +17,13 @@
   'utils/colorcodes',
   'utils/functions';
 
-@import
-  //'print/b64-fonts',
-  'base/icons',
-  'base/typography',
-  'print/typography';
+@import 'print/typography';
 
-@import
-  'components/cg/annotations',
-  'components/cg/colorscheme',
-  'components/cg/elements',
-  'components/cg/footnote',
-  'components/cg/icons',
-  'components/cg/keywords',
-  'components/cg/quotes',
-  'components/cg/standards',
-  'components/cg/table',
-  'components/cg/task',
-  'components/cg/hacks';
-
-@import
-  'components/lesson-base',
-  'components/material/material';
+@import 'components/material/material';
 
 @import
   'print/base',
-  'print/cg-base',
   'print/colorscheme',
-  'print/hacks',
   'print/header',
   'print/helpers',
   'print/lesson-base',

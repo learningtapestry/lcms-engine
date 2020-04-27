@@ -5,7 +5,6 @@
   'utils/mixins',
   'utils/placeholders',
   'base/colors',
-  'base/cg-colors',
   'base/ld-colors';
 
 @import
@@ -16,8 +15,7 @@
   'font-awesome-sprockets',
   'font-awesome',
   'vendors/foundation_and_overrides',
-  'vendors/mathjax.css',
-  'vendors/swiper.css';
+  'vendors/mathjax.css';
 
 @import
   'utils/styles_override',
@@ -26,66 +24,13 @@
   'utils/functions';
 
 @import
-  'base/fonts',
-  'base/icons',
-  'base/typography',
-  'print/print';
+    'base/typography',
+    'print/print';
+
+@import 'components/assoc-picker';
 
 @import
-  'components/assoc-picker',
-  'components/buttons',
-  'components/cards',
-  'components/cg-base',
-  'components/curriculum-cards',
-  'components/curriculum-map',
-  'components/download-modal',
-  'components/instruction-cards',
-  'components/filterbar',
-  'components/filterbar-modal',
-  'components/generic-resource',
-  'components/inputs',
-  'components/lesson-base',
-  'components/lesson-cards',
-  'components/ls-post',
-  'components/material-base',
-  'components/media',
-  'components/media-resources',
-  'components/pagination',
-  'components/panel',
-  'components/panel-dsc',
-  'components/related-instruction',
-  'components/resource',
-  'components/search',
-  'components/search-dropdown',
-  'components/search-header',
-  'components/sidebar',
-  'components/simple-tab',
-  'components/social-sharing',
-  'components/support/helpdesk',
-  'components/support/survey',
-  'components/titles',
-  'components/top-scroll-button',
-  'components/unit-bundles';
-
-@import
-  'layout/header',
-  'layout/header-search-form',
   'layout/footer',
+  'layout/header',
   'layout/navigation',
-  'layout/sticky-header',
-  'layout/sticky-navigation',
-  'layout/page',
-  'layout/subscribe',
-  'layout/connect';
-
-@import
-  'pages/home',
-  'pages/about',
-  'pages/about-people',
-  'pages/explore-curriculum',
-  'pages/enhance-instruction',
-  'pages/content-guide',
-  'pages/find-lessons',
-  'pages/leadership',
-  'pages/lesson-document',
-  'pages/unsupported';
+  'layout/page';
