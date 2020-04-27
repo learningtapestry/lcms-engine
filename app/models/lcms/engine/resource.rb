@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Resource < ActiveRecord::Base
+    class Resource < ApplicationRecord
       enum resource_type: {
         resource: 1,
         podcast: 2,
@@ -26,10 +26,10 @@ module Lcms
       acts_as_taggable_on :content_sources, :download_types, :resource_types, :tags, :topics
       has_closure_tree order: :level_position, dependent: :destroy, numeric_order: true
 
-      belongs_to :parent, class_name: 'Lcms::Engine::Resource', foreign_key: 'parent_id'
+      belongs_to :parent, class_name: 'Lcms::Engine::Resource', foreign_key: 'parent_id', optional: true
 
-      belongs_to :author
-      belongs_to :curriculum
+      belongs_to :author, optional: true
+      belongs_to :curriculum, optional: true
 
       # Additional resources
       has_many :resource_additional_resources, dependent: :destroy
@@ -269,14 +269,6 @@ module Lcms
 
       def unit_bundles?
         unit? && document_bundles.any?
-      end
-
-      def add_grade_author(author)
-        grade = grade? ? self : ancestors.detect(&:grade?)
-        raise 'Grade not found for this resource' unless grade
-
-        grade.author_id = author.is_a?(Integer) ? author : author.id
-        grade.save
       end
 
       def self_and_ancestors_not_persisted

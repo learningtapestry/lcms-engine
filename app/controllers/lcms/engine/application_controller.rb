@@ -6,12 +6,6 @@ module Lcms
       # store location to use at after sign in or other devise callbacks
       include LocationStorable
 
-      protect_from_forgery with: :exception
-
-      # NOTE: Temporary disabled
-      # require auth for accessing the pilot
-      # before_action :pilot_authentication if Rails.env.production? || Rails.env.production_swap?
-
       before_action :authenticate_user!, unless: :pdf_request?
 
       before_action :check_user_has_survey_filled_in, if: :user_signed_in?, unless: :devise_controller?
@@ -54,15 +48,6 @@ module Lcms
       def after_sign_out_path_for(resource_or_scope)
         session_path(resource_or_scope)
       end
-
-      # NOTE: Temporary disabled
-      # def pilot_authentication
-      #   return unless request.format.html?
-      #
-      #   authenticate_or_request_with_http_basic('Administration') do |username, password|
-      #     username == ENV['HTTP_AUTH_NAME'] && password == ENV['HTTP_AUTH_PASS']
-      #   end
-      # end
     end
   end
 end

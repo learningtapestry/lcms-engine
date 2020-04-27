@@ -3,7 +3,6 @@
 module Lcms
   module Engine
     class DocumentMaterialSerializer < ActiveModel::Serializer
-      self.root = false
       attributes :data
 
       def initialize(document, materials)

@@ -34,7 +34,7 @@
         <th>Title</th>
         <th>File Name</th>
         <th>Materials</th>
-        <th>Last Update</th>
+        <th>Reimported at</th>
         <th>Status</th>
         <th></th>
       </tr>
@@ -60,7 +60,7 @@
             <% end %>
           </td>
           <td><%= render partial: 'lcms/engine/admin/documents/materials_links', locals: { lesson: lesson } %></td>
-          <td class="u-text--small"><%= lesson.updated_at.to_s %></td>
+          <td class="u-txt--small"><%= lesson.reimported_at.to_s.presence || lesson.updated_at.to_s %>
           <td class="lessons-table__status">
             <%= lesson.active? ? 'active' : 'inactive' %>
             <% unless lesson.reimported %>

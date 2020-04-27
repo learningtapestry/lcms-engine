@@ -13,6 +13,7 @@
 //= require jquery.tagsinput
 //= require jstree
 //= require js-routes
+//= require ../initializers/analytics.js
 
 document.addEventListener('turbolinks:load', function () {
   $(document).initFoundation();
@@ -22,10 +23,5 @@ document.addEventListener('turbolinks:load', function () {
     plugins: ['remove_button']
   });
 
-  if (window.ga) {
-    ga('set', 'location', location.href.split('#')[0]);
-    ga('send', 'pageview', {
-      "title": document.title
-    });
-  }
+  window.initializeGoogleAnalytics();
 });

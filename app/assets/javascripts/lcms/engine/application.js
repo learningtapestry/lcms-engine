@@ -11,10 +11,10 @@
 //= require foundation.initialize
 //= require tabs
 //= require js-routes
+//= require ./initializers/analytics.js
 //= require ./initializers/heap_analytics
 //= require ./initializers/about_people
 //= require ./initializers/bundles
-//= require ./initializers/google_analytics
 //= require ./initializers/header_dropdown
 //= require ./initializers/leadership
 //= require ./initializers/lessons
@@ -34,7 +34,7 @@ document.addEventListener('turbolinks:load', function () {
   window.initializeAboutPeople();
   window.initializeSocialSharing();
   window.initializeLeadership();
-  //window.initializeFreshdesk();
+  // window.initializeFreshdesk();
   window.initializeGoogleAnalytics();
   window.initializeSoundCloud();
   window.initializeSubscribePlaceholder();

@@ -10,7 +10,6 @@ describe Lcms::Engine::Admin::CurriculumsController do
   describe '#edit' do
     subject { get :edit }
 
-    it { is_expected.to be_success }
-    it { is_expected.to render_template :edit }
+    it { is_expected.to be_successful }
   end
 end

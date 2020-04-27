@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class LeadershipPost < ActiveRecord::Base
+    class LeadershipPost < ApplicationRecord
       validates :first_name, :last_name, presence: true
       validates :description, length: { maximum: 4096 }
 

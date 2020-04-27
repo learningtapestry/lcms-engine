@@ -40,7 +40,9 @@ module Lcms
 
         def export_to_lti_cc
           # TODO: Later may need to extend this check to allow unit export as well
-          return redirect_to :back, notice: 'Unsupported resource type' unless @resource.module?
+          unless @resource.module?
+            return redirect_back fallback_location: admin_resources_path, notice: 'Unsupported resource type'
+          end
 
           data = LtiExporter.perform @resource
           filename = "#{@resource.slug.parameterize}.zip"
@@ -141,7 +143,7 @@ module Lcms
                 new_topic_names: [],
                 new_tag_names: [],
                 new_content_source_names: []
-              )
+              ).to_h
               if ps[:download_categories_settings].present?
                 ps[:download_categories_settings].transform_values! do |settings|
                   settings.transform_values! { |x| x == '1' }

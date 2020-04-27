@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Settings < ActiveRecord::Base
+    class Settings < ApplicationRecord
       class << self
         def [](key)
           settings.data[key.to_s]

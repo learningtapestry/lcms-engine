@@ -78,7 +78,7 @@ $li-downloads-indent: 33.44px;
     padding-bottom: 10px;
 
     @include m(icons) {
-      @include menu-icons($position: left);
+      @include menu-icons;
     }
 
     @each $code, $color in $ub-colorcodes {
@@ -135,7 +135,7 @@ $li-downloads-indent: 33.44px;
   @include flex-grid-row(nest);
 
   @include m(2x) {
-    @include flex-grid-row(nest, $gutter: $grid-column-2xgutter);
+    @include flex-grid-row(nest, $gutters: $grid-column-2xgutter);
   }
 
   @include e(map) {
@@ -143,10 +143,10 @@ $li-downloads-indent: 33.44px;
     width: map-get($curriculum-map-width, base) + 30px;
 
     @include m(2x) {
-      @include flex-grid-column(shrink, $gutter: $grid-column-2xgutter);
+      @include flex-grid-column(shrink, $gutters: $grid-column-2xgutter);
 
       @include breakpoint(small only) {
-        @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+        @include flex-grid-column(12, $gutters: $grid-column-2xgutter);
       }
     }
 
@@ -176,10 +176,10 @@ $li-downloads-indent: 33.44px;
     }
 
     @include m(2x) {
-      @include flex-grid-column($gutter: $grid-column-2xgutter);
+      @include flex-grid-column($gutters: $grid-column-2xgutter);
 
       @include breakpoint(small only) {
-        @include flex-grid-column(12, $gutter: $grid-column-2xgutter);
+        @include flex-grid-column(12, $gutters: $grid-column-2xgutter);
       }
     }
   }

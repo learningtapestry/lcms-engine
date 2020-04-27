@@ -13,7 +13,7 @@ xdescribe Lcms::Engine::ExploreCurriculumController do
     context 'default' do
       before { get :index }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template(:index) }
       it { expect(assigns(:props)).to be_present }
     end
@@ -21,7 +21,7 @@ xdescribe Lcms::Engine::ExploreCurriculumController do
     context 'expanded' do
       before { get :index, p: '/ela/grade-2/module-1', e: '1' }
 
-      it { expect(response).to be_success }
+      it { expect(response).to be_successful }
       it { expect(response).to render_template(:index) }
       it { expect(assigns(:props)).to be_present }
     end

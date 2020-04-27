@@ -3,12 +3,12 @@
 }
 
 @mixin curriculum-map-base {
-  @include flex-grid-row($gutter: 0);
+  @include flex-grid-row($gutters: 0);
   flex-flow: column nowrap;
 
   @include e(module-wrap) {
     @extend %map-transition;
-    //@include flex-grid-column($gutter: 0);
+    //@include flex-grid-column($gutters: 0);
   }
 
   @include e(module) {
@@ -24,12 +24,12 @@
 
   @include e(units-wrap) {
     width: 100%;
-    //@include flex-grid-column($gutter: 0);
+    //@include flex-grid-column($gutters: 0);
   }
 
   @include e(units) {
     @extend %map-transition;
-    @include flex-grid-row($gutter: 0);
+    @include flex-grid-row($gutters: 0);
     @include flex-align($x: left, $y: top);
     margin-left: 0;
   }

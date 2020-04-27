@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :document_bundle, class: Lcms::Engine::DocumentBundle do
     category { Lcms::Engine::DocumentBundle::CATEGORIES.sample }
     content_type { Lcms::Engine::DocumentBundle::CONTENT_TYPES.sample }
-    resource
+    resource { build :resource }
   end
 end

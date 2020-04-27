@@ -3,7 +3,6 @@
 require 'active_job'
 require 'acts-as-taggable-on'
 require 'active_model_serializers'
-require 'backport_new_renderer'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
@@ -129,21 +128,6 @@ module Lcms
           urls: ['/lcms_engine_packs'],
           root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
         )
-      end
-
-      ENABLE_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(
-        ENV.fetch('ENABLE_CACHING', true)
-      )
-
-      if ENABLE_CACHING
-        redis_url = ENV.fetch('REDIS_URL', 'redis://localhost:6379')
-        config.cache_store = :readthis_store, {
-          expires_in: 1.hour.to_i,
-          namespace: 'unbounded',
-          redis: { url: redis_url, driver: :hiredis }
-        }
-      else
-        config.cache_store = :null_store
       end
 
       # NOTE: Sample to customize the layout

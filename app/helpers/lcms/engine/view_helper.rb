@@ -3,9 +3,7 @@
 module Lcms
   module Engine
     module ViewHelper # rubocop:disable Metrics/ModuleLength
-      ENABLE_BASE64_CACHING = ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES.include?(
-        ENV.fetch('ENABLE_BASE64_CACHING', true)
-      )
+      ENABLE_BASE64_CACHING = ActiveRecord::Type::Boolean.new.cast ENV.fetch('ENABLE_BASE64_CACHING', true)
 
       def add_class_for_path(link_path, klass, klass_prefix = nil)
         [

@@ -25,7 +25,7 @@
   }
 
   @include e(cards) {
-    @include flex-grid-row($gutter: $grid-column-gutter);
+    @include flex-grid-row($gutters: $grid-column-gutter);
     @include flex-align($x: spaced);
     @extend .u-margin-bottom--large;
   }

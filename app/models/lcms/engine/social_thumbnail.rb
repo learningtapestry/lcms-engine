@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class SocialThumbnail < ActiveRecord::Base
+    class SocialThumbnail < ApplicationRecord
       MEDIAS = %w(all facebook pinterest twitter).freeze
 
       mount_uploader :image, SocialThumbnailUploader

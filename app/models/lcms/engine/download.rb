@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class Download < ActiveRecord::Base
+    class Download < ApplicationRecord
       CONTENT_TYPES = {
         zip: 'application/zip',
         pdf: 'application/pdf',
@@ -17,8 +17,8 @@ module Lcms
       alias_attribute :file, :filename
 
       validates :title, presence: true
-      validates :file, presence: true, if: 'url.nil?'
-      validates :url, presence: true, if: 'file.nil?'
+      validates :file, presence: true, if: -> { url.nil? }
+      validates :url, presence: true, if: -> { file.nil? }
 
       before_save :update_metadata
 

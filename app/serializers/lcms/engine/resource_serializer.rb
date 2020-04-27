@@ -8,8 +8,6 @@ module Lcms
     class ResourceSerializer < ActiveModel::Serializer
       include ResourceHelper
 
-      self.root = false
-
       attributes :breadcrumb_title, :grade, :id, :is_assessment, :is_foundational, :is_opr, :is_prerequisite, :path,
                  :short_title, :subject, :teaser, :time_to_teach, :title, :type
 

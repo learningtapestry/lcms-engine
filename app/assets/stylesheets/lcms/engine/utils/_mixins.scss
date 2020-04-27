@@ -78,9 +78,9 @@
 
 @mixin txt-heading($element) {
   @include txt-heading-base($element);
-  @each $size, $headers in $header-sizes {
+  @each $size, $headers in $header-styles {
     @include breakpoint($size) {
-      $font-size: map-get($headers, $element);
+      $font-size: map-get(map-get($headers, $element), 'font-size');
       font-size: rem-calc($font-size);
     }
   }

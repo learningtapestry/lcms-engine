@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class ResourceDownload < ActiveRecord::Base
+    class ResourceDownload < ApplicationRecord
       DOWNLOAD_PER_CATEGORY_LIMIT = 5
 
       belongs_to :resource

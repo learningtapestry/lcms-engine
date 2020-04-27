@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class DocumentBundle < ActiveRecord::Base
+    class DocumentBundle < ApplicationRecord
       CATEGORIES = %w(full tm sm).freeze
       CONTENT_TYPES = %w(pdf gdoc).freeze
 
@@ -10,7 +10,7 @@ module Lcms
 
       mount_uploader :file, DocumentBundleUploader
 
-      validates :resource, :category, presence: true
+      validates :category, presence: true
       validates :category, inclusion: { in: CATEGORIES }
       validates :content_type, inclusion: { in: CONTENT_TYPES }
 

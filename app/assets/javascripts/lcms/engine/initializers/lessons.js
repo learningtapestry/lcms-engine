@@ -127,7 +127,7 @@
     };
 
     var pollContentStatus = function pollContentStatus(id, key, link) {
-      $(link).prepend('<i class="fa fa-spin fa-spinner u-margin-right--base" />');
+      $(link).prepend('<i class="fas fa-spin fa-spinner u-margin-right--base" />');
       return new Promise(function (resolve, reject) {
         var poll = function poll() {
           $.getJSON("".concat(location.pathname, "/export/status"), {

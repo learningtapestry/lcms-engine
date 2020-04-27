@@ -48,4 +48,4 @@ sanitizer: '::Lcms::Engine::HtmlSanitizer'
 # material_preview_job:
 
 queries:
-  document: 'AdminDocumentsQuery'
+  document: '::Lcms::Engine::AdminDocumentsQuery'

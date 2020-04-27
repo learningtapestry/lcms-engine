@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class MaterialPart < ActiveRecord::Base
+    class MaterialPart < ApplicationRecord
       belongs_to :material
       enum context_type: { default: 0, gdoc: 1 }
 

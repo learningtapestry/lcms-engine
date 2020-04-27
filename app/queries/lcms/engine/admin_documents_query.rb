@@ -36,7 +36,7 @@ module Lcms
       def sorted_scope
         @scope = @scope.order_by_curriculum if q.sort_by.blank? || q.sort_by == 'curriculum'
         @scope = @scope.order(updated_at: :desc) if q.sort_by == 'last_update'
-        @scope.uniq.order(active: :desc)
+        @scope.distinct.order(active: :desc)
       end
     end
   end
