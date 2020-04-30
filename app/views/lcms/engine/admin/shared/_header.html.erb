@@ -3,7 +3,7 @@
     <nav class="o-top-bar">
       <div class="o-top-bar__item c-header-title">
         <%= link_to root_path, class: 'c-header-title__logo c-header__link' do %>
-          <%= image_tag('lcms/engine/logo-beta.svg') %>
+          LCMS Engine
         <% end %>
         <span class="c-header-title__h-menu" data-responsive-toggle="navbar">
           <span class="menu-icon" data-toggle></span>
@@ -14,13 +14,6 @@
           <ul class="dropdown menu" data-dropdown-menu>
             <li class="c-header__link">
               <%= link_to t('lcms.engine.admin.nav.curriculum'), edit_admin_curriculum_path %>
-            </li>
-
-            <li class="dropdown c-header__link">
-              <%= link_to t('lcms.engine.admin.nav.pages'), admin_pages_path %>
-              <ul class="menu vertical">
-                <%= nav_link t('lcms.engine.admin.nav.pages'), admin_pages_path %>
-              </ul>
             </li>
 
             <li class="dropdown c-header__link">

@@ -28,11 +28,11 @@
   <div class="o-page__module">
     <div class="o-page__wrap--row">
       <div class="o-page__module u-margin-bottom--gutter">
-        <%= link_to back_to_resource_path(@resource), class: 'o-btn o-btn--base o-btn--xs-full' do %>
+        <%= link_to back_to_resource_path(@resource), class: 'button o-btn--base o-btn--xs-full' do %>
           <i class="fa-lg ub-arrow-left u-text--middled"></i> <%= t('resources.btn.back') %>
         <% end %>
         <% if user_signed_in? %>
-          <%= link_to edit_admin_resource_path(@resource), class: 'o-btn o-btn--base', target: '_blank' do %>
+          <%= link_to edit_admin_resource_path(@resource), class: 'button o-btn--base', target: '_blank' do %>
             <%= t('ui.edit') %>
           <% end %>
         <% end %>

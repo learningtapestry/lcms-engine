@@ -1,5 +1,4 @@
 <ul class="menu c-sticky-header__menu">
-  <li><%= render partial: 'lcms/engine/shared/search_form' %></li>
   <%= nav_link t('nav.curriculum_html'), explore_curriculum_index_path, class: "c-sticky-header__link #{add_class_for_action(:resources, :show, 'active')}" %>
   <%= nav_link t('nav.lessons_html'), find_lessons_path, class: "c-sticky-header__link" %>
   <%= nav_link t('nav.instructions_html'), enhance_instruction_index_path, class: "c-sticky-header__link #{add_class_for_action(:resources, :media, 'active')}" %>

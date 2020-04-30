@@ -25,13 +25,6 @@ require 'font-awesome-sass'
 require 'foundation-rails'
 require 'js-routes'
 require 'nested_form'
-require 'rails-assets-classnames'
-require 'rails-assets-es6-promise'
-require 'rails-assets-eventemitter3'
-require 'rails-assets-fetch'
-require 'rails-assets-jstree'
-require 'rails-assets-lodash'
-require 'rails-assets-selectize'
 require 'webpacker'
 
 # LearningTapestry gems

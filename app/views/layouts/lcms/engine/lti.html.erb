@@ -14,7 +14,6 @@
     <% end %>
   </head>
   <body>
-    <%= render partial: 'lcms/engine/shared/unsupported' %>
     <div class="u-page-wrap u-supported<%= ' u-bg--light' if devise_controller? || controller.controller_name == 'surveys' %>">
       <%= yield %>
     </div>

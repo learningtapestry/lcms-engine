@@ -10,9 +10,9 @@ engine: 'Lcms::Engine::Engine'
 # Redirects
 redirect:
   host:
-    root_path: 'admin_path'
-    document_path: 'document_path'
-    material_path: 'material_path'
+#    root_path: 'admin_path'
+#    document_path: 'document_path'
+#    material_path: 'material_path'
   engine:
     root_path: 'admin_path'
     document_path: 'document_path'

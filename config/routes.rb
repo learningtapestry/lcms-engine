@@ -1,36 +1,7 @@
 # frozen_string_literal: true
 
 Lcms::Engine::Engine.routes.draw do
-  get '/404'          => 'pages#not_found'
-  get '/about'        => 'pages#show_slug', slug: 'about'
-  get '/about/people' => 'pages#show_slug', slug: 'about_people'
-  get '/tos'          => 'pages#show_slug', slug: 'tos',     as: :tos_page
-  get '/privacy'      => 'pages#show_slug', slug: 'privacy', as: :privacy_page
-  get '/forthcoming'  => 'pages#forthcoming'
-
-  get '/search' => 'search#index'
-
   mount PdfjsViewer::Rails::Engine, at: '/pdfjs', as: 'pdfjs'
-
-  resources :downloads, only: [:show] do
-    member do
-      get :preview
-      get 'pdf_proxy(/:s3)' => 'downloads#pdf_proxy', as: :pdf_proxy_download, constraints: { s3: %r{[^\/]+} }
-    end
-  end
-
-  resources :explore_curriculum, only: %i(index show)
-  resources :enhance_instruction, only: :index
-  resources :find_lessons, only: :index
-  resources :pages, only: :show
-  resources :resources, only: :show do
-    get :pdf_proxy, on: :collection, path: 'pdf-proxy'
-  end
-  resource :survey, only: %i(create show)
-
-  get '/resources/:id/related_instruction' => 'resources#related_instruction', as: :related_instruction
-  get '/media/:id' => 'resources#media', as: :media
-  get '/other/:id' => 'resources#generic', as: :generic
 
   resources :documents, only: :show do
     member do
@@ -45,12 +16,12 @@ Lcms::Engine::Engine.routes.draw do
       get 'preview/gdoc', to: 'materials#preview_gdoc'
     end
   end
+  resources :resources, only: [:show]
 
   unless ENV.fetch('DEVISE_ROUTES_REDEFINED', false)
     devise_for :users, class_name: 'Lcms::Engine::User',
                        controllers: {
-                         registrations: 'lcms/engine/registrations',
-                         sessions: 'lcms/engine/sessions'
+                         registrations: 'lcms/engine/registrations'
                        },
                        module: :devise
   end
@@ -62,9 +33,7 @@ Lcms::Engine::Engine.routes.draw do
   namespace :admin do
     get '/' => 'welcome#index'
     get '/whoami' => 'admin#whoami'
-    get 'google_oauth2_callback' => 'google_oauth2#callback'
     get '/association_picker' => 'association_picker#index'
-    resources :reading_assignment_texts
     resource :resource_bulk_edits, only: %i(new create)
     get '/resource_picker' => 'resource_picker#index'
     resources :resources, except: :show do
@@ -73,7 +42,6 @@ Lcms::Engine::Engine.routes.draw do
         post :bundle
       end
     end
-    resources :pages, except: :show
     resources :settings, only: [] do
       patch :toggle_editing_enabled, on: :collection
     end
@@ -105,8 +73,6 @@ Lcms::Engine::Engine.routes.draw do
     resources :access_codes, except: :show
     resource :batch_reimport, only: %i(new create)
   end
-
-  get '/ExcludeMeGA' => 'analytics_exclusion#exclude'
 
   get '/*slug' => 'resources#show', as: :show_with_slug
 

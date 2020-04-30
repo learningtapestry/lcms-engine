@@ -14,8 +14,8 @@
         <%= f.email_field :email, autofocus: true, class: 'o-input-placehoder--medium-gray', placeholder: 'Enter email address' %>
         <%= f.password_field :password, autocomplete: 'off', class: 'o-input-placehoder--medium-gray', placeholder: 'Enter password' %>
         <div class="u-margin-top--xlarge">
-          <%= f.submit 'Log in', class: 'o-btn o-btn--xs-full o-btn--yellow o-btn--xs-full u-margin-right--base ' %>
-          <%= link_to 'Register', new_registration_path(resource_name), class: 'o-btn o-btn--xs-full o-btn--bordered-yellow u-color--base o-btn--xs-full' %>
+          <%= f.submit 'Log in', class: 'button o-btn--xs-full warning o-btn--xs-full u-margin-right--base ' %>
+          <%= link_to 'Register', new_registration_path(resource_name), class: 'button o-btn--xs-full o-btn--bordered-yellow u-color--base o-btn--xs-full' %>
         </div>
       <% end %>
 

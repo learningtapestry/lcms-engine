@@ -10,6 +10,8 @@ $footer-breakpoint-down: ipad;
   background-color: $ub-footer-bg;
   color: $ub-nav-link;
   display: table-row;
+  padding: $footer-padding;
+  width: 100%;
 
   @include e(dropdown) {
     @include txt-element-strict(ld-tooltip);

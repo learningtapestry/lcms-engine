@@ -11,15 +11,15 @@ module Lcms
           current_user.update(survey: @form.attributes)
           notify_heap
           loc = stored_location_for(:user)
-          loc = root_path if loc.is_a?(String) && loc[survey_path]
-          redirect_to loc || root_path
+          loc = lcms_engine.root_path if loc.is_a?(String) && loc[survey_path]
+          redirect_to loc || lcms_engine.root_path
         else
           render :show
         end
       end
 
       def show
-        return redirect_to root_path if current_user.ready_to_go?
+        return redirect_to lcms_engine.root_path if current_user.ready_to_go?
 
         @form = SurveyForm.new(current_user.survey)
       end

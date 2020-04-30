@@ -10,7 +10,7 @@ describe Lcms::Engine::Admin::AdminController do
 
     context 'with host redirect' do
       it 'builds correct path' do
-        expect(subject).to eq "/admin?#{args.to_param}"
+        expect(subject).to eq "/lcms-engine/admin?#{args.to_param}"
       end
     end
 

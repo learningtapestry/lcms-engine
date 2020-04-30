@@ -1,8 +1,8 @@
 // Font families
-$ub-sanserif: 'PF Centro Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$ub-serif: 'Caponi Slab Web', Georgia, "Times New Roman", Times, serif;
-$ub-sanserif-condensed: 'PF Centro Sans Condensed', $ub-sanserif;
-$ub-cursive: 'Sriracha', cursive;
+$ub-sanserif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$ub-serif: Georgia, 'Times New Roman', Times, serif;
+$ub-sanserif-condensed: $ub-sanserif;
+$ub-cursive: 'Times New Roman', cursive;
 
 $panel-radius: 3px;
 

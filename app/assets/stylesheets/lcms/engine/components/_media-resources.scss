@@ -1,6 +1,0 @@
-.o-media-podcast {
-}
-
-.o-media-video {
-  @include responsive-embed(map-get($responsive-embed-ratios, 'widescreen'));
-}
