@@ -1,5 +1,4 @@
 .bundle/
-Gemfile.lock
 public/javascripts/
 public/lcms_engine_packs/
 public/packs-test/
