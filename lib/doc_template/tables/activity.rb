@@ -10,10 +10,9 @@ module DocTemplate
 
       def parse(fragment, *args)
         template_type = args.extract_options![:template_type].presence || 'core'
-        path = ".//table/*/tr[1]/td//*[case_insensitive_equals(text(),'#{HEADER_LABEL}')]"
         idx = 0
         [].tap do |result|
-          fragment.xpath(path, XpathFunctions.new).each do |el|
+          fragment.xpath(xpath_meta_headers, XpathFunctions.new).each do |el|
             table = el.ancestors('table').first
             data = fetch table
 

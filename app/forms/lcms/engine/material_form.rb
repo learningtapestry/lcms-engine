@@ -22,6 +22,7 @@ module Lcms
         return false unless valid?
 
         params = {
+          dpi: options[:dpi],
           import_retry: options[:import_retry],
           source_type: source_type.presence
         }.compact

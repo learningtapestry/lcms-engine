@@ -9,8 +9,7 @@ module DocTemplate
       MATERIALS_KEY = 'section-materials'
 
       def parse(fragment, *args)
-        path = ".//table/*/tr[1]/td//*[case_insensitive_equals(text(),'#{HEADER_LABEL}')]"
-        section_tables = fragment.xpath(path, XpathFunctions.new)
+        section_tables = fragment.xpath(xpath_meta_headers, XpathFunctions.new)
 
         # # Allows to handle ELA as Math:: inject fake section
         return fake_section(fragment) if section_tables.empty? && args.extract_options![:force_inject]

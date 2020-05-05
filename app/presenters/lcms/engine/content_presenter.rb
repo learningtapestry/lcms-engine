@@ -71,7 +71,7 @@ module Lcms
       end
 
       def layout_content(context_type)
-        layout(context_type).content
+        layout(context_type)&.content.to_s
       end
     end
   end
