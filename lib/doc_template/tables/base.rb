@@ -132,6 +132,10 @@ module DocTemplate
           end
         end
       end
+
+      def xpath_meta_headers
+        ".//table/*/tr[1]/td[1][case_insensitive_equals(normalize-space(),'#{self.class::HEADER_LABEL}')]"
+      end
     end
   end
 end

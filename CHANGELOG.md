@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.2.0...HEAD)
 
+### Fixed
+- Fix case insensitive metadata table HTML header searching [@shlag3n](https://github.com/shlag3n)
+
 ### Removed
 
 - [BREAKING] Remove `Page` model
