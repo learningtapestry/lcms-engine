@@ -79,6 +79,80 @@ module Lcms
           redirect_to :admin_resources, notice: t('.success', resource_id: @resource.id)
         end
 
+        protected
+
+        def form_params_arrays
+          download_categories_settings =
+            DownloadCategory.select(:title).map do |category|
+              { category.title.parameterize => %i(show_long_description show_short_description) }
+            end
+          {
+            additional_resource_ids: [],
+            common_core_standard_ids: [],
+            download_categories_settings: download_categories_settings,
+            resource_downloads_attributes: [
+              :_destroy,
+              :description,
+              :id,
+              :download_category_id, { download_attributes: %i(description file main filename_cache id title) }
+            ],
+            related_resource_ids: [],
+            standard_ids: [],
+            new_standard_names: [],
+            topic_ids: [],
+            tag_ids: [],
+            content_source_ids: [],
+            reading_assignment_text_ids: [],
+            new_topic_names: [],
+            new_tag_names: [],
+            new_content_source_names: [],
+            **form_params_arrays_override
+          }
+        end
+
+        #
+        # The result of this method will be splatted into +form_params_ararys+
+        # and will be injected into the final +form_params+ call.
+        #
+        # Should be used to extend the list of permitted parameters
+        #
+        # @return [Hash]
+        def form_params_arrays_override
+          {}
+        end
+
+        def form_params_simple
+          %i(
+            curriculum_type
+            directory
+            parent_id
+            tree
+            description
+            hidden
+            resource_type
+            short_title
+            subtitle
+            title
+            teaser
+            url
+            time_to_teach
+            ell_appropriate
+            image_file
+            opr_description
+          ).concat(form_params_simple_override)
+        end
+
+        #
+        # The result of this method will be added to +form_params_simple+
+        # and will be injected into the final +form_params+ call.
+        #
+        # Should be used to extend the list of permitted parameters
+        #
+        # @return [Array]
+        def form_params_simple_override
+          []
+        end
+
         private
 
         def can_bundle?(resource)
@@ -87,6 +161,7 @@ module Lcms
             .detect { |type| resource.send "#{type}?" }
             .present?
         end
+
         helper_method :can_bundle?
 
         def find_resource
@@ -97,50 +172,12 @@ module Lcms
           params.fetch(:q, {}).fetch(:grades, []).select(&:present?)
         end
 
-        # rubocop:disable Metrics/MethodLength
         def form_params
           @form_params ||=
             begin
-              download_categories_settings =
-                DownloadCategory.select(:title).map do |category|
-                  { category.title.parameterize => %i(show_long_description show_short_description) }
-                end
               ps = params.require(:resource).permit(
-                :curriculum_type,
-                :directory,
-                :parent_id,
-                :tree,
-                :description,
-                :hidden,
-                :resource_type,
-                :short_title,
-                :subtitle,
-                :title,
-                :teaser,
-                :url,
-                :time_to_teach,
-                :ell_appropriate,
-                :image_file,
-                :opr_description,
-                additional_resource_ids: [],
-                common_core_standard_ids: [],
-                download_categories_settings: download_categories_settings,
-                resource_downloads_attributes: [
-                  :_destroy,
-                  :description,
-                  :id,
-                  :download_category_id, { download_attributes: %i(description file main filename_cache id title) }
-                ],
-                related_resource_ids: [],
-                standard_ids: [],
-                new_standard_names: [],
-                topic_ids: [],
-                tag_ids: [],
-                content_source_ids: [],
-                reading_assignment_text_ids: [],
-                new_topic_names: [],
-                new_tag_names: [],
-                new_content_source_names: []
+                form_params_simple,
+                form_params_arrays
               )
               if ps[:download_categories_settings].present?
                 ps[:download_categories_settings].transform_values! do |settings|
@@ -151,7 +188,6 @@ module Lcms
               ps
             end
         end
-        # rubocop:enable Metrics/MethodLength
 
         def metadata(directory)
           return {} unless @resource.present?
