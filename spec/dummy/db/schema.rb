@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
   enable_extension "hstore"
   enable_extension "plpgsql"
 
-  create_table "access_codes", force: :cascade do |t|
+  create_table "access_codes", id: :serial, force: :cascade do |t|
     t.string "code", null: false
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["code"], name: "index_access_codes_on_code", unique: true
   end
 
-  create_table "authors", force: :cascade do |t|
+  create_table "authors", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "copyright_attributions", force: :cascade do |t|
+  create_table "copyright_attributions", id: :serial, force: :cascade do |t|
     t.string "disclaimer"
     t.string "value", null: false
     t.datetime "created_at", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.integer "resource_id", null: false
   end
 
-  create_table "curriculums", force: :cascade do |t|
+  create_table "curriculums", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
     t.datetime "created_at", null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.boolean "default", default: false, null: false
   end
 
-  create_table "document_bundles", force: :cascade do |t|
+  create_table "document_bundles", id: :serial, force: :cascade do |t|
     t.string "category", null: false
     t.string "file"
     t.integer "resource_id"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["resource_id"], name: "index_document_bundles_on_resource_id"
   end
 
-  create_table "document_parts", force: :cascade do |t|
+  create_table "document_parts", id: :serial, force: :cascade do |t|
     t.text "content"
     t.string "part_type"
     t.boolean "active"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["renderer_type", "renderer_id"], name: "index_document_parts_on_renderer_type_and_renderer_id"
   end
 
-  create_table "documents", force: :cascade do |t|
+  create_table "documents", id: :serial, force: :cascade do |t|
     t.string "file_id"
     t.string "name"
     t.datetime "last_modified_at"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["material_id"], name: "index_documents_materials_on_material_id"
   end
 
-  create_table "download_categories", force: :cascade do |t|
+  create_table "download_categories", id: :serial, force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
     t.integer "position"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.boolean "bundle", default: false, null: false
   end
 
-  create_table "downloads", force: :cascade do |t|
+  create_table "downloads", id: :serial, force: :cascade do |t|
     t.string "filename"
     t.integer "filesize"
     t.string "url"
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.boolean "main", default: false, null: false
   end
 
-  create_table "leadership_posts", force: :cascade do |t|
+  create_table "leadership_posts", id: :serial, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "school"
@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["order", "last_name"], name: "index_leadership_posts_on_order_and_last_name"
   end
 
-  create_table "materials", force: :cascade do |t|
+  create_table "materials", id: :serial, force: :cascade do |t|
     t.string "file_id", null: false
     t.string "identifier"
     t.jsonb "metadata", default: {}, null: false
@@ -168,14 +168,14 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["metadata"], name: "index_materials_on_metadata", using: :gin
   end
 
-  create_table "reading_assignment_authors", force: :cascade do |t|
+  create_table "reading_assignment_authors", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["name"], name: "index_reading_assignment_authors_on_name", unique: true
   end
 
-  create_table "reading_assignment_texts", force: :cascade do |t|
+  create_table "reading_assignment_texts", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.integer "reading_assignment_author_id", null: false
     t.datetime "created_at"
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["reading_assignment_author_id"], name: "index_reading_assignment_texts_on_reading_assignment_author_id"
   end
 
-  create_table "resource_additional_resources", force: :cascade do |t|
+  create_table "resource_additional_resources", id: :serial, force: :cascade do |t|
     t.integer "resource_id", null: false
     t.integer "additional_resource_id", null: false
     t.integer "position"
@@ -194,7 +194,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["resource_id", "additional_resource_id"], name: "index_resource_additional_resources", unique: true
   end
 
-  create_table "resource_downloads", force: :cascade do |t|
+  create_table "resource_downloads", id: :serial, force: :cascade do |t|
     t.integer "resource_id"
     t.integer "download_id"
     t.datetime "created_at", null: false
@@ -215,14 +215,14 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["descendant_id"], name: "resource_desc_idx"
   end
 
-  create_table "resource_reading_assignments", force: :cascade do |t|
+  create_table "resource_reading_assignments", id: :serial, force: :cascade do |t|
     t.integer "resource_id", null: false
     t.integer "reading_assignment_text_id", null: false
     t.index ["reading_assignment_text_id"], name: "idx_res_rea_asg_rea_asg_txt"
     t.index ["resource_id"], name: "index_resource_reading_assignments_on_resource_id"
   end
 
-  create_table "resource_related_resources", force: :cascade do |t|
+  create_table "resource_related_resources", id: :serial, force: :cascade do |t|
     t.integer "resource_id"
     t.integer "related_resource_id"
     t.integer "position"
@@ -232,7 +232,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["resource_id"], name: "index_resource_related_resources_on_resource_id"
   end
 
-  create_table "resource_standards", force: :cascade do |t|
+  create_table "resource_standards", id: :serial, force: :cascade do |t|
     t.integer "resource_id"
     t.integer "standard_id"
     t.datetime "created_at"
@@ -241,7 +241,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["standard_id"], name: "index_resource_standards_on_standard_id"
   end
 
-  create_table "resources", force: :cascade do |t|
+  create_table "resources", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "indexed_at"
@@ -279,7 +279,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["resource_type"], name: "index_resources_on_resource_type"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "sessions", id: :serial, force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at"
@@ -288,11 +288,11 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "settings", force: :cascade do |t|
+  create_table "settings", id: :serial, force: :cascade do |t|
     t.jsonb "data", default: {}, null: false
   end
 
-  create_table "social_thumbnails", force: :cascade do |t|
+  create_table "social_thumbnails", id: :serial, force: :cascade do |t|
     t.integer "target_id", null: false
     t.string "target_type", null: false
     t.string "image", null: false
@@ -300,7 +300,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["target_type", "target_id"], name: "index_social_thumbnails_on_target_type_and_target_id"
   end
 
-  create_table "staff_members", force: :cascade do |t|
+  create_table "staff_members", id: :serial, force: :cascade do |t|
     t.string "bio", limit: 4096
     t.string "position"
     t.datetime "created_at", null: false
@@ -314,7 +314,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["first_name", "last_name"], name: "index_staff_members_on_first_name_and_last_name"
   end
 
-  create_table "standard_links", force: :cascade do |t|
+  create_table "standard_links", id: :serial, force: :cascade do |t|
     t.integer "standard_begin_id", null: false
     t.integer "standard_end_id", null: false
     t.string "link_type", null: false
@@ -324,7 +324,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["standard_end_id"], name: "index_standard_links_on_standard_end_id"
   end
 
-  create_table "standards", force: :cascade do |t|
+  create_table "standards", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -342,7 +342,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["subject"], name: "index_standards_on_subject"
   end
 
-  create_table "taggings", force: :cascade do |t|
+  create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.integer "taggable_id"
     t.string "taggable_type"
@@ -354,13 +354,13 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
   end
 
-  create_table "tags", force: :cascade do |t|
+  create_table "tags", id: :serial, force: :cascade do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

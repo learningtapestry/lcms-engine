@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.2.0...HEAD)
 
+### Added
+- Possibility to extend permitted params for Resource object [@paranoicsan](https://github.com/paranoicsan)
+
 ### Fixed
 - Fix case insensitive metadata table HTML header searching [@shlag3n](https://github.com/shlag3n)
 
