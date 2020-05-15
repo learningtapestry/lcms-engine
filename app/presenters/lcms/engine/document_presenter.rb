@@ -156,11 +156,9 @@ module Lcms
       end
 
       def short_url
-        # TODO: Temporary turning off short url
-        ''
-        # @short_url ||= Bitly.client
-        #                  .shorten(Rails.application.routes.url_helpers.document_url(self))
-        #                  .short_url
+        @short_url ||= Bitly.client
+                         .shorten(Rails.application.routes.url_helpers.document_url(self))
+                         .short_url
       end
 
       def standards

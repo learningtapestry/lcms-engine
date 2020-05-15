@@ -8,12 +8,12 @@
       <ul class="o-resource__list o-resource__list--icons o-resource__list--<%= color_code(resource, base: true) %>">
         <li class="o-unit-bundles__item">
           <div class="o-unit-bundles__item--links">
-            <%= link_to bundle.file&.url, data: { no_turbolink: true, heap_data: bundle_heap_data(resource, bundle, cat, 'pdf') } do %>
+            <%= link_to bundle.file&.url, data: { no_turbolink: true } do %>
               <i class="ub-icon fa-lg ub-file-zip"></i>
             <% end %>
             <% if (gdoc_bundle =  resource.document_bundles.detect { |b| b.content_type == 'gdoc' }) %>
               <% if cat == 'full' %>
-                <%= link_to gdoc_bundle.url, target: '_blank', data: { no_turbolink: true, heap_data: bundle_heap_data(resource, gdoc_bundle, :full, 'gdoc') } do %>
+                <%= link_to gdoc_bundle.url, target: '_blank', data: { no_turbolink: true } do %>
                   <i class="ub-icon fa-lg ub-file-gdoc"></i>
                 <% end %>
               <% else %>

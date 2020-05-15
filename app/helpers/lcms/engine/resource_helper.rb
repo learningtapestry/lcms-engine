@@ -37,13 +37,6 @@ module Lcms
         ResourceDownload::DOWNLOAD_PER_CATEGORY_LIMIT
       end
 
-      def download_heap_data(download, opts = {})
-        {
-          category: download.download_category&.title,
-          url: download.download.filename.url
-        }.merge(opts).to_json
-      end
-
       def resource_breadcrumbs_with_links(resource)
         return GenericPresenter.new(resource).generic_title if resource.generic?
 
@@ -77,16 +70,6 @@ module Lcms
         Standard
           .where(id: ids).pluck(:alt_names).flatten.uniq
           .map { |n| Standard.filter_ccss_standards(n, resource.subject) }.compact.sort
-      end
-
-      def bundle_heap_data(resource, bundle, cat, content_type)
-        {
-          resource_id: resource.id,
-          resource_title: resource.title,
-          url: bundle.file&.url.presence || bundle.url,
-          category: cat,
-          type: content_type
-        }.to_json
       end
     end
   end
