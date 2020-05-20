@@ -214,6 +214,7 @@ en:
             title: Lesson Manager
             unit_bundles: Generate Unit Bundles
           create:
+            empty_folder: Google Documents folder is empty
             error: Error
             success: Lesson %{name} parsed successfully.
           new:
@@ -228,6 +229,7 @@ en:
         materials:
           create:
             bulk_import: Imported %{count} Materials from %{folder}
+            empty_folder: Google Documents folder is empty
             error: Error
             success: Material %{name} parsed successfully.
           destroy:
