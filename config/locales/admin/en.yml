@@ -20,6 +20,7 @@ en:
             success: Access Code updated successfully.
         common:
           editing_disabled: Resource editing is disabled. Turn editing on in order to edit resources.
+          empty_folder: Google Documents folder is empty
         curriculums:
           update:
             success: Curriculum Tree saved successfully.

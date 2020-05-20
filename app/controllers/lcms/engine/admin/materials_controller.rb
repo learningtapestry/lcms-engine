@@ -16,12 +16,14 @@ module Lcms
         end
 
         def create
-          return bulk_import(gdoc_files) && render(:import) if gdoc_files.size > 1
-
           @material_form = DocumentGenerator.material_form.new(form_params)
+
+          return create_from_folder if form_params[:link].match?(RE_GOOGLE_FOLDER)
+
           if @material_form.save
             material = @material_form.material
-            redirect_to AdminController.material_path(material.id), notice: t('.success', name: material.name)
+            redirect_to AdminController.material_path(material),
+                        notice: t('.success', name: material.name)
           else
             render :new
           end
@@ -74,22 +76,17 @@ module Lcms
           params.require(:material_form).permit(:link, :source_type)
         end
 
-        def gdoc_files
-          @gdoc_files ||= begin
-            link = form_params[:link]
-            return [link] unless link =~ %r{/drive/(.*/)?folders/}
-
-            folder_id = ::Lt::Google::Api::Drive.folder_id_for(link)
-            if form_params[:source_type] == 'pdf'
-              mime_type = Lt::Lcms::Lesson::Downloader::PDF::MIME_TYPE
-              ::Lt::Google::Api::Drive.new(google_credentials)
-                .list_file_ids_in(folder_id, mime_type: mime_type)
-                .map { |id| Lt::Lcms::Lesson::Downloader::PDF.gdoc_file_url(id) }
-            else
-              ::Lt::Google::Api::Drive.new(google_credentials)
-                .list_file_ids_in(folder_id)
-                .map { |id| Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
-            end
+        def gdoc_files_from(url)
+          folder_id = ::Lt::Google::Api::Drive.folder_id_for(url)
+          if form_params[:source_type] == 'pdf'
+            mime_type = Lt::Lcms::Lesson::Downloader::PDF::MIME_TYPE
+            ::Lt::Google::Api::Drive.new(google_credentials)
+              .list_file_ids_in(folder_id, mime_type: mime_type)
+              .map { |id| ::Lt::Lcms::Lesson::Downloader::PDF.gdoc_file_url(id) }
+          else
+            ::Lt::Google::Api::Drive.new(google_credentials)
+              .list_file_ids_in(folder_id)
+              .map { |id| ::Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
           end
         end
       end
