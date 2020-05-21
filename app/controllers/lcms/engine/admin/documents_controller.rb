@@ -18,17 +18,14 @@ module Lcms
         end
 
         def create
-          if gdoc_files.size > 1
-            bulk_import gdoc_files
-            return render :import
-          end
+          return create_from_folder if form_params[:link].match?(RE_GOOGLE_FOLDER)
 
           @document = reimport_lesson
           if @document.save
             redirect_to AdminController.document_path(@document.document),
                         notice: t('.success', name: @document.document.name)
           else
-            render :new, alert: t('.error')
+            render :new
           end
         end
 
@@ -77,18 +74,11 @@ module Lcms
           @documents = Document.where(id: ids)
         end
 
-        def gdoc_files
-          @gdoc_files ||= begin
-            link = form_params[:link]
-            if link.match?(%r{/drive/(.*/)?folders/})
-              folder_id = ::Lt::Google::Api::Drive.folder_id_for(link)
-              ::Lt::Google::Api::Drive.new(google_credentials)
-                .list_file_ids_in(folder_id)
-                .map { |id| Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
-            else
-              [link]
-            end
-          end
+        def gdoc_files_from(url)
+          folder_id = ::Lt::Google::Api::Drive.folder_id_for(url)
+          ::Lt::Google::Api::Drive.new(google_credentials)
+            .list_file_ids_in(folder_id)
+            .map { |id| ::Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
         end
 
         def form_params
