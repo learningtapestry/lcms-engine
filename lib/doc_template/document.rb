@@ -178,7 +178,7 @@ module DocTemplate
 
       parts << {
         anchor: parsed_tag.anchor.to_s,
-        content: sanitized_content.squish,
+        content: parsed_tag.try(:without_squish?) ? sanitized_content : sanitized_content.squish,
         context_type: @opts[:context_type],
         data: parsed_tag.tag_data,
         materials: parsed_tag.materials,
