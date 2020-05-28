@@ -113,7 +113,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'overcommit', '~> 0.49.1'
   s.add_development_dependency 'pry-byebug', '~> 3.7'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
-  s.add_development_dependency 'puma', '~> 3'
+  s.add_development_dependency 'puma', '>= 4.3.5'
   s.add_development_dependency 'quiet_assets', '~> 1.1'
   s.add_development_dependency 'rack-livereload', '~> 0.3.16'
   s.add_development_dependency 'rspec-rails', '~> 3.8'
