@@ -17,11 +17,11 @@ module Lt
           # Is used inside `#find_or_create_resource` method
           #
           def update_grades_level_position_for(grades)
-            update_level_position_for(grades) { |m| ::Lcms::Engine::Grades::GRADES.index(m.metadata['grade']) }
+            update_level_position_for(grades) { |g| ::Lcms::Engine::Grades::GRADES.index(g.metadata['grade']) }
           end
 
           #
-          # Fix level position for modules (guidebooks)
+          # Fix level position for modules
           # Is used inside `#find_or_create_resource` method
           #
           def update_modules_level_position_for(modules)
@@ -30,11 +30,11 @@ module Lt
           end
 
           #
-          # Fix level position for units (sections)
+          # Fix level position for units
           # Is used inside `#find_or_create_resource` method
           #
           def update_units_level_position_for(units)
-            update_level_position_for(units) { |m| m.metadata['unit'][NUM_RE].to_i }
+            update_level_position_for(units) { |u| u.metadata['unit'][NUM_RE].to_i }
           end
 
           #
@@ -103,8 +103,6 @@ module Lt
             else
               set_lesson_position(parent, resource)
             end
-
-            parent = resource
           end
 
           update resource
@@ -292,7 +290,7 @@ module Lt
         def set_lesson_position(parent, resource)
           next_lesson = parent.children.detect do |r|
             # first lesson with a bigger lesson num
-            r.lesson_number > context[:lesson].to_i
+            r.metadata['lesson'].to_s[NUM_RE].to_i > context[:lesson].to_s[NUM_RE].to_i
           end
           next_lesson ? next_lesson.prepend_sibling(resource) : resource.save!
         end
