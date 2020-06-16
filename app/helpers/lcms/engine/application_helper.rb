@@ -8,8 +8,12 @@ module Lcms
       include ViewHelper
       include ::Webpacker::Helper
 
-      def current_webpacker_instance
-        Lcms::Engine.webpacker
+      # Use this to include lcms-engine based packs
+      def lcms_engine_javascript_pack_tag(*names, **options)
+        entries = names
+                    .map { |name| Lcms::Engine.webpacker.manifest.lookup!(name, type: :javascript) }
+                    .flatten
+        javascript_include_tag(*entries, **options)
       end
     end
   end
