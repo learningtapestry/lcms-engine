@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Possibility to extend permitted params for Resource object [@paranoicsan](https://github.com/paranoicsan)
 
+### Changed
+- Introduced method `lcms_engine_javascript_pack_tag` to be used instead of `javascript_pack_tag` when one needs to include the JS assets from the engine [@paranoicsan](https://github.com/paranoicsan)
+
 ### Fixed
 - Fix case insensitive metadata table HTML header searching [@shlag3n](https://github.com/shlag3n)
 
