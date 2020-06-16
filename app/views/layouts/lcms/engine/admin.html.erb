@@ -13,7 +13,7 @@
     <%= csrf_meta_tags %>
     <%# NOTE: JS served via Assets pipeline should be added first %>
     <%= javascript_include_tag 'lcms/engine/admin/application', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_pack_tag 'admin' %>
+    <%= lcms_engine_javascript_pack_tag 'admin' %>
   </head>
   <body>
     <%= render partial: 'lcms/engine/shared/unsupported' %>

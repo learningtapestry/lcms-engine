@@ -1,6 +1,7 @@
 FROM ruby:2.5.7
 
 ENV APP_PATH /app/
+ENV LANG C.UTF-8
 
 WORKDIR $APP_PATH
 
