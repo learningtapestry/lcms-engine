@@ -2,7 +2,7 @@
 
 module DocTemplate
   class Document
-    MAX_PARSE_ITERATIONS = 100
+    MAX_PARSE_ITERATIONS = 300
 
     # Contains the list of tags for which no parts should be created
     TAGS_WITHOUT_PARTS = [
