@@ -10,7 +10,7 @@ module Lcms
       GDOC_REMOVE_EMPTY_SELECTOR = '.o-ld-activity'
       LINK_UNDERLINE_REGEX = /text-decoration\s*:\s*underline/i
       SKIP_P_CHECK = %w(ul ol table).freeze
-      STRIP_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p span table).freeze
+      STRIP_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p span table text).freeze
 
       class << self
         def clean_content(html, context_type)
@@ -35,7 +35,7 @@ module Lcms
         # Removes all empty nodes before first one filled in
         #
         def strip_content(nodes)
-          nodes.xpath('./*').each do |node|
+          nodes.children.each do |node|
             break if keep_node?(node)
 
             node.remove

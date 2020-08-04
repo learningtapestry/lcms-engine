@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'rails_helper'
+
 describe Lcms::Engine::HtmlSanitizer do
   describe '.sanitize' do
     subject { described_class.sanitize(html) }
@@ -175,6 +177,38 @@ describe Lcms::Engine::HtmlSanitizer do
           expect(subject.scan('<p>').size).to eq 5
         end
       end
+    end
+  end
+
+  describe '.strip_content' do
+    let(:html_clean) do
+      <<~HTML
+        {{inset_392e9effbf43oi988b8c}}
+        <p></p>
+        <h3 style="text-align:left;">
+          <span style="font-style:italic">In place of a semicolon</span><span>: The use of an em dash here is to create overwhelming emphasis or pause to influence shock and awe in your readers. </span>
+        </h3>
+        <p></p>
+        {{inset_392e9effbf47d0988b8c}}
+        <p></p>
+      HTML
+    end
+    let(:html) do
+      <<~HTML
+        <div></div>
+        <p></p>
+        #{html_clean}
+      HTML
+    end
+    let(:nodes) do
+      Nokogiri::HTML.fragment html
+    end
+
+    subject { described_class.strip_content(nodes) }
+
+    it 'remove empty ELEMENTS before first one with content' do
+      subject
+      expect(nodes.to_s.squish).to eq html_clean.squish
     end
   end
 end
