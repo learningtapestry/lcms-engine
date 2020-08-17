@@ -76,7 +76,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rest-client', '~> 2.1.0'
   s.add_dependency 'ruby-progressbar', '~> 1.10.1'
   s.add_dependency 'rubyzip', '~> 2'
-  s.add_dependency 'sanitize', '~> 5.1.0'
+  s.add_dependency 'sanitize', '>= 5.1', '< 5.3'
   s.add_dependency 'sass-rails', '~> 5.1.0'
   s.add_dependency 'simple_form', '~> 5.0.2'
   s.add_dependency 'staccato', '~> 0.5.3'
