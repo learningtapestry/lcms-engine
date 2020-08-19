@@ -2,14 +2,14 @@
   <% if download.download.attachment_content_type == 'pdf' %>
     <span>
       <%= link_to preview_download_path(id: download, slug: resource.slug), class: 'resource-attachment',
-        data: { no_turbolink: true, heap_data: download_heap_data(download, pdf_preview: true) }, target: '_blank' do %>
+        data: { no_turbolink: true }, target: '_blank' do %>
         <i class="ub-icon ub-eye" aria-hidden="true"></i>
       <% end %>
     </span>
   <% end %>
   <% id = SecureRandom.hex(4) %>
   <span data-toggle="<%= id %>">
-    <%= link_to download_path(download, slug: resource.slug), class: 'resource-attachment', data: { no_turbolink: true, heap_data: download_heap_data(download) } do %>
+    <%= link_to download_path(download, slug: resource.slug), class: 'resource-attachment', data: { no_turbolink: true } do %>
       <i class="ub-icon fa-lg file-<%= "#{file_icon(download.download.attachment_content_type)} #{indent}" %>"></i>
       <%= download.download.title %>
     <% end %>
