@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.1.3...HEAD)
+## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.1.4...HEAD)
+
+## [0.1.4](https://github.com/learningtapestry/lcms-engine/compare/v0.1.3...v0.1.4) - 2020.08.20
+
+### Changed
+
+- bigdecimal gem is locked to 1.4.x version to keep compatibility with Rails 4 [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.1.3](https://github.com/learningtapestry/lcms-engine/compare/v0.1.2...v0.1.3) - 2020.08.19
 

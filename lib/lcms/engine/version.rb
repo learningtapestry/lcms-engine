@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    VERSION = '0.1.3'
+    VERSION = '0.1.4'
     RAILS_5_VERSION = 5.2
   end
 end

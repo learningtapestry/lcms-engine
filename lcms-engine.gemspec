@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'autoprefixer-rails', '~> 6.4.0'
   s.add_dependency 'aws-sdk-rails', '~> 1.0'
   s.add_dependency 'backport_new_renderer', '~> 1.0.0'
+  s.add_dependency 'bigdecimal', '~> 1.4' # Required to handle BigDecimal.new Rails 4 issue
   s.add_dependency 'bitly', '~> 1.0'
   s.add_dependency 'bootstrap-sass', '~> 3.4.1'
   s.add_dependency 'bullet', '~> 5.7.3'
@@ -63,7 +64,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'newrelic_rpm', '~> 6.9'
   s.add_dependency 'nikkou', '~> 0.0.5'
   s.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.4'
-  s.add_dependency 'oj', '~> 3'
+  s.add_dependency 'oj', '3.10.8'
   s.add_dependency 'oj_mimic_json', '~> 1.0.1'
   s.add_dependency 'pandoc-ruby', '~> 2.0.1'
   s.add_dependency 'pdfjs_viewer-rails', '~> 0.0.9'

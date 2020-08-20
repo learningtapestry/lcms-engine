@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    lcms-engine (0.1.3)
+    lcms-engine (0.1.4)
       active_model_serializers (~> 0.9.3)
       activejob-retry (~> 0.6.3)
       acts-as-taggable-on (~> 5.0)
@@ -20,6 +20,7 @@ PATH
       autoprefixer-rails (~> 6.4.0)
       aws-sdk-rails (~> 1.0)
       backport_new_renderer (~> 1.0.0)
+      bigdecimal (~> 1.4)
       bitly (~> 1.0)
       bootstrap-sass (~> 3.4.1)
       bullet (~> 5.7.3)
@@ -53,7 +54,7 @@ PATH
       newrelic_rpm (~> 6.9)
       nikkou (~> 0.0.5)
       nokogiri (~> 1.10, >= 1.10.4)
-      oj (~> 3)
+      oj (= 3.10.8)
       oj_mimic_json (~> 1.0.1)
       pandoc-ruby (~> 2.0.1)
       pdfjs_viewer-rails (~> 0.0.9)
@@ -151,14 +152,14 @@ GEM
     autoprefixer-rails (6.4.1.1)
       execjs
     aws-eventstream (1.1.0)
-    aws-sdk-core (2.11.567)
+    aws-sdk-core (2.11.570)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
     aws-sdk-rails (1.0.1)
       aws-sdk-resources (~> 2)
       railties (>= 3)
-    aws-sdk-resources (2.11.567)
-      aws-sdk-core (= 2.11.567)
+    aws-sdk-resources (2.11.570)
+      aws-sdk-core (= 2.11.570)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
     axiom-types (0.1.1)
@@ -172,6 +173,7 @@ GEM
     backport_new_renderer (1.0.0)
       rails
     bcrypt (3.1.15)
+    bigdecimal (1.4.4)
     bitly (1.1.2)
       httparty (>= 0.7.6)
       multi_json (~> 1.3)
@@ -247,17 +249,17 @@ GEM
     elasticsearch-api (6.8.2)
       multi_json
     elasticsearch-dsl (0.1.9)
-    elasticsearch-model (6.1.0)
+    elasticsearch-model (6.1.1)
       activesupport (> 3)
-      elasticsearch (> 1)
+      elasticsearch (~> 6)
       hashie
-    elasticsearch-persistence (6.1.0)
+    elasticsearch-persistence (6.1.1)
       activemodel (> 4)
       activesupport (> 4)
       elasticsearch (~> 6)
       elasticsearch-model (>= 5)
       hashie
-    elasticsearch-rails (6.1.0)
+    elasticsearch-rails (6.1.1)
     elasticsearch-transport (6.8.2)
       faraday (~> 1)
       multi_json
@@ -374,7 +376,7 @@ GEM
       railties (>= 3.2)
       sprockets-rails
     json (1.8.6)
-    jwt (2.2.1)
+    jwt (2.2.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     listen (3.2.1)
@@ -551,7 +553,7 @@ GEM
       connection_pool (~> 2.1)
       redis (>= 3.0, < 5.0)
     redis (3.3.5)
-    redis-namespace (1.7.0)
+    redis-namespace (1.8.0)
       redis (>= 3.0.4)
     regexp_parser (1.7.1)
     representable (3.0.4)
