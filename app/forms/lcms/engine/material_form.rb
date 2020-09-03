@@ -11,7 +11,7 @@ module Lcms
       attribute :source_type, String
       validates :link, presence: true
 
-      attr_accessor :material
+      attr_accessor :material, :service_errors
 
       def initialize(attributes = {}, opts = {})
         super(attributes)
@@ -28,6 +28,7 @@ module Lcms
         }.compact
         service = MaterialBuildService.new google_credentials, params
         @material = service.build link
+        @service_errors = service.errors
 
         material.update preview_links: {}
         after_reimport_hook

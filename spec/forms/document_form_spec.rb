@@ -10,7 +10,7 @@ describe Lcms::Engine::DocumentForm do
 
   describe '#save' do
     let(:document) { create :document }
-    let(:service) { instance_double('DocumentBuildService', build_for: document) }
+    let(:service) { instance_double('DocumentBuildService', build_for: document, errors: []) }
 
     subject { form.save }
 
@@ -62,6 +62,16 @@ describe Lcms::Engine::DocumentForm do
           expect(service).to receive(:build_for).with(params[:link])
           expect(service).to receive(:build_for).with(params[:link_fs], expand: true)
           subject
+        end
+      end
+
+      context 'when there are non-critical errors' do
+        let(:errors) { %w(error-1 error-2 error-3) }
+        let(:service) { instance_double('DocumentBuildService', build_for: document, errors: errors) }
+
+        it 'store service errors' do
+          subject
+          expect(form.service_errors).to eq errors
         end
       end
     end
