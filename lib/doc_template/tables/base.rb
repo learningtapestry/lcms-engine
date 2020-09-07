@@ -5,7 +5,7 @@ module DocTemplate
     class Base
       SPLIT_REGEX = /[,;\r\n]/
 
-      attr_reader :data
+      attr_reader :errors, :data
 
       def self.parse(fragment, *args)
         new.parse(fragment, *args)
@@ -13,6 +13,7 @@ module DocTemplate
 
       def initialize
         @data = {}
+        @errors = []
         @table_exists = false
       end
 

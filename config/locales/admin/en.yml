@@ -216,7 +216,7 @@ en:
           create:
             empty_folder: Google Documents folder is empty
             error: Error
-            success: Lesson %{name} parsed successfully.
+            success: Lesson %{name} parsed successfully. %{errors}
           new:
             page_title: Add a lesson
             submit: Parse

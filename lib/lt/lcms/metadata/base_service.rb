@@ -6,7 +6,7 @@ module Lt
     module Metadata
       class BaseService
         class << self
-          attr_reader :activity_metadata, :metadata, :section_metadata
+          attr_reader :activity_metadata, :errors, :metadata, :section_metadata
 
           def materials_metadata
             raise NotImplementedError
@@ -22,6 +22,7 @@ module Lt
           end
 
           def parse(_content, *args)
+            @errors = []
             @options = args.extract_options!
           end
 
