@@ -12,6 +12,16 @@ module Lcms
 
       attr_reader :model
 
+      class << self
+        def grades
+          ::Lcms::Engine::Grades::GRADES
+        end
+
+        def grades_abbrevs
+          ::Lcms::Engine::Grades::GRADES_ABBR
+        end
+      end
+
       def initialize(model)
         @model = model
       end
@@ -23,20 +33,20 @@ module Lcms
                     Array.wrap model.grade.presence
                   else
                     model.grade_list
-                  end.sort_by { |g| GRADES.index(g) }
+                  end.sort_by { |g| self.class.grades.index(g) }
       end
 
       def average(abbr: true)
         return nil if average_number.nil?
 
-        avg = GRADES[average_number]
+        avg = self.class.grades[average_number]
         abbr ? (grade_abbr(avg) || 'base') : avg
       end
 
       def average_number
         return nil if list.empty?
 
-        list.map { |g| GRADES.index(g) }.sum / (list.size.nonzero? || 1)
+        list.map { |g| self.class.grades.index(g) }.sum / (list.size.nonzero? || 1)
       end
 
       def grade_abbr(abbr)
@@ -62,7 +72,7 @@ module Lcms
           abbr = grade_abbr(g).upcase
 
           # if the current grade is subsequent we store on the same chain
-          if idx.zero? || GRADES.index(g) == GRADES.index(prev) + 1
+          if idx.zero? || self.class.grades.index(g) == self.class.grades.index(prev) + 1
             chain << abbr
           else
             # the grade is not subsequent, so we store the current chain, and create a new one

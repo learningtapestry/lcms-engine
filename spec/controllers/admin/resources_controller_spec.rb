@@ -11,13 +11,13 @@ describe Lcms::Engine::Admin::ResourcesController do
   describe '#edit' do
     subject { get :edit, params: { id: resource.to_param } }
 
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe '#index' do
     subject { get :index }
 
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
   end
 
   describe '#update' do

@@ -45,10 +45,10 @@ class StandardImporter
 
     return grades if to_name.blank?
 
-    from_idx = Grades::GRADES_ABBR.index from_name
-    to_idx = Grades::GRADES_ABBR.index from_name
+    from_idx = Grades.grades_abbrevs.index from_name
+    to_idx = Grades.grades_abbrevs.index from_name
 
-    Grades::GRADES_ABBR.slice(from_idx..to_idx).each { |name| grades << find_grade(name) }
+    Grades.grades_abbrevs.slice(from_idx..to_idx).each { |name| grades << find_grade(name) }
 
     grades.compact
   end
