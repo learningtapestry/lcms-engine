@@ -68,7 +68,7 @@ module Lcms
             if model.is_a?(Lcms::Engine::Resource) && model.generic?
               rtype = model[:resource_type] || 0
               # for generic resource use the min grade, instead the avg
-              grade_pos = model.grades.list.map { |g| Lcms::Engine::Grades::GRADES.index(g) }.compact.min || 0
+              grade_pos = model.grades.list.map { |g| Lcms::Engine::Grades.grades.index(g) }.compact.min || 0
               last_pos = model.grades.list.size
             else
               rtype = 0

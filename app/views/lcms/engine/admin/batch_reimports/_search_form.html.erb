@@ -17,7 +17,7 @@
                           required: false,
                           as: :select,
                           include_blank: true,
-                          collection: Lcms::Engine::Grades::GRADES,
+                          collection: Lcms::Engine::Grades.grades,
                           label_method: :humanize %>
     </div>
 
