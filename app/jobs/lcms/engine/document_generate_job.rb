@@ -56,7 +56,7 @@ module Lcms
       # Checks if there are jobs queued or running for current document
       # and any of its materials
       #
-      def materials_generating?
+      def materials_generating? # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         document.materials.each do |material|
           queued = Resque.peek(queue_name, 0, 0)
                      .map { |job| job['args'].first }

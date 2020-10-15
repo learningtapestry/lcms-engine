@@ -2,7 +2,7 @@
 
 module DocumentRenderer
   class Part
-    PART_RE = /{{[^}]+}}/
+    PART_RE = /{{[^}]+}}/.freeze
 
     class << self
       def call(content, options)
@@ -11,7 +11,7 @@ module DocumentRenderer
           next unless placeholder
           next unless (part = options[:parts_index][placeholder])
           next unless (subpart = part[:content])
-          next unless should_render?(part, !options[:with_optional])
+          next unless should_render?(part, omit_optional: !options[:with_optional])
 
           call subpart.to_s, options
         end
@@ -26,7 +26,7 @@ module DocumentRenderer
       # If part is not optional:
       # - just ignore it if it has been turned OFF
       #
-      def should_render?(part, omit_optional = true)
+      def should_render?(part, omit_optional: true)
         if part[:optional] && omit_optional
           false unless @excludes.include?(part[:anchor])
         elsif @excludes.include?(part[:anchor])

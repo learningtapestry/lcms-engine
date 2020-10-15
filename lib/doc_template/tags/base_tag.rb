@@ -3,8 +3,8 @@
 module DocTemplate
   module Tags
     class BaseTag
-      SOFT_RETURN_RE = /([[:graph:]]+\[|\][[:graph:]]+)/
-      UNICODE_SPACES_RE = /(\u0020|\u00A0|\u1680|\u180E|[\u2000-\u200B]|\u202F|\u205F|\u3000|\uFEFF)/
+      SOFT_RETURN_RE = /([[:graph:]]+\[|\][[:graph:]]+)/.freeze
+      UNICODE_SPACES_RE = /(\u0020|\u00A0|\u1680|\u180E|[\u2000-\u200B]|\u202F|\u205F|\u3000|\uFEFF)/.freeze
 
       attr_reader :anchor, :content
 
@@ -16,7 +16,7 @@ module DocTemplate
         def tag_with_html_regexp
           raise NotImplementedError unless const_defined?(:TAG_NAME)
 
-          @tag_with_html_regexp ||= /\[[^\]]*#{self::TAG_NAME}[[^\:,;.]]*:?\s?[^\]]*\]/i
+          @tag_with_html_regexp ||= /\[[^\]]*#{self::TAG_NAME}[[^:,;.]]*:?\s?[^\]]*\]/i
         end
 
         def template_path_for(name)

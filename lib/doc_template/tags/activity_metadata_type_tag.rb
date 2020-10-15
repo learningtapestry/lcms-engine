@@ -7,7 +7,7 @@ module DocTemplate
       include ERB::Util
 
       TAG_NAME = 'activity-metadata-type'
-      TASK_RE = /(\[task:\s(#)\])/i
+      TASK_RE = /(\[task:\s(#)\])/i.freeze
       TEMPLATES = {
         default: 'activity.html.erb',
         gdoc: 'gdoc/activity.html.erb'

@@ -28,8 +28,8 @@ module DocTemplate
       def preserve_styles(node, opts)
         add_css_class(node, 'o-ld-inset') if gdoc?(opts)
         node.children.each do |el|
-          el['class'] = el['class'].to_s + ' text-bold' if el['style'] =~ STYLES_REGEXP[:bold]
-          el['class'] = el['class'].to_s + ' text-italic' if el['style'] =~ STYLES_REGEXP[:italic]
+          el['class'] = "#{el['class']} text-bold" if el['style'] =~ STYLES_REGEXP[:bold]
+          el['class'] = "#{el['class']} text-italic" if el['style'] =~ STYLES_REGEXP[:italic]
         end
         node
       end

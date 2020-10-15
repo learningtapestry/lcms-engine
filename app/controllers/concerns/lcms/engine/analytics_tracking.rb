@@ -27,7 +27,7 @@ module Lcms
             if GA_DEBUG_MODE
               c.adapter = Staccato::Adapter::Logger.new(
                 Staccato.ga_collection_uri,
-                Logger.new(STDOUT),
+                Logger.new($stdout),
                 ->(params) { JSON.dump(params) }
               )
             end

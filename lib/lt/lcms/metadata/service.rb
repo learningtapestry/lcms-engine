@@ -35,7 +35,7 @@ module Lt
             )
           end
 
-          def parse(content, *args)
+          def parse(content, *args) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
             super
             if material?
               @metadata = DocTemplate::Tables::MaterialMetadata.parse content

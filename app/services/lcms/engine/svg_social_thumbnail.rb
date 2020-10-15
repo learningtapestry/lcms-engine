@@ -101,7 +101,7 @@ module Lcms
 
       def footer_size
         case media
-        when :twitter then
+        when :twitter
           50
         else
           100
@@ -110,9 +110,9 @@ module Lcms
 
       def em
         case media
-        when :twitter then
+        when :twitter
           12
-        when :facebook then
+        when :facebook
           26
         else
           22
@@ -125,9 +125,9 @@ module Lcms
           font_size: em,
           font_size_big: (
             case media
-            when :facebook then
+            when :facebook
               3 * em
-            when :pinterest then
+            when :pinterest
               3.25 * em
             else
               2.5 * em
@@ -138,11 +138,11 @@ module Lcms
 
       def title_width_threshold
         case media
-        when :twitter then
+        when :twitter
           31
-        when :facebook then
+        when :facebook
           32
-        when :pinterest then
+        when :pinterest
           16
         else
           21
@@ -151,11 +151,11 @@ module Lcms
 
       def number_of_lines
         case media
-        when :facebook then
+        when :facebook
           4
-        when :pinterest then
+        when :pinterest
           (header_with_two_lines? ? 6 : 7)
-        when :twitter then
+        when :twitter
           3
         else
           6
@@ -170,9 +170,9 @@ module Lcms
         grades = resource.grades.to_str
         subject = resource.subject == 'ela' ? 'ELA' : 'Math'
         case grades
-        when 'Grade PK' then
+        when 'Grade PK'
           "#{subject}  Prekindergarten"
-        when 'Grade K' then
+        when 'Grade K'
           "#{subject}  Kindergarten"
         else
           "#{subject}  #{grades}"

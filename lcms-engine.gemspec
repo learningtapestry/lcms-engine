@@ -19,12 +19,12 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 2.6'
 
-  s.add_dependency 'active_model_serializers', '~> 0.9.3'
   s.add_dependency 'activejob-retry', '~> 0.6.3'
-  s.add_dependency 'acts-as-taggable-on', '~> 5.0'
+  s.add_dependency 'active_model_serializers', '~> 0.9.3'
   s.add_dependency 'acts_as_list', '~> 0.9.10'
+  s.add_dependency 'acts-as-taggable-on', '~> 5.0'
   s.add_dependency 'addressable', '~> 2.5.1'
   s.add_dependency 'airbrake', ' ~> 10'
   s.add_dependency 'autoprefixer-rails', '~> 6.4.0'
@@ -57,7 +57,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails', '~> 4.3'
   s.add_dependency 'js-routes', '~> 1.1.2'
   s.add_dependency 'lt-google-api', '~> 0.1'
-  s.add_dependency 'lt-lcms', '~> 0.3.0'
+  s.add_dependency 'lt-lcms', '~> 0.4'
   s.add_dependency 'migration_data', '~> 0.2.1'
   s.add_dependency 'mini_magick', '~> 4.9', '>= 4.9.4'
   s.add_dependency 'nested_form', '~> 0.3'
@@ -118,7 +118,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'quiet_assets', '~> 1.1'
   s.add_development_dependency 'rack-livereload', '~> 0.3.16'
   s.add_development_dependency 'rspec-rails', '~> 3.8'
-  s.add_development_dependency 'rubocop', '~> 0.59.2'
+  s.add_development_dependency 'rubocop', '~> 0.93.1'
   s.add_development_dependency 'safe_attributes', '~> 1.0.10'
   s.add_development_dependency 'sdoc', '~> 0.4.0'
   s.add_development_dependency 'seedbank', '~> 0.3'

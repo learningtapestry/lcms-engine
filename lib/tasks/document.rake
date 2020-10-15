@@ -12,21 +12,21 @@ namespace :document do
     hierarchy = {}
 
     documents.each do |document|
-      grade_key = 'grade-' + document.metadata['grade']
+      grade_key = "grade-#{document.metadata['grade']}"
       hierarchy[grade_key] ||= {}
       grade = hierarchy[grade_key]
 
       grade['subject'] ||= 'math'
       grade['modules'] ||= {}
 
-      module_key = 'module-' + document.metadata['unit']
+      module_key = "module-#{document.metadata['unit']}"
       grade['modules'][module_key] ||= {}
       module_ = grade['modules'][module_key]
 
       module_['name'] ||= '[name]'
       module_['topics'] ||= {}
 
-      topic_key = 'topic-' + document.metadata['topic']
+      topic_key = "topic-#{document.metadata['topic']}"
       module_['topics'][topic_key] ||= {}
       topic = module_['topics'][topic_key]
 

@@ -15,7 +15,7 @@ Lcms::Engine::Engine.routes.draw do
   resources :downloads, only: [:show] do
     member do
       get :preview
-      get 'pdf_proxy(/:s3)' => 'downloads#pdf_proxy', as: :pdf_proxy_download, constraints: { s3: %r{[^\/]+} }
+      get 'pdf_proxy(/:s3)' => 'downloads#pdf_proxy', as: :pdf_proxy_download, constraints: { s3: %r{[^/]+} }
     end
   end
 
