@@ -5,7 +5,7 @@ require 'doc_template'
 module DocTemplate
   module Tags
     class LatexTag < BaseTag
-      SPACE_RE = /[[:space:]]/
+      SPACE_RE = /[[:space:]]/.freeze
       TAG_NAME = 'latex'
 
       def self.s3_folder

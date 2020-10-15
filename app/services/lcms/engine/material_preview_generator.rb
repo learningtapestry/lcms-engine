@@ -6,8 +6,8 @@ module Lcms
     # Generates and uploads PDF/GDoc files for material
     #
     class MaterialPreviewGenerator
-      GDOC_RE = %r{docs.google.com/document/d/([^/]*)}i
-      GDOC_BROKEN_RE = %r{/open\?id=$}i
+      GDOC_RE = %r{docs.google.com/document/d/([^/]*)}i.freeze
+      GDOC_BROKEN_RE = %r{/open\?id=$}i.freeze
       PDF_S3_FOLDER = 'temp-materials-pdf'
 
       attr_reader :error, :url

@@ -14,7 +14,7 @@ namespace :google do
       authorizer = service.authorizer
       url = authorizer.get_authorization_url(base_url: OOB_URI)
       puts "Open \n>> #{url}\n in your browser and enter the resulting code:"
-      code = STDIN.gets.strip
+      code = $stdin.gets.strip
       authorizer.get_and_store_credentials_from_code(
         user_id: ::Lt::Google::Api::Auth::Cli::USER_ID, code: code, base_url: OOB_URI
       )

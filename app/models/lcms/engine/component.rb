@@ -53,9 +53,9 @@ module Lcms
           Elasticsearch::Persistence::Repository::Response::Results.new(
             repo,
             hits: {
-              total:     resp[:total],
+              total: resp[:total],
               max_score: resp[:max_score],
-              hits:      resp[:results]
+              hits: resp[:results]
             }
           ).paginate(resp.slice(:page, :per_page))
         end
@@ -73,7 +73,7 @@ module Lcms
         # can define how to deserialize the results
         def repo
           @repo ||= Elasticsearch::Persistence::Repository.new do
-            def deserialize(document) # rubocop:disable Lint/NestedMethodDefinition
+            def deserialize(document)
               Component.new(document)
             end
           end

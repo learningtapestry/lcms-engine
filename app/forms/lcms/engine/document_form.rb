@@ -29,7 +29,7 @@ module Lcms
         @document.update(reimported: true)
       rescue StandardError => e
         @document&.update(reimported: false)
-        Rails.logger.error e.message + "\n " + e.backtrace.join("\n ")
+        Rails.logger.error "#{e.message}\n #{e.backtrace.join("\n ")}"
         errors.add(:link, e.message)
         false
       end

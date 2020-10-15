@@ -7,7 +7,7 @@ module Lcms
   module Engine
     class MaterialBuildService
       EVENT_BUILT = 'material:built'
-      PDF_EXT_RE = /\.pdf$/
+      PDF_EXT_RE = /\.pdf$/.freeze
 
       def initialize(credentials, opts = {})
         @credentials = credentials
@@ -25,7 +25,7 @@ module Lcms
 
       attr_reader :credentials, :material, :downloader, :options, :url
 
-      def build_from_pdf
+      def build_from_pdf # rubocop:disable Metrics/AbcSize
         @downloader = ::Lt::Lcms::Lesson::Downloader::PDF.new(credentials, url)
         create_material
         title = @downloader.file.name.sub(PDF_EXT_RE, '')

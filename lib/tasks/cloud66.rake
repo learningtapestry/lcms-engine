@@ -20,7 +20,9 @@ namespace :cloud66 do # rubocop:disable Metrics/BlockLength
   end
 
   namespace :swap do
-    SWAP_FILE = Rails.root.join 'export-swap.sql'
+    def swap_file
+      Rails.root.join 'export-swap.sql'
+    end
 
     desc 'Exports tables to be synced'
     task export: :environment do
@@ -29,20 +31,20 @@ namespace :cloud66 do # rubocop:disable Metrics/BlockLength
           --no-owner \
           --table=users \
           --table=access_codes \
-          --file=#{SWAP_FILE}
+          --file=#{swap_file}
       BASH
       system cmd
     end
 
     desc 'Deletes existing tables and creates new one'
     task import: :environment do
-      raise 'No data file. Please execute `cloud66:swap:export` prior loading the data.' unless File.exist?(SWAP_FILE)
+      raise 'No data file. Please execute `cloud66:swap:export` prior loading the data.' unless File.exist?(swap_file)
 
       cmd = "psql -U #{ENV['POSTGRESQL_USERNAME']} #{ENV['POSTGRESQL_DATABASE']}"
       # Drops old tables
       system "#{cmd} -c 'drop table access_codes, users;'"
       # Create new and load the data
-      system "#{cmd} < #{SWAP_FILE}"
+      system "#{cmd} < #{swap_file}"
     end
   end
 end

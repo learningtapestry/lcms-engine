@@ -5,10 +5,10 @@ require 'sanitize'
 module Lcms
   module Engine
     class HtmlSanitizer # rubocop:disable Metrics/ClassLength
-      LIST_STYLE_RE = /\.lst-(\S+)[^{}]+>\s*(?:li:before)\s*{\s*content[^{}]+counter\(lst-ctn-\1,([^)]+)\)/
+      LIST_STYLE_RE = /\.lst-(\S+)[^{}]+>\s*(?:li:before)\s*{\s*content[^{}]+counter\(lst-ctn-\1,([^)]+)\)/.freeze
       CLEAN_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p table).join(',')
       GDOC_REMOVE_EMPTY_SELECTOR = '.o-ld-activity'
-      LINK_UNDERLINE_REGEX = /text-decoration\s*:\s*underline/i
+      LINK_UNDERLINE_REGEX = /text-decoration\s*:\s*underline/i.freeze
       SKIP_P_CHECK = %w(ul ol table).freeze
       STRIP_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p span table).freeze
 
@@ -169,7 +169,7 @@ module Lcms
         ].freeze
         private_constant :FONT_STYLES_RE
 
-        BORDER_RE = /border-\w+-width:\s*0\w+;?/
+        BORDER_RE = /border-\w+-width:\s*0\w+;?/.freeze
         private_constant :BORDER_RE
 
         BORDER_REPLACE_RE = {
@@ -186,7 +186,7 @@ module Lcms
         ].freeze
         private_constant :SUB_SUP_RE
 
-        SUB_SUP_STYLE_RE = /vertical-align:\s*(sub|super);?/i
+        SUB_SUP_STYLE_RE = /vertical-align:\s*(sub|super);?/i.freeze
         private_constant :SUB_SUP_STYLE_RE
 
         def add_css_class(el, *classes)
@@ -242,7 +242,7 @@ module Lcms
         end
 
         def fix_table_styles(nodes, param, selector)
-          attr_regex = /(^|;\s*)#{param}\s*:\s*([\w\.]+)\s*($|;)*/
+          attr_regex = /(^|;\s*)#{param}\s*:\s*([\w.]+)\s*($|;)*/
           nodes.css(selector).each do |node|
             node[param] = node['style'].match(attr_regex)&.[](2)
           end

@@ -70,7 +70,7 @@ module Lcms
 
       def slug_param
         slug = params[:p]
-        (slug.start_with?('/') ? slug[1..-1] : slug) if slug.present?
+        (slug.start_with?('/') ? slug[1..] : slug) if slug.present?
       end
 
       def expanded?

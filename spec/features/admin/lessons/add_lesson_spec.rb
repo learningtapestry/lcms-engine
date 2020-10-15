@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 feature 'Admin adds a lesson' do
-  SAMPLE_LESSON_PATH = 'spec/features/admin/lessons/sample-lessons'
+  given(:sample_lesson_path) { 'spec/features/admin/lessons/sample-lessons' }
 
-  DownloadedFile = Struct.new :last_modifying_user, :modified_time, :name, :version
+  given(:downloaded_file) { Struct.new :last_modifying_user, :modified_time, :name, :version }
 
   given(:sample_lessons) do
     [
@@ -43,7 +43,7 @@ feature 'Admin adds a lesson' do
 
       # stub GDoc download
       file_content = File.read File.join(SAMPLE_LESSON_PATH, data[:file_name])
-      allow_any_instance_of(DocumentDownloader::Gdoc).to receive(:file).and_return(DownloadedFile.new(nil, nil, idx))
+      allow_any_instance_of(DocumentDownloader::Gdoc).to receive(:file).and_return(downloaded_file.new(nil, nil, idx))
       allow_any_instance_of(DocumentDownloader::Gdoc).to receive(:content).and_return(file_content)
 
       fill_in :document_form_link, with: data[:url]

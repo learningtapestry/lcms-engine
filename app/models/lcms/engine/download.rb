@@ -7,7 +7,7 @@ module Lcms
         zip: 'application/zip',
         pdf: 'application/pdf',
         excel: %w(application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet),
-        powerpoint: %w(application/vnd.ms-powerpoint application/vnd.openxmlformats-officedocument.presentationml.presentation), # rubocop:disable Metrics/LineLength
+        powerpoint: %w(application/vnd.ms-powerpoint application/vnd.openxmlformats-officedocument.presentationml.presentation), # rubocop:disable Layout/LineLength
         doc: %w(application/msword application/vnd.openxmlformats-officedocument.wordprocessingml.document)
       }.freeze
       S3_URL = 'http://k12-content.s3-website-us-east-1.amazonaws.com/'

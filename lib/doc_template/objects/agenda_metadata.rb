@@ -62,7 +62,7 @@ module DocTemplate
 
       attribute :children, Array[Group]
 
-      def self.build_from(data)
+      def self.build_from(data) # rubocop:disable Metrics/AbcSize
         copy = Marshal.load Marshal.dump(data)
         agenda_data =
           copy.map do |d|

@@ -25,7 +25,7 @@ module DocTemplate
       end
 
       def heading(value)
-        value.include?(prefix + ':') ? value : "#{prefix}: #{value}"
+        value.include?("#{prefix}:") ? value : "#{prefix}: #{value}"
       end
     end
 

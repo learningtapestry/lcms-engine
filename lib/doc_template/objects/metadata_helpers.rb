@@ -3,7 +3,7 @@
 module DocTemplate
   module Objects
     module MetadataHelpers
-      SEPARATOR = /\s*[,;]\s*/
+      SEPARATOR = /\s*[,;]\s*/.freeze
 
       def self.build_anchor_from(item)
         [

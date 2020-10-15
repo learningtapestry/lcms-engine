@@ -5,6 +5,7 @@ module Lcms
     class PreviewsMaterialSerializer < ActiveModel::Serializer
       attributes :activity, :color, :content_type, :data, :for_group, :lesson, :subject
       attr_reader :document
+
       delegate :content_type, :subject, to: :document
 
       def initialize(props, document)
