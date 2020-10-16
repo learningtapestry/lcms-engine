@@ -67,7 +67,7 @@ module Lcms
 
       def dirname(res)
         subject = res.subject.casecmp('math').zero? ? 'Math' : 'ELA'
-        Breadcrumbs.new(res).short_pieces[1..-1].unshift(subject).join('-')
+        Breadcrumbs.new(res).short_pieces[1..].unshift(subject).join('-')
       end
 
       def drive_id(url)

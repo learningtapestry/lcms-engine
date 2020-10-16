@@ -27,6 +27,7 @@ module DocTemplate
         # iterates over all child nodes looking for break tag
         node.at_xpath('.//tr[2]/td').children.each do |child|
           (broken = true) && next if child.text.index("[#{BREAK_TAG_NAME}]")
+
           child.remove_attribute('class')
           child.children.each { |x| x.remove_attribute('class') }
           broken ? content_hidden.push(child) : content_visible.push(child)

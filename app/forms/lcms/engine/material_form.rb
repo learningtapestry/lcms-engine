@@ -34,7 +34,7 @@ module Lcms
         after_reimport_hook
         true
       rescue StandardError => e
-        Rails.logger.error e.message + "\n " + e.backtrace.join("\n ")
+        Rails.logger.error "#{e.message}\n #{e.backtrace.join("\n ")}"
         errors.add(:link, e.message)
         false
       end

@@ -5,10 +5,10 @@ module DocTemplate
     class PdTag < BaseTag
       include Rails.application.routes.url_helpers
 
-      CG_RE = %r{/content_guides/(\d+)/}i
-      PDF_HTTP_RE = %r{^https?://}i
-      PDF_HTTP_REPLACE_RE = /^http:/i
-      PDF_RE = /\.pdf$/i
+      CG_RE = %r{/content_guides/(\d+)/}i.freeze
+      PDF_HTTP_RE = %r{^https?://}i.freeze
+      PDF_HTTP_REPLACE_RE = /^http:/i.freeze
+      PDF_RE = /\.pdf$/i.freeze
       TAG_NAME = 'pd'
       TEMPLATES = {
         default: 'pd.html.erb',

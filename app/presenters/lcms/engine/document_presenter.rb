@@ -131,7 +131,7 @@ module Lcms
         Lcms::Engine::ReactMaterialsResolver.resolve(content, self)
       end
 
-      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      # rubocop:disable Metrics/PerceivedComplexity
       def short_breadcrumb(join_with: ' / ', with_short_lesson: false, with_subject: true, unit_level: false)
         unless unit_level
           lesson_abbr =
@@ -149,7 +149,7 @@ module Lcms
           lesson_abbr
         ].compact.join(join_with)
       end
-      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      # rubocop:enable Metrics/PerceivedComplexity
 
       def short_title
         assessment? ? doc_type : "Lesson #{lesson}"

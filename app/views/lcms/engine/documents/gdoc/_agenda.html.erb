@@ -11,7 +11,7 @@
     <td class="u-text--right o-agenda__item"><p>TIME</p></td>
   </tr>
   <% document.toc.children.each do |l1| %>
-    <% l1_excluded = l1.excluded?(excludes, document.ela?) %>
+    <% l1_excluded = l1.excluded?(excludes, ela: document.ela?) %>
     <% l1_time = l1_excluded ? l1.time : l1.time_with(excludes) %>
     <tr class="<%= 'u-text--strikethrough' if l1_excluded %>">
       <td colspan="3" class="u-txt--agenda-l1-title o-agenda__item">

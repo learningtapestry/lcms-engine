@@ -2,9 +2,9 @@
 
 module Admin
   module ComponentsHelper
-    HIDDEN_FIELD_RE = /\b(?<=name=")[^"]+(?=")/
+    HIDDEN_FIELD_RE = /\b(?<=name=")[^"]+(?=")/.freeze
 
-    def resource_picker_field(form, collection, allow_multiple: true, path:, name:)
+    def resource_picker_field(form, collection, path:, name:, allow_multiple: true)
       path = path.to_s
 
       base_name = form.hidden_field(name).scan(HIDDEN_FIELD_RE)[0]

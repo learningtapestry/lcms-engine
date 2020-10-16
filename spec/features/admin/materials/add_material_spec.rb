@@ -6,7 +6,7 @@ require 'lt/lcms/lesson/downloader/gdoc'
 require 'lt/lcms/lesson/downloader/pdf'
 
 feature 'Admin adds a material' do
-  SAMPLE_PATH = 'spec/features/admin/materials/sample-materials'
+  given(:sample_path) { 'spec/features/admin/materials/sample-materials' }
 
   given(:downloaded_file) { Struct.new :last_modifying_user, :modified_time, :name, :version }
 
@@ -34,7 +34,7 @@ feature 'Admin adds a material' do
     data = samples[:gdoc]
 
     # stub GDoc download
-    file_content = File.read File.join(SAMPLE_PATH, data[:file_name])
+    file_content = File.read File.join(sample_path, data[:file_name])
     base_klass = ::Lt::Lcms::Lesson::Downloader::Base
     gdoc_klass = ::Lt::Lcms::Lesson::Downloader::Gdoc
     allow_any_instance_of(base_klass).to receive(:file).and_return(downloaded_file.new(nil, nil, data[:file_name]))
@@ -59,7 +59,7 @@ feature 'Admin adds a material' do
     base_klass = ::Lt::Lcms::Lesson::Downloader::Base
     allow_any_instance_of(base_klass).to receive(:file).and_return(downloaded_file.new(nil, nil, data[:file_name]))
 
-    file_content = File.read File.join(SAMPLE_PATH, data[:file_name])
+    file_content = File.read File.join(sample_path, data[:file_name])
     allow_any_instance_of(Lt::Lcms::Lesson::Downloader::PDF).to receive(:pdf_content).and_return(file_content)
     allow_any_instance_of(DocumentExporter::Thumbnail).to receive(:export)
     allow_any_instance_of(DocumentExporter::Thumbnail).to receive(:orientation)
