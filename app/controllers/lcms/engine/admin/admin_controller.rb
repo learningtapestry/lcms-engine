@@ -11,7 +11,7 @@ module Lcms
           materials_query: Lcms::Engine::AdminMaterialsQuery
         }.freeze
 
-        RE_GOOGLE_FOLDER = %r{/drive/(.*/)?folders/}
+        RE_GOOGLE_FOLDER = %r{/drive/(.*/)?folders/}.freeze
 
         layout :customized_layout
 

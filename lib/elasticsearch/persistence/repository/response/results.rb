@@ -20,7 +20,7 @@ module Elasticsearch
             results.respond_to?(method_name) ? results.__send__(method_name, *arguments, &block) : super
           end
 
-          def respond_to?(method_name, include_private = false)
+          def respond_to?(method_name, include_private = false) # rubocop:disable Style/OptionalBooleanParameter
             results.respond_to?(method_name) || super
           end
 

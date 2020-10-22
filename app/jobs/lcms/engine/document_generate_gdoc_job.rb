@@ -10,8 +10,8 @@ module Lcms
 
       GDOC_EXPORTERS = {
         'full' => DocumentExporter::Gdoc::Document,
-        'sm'   => DocumentExporter::Gdoc::StudentMaterial,
-        'tm'   => DocumentExporter::Gdoc::TeacherMaterial
+        'sm' => DocumentExporter::Gdoc::StudentMaterial,
+        'tm' => DocumentExporter::Gdoc::TeacherMaterial
       }.freeze
 
       before_perform do |job|

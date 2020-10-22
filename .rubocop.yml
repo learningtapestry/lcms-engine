@@ -15,7 +15,11 @@ AllCops:
     - spec/dummy/db/schema.rb
     - spec/dummy/bin/*
     - templates/*
-  TargetRubyVersion: 2.5
+  NewCops: enable
+  TargetRubyVersion: 2.6
+
+Layout/LineLength:
+  Max: 120
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
@@ -38,18 +42,15 @@ Metrics/ClassLength:
   Max: 250
 
 Metrics/CyclomaticComplexity:
-  Max: 9
-
-Metrics/LineLength:
-  Max: 120
+  Max: 10
 
 Metrics/MethodLength:
   Max: 50
 
 Metrics/PerceivedComplexity:
-  Max: 9
+  Max: 10
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 2
 
 Style/AndOr:

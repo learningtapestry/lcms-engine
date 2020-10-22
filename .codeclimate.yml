@@ -58,7 +58,7 @@ engines:
     # Style and quality checks for Ruby code.
     # Includes support for modern Rubies (2.2+).
     enabled: true
-    channel: rubocop-0-59
+    channel: rubocop-0-93
     exclude_paths:
       - vendor/
   eslint:

@@ -116,7 +116,7 @@ module Lcms
         return unless selected_ids.present?
 
         case selected_ids
-        when Array then
+        when Array
           selected_ids.include?(id.to_s)
         else
           selected_ids.split(',').include?(id.to_s)

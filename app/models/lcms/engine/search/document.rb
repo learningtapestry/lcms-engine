@@ -31,10 +31,11 @@ module Lcms
 
         class << self
           def build_from(model)
-            if model.is_a?(Lcms::Engine::Resource)
+            case model
+            when Lcms::Engine::Resource
               new(**attrs_from_resource(model))
 
-            elsif model.is_a?(Lcms::Engine::ExternalPage)
+            when Lcms::Engine::ExternalPage
               new(**attrs_from_page(model))
 
             else

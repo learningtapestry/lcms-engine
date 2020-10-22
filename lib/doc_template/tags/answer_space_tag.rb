@@ -6,7 +6,7 @@ module DocTemplate
       SPACE_SIZE = {
         s: 5, # small = 5 lines
         m: 10, # medium = 10 lines
-        l: 20, # large = 20 lines
+        l: 20 # large = 20 lines
       }.freeze
       TAG_NAME = 'answer-space'
 

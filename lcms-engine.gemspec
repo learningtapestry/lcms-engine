@@ -19,12 +19,12 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 2.6'
 
-  s.add_dependency 'active_model_serializers', '~> 0.10.10'
   s.add_dependency 'activejob-retry', '~> 0.6.3'
-  s.add_dependency 'acts-as-taggable-on', '~> 6.5'
+  s.add_dependency 'active_model_serializers', '~> 0.10.10'
   s.add_dependency 'acts_as_list', '~> 1.0'
+  s.add_dependency 'acts-as-taggable-on', '~> 6.5'
   s.add_dependency 'addressable', '~> 2.7'
   s.add_dependency 'airbrake', '~> 10.0'
   s.add_dependency 'autoprefixer-rails', '~> 9.7'
@@ -96,9 +96,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry-byebug', '~> 3.7'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
   s.add_development_dependency 'rspec-rails', '~> 3.8'
-  s.add_development_dependency 'rubocop', '~> 0.59.2'
-  s.add_development_dependency 'sdoc', '~> 1.1'
-  s.add_development_dependency 'selenium-webdriver', '~> 3.142'
+  s.add_development_dependency 'rubocop', '~> 0.93.1'
+  s.add_development_dependency 'safe_attributes', '~> 1.0.10'
+  s.add_development_dependency 'sdoc', '~> 0.4.0'
+  s.add_development_dependency 'seedbank', '~> 0.3'
+  s.add_development_dependency 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
   s.add_development_dependency 'shoulda-matchers', '~> 4.1'
   s.add_development_dependency 'spring', '~> 2.1'
   s.add_development_dependency 'spring-commands-rspec', '~> 1.0'

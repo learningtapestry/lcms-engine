@@ -27,9 +27,10 @@ module Lcms
       end
 
       def list
-        @list ||= if model.is_a?(Resource)
+        @list ||= case model
+                  when Resource
                     Array.wrap model.metadata['grade']
-                  elsif model.is_a?(Search::Document)
+                  when Search::Document
                     Array.wrap model.grade.presence
                   else
                     model.grade_list

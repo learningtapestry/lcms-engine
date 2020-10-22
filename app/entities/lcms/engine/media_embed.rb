@@ -26,7 +26,7 @@ module Lcms
         when /vimeo\.com/
           url.match(%r{https?://(www\.)?vimeo.com/(\d+)}).try(:[], 2)
         when /youtu\.be/
-          url.match(%r{https?://(www\.)?youtu\.be/([^"&?\/]+)}).try(:[], 2)
+          url.match(%r{https?://(www\.)?youtu\.be/([^"&?/]+)}).try(:[], 2)
         end
       end
     end
