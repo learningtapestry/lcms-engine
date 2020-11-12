@@ -8,6 +8,18 @@ describe Lcms::Engine::Grades do
   let(:dir) { [] }
   let(:resource) { create :resource, metadata: { grade: dir.uniq } }
 
+  describe 'grades' do
+    it 'returns GRADES constant' do
+      expect(described_class.grades).to eq Lcms::Engine::Grades::GRADES
+    end
+  end
+
+  describe 'gardes_abbrevs' do
+    it 'returns GRADES_ABBR constant' do
+      expect(described_class.grades_abbrevs).to eq Lcms::Engine::Grades::GRADES_ABBR
+    end
+  end
+
   describe 'list' do
     let(:dir) { ['grade 2'] }
     let(:search_doc) { Lcms::Engine::Search::Document.new(grade: ['kindergarten']) }

@@ -17,7 +17,7 @@ module Lt
           # Is used inside `#find_or_create_resource` method
           #
           def update_grades_level_position_for(grades)
-            update_level_position_for(grades) { |g| ::Lcms::Engine::Grades::GRADES.index(g.metadata['grade']) }
+            update_level_position_for(grades) { |g| ::Lcms::Engine::Grades.grades.index(g.metadata['grade']) }
           end
 
           #
