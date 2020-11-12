@@ -1,7 +1,7 @@
 <%= simple_form_for @query, url: :admin_resources, html: { class: 'form-inline well admin-resource-search', method: :get } do |f| %>
 
   <div class='row align-justify'>
-    <%= f.input :grades, as: :select, collection: Lcms::Engine::Grades::GRADES, input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.grades'), label_method: :humanize, required: false, wrapper_html: { class: 'resource-search-wrap' } %>
+    <%= f.input :grades, as: :select, collection: Lcms::Engine::Grades.grades, input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.grades'), label_method: :humanize, required: false, wrapper_html: { class: 'resource-search-wrap' } %>
 
     <%= f.input :resource_standards_standard_id_in, as: :select, collection: Lcms::Engine::Standard.all, input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.standards'), required: false, wrapper_html: { class: 'resource-search-wrap' } %>
 

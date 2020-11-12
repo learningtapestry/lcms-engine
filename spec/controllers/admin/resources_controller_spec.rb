@@ -11,7 +11,7 @@ describe Lcms::Engine::Admin::ResourcesController do
   describe '#edit' do
     subject { get :edit, id: resource.to_param }
 
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
 
     it { is_expected.to render_template 'edit' }
   end
@@ -19,7 +19,7 @@ describe Lcms::Engine::Admin::ResourcesController do
   describe '#index' do
     subject { get :index }
 
-    it { is_expected.to be_success }
+    it { is_expected.to be_successful }
 
     it { is_expected.to render_template 'index' }
   end
