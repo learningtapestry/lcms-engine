@@ -13,7 +13,7 @@ module Lcms
       validates_presence_of :link, if: -> { link_fs.blank? }
       validates_presence_of :link_fs, if: -> { link.blank? }
 
-      attr_reader :document
+      attr_reader :document, :service_errors
 
       def initialize(attributes = {}, opts = {})
         @is_reimport = attributes.delete(:reimport).present? || false
@@ -45,18 +45,23 @@ module Lcms
       def build_document
         service = document_build_service
 
-        if is_reimport
-          doc = service.build_for(link)
-          doc = service.build_for(link_fs, expand: true) if link_fs.present?
-          doc
-        elsif (full_doc = find_full_document)
-          # if there is a document with the same file_id or foundational_file_id
-          # we need to make full re-import to correctly handle expand process
-          service.build_for(full_doc.file_url)
-          service.build_for(full_doc.file_fs_url, expand: true)
-        else
-          service.build_for link
-        end
+        result =
+          if is_reimport
+            doc = service.build_for(link)
+            doc = service.build_for(link_fs, expand: true) if link_fs.present?
+            doc
+          elsif (full_doc = find_full_document)
+            # if there is a document with the same file_id or foundational_file_id
+            # we need to make full re-import to correctly handle expand process
+            service.build_for(full_doc.file_url)
+            service.build_for(full_doc.file_fs_url, expand: true)
+          else
+            service.build_for link
+          end
+
+        @service_errors = service.errors
+
+        result
       end
 
       def document_build_service

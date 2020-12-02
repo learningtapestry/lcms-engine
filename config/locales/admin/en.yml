@@ -216,7 +216,7 @@ en:
             unit_bundles: Generate Unit Bundles
           create:
             error: Error
-            success: Lesson %{name} parsed successfully.
+            success: Lesson %{name} parsed successfully. %{errors}
           new:
             page_title: Add a lesson
             submit: Parse

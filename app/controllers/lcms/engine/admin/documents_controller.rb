@@ -23,7 +23,7 @@ module Lcms
           @document = reimport_lesson
           if @document.save
             redirect_to AdminController.document_path(@document.document),
-                        notice: t('.success', name: @document.document.name)
+                        notice: t('.success', name: @document.document.name, errors: collect_errors)
           else
             render :new
           end
@@ -65,6 +65,12 @@ module Lcms
             jobs_[job_id] = { link: link, status: 'waiting' }
           end
           @props = { jobs: jobs, type: :documents, links: view_links }
+        end
+
+        def collect_errors
+          return if @document.service_errors.empty?
+
+          "Errors: #{@document.service_errors.join(' ')}"
         end
 
         def find_selected

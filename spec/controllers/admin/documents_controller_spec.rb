@@ -9,7 +9,9 @@ describe Lcms::Engine::Admin::DocumentsController do
 
   describe '#create' do
     let(:document) { create :document }
-    let(:form) { instance_double('Lcms::Engine::DocumentForm', document: document, save: valid) }
+    let(:form) do
+      instance_double('Lcms::Engine::DocumentForm', document: document, save: valid, service_errors: [])
+    end
     let(:link) { 'link' }
     let(:params) { { link: link, link_fs: 'link_fs', reimport: '1' } }
     let(:valid) { true }

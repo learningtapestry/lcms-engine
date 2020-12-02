@@ -27,7 +27,7 @@ describe Lcms::Engine::DocumentBuildService do
       stubs = {
         css_styles: '',
         metadata: {},
-        metadata_service: nil,
+        metadata_service: OpenStruct.new(errors: []),
         parse: parsed_document,
         parts: [],
         'prereq?' => false,
