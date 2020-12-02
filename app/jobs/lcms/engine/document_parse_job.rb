@@ -31,7 +31,7 @@ module Lcms
       def reimport_document(link)
         form = DocumentForm.new({ link: link }, import_retry: true)
         @result = if form.save
-                    { ok: true, link: link, model: form.document }
+                    { ok: true, link: link, model: form.document, warnings: form.service_errors }
                   else
                     { ok: false, link: link, errors: form.errors[:link] }
                   end

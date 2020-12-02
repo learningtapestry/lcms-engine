@@ -39,9 +39,11 @@ module Lt
             super
             if material?
               @metadata = DocTemplate::Tables::MaterialMetadata.parse content
+              @errors.concat @metadata.errors
               raise ::MaterialError, 'No metadata present' if !@metadata&.table_exist? || @metadata&.data&.empty?
             else
               @metadata = DocTemplate::Tables::Metadata.parse content
+              @errors.concat @metadata.errors
               raise ::DocumentError, 'No metadata present' unless @metadata&.table_exist?
 
               @agenda = DocTemplate::Tables::Agenda.parse content

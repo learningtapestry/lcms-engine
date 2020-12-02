@@ -9,8 +9,11 @@ module Lcms
       EVENT_BUILT = 'material:built'
       PDF_EXT_RE = /\.pdf$/.freeze
 
+      attr_reader :errors
+
       def initialize(credentials, opts = {})
         @credentials = credentials
+        @errors = []
         @options = opts
       end
 
@@ -60,6 +63,7 @@ module Lcms
         create_material
         content = @downloader.download.content
         template = DocTemplate::Template.parse(content, type: :material)
+        @errors = template.metadata_service.errors
 
         metadata = template.metadata_service.options_for(:default)[:metadata]
         material.update!(

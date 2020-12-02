@@ -100,6 +100,7 @@ class ImportStatus extends React.Component {
             {job.status === 'done' && job.ok ? <span>{this.resourceButton(job)}</span> : null}
           </div>
           {job.errors ? (<p dangerouslySetInnerHTML={{__html: _.join(job.errors, '<br/>')}}></p>) : null}
+          {job.warnings ? (<p dangerouslySetInnerHTML={{ __html: _.join(job.warnings, '<br/>') }}></p>) : null}
         </li>
       )
     })

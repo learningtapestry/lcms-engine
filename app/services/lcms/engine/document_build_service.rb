@@ -7,8 +7,11 @@ module Lcms
     class DocumentBuildService
       EVENT_BUILT = 'document:built'
 
+      attr_reader :errors
+
       def initialize(credentials, opts = {})
         @credentials = credentials
+        @errors = []
         @options = opts
       end
 
@@ -19,6 +22,7 @@ module Lcms
         @content = download url
         @expand_document = expand
         @template = DocTemplate::Template.parse @content
+        @errors = @template.metadata_service.errors
 
         create_document
         clear_preview_link
