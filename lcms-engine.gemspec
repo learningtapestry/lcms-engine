@@ -46,7 +46,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fog-aws', '~> 3.5', '>= 3.5.2'
   s.add_dependency 'font-awesome-sass', '~> 5.12'
   s.add_dependency 'foundation-rails', '~> 6.6', '>= 6.6.1'
-  s.add_dependency 'google-api-client', '~> 0.38'
+  s.add_dependency 'google-api-client', '< 1'
   s.add_dependency 'hiredis', '~> 0.6.3'
   s.add_dependency 'httparty', '~> 0.18'
   s.add_dependency 'jbuilder', '~> 2.10'
