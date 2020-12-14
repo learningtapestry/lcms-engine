@@ -14,6 +14,9 @@
 
 <%= f.input :opr_description, label: t('lcms.engine.admin.resources.form.opr_description'), wrapper_html: {class: (resource.unit? ? '': 'c-hidden')} %>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
 <%= react_component('admin/curriculum/DirectoryPicker', directory_picker_props(resource)) %>
 
 <%= f.input :time_to_teach %>

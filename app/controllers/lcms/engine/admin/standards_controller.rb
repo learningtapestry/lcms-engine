@@ -5,11 +5,12 @@ module Lcms
     module Admin
       class StandardsController < AdminController
         before_action :find_standard, except: [:index]
+        before_action :set_query_params
 
         def edit; end
 
         def index
-          @query = OpenStruct.new params[:query]
+          @query = OpenStruct.new @query_params
 
           scope = Standard.order(:id)
           scope = scope.search_by_name(@query.name) if @query.name.present?
@@ -29,6 +30,10 @@ module Lcms
 
         def find_standard
           @standard = Standard.find(params[:id])
+        end
+
+        def set_query_params
+          @query_params = params[:query]&.permit(:name) || {}
         end
 
         def standard_params

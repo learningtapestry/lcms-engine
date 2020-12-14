@@ -16,12 +16,12 @@
       <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.reimport_selected'),
             operation: 'reimport',
-            path: reimport_selected_admin_documents_path(query: params[:query]),
+            path: reimport_selected_admin_documents_path(query: @query_params),
             btn_style: 'primary' } %>
       <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.delete_selected'),
             operation: 'delete',
-            path: delete_selected_admin_documents_path(query: params[:query]),
+            path: delete_selected_admin_documents_path(query: @query_params),
             btn_style: 'alert'} %>
 
       <%= link_to t('.new_lesson'), :new_admin_document, class: 'button primary' %>
