@@ -3,14 +3,14 @@
     <span>
       <%= link_to preview_download_path(id: download, slug: resource.slug), class: 'resource-attachment',
         data: { no_turbolink: true }, target: '_blank' do %>
-        <i class="ub-icon ub-eye" aria-hidden="true"></i>
+        <i class="fas fa-eye" aria-hidden="true"></i>
       <% end %>
     </span>
   <% end %>
   <% id = SecureRandom.hex(4) %>
   <span data-toggle="<%= id %>">
     <%= link_to download_path(download, slug: resource.slug), class: 'resource-attachment', data: { no_turbolink: true } do %>
-      <i class="ub-icon fa-lg file-<%= "#{file_icon(download.download.attachment_content_type)} #{indent}" %>"></i>
+      <i class="far fa-file-<%= "#{file_icon(download.download.attachment_content_type)} #{indent}" %>"></i>
       <%= download.download.title %>
     <% end %>
   </span>

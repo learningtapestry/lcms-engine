@@ -54,7 +54,8 @@ class ImportStatus extends React.Component {
     if (this.withPdf) {
       return (
         <a href={job.link}
-          className="o-adm-materials__resource ub-icon ub-file-pdf button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
+          className="o-adm-materials__resource button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
+          <i className="far fa-file-pdf"></i>
         </a>
       )
     }
@@ -70,7 +71,8 @@ class ImportStatus extends React.Component {
     return _.map(this.links, (link, idx) => (
       <a key={`pl-${idx}`}
         href={linkWithParams(link, { id: job.model.id })}
-        className="o-adm-materials__resource ub-icon ub-eye button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
+        className="o-adm-materials__resource button primary u-margin-left--small u-margin-bottom--zero" target="_blank">
+        <i className="fas fa-eye"></i>
       </a>
     ))
   }

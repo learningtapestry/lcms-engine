@@ -9,12 +9,12 @@
         <li class="o-unit-bundles__item">
           <div class="o-unit-bundles__item--links">
             <%= link_to bundle.file&.url, data: { no_turbolink: true } do %>
-              <i class="ub-icon fa-lg ub-file-zip"></i>
+              <i class="far fa-file-archive"></i>
             <% end %>
             <% if (gdoc_bundle =  resource.document_bundles.detect { |b| b.content_type == 'gdoc' }) %>
               <% if cat == 'full' %>
                 <%= link_to gdoc_bundle.url, target: '_blank', data: { no_turbolink: true } do %>
-                  <i class="ub-icon fa-lg ub-file-gdoc"></i>
+                  <i class="fab fa-google"></i>
                 <% end %>
               <% else %>
                 <span class="o-unit-bundles__item--placeholder"></span>

@@ -14,7 +14,7 @@
           Go to Lessons Admin
         <% end %>
         <%= link_to @document.file_url, class: 'o-ub-ld-btn o-ub-ld-btn--bordered', target: '_blank' do %>
-          <i class="ub-icon ub-file-gdoc"></i> Google Doc
+          <i class="fab fa-google"></i> Google Doc
         <% end %>
         <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { lesson: @document, btn_class: 'o-ub-ld-btn o-ub-ld-btn--bordered' } %>
 
