@@ -98,7 +98,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-rails', '~> 3.8'
   s.add_development_dependency 'rubocop', '~> 0.93.1'
   s.add_development_dependency 'safe_attributes', '~> 1.0.10'
-  s.add_development_dependency 'sdoc', '~> 0.4.0'
+  s.add_development_dependency 'sdoc', '~> 2'
   s.add_development_dependency 'seedbank', '~> 0.3'
   s.add_development_dependency 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
   s.add_development_dependency 'shoulda-matchers', '~> 4.1'
