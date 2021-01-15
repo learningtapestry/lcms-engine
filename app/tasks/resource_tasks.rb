@@ -40,13 +40,13 @@ class ResourceTasks
       Resource.lessons.find_each do |res|
         next if res.time_to_teach.present? && res.time_to_teach != 0
 
-        res.update_attributes(time_to_teach: 60)
+        res.update(time_to_teach: 60)
       end
 
       %i(units modules grades subjects).each do |level|
         Resource.send(level).find_each do |res|
           total = res.children.map(&:time_to_teach).sum
-          res.update_attributes(time_to_teach: total)
+          res.update(time_to_teach: total)
         end
       end
     end
