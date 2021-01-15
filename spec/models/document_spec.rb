@@ -111,7 +111,7 @@ describe Lcms::Engine::Document do
     subject { document.ordered_material_ids }
 
     it 'proxies the call to the TOC' do
-      expect_any_instance_of(DocTemplate::Objects::TOCMetadata).to receive(:ordered_material_ids)
+      expect_any_instance_of(DocTemplate::Objects::TocMetadata).to receive(:ordered_material_ids)
       subject
     end
   end

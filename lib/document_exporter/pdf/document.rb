@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module DocumentExporter
-  module PDF
-    class Document < PDF::Base
+  module Pdf
+    class Document < Pdf::Base
       def export
         content = super
         pdf = CombinePDF.parse(content)

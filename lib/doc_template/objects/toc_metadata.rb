@@ -2,7 +2,7 @@
 
 module DocTemplate
   module Objects
-    class TOCMetadata
+    class TocMetadata
       include Virtus.model
 
       class Heading

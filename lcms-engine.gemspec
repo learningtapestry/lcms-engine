@@ -95,7 +95,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'overcommit', '~> 0.57'
   s.add_development_dependency 'pry-byebug', '~> 3.7'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
-  s.add_development_dependency 'rspec-rails', '~> 3.8'
+  s.add_development_dependency 'rspec-rails', '~> 4.0.2'
   s.add_development_dependency 'rubocop', '~> 0.93.1'
   s.add_development_dependency 'safe_attributes', '~> 1.0.10'
   s.add_development_dependency 'sdoc', '~> 2'

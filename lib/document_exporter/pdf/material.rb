@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module DocumentExporter
-  module PDF
-    class Material < PDF::Base
+  module Pdf
+    class Material < Pdf::Base
       private
 
       def template_path(name)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module DocumentExporter
-  module PDF
-    class StudentMaterial < PDF::Base
+  module Pdf
+    class StudentMaterial < Pdf::Base
       def export
         pdf = CombinePDF.new
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'doc_template/objects/activity_metadata'
+# require 'doc_template/objects/activity_metadata'
 
 describe DocTemplate::Objects::ActivityMetadata do
   describe '.build_from' do

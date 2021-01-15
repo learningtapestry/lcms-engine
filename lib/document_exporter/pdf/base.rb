@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DocumentExporter
-  module PDF
+  module Pdf
     class Base < DocumentExporter::Base
       def self.s3_folder
         @s3_folder ||= ENV.fetch('SWAP_DOCS', 'documents')
