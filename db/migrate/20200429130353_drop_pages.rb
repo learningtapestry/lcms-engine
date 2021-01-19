@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DropPages < Lcms::Engine::Migration
+class DropPages < ActiveRecord::Migration[5.2]
   def change
     drop_table :pages do |t|
       t.text :body, null: false

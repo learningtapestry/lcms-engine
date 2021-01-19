@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChangeDocumentPartsToPolymorphic < Lcms::Engine::Migration
+class ChangeDocumentPartsToPolymorphic < ActiveRecord::Migration[5.2]
   def up
     add_reference :document_parts, :renderer, polymorphic: true, index: true
     Lcms::Engine::DocumentPart.update_all("renderer_id = document_id, renderer_type = 'Lcms::Engine::Document'")
