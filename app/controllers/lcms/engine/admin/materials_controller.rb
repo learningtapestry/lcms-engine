@@ -5,6 +5,7 @@ module Lcms
     module Admin
       class MaterialsController < AdminController
         include Lcms::Engine::GoogleCredentials
+        include Lcms::Engine::PathHelper
         include Reimportable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)
@@ -23,7 +24,7 @@ module Lcms
 
           if @material_form.save
             material = @material_form.material
-            redirect_to AdminController.material_path(material),
+            redirect_to dynamic_material_path(material),
                         notice: t('.success', name: material.name)
           else
             render :new

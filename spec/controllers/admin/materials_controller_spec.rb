@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 describe Lcms::Engine::Admin::MaterialsController do
+  include Lcms::Engine::PathHelper
+
   let(:user) { create :admin }
 
   before { sign_in user }
@@ -25,7 +27,7 @@ describe Lcms::Engine::Admin::MaterialsController do
 
     it 'redirects to material' do
       subject
-      expect(response).to redirect_to Lcms::Engine::Admin::AdminController.material_path(material)
+      expect(response).to redirect_to material_path(material)
     end
 
     context 'when there is an error' do

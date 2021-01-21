@@ -27,7 +27,7 @@ describe Lcms::Engine::Admin::DocumentsController do
 
     it 'redirects to document' do
       subject
-      expect(response).to redirect_to Lcms::Engine::Admin::AdminController.document_path(document)
+      expect(response).to redirect_to document_path(document)
     end
 
     # TODO: Rails upgrade - move to system spec

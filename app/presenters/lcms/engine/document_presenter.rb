@@ -3,6 +3,8 @@
 module Lcms
   module Engine
     class DocumentPresenter < Lcms::Engine::ContentPresenter
+      include Rails.application.routes.url_helpers
+
       PDF_SUBTITLES = { full: '', sm: '_student_materials', tm: '_teacher_materials' }.freeze
       SUBJECT_FULL  = { 'ela' => 'ELA', 'math' => 'Math' }.freeze
       TOC_RESOURCES = [I18n.t('document.toc.tm'), I18n.t('document.toc.sm'), I18n.t('document.toc.credits')].freeze
@@ -157,7 +159,7 @@ module Lcms
 
       def short_url
         @short_url ||= Bitly.client
-                         .shorten(Rails.application.routes.url_helpers.document_url(self))
+                         .shorten(document_url(self))
                          .short_url
       end
 

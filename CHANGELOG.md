@@ -21,8 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Explicitly import lodash (To prevent errors in LCMS projects) - [@paranoicsan](https://github.com/paranoicsan)
 
-- Remove `Lcms::Engine::Component` model
-- Remove `Lcms::Engine::Migration` class
+- Remove `Lcms::Engine::Component` model *paranoicsan*
+- Remove `Lcms::Engine::Migration` class *paranoicsan*
+- Remove 'whoami' route *paranoicsan*
+- Remove a bunch of `Lcms::Engine::Admin::AdminController` class methods *paranoicsan*
 
 ## [0.3.0](https://github.com/learningtapestry/lcms-engine/compare/v0.2.0...v0.3.0) - 2020.08.19
 

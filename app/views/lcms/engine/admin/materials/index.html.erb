@@ -53,7 +53,7 @@
           <tr id="material_<%= material.id %>">
             <td><%= check_box_tag 'selected_ids[]', material.id, selected_id?(material.id), class: 'c-selected-ids' %></td>
             <td><%= material.id %>
-            <td class="u-text--right"><%= link_to material.metadata['identifier'], ::Lcms::Engine::Admin::AdminController.material_path(material, request.query_parameters), target: '_blank' %>
+            <td class="u-text--right"><%= link_to material.metadata['identifier'], dynamic_material_path(material, request.query_parameters), target: '_blank' %>
             <td><%= link_to material.name, material.file_url, target: '_blank' %>
             <td><%= material.metadata['type'] %>
             <td><%= material.metadata['title']  %>
@@ -71,7 +71,7 @@
                   <% lesson = ::Lcms::Engine::DocumentGenerator.document_presenter.new lesson %>
                   <li class="u-text--small">
                     <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="fab fa-google"></i></a>
-                    <%= link_to lesson.title, ::Lcms::Engine::Admin::AdminController.document_path(lesson, request.query_parameters), target: '_blank' %>
+                    <%= link_to lesson.title, dynamic_path(lesson, request.query_parameters), target: '_blank' %>
                   </li>
                 <% end %>
               </ul>

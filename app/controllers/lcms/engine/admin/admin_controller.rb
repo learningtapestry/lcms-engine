@@ -17,50 +17,14 @@ module Lcms
 
         before_action :authenticate_admin!
 
-        class << self
-          def settings
-            @settings ||= DEFAULTS.merge((YAML.load_file(CONFIG_PATH) || {}).deep_symbolize_keys)
-          end
-
-          def engine_klass
-            @engine_klass ||= settings[:engine]&.constantize || ::Lcms::Engine::Engine
-          end
-
-          def document_path(*args)
-            host_engine_path(:document_path, *args).presence || url_helpers.document_path(*args)
-          end
-
-          def material_path(*args)
-            host_engine_path(:material_path, *args).presence || url_helpers.material_path(*args)
-          end
-
-          def root_path
-            host_engine_path(:root_path).presence || url_helpers.root_path
-          end
-
-          def host_engine_path(key, *args)
-            if (host_route = settings.dig(:redirect, :host, key)).present?
-              Rails.application.routes.url_helpers.send(host_route, *args)
-            elsif (engine_route = settings.dig(:redirect, :engine, key)).present?
-              engine_klass.routes.url_helpers.send(engine_route, *args)
-            end
-          end
-
-          private
-
-          def url_helpers
-            Rails.application.routes.url_helpers
-          end
-        end
-
-        def whoami
-          render text: "stack=#{ENV['CLOUD66_STACK_NAME']}<br/>env=#{ENV['CLOUD66_STACK_ENVIRONMENT']}"
+        def self.settings
+          @settings ||= DEFAULTS.merge((YAML.load_file(CONFIG_PATH) || {}).deep_symbolize_keys)
         end
 
         private
 
         def authenticate_admin!
-          redirect_to self.class.root_path, alert: 'Access denied' unless current_user&.admin?
+          redirect_to dynamic_path(:root_path), alert: 'Access denied' unless current_user&.admin?
         end
 
         def customized_layout

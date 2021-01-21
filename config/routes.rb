@@ -32,7 +32,6 @@ Lcms::Engine::Engine.routes.draw do
 
   namespace :admin do
     get '/' => 'welcome#index'
-    get '/whoami' => 'admin#whoami'
     get '/association_picker' => 'association_picker#index'
     resource :resource_bulk_edits, only: %i(new create)
     get '/resource_picker' => 'resource_picker#index'
