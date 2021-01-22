@@ -29,7 +29,7 @@ module Lcms
         end
 
         def create_cartridge(resource)
-          # Note: For now work only with Modules
+          # NOTE: For now work only with Modules
           # Subject - Grade - Module
           parent = {
             children: [{

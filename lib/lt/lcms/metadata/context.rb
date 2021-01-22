@@ -143,7 +143,7 @@ module Lt
             # ELA G1 M1 U2 Lesson 1
             curr ||= directory
             res = ::Lcms::Engine::Resource.new(metadata: metadata)
-            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.titleize).join(' ')
+            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last&.titleize).join(' ')
           end
         end
 
@@ -175,16 +175,18 @@ module Lt
         end
 
         def lesson
-          @lesson ||= begin
-            return nil if assessment? # assessment is a unit now, so lesson -> nil
-
-            num = if ela? && prerequisite?
-                    ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
-                  else
-                    context[:lesson].presence
-                  end
-            "lesson #{num}" if num.present?
-          end
+          @lesson ||=
+            if assessment?
+              # assessment is a unit now, so lesson -> nil
+              nil
+            else
+              num = if ela? && prerequisite?
+                      ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
+                    else
+                      context[:lesson].presence
+                    end
+              "lesson #{num}" if num.present?
+            end
         end
 
         def mid_assessment?
@@ -249,11 +251,11 @@ module Lt
           end
         end
 
-        def update(resource)
+        def update(resource) # rubocop:disable Metrics/AbcSize
           return if resource.nil?
 
           # if resource changed to prerequisite, fix positioning
-          prereq = context['type'].to_s.casecmp('prereq').zero?
+          prereq = context['type'].to_s.casecmp('prereq').to_i.zero?
           fix_prereq_position(resource) if prereq && !resource.prerequisite?
 
           # Update resource with document metadata
@@ -261,7 +263,7 @@ module Lt
           resource.teaser = context['teaser'] if context['teaser'].present?
           resource.description = context['description'] if context['description'].present?
           resource.tag_list << 'prereq' if prereq
-          resource.tag_list << 'opr' if context['type'].to_s.casecmp('opr').zero?
+          resource.tag_list << 'opr' if context['type'].to_s.casecmp('opr').to_i.zero?
           resource.save
 
           resource

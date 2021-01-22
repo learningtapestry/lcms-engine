@@ -28,7 +28,7 @@ module Lcms
               num -= arab
             end
           end
-        end.join('')
+        end.join
       end
 
       def self.from_roman(roman)
