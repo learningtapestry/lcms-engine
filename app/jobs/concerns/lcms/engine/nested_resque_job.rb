@@ -29,10 +29,7 @@ module Lcms
           [].tap do |result|
             self::NESTED_JOBS.each do |job_klass|
               Resque.redis.scan_each(match: "#{job_klass.constantize.result_key(jid)}*") do |key|
-                res = Resque.redis.multi do
-                  Resque.redis.get key
-                  Resque.redis.del key
-                end.first
+                res = Resque.redis.get key
                 result << JSON.parse(res) rescue res
               end
             end
