@@ -47,11 +47,7 @@ module ResqueJob
     end
 
     def fetch_result(job_id)
-      res = Resque.redis.multi do
-        key = result_key(job_id)
-        Resque.redis.get key
-        Resque.redis.del key
-      end.first
+      res = Resque.redis.get result_key(job_id)
       JSON.parse(res) rescue res
     end
 
