@@ -17,7 +17,8 @@ module ResqueJob
     end
 
     def find_in_queue_by_payload(job_class, &block)
-      result = Resque.peek(:default, 0, 0)
+      jobs = Array.wrap Resque.peek(queue_name, 0, 0)
+      result = jobs
                  .select { |j| j['args'].first['job_class'] == job_class.to_s }
                  .flat_map { |j| j['args'] }
       return result unless block_given?
