@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jbuilder', '~> 2.10'
   s.add_dependency 'jquery-rails', '~> 4.3', '>= 4.3.5'
   s.add_dependency 'js-routes', '~> 1.4', '>= 1.4.9'
-  s.add_dependency 'lt-google-api', '>= 0.2.2'
+  s.add_dependency 'lt-google-api', '~> 0.2', '>= 0.2.2'
   s.add_dependency 'lt-lcms', '~> 0.4', '>= 0.4.1'
   s.add_dependency 'migration_data', '~> 0.6'
   s.add_dependency 'mini_magick', '~> 4.10', '>= 4.10.1'
