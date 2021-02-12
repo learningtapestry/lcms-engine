@@ -29,10 +29,8 @@ module DocumentRenderer
       def should_render?(part, omit_optional: true)
         if part[:optional] && omit_optional
           false unless @excludes.include?(part[:anchor])
-        elsif @excludes.include?(part[:anchor])
-          false
         else
-          true
+          !@excludes.include?(part[:anchor])
         end
       end
     end

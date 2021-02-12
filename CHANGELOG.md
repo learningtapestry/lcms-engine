@@ -6,7 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.3.1...HEAD)
 
---
+### Added
+
+- Bump Rails to 6.1.2.1 - [@paranoicsan](https://github.com/paranoicsan)
+
+### Removed
+
+- [BREAKING] Remove `Lcms::Engine::Component` model - [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.3.1](https://github.com/learningtapestry/lcms-engine/compare/v0.3.0...v0.3.1) - 2021.02.12
 
@@ -21,10 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Explicitly import lodash (To prevent errors in LCMS projects) - [@paranoicsan](https://github.com/paranoicsan)
 
-- Remove `Lcms::Engine::Component` model *paranoicsan*
-- Remove `Lcms::Engine::Migration` class *paranoicsan*
-- Remove 'whoami' route *paranoicsan*
-- Remove a bunch of `Lcms::Engine::Admin::AdminController` class methods *paranoicsan*
+### Removed
+
+- [BREAKING] Remove `Lcms::Engine::Component` model - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] Remove `Lcms::Engine::Migration` class - [@paranoicsan](https://github.com/paranoicsan)
+- Remove 'whoami' route - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] Remove a bunch of `Lcms::Engine::Admin::AdminController` class methods - [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.3.0](https://github.com/learningtapestry/lcms-engine/compare/v0.2.0...v0.3.0) - 2020.08.19
 
