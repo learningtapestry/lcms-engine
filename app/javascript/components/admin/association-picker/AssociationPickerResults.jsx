@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash'
 
 function AssociationPickerResults(props) {
   let items

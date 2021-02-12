@@ -19,9 +19,19 @@ module Lcms
           status = job_class.status(jid)
           obj[jid] = {
             status: status,
-            result: (status == :done ? job_class.fetch_result(jid) : nil)
+            result: (status == :done ? prepare_result(job_class, jid) : nil)
           }.compact
         end
+      end
+
+      def prepare_result(job_class, jid)
+        jid_res = job_class.fetch_result(jid)
+        return jid_res if jid_res['ok']
+
+        {
+          ok: false,
+          errors: Array.wrap("<a href=\"#{jid_res['link']}\">Source</a>: #{jid_res['errors'].join(', ')}")
+        }
       end
     end
   end

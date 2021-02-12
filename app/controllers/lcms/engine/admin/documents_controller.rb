@@ -10,9 +10,10 @@ module Lcms
         include Reimportable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)
+        before_action :set_query_params
 
         def index
-          @query = OpenStruct.new(params[:query])
+          @query = OpenStruct.new @query_params
           @documents = DocTemplate.config['queries']['document'].constantize.call(@query, page: params[:page])
           render_customized_view
         end
@@ -32,12 +33,12 @@ module Lcms
         def destroy
           @document = Document.find(params[:id])
           @document.destroy
-          redirect_to admin_documents_path(query: params[:query]), notice: t('.success')
+          redirect_to admin_documents_path(query: @query_params), notice: t('.success')
         end
 
         def destroy_selected
           count = @documents.destroy_all.count
-          redirect_to admin_documents_path(query: params[:query]), notice: t('.success', count: count)
+          redirect_to admin_documents_path(query: @query_params), notice: t('.success', count: count)
         end
 
         def import_status
@@ -110,6 +111,14 @@ module Lcms
           doc.materials.each do |material|
             MaterialForm.new({ link: material.file_url, source_type: material.source_type }, google_credentials).save
           end
+        end
+
+        def set_query_params
+          @query_params = params[:query]
+            &.permit(
+              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed, :reimport_required,
+              :search_term, :sort_by
+            ) || {}
         end
       end
     end

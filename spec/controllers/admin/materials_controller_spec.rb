@@ -79,7 +79,7 @@ describe Lcms::Engine::Admin::MaterialsController do
     it { expect { subject }.to change { Lcms::Engine::Material.count }.by(-1) }
 
     context 'when there was custom filter' do
-      let(:query) { 'filter' }
+      let(:query) { { course: 'value' } }
 
       subject { delete :destroy, params: { id: material.id, query: query } }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import _ from 'lodash'
 
 class CurriculumEditor extends React.Component {
   constructor(props) {

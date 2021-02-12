@@ -5,9 +5,10 @@ module Lcms
     module Admin
       class UsersController < AdminController
         before_action :find_user, except: %i(index new create)
+        before_action :set_query_params
 
         def index
-          @query = OpenStruct.new(params[:query])
+          @query = OpenStruct.new @query_params
           @users = users(@query)
         end
 
@@ -50,6 +51,10 @@ module Lcms
 
         def find_user
           @user = User.find(params[:id])
+        end
+
+        def set_query_params
+          @query_params = params[:query]&.permit(:access_code, :email) || {}
         end
 
         def user_params

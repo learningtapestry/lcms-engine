@@ -16,12 +16,12 @@
       <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.reimport_selected'),
             operation: 'reimport',
-            path: reimport_selected_admin_materials_path(query: params[:query]),
+            path: reimport_selected_admin_materials_path(query: @query_params),
             btn_style: 'primary' } %>
       <%= react_component 'admin/MultiSelectedOperation', {
             text: t('.delete_selected'),
             operation: 'delete',
-            path: delete_selected_admin_materials_path(query: params[:query]),
+            path: delete_selected_admin_materials_path(query: @query_params),
             btn_style: 'alert'} %>
       <%# link_to t('.new_material_pdf'), new_admin_material_path(source_type: 'pdf'), class: 'button primary' %>
       <%= link_to t('.new_material'), :new_admin_material, class: 'button primary' %>
@@ -70,7 +70,7 @@
                 <% material.documents.each do |lesson| %>
                   <% lesson = ::Lcms::Engine::DocumentGenerator.document_presenter.new lesson %>
                   <li class="u-text--small">
-                    <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="ub-icon ub-file-gdoc"></i></a>
+                    <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="fab fa-google"></i></a>
                     <%= link_to lesson.title, ::Lcms::Engine::Admin::AdminController.document_path(lesson, request.query_parameters), target: '_blank' %>
                   </li>
                 <% end %>
@@ -78,7 +78,7 @@
             <td class="u-txt--small"><%= material.reimported_at.to_s.presence || material.updated_at.to_s %>
             <td class="materials-table__btns text-left">
               <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { material: material } %>
-              <%= button_to t('ui.delete'), admin_material_path(material, query: params[:query]), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+              <%= button_to t('ui.delete'), admin_material_path(material, query: @query_params), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
               <% unless material.pdf? %>
                 <%# link_to material.pdf_preview_title, preview_pdf_material_path(material), class: 'button warning', target: '_blank' %>
                 <%# link_to material.gdoc_preview_title, preview_gdoc_material_path(material), class: 'button warning', target: '_blank' %>

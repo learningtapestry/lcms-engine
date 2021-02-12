@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import _ from 'lodash'
 import ResourcePickerWindow from './ResourcePickerWindow'
 import ResourcePickerResource from './ResourcePickerResource'
 import PickerButton from '../picker/PickerButton'
