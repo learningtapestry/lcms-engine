@@ -7,6 +7,7 @@ module Lcms
     module Admin
       class DocumentsController < AdminController
         include Lcms::Engine::GoogleCredentials
+        include Lcms::Engine::PathHelper
         include Reimportable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)
@@ -23,7 +24,7 @@ module Lcms
 
           @document = reimport_lesson
           if @document.save
-            redirect_to AdminController.document_path(@document.document),
+            redirect_to dynamic_document_path(@document.document),
                         notice: t('.success', name: @document.document.name, errors: collect_errors)
           else
             render :new

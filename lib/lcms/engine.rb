@@ -23,4 +23,3 @@ module Lcms
 end
 
 require 'lcms/engine/engine'
-require 'lcms/engine/migration'

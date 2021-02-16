@@ -54,7 +54,7 @@ module Lcms
 
       def generate_pdf
         pdf_filename = "#{PDF_S3_FOLDER}/#{material.id}/#{material.base_filename}#{ContentPresenter::PDF_EXT}"
-        pdf = DocumentExporter::PDF::Material.new(material).export
+        pdf = DocumentExporter::Pdf::Material.new(material).export
         @url = S3Service.upload pdf_filename, pdf
         true
       end

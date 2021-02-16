@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Naming/VariableNumber
 shared_examples_for 'navigable' do # rubocop:disable Metrics/BlockLength
   let(:another_grandchild) { create factory }
   let(:child) { create factory }
@@ -71,3 +72,4 @@ shared_examples_for 'navigable' do # rubocop:disable Metrics/BlockLength
     end
   end
 end
+# rubocop:enable Naming/VariableNumber

@@ -268,7 +268,6 @@ en:
           import_glossary: Import Glossary
           sign_out: Sign out
           standards: Standards
-          component_search: Search Component
           sketch_compilation: Compile lesson sketch %{version}
           import_lesson: Import Lesson
           lessons: Lessons

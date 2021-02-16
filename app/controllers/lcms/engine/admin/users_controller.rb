@@ -30,7 +30,7 @@ module Lcms
         def edit; end
 
         def update
-          if @user.update_attributes(user_params)
+          if @user.update(user_params)
             redirect_to edit_admin_user_path(@user), notice: t('.success', user: @user.email)
           else
             render :edit

@@ -15,7 +15,7 @@ module Lcms
 
       MATERIAL_GENERATORS = {
         gdoc: '::Lcms::Engine::MaterialGenerateGdocJob',
-        pdf: '::Lcms::Engine::MaterialGeneratePDFJob'
+        pdf: '::Lcms::Engine::MaterialGeneratePdfJob'
       }.with_indifferent_access.freeze
 
       MATERIAL_PARSE_JOB = '::Lcms::Engine::MaterialParseJob'
@@ -84,7 +84,7 @@ module Lcms
           document.links['materials'] = {}
           CONTENT_TYPES.each do |type|
             [
-              DocumentExporter::PDF::Base.pdf_key(type),
+              DocumentExporter::Pdf::Base.pdf_key(type),
               DocumentExporter::Gdoc::Base.gdoc_key(type)
             ].each { |key| document.links.delete(key) }
           end

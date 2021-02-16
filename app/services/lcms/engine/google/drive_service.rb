@@ -36,12 +36,9 @@ module Lcms
               q: "'#{folder}' in parents and name = '#{file_name}' and mimeType = '#{MIME_FILE}' and trashed = false",
               fields: 'files(id)'
             )
-            return nil if response.files.empty?
-
-            unless response.files.size == 1
-              Rails.logger.warn "Multiple files: more than 1 file with same name: #{file_name}"
-            end
-            response.files[0].id
+            files = Array.wrap(response&.files)
+            Rails.logger.warn "Multiple files: more than 1 file with same name: #{file_name}" unless files.size == 1
+            files.first&.id
           end
         end
 

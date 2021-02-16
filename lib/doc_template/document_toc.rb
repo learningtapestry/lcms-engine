@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DocTemplate
-  class DocumentTOC
+  class DocumentToc
     REGISTERED_METADATA = %i(agenda sections).freeze
     private_constant :REGISTERED_METADATA
 
@@ -11,7 +11,7 @@ module DocTemplate
     #
     def self.parse(opts = {})
       metadata = REGISTERED_METADATA.detect { |m| opts[m]&.children.present? }
-      Objects::TOCMetadata.new opts[metadata]
+      Objects::TocMetadata.new opts[metadata]
     end
   end
 end

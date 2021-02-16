@@ -68,7 +68,8 @@ module Lcms
 
         Dir
           .glob("#{Rails.root}/app/decorators/**/*_decorator*.rb")
-          .each(&method(:require_dependency))
+          .sort
+          .each(&method(:require))
       rescue ActiveRecord::NoDatabaseError
         puts 'ActiveRecord::NoDatabaseError thrown!'
       end

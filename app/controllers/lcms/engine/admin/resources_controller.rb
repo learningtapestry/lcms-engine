@@ -69,7 +69,7 @@ module Lcms
             resource_params[:standard_ids] << std.id
           end
 
-          if @resource.update_attributes(resource_params)
+          if @resource.update(resource_params)
             redirect_to :admin_resources, notice: t('.success', resource_id: @resource.id)
           else
             render :edit

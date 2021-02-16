@@ -8,6 +8,7 @@ describe Lcms::Engine::Standard do
     expect(obj).to be_valid
   end
 
+  # rubocop:disable Naming/VariableNumber
   describe '.search_by_name' do
     let(:alt_name) { 'a-synonym' }
     let(:name) { 'test-std' }
@@ -26,4 +27,5 @@ describe Lcms::Engine::Standard do
       expect(described_class.search_by_name(name).first).to eq standard_2
     end
   end
+  # rubocop:enable Naming/VariableNumber
 end

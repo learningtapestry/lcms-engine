@@ -10,7 +10,7 @@ module Lcms
 
       WAIT_FOR_JOBS = %w(
         Lcms::Engine::MaterialGenerateJob
-        Lcms::Engine::MaterialGeneratePDFJob
+        Lcms::Engine::MaterialGeneratePdfJob
         Lcms::Engine::MaterialGenerateGdocJob
       ).freeze
 

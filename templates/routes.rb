@@ -54,7 +54,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'welcome#index'
-    get '/whoami' => 'admin#whoami'
     get 'google_oauth2_callback' => 'google_oauth2#callback'
     get '/association_picker' => 'association_picker#index'
     resources :reading_assignment_texts

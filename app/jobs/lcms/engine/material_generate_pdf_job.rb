@@ -2,7 +2,7 @@
 
 module Lcms
   module Engine
-    class MaterialGeneratePDFJob < Lcms::Engine::ApplicationJob
+    class MaterialGeneratePdfJob < Lcms::Engine::ApplicationJob
       include ResqueJob
 
       include RetrySimple
@@ -31,12 +31,12 @@ module Lcms
       def links_from_upload(material, document)
         material = material_presenter(material, document)
 
-        basename = "#{DocumentExporter::PDF::Base.s3_folder}/#{material.pdf_filename}"
+        basename = "#{::DocumentExporter::Pdf::Base.s3_folder}/#{material.pdf_filename}"
         pdf_filename = "#{basename}#{ContentPresenter::PDF_EXT}"
         thumb_filename = "#{basename}#{ContentPresenter::THUMB_EXT}"
 
-        pdf = DocumentExporter::PDF::Material.new(material).export
-        thumb = DocumentExporter::Thumbnail.new(pdf).export
+        pdf = ::DocumentExporter::Pdf::Material.new(material).export
+        thumb = ::DocumentExporter::Thumbnail.new(pdf).export
 
         pdf_url = S3Service.upload pdf_filename, pdf
         thumb_url = S3Service.upload thumb_filename, thumb

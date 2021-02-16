@@ -13,7 +13,7 @@ separately, simplifying the client applications in the process.
 
 |Branch|Rails version|
 |------|-------------|
-|master|Rails 6|
+|master|Rails 6.1.2.1|
 |0.3.x|Rails 5.2.4.5|
 |0.1.x|Rails 4.2.11.3|
 

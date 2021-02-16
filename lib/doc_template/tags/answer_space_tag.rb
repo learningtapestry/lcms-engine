@@ -14,7 +14,7 @@ module DocTemplate
         num_of_lines = SPACE_SIZE[opts[:value].try(:to_sym)]
         if num_of_lines
           space = '<br>' * num_of_lines
-          @content = node.to_html.sub(/\[#{TAG_NAME}:\s?[s|m|l]\]/i, space)
+          @content = node.to_html.sub(/\[#{TAG_NAME}:\s?[sml]\]/i, space)
         end
         replace_tag node
         self

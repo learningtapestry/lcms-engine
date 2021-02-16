@@ -14,7 +14,7 @@ module Lcms
       before_save :set_resource_from_metadata
 
       store_accessor :foundational_metadata
-      serialize :toc, DocTemplate::Objects::TOCMetadata
+      serialize :toc, DocTemplate::Objects::TocMetadata
 
       scope :actives,   -> { where(active: true) }
       scope :inactives, -> { where(active: false) }

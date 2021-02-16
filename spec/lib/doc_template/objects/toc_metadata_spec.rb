@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe DocTemplate::Objects::TOCMetadata do
+describe DocTemplate::Objects::TocMetadata do
   let(:empty_toc) { {} }
   let(:l2_toc) do
     {

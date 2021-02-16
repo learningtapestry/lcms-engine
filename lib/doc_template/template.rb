@@ -101,7 +101,7 @@ module DocTemplate
           placeholder: nil
         }
 
-        @toc ||= ::DocTemplate::DocumentTOC.parse(options) unless material?
+        @toc ||= ::DocTemplate::DocumentToc.parse(options) unless material?
       end
 
       self

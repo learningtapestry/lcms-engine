@@ -15,6 +15,7 @@ describe DocTemplate::Objects::AgendaMetadata do
       end
     end
 
+    # rubocop:disable Naming/VariableNumber
     describe 'correct data' do
       describe 'calculates time hierarchily' do
         let(:agenda_table) do
@@ -116,5 +117,6 @@ describe DocTemplate::Objects::AgendaMetadata do
         end
       end
     end
+    # rubocop:enable Naming/VariableNumber
   end
 end

@@ -27,6 +27,9 @@ Layout/MultilineMethodCallIndentation:
 Lint/AmbiguousBlockAssociation:
   Enabled: false
 
+Lint/OrAssignmentToConstant:
+  Enabled: false
+
 Metrics/AbcSize:
   Max: 39
 
@@ -36,7 +39,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'lcms-engine.gemspec'
     - 'lib/tasks/elasticsearch.rake'
-  ExcludedMethods: ['guard', 'included', 'class_eval']
+  IgnoredMethods: ['guard', 'included', 'class_eval']
 
 Metrics/ClassLength:
   Max: 250
