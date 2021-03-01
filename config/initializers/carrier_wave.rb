@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'fog/aws'
+
 CarrierWave.configure do |config|
   if (Rails.env.development? && ENV['AWS_ACCESS_KEY_ID'].blank?) || Rails.env.test?
     config.storage = :file
