@@ -71,41 +71,45 @@ module Lt
         end
 
         def find_or_create_resource
-          # if the resource exists, return it
-          resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory)
-          return update(resource) if resource
+          # rubocop:disable Metrics/BlockLength
+          ::Lcms::Engine::Resource.with_advisory_lock('find_or_create_resource') do
+            # if the resource exists, return it
+            resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory)
+            return update(resource) if resource
 
-          # else, build missing parents until we build the resource itself.
-          parent = nil
-          directory.each_with_index do |name, index|
-            resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory[0..index])
-            if resource
-              parent = resource
-              next
-            end
-
-            resource = build_new_resource(parent, name, index)
-            unless last_item?(index)
-              resource.save!
-              unless resource.subject?
-                self.class.send("update_#{resource.curriculum_type}s_level_position_for", resource.self_and_siblings)
+            # else, build missing parents until we build the resource itself.
+            parent = nil
+            directory.each_with_index do |name, index|
+              resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory[0..index])
+              if resource
+                parent = resource
+                next
               end
-              parent = resource
-              next
+
+              resource = build_new_resource(parent, name, index)
+              unless last_item?(index)
+                resource.save!
+                unless resource.subject?
+                  self.class.send("update_#{resource.curriculum_type}s_level_position_for", resource.self_and_siblings)
+                end
+                parent = resource
+                next
+              end
+
+              if mid_assessment?
+                set_mid_assessment_position(parent, resource)
+              elsif prerequisite?
+                set_prerequisite_position(parent, resource)
+              elsif opr?
+                set_opr_position(parent, resource)
+              else
+                set_lesson_position(parent, resource)
+              end
             end
 
-            if mid_assessment?
-              set_mid_assessment_position(parent, resource)
-            elsif prerequisite?
-              set_prerequisite_position(parent, resource)
-            elsif opr?
-              set_opr_position(parent, resource)
-            else
-              set_lesson_position(parent, resource)
-            end
+            update resource
           end
-
-          update resource
+          # rubocop:enable Metrics/BlockLength
         end
 
         private
@@ -143,7 +147,7 @@ module Lt
             # ELA G1 M1 U2 Lesson 1
             curr ||= directory
             res = ::Lcms::Engine::Resource.new(metadata: metadata)
-            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.titleize).join(' ')
+            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.to_s.titleize).join(' ')
           end
         end
 
@@ -164,7 +168,7 @@ module Lt
 
         def grade
           @grade ||= begin
-            value = context[:grade].try(:downcase)
+            value = context[:grade].to_s.downcase
             value = "grade #{value.to_i}" if number?(value)
             value # if Grades::GRADES.include?(value)
           end
@@ -249,11 +253,11 @@ module Lt
           end
         end
 
-        def update(resource)
+        def update(resource) # rubocop:disable Metrics/AbcSize
           return if resource.nil?
 
           # if resource changed to prerequisite, fix positioning
-          prereq = context['type'].to_s.casecmp('prereq').zero?
+          prereq = context['type'].to_s.casecmp('prereq').to_i.zero?
           fix_prereq_position(resource) if prereq && !resource.prerequisite?
 
           # Update resource with document metadata
@@ -261,7 +265,7 @@ module Lt
           resource.teaser = context['teaser'] if context['teaser'].present?
           resource.description = context['description'] if context['description'].present?
           resource.tag_list << 'prereq' if prereq
-          resource.tag_list << 'opr' if context['type'].to_s.casecmp('opr').zero?
+          resource.tag_list << 'opr' if context['type'].to_s.casecmp('opr').to_i.zero?
           resource.save
 
           resource
