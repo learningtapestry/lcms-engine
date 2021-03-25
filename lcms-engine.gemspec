@@ -102,6 +102,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'virtus', '~> 1.0.5'
   s.add_dependency 'will_paginate', '~> 3.0.7'
   s.add_dependency 'will_paginate-bootstrap', '~> 1'
+  s.add_dependency 'with_advisory_lock', '~> 4.6'
 
   s.add_development_dependency 'capybara-screenshot', '~> 1'
   s.add_development_dependency 'database_cleaner', '~> 1'
