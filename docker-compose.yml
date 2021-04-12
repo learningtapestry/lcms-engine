@@ -14,7 +14,8 @@ services:
 
   app:
     build: .
-    command: bash -c "bundle install && yarn && tail -f /dev/null"
+    # Used to install native gem which solves build errors for nokogumbo and other gems
+    command: bash -c "gem install nokogiri && bundle install && yarn && tail -f /dev/null"
     env_file:
       - spec/dummy/.env.docker
     environment:

@@ -71,7 +71,7 @@
                   <% lesson = ::Lcms::Engine::DocumentGenerator.document_presenter.new lesson %>
                   <li class="u-text--small">
                     <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="fab fa-google"></i></a>
-                    <%= link_to lesson.title, dynamic_path(lesson, request.query_parameters), target: '_blank' %>
+                    <%= link_to lesson.title, dynamic_path(:material_path, lesson, request.query_parameters), target: '_blank' %>
                   </li>
                 <% end %>
               </ul>

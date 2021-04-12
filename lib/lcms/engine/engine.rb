@@ -66,8 +66,14 @@ module Lcms
         # Check if the DB exists
         next unless ActiveRecord::Base.connection
 
+        # Possible decorators
+        decorators = %W[
+          #{Rails.root}/app/decorators/**/*_decorator*.rb
+          #{Rails.root}/app/**/lcms/engine/*_decorator*.rb
+        ]
+
         Dir
-          .glob("#{Rails.root}/app/decorators/**/*_decorator*.rb")
+          .glob(decorators)
           .sort
           .each(&method(:require))
       rescue ActiveRecord::NoDatabaseError
