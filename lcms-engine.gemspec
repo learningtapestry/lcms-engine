@@ -58,7 +58,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick', '~> 4.10', '>= 4.10.1'
   s.add_dependency 'nested_form', '~> 0.3.2'
   s.add_dependency 'nikkou', '~> 0.0.5'
-  s.add_dependency 'nokogiri', '~> 1.10', '>= 1.10.8'
+  s.add_dependency 'nokogiri', '~> 1.11', '>= 1.11.4'
   s.add_dependency 'oj', '~> 3.10', '>= 3.10.2'
   s.add_dependency 'oj_mimic_json', '~> 1.0', '>= 1.0.1'
   s.add_dependency 'pandoc-ruby', '~> 2.0', '>= 2.0.2'
