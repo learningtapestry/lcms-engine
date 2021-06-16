@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.6'
+  s.required_ruby_version = '>= 2.7'
 
   s.add_dependency 'activejob-retry', '~> 0.6.3'
   s.add_dependency 'active_model_serializers', '~> 0.10.10'
@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails', '~> 4.3', '>= 4.3.5'
   s.add_dependency 'js-routes', '~> 1.4', '>= 1.4.9'
   s.add_dependency 'lt-google-api', '~> 0.2', '>= 0.2.2'
-  s.add_dependency 'lt-lcms', '~> 0.4', '>= 0.4.1'
+  s.add_dependency 'lt-lcms', '~> 0.4', '>= 0.4.2'
   s.add_dependency 'migration_data', '~> 0.6'
   s.add_dependency 'mini_magick', '~> 4.10', '>= 4.10.1'
   s.add_dependency 'nested_form', '~> 0.3.2'
@@ -97,7 +97,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pry-byebug', '~> 3.7'
   s.add_development_dependency 'pry-rails', '~> 0.3.5'
   s.add_development_dependency 'rspec-rails', '~> 4.0.2'
-  s.add_development_dependency 'rubocop', '~> 1.8'
+  s.add_development_dependency 'rubocop', '~> 1.17'
   s.add_development_dependency 'safe_attributes', '~> 1.0.10'
   s.add_development_dependency 'sdoc', '~> 2'
   s.add_development_dependency 'seedbank', '~> 0.3'

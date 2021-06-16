@@ -88,7 +88,7 @@ module Lcms
 
         def metadata_from_dir(dir)
           pairs = hierarchy[0...dir.size].zip(dir)
-          Hash[pairs].compact.stringify_keys
+          pairs.to_h.compact.stringify_keys
         end
 
         def find_by_directory(*dir)

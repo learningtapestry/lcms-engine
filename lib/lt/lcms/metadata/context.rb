@@ -246,13 +246,11 @@ module Lt
         end
 
         def unit
-          @unit ||= begin
-            if assessment?
-              type # assessment-mid || assessment-end
-            else
-              ela? ? "unit #{context[:unit]}" : "topic #{context[:topic]}"
-            end
-          end
+          @unit ||= if assessment?
+                      type # assessment-mid || assessment-end
+                    else
+                      ela? ? "unit #{context[:unit]}" : "topic #{context[:topic]}"
+                    end
         end
 
         def update(resource) # rubocop:disable Metrics/AbcSize

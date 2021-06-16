@@ -75,8 +75,7 @@ module Lcms
         val =  resource.lesson? ? resource.level_position : nil
         return val if val
 
-        lesson = resource.metadata['lesson']
-        lesson =~ lesson.try(:match, /(\d+)/).try(:[], 1).to_i
+        resource.metadata['lesson'].to_s.match(/(\d+)/)&.captures&.first.to_i
       end
     end
   end

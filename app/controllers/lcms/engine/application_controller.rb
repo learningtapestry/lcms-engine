@@ -21,7 +21,7 @@ module Lcms
       # Raise translation missing errors in controllers too
       def t(key, options = {})
         options[:raise] = true
-        translate(key, options)
+        translate(key, **options)
       end
 
       def check_user_has_survey_filled_in

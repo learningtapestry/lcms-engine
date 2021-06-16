@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.7.4
 
 ENV APP_PATH /app/
 ENV LANG C.UTF-8
@@ -7,7 +7,7 @@ WORKDIR $APP_PATH
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list  \
-    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && apt-get update -qqy \
     && apt-get install -y --no-install-recommends nodejs yarn \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
@@ -18,7 +18,7 @@ ADD . $APP_PATH
 # Install gems
 ADD lcms-engine.gemspec $APP_PATH
 ADD Gemfile* $APP_PATH
-RUN gem install bundler -v 1.17.3 \
+RUN gem install bundler -v 2.2.19 \
     && bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 \
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \

@@ -16,6 +16,9 @@ require 'email_spec'
 require 'email_spec/rspec'
 require 'faker'
 
+Warning[:deprecated] = true
+Warning[:experimental] = true
+
 Dir[File.expand_path('support/**/*.rb', __dir__)].sort.each(&method(:require))
 Dir[File.expand_path('**/shared_examples/*.rb')].sort.each(&method(:require))
 
