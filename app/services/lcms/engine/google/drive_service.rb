@@ -33,7 +33,7 @@ module Lcms
             folder = @options[:folder_id] || parent
             file_name = document.base_filename
             response = service.list_files(
-              q: "'#{folder}' in parents and name = '#{file_name}' and mimeType = '#{MIME_FILE}' and trashed = false",
+              q: %("#{folder}" in parents and name = "#{file_name}" and mimeType = "#{MIME_FILE}" and trashed = false),
               fields: 'files(id)'
             )
             return nil if response.files.empty?
@@ -62,14 +62,9 @@ module Lcms
         attr_reader :document, :options
 
         def folder_query(folder_name, parent_id)
-          query = %(
-        '#{parent_id}' in parents and name = '#{folder_name}' and
-        mimeType = '#{::Lt::Google::Api::Drive::MIME_FOLDER}' and
-        trashed = false)
-          service.list_files(
-            q: query,
-            fields: 'files(id)'
-          )
+          query = %("#{parent_id}" in parents and name = "#{folder_name}" and mimeType =
+                  "#{::Lt::Google::Api::Drive::MIME_FOLDER}" and trashed = false)
+          service.list_files(q: query, fields: 'files(id)')
         end
 
         def subfolder(folder_name, parent_id = FOLDER_ID)
