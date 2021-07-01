@@ -179,16 +179,18 @@ module Lt
         end
 
         def lesson
-          @lesson ||= begin
-            return nil if assessment? # assessment is a unit now, so lesson -> nil
-
-            num = if ela? && prerequisite?
-                    ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
-                  else
-                    context[:lesson].presence
-                  end
-            "lesson #{num}" if num.present?
-          end
+          @lesson ||=
+            if assessment?
+              # assessment is a unit now, so lesson -> nil
+              nil
+            else
+              num = if ela? && prerequisite?
+                      ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
+                    else
+                      context[:lesson].presence
+                    end
+              "lesson #{num}" if num.present?
+            end
         end
 
         def mid_assessment?
