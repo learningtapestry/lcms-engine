@@ -12,8 +12,8 @@ namespace :thumbnails do # rubocop:disable Metrics/BlockLength
       generate_thumbnails 'Generic  ', Resource.generic_resources
     end
 
-    task all: %i(others resources) do
-    end
+    # task all: %i(others resources) do
+    # end
 
     def build_progressbar(name, qset)
       ProgressBar.create title: "Generate thumbnails for #{name}", total: qset.count

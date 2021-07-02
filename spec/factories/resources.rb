@@ -5,7 +5,7 @@ FactoryBot.define do
     curriculum { ::Lcms::Engine::Curriculum.default || create(:curriculum) }
     curriculum_type { 'lesson' }
     metadata do
-      { subject: 'ela', grade: 'grade 2', 'module': 'module 1',
+      { subject: 'ela', grade: 'grade 2', module: 'module 1',
         unit: 'unit 1', lesson: 'lesson 1' }
     end
     resource_type { ::Lcms::Engine::Resource.resource_types[:resource] }
@@ -20,7 +20,7 @@ FactoryBot.define do
 
     trait :module do
       curriculum_type { 'module' }
-      metadata { { subject: 'ela', grade: 'grade 2', 'module': 'module 1' } }
+      metadata { { subject: 'ela', grade: 'grade 2', module: 'module 1' } }
     end
   end
 end

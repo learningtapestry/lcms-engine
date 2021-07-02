@@ -4,9 +4,9 @@ module Lcms
   module Engine
     module Admin
       class AdminController < Lcms::Engine::ApplicationController
-        CONFIG_PATH ||= Rails.root.join('config', 'lcms-admin.yml')
+        CONFIG_PATH = Rails.root.join('config', 'lcms-admin.yml')
 
-        DEFAULTS ||= {
+        DEFAULTS = {
           layout: 'lcms/engine/admin',
           materials_query: Lcms::Engine::AdminMaterialsQuery
         }.freeze

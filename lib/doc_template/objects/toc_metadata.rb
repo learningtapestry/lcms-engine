@@ -27,19 +27,17 @@ module DocTemplate
           children.any? && children.all? { |c| c.excluded?(excludes) }
         end
 
-        def time_with(excludes) # rubocop:disable Metrics/PerceivedComplexity
+        def time_with(excludes)
           # Optional and nothing to exclude explicitly
           return excludes.include?(anchor) ? time : 0 if optional
           # General and excluded explicitly
           return 0 if excludes.include?(anchor)
 
-          # do not re-caclculate time if
+          # do not recalculate time if
           # - there are no optional children
           # - no excludes passed
           # - there are no children at all
-          if children.any?(&:optional)
-            children.sum { |c| c.time_with(excludes) }
-          elsif children.blank? || excludes.blank?
+          if children.blank? || excludes.blank?
             time
           else
             children.sum { |c| c.time_with(excludes) }

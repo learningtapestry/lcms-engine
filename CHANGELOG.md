@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.1.4...HEAD)
 
+### Changed
+
+- Bump lt-google-api to 0.2.3
+- Bump lt-lcms to 0.4.3
+
 ## [0.1.4](https://github.com/learningtapestry/lcms-engine/compare/v0.1.3...v0.1.4) - 2020.08.20
 
 ### Changed
