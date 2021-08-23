@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.1.4...HEAD)
 
+### Added
+
+- Materials and Documents can now be imported asynchronous [@paranoicsan](https://github.com/paranoicsan)
+
 ### Changed
 
 - Bump lt-google-api to 0.2.3

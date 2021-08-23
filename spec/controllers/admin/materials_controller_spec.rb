@@ -67,6 +67,17 @@ describe Lcms::Engine::Admin::MaterialsController do
         end
       end
     end
+
+    context 'when asynchronous import was requested' do
+      let(:params) { { async: '1', link: link } }
+
+      before { allow(controller).to receive(:bulk_import) }
+
+      it 'calls bulk import for that particular document' do
+        expect(controller).to receive(:bulk_import).with(Array.wrap(link))
+        subject
+      end
+    end
   end
 
   describe '#destroy' do

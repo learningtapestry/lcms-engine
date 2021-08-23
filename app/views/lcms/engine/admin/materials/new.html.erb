@@ -4,6 +4,10 @@
   <%= simple_form_for @material_form, url: [:admin, :materials] do |f| %>
     <%= f.hidden_field :source_type, value: @material_form.source_type %>
     <%= f.input :link, label: t('ui.url') %>
+    <p>
+      <%= f.check_box :async, checked: true %>
+      <span><small><%= t('ui.async') %></small></span>
+    </p>
     <%= f.button :submit, t('.submit') %>
   <% end %>
 </div>

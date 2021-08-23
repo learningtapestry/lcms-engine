@@ -18,22 +18,11 @@ module Lcms
         end
 
         def create
-          if form_params[:link].match?(RE_GOOGLE_FOLDER)
-            # Import all from a folder
-            file_ids = gdoc_files_from form_params[:link]
-            return bulk_import(file_ids) && render(:import) if file_ids.any?
+          @document = DocumentForm.new(form_params.except(:async, :with_materials))
 
-            flash.now[:alert] = t '.empty_folder'
-            return render(:new)
-          end
+          return(create_multiple) if form_params[:link].match?(RE_GOOGLE_FOLDER)
 
-          @document = reimport_lesson
-          if @document.save
-            redirect_to AdminController.document_path(@document.document),
-                        notice: t('.success', name: @document.document.name, errors: collect_errors)
-          else
-            render :new
-          end
+          form_params[:async].to_i.zero? ? create_sync : create_async
         end
 
         def destroy
@@ -80,6 +69,32 @@ module Lcms
           "Errors: #{@document.service_errors.join(' ')}"
         end
 
+        def create_async
+          bulk_import(Array.wrap(form_params[:link]))
+          render :import
+        end
+
+        def create_multiple
+          # Import all from a folder
+          file_ids = gdoc_files_from form_params[:link]
+          return bulk_import(file_ids) && render(:import) if file_ids.any?
+
+          flash.now[:alert] = t 'lcms.engine.admin.documents.create.empty_folder'
+          render(:new)
+        end
+
+        def create_sync
+          reimport_lesson_materials if form_params[:with_materials].present?
+          if @document.save
+            notice = t('lcms.engine.admin.documents.create.success',
+                       name: @document.document.name,
+                       errors: collect_errors)
+            redirect_to AdminController.document_path(@document.document), notice: notice
+          else
+            render :new
+          end
+        end
+
         def find_selected
           return head(:bad_request) unless params[:selected_ids].present?
 
@@ -97,16 +112,10 @@ module Lcms
         def form_params
           @form_params ||=
             begin
-              data = params.require(:document_form).permit(:link, :link_fs, :reimport, :with_materials)
+              data = params.require(:document_form).permit(:async, :link, :link_fs, :reimport, :with_materials)
               data.delete(:with_materials) if data[:with_materials].to_i.zero?
               data
             end
-        end
-
-        def reimport_lesson
-          reimport_lesson_materials if form_params[:with_materials].present?
-
-          DocumentForm.new form_params.except(:with_materials)
         end
 
         def reimport_lesson_materials
