@@ -29,7 +29,7 @@
     "url": "git+https://github.com/learningtapestry/lcms-engine.git"
   },
   "engines": {
-    "node": ">=10.16.1",
+    "node": ">=14.17.0",
     "yarn": ">=1.17.1"
   },
   "author": "Alexander Kuznetsov <paranoic.san@gmail.com>",

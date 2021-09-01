@@ -44,7 +44,7 @@ module DocTemplate
 
       attribute :children, Array[Activity]
       attribute :idx, Integer
-      attribute :task_counter, Hash[String => Integer], default: {}
+      attribute :task_counter, Hash[String => Integer], default: {} # rubocop:disable Style/HashConversion
 
       def self.build_from(data)
         copy = Marshal.load Marshal.dump(data)

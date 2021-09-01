@@ -2,6 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/9a41f6860cc4531fc27e/maintainability)](https://codeclimate.com/github/learningtapestry/lcms-engine/maintainability)
 [![Codeship Status for learningtapestry/lcms-engine](https://app.codeship.com/projects/d08d0660-26f7-0137-bc36-1692d0f2de6b/status?branch=master)](https://app.codeship.com/projects/330483)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 
 Implements a Rails engine for Learning Content Management System (LCMS) applications.
 
@@ -83,8 +84,8 @@ overridden as easily as Ruby classes and modules, but you can always provide you
 the same files, overwriting the ones provided by the engine.
 
 ## Requirements
-- Ruby 2.5 or higher
-- Rails 5.2.4 or higher
+- Ruby 2.7 or higher
+- Rails 6.1 or higher
 - Postgres 9.6 or higher
 
 ## Installation
@@ -95,7 +96,9 @@ gem 'lcms-engine','~> 0.1' # Rails 4.2
 ```ruby
 gem 'lcms-engine','~> 0.2' # Rails 5.2
 ```
-
+```ruby
+gem 'lcms-engine' # Rails 6.1
+```
 
 And then execute:
 ```bash
@@ -212,12 +215,15 @@ $ brew cask install chromedriver
 
 Launch the containers
 ```sh
-$ docker-compose start app
+$ docker compose build
+$ docker compose start
+$ docker compose exec app sh -c 'bin/rails db:create'
+$ docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"
 ```
 
 Start the specs
 ```sh
-$ docker-compose exec app sh -c 'bundle exec rspec'
+$ docker compose exec app sh -c 'bundle exec rspec'
 ```
 
 

@@ -16,7 +16,7 @@ AllCops:
     - spec/dummy/bin/*
     - templates/*
   NewCops: enable
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
 
 Layout/LineLength:
   Max: 120

@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - [BREAKING] Remove `Lcms::Engine::Component` model - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] Drop support to Ruby bellow 2.7 - [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.3.1](https://github.com/learningtapestry/lcms-engine/compare/v0.3.0...v0.3.1) - 2021.02.12
 
