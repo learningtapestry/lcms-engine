@@ -12,20 +12,21 @@ services:
     ports:
       - 6379
 
-  app:
+  app-ror4:
     build: .
-    command: bash -c "bundle install && yarn && tail -f /dev/null"
+    # Used to install native gem which solves build errors for nokogumbo and other gems
+    command: bash -c "gem install nokogiri && bundle install && yarn && tail -f /dev/null"
     env_file:
       - spec/dummy/.env.docker
     environment:
       REDIS_URL: redis://redis:6379/1
     volumes:
       - .:/app
-      - bundle:/usr/local/bundle
+      - bundle-ror4:/usr/local/bundle
     depends_on:
       - db
       - redis
 
 volumes:
-  bundle:
+  bundle-ror4:
   postgres:
