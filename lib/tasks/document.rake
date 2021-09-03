@@ -39,10 +39,10 @@ namespace :document do
       topic['lessons'].push(
         'file_name' => file_name,
         'identifier' => 'ENY-' \
-          "G#{grade_key.split('-').last}-" \
-          "M#{module_key.split('-').last}-" \
-          "T#{topic_key.split('-').last}-" \
-          "L#{lesson_number}",
+                        "G#{grade_key.split('-').last}-" \
+                        "M#{module_key.split('-').last}-" \
+                        "T#{topic_key.split('-').last}-" \
+                        "L#{lesson_number}",
         'name' => document.metadata['title_text'],
         'standards' => document.metadata['standard'],
         'description' => Nokogiri::HTML(document.metadata['description']).text,

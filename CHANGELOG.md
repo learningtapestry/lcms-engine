@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Bump Rails to 6.1.2.1 - [@paranoicsan](https://github.com/paranoicsan)
+- Bump lt-google-api to 0.2.3
+- Bump lt-lcms to 0.4.3
+- Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concer
 
 ### Removed
 

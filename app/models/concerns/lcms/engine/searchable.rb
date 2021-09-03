@@ -47,6 +47,13 @@ module Lcms
         def should_index?
           !skip_indexing && search_repo.index_exists?
         end
+
+        #
+        # Explicitly skip indexing as we do not use it now
+        #
+        def skip_indexing
+          true
+        end
       end
     end
   end
