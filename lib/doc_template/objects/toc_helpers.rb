@@ -7,7 +7,7 @@ module DocTemplate
 
       def level1_by_title(title)
         l1 = children.find { |c| !c.handled && c.title.parameterize == title }
-        raise DocumentError, "Level1 header #{title} not found at metadata" unless l1.present?
+        raise Lcms::Engine::DocumentError, "Level1 header #{title} not found at metadata" unless l1.present?
 
         l1.handled = true
         l1
@@ -18,12 +18,12 @@ module DocTemplate
           l2 = c.children.find { |c1| c1.title.parameterize == title }
           return l2 if l2.present?
         end
-        raise DocumentError, "Level2 header #{title} not found at metadata"
+        raise Lcms::Engine::DocumentError, "Level2 header #{title} not found at metadata"
       end
 
       def find_by_anchor(anchor)
         l1 = children.find { |c| c.anchor == anchor }
-        raise DocumentError, "Anchor #{anchor} not found at metadata" if l1.blank?
+        raise Lcms::Engine::DocumentError, "Anchor #{anchor} not found at metadata" if l1.blank?
 
         l1
       end
@@ -34,7 +34,7 @@ module DocTemplate
       #     result = s.children.detect { |c| c.anchor == anchor }
       #     return result if result.present?
       #   end
-      #   raise DocumentError, "Anchor #{anchor} not found at metadata"
+      #   raise Lcms::Engine::DocumentError, "Anchor #{anchor} not found at metadata"
       # end
 
       class_methods do

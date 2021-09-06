@@ -11,7 +11,7 @@ shared_examples 'content_tag' do # rubocop:disable Metrics/BlockLength
       HTML
     end
 
-    it { expect { subject }.to raise_error(DocumentError) }
+    it { expect { subject }.to raise_error(Lcms::Engine::DocumentError) }
   end
 
   context 'with soft return before start tag' do
@@ -22,7 +22,7 @@ shared_examples 'content_tag' do # rubocop:disable Metrics/BlockLength
       HTML
     end
 
-    it { expect { subject }.to raise_error(DocumentError) }
+    it { expect { subject }.to raise_error(Lcms::Engine::DocumentError) }
   end
 
   context 'with soft return before stop tag' do
@@ -34,7 +34,7 @@ shared_examples 'content_tag' do # rubocop:disable Metrics/BlockLength
       HTML
     end
 
-    it { expect { subject }.to raise_error(DocumentError) }
+    it { expect { subject }.to raise_error(Lcms::Engine::DocumentError) }
   end
 
   context 'with soft return after stop tag' do
@@ -46,6 +46,6 @@ shared_examples 'content_tag' do # rubocop:disable Metrics/BlockLength
       HTML
     end
 
-    it { expect { subject }.to raise_error(DocumentError) }
+    it { expect { subject }.to raise_error(Lcms::Engine::DocumentError) }
   end
 end

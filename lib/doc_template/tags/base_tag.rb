@@ -35,7 +35,7 @@ module DocTemplate
         # need to remove unicode spaces bc they're not handled by [[:graph:]]
         return unless node.content.gsub(UNICODE_SPACES_RE, '') =~ SOFT_RETURN_RE
 
-        raise ::DocumentError,
+        raise ::Lcms::Engine::DocumentError,
               "Soft return for #{self.class::TAG_NAME} detected: #{node.content}, use hard return instead"
       end
 
@@ -104,7 +104,7 @@ module DocTemplate
         if node == opts[:parent_node]
           opts[:iteration] = opts[:iteration].to_i + 1
           if opts[:iteration] > DocTemplate::Document::MAX_PARSE_ITERATIONS
-            raise ::DocumentError, "Loop detected for node:<br>#{node}"
+            raise ::Lcms::Engine::DocumentError, "Loop detected for node:<br>#{node}"
           end
         end
         parsed = ::DocTemplate::Document.parse(Nokogiri::HTML.fragment(node), opts.merge(level: 1))

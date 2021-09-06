@@ -62,7 +62,7 @@ module DocTemplate
     def check_loop_tag(name, value)
       if @opts.dig(:last_tag, :name) == name && @opts.dig(:last_tag, :value) == value &&
          @opts.dig(:last_tag, :iteration) > DocTemplate::Document::MAX_PARSE_ITERATIONS
-        raise ::DocumentError, "Loop detected for tag #{name} with value #{value}"
+        raise ::Lcms::Engine::DocumentError, "Loop detected for tag #{name} with value #{value}"
       end
     end
 
@@ -154,7 +154,7 @@ module DocTemplate
     def handle_invalid_tag(node)
       return if ::DocTemplate::FULL_TAG.match(node.text).present?
 
-      raise DocumentError, "No closing bracket for node:<br>#{node.to_html}"
+      raise Lcms::Engine::DocumentError, "No closing bracket for node:<br>#{node.to_html}"
     end
 
     def parse_node(node)
