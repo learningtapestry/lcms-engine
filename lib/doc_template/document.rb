@@ -171,8 +171,7 @@ module DocTemplate
       store_last_tag tag_name, tag_value
 
       parsed_content = parsed_tag.content.presence || parsed_tag.render.to_s
-      sanitized_content = ::DocTemplate.config['sanitizer'].constantize
-                            .post_processing(parsed_content, @opts)
+      sanitized_content = ::DocTemplate.sanitizer.post_processing(parsed_content, @opts)
 
       return if TAGS_WITHOUT_PARTS.include?(tag::TAG_NAME)
 

@@ -108,7 +108,8 @@ module DocumentExporter
       # Deletes files of previous versions
       #
       def delete_previous_versions_from(folder)
-        drive_service.service.list_files(q: "'#{folder}' in parents").files.each do |file|
+        files = drive_service.service.list_files(q: "'#{folder}' in parents")&.files
+        Array.wrap(files).each do |file|
           next unless file.name =~ VERSION_RE
 
           drive_service.service.delete_file file.id
@@ -136,7 +137,9 @@ module DocumentExporter
       end
 
       def post_processing
-        Lcms::Engine::Google::ScriptService.new(document).execute(@id)
+        Retriable.retriable(base_interval: 5, tries: 10) do
+          Lcms::Engine::Google::ScriptService.new(document).execute(@id)
+        end
       end
     end
   end
