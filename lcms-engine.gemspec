@@ -73,6 +73,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'resque', '~> 2.0', '>= 2.0.0'
   s.add_dependency 'resque-scheduler', '~> 4.4', '>= 4.4.0'
   s.add_dependency 'rest-client', '~> 2.1', '>= 2.1.0'
+  s.add_dependency 'retriable', '~> 3.1'
   s.add_dependency 'ruby-progressbar', '~> 1.10', '>= 1.10.1'
   s.add_dependency 'rubyzip', '~> 2'
   s.add_dependency 'sanitize', '>= 5.1', '< 5.3'
