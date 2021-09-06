@@ -8,7 +8,7 @@ module DocTemplate
       def no_end_tag_for(node)
         msg = "No tag with END value for: #{self.class::TAG_NAME.upcase}<br>" \
               "<em>#{node.parent.try(:inner_html)}</em>"
-        raise DocumentError, msg
+        raise Lcms::Engine::DocumentError, msg
       end
 
       #

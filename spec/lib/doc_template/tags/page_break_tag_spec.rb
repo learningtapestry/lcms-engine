@@ -28,6 +28,6 @@ describe DocTemplate::Tags::PageBreakTag do
   context 'with soft returns on tag' do
     let(:original_content) { '<p><span>[page-break]</span>some content</p>' }
 
-    it { expect { subject }.to raise_error(DocumentError) }
+    it { expect { subject }.to raise_error(Lcms::Engine::DocumentError) }
   end
 end

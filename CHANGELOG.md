@@ -11,7 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump Rails to 6.1.2.1 - [@paranoicsan](https://github.com/paranoicsan)
 - Bump lt-google-api to 0.2.3
 - Bump lt-lcms to 0.4.3
-- Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concer
+- Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concern
+
+### Changed
+
+- [BREAKING] `DocumentError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::DocumentError` - paranoicsan
+- [BREAKING] `MaterialError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::MaterialError` - paranoicsan
 
 ### Removed
 
