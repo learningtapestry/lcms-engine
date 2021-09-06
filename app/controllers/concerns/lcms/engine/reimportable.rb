@@ -5,7 +5,7 @@ module Lcms
     module Reimportable
       private
 
-      def create_from_folder
+      def create_multiple
         # Import all from a folder
         file_ids = gdoc_files_from form_params[:link]
         return bulk_import(file_ids) && render(:import) if file_ids.any?

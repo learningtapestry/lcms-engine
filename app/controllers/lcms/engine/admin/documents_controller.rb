@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'lt/lcms/lesson/downloader/gdoc'
-
 module Lcms
   module Engine
     module Admin
@@ -20,15 +18,11 @@ module Lcms
         end
 
         def create
-          return create_from_folder if form_params[:link].match?(RE_GOOGLE_FOLDER)
+          @document = DocumentForm.new(form_params.except(:async, :with_materials))
 
-          @document = reimport_lesson
-          if @document.save
-            redirect_to dynamic_document_path(@document.document),
-                        notice: t('.success', name: @document.document.name, errors: collect_errors)
-          else
-            render :new
-          end
+          return create_multiple if form_params[:link].match?(RE_GOOGLE_FOLDER)
+
+          form_params[:async].to_i.zero? ? create_sync : create_async
         end
 
         def destroy
@@ -57,6 +51,23 @@ module Lcms
         end
 
         private
+
+        def create_async
+          bulk_import(Array.wrap(form_params[:link]))
+          render :import
+        end
+
+        def create_sync
+          reimport_lesson_materials if form_params[:with_materials].present?
+          if @document.save
+            notice = t('lcms.engine.admin.documents.create.success',
+                       name: @document.document.name,
+                       errors: collect_errors)
+            redirect_to dynamic_document_path(@document.document), notice: notice
+          else
+            render :new
+          end
+        end
 
         def bulk_import(docs)
           reimport_materials = params[:with_materials].to_i.nonzero?
@@ -92,7 +103,7 @@ module Lcms
         def form_params
           @form_params ||=
             begin
-              data = params.require(:document_form).permit(:link, :link_fs, :reimport, :with_materials).to_h
+              data = params.require(:document_form).permit(:async, :link, :link_fs, :reimport, :with_materials).to_h
               data.delete(:with_materials) if data[:with_materials].to_i.zero?
               data
             end

@@ -124,6 +124,7 @@ en:
     add: Add
     all: All
     are_you_sure: Are you sure?
+    async: Asynchronously
     close: Close
     contents: Contents
     delete: Delete
