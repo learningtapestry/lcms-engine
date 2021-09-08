@@ -18,17 +18,11 @@ module Lcms
         end
 
         def create
-          @material_form = DocumentGenerator.material_form.new(form_params)
+          @material_form = DocumentGenerator.material_form.new(form_params.except(:async))
 
-          return create_from_folder if form_params[:link].match?(RE_GOOGLE_FOLDER)
+          return create_multiple if form_params[:link].match?(RE_GOOGLE_FOLDER)
 
-          if @material_form.save
-            material = @material_form.material
-            redirect_to dynamic_material_path(material),
-                        notice: t('.success', name: material.name)
-          else
-            render :new
-          end
+          form_params[:async].to_i.zero? ? create_sync : create_async
         end
 
         def destroy
@@ -58,6 +52,21 @@ module Lcms
 
         private
 
+        def create_async
+          bulk_import(Array.wrap(form_params[:link]))
+          render :import
+        end
+
+        def create_sync
+          if @material_form.save
+            material = @material_form.material
+            redirect_to dynamic_material_path(material),
+                        notice: t('lcms.engine.admin.materials.create.success', name: material.name)
+          else
+            render :new
+          end
+        end
+
         def bulk_import(files)
           jobs = {}
           files.each do |url|
@@ -75,7 +84,7 @@ module Lcms
         end
 
         def form_params
-          params.require(:material_form).permit(:link, :source_type)
+          params.require(:material_form).permit(:async, :link, :source_type)
         end
 
         def gdoc_files_from(url)

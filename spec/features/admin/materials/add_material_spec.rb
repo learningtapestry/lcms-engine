@@ -44,6 +44,7 @@ feature 'Admin adds a material' do
     expect(page).to have_field :material_form_link
 
     fill_in :material_form_link, with: data[:url]
+    find('#material_form_async').uncheck
     click_button 'Parse'
 
     expect(Lcms::Engine::Material.last.name).to eql(data[:file_name])
@@ -66,6 +67,7 @@ feature 'Admin adds a material' do
     allow(Lcms::Engine::S3Service).to receive(:upload)
 
     fill_in :material_form_link, with: data[:url]
+    find('#material_form_async').uncheck
     click_button 'Parse'
 
     expect(Lcms::Engine::Material.last.name).to eql(data[:file_name])
