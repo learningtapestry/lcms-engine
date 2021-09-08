@@ -125,6 +125,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'seedbank', '~> 0.3'
   s.add_development_dependency 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
   s.add_development_dependency 'shoulda-matchers', '~> 4.1'
+  # Workaround for cc-test-reporter with SimpleCov 0.18.
+  # Stop upgrading SimpleCov until the following issue will be resolved.
+  # https://github.com/codeclimate/test-reporter/issues/418
+  s.add_development_dependency 'simplecov', '< 0.18'
   s.add_development_dependency 'spring', '~> 2.1'
   s.add_development_dependency 'spring-commands-rspec', '~> 1'
   s.add_development_dependency 'traceroute', '~> 0.8'
