@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line no-unused-vars
 function AssociationPickerItem(props) {
-  let input
+  let input;
 
   if (props.item._create) {
-    input = <input type="hidden" name={`${props.createName}[]`} value={props.item.name} />
+    input = <input type="hidden" name={`${props.createName}[]`} value={props.item.name} />;
   } else if (props.allowMultiple) {
-    input = <input type="hidden" name={`${props.name}[]`} value={props.item.id} />
+    input = <input type="hidden" name={`${props.name}[]`} value={props.item.id} />;
   } else {
-    input = <input type="hidden" name={props.name} value={props.item.id} />
+    input = <input type="hidden" name={props.name} value={props.item.id} />;
   }
 
   return (
@@ -17,10 +18,20 @@ function AssociationPickerItem(props) {
       {input}
       <div className="o-assocpicker-title">
         {props.item.name}
-        <span className="o-assocpicker-close" onClick={props.onClickClose}>×</span>
+        <span className="o-assocpicker-close" onClick={props.onClickClose}>
+          ×
+        </span>
       </div>
     </div>
-  )
+  );
 }
 
-export default AssociationPickerItem
+AssociationPickerItem.propTypes = {
+  item: PropTypes.object,
+  createName: PropTypes.string,
+  allowMultiple: PropTypes.bool,
+  name: PropTypes.string,
+  onClickClose: PropTypes.func,
+};
+
+export default AssociationPickerItem;

@@ -6,7 +6,7 @@
   display: none;
   flex-direction: column;
   left: 0;
-  opacity: .9;
+  opacity: 0.9;
   position: absolute;
   right: 0;
   top: 0;
@@ -18,8 +18,15 @@
     height: 40px;
     width: 100%;
 
-    > ul { margin: 0 !important; }
-    > ul > li > a { padding: 0 .5rem; }
+    > ul {
+      margin: 0 !important; // stylelint-disable-line declaration-no-important
+    }
+
+    // stylelint-disable selector-max-compound-selectors
+    > ul > li > a {
+      padding: 0 0.5rem;
+    }
+    // stylelint-enable selector-max-compound-selectors
   }
 
   @include e(preview) {
@@ -32,7 +39,8 @@
   @include e(wrap) {
     position: relative;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       .o-m-overlay {
         @include flex;
         z-index: 9999;

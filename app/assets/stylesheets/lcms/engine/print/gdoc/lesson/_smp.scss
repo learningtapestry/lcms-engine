@@ -1,3 +1,4 @@
+// stylelint-disable declaration-no-important
 .o-ld-smp {
   @include e(bracket) {
     border-bottom: 2pt solid map-get($ub-colorcodes, math-base) !important;

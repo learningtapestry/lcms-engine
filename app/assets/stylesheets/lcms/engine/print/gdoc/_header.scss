@@ -1,7 +1,7 @@
 .c-gdoc-header {
   border: 0;
-  margin-left: - map-get($gdoc-spacing, large);
-  margin-right: - map-get($gdoc-spacing, large);
+  margin-left: -map-get($gdoc-spacing, large);
+  margin-right: -map-get($gdoc-spacing, large);
 
   @include e(wrap) {
     padding: 7.2pt map-get($gdoc-spacing, large);

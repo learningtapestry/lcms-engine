@@ -3,7 +3,8 @@ body {
   width: 100%;
 }
 
-body, html {
+body,
+html {
   height: 100%;
 }
 
@@ -73,5 +74,4 @@ body, html {
   @include e(section) {
     @include flex-grid-column(12, $grid-column-2xgutter);
   }
-
 }

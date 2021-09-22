@@ -9,11 +9,11 @@
   @include e(guidance) {
     @include add-column-padding($x: 1);
     @include add-gutter(margin, bottom, 1);
-    @include add-top-bottom-padding($y: .5);
+    @include add-top-bottom-padding($y: 0.5);
     background-color: map-get($ub-ld-colorcodes, math-activity-guidance-bg);
 
     @include m(title) {
-      @include add-gutter(margin, bottom, .5);
+      @include add-gutter(margin, bottom, 0.5);
       display: block;
 
       .o-ld-activity-foundational-skills & {
@@ -31,9 +31,11 @@
     margin: 2rem 0;
     padding: 2rem;
 
+    // stylelint-disable declaration-no-important
     p {
       margin: 0 !important;
     }
+    // stylelint-enable declaration-no-important
   }
 
   @include e(source) {
@@ -62,6 +64,7 @@
     }
   }
 
+  // stylelint-disable max-nesting-depth
   &.c-ld-toc {
     @include add-gutter(padding, top, 1);
     border-top: 4px solid map-get($ub-colorcodes, math-base);
@@ -78,4 +81,5 @@
   .o-ld-activity-foundational-skills & {
     background-color: map-get($ub-ld-colorcodes, math-activity-foundational-bg);
   }
+  // stylelint-enable max-nesting-depth
 }

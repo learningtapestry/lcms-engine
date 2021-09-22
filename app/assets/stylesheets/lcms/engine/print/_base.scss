@@ -1,5 +1,8 @@
+// stylelint-disable scss/selector-no-redundant-nesting-selector
+
 // Unbounded specific
-html, body {
+html,
+body {
   background: none;
   height: 100%;
 }
@@ -15,16 +18,34 @@ html, body {
   }
 }
 
-header, footer, o-sidebar-nav {
+header,
+footer,
+o-sidebar-nav {
   display: none;
 }
 
-tr, img, table, pre, blockquote, .callout { page-break-inside: avoid; }
+tr,
+img,
+table,
+pre,
+blockquote,
+.callout {
+  page-break-inside: avoid;
+}
 
 // Avoid page breaks after a heading
-h1, h2, h3, h4, h5 { page-break-after: avoid; }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  page-break-after: avoid;
+}
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: bold;
 }
 
@@ -34,10 +55,13 @@ h1 {
   padding-top: 1.25rem;
 
   & + h2 {
-    padding-top: 0 !important;
+    padding-top: 0 !important; // stylelint-disable-line declaration-no-important
   }
 
-  * { line-height: 1.1; margin-bottom: 0; }
+  * {
+    line-height: 1.1;
+    margin-bottom: 0;
+  }
 }
 
 h2 {
@@ -45,7 +69,7 @@ h2 {
   padding-top: 1.25rem;
 
   & + h3 {
-    padding-top: 0 !important;
+    padding-top: 0 !important; // stylelint-disable-line declaration-no-important
   }
 }
 
@@ -54,7 +78,7 @@ h3 {
   padding-top: 1.25rem;
 
   & + h4 {
-    padding-top: 0 !important;
+    padding-top: 0 !important; // stylelint-disable-line declaration-no-important
   }
 }
 
@@ -64,11 +88,16 @@ h4 {
 }
 
 ul li {
-  text-indent: 0 !important;
+  text-indent: 0 !important; // stylelint-disable-line declaration-no-important
 }
 
-img, td, span, table {
+img,
+td,
+span,
+table {
   max-width: 100%;
 }
 
-img { height: auto !important; }
+img {
+  height: auto !important; // stylelint-disable-line declaration-no-important
+}

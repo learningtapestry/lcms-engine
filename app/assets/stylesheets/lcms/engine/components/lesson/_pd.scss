@@ -59,7 +59,7 @@
   @include e(title) {
     @include txt-element(ld-pd-title);
 
-    padding-top: .5rem;
+    padding-top: 0.5rem;
 
     .o-ld-pd--collapsed & {
       @include txt-element(ld-pd-title-collapsed);
@@ -114,7 +114,7 @@
   @include e(object) {
     height: 100%;
     max-width: 100%;
-    position: absolute !important;
+    position: absolute !important; // stylelint-disable-line declaration-no-important
     width: 100%;
   }
 
@@ -130,7 +130,7 @@
 
   @include e(overlay-bg) {
     background-color: $ub-primary;
-    opacity: .6;
+    opacity: 0.6;
   }
 
   @include e(overlay-icon) {
@@ -143,8 +143,8 @@
 }
 
 .o-ld-cg {
-  @include add-gutter(margin, bottom, .5);
-  @include add-gutter(margin, top, .5);
+  @include add-gutter(margin, bottom, 0.5);
+  @include add-gutter(margin, top, 0.5);
   @include flex;
   @include txt-element(ld-pd-cg);
 
@@ -165,8 +165,8 @@
   @include e(title) {
     @include txt-element(ld-pd-cg-title);
 
-    margin-bottom: 1rem !important;
-    margin-top: .5rem !important;
+    margin-bottom: 1rem !important; // stylelint-disable-line declaration-no-important
+    margin-top: 0.5rem !important; // stylelint-disable-line declaration-no-important
   }
 
   @include e(thumbnail) {

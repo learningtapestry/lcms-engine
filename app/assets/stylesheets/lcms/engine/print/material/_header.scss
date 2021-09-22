@@ -1,6 +1,5 @@
 .o-m-header {
   border-bottom: 1px solid $ub-pdf-black;
-  td { padding: 0 0 5px; }
 
   @include e(title) {
     width: 10%;
@@ -10,5 +9,9 @@
   }
   @include e(name-date) {
     width: 30%;
+  }
+
+  td {
+    padding: 0 0 5px;
   }
 }

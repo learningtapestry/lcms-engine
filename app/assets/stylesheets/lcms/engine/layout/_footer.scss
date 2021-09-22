@@ -17,7 +17,7 @@ $footer-breakpoint-down: ipad;
     @include txt-element-strict(ld-tooltip);
     background: map-get($ub-ld-colorcodes, tooltip-bg);
     border: 0;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .25);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
     margin-top: $tooltip-pip-width;
     padding: 1rem;
 
@@ -49,8 +49,8 @@ $footer-breakpoint-down: ipad;
     [data-close] {
       float: right;
       position: relative;
-      right: -.5rem;
-      top: -.5rem;
+      right: -0.5rem;
+      top: -0.5rem;
     }
   }
 
@@ -83,8 +83,18 @@ $footer-breakpoint-down: ipad;
   }
 
   @include e(link) {
-    &, a { color: $ub-nav-link; }
-    &:hover, &:focus, a:hover, a:focus { color: $ub-white; text-decoration: none; }
+    &,
+    a {
+      color: $ub-nav-link;
+    }
+
+    &:hover,
+    &:focus,
+    a:hover,
+    a:focus {
+      color: $ub-white;
+      text-decoration: none;
+    }
   }
 
   @include e(logo) {
@@ -94,7 +104,9 @@ $footer-breakpoint-down: ipad;
       padding-bottom: $logo-padding;
     }
 
-    img { width: $logo-width; }
+    img {
+      width: $logo-width;
+    }
   }
 
   @include e(item) {
@@ -120,10 +132,6 @@ $footer-breakpoint-down: ipad;
     @include menu-direction(horizontal);
     color: $ub-whitesmoke;
 
-    li {
-      a, span { padding: 0 $footer-padding; }
-    }
-
     @include breakpoint($footer-breakpoint-down down) {
       display: inline-flex;
       flex-wrap: wrap;
@@ -131,14 +139,24 @@ $footer-breakpoint-down: ipad;
       li {
         flex: 0 0 auto;
 
-        a, span {
+        a,
+        span {
           line-height: 1.5;
           padding: 0;
         }
 
+        // stylelint-disable selector-no-qualifying-type
         &.t-bullet {
+          // stylelint-enable selector-no-qualifying-type
           padding: 0 $footer-padding;
         }
+      }
+    }
+
+    li {
+      a,
+      span {
+        padding: 0 $footer-padding;
       }
     }
   }

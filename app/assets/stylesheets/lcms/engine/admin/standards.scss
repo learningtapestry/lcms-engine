@@ -1,10 +1,13 @@
+// stylelint-disable max-nesting-depth
 .o-standard-form {
   .input {
     margin-bottom: 1em;
   }
 
   .o-admin-standard-readonly {
-    label { min-width: 5em; }
+    label {
+      min-width: 5em;
+    }
   }
 
   label {

@@ -12,7 +12,7 @@
 }
 
 .resource-search-select {
-  width: 100% !important; // sass-lint:disable-line no-important
+  width: 100% !important; // stylelint-disable-line declaration-no-important
 }
 
 .resource-search-url-slug,
@@ -25,7 +25,7 @@
   flex-basis: 0;
   flex-grow: 1;
   padding-right: 1%;
-  vertical-align: top !important; // sass-lint:disable-line no-important
+  vertical-align: top !important; // stylelint-disable-line declaration-no-important
 
   &:last-child {
     padding: 0;
@@ -33,6 +33,9 @@
 }
 
 .o-adm-download {
+  background-color: $ub-white;
+  margin: 10px 0;
+  padding: 10px;
   @include e(settings) {
     @include flex;
 
@@ -40,14 +43,12 @@
       margin-left: 10px;
     }
   }
-
-  background-color: $ub-white;
-  margin: 10px 0;
-  padding: 10px;
 }
 
 .resource-btns-col {
-  .button { width: 80px; }
+  .button {
+    width: 80px;
+  }
 }
 
 .c-admin > .o-page {

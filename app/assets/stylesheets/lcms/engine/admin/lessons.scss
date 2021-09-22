@@ -1,5 +1,6 @@
+// stylelint-disable max-nesting-depth, selector-max-compound-selectors
 .o-admin-lessons-search {
-  border: solid 1px #ddd; // sass-lint:disable-line no-color-literals
+  border: solid 1px #ddd;
   border-radius: 5px;
   margin-bottom: 2em;
   padding: 2em 1em 1em;
@@ -8,12 +9,12 @@
     .o-admin-ctx-filters {
       padding-right: 2em;
 
-      label { // sass-lint:disable-line nesting-depth
+      label {
         display: inline-block;
         font-weight: normal;
       }
 
-      input { // sass-lint:disable-line nesting-depth
+      input {
         display: inline-block;
         margin-left: 1em;
         width: 6em;
@@ -31,8 +32,11 @@
   }
 
   .o-admin-option {
-    margin-bottom: .75em;
-    label { font-weight: normal; }
+    margin-bottom: 0.75em;
+
+    label {
+      font-weight: normal;
+    }
   }
 
   .o-admin-unit,
@@ -45,10 +49,14 @@
     box-shadow: 2px 2px 2px #aaa; // sass-lint:disable-line no-color-literals
   }
 
-  label {font-weight: bold; }
+  label {
+    font-weight: bold;
+  }
 }
 
 .lessons-table {
+  table-layout: auto;
+  width: 100%;
   @include e(btns) {
     .button {
       min-width: 80px;
@@ -64,11 +72,10 @@
   }
 
   @include e(materials) {
-    @include m(file) {
-      margin-right: .3em;
-    }
-
     list-style: none;
+    @include m(file) {
+      margin-right: 0.3em;
+    }
   }
 
   @include e(status) {
@@ -78,18 +85,15 @@
     }
   }
 
-  table-layout: auto;
-  width: 100%;
-
   tr {
     th {
-      &:nth-child(5), // sass-lint:disable-line nesting-depth
+      &:nth-child(5),
       &:nth-child(5) {
         max-width: 250px;
         min-width: 200px;
       }
 
-      &:nth-child(6), // sass-lint:disable-line nesting-depth
+      &:nth-child(6),
       &:nth-child(6) {
         min-width: 300px;
       }
@@ -104,6 +108,8 @@
     margin-left: 2em;
     margin-top: 1.5em;
 
-    input { margin-right: .5em; }
+    input {
+      margin-right: 0.5em;
+    }
   }
 }

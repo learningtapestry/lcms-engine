@@ -1,3 +1,4 @@
+// stylelint-disable declaration-no-important, max-nesting-depth
 .cs-border-top--ela {
   border-top: 4px solid map-get($ub-colorcodes, ela-base) !important;
 }
@@ -33,11 +34,18 @@
     width: 10%;
   }
 
-  td, tr { border: 0; }
+  td,
+  tr {
+    border: 0;
+  }
 }
 
 .o-native-table {
-  td, th {
-    p { padding: 0; }
+  td,
+  th {
+    p {
+      padding: 0;
+    }
   }
 }
+// stylelint-enable declaration-no-important, max-nesting-depth

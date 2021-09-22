@@ -1,7 +1,8 @@
+// stylelint-disable declaration-no-important
 $text-sizes: (
   'base': $global-font-size,
   'large': $lead-font-size,
-  'small': $small-font-size
+  'small': $small-font-size,
 );
 
 .u-text {
@@ -12,7 +13,9 @@ $text-sizes: (
   }
 }
 
-.u-color--base { color: $ub-txt !important; }
+.u-color--base {
+  color: $ub-txt !important;
+}
 
 .u-text--capitalized {
   text-transform: capitalize;
@@ -42,13 +45,21 @@ $text-sizes: (
   font-weight: bold !important;
 }
 
-.u-flex { display: flex; }
+.u-flex {
+  display: flex;
+}
 
-.u-show { display: block !important; }
+.u-show {
+  display: block !important;
+}
 
-.u-hidden { display: none !important; }
+.u-hidden {
+  display: none !important;
+}
 
-.u-float-none { float: none !important;}
+.u-float-none {
+  float: none !important;
+}
 
 $border-radius-aligns: (top-left, bottom-left, top-right, bottom-right);
 @each $border-radius-align in $border-radius-aligns {
@@ -70,7 +81,7 @@ $border-radius-sides: (top, bottom);
 
 $margins: (
   'zero': 0,
-  'xs': $ub-small-margin * .7,
+  'xs': $ub-small-margin * 0.7,
   'small': $ub-small-margin,
   'base': $ub-base-margin,
   'large': $ub-large-margin,
@@ -100,7 +111,7 @@ $margins-align: (top, bottom, right, left);
 $paddings: (
   'zero': 0,
   'tiny': 5px,
-  'xs': $ub-small-margin * .7,
+  'xs': $ub-small-margin * 0.7,
   'small': $ub-small-margin,
   'base': $ub-base-margin,
   'large': $ub-large-margin,
@@ -127,7 +138,7 @@ $align-types: (padding, margin);
 @each $align-dir in $align-directions {
   @each $align-type in $align-types {
     .u-#{$align-type}-#{$align-dir}--gutter-half {
-      @include add-gutter($type: #{$align-type}, $subtype: #{$align-dir}, $x: .5);
+      @include add-gutter($type: #{$align-type}, $subtype: #{$align-dir}, $x: 0.5);
     }
 
     .u-#{$align-type}-#{$align-dir}--gutter {
@@ -162,7 +173,7 @@ $bg: (
 .u-wrap {
   @each $bg-type, $bg-color in $bg {
     @include m($bg-type) {
-      @extend .u-bg--#{$bg-type};
+      @extend .u-bg--#{$bg-type}; // stylelint-disable-line scss/at-extend-no-missing-placeholder
       padding: $ub-base-padding;
     }
   }
@@ -177,7 +188,8 @@ $bg: (
 }
 
 .u-link--disabled {
-  &, a {
+  &,
+  a {
     color: $medium-gray;
     cursor: not-allowed;
   }

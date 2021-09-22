@@ -16,5 +16,5 @@
 
 .o-google-chart {
   height: 50%;
-  vertical-align: middle !important;
+  vertical-align: middle !important; // stylelint-disable-line declaration-no-important
 }

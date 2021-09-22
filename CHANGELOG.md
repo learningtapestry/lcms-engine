@@ -12,6 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump lt-google-api to 0.2.3
 - Bump lt-lcms to 0.4.3
 - Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concern
+- Replace sass-lint to stylelint NodeJS package
+- Bump webpacker gem (and @rails/webpacker package)
 
 ### Changed
 

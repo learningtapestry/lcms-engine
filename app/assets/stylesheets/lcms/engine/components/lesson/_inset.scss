@@ -1,6 +1,11 @@
 .o-ld-inset {
   margin-left: $list-side-margin * 2;
 
-  .text-bold { font-weight: 700; }
-  .text-italic { font-style: italic; }
+  .text-bold {
+    font-weight: 700;
+  }
+
+  .text-italic {
+    font-style: italic;
+  }
 }

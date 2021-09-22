@@ -13,6 +13,6 @@
 document.addEventListener('turbolinks:load', function () {
   $('.selectize').selectize({
     allowEmptyOption: true,
-    plugins: ['remove_button']
+    plugins: ['remove_button'],
   });
 });

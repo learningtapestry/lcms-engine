@@ -1,6 +1,6 @@
 .c-ld-keyword {
   cursor: help;
-  font-weight: bold !important;
+  font-weight: bold !important; // stylelint-disable-line declaration-no-important
   white-space: nowrap;
 
   @include m(ela) {
@@ -16,7 +16,7 @@
   @include txt-element-strict(ld-tooltip);
   background: map-get($ub-ld-colorcodes, tooltip-bg);
   border: 0;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
   padding: 1rem;
 
   * {

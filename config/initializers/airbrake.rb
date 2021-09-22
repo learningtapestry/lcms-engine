@@ -15,7 +15,7 @@ if AIRBRAKE_ENABLED
     c.root_directory = Rails.root
     c.logger = Rails.logger
     c.environment = Rails.env
-    c.blacklist_keys = Rails.application.config.filter_parameters # rubocop:disable Naming/InclusiveLanguage
+    c.blacklist_keys = Rails.application.config.filter_parameters
 
     c.ignore_environments = %w(test)
 

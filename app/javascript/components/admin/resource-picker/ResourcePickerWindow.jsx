@@ -1,20 +1,21 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 class ResourcePickerWindow extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.typeOptions = [
       ['subject', 'subject'],
       ['grade', 'grade'],
       ['module', 'module'],
       ['unit', 'unit'],
-    ]
+    ];
 
     this.subjectOptions = [
       ['ela', 'ELA'],
       ['math', 'Math'],
-    ]
+    ];
 
     this.gradeOptions = [
       ['pk', 'prekindergarten'],
@@ -31,7 +32,7 @@ class ResourcePickerWindow extends React.Component {
       ['10', 'grade 10'],
       ['11', 'grade 11'],
       ['12', 'grade 12'],
-    ]
+    ];
 
     const initialState = {
       pagination: {
@@ -43,45 +44,59 @@ class ResourcePickerWindow extends React.Component {
       subject: null,
       grade: null,
       q: null,
-    }
+    };
 
-    this.state = { ...initialState, ...props }
+    this.state = { ...initialState, ...props };
   }
 
   filterElement(title, value, type, data) {
     return (
-      <label className="medium-3 columns">{ title }
-        <select value={value || ''} onChange={ this.props.onFilterChange.bind(this, type) }>
+      <label className="medium-3 columns">
+        {title}
+        <select
+          value={value || ''}
+          /* eslint-disable react/jsx-no-bind */
+          onChange={this.props.onFilterChange.bind(this, type)}
+        >
           <option />
           {data.map(([value, title]) => (
-            <option key={value} value={value}>{title}</option>
+            <option key={value} value={value}>
+              {title}
+            </option>
           ))}
         </select>
       </label>
-    )
+    );
   }
 
   selectResource(resource) {
     if ('onSelectResource' in this.props) {
-      this.props.onSelectResource(resource)
+      this.props.onSelectResource(resource);
     }
   }
 
   render() {
-    const { grade, q, subject, type } = this.props
+    const { grade, q, subject, type } = this.props;
 
+    /* eslint-disable jsx-a11y/anchor-is-valid */
     return (
       <div className="o-assocpicker">
         <div className="o-page">
           <div className="o-page__module">
             <h4 className="text-center">Select resource</h4>
             <div className="row">
-              { this.filterElement('Curriculum Type', type, 'type', this.typeOptions) }
-              { this.filterElement('Subject', subject, 'subject', this.subjectOptions) }
-              { this.filterElement('Grade', grade, 'grade', this.gradeOptions) }
+              {this.filterElement('Curriculum Type', type, 'type', this.typeOptions)}
+              {this.filterElement('Subject', subject, 'subject', this.subjectOptions)}
+              {this.filterElement('Grade', grade, 'grade', this.gradeOptions)}
 
-              <label className="medium-3 columns">Title
-                <input type="text" value={q || ''} onChange={ this.props.onFilterChange.bind(this, 'q') } />
+              <label className="medium-3 columns">
+                Title
+                <input
+                  type="text"
+                  value={q || ''}
+                  /* eslint-disable react/jsx-no-bind */
+                  onChange={this.props.onFilterChange.bind(this, 'q')}
+                />
               </label>
             </div>
           </div>
@@ -98,18 +113,32 @@ class ResourcePickerWindow extends React.Component {
               <tbody>
                 {this.props.results.map(resource => (
                   <tr key={resource.id}>
+                    {/*
+                      eslint-disable react/jsx-no-bind
+                    */}
                     <td onClick={this.selectResource.bind(this, resource)}>{resource.title}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
 
-            { this.props.pagination() }
+            {this.props.pagination()}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default ResourcePickerWindow
+ResourcePickerWindow.propTypes = {
+  onFilterChange: PropTypes.func,
+  onSelectResource: PropTypes.func,
+  grade: PropTypes.string,
+  q: PropTypes.string,
+  subject: PropTypes.string,
+  type: PropTypes.string,
+  results: PropTypes.array,
+  pagination: PropTypes.func,
+};
+
+export default ResourcePickerWindow;
