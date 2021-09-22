@@ -6,8 +6,9 @@ PreCommit:
     enabled: true
     on_warn: fail
     exclude:
-    - db/migrate/*
-    - spec/dummy/**/*
+      - bin/*
+      - db/migrate/*
+      - spec/dummy/**/*
 
   BundleCheck:
     enabled: true
@@ -26,6 +27,11 @@ PreCommit:
 
   YamlSyntax:
     enabled: true
+
+  CustomScript:
+    enabled: true
+    description: Js/Scss linters
+    command: ['yarn', 'lint']
 
   TrailingWhitespace:
     enabled: true

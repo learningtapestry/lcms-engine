@@ -1,5 +1,7 @@
 .o-ld-image {
   @include e(container) {
-    img { width: 30%; }
+    img {
+      width: 30%;
+    }
   }
 }

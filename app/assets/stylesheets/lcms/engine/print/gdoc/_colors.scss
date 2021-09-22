@@ -2,9 +2,9 @@ $ub-gdoc-link: #15c;
 
 $ub-ld-colorcodes: (
   activity-optional: #fee59e,
-  default-image-bg: transparentize(map-get($ub-colorcodes, default-base), .85),
+  default-image-bg: transparentize(map-get($ub-colorcodes, default-base), 0.85),
   ela-expand-bg: #fee6df,
-  ela-toggler-bg: transparentize(map-get($ub-colorcodes, ela-base), .7),
+  ela-toggler-bg: transparentize(map-get($ub-colorcodes, ela-base), 0.7),
   ela6-section-bg: #fee6df,
   ela-image-bg: darken(#fee6df, 5%),
   gls-bg: #fff6cc,
@@ -17,7 +17,7 @@ $ub-ld-colorcodes: (
   math-activity-foundational-switch-bg: #b0e1f8,
   math-activity-guidance-bg: darken(#d8f1ef, 5%),
   math-expand-bg: #d8f1ef,
-  math-toggler-bg: transparentize(map-get($ub-colorcodes, math-base), .7),
+  math-toggler-bg: transparentize(map-get($ub-colorcodes, math-base), 0.7),
   math-image-bg: darken(#d8f1ef, 5%),
   pd-bg: #e8e7ed,
   pd-bg-dark: #8e89a9,

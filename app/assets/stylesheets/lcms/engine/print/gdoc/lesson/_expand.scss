@@ -1,7 +1,10 @@
+// stylelint-disable declaration-no-important, max-nesting-depth, selector-max-compound-selectors
 .o-ld-expand.o-simple-table {
   td {
-
-    > h3, > ol, > p, > ul {
+    > h3,
+    > ol,
+    > p,
+    > ul {
       background-color: initial !important;
 
       :not(.o-ld-gls) {

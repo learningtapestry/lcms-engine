@@ -1,18 +1,6 @@
 .c-ld__body--pdf {
   @include ld-custom-styles;
 
-  @import
-    'lesson/base-typography',
-    'lesson/callout',
-    'lesson/def',
-    'lesson/expand',
-    'lesson/group',
-    'lesson/image',
-    'lesson/materials',
-    'lesson/optbreak',
-    'lesson/pd',
-    'lesson/pv',
-    'lesson/section',
-    'lesson/smp',
-    'lesson/title';
+  @import 'lesson/base-typography', 'lesson/callout', 'lesson/def', 'lesson/expand', 'lesson/group', 'lesson/image',
+    'lesson/materials', 'lesson/optbreak', 'lesson/pd', 'lesson/pv', 'lesson/section', 'lesson/smp', 'lesson/title';
 }

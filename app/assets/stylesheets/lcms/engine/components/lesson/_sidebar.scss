@@ -1,9 +1,14 @@
 @mixin ld-content-dropdown {
   // rewrite some css rules to meet foundation accordition
-  .is-accordion-submenu-parent > a::after { display: none; }
-  li[aria-expanded=true] > a > .o-ld-sidebar-item__icon {
+  .is-accordion-submenu-parent > a::after {
+    display: none;
+  }
+
+  // stylelint-disable selector-no-qualifying-type
+  li[aria-expanded='true'] > a > .o-ld-sidebar-item__icon {
     transform: rotate(90deg);
   }
+  // stylelint-enable selector-no-qualifying-type
 }
 
 .o-ld-sidebar {
@@ -19,12 +24,12 @@
     }
 
     &.is-stuck:not(.stick-wo-margin) {
-      margin-top: $ub-nav-height !important;
+      margin-top: $ub-nav-height !important; // stylelint-disable-line declaration-no-important
     }
   }
 
   @include e(item) {
-    opacity: .7;
+    opacity: 0.7;
     padding: $ub-base-padding / 2 0;
 
     @include m(active) {
@@ -42,7 +47,11 @@
       padding-left: 1.2rem;
     }
 
-    > li.o-ld-sidebar__item:last-child { padding-bottom: 0; }
+    // stylelint-disable selector-no-qualifying-type
+    > li.o-ld-sidebar__item:last-child {
+      padding-bottom: 0;
+    }
+    // stylelint-enable selector-no-qualifying-type
   }
 
   @include e(toc-customizer) {
@@ -68,7 +77,9 @@
     cursor: pointer;
     flex: 0 0 auto;
 
-    @include m(hide) { display: none; }
+    @include m(hide) {
+      display: none;
+    }
   }
 
   @include e(sep) {
@@ -84,8 +95,8 @@
 
 .o-ld-sidebar-item {
   // rewrite foundation accordition styles
-  outline: none !important;
-  padding: 0 !important;
+  outline: none !important; // stylelint-disable-line declaration-no-important
+  padding: 0 !important; // stylelint-disable-line declaration-no-important
 
   @include e(content) {
     @include flex;
@@ -117,9 +128,11 @@
         color: map-get($ub-colorcodes, math-base);
       }
 
+      // stylelint-disable declaration-no-important
       .o-ld-sidebar-foundational-skills .o-ld-sidebar__item--active & {
         color: map-get($ub-ld-colorcodes, math-activity-foundational) !important;
       }
+      // stylelint-enable declaration-no-important
     }
 
     @include m(summary) {
@@ -136,7 +149,7 @@
   @include e(icon) {
     cursor: pointer;
     float: left;
-    margin-right: .4rem;
+    margin-right: 0.4rem;
 
     @include m(blank) {
       cursor: none;
@@ -144,7 +157,9 @@
       width: map-get(map-get($ub-element-typography, ld-sidebar-icon), font-size);
     }
 
-    i { @include txt-element(ld-sidebar-icon); }
+    i {
+      @include txt-element(ld-sidebar-icon);
+    }
   }
 
   @include e(time) {

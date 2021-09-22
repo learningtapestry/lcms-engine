@@ -1,5 +1,5 @@
 .nobreak {
-  page-break-before: avoid !important;
+  page-break-before: avoid !important; // stylelint-disable-line declaration-no-important
 }
 
 .u-pdf-alwaysbreak,
@@ -9,8 +9,11 @@
 
 .u-pdf-nobreak,
 %u-pdf-nobreak {
-  &:before { clear: both; }
   page-break-inside: avoid;
+
+  &::before {
+    clear: both;
+  }
 }
 
 .u-pdf-nobreak--around {

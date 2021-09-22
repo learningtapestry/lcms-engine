@@ -12,18 +12,28 @@
 
   @include e(content) {
     @include m(ela) {
-      &, *, ul, li, ol {
-        &, * {
-          background-color: initial !important;
+      &,
+      *,
+      ul,
+      li,
+      ol {
+        &,
+        * {
+          background-color: initial !important; // stylelint-disable-line declaration-no-important
           color: map-get($ub-colorcodes, ela-base);
         }
       }
     }
 
     @include m(math) {
-      &, *, ul, li, ol {
-        &, * {
-          background-color: initial !important;
+      &,
+      *,
+      ul,
+      li,
+      ol {
+        &,
+        * {
+          background-color: initial !important; // stylelint-disable-line declaration-no-important
           color: map-get($ub-colorcodes, math-base);
         }
       }

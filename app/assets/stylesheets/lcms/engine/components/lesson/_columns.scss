@@ -4,12 +4,13 @@
 }
 
 .o-ld-columns-table {
-  thead, tbody {
-    background-color: initial !important;
+  thead,
+  tbody {
+    background-color: initial !important; // stylelint-disable-line declaration-no-important
     border: zero;
   }
 
   tr {
-    background-color: initial !important;
+    background-color: initial !important; // stylelint-disable-line declaration-no-important
   }
 }

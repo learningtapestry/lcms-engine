@@ -21,9 +21,11 @@
     }
   }
 
+  // stylelint-disable selector-max-id
   &#foundational-skills:not(.c-foundational-section) {
     border-top: 25px solid #00a699;
-    margin-top: 40px !important;
+    margin-top: 40px !important; // stylelint-disable-line declaration-no-important
     padding-top: 30px;
   }
+  // stylelint-enable selector-max-id
 }

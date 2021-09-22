@@ -1,3 +1,5 @@
+// stylelint-disable max-nesting-depth, selector-no-qualifying-type, selector-max-compound-selectors, selector-class-pattern
+
 @import 'application';
 @import 'selectize';
 @import 'vendors/jquery.tagsinput';
@@ -14,22 +16,25 @@
 }
 
 .c-admin {
-  .menu {
-    &.vertical:not(.is-dropdown-submenu) {
-      display: none !important;
-    }
-
-    .active > a { background: inherit; }
-  }
-  .menu > li > a {
-    line-height: inherit;
-    white-space: nowrap;
-  }
-
   @include breakpoint($topbar-unstack-breakpoint) {
     .c-header-title__h-menu {
       display: none;
     }
+  }
+
+  .menu {
+    &.vertical:not(.is-dropdown-submenu) {
+      display: none !important; // stylelint-disable-line declaration-no-important
+    }
+
+    .active > a {
+      background: inherit;
+    }
+  }
+
+  .menu > li > a {
+    line-height: inherit;
+    white-space: nowrap;
   }
 }
 
@@ -42,7 +47,7 @@
     color: #ec5840;
     display: block;
     font-weight: bold;
-    margin: -.5rem 0 1rem;
+    margin: -0.5rem 0 1rem;
   }
 
   .input.error {
@@ -75,7 +80,7 @@
     color: #ec5840;
     display: block;
     font-weight: bold;
-    margin: -.5rem 0 1rem;
+    margin: -0.5rem 0 1rem;
   }
 
   .input.error {
@@ -94,8 +99,14 @@
   }
 }
 
-.flex-pull-right { margin-left: auto; }
+.flex-pull-right {
+  margin-left: auto;
+}
 
-.inline-form-btn { display: inline; }
+.inline-form-btn {
+  display: inline;
+}
 
-.c-multi-selected-btn { display: inline-block; }
+.c-multi-selected-btn {
+  display: inline-block;
+}

@@ -1,5 +1,8 @@
 .o-top-bar {
   @include top-bar-container;
+
+  // Stack on small screens by default
+  @include top-bar-stacked;
   min-height: $ub-nav-height;
   width: 100%;
   z-index: $reveal-zindex;
@@ -8,9 +11,6 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
-
-  // Stack on small screens by default
-  @include top-bar-stacked;
 
   @include breakpoint($topbar-unstack-breakpoint) {
     @include top-bar-unstack;
@@ -23,15 +23,13 @@
   @include e(wrapper) {
     @include breakpoint($topbar-unstack-breakpoint) {
       align-items: center;
-      display: flex !important;
+      display: flex !important; // stylelint-disable-line declaration-no-important
       flex-wrap: nowrap;
       justify-content: space-between;
       width: 100%;
     }
   }
-
 }
-
 
 /* To prevent FOUC */
 .no-js {

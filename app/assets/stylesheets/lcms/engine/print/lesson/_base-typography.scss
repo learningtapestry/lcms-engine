@@ -1,25 +1,49 @@
-p, ol, ul {
-  &, * {
+p,
+ol,
+ul {
+  &,
+  * {
     @include txt-element-strict(ld-base, $ub-pdf-typography);
     orphans: 2;
     widows: 2;
   }
 
+  // stylelint-disable max-nesting-depth
   i {
-    .fa { font: normal normal normal 14px/1 FontAwesome; }
+    .fa {
+      font: normal normal normal 14px/1 FontAwesome;
+    }
   }
+  // stylelint-enable max-nesting-depth
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   @extend %u-pdf-nobreak;
   padding-top: 0;
 }
 
-h2 { @include txt-pdf-element(ld-h2); }
-h3 { @include txt-pdf-element(ld-h3); }
-h4 { @include txt-pdf-element(ld-h4); }
-h5 { @include txt-pdf-element(ld-h5); }
+h2 {
+  @include txt-pdf-element(ld-h2);
+}
+
+h3 {
+  @include txt-pdf-element(ld-h3);
+}
+
+h4 {
+  @include txt-pdf-element(ld-h4);
+}
+
+h5 {
+  @include txt-pdf-element(ld-h5);
+}
 
 // TODO: Quick fix, cg&lesson styles separated at pr 622
 // After merging with 622 should be removed
-sup { vertical-align: initial !important; }
+sup {
+  vertical-align: initial !important; // stylelint-disable-line declaration-no-important
+}

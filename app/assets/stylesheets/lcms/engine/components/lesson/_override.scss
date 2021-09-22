@@ -5,7 +5,8 @@
     font-weight: normal;
   }
 
-  ol, ul {
+  ol,
+  ul {
     margin-bottom: 0;
   }
 
@@ -14,32 +15,49 @@
   }
 
   ol {
-    margin-left: .25rem;
+    margin-left: 0.25rem;
     padding-left: 1em;
-    > li::before { margin-left: -1em; }
+
+    > li::before {
+      margin-left: -1em;
+    }
   }
 
+  // stylelint-disable selector-no-qualifying-type
   ol.c-ld-ol {
     margin-left: 1.3rem;
   }
+  // stylelint-enable selector-no-qualifying-type
 
-  thead, tbody, tfoot { border: 0; }
+  thead,
+  tbody,
+  tfoot {
+    border: 0;
+  }
 
-  .indented { text-indent: $list-side-margin * 2; }
+  .indented {
+    text-indent: $list-side-margin * 2;
+  }
 
   // TODO: Quick fix, cg&lesson styles separated at pr 622
   // After merging with 622 should be checked, maybe we don't need this
-  sup, sub { font-size: 75% !important; }
+  sup,
+  sub {
+    font-size: 75% !important; // stylelint-disable-line declaration-no-important
+  }
 }
 
 .c-ld {
   @include m(ela-2) {
+    // stylelint-disable selector-no-qualifying-type
     h2.o-ld-title {
-      margin-top: $ub-large-margin * 2 !important;
+      margin-top: $ub-large-margin * 2 !important; // stylelint-disable-line declaration-no-important
     }
+    // stylelint-enable selector-no-qualifying-type
   }
 }
 
+// stylelint-disable max-nesting-depth
 .c-ld-table {
   @include e(wrap) {
     clear: both;
@@ -51,11 +69,12 @@
     background-color: $ub-white;
   }
 
-  td, th {
+  td,
+  th {
     border: 1px solid $ub-hr;
 
     p {
-      margin-bottom: initial !important;
+      margin-bottom: initial !important; // stylelint-disable-line declaration-no-important
     }
   }
 }

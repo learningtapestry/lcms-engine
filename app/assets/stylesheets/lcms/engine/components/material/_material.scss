@@ -1,9 +1,9 @@
 .o-material-wrapper {
+  @include m(ela) {
+    // keep
+  }
   @include m(math) {
     background-color: map-get($ub-ld-colorcodes, math-activity-bg);
-  }
-
-  @include m(ela) {
   }
 
   @include m(bg-color) {

@@ -1,7 +1,10 @@
 .pdf-bullet {
   padding-left: $ub-xs-padding / 2;
   padding-right: $ub-xs-padding / 2;
-  &:after { content: '\2022'; }
+
+  &::after {
+    content: '\2022';
+  }
 }
 
 .c-pdf-footer {
@@ -24,7 +27,10 @@
   }
 
   @include m(ld) {
-    &, a { @include txt-pdf-element(ld-footer); }
+    &,
+    a {
+      @include txt-pdf-element(ld-footer);
+    }
   }
 
   @include m(material) {
@@ -70,5 +76,4 @@
     padding: 0;
     text-align: right;
   }
-
 }

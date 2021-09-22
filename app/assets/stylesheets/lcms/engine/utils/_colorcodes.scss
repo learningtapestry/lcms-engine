@@ -15,7 +15,7 @@
 .cs-rgba-bg {
   @each $code, $color in $ub-colorcodes {
     @include m(#{$code}) {
-      background-color: rgba($color, .8);
+      background-color: rgba($color, 0.8);
     }
   }
 }
@@ -25,7 +25,10 @@
     @include m(#{$code}) {
       $tint-color: scale-color($color, $lightness: 90%);
       background-color: $tint-color;
-      &:before { border-bottom-color: $tint-color; }
+
+      &::before {
+        border-bottom-color: $tint-color;
+      }
     }
   }
 }
@@ -41,7 +44,9 @@
 .cs-txt-link {
   @each $code, $color in $ub-colorcodes {
     @include m(#{$code}) {
-      &, &:hover, &:focus {
+      &,
+      &:hover,
+      &:focus {
         color: $color;
       }
     }
@@ -51,10 +56,15 @@
 .cs-link-bg {
   @each $code, $color in $ub-colorcodes {
     @include m(#{$code}) {
-      &, &:hover, &:focus {
+      &,
+      &:hover,
+      &:focus {
         background: none;
         color: $ub-white;
-        > div { background-color: $color; }
+
+        > div {
+          background-color: $color;
+        }
       }
     }
   }

@@ -39,7 +39,7 @@ $ub-txt-colors: (
   h1: $ub-heading-txt,
   h2: #333,
   h3: $ub-heading-txt,
-  h4: #898989
+  h4: #898989,
 );
 
 $ub-mignight: (
@@ -50,7 +50,7 @@ $ub-mignight: (
   eighty: #6d6590,
   sixty: #928bac,
   forty: #b6b2c7,
-  twenty: #dbd8e3
+  twenty: #dbd8e3,
 );
 
 $ub-yellow: (
@@ -58,7 +58,7 @@ $ub-yellow: (
   eighty: #fc3,
   sixty: #ffd966,
   forty: #ffe599,
-  twenty: #fff2cc
+  twenty: #fff2cc,
 );
 
 $ub-green: (
@@ -66,7 +66,7 @@ $ub-green: (
   eighty: #a4cc2e,
   sixty: #c1dc6f,
   forty: #d5e79f,
-  twenty: #eaf3cf
+  twenty: #eaf3cf,
 );
 
 $ub-buttons: (
@@ -80,7 +80,7 @@ $ub-buttons: (
   math: #00a699,
   lead: #a269bf,
   print: #423872,
-  show-more: #9a9a9a
+  show-more: #9a9a9a,
 );
 
 $ub-leadership: (
@@ -91,7 +91,7 @@ $ub-leadership: (
   subscribe-label: #ca94e0,
   subscribe-input: #b57ed1,
   arrows1: #edecf1,
-  arrows2: #e1d9e8
+  arrows2: #e1d9e8,
 );
 
 $ub-colorcodes: (
@@ -170,12 +170,11 @@ $ub-colorcodes: (
   facet: #6e6e6e,
   light: $ub-white,
   error: #f00,
-  violet-light: #ecebf0,
+  violet-light: #ecebf0
 );
 
 $ub-selection: (
-  disabled-parent-bg: rgba(0, 0, 0, .2),
-
+  disabled-parent-bg: rgba(0, 0, 0, 0.2),
   ela-disabled-switch-bg: #b75638,
   ela-disabled-fg: #f8a58c,
   ela-enabled-bg: #f45b33,
@@ -186,6 +185,5 @@ $ub-selection: (
   math-enabled-bg: #18a497,
   math-enabled-fg: #fff,
   math-enabled-switch-bg: #b4e4e0,
-
   modal-title-fg: #4e4b7a,
 );

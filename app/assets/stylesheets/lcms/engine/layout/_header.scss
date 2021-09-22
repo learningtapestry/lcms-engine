@@ -12,18 +12,18 @@
   }
 
   @media screen and #{breakpoint(large)} and (max-width: 1110px) {
-    padding-left: .8rem;
-    padding-right: .8rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
   }
 }
 
 .c-header {
-  background-color: rgba($ub-primary, .9);
+  background-color: rgba($ub-primary, 0.9);
 
   @include m(documents) {
-    background-color: rgba($ub-primary, .9);
+    background-color: rgba($ub-primary, 0.9);
     min-height: $ub-nav-height;
-    opacity: .9;
+    opacity: 0.9;
     position: absolute;
     width: 100%;
     z-index: 1;

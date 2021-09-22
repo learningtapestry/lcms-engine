@@ -1,5 +1,8 @@
 table {
-  td, tr { border: 0; }
+  td,
+  tr {
+    border: 0;
+  }
 }
 
 a {
@@ -11,9 +14,11 @@ p {
   padding-bottom: 11pt;
   padding-top: 0;
 
+  // stylelint-disable selector-no-qualifying-type
   &.u-gdoc-empty-p {
     padding-bottom: 0;
   }
+  // stylelint-enable selector-no-qualifying-type
 }
 
 span > p {
@@ -21,7 +26,9 @@ span > p {
 }
 
 ol {
-  &, li, li:before {
-    font-family: 'Calibri' !important;
+  &,
+  li,
+  li::before {
+    font-family: 'Calibri' !important; // stylelint-disable-line declaration-no-important
   }
 }

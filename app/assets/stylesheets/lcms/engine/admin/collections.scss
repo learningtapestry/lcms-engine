@@ -1,3 +1,4 @@
+// stylelint-disable max-nesting-depth, selector-max-compound-selectors, scss/selector-no-redundant-nesting-selector
 .collection-tree {
   label {
     background: map-get($ub-ld-colorcodes, material-thumbnail-border);
@@ -22,7 +23,7 @@
 
   &:checked {
     & ~ label {
-      &::before { // sass-lint:disable-line nesting-depth
+      &::before {
         content: '▾';
       }
     }

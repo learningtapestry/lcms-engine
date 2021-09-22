@@ -1,36 +1,9 @@
 @charset "utf-8";
 
-@import
-  'utils/variables',
-  'utils/mixins',
-  'utils/placeholders',
-  'base/colors',
-  'base/ld-colors';
-
-@import
-  'themes/settings',
-  'themes/material';
-
-@import
-  'font-awesome-sprockets',
-  'font-awesome',
-  'vendors/foundation_and_overrides',
-  'vendors/mathjax';
-
-@import
-  'utils/styles_override',
-  'utils/helpers',
-  'utils/colorcodes',
-  'utils/functions';
-
-@import
-    'base/typography',
-    'print/print';
-
+@import 'utils/variables', 'utils/mixins', 'utils/placeholders', 'base/colors', 'base/ld-colors';
+@import 'themes/settings', 'themes/material';
+@import 'font-awesome-sprockets', 'font-awesome', 'vendors/foundation_and_overrides', 'vendors/mathjax';
+@import 'utils/styles_override', 'utils/helpers', 'utils/colorcodes', 'utils/functions';
+@import 'base/typography', 'print/print';
 @import 'components/assoc-picker';
-
-@import
-  'layout/footer',
-  'layout/header',
-  'layout/navigation',
-  'layout/page';
+@import 'layout/footer', 'layout/header', 'layout/navigation', 'layout/page';

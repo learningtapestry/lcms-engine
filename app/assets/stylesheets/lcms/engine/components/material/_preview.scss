@@ -6,7 +6,7 @@ $pdf-toolbar-height: 50;
   @extend %map-transition;
   border: 1px solid map-get($ub-buttons, show-more);
   overflow-y: hidden;
-  position: absolute !important;
+  position: absolute !important; // stylelint-disable-line declaration-no-important
 
   @include m(portrait) {
     @include aspect-ratio($letter-width, $letter-height + $pdf-toolbar-height);

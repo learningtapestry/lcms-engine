@@ -1,3 +1,5 @@
 .o-ld-dialogue {
-  p { margin-bottom: map-get($gdoc-spacing, base); }
+  p {
+    margin-bottom: map-get($gdoc-spacing, base);
+  }
 }

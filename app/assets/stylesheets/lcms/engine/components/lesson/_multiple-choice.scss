@@ -2,7 +2,10 @@
   @include e(body) {
     .o-ld-multiple-choice {
       margin-left: $list-side-margin * 2;
-      p { line-height: 2; }
+
+      p {
+        line-height: 2;
+      }
     }
   }
 }

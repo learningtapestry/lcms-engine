@@ -1,6 +1,6 @@
+// stylelint-disable declaration-no-important, max-nesting-depth
 .o-ld-activity-wrapper {
   .o-simple-table.o-ld-activity__optional {
-
     td {
       background-color: map-get($ub-ld-colorcodes, activity-optional);
       padding: 20pt;

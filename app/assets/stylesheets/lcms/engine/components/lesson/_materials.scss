@@ -1,5 +1,5 @@
 .o-ld-materials {
-  @include add-gutter(margin, top, .5);
+  @include add-gutter(margin, top, 0.5);
 
   @include e(content) {
     padding: 10px;

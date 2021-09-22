@@ -1,3 +1,4 @@
+// stylelint-disable declaration-no-important, max-nesting-depth, selector-max-compound-selectors
 .o-ld-section {
   @include e(quote) {
     @extend %u-pdf-nobreak;
@@ -12,7 +13,9 @@
 .o-ld-section-wrapper {
   .o-simple-table {
     td {
-      > ol, > p, > ul {
+      > ol,
+      > p,
+      > ul {
         background-color: initial !important;
 
         :not(.o-ld-gls) {

@@ -46,7 +46,7 @@ module Lcms
 
         [].tap do |result|
           pieces.each_with_index do |piece, idx|
-            result << piece && next if idx.zero?
+            ((result << piece) && next) if idx.zero?
 
             slug = Slug.build_from(pieces[0..idx])
 

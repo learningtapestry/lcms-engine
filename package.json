@@ -5,24 +5,42 @@
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
-    "@rails/webpacker": "~4",
+    "@rails/webpacker": "~5.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "classnames": "^2.2.6",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react_ujs": "^2.6.0"
+    "react_ujs": "^2.6.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-react": "^7.16.0",
-    "webpack": "~4",
-    "webpack-dev-server": "^3.8.1"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.6.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.1",
+    "stylelint": "^13.12.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-prettier": "^1.2.0",
+    "stylelint-selector-bem-pattern": "^2.1.0",
+    "webpack-dev-server": "^3"
   },
   "scripts": {
-    "lint:scss": "sass-lint '**/*.scss' -v -q"
+    "lint": "eslint --ext .js --ext .jsx app/javascript && stylelint 'app/assets/stylesheets/**/*.{css,scss}' --quiet",
+    "lint:js": "eslint --ext .js --ext .jsx app/javascript",
+    "lint:js:fix": "eslint --ext .js --ext .jsx app/javascript --quiet --fix",
+    "lint:scss": "stylelint 'app/assets/stylesheets/**/*.{css,scss}' --quiet",
+    "lint:scss:fix": "stylelint 'app/assets/stylesheets/**/*.{css,scss}' --quiet --fix"
   },
   "repository": {
     "type": "git",

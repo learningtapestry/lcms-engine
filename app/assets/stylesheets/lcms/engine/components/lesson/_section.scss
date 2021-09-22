@@ -12,15 +12,22 @@
   @include e(quote) {
     @include clearfix;
     border-color: map-get($ub-colorcodes, ela-base);
-    border-left: .125rem solid;
+    border-left: 0.125rem solid;
     float: right;
     font: italic 1.25rem / 1.3 $ub-serif;
     margin: 1.5rem 0 1rem 3.25rem;
     padding-left: 1.125rem;
     width: 50%;
 
-    &, *, ul, li, ol {
-      &, * { color: map-get($ub-colorcodes, ela-base); }
+    &,
+    *,
+    ul,
+    li,
+    ol {
+      &,
+      * {
+        color: map-get($ub-colorcodes, ela-base);
+      }
     }
   }
 

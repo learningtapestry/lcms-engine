@@ -1,5 +1,5 @@
 .c-ld-keyword {
-  font-weight: bold !important;
+  font-weight: bold !important; // stylelint-disable-line declaration-no-important
   white-space: nowrap;
 
   @include m(ela) {

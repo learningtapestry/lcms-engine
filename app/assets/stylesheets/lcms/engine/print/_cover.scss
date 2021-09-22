@@ -31,15 +31,8 @@ body {
 
 .c-pdf-cover {
   height: 100%;
-
-  h1 {
-    @include txt-pdf-element(h1);
-    padding-top: 0;
-  }
-
-  h2 {
-    @include txt-pdf-element(h2);
-    padding-top: 0;
+  @include e(title) {
+    // keep
   }
 
   @include m(ela) {
@@ -73,11 +66,18 @@ body {
     padding: 30px;
   }
 
-  @include e(title) {
-  }
-
   @include e(logo) {
     bottom: 30px;
     position: absolute;
+  }
+
+  h1 {
+    @include txt-pdf-element(h1);
+    padding-top: 0;
+  }
+
+  h2 {
+    @include txt-pdf-element(h2);
+    padding-top: 0;
   }
 }

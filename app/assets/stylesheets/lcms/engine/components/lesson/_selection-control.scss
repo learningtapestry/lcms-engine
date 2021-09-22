@@ -1,4 +1,5 @@
-$shadow-color: rgba(0, 0, 0, .3);
+// stylelint-disable max-nesting-depth
+$shadow-color: rgba(0, 0, 0, 0.3);
 
 .o-ld-selection {
   @include flex;
@@ -8,7 +9,7 @@ $shadow-color: rgba(0, 0, 0, .3);
   @include e(label) {
     cursor: pointer;
     font-weight: bold;
-    margin-left: .5em;
+    margin-left: 0.5em;
   }
 
   @include e(switch) {
@@ -16,7 +17,7 @@ $shadow-color: rgba(0, 0, 0, .3);
     cursor: pointer;
     height: 1.1em;
     position: relative;
-    top: .1em;
+    top: 0.1em;
     width: 2.5em;
 
     &::before,
@@ -37,12 +38,12 @@ $shadow-color: rgba(0, 0, 0, .3);
     &::after {
       background-color: currentColor;
       border-radius: 100%;
-      bottom: -.15em;
+      bottom: -0.15em;
       box-shadow: 0 2px 5px $shadow-color;
-      left: -.15em;
+      left: -0.15em;
       margin-left: 1.3em;
-      top: -.15em;
-      transition: margin .15s;
+      top: -0.15em;
+      transition: margin 0.15s;
       width: 1.3em;
     }
   }
@@ -52,7 +53,7 @@ $shadow-color: rgba(0, 0, 0, .3);
   .o-ld-selection {
     @include e(switch) {
       &::after {
-        margin-left: .15em;
+        margin-left: 0.15em;
       }
     }
   }
@@ -86,10 +87,12 @@ $shadow-color: rgba(0, 0, 0, .3);
       }
     }
 
+    // stylelint-disable selector-max-compound-selectors
     .o-material-wrapper,
     .c-ld-toc > *:not(.u-txt--title-type):not(.o-ld-title) {
       display: none;
     }
+    // stylelint-enable selector-max-compound-selectors
   }
 }
 
@@ -145,12 +148,14 @@ $shadow-color: rgba(0, 0, 0, .3);
       }
     }
 
+    // stylelint-disable selector-max-compound-selectors
     .o-ld-activity__source,
     .o-material-wrapper,
     .o-ld-materials,
     .c-ld-toc > div > *:not(.u-txt--title-type):not(.o-ld-title):not(.u-txt--ld-activity-teaser) {
       display: none;
     }
+    // stylelint-enable selector-max-compound-selectors
   }
 }
 
@@ -167,6 +172,7 @@ $shadow-color: rgba(0, 0, 0, .3);
     }
   }
 
+  // stylelint-disable declaration-no-important
   @include e(title) {
     @include txt-element(lesson-title);
     color: map-get($ub-selection, modal-title-fg) !important;

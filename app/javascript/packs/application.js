@@ -16,9 +16,10 @@
 
 // Support component names relative to this directory:
 // eslint-disable-next-line no-undef
-const componentRequireContext = require.context('components', true)
+const componentRequireContext = require.context('components', true);
 // eslint-disable-next-line no-undef
-const ReactRailsUJS = require('react_ujs')
-ReactRailsUJS.useContext(componentRequireContext)
+const ReactRailsUJS = require('react_ujs');
+// eslint-disable-next-line react-hooks/rules-of-hooks
+ReactRailsUJS.useContext(componentRequireContext);
 
-console.debug('Hello World from Webpacker FROM INSIDE `lcms-engine` gem!')
+console.debug('Hello World from Webpacker FROM INSIDE `lcms-engine` gem!');

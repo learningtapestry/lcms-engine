@@ -1,6 +1,6 @@
 .o-ld-callout {
   @include clearfix;
-  border-left: .125rem solid;
+  border-left: 0.125rem solid;
   float: right;
   font: italic 1.25rem / 1.3 $ub-serif;
   margin: 1.5rem 0 1.5rem 1.5rem;
@@ -24,16 +24,30 @@
   @include m(math) {
     border-color: map-get($ub-colorcodes, math-base);
 
-    &, *, ul, li, ol {
-      &, * { color: map-get($ub-colorcodes, math-base); }
+    &,
+    *,
+    ul,
+    li,
+    ol {
+      &,
+      * {
+        color: map-get($ub-colorcodes, math-base);
+      }
     }
   }
 
   @include m(ela) {
     border-color: map-get($ub-colorcodes, ela-base);
 
-    &, *, ul, li, ol {
-      &, * { color: map-get($ub-colorcodes, ela-base); }
+    &,
+    *,
+    ul,
+    li,
+    ol {
+      &,
+      * {
+        color: map-get($ub-colorcodes, ela-base);
+      }
     }
   }
 }

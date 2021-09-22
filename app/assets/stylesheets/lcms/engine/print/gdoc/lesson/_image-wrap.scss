@@ -4,10 +4,12 @@
 
     img {
       display: block;
-      height: auto !important;
-      max-width: 100% !important;
+      height: auto !important; // stylelint-disable-line declaration-no-important
+      max-width: 100% !important; // stylelint-disable-line declaration-no-important
     }
   }
 
-  @include e(img) { width: 100%; }
+  @include e(img) {
+    width: 100%;
+  }
 }

@@ -253,7 +253,7 @@ module Lcms
           return unless node.element? && node.name == 'li' && node['style'].to_s.include?('margin-left')
 
           indent = /margin-left\s*:\s*(\d+)/.match(node['style']).try(:[], 1).to_i
-          add_css_class(node, "u-ld-indent--l#{(indent - 50) / 30 + 2}") if indent >= 50
+          add_css_class(node, "u-ld-indent--l#{((indent - 50) / 30) + 2}") if indent >= 50
         end
 
         def post_processing_default(nodes)
