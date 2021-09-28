@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [BREAKING] Remove `Lcms::Engine::Component` model - [@paranoicsan](https://github.com/paranoicsan)
 - [BREAKING] Drop support to Ruby bellow 2.7 - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] The following gems were removed from the project: jbuilder, migration_data, nikkou, oj, oj_mimic_json, staccato, truncate_html - paranoicsan
 
 ## [0.3.1](https://github.com/learningtapestry/lcms-engine/compare/v0.3.0...v0.3.1) - 2021.02.12
 
