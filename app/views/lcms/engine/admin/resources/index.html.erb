@@ -28,7 +28,8 @@
     </tr>
 
     <% @resources.each do |resource| %>
-      <tr>
+      <% cache resource do %>
+        <tr>
         <% check_box_id = "ids_#{resource.id}" %>
         <td><%= check_box_tag 'ids[]', resource.id, false, class: 'resource-checkbox', id: check_box_id %>
         <td><%= label_tag check_box_id, resource.id, class: 'resource-id-label' %>
@@ -49,6 +50,7 @@
             <%= link_to t('.export_lti_cartridge'), [:export_to_lti_cc, :admin, resource], class: 'button small primary', method: :post %>
           <% end %>
       </tr>
+      <% end %>
     <% end %>
   </table>
 
