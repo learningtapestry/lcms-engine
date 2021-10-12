@@ -13,7 +13,7 @@ services:
       - 6379
 
   app:
-    build: .
+    image: lcms-engine
     command: bash -c "bundle install && yarn && tail -f /dev/null"
     env_file:
       - spec/dummy/.env.docker

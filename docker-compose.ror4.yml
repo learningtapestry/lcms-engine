@@ -13,7 +13,7 @@ services:
       - 6379
 
   app-ror4:
-    build: .
+    image: lcms-engine:ror4
     # Used to install native gem which solves build errors for nokogumbo and other gems
     command: bash -c "gem install nokogiri && bundle install && yarn && tail -f /dev/null"
     env_file:

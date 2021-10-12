@@ -132,7 +132,7 @@ class CurriculumEditor extends React.Component {
 }
 
 CurriculumEditor.propTypes = {
-  tree: PropTypes.object,
+  tree: PropTypes.array,
   form_url: PropTypes.string,
   form_token: PropTypes.string,
 };

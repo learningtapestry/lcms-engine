@@ -49,22 +49,23 @@
         </tr>
 
         <% @materials.each do |material| %>
-          <% material = ::Lcms::Engine::DocumentGenerator.material_presenter.new material %>
-          <tr id="material_<%= material.id %>">
+          <% cache material do %>
+            <% material = ::Lcms::Engine::DocumentGenerator.material_presenter.new material %>
+            <tr id="material_<%= material.id %>">
             <td><%= check_box_tag 'selected_ids[]', material.id, selected_id?(material.id), class: 'c-selected-ids' %></td>
-            <td><%= material.id %>
-            <td class="u-text--right"><%= link_to material.metadata['identifier'], dynamic_material_path(material, request.query_parameters), target: '_blank' %>
-            <td><%= link_to material.name, material.file_url, target: '_blank' %>
-            <td><%= material.metadata['type'] %>
-            <td><%= material.metadata['title']  %>
-            <td><%= material.metadata['grade'] %>
-            <td><%= material.metadata['guidebook'] %>
-            <td><%= material.metadata['section'] %>
-            <td><%= material.metadata['lesson'] %>
-            <td><%= material.metadata['activity'] %>
-            <td><%= material.metadata['orientation'] %>
-            <td><%= material.metadata['name_date'] %>
-            <td><%= material.metadata['header_footer'] %>
+            <td><%= material.id %></td>
+            <td class="u-text--right"><%= link_to material.metadata['identifier'], dynamic_material_path(material, request.query_parameters), target: '_blank' %></td>
+            <td><%= link_to material.name, material.file_url, target: '_blank' %></td>
+            <td><%= material.metadata['type'] %></td>
+            <td><%= material.metadata['title']  %></td>
+            <td><%= material.metadata['grade'] %></td>
+            <td><%= material.metadata['guidebook'] %></td>
+            <td><%= material.metadata['section'] %></td>
+            <td><%= material.metadata['lesson'] %></td>
+            <td><%= material.metadata['activity'] %></td>
+            <td><%= material.metadata['orientation'] %></td>
+            <td><%= material.metadata['name_date'] %></td>
+            <td><%= material.metadata['header_footer'] %></td>
             <td>
               <ul class="materials-table__lessons">
                 <% material.documents.each do |lesson| %>
@@ -75,7 +76,8 @@
                   </li>
                 <% end %>
               </ul>
-            <td class="u-txt--small"><%= material.reimported_at.to_s.presence || material.updated_at.to_s %>
+            </td>
+            <td class="u-txt--small"><%= material.reimported_at.to_s.presence || material.updated_at.to_s %></td>
             <td class="materials-table__btns text-left">
               <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { material: material } %>
               <%= button_to t('ui.delete'), admin_material_path(material, query: @query_params), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
@@ -83,7 +85,9 @@
                 <%# link_to material.pdf_preview_title, preview_pdf_material_path(material), class: 'button warning', target: '_blank' %>
                 <%# link_to material.gdoc_preview_title, preview_gdoc_material_path(material), class: 'button warning', target: '_blank' %>
               <% end %>
+            </td>
           </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

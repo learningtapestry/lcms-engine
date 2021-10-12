@@ -8,7 +8,7 @@ module Lcms
     class AdminDocumentsQuery < BaseQuery
       # Returns: ActiveRecord relation
       def call
-        @scope = Document.includes(:materials, :resource).all # initial scope
+        @scope = Document.all # initial scope
         apply_filters
 
         if @pagination.present?

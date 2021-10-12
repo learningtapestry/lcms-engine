@@ -7,7 +7,7 @@ module Lcms
     class AdminMaterialsQuery < BaseQuery
       # Returns: ActiveRecord relation
       def call
-        @scope = Material.includes(:documents).all # initial scope
+        @scope = Material.all # initial scope
         search_by_identifier
         search_by_file_name
 
