@@ -4,12 +4,16 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 class MultiSelectedOperation extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
   componentDidMount() {
     // eslint-disable-next-line react/no-find-dom-node
     const $this = $(ReactDOM.findDOMNode(this));
     $this.parent().addClass('c-multi-selected-btn');
-
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onSubmit(evt) {
