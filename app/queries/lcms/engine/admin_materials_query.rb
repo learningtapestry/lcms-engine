@@ -5,6 +5,8 @@ module Lcms
     # Usage:
     #   @materials = AdminMaterialsQuery.call(query_params, page: params[:page])
     class AdminMaterialsQuery < BaseQuery
+      STRICT_METADATA = %w(grade subject).freeze
+
       # Returns: ActiveRecord relation
       def call
         @scope = Material.all # initial scope
@@ -24,7 +26,14 @@ module Lcms
 
       def filter_by_metadata
         metadata_keys.each do |key|
-          @scope = @scope.where_metadata_like(key, q[key]) if q[key].present?
+          next unless q[key].present?
+
+          @scope =
+            if STRICT_METADATA.include?(key.to_s)
+              @scope.where_metadata(key => q[key])
+            else
+              @scope.where_metadata_like(key, q[key])
+            end
         end
       end
 
