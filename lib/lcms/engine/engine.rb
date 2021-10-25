@@ -95,13 +95,7 @@ module Lcms
       end
 
       initializer 'lcms.engine.assets.precompile' do |app|
-        app.config.assets.precompile += %w(
-          lcms_engine_manifest.js
-        )
-        # app.config.assets.precompile += %w(
-        #   ckeditor/*
-        #   gdoc.css
-        # )
+        app.config.assets.precompile += %w(lcms_engine_manifest.js ckeditor/config.js)
       end
 
       initializer 'webpacker.proxy' do |app|

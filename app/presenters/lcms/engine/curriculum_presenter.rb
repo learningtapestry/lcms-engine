@@ -8,37 +8,40 @@ module Lcms
 
       def editor_props
         @editor_props ||= {
-          tree: jstree_data,
           form_url: routes.admin_curriculum_path
         }
-      end
-
-      private
-
-      # Parse tree to be compatible with jstree input data
-      def jstree_data
-        Resource.tree.ordered.roots.map { |res| parse_jstree_node(res) }
-      end
-
-      def opened?(node)
-        return false if node.curriculum_type.blank?
-
-        level = Lcms::Engine::Resource.hierarchy.index(node.curriculum_type.to_sym)
-        level < UNIT_LEVEL
       end
 
       def parse_jstree_node(node)
         {
           id: node.id,
-          text: node.short_title,
-          state: { opened: opened?(node) },
-          children: node.children.tree.ordered.map { |res| parse_jstree_node(res) },
+          text: element_text(node),
+          children: node.children.any?,
           li_attr: { title: node.title }
         }
       end
 
       def routes
         Lcms::Engine::Engine.routes.url_helpers
+      end
+
+      private
+
+      def element_text(resource)
+        case resource.curriculum_type
+        when 'subject'
+          resource.title
+        when 'unit'
+          resource.short_title.upcase
+        when 'grade'
+          resource.short_title.capitalize
+        when 'lesson_set'
+          "Lesson set #{resource.metadata['lesson_set']}"
+        when 'lesson'
+          "Lesson #{resource.metadata['lesson']}"
+        else
+          "Unknown curriculum type for: #{resource.title}"
+        end
       end
     end
   end

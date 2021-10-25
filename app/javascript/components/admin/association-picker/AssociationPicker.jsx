@@ -9,6 +9,8 @@ import AssociationPickerWindow from './AssociationPickerWindow';
 import PickerButton from '../picker/PickerButton';
 import pickerModal from '../picker/pickerModal';
 import pickerWindowWrapper from '../picker/pickerWindowWrapper';
+import { Foundation } from 'foundation-sites';
+import $ from 'jquery';
 
 class AssociationPicker extends React.Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class AssociationPicker extends React.Component {
   }
 
   componentDidMount() {
+    Foundation.addToJquery($);
     // eslint-disable-next-line no-undef
     pickerModal.call(this);
   }

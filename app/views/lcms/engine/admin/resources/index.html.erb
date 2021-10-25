@@ -42,12 +42,12 @@
         <td class="resource-tag-col"><%= resource.tree? ? 'yes' : 'no' %>
         <td><%= resource_status(resource) %>
         <td class="resource-btns-col">
-          <%= link_to t('ui.edit'), [:edit, :admin, resource], class: 'button small' %>
+          <%= link_to t('ui.edit'), lcms_engine.edit_admin_resource_path(resource), class: 'button small' %>
           <% if can_bundle? resource %>
-            <%= link_to t('.bundle'), [:bundle, :admin, resource], class: 'button small primary', method: :post %>
+            <%= link_to t('.bundle'), lcms_engine.bundle_admin_resource_path(resource), class: 'button small primary', method: :post %>
           <% end %>
           <% if resource.module? %>
-            <%= link_to t('.export_lti_cartridge'), [:export_to_lti_cc, :admin, resource], class: 'button small primary', method: :post %>
+            <%= link_to t('.export_lti_cartridge'), lcms_engine.export_to_lti_cc_admin_resource_path(resource), class: 'button small primary', method: :post %>
           <% end %>
       </tr>
       <% end %>

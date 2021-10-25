@@ -85,7 +85,7 @@ AssociationPickerWindow.propTypes = {
   results: PropTypes.array,
   onFilterChange: PropTypes.func,
   allowCreate: PropTypes.bool,
-  pagination: PropTypes.node,
+  pagination: PropTypes.func,
   allowMultiple: PropTypes.bool,
   onClickDone: PropTypes.func,
 };

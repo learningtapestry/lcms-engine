@@ -1,8 +1,7 @@
 // stylelint-disable max-nesting-depth, selector-no-qualifying-type, selector-max-compound-selectors, selector-class-pattern
 
-@import 'application';
+@import 'lcms_engine_application';
 @import 'selectize';
-@import 'vendors/jquery.tagsinput';
 @import 'admin/resources';
 @import 'admin/curriculums';
 @import 'admin/standards';
@@ -10,6 +9,7 @@
 @import 'admin/lessons';
 @import 'admin/materials';
 @import 'admin/users';
+@import 'vendors/react-tagsinput';
 
 .button {
   white-space: nowrap;

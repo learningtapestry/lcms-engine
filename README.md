@@ -12,11 +12,11 @@ separately, simplifying the client applications in the process.
 
 ## Current development
 
-|Branch|Rails version|
-|------|-------------|
-|master|Rails 6.1.2.1|
-|0.3.x|Rails 5.2.4.5|
-|0.1.x|Rails 4.2.11.3|
+|Branch| Rails version |
+|------|--------------|
+|master| Rails 6.1.4  |
+|0.3.x| Rails 5.2.4.5 |
+|0.1.x| Rails 4.2.11.3 |
 
 This is still a [work in progress](https://github.com/learningtapestry/lcms-engine/issues/3). The
 initial phase of the project consisted in extracting as much code as possible from the client
@@ -215,7 +215,7 @@ $ brew cask install chromedriver
 
 Launch the containers
 ```sh
-$ docker compose build
+$ docker build -t lcms-engine .
 $ docker compose start
 $ docker compose exec app sh -c 'bin/rails db:create'
 $ docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"

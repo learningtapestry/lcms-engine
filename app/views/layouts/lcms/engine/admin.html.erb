@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= render partial: 'lcms/engine/shared/favicon' %>
     <script>document.querySelector('html').className = 'js';</script>
-    <%= stylesheet_link_tag 'lcms/engine/admin', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= stylesheet_link_tag 'lcms/engine/lcms_engine_admin', media: 'all', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
     <%# NOTE: JS served via Assets pipeline should be added first %>
-    <%= javascript_include_tag 'lcms/engine/admin/application', 'data-turbolinks-track' => 'reload' %>
-    <%= lcms_engine_javascript_pack_tag 'admin' %>
+    <%= javascript_include_tag 'lcms/engine/admin/lcms_engine_application', 'data-turbolinks-track' => 'reload' %>
+    <%= lcms_engine_javascript_pack_tag 'lcms_engine_admin' %>
   </head>
   <body>
     <div class="u-page-wrap c-admin u-supported">

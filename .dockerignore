@@ -1,0 +1,25 @@
+db/dump/content.dump
+/log/*
+!/log/.keep
+/tmp/*
+
+# Ignore environment-specific configuration
+.env.development
+.env.staging
+.env.test
+.env
+
+# Ignore IDE specific files
+/.idea
+# simplecov reports
+coverage
+.pryrc
+tags
+pdfs
+.DS_Store
+.generators
+.rakeTasks
+public/lcms_engine_packs
+yarn-debug.log*
+yarn-integrity
+yarn-error.log

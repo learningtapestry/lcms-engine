@@ -21,7 +21,7 @@ PickerButton.propTypes = {
   onClick: PropTypes.func,
   hiddenInputs: PropTypes.node,
   content: PropTypes.array,
-  onRef: PropTypes.object,
+  onRef: PropTypes.func,
 };
 
 export default PickerButton;
