@@ -93,6 +93,14 @@ describe Lcms::Engine::Admin::DocumentsController do
     it 'deletes the document' do
       expect { subject }.to change(Lcms::Engine::Document, :count).by(-1)
     end
+
+    context 'when there was custom filter' do
+      let(:query) { { course: 'value' } }
+
+      subject { delete :destroy, params: { id: document.id, query: query } }
+
+      it { is_expected.to redirect_to "/lcms-engine/admin/documents?#{{ query: query }.to_param}" }
+    end
   end
 
   describe '#new' do

@@ -96,7 +96,7 @@ describe Lcms::Engine::Admin::MaterialsController do
 
       subject { delete :destroy, params: { id: material.id, query: query } }
 
-      it { is_expected.to redirect_to admin_materials_path(query: query) }
+      it { is_expected.to redirect_to "/lcms-engine/admin/materials?#{{ query: query }.to_param}" }
     end
   end
 

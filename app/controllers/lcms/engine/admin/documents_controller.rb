@@ -28,12 +28,12 @@ module Lcms
         def destroy
           @document = Document.find(params[:id])
           @document.destroy
-          redirect_to admin_documents_path(query: @query_params), notice: t('.success')
+          redirect_to lcms_engine.admin_documents_path(query: @query_params), notice: t('.success')
         end
 
         def destroy_selected
           count = @documents.destroy_all.count
-          redirect_to admin_documents_path(query: @query_params), notice: t('.success', count: count)
+          redirect_to lcms_engine.admin_documents_path(query: @query_params), notice: t('.success', count: count)
         end
 
         def import_status

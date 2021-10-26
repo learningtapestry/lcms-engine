@@ -28,12 +28,12 @@ module Lcms
         def destroy
           material = Material.find(params[:id])
           material.destroy
-          redirect_to admin_materials_path(query: @query_params), notice: t('.success')
+          redirect_to lcms_engine.admin_materials_path(query: @query_params), notice: t('.success')
         end
 
         def destroy_selected
           count = @materials.destroy_all.count
-          redirect_to admin_materials_path(query: @query_params), notice: t('.success', count: count)
+          redirect_to lcms_engine.admin_materials_path(query: @query_params), notice: t('.success', count: count)
         end
 
         def import_status
