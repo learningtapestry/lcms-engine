@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concern
 - Replace sass-lint to stylelint NodeJS package
 - Bump webpacker gem (and @rails/webpacker package)
+- `Lcms::Engine::S3Service.upload` method now accepts options Hash to be passed to AWS S3 resource
 
 ### Changed
 

@@ -12,9 +12,21 @@ module Lcms
           .object(key)
       end
 
-      def self.upload(key, data)
+      #
+      # Upload data to the specified resource by key
+      #
+      # @param [String] key Key of the object. Usually represents the full path inside a bucket
+      # @param [IO|StringIO] data The data to be uploaded
+      # @param [Hash] options Additional options to be passed to Aws::S3::Object#put method
+      #
+      # @return [String] The final URL of the uploaded object
+      #
+      def self.upload(key, data, options = {})
         object = create_object key
-        object.put(body: data)
+        options = options.merge(
+          body: data
+        )
+        object.put(options)
         object.public_url
       end
 
