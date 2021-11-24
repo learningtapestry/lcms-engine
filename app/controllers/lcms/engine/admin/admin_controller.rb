@@ -4,6 +4,8 @@ module Lcms
   module Engine
     module Admin
       class AdminController < Lcms::Engine::ApplicationController
+        include Lcms::Engine::PathHelper
+
         CONFIG_PATH ||= Rails.root.join('config', 'lcms-admin.yml')
 
         DEFAULTS ||= {
