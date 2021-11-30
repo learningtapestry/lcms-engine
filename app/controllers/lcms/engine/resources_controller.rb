@@ -7,13 +7,13 @@ module Lcms
         @resource = find_resource
 
         # redirect to document if resource has it (#161)
-        return redirect_to document_path(@resource.document) if @resource.document?
+        return redirect_to dynamic_document_path(@resource.document) if @resource.document?
 
         # redirect grade and module to explore_curriculum (#122)
-        return redirect_to explore_curriculum_index_path(p: @resource.slug, e: 1) if grade_or_module?
+        return redirect_to lcms_engine.explore_curriculum_index_path(p: @resource.slug, e: 1) if grade_or_module?
 
         # redirect to the path with slug if we are using just the id
-        return redirect_to show_with_slug_path(@resource.slug), status: 301 if using_id?
+        return redirect_to lcms_engine.show_with_slug_path(@resource.slug), status: 301 if using_id?
 
         @related_instructions = related_instructions
         @props = CurriculumMap.new(@resource).props
@@ -27,14 +27,14 @@ module Lcms
 
       def media
         resource = Resource.find(params[:id])
-        return redirect_to resource_path(resource) unless resource.media?
+        return redirect_to lcms_engine.resource_path(resource) unless resource.media?
 
         @resource = MediaPresenter.new(resource)
       end
 
       def generic
         resource = Resource.find(params[:id])
-        return redirect_to resource_path(resource) unless resource.generic?
+        return redirect_to lcms_engine.resource_path(resource) unless resource.generic?
 
         @resource = GenericPresenter.new(resource)
       end

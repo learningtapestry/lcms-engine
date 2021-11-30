@@ -24,7 +24,7 @@
             path: delete_selected_admin_materials_path(query: @query_params),
             btn_style: 'alert'} %>
       <%# link_to t('.new_material_pdf'), new_admin_material_path(source_type: 'pdf'), class: 'button primary' %>
-      <%= link_to t('.new_material'), :new_admin_material, class: 'button primary' %>
+      <%= link_to t('.new_material'), lcms_engine.new_admin_material_path, class: 'button primary' %>
     </div>
     <div class="materials-table materials-table__wrapper">
       <table class="table u-text--centered">

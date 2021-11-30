@@ -1,4 +1,4 @@
-<% url = @resource.new_record? ? :admin_resources : admin_resource_path(@resource) %>
+<% url = @resource.new_record? ? lcms_engine.admin_resources_path : lcms_engine.admin_resource_path(@resource) %>
 
 <%= simple_nested_form_for @resource, url: url, html: { id: 'resource_form' } do |f| %>
   <div class="large-10 columns">

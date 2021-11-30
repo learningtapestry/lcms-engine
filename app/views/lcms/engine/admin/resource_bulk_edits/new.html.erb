@@ -1,7 +1,7 @@
 <div class=o-page>
   <h2 class=text-center><%= t('.page_title') %></h2>
 
-  <%= simple_form_for @resource, url: :admin_resource_bulk_edits do |f| %>
+  <%= simple_form_for @resource, url: lcms_engine.admin_resource_bulk_edits_path do |f| %>
 
     <% @resources.each do |resource| %>
       <%= hidden_field_tag 'ids[]', resource.id %>

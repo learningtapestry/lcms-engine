@@ -9,7 +9,7 @@ module Lcms
         def create
           @access_code = AccessCode.new(permitted_params)
           if @access_code.save
-            redirect_to({ action: :index }, notice: t('.success'))
+            redirect_to lcms_engine.admin_access_codes_path, notice: t('.success')
           else
             render :new
           end
@@ -17,7 +17,11 @@ module Lcms
 
         def destroy
           @access_code.destroy
-          redirect_to({ action: :index }, notice: t('.success'))
+          redirect_to lcms_engine.admin_access_codes_path, notice: t('.success')
+        end
+
+        def edit
+          @url = lcms_engine.admin_access_code_path(@access_code)
         end
 
         def index
@@ -30,8 +34,9 @@ module Lcms
 
         def update
           if @access_code.update(permitted_params)
-            redirect_to({ action: :index }, notice: t('.success'))
+            redirect_to lcms_engine.admin_access_codes_path, notice: t('.success')
           else
+            @url = lcms_engine.admin_access_code_path(@access_code)
             render :edit
           end
         end

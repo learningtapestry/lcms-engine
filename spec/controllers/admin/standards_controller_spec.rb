@@ -60,7 +60,7 @@ describe Lcms::Engine::Admin::StandardsController do
     subject { post :update, params: { id: standard.to_param, standard: params } }
 
     context 'with valid params' do
-      it { is_expected.to redirect_to admin_standards_path }
+      it { is_expected.to redirect_to lcms_engine(admin_standards_path) }
 
       it 'passes notice' do
         subject

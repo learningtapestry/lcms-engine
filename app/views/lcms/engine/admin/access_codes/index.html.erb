@@ -1,7 +1,7 @@
 <div class=o-page>
   <div class=clearfix>
     <div class=pull-right>
-      <%= link_to t('.new_access_code'), :new_admin_access_code, class: 'button success', 'data-turbolinks' => false %>
+      <%= link_to t('.new_access_code'), lcms_engine.new_admin_access_code_path, class: 'button success', 'data-turbolinks' => false %>
     </div>
   </div>
 
@@ -19,10 +19,10 @@
         <% @access_codes.each do |access_code| %>
           <% cache access_code do %>
             <tr id="access_code_<%= access_code.id %>">
-              <td><%= link_to access_code.code, edit_admin_access_code_path(access_code) %>
+              <td><%= link_to access_code.code, lcms_engine.edit_admin_access_code_path(access_code) %>
               <td><%= access_code.active ? 'YES' : 'NO' %>
               <td>
-                <%= button_to t('ui.delete'), admin_access_code_path(access_code), class: 'button alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'button alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
               </td>
             </tr>
           <% end %>

@@ -57,7 +57,7 @@ feature 'Admin users' do
     click_button 'Save'
 
     user.reload
-    expect(current_path).to eq lcms_engine.edit_admin_user_path(user.id)
+    expect(current_path).to eq lcms_engine.admin_users_path
     expect(page.find('.callout.success').text).to include('saved successfully')
     expect(user.email).to eq "unbounded@#{domain}"
     expect(user.unconfirmed_email).to eq "joe@#{domain}"

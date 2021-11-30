@@ -11,7 +11,7 @@ module Lcms
         def update
           @form = CurriculumForm.new(params[:curriculum])
           if @form.save
-            redirect_to admin_path, notice: t('.success')
+            redirect_to lcms_engine.root_path, notice: t('.success')
           else
             @curriculum = CurriculumPresenter.new
             render :edit, alert: t('.error')
