@@ -7,7 +7,7 @@ describe Lcms::Engine::Admin::WelcomeController do
 
   describe 'requires admin user' do
     before { get :index }
-    it { expect(response).to redirect_to new_user_session_path }
+    it { expect(response).to redirect_to lcms_engine(new_user_session_path) }
   end
 
   describe 'allow admin' do

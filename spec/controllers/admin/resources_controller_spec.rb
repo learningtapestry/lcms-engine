@@ -27,7 +27,7 @@ describe Lcms::Engine::Admin::ResourcesController do
     subject { post :update, params: { id: resource.to_param, resource: params } }
 
     context 'with valid params' do
-      it { is_expected.to redirect_to admin_resources_path }
+      it { is_expected.to redirect_to lcms_engine(admin_resources_path) }
 
       it 'passes notice' do
         subject

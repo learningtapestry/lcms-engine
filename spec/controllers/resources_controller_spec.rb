@@ -49,19 +49,19 @@ xdescribe Lcms::Engine::ResourcesController do
     context 'with id' do
       before { get :show, id: resource.id }
 
-      it { expect(response).to redirect_to("/#{resource.slug}") }
+      it { expect(response).to redirect_to("/lcms-engine#{resource.slug}") }
     end
 
     context 'grade' do
       let(:resource) { create(:resource, :grade) }
       before { get :show, slug: resource.slug }
-      it { expect(response).to redirect_to explore_curriculum_index_path(p: resource.slug, e: 1) }
+      it { expect(response).to redirect_to lcms_engine(explore_curriculum_index_path(p: resource.slug, e: 1)) }
     end
 
     context 'module' do
       let(:resource) { create(:resource, :module) }
       before { get :show, slug: resource.slug }
-      it { expect(response).to redirect_to explore_curriculum_index_path(p: resource.slug, e: 1) }
+      it { expect(response).to redirect_to lcms_engine(explore_curriculum_index_path(p: resource.slug, e: 1)) }
     end
   end
 end

@@ -20,7 +20,7 @@ module Lcms
 
         def update
           if @standard.update(standard_params)
-            redirect_to admin_standards_path, notice: t('.success')
+            redirect_to lcms_engine.admin_standards_path, notice: t('.success')
           else
             render :edit
           end

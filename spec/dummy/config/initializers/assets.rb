@@ -14,3 +14,9 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# To prevent Sass errors
+# See https://github.com/rails/sprockets/issues/581
+Rails.application.config.assets.configure do |env|
+  env.export_concurrent = false
+end

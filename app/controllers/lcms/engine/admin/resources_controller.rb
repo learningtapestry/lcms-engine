@@ -30,7 +30,7 @@ module Lcms
 
           if @resource.save
             create_tags
-            redirect_to :admin_resources, notice: t('.success', resource_id: @resource.id)
+            redirect_to lcms_engine.admin_resources_path, notice: t('.success', resource_id: @resource.id)
           else
             render :new
           end
@@ -50,17 +50,17 @@ module Lcms
         end
 
         def bundle
-          return redirect_to :admin_resources, notice: t('.fail') unless can_bundle?(@resource)
+          return redirect_to lcms_engine.admin_resources_path, notice: t('.fail') unless can_bundle?(@resource)
 
           # see settings loaded via `lcms.yml`
           generator = DocTemplate.config.dig('bundles', @resource.curriculum_type).constantize
           generator.perform(@resource)
-          redirect_to :admin_resources, notice: t('.success')
+          redirect_to lcms_engine.admin_resources_path, notice: t('.success')
         end
 
         def update
           unless Settings[:editing_enabled]
-            return redirect_to(:admin_resources, alert: t('admin.common.editing_disabled'))
+            return redirect_to(lcms_engine.admin_resources_path, alert: t('admin.common.editing_disabled'))
           end
 
           create_tags
@@ -70,7 +70,7 @@ module Lcms
           end
 
           if @resource.update(resource_params)
-            redirect_to :admin_resources, notice: t('.success', resource_id: @resource.id)
+            redirect_to lcms_engine.admin_resources_path, notice: t('.success', resource_id: @resource.id)
           else
             render :edit
           end
@@ -78,7 +78,7 @@ module Lcms
 
         def destroy
           @resource.destroy
-          redirect_to :admin_resources, notice: t('.success', resource_id: @resource.id)
+          redirect_to lcms_engine.admin_resources_path, notice: t('.success', resource_id: @resource.id)
         end
 
         protected

@@ -11,6 +11,6 @@ describe Lcms::Engine::Admin::SettingsController do
     expect(Lcms::Engine::Settings[:editing_enabled]).to be true
     patch :toggle_editing_enabled
     expect(Lcms::Engine::Settings[:editing_enabled]).to be false
-    expect(response).to redirect_to(:admin_resources)
+    expect(response).to redirect_to(lcms_engine(admin_resources_path))
   end
 end

@@ -10,7 +10,7 @@ module Lcms
           if @resources.any?
             @resource = BulkEditResourcesService.new(@resources).init_sample
           else
-            redirect_to :admin_resources, alert: t('.no_resources')
+            redirect_to lcms_engine.admin_resources_path, alert: t('.no_resources')
           end
         end
 
@@ -18,7 +18,7 @@ module Lcms
           BulkEditResourcesService.new(@resources, resource_params).edit!
           resources_count_msg = t(:resources_count, count: @resources.count)
           notice = t('.success', count: @resources.count, resources_count: resources_count_msg)
-          redirect_to :admin_resources, notice: notice
+          redirect_to lcms_engine.admin_resources_path, notice: notice
         end
 
         private

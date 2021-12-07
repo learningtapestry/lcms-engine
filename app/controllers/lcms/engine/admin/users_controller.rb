@@ -21,30 +21,33 @@ module Lcms
           @user.generate_password
           if @user.save
             @user.send_reset_password_instructions
-            redirect_to(:admin_users, notice: t('.success', user: @user.email))
+            redirect_to lcms_engine.admin_users_path, notice: t('.success', user: @user.email)
           else
             render :new
           end
         end
 
-        def edit; end
+        def edit
+          @url = lcms_engine.admin_user_path(@user)
+        end
 
         def update
           if @user.update(user_params)
-            redirect_to edit_admin_user_path(@user), notice: t('.success', user: @user.email)
+            redirect_to lcms_engine.admin_users_path, notice: t('.success', user: @user.email)
           else
+            @url = lcms_engine.admin_user_path(@user)
             render :edit
           end
         end
 
         def destroy
           @user.destroy
-          redirect_to :admin_users, notice: t('.success')
+          redirect_to lcms_engine.admin_users_path, notice: t('.success')
         end
 
         def reset_password
           @user.send_reset_password_instructions
-          redirect_to :admin_users, notice: t('.success')
+          redirect_to lcms_engine.admin_users_path, notice: t('.success')
         end
 
         private

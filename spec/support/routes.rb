@@ -9,6 +9,10 @@ module Lcms
         included do
           routes { ::Lcms::Engine::Engine.routes }
         end
+
+        def lcms_engine(path)
+          "/lcms-engine#{path}"
+        end
       end
     end
   end

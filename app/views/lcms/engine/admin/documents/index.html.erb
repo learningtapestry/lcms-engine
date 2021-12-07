@@ -24,7 +24,7 @@
             path: delete_selected_admin_documents_path(query: @query_params),
             btn_style: 'alert'} %>
 
-      <%= link_to t('.new_lesson'), :new_admin_document, class: 'button primary' %>
+      <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'button primary' %>
     </div>
     <table class="lessons-table table">
       <tr>

@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @user], html: { id: 'user_form' } do |f| %>
+<%= simple_form_for @user, url: @url.presence || lcms_engine.admin_users_path, html: { id: 'user_form' } do |f| %>
   <%= f.input :id, disabled: true %>
   <%= f.input :name %>
   <%= f.input :email %>

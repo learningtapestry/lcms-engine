@@ -1,4 +1,4 @@
-<%= simple_form_for :query, url: :admin_materials, html: { class: 'form-inline well o-admin-lessons-search', method: :get } do |f| %>
+<%= simple_form_for :query, url: lcms_engine.admin_materials_path, html: { class: 'form-inline well o-admin-lessons-search', method: :get } do |f| %>
 
   <div class="row align-bottom align-justify">
     <%= f.input :search_term, label: 'Identifier', required: false,
