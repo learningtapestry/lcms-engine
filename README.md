@@ -12,10 +12,10 @@ separately, simplifying the client applications in the process.
 
 ## Current development
 
-|Branch| Rails version |
-|------|--------------|
-|master| Rails 6.1.4  |
-|0.3.x| Rails 5.2.4.5 |
+|Branch| Rails version  |
+|------|----------------|
+|master| Rails 6.1.4.6  |
+|0.3.x| Rails 5.2.4.5  |
 |0.1.x| Rails 4.2.11.3 |
 
 This is still a [work in progress](https://github.com/learningtapestry/lcms-engine/issues/3). The
