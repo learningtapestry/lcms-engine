@@ -67,7 +67,7 @@ module Lcms
 
       def document_parts_index
         @document_parts_index ||= document_parts.pluck(:placeholder, :anchor, :content, :optional)
-                                    .map { |p| [p[0], { anchor: p[1], content: p[2], optional: p[3] }] }.to_h
+                                    .to_h { |p| [p[0], { anchor: p[1], content: p[2], optional: p[3] }] }
       end
 
       def layout_content(context_type)

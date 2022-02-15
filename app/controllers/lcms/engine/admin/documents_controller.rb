@@ -12,7 +12,7 @@ module Lcms
         before_action :set_query_params
 
         def index
-          @query = OpenStruct.new @query_params
+          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
           @documents = DocTemplate.config['queries']['document'].constantize.call(@query, page: params[:page])
           render_customized_view
         end

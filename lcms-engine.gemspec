@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
   s.license = 'Apache-2.0'
+  s.metadata['rubygems_mfa_required'] = 'true'
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")

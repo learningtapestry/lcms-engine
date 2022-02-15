@@ -8,7 +8,7 @@ module Lcms
         before_action :set_query_params
 
         def index
-          @query = OpenStruct.new @query_params
+          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
           @users = users(@query)
         end
 

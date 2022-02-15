@@ -27,7 +27,6 @@ module Lcms
         end
 
         def index_params
-          #
           @index_params ||=
             begin
               expected_params = params
