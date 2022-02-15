@@ -97,14 +97,6 @@ module Lcms
         strip_tags(str).squish
       end
 
-      def set_social_media_sharing(target) # rubocop:disable Naming/AccessorMethodName
-        @social_media_presenter = SocialMediaPresenter.new(target: target, view: self)
-      end
-
-      def social_media
-        @social_media_presenter || SocialMediaPresenter.new(target: nil, view: self)
-      end
-
       def color_code(model, base: false)
         subject_color_code = model.try(:subject) || 'default'
         grade_avg = base ? 'base' : model.grades.average
