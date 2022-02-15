@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import $ from 'jquery';
+import '../../../vendor/jstree/jstree.min';
 
 class CurriculumEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.tree,
       changeLog: [],
       createdIds: [],
     };
@@ -31,7 +32,12 @@ class CurriculumEditor extends React.Component {
           animation: 0,
           themes: { dots: true },
           check_callback: true,
-          data: this.state.data,
+          data: {
+            url: this.props.path,
+            data: node => {
+              return { id: node.id };
+            },
+          },
         },
         plugins: ['contextmenu', 'dnd', 'wholerow', 'changed'],
       });
@@ -135,6 +141,7 @@ CurriculumEditor.propTypes = {
   tree: PropTypes.array,
   form_url: PropTypes.string,
   form_token: PropTypes.string,
+  path: PropTypes.string,
 };
 
 export default CurriculumEditor;

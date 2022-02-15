@@ -68,7 +68,9 @@ Lcms::Engine::Engine.routes.draw do
         get :import_status, to: 'materials#import_status'
       end
     end
-    resource :curriculum, only: %i(edit update)
+    resource :curriculum, only: %i(edit update) do
+      get :children
+    end
     resources :access_codes, except: :show
     resource :batch_reimport, only: %i(new create)
   end

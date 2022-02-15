@@ -5,11 +5,11 @@ module Lcms
     module Admin
       class BatchReimportsController < AdminController
         def new
-          @query = OpenStruct.new(params[:query])
+          @query = OpenStruct.new(params[:query]) # rubocop:disable Style/OpenStructUse
         end
 
         def create
-          @query = OpenStruct.new params[:query].except(:type)
+          @query = OpenStruct.new params[:query].except(:type) # rubocop:disable Style/OpenStructUse
           entries = if materials?
                       DocTemplate.config['queries']['material'].constantize.call(@query)
                     else

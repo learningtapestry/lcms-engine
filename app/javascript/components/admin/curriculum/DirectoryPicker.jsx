@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
+import { Foundation } from 'foundation-sites';
+import TagsInput from 'react-tagsinput';
+import $ from 'jquery';
+import '../../../vendor/jstree/jstree.min';
 
 class DirectoryPicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tree: props.tree,
       directory: props.directory,
       parent: props.parent,
     };
 
     this.onClick = this.onClick.bind(this);
+    this.handleDirChange = this.handleDirChange.bind(this);
   }
 
   componentDidMount() {
@@ -19,29 +23,24 @@ class DirectoryPicker extends React.Component {
     const $this = $(ReactDOM.findDOMNode(this));
     $this.parent().addClass('o-curriculum-tree-picker__container');
 
-    // start jstree
     const editor = $this.find('#curriculum-tree-picker');
     editor.on('changed.jstree', this.onChanged.bind(this)).jstree({
       core: {
         animation: 0,
         themes: { dots: true },
         check_callback: true,
-        data: this.state.tree,
+        data: {
+          url: this.props.path,
+          data: node => {
+            return { id: node.id };
+          },
+        },
       },
       plugins: ['wholerow', 'changed'],
     });
-
-    // preserve jsTree reference so we can call methods directly
     this.jsTree = editor.data('jstree');
 
-    // start tagsinput
-    this.dirTags = $this.find('#resource_directory');
-    this.dirTags.tagsInput({
-      height: '2.5em',
-      width: '65%',
-    });
-
-    // start modal
+    Foundation.addToJquery($);
     this.jqmodal = $this.find('#curriculum-picker-modal');
     new Foundation.Reveal(this.jqmodal, null);
   }
@@ -52,14 +51,12 @@ class DirectoryPicker extends React.Component {
 
   onChanged(_e, data) {
     const dir = this.directory(data.node);
-    this.dirTags.importTags(dir.join(','));
-
     const parent = {
       id: data.node.id,
       title: data.node.li_attr.title,
       directory: dir,
     };
-    this.setState({ ...this.state, parent: parent });
+    this.setState({ directory: dir, parent: parent });
     this.closeModal();
   }
 
@@ -76,8 +73,11 @@ class DirectoryPicker extends React.Component {
       .concat(node.text);
   }
 
+  handleDirChange(tags) {
+    this.setState({ directory: tags });
+  }
+
   render() {
-    const dir = this.state.directory.join(',');
     const curr = this.state.parent.directory;
     const parent_aside = curr.length > 0 ? `(${curr.join(' | ')}) : ` : '';
     return (
@@ -103,12 +103,8 @@ class DirectoryPicker extends React.Component {
               (You can pick a parent above, or enter curriculum tags below; i.e.: subject, grade, unit, etc;)
             </aside>
           </label>
-          <input
-            className="text optional"
-            name="resource[directory]"
-            id="resource_directory"
-            defaultValue={dir}
-          ></input>
+          <TagsInput value={this.state.directory} onChange={this.handleDirChange} />
+          <input type="hidden" name="resource[directory]" value={this.state.directory} />
         </div>
         <div className="curriculum-picker-modal reveal" id="curriculum-picker-modal">
           <h2>Select a Parent Resource</h2>
@@ -120,9 +116,10 @@ class DirectoryPicker extends React.Component {
 }
 
 DirectoryPicker.propTypes = {
-  tree: PropTypes.object,
+  tree: PropTypes.array,
   directory: PropTypes.array,
   parent: PropTypes.object,
+  path: PropTypes.string,
 };
 
 export default DirectoryPicker;

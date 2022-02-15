@@ -9,7 +9,7 @@ describe DocTemplate::Tags::PdTag do
   let(:original_content) { "<p><span>[PD: #{url}; #{title}; </span><span>#{description}]</span></p><p><span>" }
   let(:params) do
     {
-      metadata: OpenStruct.new(resource_subject: 'ela'),
+      metadata: double('metadata', resource_subject: 'ela'),
       value: [url, title, description].join('; ')
     }
   end

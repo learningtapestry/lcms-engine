@@ -32,7 +32,7 @@ module Lcms
       end
 
       def grades_props
-        ActiveModel::Serializer::CollectionSerializer.new(
+        ActiveModelSerializers::SerializableResource.new(
           grades,
           each_serializer: CurriculumResourceSerializer,
           root: :results

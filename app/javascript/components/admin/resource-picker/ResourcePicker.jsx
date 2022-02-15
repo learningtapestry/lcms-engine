@@ -7,6 +7,8 @@ import ResourcePickerResource from './ResourcePickerResource';
 import PickerButton from '../picker/PickerButton';
 import pickerWindowWrapper from '../picker/pickerWindowWrapper';
 import pickerModal from '../picker/pickerModal';
+import { Foundation } from 'foundation-sites';
+import $ from 'jquery';
 
 class ResourcePicker extends React.Component {
   constructor(props) {
@@ -31,6 +33,7 @@ class ResourcePicker extends React.Component {
   }
 
   componentDidMount() {
+    Foundation.addToJquery($);
     // eslint-disable-next-line no-undef
     pickerModal.call(this);
   }

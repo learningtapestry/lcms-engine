@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
   s.license = 'Apache-2.0'
+  s.metadata['rubygems_mfa_required'] = 'true'
 
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- spec/*`.split("\n")
@@ -34,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-sass', '~> 3.4'
   s.add_dependency 'bullet', '~> 6.1', '>= 6.1.0'
   s.add_dependency 'carrierwave', '~> 2.1'
-  s.add_dependency 'ckeditor', '~> 4.3'
+  s.add_dependency 'ckeditor', '~> 5.1'
   s.add_dependency 'closure_tree', '~> 7.1'
   s.add_dependency 'combine_pdf', '~> 1.0'
   s.add_dependency 'daemons', '~> 1.3', '>= 1.3.1'

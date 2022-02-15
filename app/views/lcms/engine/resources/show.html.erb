@@ -1,5 +1,4 @@
 <% set_page_title @resource.page_title %>
-<% set_social_media_sharing @resource %>
 
 <% set_canonical_url(show_with_slug_path @resource.slug) if @resource.slug %>
 
@@ -65,7 +64,6 @@
               <strong><%= @resource.subject_and_grade_title %> Curriculum Map</strong>
             </div>
             <%= react_component('CurriculumMap', @props.merge(mapType: 'cs')) %>
-            <%= render partial: 'lcms/engine/shared/social_sharing', locals: { resource: @resource, cl: 'u-margin-top--base' } %>
           </div>
           <div class="o-resource-summary__content">
             <div class="o-resource__item o-resource__item--description">

@@ -26,11 +26,14 @@ module Lcms
 
             next unless settings.values.any? || downloads.any?
 
-            OpenStruct.new(category: dc, title: dc.title, downloads: downloads, settings: settings)
+            data = { category: dc, title: dc.title, downloads: downloads, settings: settings }
+            Struct.new(*data.keys, keyword_init: true).new(data)
           end
 
-          uncategorized = download_categories['']
-          downloads_list << OpenStruct.new(downloads: uncategorized, settings: {}) if uncategorized.present?
+          if (uncategorized = download_categories['']).present?
+            data = { downloads: uncategorized, settings: {} }
+            downloads_list << Struct.new(*data.keys, keyword_init: true).new(data)
+          end
 
           downloads_list.compact
         end

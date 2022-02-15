@@ -29,7 +29,10 @@ module Lcms
         def index_params
           @index_params ||=
             begin
-              expected_params = params.permit(:association, :q).to_h.symbolize_keys
+              expected_params = params
+                                  .permit(:association, :page, :pagination, :allowCreate, :allowMultiple,
+                                          :onClickDone, :onSelectItem, :q)
+                                  .to_h.symbolize_keys
               index_p = { q: nil }.merge(expected_params)
 
               raise StandardError unless VALID_ASSOCIATIONS.include?(index_p[:association])

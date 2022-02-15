@@ -28,17 +28,21 @@ module Lcms
       end
 
       def serialize(resources, serializer)
-        options = { root: :results }
-        options[:meta_key] = :pagination
-        options[:pagination] = {
-          total_pages: resources.total_pages,
-          current_page: resources.current_page,
-          per_page: resources.per_page,
-          order: params[:order],
-          total_hits: resources.total_entries
+        options = {
+          adapter: :json,
+          each_serializer: serializer,
+          meta_key: {
+            pagination: {
+              total_pages: resources.total_pages,
+              current_page: resources.current_page,
+              per_page: resources.per_page,
+              order: params[:order],
+              total_hits: resources.total_entries
+            }
+          },
+          root: :results
         }
-        options[:each_serializer] = serializer
-        ActiveModel::Serializer::CollectionSerializer.new(resources, options).as_json
+        ActiveModelSerializers::SerializableResource.new(resources, options).as_json
       end
 
       private

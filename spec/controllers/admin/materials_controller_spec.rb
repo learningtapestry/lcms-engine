@@ -53,7 +53,7 @@ describe Lcms::Engine::Admin::MaterialsController do
 
       it 'calls batch reimport' do
         expect(Lcms::Engine::DocumentGenerator).to \
-          receive_message_chain(:material_parse_job, :perform_later).and_return(OpenStruct.new(job_id: 0))
+          receive_message_chain(:material_parse_job, :perform_later).and_return(double('response', job_id: 0))
         subject
       end
 

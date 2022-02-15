@@ -4,6 +4,8 @@ module Lcms
   module Engine
     module Admin
       class ResourcesController < AdminController
+        include Lcms::Engine::ViewHelper
+
         CREATE_TAG_KEYS = %i(new_topic_names new_tag_names new_content_source_names
                              new_standard_names).freeze
         CREATE_TAG_METHODS = {

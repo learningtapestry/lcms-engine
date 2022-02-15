@@ -10,29 +10,22 @@ describe Lcms::Engine::DocumentBuildService do
     let(:downloader) { double }
     let(:downloaded_document) { 'html-here' }
     let(:file) do
-      OpenStruct.new(
-        name: 'file name',
-        modified_time: Time.current - 1.day
-      )
+      double('file', name: 'file name', modified_time: Time.current - 1.day, last_modifying_user: 'User', version: '42')
     end
     let(:file_id) { 'Google Document file id' }
     let(:parsed_document) do
-      OpenStruct.new(
-        activity_metadata: [{ 'material_ids' => [] }],
-        agenda: [],
-        parts: []
-      )
+      double('parsed_document', activity_metadata: [{ 'material_ids' => [] }], agenda: [], parts: [])
     end
     let(:template) do
       stubs = {
         css_styles: '',
         metadata: {},
-        metadata_service: OpenStruct.new(errors: []),
+        metadata_service: double('service', errors: []),
         parse: parsed_document,
         parts: [],
         'prereq?' => false,
         render: '',
-        toc: OpenStruct.new(collect_material_ids: [])
+        toc: double('toc', collect_material_ids: [])
       }
       instance_double DocTemplate::Template, stubs
     end

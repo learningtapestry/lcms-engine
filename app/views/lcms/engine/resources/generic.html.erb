@@ -1,5 +1,4 @@
 <% set_page_title @resource.title %>
-<% set_social_media_sharing @resource %>
 
 <div class="o-page o-page--margin-to-bottom">
   <div class="o-page__module u-margin-bottom--gutter">
@@ -30,9 +29,6 @@
     </div>
     <hr class="o-resource-hr">
     <div class="o-resource-summary u-padding-bottom--gutter">
-      <div class="o-resource-summary__map">
-        <%= render partial: 'lcms/engine/shared/social_sharing', locals: { resource: @resource, cl: '' } %>
-      </div>
       <div class="o-resource-summary__content">
         <% if @resource.preview? %>
           <div class="o-generic-preview">
