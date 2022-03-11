@@ -32,9 +32,9 @@ module Lcms
         when 'subject'
           resource.title
         when 'unit'
-          resource.short_title.upcase
+          resource.short_title&.upcase.presence || 'N/A'
         when 'grade'
-          resource.short_title.capitalize
+          resource.short_title&.capitalize.presence || 'N/A'
         when 'lesson_set'
           "Lesson set #{resource.metadata['lesson_set']}"
         when 'lesson'

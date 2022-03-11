@@ -33,7 +33,7 @@
         <% check_box_id = "ids_#{resource.id}" %>
         <td><%= check_box_tag 'ids[]', resource.id, false, class: 'resource-checkbox', id: check_box_id %>
         <td><%= label_tag check_box_id, resource.id, class: 'resource-id-label' %>
-        <td><%= link_to resource.title, [:edit, :admin, resource] %>
+        <td><%= link_to resource.title, lcms_engine.edit_admin_resource_path(resource) %>
         <td class="resource-tag-col"><%= strip_tags resource.teaser %>
         <td class="resource-tag-col"><%= resource.standards.map(&:name).select(&:present?).join(', ') %>
         <td class="resource-tag-col"><%= resource.resource_type %>
