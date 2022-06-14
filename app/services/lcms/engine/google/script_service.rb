@@ -14,6 +14,9 @@ module Lcms
           @document = document
         end
 
+        #
+        # @param [String] id Google Document identifier
+        #
         def execute(id)
           # Create an execution request object.
           request = ::Google::Apis::ScriptV1::ExecutionRequest.new(
@@ -25,11 +28,12 @@ module Lcms
 
           # The API executed, but the script returned an error.
           error = response.error.details[0]
-          msg = +"Script error message: #{error['errorMessage']}\n"
+          msg = "Error with document: #{id}\n"
+          msg += "Script error message: #{error['errorMessage']}\n"
           if error['scriptStackTraceElements']
-            msg << 'Script error stacktrace:'
+            msg += 'Script error stacktrace:'
             error['scriptStackTraceElements'].each do |trace|
-              msg << "\t#{trace['function']}: #{trace['lineNumber']}"
+              msg += "\t#{trace['function']}: #{trace['lineNumber']}"
             end
           end
           raise ::Google::Apis::Error, msg
