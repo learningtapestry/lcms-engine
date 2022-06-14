@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts_as_list', '~> 1.0'
   s.add_dependency 'acts-as-taggable-on', '~> 7.0'
   s.add_dependency 'addressable', '~> 2.7'
-  s.add_dependency 'airbrake', '~> 10.0'
+  s.add_dependency 'airbrake', '~> 13.0'
   s.add_dependency 'autoprefixer-rails', '~> 9.7'
   s.add_dependency 'aws-sdk-rails', '~> 3.1'
   s.add_dependency 'aws-sdk-s3', '~> 1'
