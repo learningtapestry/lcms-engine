@@ -67,7 +67,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'pg', '~> 1.2', '>= 1.2.2'
   s.add_dependency 'pg_search', '~> 2.3', '>= 2.3.2'
   s.add_dependency 'rack-mini-profiler', '~> 2.3', '>= 2.3.3'
-  s.add_dependency 'rails', '~> 6.1.4'
+  s.add_dependency 'rails', '~> 6.1.6', '>= 6.1.6.1'
   s.add_dependency 'ransack', '~> 2.3', '>= 2.3.2'
   s.add_dependency 'react-rails', '~> 2.6', '>= 2.6.1'
   s.add_dependency 'redis', '~> 4.1', '>= 4.1.3'

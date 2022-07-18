@@ -56,7 +56,7 @@ PATH
       pg (~> 1.2, >= 1.2.2)
       pg_search (~> 2.3, >= 2.3.2)
       rack-mini-profiler (~> 2.3, >= 2.3.3)
-      rails (~> 6.1.4)
+      rails (~> 6.1.6, >= 6.1.6.1)
       ransack (~> 2.3, >= 2.3.2)
       react-rails (~> 2.6, >= 2.6.1)
       redis (~> 4.1, >= 4.1.3)
