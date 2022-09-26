@@ -5,17 +5,19 @@ require 'rails_helper'
 describe Lcms::Engine::Admin::WelcomeController do
   let(:user) { create :admin }
 
-  describe 'requires admin user' do
-    before { get :index }
-    it { expect(response).to redirect_to lcms_engine(new_user_session_path) }
-  end
-
-  describe 'allow admin' do
-    before do
-      sign_in user
-      get :index
+  describe 'GET index' do
+    context 'requires admin user' do
+      before { get :index }
+      it { expect(response).to redirect_to lcms_engine(new_user_session_path) }
     end
 
-    it { expect(response).to be_successful }
+    context 'allow admin' do
+      before do
+        sign_in user
+        get :index
+      end
+
+      it { expect(response).to be_successful }
+    end
   end
 end
