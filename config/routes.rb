@@ -75,6 +75,8 @@ Lcms::Engine::Engine.routes.draw do
     resource :batch_reimport, only: %i(new create)
   end
 
+  get '/oauth2callback' => 'welcome#oauth2callback'
+
   get '/*slug' => 'resources#show', as: :show_with_slug
 
   root to: 'welcome#index'

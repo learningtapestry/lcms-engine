@@ -1,3 +1,5 @@
+# Google Cloud Platform setup
+
 An application calls the Google Application Script in order to post-process generated lesson materials. Instructions below contains all the necessary steps need to set up the integration.
 
 All environment variables and user names provided here have been set up to automate deployment on [Cloud66](https://www.cloud66.com) service stacks. If you plan to use another service provider please change all the variables accordingly.
@@ -7,22 +9,28 @@ All environment variables and user names provided here have been set up to autom
 
 ## Set up
 
-1. Login to google (all google docs will be saved under this account)
+### Login to google
 
-2. Create project (i.e. LCMS-dev) at [google cloud](https://console.cloud.google.com)
+All google docs will be saved under this account. Also, this Google Account should have access to all source documents which will be imported into the system.
 
-3. Enable Google Drive API, Google Apps Script Execution API for that [project](https://console.cloud.google.com/apis/library)
+### Create project
 
-4. Set up google auth
+Name it whatever you like, i.e. LCMS-dev at [google cloud](https://console.cloud.google.com)
+
+### Enable Google API
+
+Enable Google Drive API, Google Apps Script Execution API for that [project](https://console.cloud.google.com/apis/library)
+
+### Set up google auth
 
 #### Credentials
 
 Create credentials:
   - type oAuth Client ID
-  - Application type: Other,
-  - Aplication Name: up to you, i.e. lcms-cli-dev
+  - Application type: Web Application,
+  - Application Name: up to you, i.e. lcms-cli-dev
 
-Download client secret JSON file.
+Download credentials JSON file.
 
 ###### Local development
 
@@ -59,10 +67,11 @@ If you generate token on a remote server, then make sure you're executing comman
 $ sudo -i -u cloud66-user
 ```
 
-Run rake task. You will be asked to go by link, give app permissions and paste code into the terminal
+Run rake task providing the domain name which is registered as _Authorized redirect URIs_ in Google OAuth client.
+You will be asked to go by link, give app permissions and paste code into the terminal
 
 ```bash
-$ bundle exec rake google:setup_auth
+$ bundle exec rake google:setup_auth["https://example.com"]
 ```
 
 This will create `config/google/app_token.yaml`. Change the ownership of the `app_token.yaml` otherwise it will not be accessible for the application:
@@ -73,23 +82,28 @@ $ chown cloud66-user:app_writers app_token.yaml
 $ sudo chmod g+w app_token.yaml
 ```
 
-5. Add script
+#### Add Google App script
+
 - go to https://www.google.com/script/start/
 - copy-paste content of `config/scripts/Code.gs` there and save
 - at top menu Resources->Cloud Platform Project set project from step 2 (you need to paste *project number*)
 - at top menu Publish->Deploy As API Executable set version v1, access Only myself
-- save Current API ID somewhere, click Close on that annoying window (update will not close it)
+- save Current API ID somewhere (wil be used for _GOOGLE_APPLICATION_SCRIPT_ID_), click Close on that annoying window (update will not close it)
 - choose any function and run it, it'll request permissions - grant them (there will be security warnings, just ignore them)
 
-6. Create folder (all materials will be saved there) on Google Drive, give view only to all by link, keep folder id (last part of url), copy to the root [LANDSCAPE](https://docs.google.com/document/d/1pXQDNKYOJYT6OTPnp8gsTWAydg5B9GTRibaWspmX4oE), [PORTRAIT](https://docs.google.com/document/d/1ijuZhGQXkPBxcZT4DRyNVY-qmI0xyVvSzVFqckOpsCc) templates and keep their IDs.
+### Create special folder in Google Drive
 
-7. Update corresponding env-file in the project
+All materials will be saved there. Give view only to all by link, keep folder id (last part of url) for _GOOGLE_APPLICATION_FOLDER_ID_,
+copy to the root of the this folder these documents and keep their IDs for (_GOOGLE_APPLICATION_TEMPLATE_LANSCAPE_, _GOOGLE_APPLICATION_TEMPLATE_PORTRAIT_):
+- [LANDSCAPE](https://docs.google.com/document/d/1pXQDNKYOJYT6OTPnp8gsTWAydg5B9GTRibaWspmX4oE)
+- [PORTRAIT](https://docs.google.com/document/d/1ijuZhGQXkPBxcZT4DRyNVY-qmI0xyVvSzVFqckOpsCc)
 
+### Update corresponding env-file in the project
 ```
-GOOGLE_APPLICATION_FOLDER_ID=saved from step 6
-GOOGLE_APPLICATION_SCRIPT_ID=saved id from step 5
-GOOGLE_APPLICATION_TEMPLATE_PORTRAIT=saved from step 6
-GOOGLE_APPLICATION_TEMPLATE_LANSCAPE=saved from step 6
+GOOGLE_APPLICATION_FOLDER_ID=
+GOOGLE_APPLICATION_SCRIPT_ID=
+GOOGLE_APPLICATION_TEMPLATE_PORTRAIT=
+GOOGLE_APPLICATION_TEMPLATE_LANSCAPE=
 ```
 
 ## How to update Google Application Script
