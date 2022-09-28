@@ -39,7 +39,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'lcms-engine.gemspec'
     - 'lib/tasks/elasticsearch.rake'
-  IgnoredMethods: ['guard', 'included', 'class_eval']
+  AllowedMethods: ['guard', 'included', 'class_eval']
 
 Metrics/ClassLength:
   Max: 250

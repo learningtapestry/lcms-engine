@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.metadata['rubygems_mfa_required'] = 'true'
 
   s.files = `git ls-files`.split("\n")
-  s.test_files = `git ls-files -- spec/*`.split("\n")
 
   s.required_ruby_version = '>= 2.7'
 
@@ -92,7 +91,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'capybara', '~> 3.31'
   s.add_development_dependency 'database_cleaner-active_record', '~> 1.8'
   s.add_development_dependency 'dotenv-rails', '~> 2.2'
-  s.add_development_dependency 'email_spec', '~> 2.1'
+  s.add_development_dependency 'email_spec', '2.2.0'
   s.add_development_dependency 'factory_bot', '~> 5'
   s.add_development_dependency 'faker', '~> 2.1'
   s.add_development_dependency 'overcommit', '~> 0.57'

@@ -47,7 +47,7 @@ module Lcms
         include Elasticsearch::Persistence::Repository
         include Elasticsearch::Persistence::Repository::DSL
 
-        client Elasticsearch::Client.new(host: ENV['ELASTICSEARCH_ADDRESS'])
+        client Elasticsearch::Client.new(host: ENV.fetch('ELASTICSEARCH_ADDRESS', nil))
 
         index_name :"unbounded_documents_#{Rails.env}"
 
