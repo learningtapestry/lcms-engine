@@ -12,11 +12,10 @@ separately, simplifying the client applications in the process.
 
 ## Current development
 
-|Branch| Rails version  |
-|------|----------------|
-|master| Rails 6.1.4.6  |
-|0.3.x| Rails 5.2.4.5  |
-|0.1.x| Rails 4.2.11.3 |
+| Branch | Rails version |
+|--------|---------------|
+| master | Rails 6.1.4.6 |
+| 0.3.x  | Rails 5.2.4.5 |
 
 This is still a [work in progress](https://github.com/learningtapestry/lcms-engine/issues/3). The
 initial phase of the project consisted in extracting as much code as possible from the client
@@ -91,10 +90,7 @@ the same files, overwriting the ones provided by the engine.
 ## Installation
 Add this to the Gemfile:
 ```ruby
-gem 'lcms-engine','~> 0.1' # Rails 4.2
-```
-```ruby
-gem 'lcms-engine','~> 0.2' # Rails 5.2
+gem 'lcms-engine','~> 0.3' # Rails 5.2
 ```
 ```ruby
 gem 'lcms-engine' # Rails 6.1
@@ -136,9 +132,10 @@ mount Engine, at: '/engine', as: :engine
 
 If you need to redefine devise routes set up env `DEVISE_ROUTES_REDEFINED` as true and define devise related routes at host app.
 
-Host app routes examples:
-1. host app will have own routes on upper than engine level:
-```
+### Host app routes
+
+When host app has its own routes on upper than engine level:
+```ruby
 Lcms::Engine::Engine.routes.draw do
   devise_for :users, class_name: 'Lcms::Engine::User',
                      router_name: :main_app,
@@ -164,8 +161,8 @@ devise_scope :user do
   delete '/register', to: 'lcms/engine/registrations#destroy'
 end
 ```
-2. host app is ok with `/lcms` devise routes but want to redefine paths after that:
-```
+When host app is ok with `/lcms` devise routes but want to redefine paths after that:
+```ruby
 Lcms::Engine::Engine.routes.draw do
   devise_for :users, class_name: 'Lcms::Engine::User',
                      controllers: {
@@ -225,7 +222,6 @@ Start the specs
 ```sh
 $ docker compose exec app sh -c 'bundle exec rspec'
 ```
-
 
 ## License
 The gem is available as open source under the terms of the [Apache License](https://github.com/learningtapestry/lcms-engine/blob/master/LICENSE).

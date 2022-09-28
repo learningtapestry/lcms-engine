@@ -8,21 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Bump Rails to 6.1.4.4
-- Bump lt-google-api to 0.2.3
-- Bump lt-lcms to 0.4.4
-- Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concern
-- Replace sass-lint to stylelint NodeJS package
-- Bump webpacker gem (and @rails/webpacker package)
-- `Lcms::Engine::S3Service.upload` method now accepts options Hash to be passed to AWS S3 resource
-- Explicitly added following packages: react-tagsinput, jstree, jquery and foundation-sites
-- Bump CKEditor to 5.1
+- Bump Rails to 6.1.7 - [@paranoicsan](https://github.com/paranoicsan)
+- Bump lt-google-api to 0.2.4 - [@paranoicsan](https://github.com/paranoicsan)
+- Bump lt-lcms to 0.4.4 - [@paranoicsan](https://github.com/paranoicsan)
+- Explicitly skip indexing via ElasticSearch for objects which include Lcms::Engine::Searchable concern - [@paranoicsan](https://github.com/paranoicsan)
+- Replace sass-lint to stylelint NodeJS package - [@paranoicsan](https://github.com/paranoicsan)
+- Bump webpacker gem (and @rails/webpacker package) - [@paranoicsan](https://github.com/paranoicsan)
+- `Lcms::Engine::S3Service.upload` method now accepts options Hash to be passed to AWS S3 resource - [@paranoicsan](https://github.com/paranoicsan)
+- Explicitly added following packages: react-tagsinput, jstree, jquery and foundation-sites - [@paranoicsan](https://github.com/paranoicsan)
+- Bump CKEditor to 5.1 - [@paranoicsan](https://github.com/paranoicsan)
 
 ### Changed
 
-- [BREAKING] `DocumentError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::DocumentError`
-- [BREAKING] `MaterialError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::MaterialError`
-- [BREAKING] JS and CSS files have been renamed: added `lcms_engine_` prefix
+- [BREAKING] `DocumentError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::DocumentError` - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] `MaterialError` has been moved under `Lcms::Engine` namespace and now looks like `Lcms::Engine::MaterialError` - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] JS and CSS files have been renamed: added `lcms_engine_` prefix - [@paranoicsan](https://github.com/paranoicsan)
+- Updated `google:setup_auth` rake task to work with _Web Application_ OAuth client ID - [@paranoicsan](https://github.com/paranoicsan)
+- Dropped Rails 4.2 support
+- Post-processing with Google App Script now shows Google Document ID in case of failure - [@paranoicsan](https://github.com/paranoicsan)
 
 ### Removed
 
