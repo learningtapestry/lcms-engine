@@ -7,7 +7,7 @@ feature 'Admin users' do
 
   given(:access_code) { create(:access_code).code }
   given(:admin) { create :admin }
-  given(:domain) { ENV['APPLICATION_DOMAIN'] }
+  given(:domain) { ENV.fetch('APPLICATION_DOMAIN', nil) }
   given!(:user) { create :user, email: "unbounded@#{domain}" }
   given(:name) { Faker::Lorem.name }
   given(:email) { Faker::Internet.email }

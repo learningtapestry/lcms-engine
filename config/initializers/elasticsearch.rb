@@ -3,6 +3,6 @@
 require 'elasticsearch/model'
 
 Elasticsearch::Model.client = Elasticsearch::Client.new(
-  host: ENV['ELASTICSEARCH_ADDRESS']
+  host: ENV.fetch('ELASTICSEARCH_ADDRESS', nil)
 )
 Hashie.logger = Logger.new('/dev/null')

@@ -9,6 +9,20 @@ All environment variables and user names provided here have been set up to autom
 
 ## Set up
 
+### Update host application's routes
+
+In order to intercept OAuth callback host application's routes should be updated.
+In the sample bellow the Engine is mounted to `/lcms` and this prefix is used in the interceptor.
+You can replace it with whatever prefix has been used in your own project.
+```ruby
+# config/routes.rb
+
+mount Lcms::Engine::Engine, at: '/lcms'
+
+# OAuth2 redirect interceptor
+get 'oauth2callback', to: redirect(path: '/lcms/oauth2callback')
+```
+
 ### Login to google
 
 All google docs will be saved under this account. Also, this Google Account should have access to all source documents which will be imported into the system.

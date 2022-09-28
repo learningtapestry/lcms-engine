@@ -27,7 +27,7 @@ namespace :cloud66 do # rubocop:disable Metrics/BlockLength
     desc 'Exports tables to be synced'
     task export: :environment do
       cmd = <<-BASH
-        pg_dump -U #{ENV['POSTGRESQL_USERNAME']} #{ENV['POSTGRESQL_DATABASE']} \
+        pg_dump -U #{ENV.fetch('POSTGRESQL_USERNAME', nil)} #{ENV.fetch('POSTGRESQL_DATABASE', nil)} \
           --no-owner \
           --table=users \
           --table=access_codes \
@@ -40,7 +40,7 @@ namespace :cloud66 do # rubocop:disable Metrics/BlockLength
     task import: :environment do
       raise 'No data file. Please execute `cloud66:swap:export` prior loading the data.' unless File.exist?(swap_file)
 
-      cmd = "psql -U #{ENV['POSTGRESQL_USERNAME']} #{ENV['POSTGRESQL_DATABASE']}"
+      cmd = "psql -U #{ENV.fetch('POSTGRESQL_USERNAME', nil)} #{ENV.fetch('POSTGRESQL_DATABASE', nil)}"
       # Drops old tables
       system "#{cmd} -c 'drop table access_codes, users;'"
       # Create new and load the data
