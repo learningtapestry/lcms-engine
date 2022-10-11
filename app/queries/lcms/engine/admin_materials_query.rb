@@ -30,7 +30,7 @@ module Lcms
 
           @scope =
             if STRICT_METADATA.include?(key.to_s)
-              @scope.where_metadata(key => q[key])
+              @scope.where_metadata(key => q[key].to_s.downcase)
             else
               @scope.where_metadata_like(key, q[key])
             end

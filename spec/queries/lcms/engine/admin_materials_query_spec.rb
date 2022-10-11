@@ -21,12 +21,19 @@ describe Lcms::Engine::AdminMaterialsQuery do
     end
 
     context 'strict metadata fields' do
-      let(:query) { { lesson: 1, grade: 'grade 1', subject: Faker::Lorem.word } }
+      let(:query) { { lesson: 1, grade: 'Grade 1', subject: Faker::Lorem.word } }
 
       it 'filters by metadata using explicit comparison' do
         expect(scope).to receive(:where_metadata_like).with(:lesson, 1).and_return(scope)
-        expect(scope).to receive(:where_metadata).with(query.slice(:grade)).and_return(scope)
+        expect(scope).to receive(:where_metadata).with(hash_including(grade: query[:grade].downcase)).and_return(scope)
         expect(scope).to receive(:where_metadata).with(query.slice(:subject)).and_return(scope)
+        subject
+      end
+
+      it 'filters case-insensitive' do
+        allow(scope).to receive(:where_metadata).with(query.slice(:subject)).and_return(scope)
+        allow(scope).to receive(:where_metadata_like).with(:lesson, 1).and_return(scope)
+        expect(scope).to receive(:where_metadata).with(hash_including(grade: query[:grade].downcase)).and_return(scope)
         subject
       end
     end

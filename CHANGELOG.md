@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.4.0...HEAD)
 
+### Changed
+
+- `Lcms::Engine::AdminMaterialsQuery` now filters by metadata in case-insensitive way  - [@paranoicsan](https://github.com/paranoicsan)
+
 ## [0.4.0](https://github.com/learningtapestry/lcms-engine/compare/v0.3.1...v0.4.0) - 2022.09.28
 
 ### Added
