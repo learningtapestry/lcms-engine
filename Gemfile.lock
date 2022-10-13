@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    lcms-engine (0.4.0)
+    lcms-engine (0.4.1)
       active_model_serializers (~> 0.10.10)
       activejob-retry (~> 0.6.3)
       acts-as-taggable-on (~> 7.0)

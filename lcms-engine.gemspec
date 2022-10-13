@@ -15,7 +15,13 @@ Gem::Specification.new do |s|
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
   s.license = 'Apache-2.0'
-  s.metadata['rubygems_mfa_required'] = 'true'
+  s.metadata = {
+    'homepage_uri' => 'https://github.com/learningtapestry/lcms-engine',
+    'changelog_uri' => 'https://github.com/learningtapestry/lcms-engine/blob/master/CHANGELOG.md',
+    'rubygems_mfa_required' => 'true',
+    'source_code_uri' => 'https://github.com/learningtapestry/lcms-engine',
+    'bug_tracker_uri' => 'https://github.com/learningtapestry/lcms-engine/issues'
+  }
 
   s.files = `git ls-files`.split("\n")
 
