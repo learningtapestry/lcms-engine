@@ -10,22 +10,16 @@ Our initial goal is gathering the common code among the current LCMS implementat
 (Odell, Unbound ED and OpenSciEd) and provide a unified codebase that can be maintained and developed
 separately, simplifying the client applications in the process.
 
+## Requirements
+- Ruby 2.7.x
+- Rails 6.1 or higher
+- Postgres 9.6 or higher
+
 ## Current development
 
 | Branch | Rails version |
 |--------|---------------|
-| master | Rails 6.1.4.6 |
-| 0.3.x  | Rails 5.2.4.5 |
-
-This is still a [work in progress](https://github.com/learningtapestry/lcms-engine/issues/3). The
-initial phase of the project consisted in extracting as much code as possible from the client
-projects and set the engine as the core foundation for further development and optimizations.
-
-Once the integrations with the client projects are successful, phase 1 will be complete and we'll be
-able to start phase 2, which ideally should involve optimizing the code and giving the engine some
-default features and customization possibilities. This should allow any Rails application to use a
-basic LCMS that works out of the box just by including the gem and setting some configuration
-options.
+| master | Rails 6.1.7   |
 
 ## Guidelines
 
@@ -82,16 +76,8 @@ Other kinds of assets, like ERB views, images, stylesheets or javascript files, 
 overridden as easily as Ruby classes and modules, but you can always provide your own versions of
 the same files, overwriting the ones provided by the engine.
 
-## Requirements
-- Ruby 2.7 or higher
-- Rails 6.1 or higher
-- Postgres 9.6 or higher
-
 ## Installation
 Add this to the Gemfile:
-```ruby
-gem 'lcms-engine','~> 0.3' # Rails 5.2
-```
 ```ruby
 gem 'lcms-engine' # Rails 6.1
 ```
