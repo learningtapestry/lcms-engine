@@ -78,12 +78,12 @@ class ImportStatus extends React.Component {
     return _.map(this.links, (link, idx) => (
       <a
         key={`pl-${idx}`}
-        href={linkWithParams(link, { id: job.model.id })}
+        href={typeof job.model === 'undefined' ? link : linkWithParams(link, { id: job.model.id })}
         className="o-adm-materials__resource button primary u-margin-left--small u-margin-bottom--zero"
         target="_blank"
         rel="noreferrer"
       >
-        <i className="fas fa-eye"></i>
+        <i className="fa fa-eye" aria-hidden="true"></i>
       </a>
     ));
   }
@@ -112,7 +112,7 @@ class ImportStatus extends React.Component {
         <li className={`o-adm-materials__result o-adm-materials__result--${status}`} key={key}>
           <div className="u-flex align-justify align-middle">
             <a href={job.link} target="_blank" className="o-adm-materials__link" rel="noreferrer">
-              {job.link}
+              {job.status !== 'done' ? job.text || job.link : 'Done'}
             </a>
             {job.status !== 'done' ? this.spinner() : null}
             {job.status === 'done' && job.ok ? <span>{this.resourceButton(job)}</span> : null}
@@ -149,7 +149,7 @@ class ImportStatus extends React.Component {
 }
 
 ImportStatus.propTypes = {
-  jobs: PropTypes.array,
+  jobs: PropTypes.object,
   links: PropTypes.array,
   type: PropTypes.string,
   path: PropTypes.string,
