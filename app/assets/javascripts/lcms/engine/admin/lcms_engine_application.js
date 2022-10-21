@@ -1,6 +1,5 @@
 //= require turbolinks
-//= require jquery2
-//= require jquery_ujs
+//= require jquery3
 //= require jquery_nested_form
 //= require foundation
 //= require html.sortable.min
