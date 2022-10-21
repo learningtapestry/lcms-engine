@@ -22,7 +22,7 @@
               <td><%= std.subject %></td>
               <td><%= std.grades.join(', ') %></td>
               <td><%= std.alt_names.join(' / ') %></td>
-              <td><%= link_to 'edit', edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
+              <td><%= link_to 'edit', lcms_engine.edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
             </tr>
           <% end %>
         <% end %>
