@@ -4,7 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.4.2...HEAD)
+## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.5.0...HEAD)
+
+## [0.5.0](https://github.com/learningtapestry/lcms-engine/compare/v0.4.2...v0.5.0) - 2022.10.21
+
+### Changed
+
+- [BREAKING] - Force use jQuery v3.x - [@paranoicsan](https://github.com/paranoicsan)
+- [BREAKING] - Bump CKEditor to v4.20. Changed the behavior how we load ckeditor4 sources from CDN - [@paranoicsan](https://github.com/paranoicsan)
+
+### Fixed
+
+- Fix wrong URL on edit button on Standards index page - [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.4.2](https://github.com/learningtapestry/lcms-engine/compare/v0.4.1...v0.4.2) - 2022.10.18
 
