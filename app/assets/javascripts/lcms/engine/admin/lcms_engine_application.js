@@ -12,4 +12,10 @@ document.addEventListener('turbolinks:load', function () {
     allowEmptyOption: true,
     plugins: ['remove_button'],
   });
+
+  if (typeof CKEDITOR === 'undefined' && document.getElementsByClassName('ckeditor').length) {
+    let script = document.createElement('script');
+    script.src = 'https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js';
+    document.head.append(script);
+  }
 });
