@@ -36,7 +36,7 @@ namespace :lcms_engine do # rubocop:disable Metrics/BlockLength
     desc 'Install deps with yarn'
     task :yarn_install do
       Dir.chdir(File.join(__dir__, '../..')) do
-        system 'yarn install --no-progress --production'
+        system "#{ENV['YARN_PATH'] || 'yarn'} install --no-progress --production"
       end
     end
 
