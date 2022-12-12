@@ -76,6 +76,8 @@ Other kinds of assets, like ERB views, images, stylesheets or javascript files, 
 overridden as easily as Ruby classes and modules, but you can always provide your own versions of
 the same files, overwriting the ones provided by the engine.
 
+You can run the rake task `lcms_engine:webpacker:compile` and set the environment variable `YARN_PATH` to set the yarn binary.
+
 ## Installation
 Add this to the Gemfile:
 ```ruby
