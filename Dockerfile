@@ -18,7 +18,7 @@ ADD . $APP_PATH
 # Install gems
 ADD lcms-engine.gemspec $APP_PATH
 ADD Gemfile* $APP_PATH
-RUN gem install bundler \
+RUN gem install bundler:2.3.26 \
     && bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 \
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
