@@ -4,9 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.5.3...HEAD)
+## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.5.4...HEAD)
 
-## [0.5.2](https://github.com/learningtapestry/lcms-engine/compare/v0.5.2...v0.5.3) - 2022.12.13
+## [0.5.4](https://github.com/learningtapestry/lcms-engine/compare/v0.5.3...v0.5.4) - 2022.12.30
+
+### Changed
+
+- Bump loofah from 2.19.0 to 2.19.1 - [@paranoicsan](https://github.com/paranoicsan)
+- Bump rails-html-sanitizer from 1.4.3 to 1.4.4 - [@paranoicsan](https://github.com/paranoicsan)
+- [Security updates](https://github.com/learningtapestry/lcms-engine/commit/79a496e867435898fb442e35916308f36b897ade) - [@paranoicsan](https://github.com/paranoicsan)
+
+## [0.5.3](https://github.com/learningtapestry/lcms-engine/compare/v0.5.2...v0.5.3) - 2022.12.13
 
 ### Changed
 
