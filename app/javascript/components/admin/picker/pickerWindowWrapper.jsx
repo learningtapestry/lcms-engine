@@ -3,6 +3,7 @@ import PaginationBoxView from '../../paginate/PaginationBoxView';
 
 // eslint-disable-next-line no-unused-vars
 function pickerWindowWrapper(WrappedComponent, path) {
+  // eslint-disable-next-line react/display-name
   return class extends React.Component {
     constructor(props) {
       super(props);
