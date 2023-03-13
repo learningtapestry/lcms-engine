@@ -9,8 +9,8 @@ describe DocTemplate::Tags::GlsTag do
   end
   let(:original_content) do
     <<-HTML
-      <p style=\"text-align:left\" class=\"indented\"><span> Every year thereafter Hindus in Ayodhya repeated the
-      </span><span style=\"font-weight:700;\">custom </span><em>Define custom as something that is done as a tradition,
+      <p style="text-align:left" class="indented"><span> Every year thereafter Hindus in Ayodhya repeated the
+      </span><span style="font-weight:700;">custom </span><em>Define custom as something that is done as a tradition,
       year after year, over and over again.</em><em>Define custom as something that is done as a tradition, year after
       year, over and over again.</em><em>Define custom as something that is done as a tradition, year after year, over
       and over again.</em><em>Define custom as something that is done as a tradition, year after year, over and over
