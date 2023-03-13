@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.name = 'lcms-engine'
   s.version = Lcms::Engine::VERSION
   s.authors = ['Alexander Kuznetsov', 'Abraham Sánchez', 'Rômulo Saksida']
-  s.email = %w(alexander@learningtapestry.com abraham@learningtapestry.com rm@learningtapestry.com)
+  s.email = %w(paranoic.san@gmail.com abraham@learningtapestry.com rm@learningtapestry.com)
   s.homepage = 'https://github.com/learningtapestry/lcms-engine'
   s.summary = 'Rails engine for LCMS applications'
   s.description = 'Implements common components and features for Rails-based LCMS systems'
