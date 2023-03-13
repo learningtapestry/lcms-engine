@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.required_ruby_version = '~> 2.7'
+  s.required_ruby_version = '~> 3.2'
 
   s.add_dependency 'activejob-retry', '~> 0.6.3'
   s.add_dependency 'active_model_serializers', '~> 0.10.10'

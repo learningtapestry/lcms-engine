@@ -157,7 +157,7 @@ Lcms::Engine::Engine.routes.draw do
                        registrations: 'lcms/engine/registrations',
                        sessions: 'lcms/engine/sessions'
                      },
-                     module: :devise,
+                     module: 'devise',
                      path: '',
                      path_names: {
                        sign_in: 'login',
@@ -200,10 +200,10 @@ $ brew cask install chromedriver
 
 Launch the containers
 ```shell
-$ docker build -t lcms-engine .
+$ docker compose create
 $ docker compose start
-$ docker compose exec app sh -c 'bin/rails db:create'
 $ docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"
+$ docker compose exec app sh -c 'bin/rails db:create'
 ```
 
 Start the specs

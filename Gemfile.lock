@@ -262,6 +262,7 @@ GEM
     database_cleaner-active_record (1.99.0)
       activerecord
       database_cleaner (~> 1.99.0)
+    date (3.3.3)
     declarative (0.0.20)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -436,8 +437,11 @@ GEM
       lt-google-api (~> 0.2, >= 0.2.4)
       nokogiri (~> 1.10, >= 1.10.8)
       rubyzip (~> 2)
-    mail (2.7.1)
+    mail (2.8.1)
       mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
     memoist (0.16.2)
@@ -448,6 +452,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.18.0)
     mono_logger (1.1.1)
     multi_json (1.15.0)
@@ -456,15 +461,23 @@ GEM
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
     nested_form (0.3.2)
+    net-imap (0.3.4)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.1)
+      timeout
+    net-smtp (0.3.3)
+      net-protocol
     netrc (0.11.0)
     nikkou (0.0.5)
       activesupport
       nokogiri
       tzinfo
     nio4r (2.5.8)
-    nokogiri (1.13.10-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.13.10)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
@@ -691,6 +704,7 @@ GEM
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
+    timeout (0.3.2)
     traceroute (0.8.1)
       rails (>= 3.0.0)
     trailblazer-option (0.1.2)
@@ -739,6 +753,7 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
   x86_64-linux
 
