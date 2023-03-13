@@ -199,7 +199,7 @@ $ brew cask install chromedriver
 #### Using Docker
 
 Launch the containers
-```sh
+```shell
 $ docker build -t lcms-engine .
 $ docker compose start
 $ docker compose exec app sh -c 'bin/rails db:create'
@@ -207,8 +207,13 @@ $ docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSI
 ```
 
 Start the specs
-```sh
+```shell
 $ docker compose exec app sh -c 'bundle exec rspec'
+```
+
+In case you need to rebuild the image, use buildx command to create multi-arch image and push it to the registry
+```shell
+docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine --push .
 ```
 
 ## License

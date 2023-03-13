@@ -1,4 +1,4 @@
-FROM ruby:2.7.4
+FROM ruby:2.7.7
 
 ENV APP_PATH /app/
 ENV LANG C.UTF-8
@@ -13,12 +13,10 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Add codebase
-ADD . $APP_PATH
+COPY . $APP_PATH
 
 # Install gems
-ADD lcms-engine.gemspec $APP_PATH
-ADD Gemfile* $APP_PATH
-RUN gem install bundler:2.3.26 \
+RUN gem install bundler:2.4.8 \
     && bundle install --jobs `expr $(cat /proc/cpuinfo | grep -c "cpu cores") - 1` --retry 3 \
     && rm -rf /usr/local/bundle/cache/*.gem \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
