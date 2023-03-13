@@ -5,9 +5,9 @@ module DocTemplate
     class SectionTag < BaseTag
       include DocTemplate::Tags::Helpers
 
-      STUDENT_RE = /^\s*student\s*resources\s*$/i.freeze
+      STUDENT_RE = /^\s*student\s*resources\s*$/i
       TAG_NAME = 'section'
-      SECTION_REMOVE_RE = /\[#{TAG_NAME}:[^\]]*\]/i.freeze
+      SECTION_REMOVE_RE = /\[#{TAG_NAME}:[^\]]*\]/i
       TEMPLATES = {
         default: 'section.html.erb',
         gdoc: 'gdoc/section.html.erb'

@@ -9,7 +9,7 @@ module Lt
       class Context
         attr_reader :context
 
-        NUM_RE = /\d+/.freeze
+        NUM_RE = /\d+/
 
         class << self
           #

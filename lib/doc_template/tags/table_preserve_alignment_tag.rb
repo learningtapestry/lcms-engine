@@ -3,7 +3,7 @@
 module DocTemplate
   module Tags
     class TablePreserveAlignmentTag < BaseTag
-      STYLE_RE = /text-align:(left|center|right)/i.freeze
+      STYLE_RE = /text-align:(left|center|right)/i
       TAG_NAME = 'table-preserve-alignment'
 
       def parse(node, _options = {})

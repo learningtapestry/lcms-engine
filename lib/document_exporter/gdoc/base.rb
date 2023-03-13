@@ -16,7 +16,7 @@ module DocumentExporter
           send_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT
         }
       }.freeze
-      VERSION_RE = /_v\d+$/i.freeze
+      VERSION_RE = /_v\d+$/i
 
       attr_reader :document, :options
 

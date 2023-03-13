@@ -19,7 +19,7 @@ module DocTemplate
     sanitizer: 'Lcms::Engine::HtmlSanitizer'
   }.freeze
 
-  FULL_TAG ||= /\[([^\]:\s]*)?\s*:?\s*([^\]]*?)?\]/mo.freeze
+  FULL_TAG ||= /\[([^\]:\s]*)?\s*:?\s*([^\]]*?)?\]/mo
   START_TAG ||= '\[[^\]]*'
 
   STARTTAG_XPATH ||= 'span[contains(., "[")]'

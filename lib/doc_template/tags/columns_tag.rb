@@ -5,7 +5,7 @@ module DocTemplate
     class ColumnsTag < BlockTag
       include ERB::Util
 
-      ALIGNMENT_RE = /^align-right\s/i.freeze
+      ALIGNMENT_RE = /^align-right\s/i
       SPLIT_SYMBOL = ';'
       TAG_NAME = 'columns'
       TEMPLATE = 'columns.html.erb'

@@ -4,7 +4,7 @@ module Lcms
   module Engine
     class EmbedEquations
       REDIS_KEY = 'ub-equation:'
-      REDIS_KEY_SVG = "#{REDIS_KEY}svg:"
+      REDIS_KEY_SVG = "#{REDIS_KEY}svg:".freeze
 
       class << self
         def call(content)
