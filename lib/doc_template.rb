@@ -66,6 +66,6 @@ require 'doc_template/tags'
 require 'doc_template/document_toc'
 require 'doc_template/xpath_functions'
 
-Dir["#{__dir__}/doc_template/tables/*.rb"].sort.each(&method(:require))
-Dir["#{__dir__}/doc_template/tags/*.rb"].sort.each(&method(:require))
-Dir["#{__dir__}/doc_template/objects/*.rb"].sort.each(&method(:require))
+Dir["#{__dir__}/doc_template/tables/*.rb"].each(&method(:require))
+Dir["#{__dir__}/doc_template/tags/*.rb"].each(&method(:require))
+Dir["#{__dir__}/doc_template/objects/*.rb"].each(&method(:require))
