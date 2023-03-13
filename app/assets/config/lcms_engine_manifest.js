@@ -8,4 +8,4 @@
 
 // Images and fonts so that views can link to them
 //
-//= link_tree ../images
+//= link_tree ../images/lcms/engine/
