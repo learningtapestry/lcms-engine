@@ -12,7 +12,7 @@ describe Lcms::Engine::S3Service do
         put: 'true',
         public_url: url
       }
-      double(::Aws::S3::Resource, **params)
+      double(Aws::S3::Resource, **params)
     end
     let(:options) { { content_type: 'image/png' } }
     let(:url) { Faker::Internet.url }

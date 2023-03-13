@@ -22,7 +22,7 @@ describe Lcms::Engine::Admin::CurriculumsController do
 
     it 'returns children of the requested resource' do
       JSON.parse(subject.body).each do |data|
-        child = ::Lcms::Engine::Resource.find(data['id'])
+        child = Lcms::Engine::Resource.find(data['id'])
         expect(child.parent_id).to eq id
       end
     end

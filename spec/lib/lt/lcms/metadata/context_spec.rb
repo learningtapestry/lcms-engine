@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe ::Lt::Lcms::Metadata::Context do
+describe Lt::Lcms::Metadata::Context do
   shared_examples 'reordable' do |curriculum_type|
     subject { described_class.send("update_#{curriculum_type}s_level_position_for", children) }
 

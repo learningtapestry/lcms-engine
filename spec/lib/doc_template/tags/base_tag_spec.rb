@@ -6,7 +6,7 @@ class BaseSpecTag < DocTemplate::Tags::BaseTag
   TAG_NAME = 'image'
 end
 
-describe ::DocTemplate::Tags::BaseTag do
+describe DocTemplate::Tags::BaseTag do
   describe '.tag_with_html_regexp' do
     let(:content) do
       <<~HTML

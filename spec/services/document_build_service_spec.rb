@@ -35,7 +35,7 @@ describe Lcms::Engine::DocumentBuildService do
     subject { service.build_for url }
 
     before do
-      allow(::Lt::Lcms::Lesson::Downloader::Gdoc).to receive(:new).with(credentials, url, {}).and_return(downloader)
+      allow(Lt::Lcms::Lesson::Downloader::Gdoc).to receive(:new).with(credentials, url, {}).and_return(downloader)
 
       # NOTE: Think about wrapping all this into instance_double
       allow(downloader).to receive(:download).and_return(downloader)

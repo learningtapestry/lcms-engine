@@ -45,9 +45,9 @@ describe Lcms::Engine::Admin::DocumentsController do
 
       before do
         allow(controller).to receive(:google_credentials).and_return(credentials)
-        allow(::Lt::Google::Api::Drive).to \
+        allow(Lt::Google::Api::Drive).to \
           receive(:folder_id_for).with(link).and_return(folder_id)
-        allow(::Lt::Google::Api::Drive).to \
+        allow(Lt::Google::Api::Drive).to \
           receive_message_chain(:new, :list_file_ids_in, :map).and_return(file_ids)
       end
 

@@ -7,7 +7,7 @@ require 'lt/google/api/auth/cli'
 namespace :google do
   desc 'Set up google credentials. Specify `domain` argument which will be used as a base for redirect URI'
   task :setup_auth, [:domain] => [:environment] do |_task, args|
-    service = ::Lt::Google::Api::Auth::Cli.new
+    service = Lt::Google::Api::Auth::Cli.new
 
     # Check if there is existing auth token
     if service.credentials.present?
@@ -32,7 +32,7 @@ namespace :google do
     code = $stdin.gets.to_s.strip
 
     authorizer.get_and_store_credentials_from_code(
-      user_id: ::Lt::Google::Api::Auth::Cli::USER_ID,
+      user_id: Lt::Google::Api::Auth::Cli::USER_ID,
       code:,
       base_url: args[:domain]
     )
