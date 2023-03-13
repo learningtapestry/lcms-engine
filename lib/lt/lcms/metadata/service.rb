@@ -50,7 +50,7 @@ module Lt
               @agenda = DocTemplate::Tables::Agenda.parse content
               @section_metadata = DocTemplate::Tables::Section.parse content,
                                                                      force_inject_section: force_inject_section?
-              @activity_metadata = DocTemplate::Tables::Activity.parse content, template_type: template_type
+              @activity_metadata = DocTemplate::Tables::Activity.parse(content, template_type:)
               @target_table = DocTemplate::Tables::Target.parse(content) if target_table?
 
               @foundational_metadata = if foundational?

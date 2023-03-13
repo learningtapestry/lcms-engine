@@ -20,7 +20,7 @@ module Lcms
 
       def perform(document, options)
         content_type = options[:content_type]
-        document = DocumentGenerator.document_presenter.new document.reload, content_type: content_type
+        document = DocumentGenerator.document_presenter.new(document.reload, content_type:)
         gdoc = GDOC_EXPORTERS[content_type].new(document, options).export
 
         key = options[:excludes].present? ? options[:gdoc_folder] : document.gdoc_key

@@ -111,7 +111,7 @@ module DocTemplate
       end
 
       def fetch_data
-        @resource = Lcms::Engine::Resource.find_by url: url
+        @resource = Lcms::Engine::Resource.find_by(url:)
         if (title.blank? || description.blank?) && resource
           @title = resource.title if title.blank?
           @description = resource.teaser if description.blank?
