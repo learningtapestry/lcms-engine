@@ -16,14 +16,14 @@ module ResqueJob
         .detect { |job| job['job_id'] == job_id }
     end
 
-    def find_in_queue_by_payload(job_class, &block)
+    def find_in_queue_by_payload(job_class, &)
       jobs = Array.wrap Resque.peek(queue_name, 0, 0)
       result = jobs
                  .select { |j| j['args'].first['job_class'] == job_class.to_s }
                  .flat_map { |j| j['args'] }
       return result unless block_given?
 
-      result.detect(&block)
+      result.detect(&)
     end
 
     def find_in_working(job_id)
@@ -34,7 +34,7 @@ module ResqueJob
       end
     end
 
-    def find_in_working_by_payload(job_class, &block)
+    def find_in_working_by_payload(job_class, &)
       result =
         Resque::Worker.working.map(&:job).flat_map do |job|
           next unless job.is_a?(Hash) && (args = job.dig 'payload', 'args').is_a?(Array)
@@ -43,7 +43,7 @@ module ResqueJob
         end.compact
       return result unless block_given?
 
-      result.detect(&block)
+      result.detect(&)
     end
 
     def fetch_result(job_id)
