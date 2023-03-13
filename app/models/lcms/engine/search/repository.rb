@@ -166,11 +166,9 @@ module Lcms
             query: {
               bool: {
                 filter: [],
-                should: tags.map { |t| { match: { t => term } } }.concat(
-                  [
-                    { match_phrase: { title: term } },
-                    { match_phrase: { teaser: term } }
-                  ]
+                should: tags.map { |t| { match: { t => term } } }.push(
+                  { match_phrase: { title: term } },
+                  { match_phrase: { teaser: term } }
                 ),
                 minimum_should_match: 1
               }
