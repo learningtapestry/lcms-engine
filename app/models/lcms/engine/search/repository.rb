@@ -209,7 +209,7 @@ module Lcms
 
         def multisearch(queries)
           body = queries.map { |query| { search: query } }
-          client.msearch(index: index, type: type, body: body)['responses'].map do |r|
+          client.msearch(index:, type:, body:)['responses'].map do |r|
             Elasticsearch::Persistence::Repository::Response::Results.new(self, r)
           end
         end

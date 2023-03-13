@@ -101,7 +101,7 @@ module Lcms
         end
 
         def find_podcast_by_url(url)
-          podcast.where(url: url).first
+          podcast.where(url:).first
         end
 
         def find_video_by_url(url)
@@ -230,8 +230,8 @@ module Lcms
       def named_tags
         {
           keywords: (tag_list + topic_list).compact.uniq,
-          resource_type: resource_type,
-          ell_appropriate: ell_appropriate,
+          resource_type:,
+          ell_appropriate:,
           ccss_standards: tag_standards,
           ccss_domain: nil, # resource.standards.map { |std| std.domain.try(:name) }.uniq
           ccss_cluster: nil, #  resource.standards.map { |std| std.cluster.try(:name) }.uniq
@@ -300,7 +300,7 @@ module Lcms
         # update only if a grade author has changed
         return unless grade? && author_id_changed?
 
-        descendants.update_all author_id: author_id
+        descendants.update_all author_id:
       end
 
       def update_descendants_meta

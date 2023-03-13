@@ -23,7 +23,7 @@ module Lcms
             title: download.download.title,
             url: download_path(download, slug: object.slug),
             preview_url: preview_download_path(id: download, slug: object.slug),
-            indent: indent
+            indent:
           }
         end
         object.download_categories.map { |k, v| [k, v.map(&serialize_download)] }

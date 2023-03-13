@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Lcms::Engine::Document do
-  let(:document) { build :document, metadata: metadata, resource: resource }
+  let(:document) { build :document, metadata:, resource: }
   let(:doc_subject) { 'ela' }
   let(:doc_type) { 'core' }
   let(:metadata) do
@@ -122,7 +122,7 @@ describe Lcms::Engine::Document do
     let(:link) { 'link' }
     let(:links) { { key => link } }
 
-    before { document.update links: links }
+    before { document.update links: }
 
     subject { document.tmp_link key }
 
@@ -137,7 +137,7 @@ describe Lcms::Engine::Document do
   end
 
   context 'File IDs' do
-    let(:document) { build :document, file_id: file_id, foundational_file_id: foundational_file_id }
+    let(:document) { build :document, file_id:, foundational_file_id: }
     let(:file_id) { 'file_id' }
     let(:foundational_file_id) { 'foundational_file_id' }
 

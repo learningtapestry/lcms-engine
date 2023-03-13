@@ -36,7 +36,7 @@ describe DocTemplate::Tags::PdTag do
   end
 
   context 'when resource with such url exist' do
-    let!(:resource) { create :resource, teaser: 'teaser', url: url }
+    let!(:resource) { create :resource, teaser: 'teaser', url: }
 
     before do
       allow_any_instance_of(described_class).to receive(:embeded_object).and_return({})

@@ -31,7 +31,7 @@ Lcms::Engine::Resource.subjects.each do |subject|
         curriculum: Lcms::Engine::Curriculum.default,
         curriculum_type: 'grade',
         tree: true,
-        metadata: metadata
+        metadata:
       )
     end
   end

@@ -29,22 +29,22 @@ module Lcms
       attr_reader :document, :result
 
       def reimport_document(link)
-        form = DocumentForm.new({ link: link }, import_retry: true)
+        form = DocumentForm.new({ link: }, import_retry: true)
         @result = if form.save
-                    { ok: true, link: link, model: form.document, warnings: form.service_errors }
+                    { ok: true, link:, model: form.document, warnings: form.service_errors }
                   else
-                    { ok: false, link: link, errors: form.errors[:link] }
+                    { ok: false, link:, errors: form.errors[:link] }
                   end
       end
 
       def reimport_materials
         document.materials.each do |material|
           link = material.file_url
-          form = MaterialForm.new({ link: link, source_type: material.source_type }, import_retry: true)
+          form = MaterialForm.new({ link:, source_type: material.source_type }, import_retry: true)
           next if form.save
 
           error_msg = %(Material error (<a href="#{link}">source</a>): #{form.errors[:link]})
-          @result = { ok: false, link: link, errors: [error_msg] }
+          @result = { ok: false, link:, errors: [error_msg] }
           break
         end
       end

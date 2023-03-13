@@ -33,7 +33,7 @@ module Lcms
 
         def destroy_selected
           count = @materials.destroy_all.count
-          redirect_to lcms_engine.admin_materials_path(query: @query_params), notice: t('.success', count: count)
+          redirect_to lcms_engine.admin_materials_path(query: @query_params), notice: t('.success', count:)
         end
 
         def import_status
@@ -73,7 +73,7 @@ module Lcms
             job_id = DocumentGenerator.material_parse_job.perform_later(url).job_id
             jobs[job_id] = { link: url, status: 'waiting' }
           end
-          @props = { jobs: jobs, type: :materials, links: view_links }
+          @props = { jobs:, type: :materials, links: view_links }
         end
 
         def find_selected
@@ -92,7 +92,7 @@ module Lcms
           if form_params[:source_type] == 'pdf'
             mime_type = Lt::Lcms::Lesson::Downloader::PDF::MIME_TYPE
             ::Lt::Google::Api::Drive.new(google_credentials)
-              .list_file_ids_in(folder_id, mime_type: mime_type)
+              .list_file_ids_in(folder_id, mime_type:)
               .map { |id| ::Lt::Lcms::Lesson::Downloader::PDF.gdoc_file_url(id) }
           else
             ::Lt::Google::Api::Drive.new(google_credentials)

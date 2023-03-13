@@ -107,7 +107,7 @@ module Lcms
       end
 
       def student_material?
-        ::Material.where(id: id).gdoc.where_metadata_any_of(materials_config_for(:student)).exists?
+        ::Material.where(id:).gdoc.where_metadata_any_of(materials_config_for(:student)).exists?
       end
 
       def subtitle
@@ -115,7 +115,7 @@ module Lcms
       end
 
       def teacher_material?
-        ::Material.where(id: id).gdoc.where_metadata_any_of(materials_config_for(:teacher)).exists?
+        ::Material.where(id:).gdoc.where_metadata_any_of(materials_config_for(:teacher)).exists?
       end
 
       def title

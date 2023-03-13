@@ -62,7 +62,7 @@ describe Lcms::Engine::DocumentBundle do
 
     it 'creates a record with ZIP bundle' do
       params = {
-        resource: resource,
+        resource:,
         category: 'full',
         content_type: 'gdoc'
       }
@@ -101,8 +101,8 @@ describe Lcms::Engine::DocumentBundle do
 
     it 'creates a record with ZIP bundle' do
       params = {
-        resource: resource,
-        category: category,
+        resource:,
+        category:,
         content_type: 'pdf'
       }
       expect(described_class).to receive(:find_or_create_by).with(params).and_return(doc_bundle)

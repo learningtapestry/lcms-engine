@@ -122,7 +122,7 @@ module Lt
           dir = directory[0..index]
           curriculum_type = parent.nil? ? ::Lcms::Engine::Resource.hierarchy.first : parent.next_hierarchy_level
           resource = ::Lcms::Engine::Resource.new(
-            curriculum_type: curriculum_type,
+            curriculum_type:,
             level_position: parent&.children&.size.to_i,
             metadata: metadata.to_a[0..index].to_h,
             parent_id: parent&.id,
@@ -146,7 +146,7 @@ module Lt
           else
             # ELA G1 M1 U2 Lesson 1
             curr ||= directory
-            res = ::Lcms::Engine::Resource.new(metadata: metadata)
+            res = ::Lcms::Engine::Resource.new(metadata:)
             ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.to_s.titleize).join(' ')
           end
         end

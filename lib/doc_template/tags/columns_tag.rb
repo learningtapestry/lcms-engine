@@ -24,7 +24,7 @@ module DocTemplate
           end
         end
 
-        @content = parse_template({ rows: rows }, TEMPLATE) if rows.any?
+        @content = parse_template({ rows: }, TEMPLATE) if rows.any?
         replace_tag node
         self
       end

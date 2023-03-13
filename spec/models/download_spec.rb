@@ -30,7 +30,7 @@ describe Lcms::Engine::Download do
 
   describe '#attachment_content_type' do
     let(:content_type) { 'type' }
-    let(:download) { create :download, content_type: content_type }
+    let(:download) { create :download, content_type: }
 
     subject { download.attachment_content_type }
 
@@ -59,7 +59,7 @@ describe Lcms::Engine::Download do
     end
 
     context 'when url is absent' do
-      let(:download) { build :download, file: file, url: nil }
+      let(:download) { build :download, file:, url: nil }
       let(:file) { double }
       let(:url) { Faker::Internet.url }
 
@@ -75,7 +75,7 @@ describe Lcms::Engine::Download do
   end
 
   describe '#s3_filename' do
-    let(:download) { create :download, url: url }
+    let(:download) { create :download, url: }
     let(:url) { Faker::Internet.url }
 
     it 'returns base name of the attachment url' do

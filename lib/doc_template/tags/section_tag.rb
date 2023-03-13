@@ -45,7 +45,7 @@ module DocTemplate
             material_ids: @section.material_ids,
             color: @section[:use_color]
           },
-          section: section,
+          section:,
           section_icons: section_icons(section)
         }
       end

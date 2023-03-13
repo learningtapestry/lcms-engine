@@ -16,7 +16,7 @@ describe Lcms::Engine::DocumentForm do
 
     context 'when is valid' do
       let(:link) { 'doc-url' }
-      let(:params) { { link: link } }
+      let(:params) { { link: } }
 
       before do
         allow(Lcms::Engine::DocumentGenerator).to receive(:generate_for)
@@ -67,7 +67,7 @@ describe Lcms::Engine::DocumentForm do
 
       context 'when there are non-critical errors' do
         let(:errors) { %w(error-1 error-2 error-3) }
-        let(:service) { instance_double('DocumentBuildService', build_for: document, errors: errors) }
+        let(:service) { instance_double('DocumentBuildService', build_for: document, errors:) }
 
         it 'store service errors' do
           subject

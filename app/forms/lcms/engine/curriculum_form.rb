@@ -35,7 +35,7 @@ module Lcms
       end
 
       def find_resource_by(id, curr)
-        Resource.tree.find_by(id: id) || Resource.tree.find_by_directory(curr)
+        Resource.tree.find_by(id:) || Resource.tree.find_by_directory(curr)
       end
 
       # Reflect curriculum changes on corresponding resources

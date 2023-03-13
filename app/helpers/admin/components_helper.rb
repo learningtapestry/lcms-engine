@@ -14,7 +14,7 @@ module Admin
         'admin/resource-picker/ResourcePicker',
         name: computed_name,
         resources: collection.map { |i| { id: i.id, title: i.title } },
-        allow_multiple: allow_multiple
+        allow_multiple:
       )
       content_tag(:div) do
         [
@@ -40,8 +40,8 @@ module Admin
         create_name: scoped_create_name,
         association: path,
         items: collection.map { |i| { id: i.id, name: i.name } },
-        allow_create: allow_create,
-        allow_multiple: allow_multiple
+        allow_create:,
+        allow_multiple:
       )
       content_tag(:div) do
         [

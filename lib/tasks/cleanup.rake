@@ -20,7 +20,7 @@ namespace :cleanup do # rubocop:disable Metrics/BlockLength
 
         links = document.links
         links['pdf']&.delete('preview')
-        document.update_columns links: links
+        document.update_columns links:
       end
 
       batch_delete_in args[:s3_folder]

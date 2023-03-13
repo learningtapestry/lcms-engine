@@ -30,7 +30,7 @@ module DocTemplate
         end
         content = parse_nested content.to_s, opts
         params = {
-          before_materials: before_materials,
+          before_materials:,
           # TODO: check maybe it's ok to move it somewhere else,
           # fixed at #692 bc with new section we always have some garbage before activity
           content: DocTemplate.sanitizer.strip_html(content),
@@ -44,7 +44,7 @@ module DocTemplate
             material_ids: @section.material_ids
           },
           section: @section,
-          with_materials: with_materials
+          with_materials:
         }
         @content = parse_template params, template_name(opts)
         replace_tag node

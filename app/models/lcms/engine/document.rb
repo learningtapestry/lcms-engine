@@ -47,7 +47,7 @@ module Lcms
       (documents.metadata ->> 'subject' <> 'ela' AND documents.metadata ->> 'unit' = :mod)
         OR (documents.metadata ->> 'subject' = 'ela' AND documents.metadata ->> 'module' = :mod)
         SQL
-        where(sql, mod: mod)
+        where(sql, mod:)
       }
 
       scope :with_broken_materials, lambda {
@@ -65,7 +65,7 @@ module Lcms
       def activate!
         self.class.transaction do
           # deactive all other lessons for this resource
-          self.class.where(resource_id: resource_id).where.not(id: id).update_all active: false
+          self.class.where(resource_id:).where.not(id:).update_all active: false
           # activate this lesson. PS: use a simple sql update, no callbacks
           update_columns active: true
         end
@@ -122,7 +122,7 @@ module Lcms
         url = links[key]
         with_lock do
           reload.links.delete(key)
-          update links: links
+          update links:
         end
         url
       end

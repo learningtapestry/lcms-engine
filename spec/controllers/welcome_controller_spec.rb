@@ -12,7 +12,7 @@ describe Lcms::Engine::WelcomeController do
 
     before { request.env['HTTP_REFERER'] = Lcms::Engine::WelcomeController::OAUTH_REFERER }
 
-    subject { get :oauth2callback, params: { code: code } }
+    subject { get :oauth2callback, params: { code: } }
 
     it 'skips authorization' do
       subject

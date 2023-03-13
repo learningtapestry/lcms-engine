@@ -58,7 +58,7 @@ module DocTemplate
       def generate_image
         svg_path =
           Tempfile.open(%w(tex-eq .svg)) do |svg|
-            svg.write EmbedEquations.tex_to_svg(value, custom_color: custom_color)
+            svg.write EmbedEquations.tex_to_svg(value, custom_color:)
             svg.path
           end
 

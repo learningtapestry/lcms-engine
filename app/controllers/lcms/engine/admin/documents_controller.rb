@@ -33,7 +33,7 @@ module Lcms
 
         def destroy_selected
           count = @documents.destroy_all.count
-          redirect_to lcms_engine.admin_documents_path(query: @query_params), notice: t('.success', count: count)
+          redirect_to lcms_engine.admin_documents_path(query: @query_params), notice: t('.success', count:)
         end
 
         def import_status
@@ -63,7 +63,7 @@ module Lcms
             notice = t('lcms.engine.admin.documents.create.success',
                        name: @document.document.name,
                        errors: collect_errors)
-            redirect_to dynamic_document_path(@document.document), notice: notice
+            redirect_to dynamic_document_path(@document.document), notice:
           else
             render :new
           end
@@ -73,11 +73,11 @@ module Lcms
           reimport_materials = params[:with_materials].to_i.nonzero?
           jobs = docs.each_with_object({}) do |doc, jobs_|
             job_id = DocumentGenerator.document_parse_job
-                       .perform_later(doc, reimport_materials: reimport_materials).job_id
+                       .perform_later(doc, reimport_materials:).job_id
             link = doc.is_a?(Document) ? doc.file_url : doc
-            jobs_[job_id] = { link: link, status: 'waiting' }
+            jobs_[job_id] = { link:, status: 'waiting' }
           end
-          @props = { jobs: jobs, type: :documents, links: view_links }
+          @props = { jobs:, type: :documents, links: view_links }
         end
 
         def collect_errors
@@ -117,7 +117,7 @@ module Lcms
 
         def reimport_lesson_materials
           file_id = ::Lt::Lcms::Lesson::Downloader::Base.file_id_for form_params['link']
-          doc = Document.actives.find_by(file_id: file_id)
+          doc = Document.actives.find_by(file_id:)
           return unless doc
 
           doc.materials.each do |material|

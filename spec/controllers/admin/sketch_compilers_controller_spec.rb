@@ -8,11 +8,11 @@ describe Lcms::Engine::Admin::SketchCompilersController do
   before { sign_in admin }
 
   describe '#compile' do
-    let(:params) { { url: url, version: version } }
+    let(:params) { { url:, version: } }
     let(:url) { 'url' }
     let(:version) { 'v1' }
 
-    subject { post :compile, params: params }
+    subject { post :compile, params: }
 
     context 'with valid params' do
       let(:api_response) { double }
@@ -78,7 +78,7 @@ describe Lcms::Engine::Admin::SketchCompilersController do
       context 'when version has been passed in' do
         let(:version) { 'v2' }
 
-        before { get :new, params: { version: version } }
+        before { get :new, params: { version: } }
 
         it 'uses passed in version' do
           expect(assigns(:version)).to eq version

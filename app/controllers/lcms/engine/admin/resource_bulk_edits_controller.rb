@@ -18,7 +18,7 @@ module Lcms
           BulkEditResourcesService.new(@resources, resource_params).edit!
           resources_count_msg = t(:resources_count, count: @resources.count)
           notice = t('.success', count: @resources.count, resources_count: resources_count_msg)
-          redirect_to lcms_engine.admin_resources_path, notice: notice
+          redirect_to lcms_engine.admin_resources_path, notice:
         end
 
         private

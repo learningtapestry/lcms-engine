@@ -93,7 +93,7 @@ module DocTemplate
         @documents[context_type] = ::DocTemplate::Document.parse(@content.dup, options)
         @documents[context_type].parts << {
           content: render(options),
-          context_type: context_type,
+          context_type:,
           data: {},
           materials: [],
           optional: false,

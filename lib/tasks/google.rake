@@ -33,7 +33,7 @@ namespace :google do
 
     authorizer.get_and_store_credentials_from_code(
       user_id: ::Lt::Google::Api::Auth::Cli::USER_ID,
-      code: code,
+      code:,
       base_url: args[:domain]
     )
   end

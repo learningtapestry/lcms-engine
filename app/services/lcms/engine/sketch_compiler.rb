@@ -21,7 +21,7 @@ module Lcms
           body: {
             uid: Base64.encode64("#{@user_id}@#{@user_ip}"),
             url: core_url,
-            foundational_url: foundational_url
+            foundational_url:
           },
           headers: { 'Authorization' => %(Token token="#{ENV.fetch 'UB_COMPONENTS_API_TOKEN'}") },
           timeout: 5 * 60

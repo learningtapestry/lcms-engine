@@ -13,7 +13,7 @@ module Lcms
           begin
             root_path = Pathname.new File.expand_path('../..', __dir__)
             ::Webpacker::Instance.new(
-              root_path: root_path,
+              root_path:,
               config_path: root_path.join('config/webpacker.yml')
             )
           end

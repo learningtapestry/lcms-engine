@@ -22,7 +22,7 @@ describe DocTemplate::Tags::GlsTag do
   let(:tag_name) { DocTemplate::Tags::GlsTag::TAG_NAME }
   let(:value) { 'Define custom as something that is done as a tradition, year after year, over and over again.' }
 
-  subject { tag.parse(node, value: value).render }
+  subject { tag.parse(node, value:).render }
 
   it 'removes original node' do
     expect(subject).to_not include("[#{tag_name}]")

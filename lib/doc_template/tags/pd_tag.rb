@@ -29,12 +29,12 @@ module DocTemplate
         end
 
         params = {
-          description: description,
-          resource: resource,
-          start: start,
-          stop: stop,
-          subject: subject,
-          title: title
+          description:,
+          resource:,
+          start:,
+          stop:,
+          subject:,
+          title:
         }.merge(embeded)
         @content = parse_template params, template_name(opts)
         replace_tag node

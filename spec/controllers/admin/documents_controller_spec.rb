@@ -10,10 +10,10 @@ describe Lcms::Engine::Admin::DocumentsController do
   describe '#create' do
     let(:document) { create :document }
     let(:form) do
-      instance_double('Lcms::Engine::DocumentForm', document: document, save: valid, service_errors: [])
+      instance_double('Lcms::Engine::DocumentForm', document:, save: valid, service_errors: [])
     end
     let(:link) { 'link' }
-    let(:params) { { link: link, link_fs: 'link_fs', reimport: '1' } }
+    let(:params) { { link:, link_fs: 'link_fs', reimport: '1' } }
     let(:valid) { true }
 
     before { allow(Lcms::Engine::DocumentForm).to receive(:new).and_return(form) }
@@ -74,7 +74,7 @@ describe Lcms::Engine::Admin::DocumentsController do
 
     context 'when asynchronous import was requested' do
       let(:link) { 'https://google.com/somefile' }
-      let(:params) { { async: '1', link: link } }
+      let(:params) { { async: '1', link: } }
 
       before { allow(controller).to receive(:bulk_import) }
 
@@ -97,9 +97,9 @@ describe Lcms::Engine::Admin::DocumentsController do
     context 'when there was custom filter' do
       let(:query) { { course: 'value' } }
 
-      subject { delete :destroy, params: { id: document.id, query: query } }
+      subject { delete :destroy, params: { id: document.id, query: } }
 
-      it { is_expected.to redirect_to "/lcms-engine/admin/documents?#{{ query: query }.to_param}" }
+      it { is_expected.to redirect_to "/lcms-engine/admin/documents?#{{ query: }.to_param}" }
     end
   end
 

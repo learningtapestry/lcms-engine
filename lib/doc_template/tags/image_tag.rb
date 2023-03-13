@@ -10,7 +10,7 @@ module DocTemplate
       def parse_table(table)
         params = {
           caption: table.at_xpath('.//tr[2]/td').text,
-          image_src: image_src,
+          image_src:,
           subject: @opts[:metadata].try(:[], 'subject')
         }
         @content = parse_template(params, template_name(@opts))

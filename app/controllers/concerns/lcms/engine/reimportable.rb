@@ -18,7 +18,7 @@ module Lcms
         params.fetch(:jids, []).each_with_object({}) do |jid, obj|
           status = job_class.status(jid)
           obj[jid] = {
-            status: status,
+            status:,
             result: (status == :done ? prepare_result(job_class, jid) : nil)
           }.compact
         end

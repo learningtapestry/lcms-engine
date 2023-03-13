@@ -26,7 +26,7 @@ module Lcms
 
             next unless settings.values.any? || downloads.any?
 
-            data = { category: dc, title: dc.title, downloads: downloads, settings: settings }
+            data = { category: dc, title: dc.title, downloads:, settings: }
             Struct.new(*data.keys, keyword_init: true).new(data)
           end
 

@@ -66,10 +66,10 @@ module Lcms
       def props
         {
           filterbar: {
-            subjects: subjects,
+            subjects:,
             grades: untranslated_grades,
-            facets: facets,
-            search_term: search_term
+            facets:,
+            search_term:
           }
         }
       end

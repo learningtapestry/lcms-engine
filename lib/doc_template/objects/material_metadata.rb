@@ -39,7 +39,7 @@ module DocTemplate
         end
 
         def build_from_pdf(identifier:, title:)
-          new(identifier: identifier, sheet_type: 'pdf', title: title, type: 'pdf')
+          new(identifier:, sheet_type: 'pdf', title:, type: 'pdf')
         end
 
         def dump(data)

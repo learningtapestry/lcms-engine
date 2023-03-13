@@ -6,7 +6,7 @@ describe Lcms::Engine::DocumentBuildService do
   let(:credentials) { double }
 
   describe '#build_for' do
-    let!(:document) { create :document, file_id: file_id }
+    let!(:document) { create :document, file_id: }
     let(:downloader) { double }
     let(:downloaded_document) { 'html-here' }
     let(:file) do

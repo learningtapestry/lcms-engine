@@ -48,7 +48,7 @@ module Lcms
 
           data = LtiExporter.perform @resource
           filename = "#{@resource.slug.parameterize}.zip"
-          send_data data, filename: filename, type: 'application/zip', disposition: 'attachment'
+          send_data data, filename:, type: 'application/zip', disposition: 'attachment'
         end
 
         def bundle
@@ -93,7 +93,7 @@ module Lcms
           {
             additional_resource_ids: [],
             common_core_standard_ids: [],
-            download_categories_settings: download_categories_settings,
+            download_categories_settings:,
             resource_downloads_attributes: [
               :_destroy,
               :description,

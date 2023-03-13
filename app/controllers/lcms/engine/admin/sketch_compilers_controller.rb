@@ -15,7 +15,7 @@ module Lcms
 
           if response.success?
             url = DocumentExporter::Gdoc::Base.url_for JSON.parse(response.body)['id']
-            redirect_back fallback_location: new_admin_sketch_compiler_path, notice: t('.success', url: url)
+            redirect_back fallback_location: new_admin_sketch_compiler_path, notice: t('.success', url:)
           else
             redirect_back fallback_location: new_admin_sketch_compiler_path, alert: t('.compile_error')
           end

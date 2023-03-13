@@ -37,7 +37,7 @@ describe DocumentExporter::Gdoc::Base do
     it 'uses passed in name to prepare GDoc metadata' do
       params = {
         mime_type: 'application/vnd.google-apps.document',
-        name: name,
+        name:,
         parents: [nil]
       }
       expect(Google::Apis::DriveV3::File).to receive(:new).with(params)
