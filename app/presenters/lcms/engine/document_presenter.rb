@@ -157,12 +157,6 @@ module Lcms
         assessment? ? doc_type : "Lesson #{lesson}"
       end
 
-      def short_url
-        @short_url ||= Bitly.client
-                         .shorten(document_url(self))
-                         .short_url
-      end
-
       def standards
         ld_metadata.standard.presence || ld_metadata.lesson_standard
       end

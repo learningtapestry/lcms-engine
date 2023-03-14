@@ -16,7 +16,7 @@
         </td>
         <td class="u-pdf-txt--m-footer-small">
           <span class="u-padding-right--xs u-text--capitalized"><%= document.full_breadcrumb %></span>
-          <%= link_to document.short_url, document.short_url, class: 'u-pdf-txt--m-footer-small' %>
+          <%= link_to document_url(document), document_url(document), class: 'u-pdf-txt--m-footer-small' %>
         </td>
         <td class="c-pdf-footer__page u-pdf-txt--m-footer-page u-padding-right--zero">
           p. <span class="page"></span> of <span class="topage u-padding-left--tiny"></span>

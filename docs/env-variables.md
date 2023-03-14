@@ -62,7 +62,6 @@ The project uses several Google products, including analytics, OAuth for allowin
 | Name                  | Description                                                                                                |
 |-----------------------|------------------------------------------------------------------------------------------------------------|
 | APP_NAME              | The title which will be shown in the page title and in other places. Something like `OpenSciEd LCMS`       |
-| BITLY_API_TOKEN       | Token of the Bitly service                                                                                 |
 | RESQUE_NAMESPACE      | Value is used to separate data stored in Redis when the same redis server is used by multiple environments |
 | PUPPETEER_TIMEOUT     | Default is 30 sec                                                                                          |
 | WORKERS_COUNT         | Used on the servers. Specifies the number of workers to be started                                         |

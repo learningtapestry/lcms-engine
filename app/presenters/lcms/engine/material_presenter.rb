@@ -5,7 +5,7 @@ module Lcms
     class MaterialPresenter < Lcms::Engine::ContentPresenter
       attr_accessor :document
 
-      delegate :short_url, :subject, to: :document
+      delegate :subject, to: :document
 
       DEFAULT_TITLE = 'Material'
 
