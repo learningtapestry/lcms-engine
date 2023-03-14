@@ -84,6 +84,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sanitize', '~> 6.0.0'
   s.add_dependency 'sass-rails', '~> 6'
   s.add_dependency 'simple_form', '~> 5.0', '>= 5.0.2'
+  s.add_dependency 'sprockets-rails', '~> 3.4'
   s.add_dependency 'staccato', '~> 0.5.3'
   s.add_dependency 'truncate_html', '~> 0.9.3'
   s.add_dependency 'turbolinks', '~> 5.2', '>= 5.2.1'
