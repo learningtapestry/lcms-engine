@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'aws-sdk-rails', '~> 3.1'
   s.add_dependency 'aws-sdk-s3', '~> 1'
   s.add_dependency 'bootstrap-sass', '~> 3.4'
-  s.add_dependency 'bullet', '~> 6.1', '>= 6.1.0'
   s.add_dependency 'carrierwave', '~> 2.1'
   s.add_dependency 'ckeditor', '~> 5.1'
   s.add_dependency 'closure_tree', '~> 7.1'
@@ -94,6 +93,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
   s.add_dependency 'with_advisory_lock', '~> 4.6'
 
+  s.add_development_dependency 'bullet', '~> 7.0'
   s.add_development_dependency 'capybara', '~> 3.31'
   s.add_development_dependency 'database_cleaner-active_record', '~> 1.8'
   s.add_development_dependency 'dotenv-rails', '~> 2.2'
