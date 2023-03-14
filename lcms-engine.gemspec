@@ -113,7 +113,7 @@ Gem::Specification.new do |s|
   # Stop upgrading SimpleCov until the following issue will be resolved.
   # https://github.com/codeclimate/test-reporter/issues/418
   s.add_development_dependency 'simplecov', '< 0.18'
-  s.add_development_dependency 'spring', '~> 2.1'
+  s.add_development_dependency 'spring', '~> 3.1'
   s.add_development_dependency 'spring-commands-rspec', '~> 1.0'
   s.add_development_dependency 'traceroute', '~> 0.8'
   s.add_development_dependency 'webdrivers', '~> 4.0'
