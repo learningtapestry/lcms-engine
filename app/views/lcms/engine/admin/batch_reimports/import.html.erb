@@ -6,5 +6,5 @@
   <div class="row">
     <%= link_to '<- Back', new_admin_batch_reimport_path(query: @query.to_h), class: 'button primary' %>
   </div>
-  <%= react_component('admin/ImportStatus', @props) %>
+  <%= render_component('admin/ImportStatus', @props) %>
 </div>

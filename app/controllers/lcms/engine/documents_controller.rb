@@ -24,17 +24,13 @@ module Lcms
         render json: data, status: :ok
       end
 
-      def show
-        @props = CurriculumMap.new(@document.resource).props
-      end
+      def show; end
 
       def show_lti
         # To allow access from iFrame element
         response.headers.delete 'X-Frame-Options'
 
-        @props = CurriculumMap.new(@document.resource).props.merge(links_new_tab: true)
-
-        render layout: 'lti'
+        render layout: 'application_lti'
       end
 
       private

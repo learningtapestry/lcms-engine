@@ -16,25 +16,10 @@ module Lcms
       validates_presence_of :email, :role
       validate :access_code_valid?, on: :create, unless: :admin?
 
-      def full_name
-        [
-          survey&.fetch('first_name', nil),
-          survey&.fetch('last_name', nil)
-        ].reject(&:blank?).join(' ')
-      end
-
       def generate_password
         pwd = Devise.friendly_token.first(20)
         self.password = pwd
         self.password_confirmation = pwd
-      end
-
-      def name
-        super.presence || full_name
-      end
-
-      def ready_to_go?
-        admin? || survey.present?
       end
 
       private

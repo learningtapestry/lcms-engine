@@ -9,7 +9,6 @@
         </div>
         <div class="c-sticky-header__summary cs-bg--<%= document.color_code_grade %>">
           <div class="o-page__wrap--row c-sticky-header__wrap">
-            <%= render 'sticky_unit_map', document: document if document.resource.present? %>
             <div class="c-sticky-header-summary__content">
               <div class="u-txt--ld-header-breadcrumb show-for-large <%= 'u-text--capitalized' unless document.ela? && document.prereq? %>">
                 <%= document.full_breadcrumb %>
@@ -41,13 +40,6 @@
           <ul class="o-ld-sidebar__menu doc-subject-<%= document.math? ? 'math' : 'ela' %> o-ld-unit-map--padding<%= document.resource.siblings.count >= 5 ? 5 : document.resource.siblings.count % 5 %>" data-accordion-menu data-slide-speed="200">
             <%= render 'nav_contents', document: document %>
           </ul>
-        </div>
-      </div>
-    </div>
-    <div class="c-sticky-header-sitemenu__wrap">
-      <div class="o-page">
-        <div class="c-sticky-header-sitemenu c-sticky-header-menu" id="ld-sitemenu" data-toggler data-animate="fade-in fade-out">
-           <%= render partial: 'lcms/engine/documents/sticky_site_menu' %>
         </div>
       </div>
     </div>

@@ -2,9 +2,6 @@
 
 module Lcms
   module Engine
-    # This is a subset of the previous ResourceSerializer, meant to be used on listings
-    # like find_lessons and search cards. We use this instead the full version (ResourceDetailsSerializer)
-    # to avoid expensive queries on data we don't need (like downloads, and related)
     class ResourceSerializer < ActiveModel::Serializer
       include ResourceHelper
 

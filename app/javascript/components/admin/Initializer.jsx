@@ -1,5 +1,44 @@
-const Initializer = {
-  initializeResourcesForm: () => {
+import $ from 'jquery';
+import CurriculumEditor from './curriculum/CurriculumEditor';
+import MultiSelectedOperation from './MultiSelectedOperation';
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Initializer {
+  static initialize() {
+    // Mount internal components
+    Initializer.#initializeCurriculumEditor();
+    Initializer.#initializeMultiSelectedOperation();
+
+     // Initialize simple HTML objects
+    Initializer.#initializeResourcesForm();
+    Initializer.#initializeResourcesList();
+    Initializer.#initializeSelectAll();
+  };
+
+  static #initializeCurriculumEditor() {
+    document.querySelectorAll('[id="#lcms-engine-CurriculumEditor"]').forEach( e => {
+      const props = JSON.parse(e.dataset.content);
+      e.removeAttribute('data-content');
+      ReactDOM.render(
+        <CurriculumEditor {...props} />,
+        e
+      );
+    })
+  };
+
+  static #initializeMultiSelectedOperation() {
+    document.querySelectorAll('[id="#lcms-engine-MultiSelectedOperation"]').forEach( e => {
+      const props = JSON.parse(e.dataset.content);
+      e.removeAttribute('data-content');
+      ReactDOM.render(
+        <MultiSelectedOperation {...props} />,
+        e
+      );
+    })
+  };
+
+  static #initializeResourcesForm() {
     const form = $('form#resource_form');
     if (!form.length) return;
 
@@ -12,9 +51,9 @@ const Initializer = {
         opr_desc.slideUp();
       }
     });
-  },
+  };
 
-  initializeResourcesList: () => {
+  static #initializeResourcesList() {
     const page = $('.o-adm-list.o-adm-documents');
     if (!page.length) return;
 
@@ -22,9 +61,9 @@ const Initializer = {
       const value = $(this).prop('checked') ? 1 : 0;
       page.find('.c-reimport-doc-form .c-reimport-with-materials__field').val(value);
     });
-  },
+  };
 
-  initializeSelectAll: () => {
+  static #initializeSelectAll() {
     const selector = $('.c-multi-selected--select-all');
     if (!selector.length) return;
 
@@ -33,7 +72,7 @@ const Initializer = {
       const checked = el.prop('checked');
       $('.table input[type=checkbox][name="selected_ids[]"]').prop('checked', checked);
     });
-  },
-};
+  }
+}
 
 export default Initializer;

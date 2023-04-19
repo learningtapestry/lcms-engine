@@ -12,17 +12,16 @@
       <span class="c-reimport-with-materials__toggle"><%= check_box_tag 'reimport_with_materials', 1 %> Reimport with Materials</span>
     </div>
     <div class='flex-pull-right'>
-
-      <%= react_component 'admin/MultiSelectedOperation', {
-            text: t('.reimport_selected'),
-            operation: 'reimport',
-            path: reimport_selected_admin_documents_path(query: @query_params),
-            btn_style: 'primary' } %>
-      <%= react_component 'admin/MultiSelectedOperation', {
-            text: t('.delete_selected'),
-            operation: 'delete',
-            path: delete_selected_admin_documents_path(query: @query_params),
-            btn_style: 'alert'} %>
+      <%= render_component 'MultiSelectedOperation', {
+        text: t('.reimport_selected'),
+        operation: 'reimport',
+        path: reimport_selected_admin_documents_path(query: @query_params),
+        btn_style: '' } %>
+      <%= render_component 'MultiSelectedOperation', {
+        text: t('.delete_selected'),
+        operation: 'delete',
+        path: delete_selected_admin_documents_path(query: @query_params),
+        btn_style: '' } %>
 
       <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'button primary' %>
     </div>
@@ -81,7 +80,7 @@
 
   <div class="row">
     <div class='col-sm-12 text-center'>
-      <%= will_paginate @documents, renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @documents %>
     </div>
   </div>
 

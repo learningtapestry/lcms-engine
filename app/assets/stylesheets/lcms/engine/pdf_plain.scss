@@ -1,10 +1,1 @@
 @charset "utf-8";
-
-@import 'utils/variables', 'utils/mixins';
-@import 'themes/settings';
-@import 'vendors/foundation_and_overrides-pdf';
-@import 'utils/colorcodes', 'utils/helpers';
-@import 'print/typography';
-@import 'components/lesson/override';
-@import 'print/base', 'print/cover', 'print/colorscheme', 'print/footer', 'print/header', 'print/helpers',
-  'print/lesson-base';

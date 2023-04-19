@@ -1,7 +1,4 @@
 en:
-  default_title: Lcms Engine
-  default_description: ''
-  default_og_image: ''
   devise:
     confirmations:
       create:
@@ -22,17 +19,6 @@ en:
       curriculum:
         index:
           page_title: Curriculum
-      curriculum_page:
-        search_form:
-          grade_label: What is the grade?
-          disabilities_label: What % of kids have disabilities?
-          time_label: What is the length of time you are hoping to fill?
-          standard_label: Is there a particular standard you want to teach?
-          subject_label: What is the subject?
-          ell_label: What % of your students are ELL?
-          ell_level_label: >
-            What level are your ELL students in:
-          text_label: Search
       document:
         toc:
           credits: Credits
@@ -61,67 +47,10 @@ en:
           </ul>
         sm_html: >
           <p>Print, export, or download all student materials (e.g., handouts). You have the option to view and print materials as PDFs or export them as Google Docs.</p>
-      enhance_instruction:
-        index:
-          page_title: Lcms Engine - Enhance Instruction
-          page_description: Search our free professional learning resources for teaching guides, videos and podcasts that focus on the application of content related to the standards in the classroom. Download, adapt, share.
-      explore_curriculum:
-        index:
-          page_title: Lcms Engine - Explore Curriculum
-          page_description: Search our free collection of high-quality PreK - 12 ELA and Math materials. Filter by subject or grade. Download, adapt, share.
-      find_lessons:
-        index:
-          page_title: Lcms Engine - Find Lessons
-          page_description: Search our free collection of high-quality PreK - 12 ELA and Math materials, for specific lessons or topics within a grade. Download, adapt, share.
-      home_page:
-        curriculum_html: >
-          We offer teachers a comprehensive Standards&ndash;aligned library of free education resources, built on years of experience creating widely adopted OER curriculum and professional development materials.
-        professional_development_html: >
-          We help teachers make better instructional decisions by providing immersive training and free standards&ndash;aligned resources for their students.
-        about_html: >
-          We are dedicated to a singular goal: helping fellow educators help their students to achieve learning goals set by higher standards.
-        slogan: "Strong schools, strong students"
-        tagline: Educators getting smarter together about high standards
-        readmore: Read More
-      lesson_page:
-        instructional_resources: Instructional resources
-        related_resources: Related professional development resources
-      pages:
-        about:
-          staff_members: Staff Members
-        leadership:
-          page_title: Lcms Engine - Advance Leadership
-          page_description: Empower and inspire your school community to ensure higher standards for all students with our free, aligned curricular and professional learning resources.
-        not_found:
-          page_header: Page Not Found
-          page_title: Lcms Engine - Page Not Found
-      preview:
-        back: View Details
-      registrations:
-        create:
-          page_title: Lcms Engine - Create Account
-        new:
-          page_title: Lcms Engine - Create Account
       resources:
         media:
           related_guides_subtitle: Guides that feature this %{type} will appear in this section.
           related_guides_title: Related Guides
-      search:
-        index:
-          page_title: Lcms Engine - Search
-          page_description: Search our free collection of high-quality PreK - 12 ELA and Math materials, teaching guides, videos, and podcasts. Filter by subject or grade, or search to reveal assets.
-          per_page: results per page
-          search_for: Search for…
-          show: Show
-      sessions:
-        new:
-          page_title: Lcms Engine - Log In
-      surveys:
-        create:
-          page_title: Lcms Engine - Survey
-        show:
-          page_title: Lcms Engine - Survey
       welcome:
         index:
           page_title: Lcms Engine
-          page_description: We provide free, standards-aligned resources and immersive training for teachers and school leaders.

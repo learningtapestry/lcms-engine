@@ -4,24 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><%= page_title %></title>
-    <meta name="description" content="<%= page_description %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= redirect_meta_tag %>
-    <%= render partial: 'lcms/engine/shared/favicon' %>
     <script>document.querySelector('html').className = 'js';</script>
-    <%= stylesheet_link_tag 'lcms/engine/lcms_engine_application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_include_tag 'lcms/engine/lcms_engine_application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
-    <% if content_for?(:canonical_url) %>
-      <link rel=canonical href='<%= yield(:canonical_url) %>'>
-    <% end %>
+    <link rel="stylesheet" href="/lcms-engine-assets/application.css"/>
+    <script type="text/javascript" src="/lcms-engine-assets/application.js" defer></script>
   </head>
   <body>
-    <div class="u-page-wrap u-supported<%= ' u-bg--light' if devise_controller? || controller.controller_name == 'surveys' %>">
-      <%= render partial: 'lcms/engine/shared/header' %>
-      <%= render partial: 'lcms/engine/shared/flash' %>
-      <%= yield %>
-    </div>
-    <%= render partial: 'lcms/engine/shared/footer' %>
+    <%= render partial: 'lcms/engine/shared/header' %>
+    <%= render partial: 'lcms/engine/shared/flash' %>
+    <%= yield %>
+    <%#= render partial: 'lcms/engine/shared/footer' %>
   </body>
 </html>

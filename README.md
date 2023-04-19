@@ -11,7 +11,8 @@ Our initial goal is gathering the common code among the current LCMS implementat
 separately, simplifying the client applications in the process.
 
 ## Requirements
-- Ruby 2.7.x
+
+- Ruby 3.2.x
 - Rails 6.1 or higher
 - Postgres 9.6 or higher
 
@@ -19,7 +20,8 @@ separately, simplifying the client applications in the process.
 
 | Branch | Rails version |
 |--------|---------------|
-| master | Rails 6.1.7   |
+| master | Rails 7.0     |
+| rails-6.1 | Rails 6.1     |
 
 ## Guidelines
 
@@ -55,11 +57,11 @@ For regular Ruby classes and modules, we suggest sticking to the recommended pra
 the official [Rails guide for engines](https://guides.rubyonrails.org/engines.html#improving-engine-functionality)
 which, for the most part, use the [Decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern).
 
-* For small changes or refinements you can create a new decorator class inside the `app/decorators`
+- For small changes or refinements you can create a new decorator class inside the `app/decorators`
 folder, and use `class_eval` or `module_eval` to override the methods that you want. You can see a
 few examples of this technique in the latest changes added to [OpenSciEd](https://github.com/learningtapestry/openscied-lcms/tree/engine-integration/app/decorators)
 and [Odell](https://github.com/learningtapestry/odell-lcms/tree/engine-integration/app/decorators)
-* When changes are bigger or have a much larger impact on the target class or module, it's better to
+- When changes are bigger or have a much larger impact on the target class or module, it's better to
 include a new module that contains your overrides. Again, the Rails guide suggests using
 `ActiveSupport::Concern`, which simplifies things a bit, although a regular Ruby module would also
 work. In this case, you move the default code to a new module that extends `ActiveSupport::Concern`,
@@ -67,7 +69,7 @@ and include that resulting module in both the engine class and the one in your c
 After that, you're free to add new methods or override the ones from the module.
 You can see examples of an [extracted module](https://github.com/learningtapestry/lcms-engine/blob/master/lib/concerns/doc_template/template.rb)
 and a [class including it](https://github.com/learningtapestry/odell-lcms/blob/engine-integration/lib/doc_template/template.rb).
-* Finally, as a last resort, if the customizations you're performing differ a lot from the default
+- Finally, as a last resort, if the customizations you're performing differ a lot from the default
 behaviour, you can consider overriding completely the class by just leaving a file with the same
 name in the same path. Rails will always give preference to classes inside your project in the
 loading phase.
@@ -76,44 +78,55 @@ Other kinds of assets, like ERB views, images, stylesheets or javascript files, 
 overridden as easily as Ruby classes and modules, but you can always provide your own versions of
 the same files, overwriting the ones provided by the engine.
 
-You can run the rake task `lcms_engine:webpacker:compile` and set the environment variable `YARN_PATH` to set the yarn binary.
+TODO: Update this part about how to build the assets
+**OUT DATED** You can run the rake task `lcms_engine:webpacker:compile` and set the environment variable `YARN_PATH` to set the yarn binary.
 
 ## Installation
+
 Add this to the Gemfile:
+
 ```ruby
 gem 'lcms-engine' # Rails 6.1
 ```
 
 And then execute:
+
 ```bash
-$ bundle
+bundle
 ```
 
 Or install it yourself as:
+
 ```bash
-$ gem install lcms-engine
+gem install lcms-engine
 ```
 
 Copying all required configuration files
+
 ```bash
-$ bundle exec rails g lcms:engine:install
+bin/rails g lcms:engine:install
 ```
 
 You may need to load the schema. Execute from your app's root directory:
+
 ```bash
-$ bundle exec rake lcms_engine:load_default_schema
+bin/rails lcms_engine:load_default_schema
 ```
 
 Pre-load required data
+
 ```bash
-$ bundle exec rake lcms_engine:seed_data
+bin/rails lcms_engine:seed_data
 ```
 
 Mount the engine in the `routes.rb`
+
 ```ruby
 mount Lcms::Engine::Engine, at: '/lcms'
 ```
+
 Pay attention that adding route alias is not supported. That said you **can't** mount the engine as follow:
+
 ```ruby
 mount Engine, at: '/engine', as: :engine
 ````
@@ -123,6 +136,7 @@ If you need to redefine devise routes set up env `DEVISE_ROUTES_REDEFINED` as tr
 ### Host app routes
 
 When host app has its own routes on upper than engine level:
+
 ```ruby
 Lcms::Engine::Engine.routes.draw do
   devise_for :users, class_name: 'Lcms::Engine::User',
@@ -149,7 +163,9 @@ devise_scope :user do
   delete '/register', to: 'lcms/engine/registrations#destroy'
 end
 ```
+
 When host app is ok with `/lcms` devise routes but want to redefine paths after that:
+
 ```ruby
 Lcms::Engine::Engine.routes.draw do
   devise_for :users, class_name: 'Lcms::Engine::User',
@@ -176,8 +192,9 @@ All migrations included in the gem are already available for you to run from ins
 ### Using with Host app
 
 You need to run special rake task if default routes were overridden
+
 ```bash
-$ bundle exec rake js-routes:generate
+bundle exec rake js-routes:generate
 ```
 
 ## Developing and testing
@@ -192,29 +209,33 @@ connection (see `spec/dummy/.env` as a template)
 For macOS it can be installed with Homebrew:
 
 ```bash
-$ brew tap homebrew/cask
-$ brew cask install chromedriver
+brew tap homebrew/cask
+brew cask install chromedriver
 ```
 
-#### Using Docker
+### Using Docker
 
 Launch the containers
+
 ```shell
-$ docker compose create
-$ docker compose start
-$ docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"
-$ docker compose exec app sh -c 'bin/rails db:create'
+docker compose create
+docker compose start
+docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"
+docker compose exec app sh -c 'bin/rails db:create'
 ```
 
 Start the specs
+
 ```shell
-$ docker compose exec app sh -c 'bundle exec rspec'
+docker compose exec app sh -c 'bundle exec rspec'
 ```
 
 In case you need to rebuild the image, use buildx command to create multi-arch image and push it to the registry
+
 ```shell
-docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine --push .
+docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine:ruby-3.2 --push .
 ```
 
 ## License
+
 The gem is available as open source under the terms of the [Apache License](https://github.com/learningtapestry/lcms-engine/blob/master/LICENSE).

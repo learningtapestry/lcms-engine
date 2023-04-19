@@ -1,18 +1,12 @@
 <% set_page_title @resource.title %>
 
 <div class="o-page o-page--margin-to-bottom">
-  <div class="o-page__module u-margin-bottom--gutter">
-    <%= link_to enhance_instruction_index_path(tab: 2), class: 'o-ub-btn o-ub-btn--base o-btn--xs-full' do %>
-      <i class="fa-lg ub-arrow-left u-text--middled"></i> <%= t('instructions.btn.back') %>
-    <% end %>
-  </div>
   <%= render partial: 'lcms/engine/resources/header', locals: { resource: @resource } %>
   <div class="o-page__section u-padding-top--gutter u-bg--light">
     <div class="o-resource-title">
       <div class="o-resource-title__title">
         <div class="o-title u-text--uppercase">
           <span class="o-title__type cs-txt--<%= color_code(@resource) %>"><%= @resource.type_name %></span>
-          <!-- <span class="o-title__duration"><%= react_component('TimeToTeach', {duration: @resource.time_to_teach}) %></span> -->
         </div>
         <h1><%= @resource.title %></h1>
         <div class="u-txt--teaser o-social-sharing__teaser">
@@ -58,7 +52,7 @@
 </div>
 
 <% if @resource.preview? %>
-  <script type="text/javascript" data-turbolinks-eval="always">
+  <script type="text/javascript" data-turbo-eval="always">
     pdfUrl="<%= pdf_proxy_download_path(@resource.pdf_preview_download, s3: @resource.pdf_preview_download.download.s3_filename) %>"
   </script>
 <% end %>

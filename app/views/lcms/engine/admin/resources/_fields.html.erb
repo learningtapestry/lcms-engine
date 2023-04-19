@@ -16,7 +16,7 @@
 
 <%= f.input :opr_description, label: t('lcms.engine.admin.resources.form.opr_description'), wrapper_html: {class: (resource.unit? ? '': 'c-hidden')} %>
 
-<%= react_component('admin/curriculum/DirectoryPicker', directory_picker_props(resource)) %>
+<%= render_component('admin/curriculum/DirectoryPicker', directory_picker_props(resource)) %>
 
 <%= f.input :time_to_teach %>
 

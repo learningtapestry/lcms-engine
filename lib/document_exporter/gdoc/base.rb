@@ -101,7 +101,7 @@ module DocumentExporter
       end
 
       def content
-        render_template template_path('show'), layout: 'ld_gdoc'
+        render_template template_path('show'), layout: 'gdoc'
       end
 
       #

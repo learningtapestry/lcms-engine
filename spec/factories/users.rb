@@ -8,7 +8,6 @@ FactoryBot.define do
     name { 'Unbounded User' }
     password { '12345678' }
     password_confirmation { '12345678' }
-    survey { { key: 'value' } }
 
     factory :admin, class: Lcms::Engine::User do
       name { 'Admin User' }

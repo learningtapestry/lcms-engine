@@ -1,4 +1,4 @@
-<%= simple_form_for @user, url: @url.presence || lcms_engine.admin_users_path, html: { id: 'user_form' } do |f| %>
+<%= simple_form_for @user, url: @url.presence || lcms_engine.admin_users_path, html: { id: 'user_form' }, data: { turbo: false } do |f| %>
   <%= f.input :id, disabled: true %>
   <%= f.input :name %>
   <%= f.input :email %>
@@ -6,19 +6,6 @@
   <%= f.input :access_code, disabled: @user.persisted? %>
   <%= f.input :confirmed_at, disabled: true, as: :text %>
 
-  <div class="u-margin-bottom--base">
-    <%= f.label :survey %>
-    <% if @user.survey %>
-      <dl>
-       <% Lcms::Engine::SurveyForm.new.attributes.keys.map(&:to_s).each do |key| %>
-         <dt class="u-text--small"><%= t("survey.#{key}") %></dt>
-         <dd class="u-margin-bottom--small"><%= @user.survey[key] %></dd>
-       <% end %>
-     </dl>
-    <% else %>
-      <code>not answered</code>
-    <% end %>
-  </div>
 
   <%= f.button :submit, t('ui.save'), name: nil %>
 <% end %>

@@ -7,10 +7,8 @@
   <% if @curriculum.present? %>
     <h1 class="text-center">Curriculum Tree</h1>
     <div class="row">
-      <%= react_component('admin/curriculum/CurriculumEditor',
-                          @curriculum.editor_props.merge(
-                            form_token: form_authenticity_token,
-                            path: lcms_engine.children_admin_curriculum_path)) %>
+      <%= render_component('CurriculumEditor',
+                           @curriculum.editor_props.merge(form_token: form_authenticity_token, path: lcms_engine.children_admin_curriculum_path)) %>
     </div>
   <% end %>
 </div>

@@ -7,24 +7,18 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
 require 'devise'
-require 'jquery-rails'
 require 'pdfjs_viewer-rails'
 require 'ransack'
-require 'react-rails'
 require 'resque/server'
-require 'turbolinks'
 require 'validate_url'
 require 'virtus'
 require 'will_paginate'
-require 'will_paginate-bootstrap'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
 require 'font-awesome-sass'
-require 'foundation-rails'
 require 'js-routes'
 require 'nested_form'
-require 'webpacker'
 
 # LearningTapestry gems
 require 'lt/google/api'
@@ -47,19 +41,20 @@ module Lcms
 
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 
-      config.assets.paths << "#{config.root}/public/javascripts"
+      config.assets.paths << config.root.join("node_modules/bootstrap-icons/font")
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque
 
-        if ::Rails.env.development? || ::Rails.env.test?
-          require 'bullet'
-
-          ::Bullet.enable = true
-          ::Bullet.bullet_logger = true
-          ::Bullet.console = true
-          ::Bullet.rails_logger = true
-        end
+        # TODO: Check if can move bullet to the DEV environment only
+        # if ::Rails.env.development? || ::Rails.env.test?
+        #   require 'bullet'
+        #
+        #   ::Bullet.enable = true
+        #   ::Bullet.bullet_logger = true
+        #   ::Bullet.console = true
+        #   ::Bullet.rails_logger = true
+        # end
       end
 
       config.to_prepare do
@@ -95,29 +90,18 @@ module Lcms
         app.config.assets.precompile += %w(lcms_engine_manifest.js ckeditor/config.js)
       end
 
-      initializer 'webpacker.proxy' do |app|
-        insert_middleware =
-          begin
-            Lcms::Engine.webpacker.config.dev_server.present?
-          rescue StandardError
-            nil
-          end
-        next unless insert_middleware
-
-        app.middleware.insert_before(
-          0, Webpacker::DevServerProxy,
-          ssl_verify_none: true,
-          webpacker: Lcms::Engine.webpacker
+      # Serves the engine's built assets when requested
+      initializer 'lcms_engine.assets.static' do |app|
+        app.config.middleware.use(
+          Rack::Static,
+          urls: ['/lcms-engine-assets'],
+          root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
         )
       end
 
-      # Serves the engine's webpack when requested
-      initializer 'webpacker.static' do |app|
-        app.config.middleware.use(
-          Rack::Static,
-          urls: ['/lcms_engine_packs'],
-          root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
-        )
+      initializer 'lcms_eninge.middleware' do |app|
+        # Setup js-routes middleware
+        app.config.middleware.use(JsRoutes::Middleware)
       end
 
       # NOTE: Sample to customize the layout

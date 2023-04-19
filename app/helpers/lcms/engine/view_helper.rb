@@ -33,54 +33,14 @@ module Lcms
         result
       end
 
-      def header_mod
-        controller.controller_name
-      end
-
       def page_title
         page_content_for :page_title
-      end
-
-      def page_description
-        page_content_for :description
-      end
-
-      def page_og_image
-        if content_for?(:og_image)
-          page_og_image = content_for(:og_image)
-        else
-          controller = controller_path.tr('/', '.')
-          page_og_image = t("#{controller}.#{action_name}.og_image", default: t('default_og_image'))
-        end
-        page_og_image
-      end
-
-      # Render meta tag
-      def redirect_meta_tag
-        content_for(:redirect_meta_tag) if content_for?(:redirect_meta_tag)
-      end
-
-      # Use in views as redirection directive
-      def redirect_via_meta_tag(to_url:, delay: 5)
-        content_for(:redirect_meta_tag) do
-          content_tag(:meta, nil, { content: "#{delay};url=#{to_url}", 'http-equiv' => 'refresh' }, true)
-        end
       end
 
       def set_page_title(title) # rubocop:disable Naming/AccessorMethodName
         content_for :page_title do
           title
         end
-      end
-
-      def set_page_description(dsc) # rubocop:disable Naming/AccessorMethodName
-        content_for :description do
-          dsc
-        end
-      end
-
-      def set_canonical_url(value) # rubocop:disable Naming/AccessorMethodName
-        content_for(:canonical_url, value)
       end
 
       def base64_encoded_asset(path)

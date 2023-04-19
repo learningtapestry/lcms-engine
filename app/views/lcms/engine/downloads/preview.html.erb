@@ -1,6 +1,6 @@
 <% set_page_title "#{t('ui.unbounded')} - #{@download.s3_filename}" %>
 
-<script type="text/javascript" data-turbolinks-eval="always">
+<script type="text/javascript" data-turbo-eval="always">
   pdfUrl = "<%= pdf_proxy_download_path(params[:id], s3: @download.s3_filename) %>";
 </script>
 

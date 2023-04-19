@@ -1,45 +1,51 @@
-<header class="c-header">
-  <div class="c-header--<%= header_mod %>"></div>
-  <div class="o-page">
-    <div class="o-top-bar">
-      <div class="o-top-bar__item c-header-title">
-        <%= link_to lcms_engine.root_path, class: 'c-header-title__logo c-header__link' do %>
-          LCMS Engine
-        <% end %>
-        <% if current_user&.ready_to_go? %>
-          <span class="c-header-title__h-menu" data-responsive-toggle="navbar" data-hide-for="large">
-            <span class="c-header-title__h-icon c-header__link" data-toggle>
-              <i class="fa-2x ub-menu" aria-hidden="true"></i>
-            </span>
-          </span>
-        <% end %>
-      </div>
-      <div class="o-top-bar__wrapper" id="navbar">
-        <% if current_user&.ready_to_go? %>
-          <div class="o-top-bar__item">
-            <ul class="menu c-header__menu">
-              <%= nav_link t('nav.logout'), destroy_user_session_path, { class: 'c-header__link hide-for-large' } %>
+<nav class="navbar navbar-expand-lg bg-light sticky-top">
+  <div class="container-fluid">
+    <%= link_to lcms_engine.root_path, class: 'navbar-brand' do %>
+      LCMS Engine
+    <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <% if user_signed_in? %>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to t('lcms.engine.admin.nav.curriculum'), lcms_engine.edit_admin_curriculum_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('lcms.engine.admin.nav.resources') %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t('lcms.engine.admin.nav.resources'), lcms_engine.admin_resources_path, class: 'dropdown-item' %></li>
+              <li><%= link_to t('lcms.engine.admin.nav.lessons'), lcms_engine.admin_documents_path, class: 'dropdown-item' %></li>
+              <li><%= link_to t('lcms.engine.admin.nav.materials'), lcms_engine.admin_materials_path, class: 'dropdown-item' %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><%= link_to t('lcms.engine.admin.nav.batch_reimport'), lcms_engine.new_admin_batch_reimport_path, class: 'dropdown-item' %></li>
             </ul>
-          </div>
-        <% end %>
-        <div class="o-top-bar__item">
-          <ul class="menu c-header__left-menu">
-            <% if user_signed_in? %>
-              <li class="c-header__link c-header__link--full c-header__link--semi-light show-for-large">
-                <a class="u-flex" data-turbolinks="false"><i class="ub-user u-margin-right--zero"></i></a>
-                <ul class="c-header__left-submenu c-header__auth-submenu menu" data-turbolinks="false">
-                  <li class="c-header__submenu-link">
-                    <div class="cs-txt-link--base-txt u-margin-horizontal--base u-margin-vertical--small"><%= current_user.name.presence || current_user.email %></div>
-                  </li>
-                  <li class="c-header__submenu-link">
-                    <%= link_to t('nav.logout'), destroy_user_session_path, class: 'cs-bg--violet-light u-show u-margin-horizontal--base' %>
-                  </li>
-                </ul>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
+          </li>
+          <li class="nav-item">
+            <%= link_to t('lcms.engine.admin.nav.standards'), lcms_engine.admin_standards_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('lcms.engine.admin.nav.users') %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t('lcms.engine.admin.nav.users'), lcms_engine.admin_users_path, class: 'dropdown-item' %></li>
+              <li><%= link_to t('lcms.engine.admin.nav.access_codes'), lcms_engine.admin_access_codes_path, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+          <li class="navbar-text">
+            <%= current_user.name.presence || current_user.email %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t('nav.logout'), lcms_engine.destroy_user_session_path, class: 'nav-link' %>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </div>
-</header>
+</nav>
