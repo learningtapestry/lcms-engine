@@ -41,20 +41,19 @@ module Lcms
 
       config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
 
-      config.assets.paths << config.root.join("node_modules/bootstrap-icons/font")
+      config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque
 
-        # TODO: Check if can move bullet to the DEV environment only
-        # if ::Rails.env.development? || ::Rails.env.test?
-        #   require 'bullet'
-        #
-        #   ::Bullet.enable = true
-        #   ::Bullet.bullet_logger = true
-        #   ::Bullet.console = true
-        #   ::Bullet.rails_logger = true
-        # end
+        if Gem.loaded_specs['bullet'].present? && (::Rails.env.development? || ::Rails.env.test?)
+          require 'bullet'
+
+          ::Bullet.enable = true
+          ::Bullet.bullet_logger = true
+          ::Bullet.console = true
+          ::Bullet.rails_logger = true
+        end
       end
 
       config.to_prepare do
@@ -99,7 +98,7 @@ module Lcms
         )
       end
 
-      initializer 'lcms_eninge.middleware' do |app|
+      initializer 'lcms_engine.middleware' do |app|
         # Setup js-routes middleware
         app.config.middleware.use(JsRoutes::Middleware)
       end
