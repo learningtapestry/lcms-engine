@@ -2,7 +2,7 @@
 
 <%if user_signed_in? && current_user.admin? %>
   <div class="c-ld-page-header">
-    <div class="o-page o-materials-list">
+    <div class="container-fluid o-materials-list">
       <div>
         <%= link_to 'Go to Materials Admin', admin_materials_path(request.query_parameters), class: 'button primary u-margin-right--base' %>
         <%= link_to @material.file_url, class: 'button primary u-margin-right--base', target: '_blank' do %>
@@ -21,7 +21,7 @@
 <% end %>
 
 <div class="u-bg--light">
-  <div class="o-page o-page--ld">
+  <div class="container-fluid o-page--ld">
     <div class="o-page__module u-bg--light c-ld u-padding-bottom--gutter">
       <h1>Material: <%= @material.metadata['identifier'] %> </h1>
       <h2 class="u-pdf-txt--m-header-title"><%= @material.title %></h2>

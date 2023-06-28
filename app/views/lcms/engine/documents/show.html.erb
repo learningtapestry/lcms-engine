@@ -7,7 +7,7 @@
 <%= render 'sticky_header', document: @document, props: @props if @props[:results].present? %>
 
 <div class="c-ld-page-header cs-bg--<%= @document.color_code_grade %>">
-  <div class="o-page">
+  <div class="container-fluid">
     <% if current_user&.admin? %>
       <div class="o-page__module u-margin-bottom--gutter">
         <%= link_to admin_documents_path(request.query_parameters), class: 'o-ub-ld-btn o-ub-ld-btn--bordered' do %>
@@ -24,7 +24,7 @@
   </div>
 </div>
 <div class="u-bg--light">
-  <div class="o-page o-page--ld c-ld--<%= @document.color_code_grade %> u-padding-bottom--gutter2x doc-subject-<%= @document.metadata['subject'].to_s.downcase %>" data-scroll="ld-page" id="ld-page">
+  <div class="container-fluid o-page--ld c-ld--<%= @document.color_code_grade %> u-padding-bottom--gutter2x doc-subject-<%= @document.metadata['subject'].to_s.downcase %>" data-scroll="ld-page" id="ld-page">
     <%= render 'content', document: @document %>
   </div>
 </div>

@@ -76,7 +76,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rubyzip', '~> 2'
   s.add_dependency 'sanitize', '~> 6.0.0'
   s.add_dependency 'sass-rails', '~> 6'
-  s.add_dependency 'simple_form', '~> 5.0', '>= 5.0.2'
+  s.add_dependency 'simple_form', '~> 5.2'
   s.add_dependency 'sprockets-rails', '~> 3.4'
   s.add_dependency 'validate_url', '~> 1.0', '>= 1.0.8'
   s.add_dependency 'virtus', '~> 1.0', '>= 1.0.5'

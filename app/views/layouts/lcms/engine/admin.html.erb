@@ -13,7 +13,9 @@
   <body>
     <%= render partial: 'lcms/engine/shared/header' %>
     <%= render partial: 'lcms/engine/shared/flash' %>
-    <%= yield %>
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
     <%#= render partial: 'lcms/engine/shared/footer' %>
   </body>
 </html>

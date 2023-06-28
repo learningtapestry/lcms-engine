@@ -1,9 +1,11 @@
 import '@hotwired/turbo-rails';
 import * as bootstrap from "bootstrap"
-import 'selectize'
+import '@selectize/selectize'
 import './vendor/html.sortable.min'
 import $ from 'jquery';
 import Initializer from './components/admin/Initializer';
+
+import '@selectize/selectize/dist/css/selectize.bootstrap5.css'
 
 document.addEventListener('turbo:load', () => {
   Initializer.initialize();

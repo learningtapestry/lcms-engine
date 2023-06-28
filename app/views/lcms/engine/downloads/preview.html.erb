@@ -4,7 +4,7 @@
   pdfUrl = "<%= pdf_proxy_download_path(params[:id], s3: @download.s3_filename) %>";
 </script>
 
-<div class="o-page o-page--margin-to-bottom">
+<div class="container-fluid o-page--margin-to-bottom">
 
   <%= render partial: 'lcms/engine/resources/header', locals: { resource: @resource } %>
 

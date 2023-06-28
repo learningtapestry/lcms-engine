@@ -15,6 +15,7 @@ AllCops:
     - spec/dummy/db/schema.rb
     - spec/dummy/bin/*
     - templates/*
+    - config/initializers/simple_form_bootstrap.rb
   NewCops: enable
   TargetRubyVersion: 3.2
 

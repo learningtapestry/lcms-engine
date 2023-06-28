@@ -1,6 +1,6 @@
 <% set_page_title @resource.page_title %>
 
-<div class="o-page o-page--margin-to-bottom o-page--resource">
+<div class="container-fluid o-page--margin-to-bottom o-page--resource">
   <div class="o-page__sticky">
     <div class="o-sticky o-sticky--left <%= 'o-sticky--disabled' unless @resource.previous %>">
       <a class="o-sticky__btn o-sticky--left__btn" href="<%= @resource.previous ? show_with_slug_path(@resource.previous.slug) : '#' %>">

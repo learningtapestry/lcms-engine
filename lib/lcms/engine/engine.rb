@@ -39,9 +39,8 @@ module Lcms
 
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
 
-      config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
-
-      config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
+      # TODO: Need to think how to handle this inside the engine
+      # config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque

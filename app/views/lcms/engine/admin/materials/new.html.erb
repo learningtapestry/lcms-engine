@@ -1,4 +1,4 @@
-<div class="o-page">
+<div class="container-fluid">
   <h2 class="text-center"><%= t('.page_header', type: @material_form.source_type) %></h2>
 
   <%= simple_form_for @material_form || MaterialForm.new, url: lcms_engine.admin_materials_path do |f| %>
