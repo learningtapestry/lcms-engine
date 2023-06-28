@@ -5,7 +5,9 @@ ENV LANG C.UTF-8
 
 WORKDIR $APP_PATH
 
-RUN apt-get update -qqy \
+RUN apt-get autoclean \
+    && apt-get clean \
+    && apt-get update -qqy \
     && apt-get install -y --no-install-recommends \
       build-essential \
       chromium-driver \
