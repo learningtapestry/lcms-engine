@@ -1,4 +1,4 @@
-FROM ruby:3.2
+FROM ruby:3.2.1
 
 ENV APP_PATH /app/
 ENV LANG C.UTF-8
