@@ -40,7 +40,7 @@ COPY .nvmrc $APP_PATH
 COPY package.json yarn.lock $APP_PATH
 
 ENV NVM_DIR /usr/local/nvm
-ENV NODE_VERSION 18.15
+ENV NODE_VERSION 18.15.0
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
