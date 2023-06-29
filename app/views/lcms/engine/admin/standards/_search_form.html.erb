@@ -1,8 +1,8 @@
-<%= simple_form_for :query, url: lcms_engine.admin_standards_path, html: { class: 'form-inline well o-admin-standards-search', method: :get } do |f| %>
-
-  <div class='row align-bottom align-justify'>
-    <%= f.input :name, label: 'Name', required: false, wrapper_html: { class: 'resource-search-title' } %>
-    <%= f.button :submit, t('ui.search'), class: 'resource-search-button', name: nil %>
+<%= simple_form_for :query, url: lcms_engine.admin_standards_path, html: { method: :get } do |f| %>
+  <div class="col-sm-3">
+    <%= f.input :name, label: false, required: false, placeholder: 'Standard name' %>
   </div>
-
+  <div class="col">
+    <%= f.button :submit, t('ui.search'), class: 'btn btn-warning', name: nil %>
+  </div>
 <% end %>

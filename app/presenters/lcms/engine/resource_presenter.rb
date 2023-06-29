@@ -16,28 +16,6 @@ module Lcms
       def downloads_indent(opts = {})
         pdf_downloads?(opts[:category]) ? 'u-li-indent' : ''
       end
-
-      def categorized_downloads_list
-        @categorized_downloads_list ||= begin
-          downloads_list = Lcms::Engine::DownloadCategory.all.map do |dc|
-            downloads = Array.wrap(download_categories[dc.title])
-            downloads.concat(document_bundles) if dc.bundle?
-            settings = download_categories_settings[dc.title.parameterize] || {}
-
-            next unless settings.values.any? || downloads.any?
-
-            data = { category: dc, title: dc.title, downloads:, settings: }
-            Struct.new(*data.keys, keyword_init: true).new(data)
-          end
-
-          if (uncategorized = download_categories['']).present?
-            data = { downloads: uncategorized, settings: {} }
-            downloads_list << Struct.new(*data.keys, keyword_init: true).new(data)
-          end
-
-          downloads_list.compact
-        end
-      end
     end
   end
 end

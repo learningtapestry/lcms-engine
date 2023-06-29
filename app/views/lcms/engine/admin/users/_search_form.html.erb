@@ -1,5 +1,4 @@
-<%= simple_form_for :query, url: lcms_engine.admin_users_path, html: { class: 'form-inline well o-admin-users-search', method: :get } do |f| %>
-
+<%= simple_form_for :query, url: lcms_engine.admin_users_path, html: { method: :get } do |f| %>
   <div class='row align-bottom align-justify'>
     <%= f.input :email, label: false, required: false, placeholder: 'Search by E-mail', wrapper_html: { class: 'o-admin-search-term' } %>
     <%= f.input :access_code, label: false, required: false, placeholder: 'Enter Access Code', wrapper_html: { class: 'o-admin-search-term' } %>
@@ -10,5 +9,4 @@
       </div>
     </div>
   </div>
-
 <% end %>

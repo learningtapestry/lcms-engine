@@ -12,9 +12,6 @@ en:
     "application/msword": doc
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document": openoffice document
     "application/vnd.ms-powerpoint": powerpoint
-  download_categories:
-    rubrics_and_tools: Rubrics And Tools
-    texts: Texts
   grades:
     ela:
       grade_9: Grade 9

@@ -86,20 +86,9 @@ module Lcms
         protected
 
         def form_params_arrays
-          download_categories_settings =
-            DownloadCategory.select(:title).map do |category|
-              { category.title.parameterize => %i(show_long_description show_short_description) }
-            end
           {
             additional_resource_ids: [],
             common_core_standard_ids: [],
-            download_categories_settings:,
-            resource_downloads_attributes: [
-              :_destroy,
-              :description,
-              :id,
-              :download_category_id, { download_attributes: %i(description file main filename_cache id title) }
-            ],
             related_resource_ids: [],
             standard_ids: [],
             new_standard_names: [],
@@ -159,6 +148,10 @@ module Lcms
 
         private
 
+        #
+        # @param [Lcms::Engine::Resource] resource
+        # @return [Boolean]
+        #
         def can_bundle?(resource)
           DocTemplate
             .config['bundles'].keys
@@ -169,7 +162,7 @@ module Lcms
         helper_method :can_bundle?
 
         def find_resource
-          @resource = Resource.includes(resource_downloads: :download).find(params[:id])
+          @resource = Resource.find(params[:id])
         end
 
         def grade_params
@@ -183,11 +176,6 @@ module Lcms
                 form_params_simple,
                 form_params_arrays
               ).to_h
-              if ps[:download_categories_settings].present?
-                ps[:download_categories_settings].transform_values! do |settings|
-                  settings.transform_values! { |x| x == '1' }
-                end
-              end
               ps[:metadata] = metadata ps.delete(:directory)&.split(',')
               ps
             end

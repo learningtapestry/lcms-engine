@@ -18,7 +18,6 @@ require 'will_paginate'
 require 'ckeditor'
 require 'font-awesome-sass'
 require 'js-routes'
-require 'nested_form'
 
 # LearningTapestry gems
 require 'lt/google/api'

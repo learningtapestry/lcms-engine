@@ -49,11 +49,6 @@ Lcms::Engine::Engine.routes.draw do
     end
     resources :standards, only: %i(index edit update)
 
-    resource :sketch_compiler, path: 'sketch-compiler', only: [] do
-      get '/', to: 'sketch_compilers#new', defaults: { version: 'v1' }
-      get '/:version/new', to: 'sketch_compilers#new', as: :new
-      post '/:version/compile', to: 'sketch_compilers#compile', as: :compile
-    end
     resources :documents, except: %i(edit show update) do
       collection do
         delete :delete_selected, to: 'documents#destroy_selected'

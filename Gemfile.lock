@@ -39,7 +39,6 @@ PATH
       lt-google-api (~> 0.2, >= 0.2.3)
       lt-lcms (~> 0.4, >= 0.4.4)
       mini_magick (~> 4.10, >= 4.10.1)
-      nested_form (~> 0.3.2)
       nokogiri (~> 1.12, >= 1.12.0)
       oj (~> 3.10, >= 3.10.2)
       oj_mimic_json (~> 1.0, >= 1.0.1)
@@ -433,7 +432,6 @@ GEM
     multipart-post (2.3.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nested_form (0.3.2)
     net-imap (0.3.4)
       date
       net-protocol

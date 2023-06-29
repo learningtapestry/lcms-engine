@@ -38,11 +38,6 @@ module Lcms
       has_many :resource_standards, dependent: :destroy
       has_many :standards, through: :resource_standards
 
-      # Downloads.
-      has_many :resource_downloads, dependent: :destroy
-      has_many :downloads, through: :resource_downloads
-      accepts_nested_attributes_for :resource_downloads, allow_destroy: true
-
       # Reading assignments.
       has_many :resource_reading_assignments, dependent: :destroy
       alias_attribute :reading_assignments, :resource_reading_assignments
@@ -201,14 +196,6 @@ module Lcms
                                  .includes(:related_resource)
                                  .order(:position)
                                  .map(&:related_resource)
-      end
-
-      def download_categories
-        @download_categories ||=
-          resource_downloads.includes(:download_category).includes(:download)
-            .sort_by { |rd| rd.download_category&.position.to_i }
-            .group_by { |d| d.download_category&.title.to_s }
-            .transform_values { |v| v.sort_by { |d| [d.download.main ? 0 : 1, d.download.title] } }
       end
 
       def pdf_downloads?(category = nil)

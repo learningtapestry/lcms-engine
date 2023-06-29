@@ -61,7 +61,6 @@
               <h3>Description</h3>
               <%= @resource.description.try(:html_safe) %>
             </div>
-            <%= render partial: 'lcms/engine/resources/downloads', locals: { resource: @resource } %>
             <%= render partial: 'lcms/engine/resources/prerequisites_standards', locals: { resource: @resource } %>
             <%= render_tag_clouds(@resource) %>
             <% if @resource.engageny_url %>
@@ -82,7 +81,6 @@
         <% end %>
       </div>
     </div>
-    <%= render partial: 'lcms/engine/resources/download_form', locals: { resource: @resource } %>
   </div>
   <div class="o-page__sticky">
     <div class="o-sticky o-sticky--right <%= 'o-sticky--disabled' unless @resource.next %>">

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_130353) do
-
+ActiveRecord::Schema[7.0].define(version: 2020_04_29_130353) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -115,26 +114,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.index ["material_id"], name: "index_documents_materials_on_material_id"
   end
 
-  create_table "download_categories", id: :serial, force: :cascade do |t|
-    t.string "title", null: false
-    t.text "description"
-    t.integer "position"
-    t.text "long_description"
-    t.boolean "bundle", default: false, null: false
-  end
-
-  create_table "downloads", id: :serial, force: :cascade do |t|
-    t.string "filename"
-    t.integer "filesize"
-    t.string "url"
-    t.string "content_type"
-    t.string "title"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "main", default: false, null: false
-  end
-
   create_table "leadership_posts", id: :serial, force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -192,19 +171,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.datetime "updated_at", null: false
     t.index ["additional_resource_id"], name: "index_resource_additional_resources_on_additional_resource_id"
     t.index ["resource_id", "additional_resource_id"], name: "index_resource_additional_resources", unique: true
-  end
-
-  create_table "resource_downloads", id: :serial, force: :cascade do |t|
-    t.integer "resource_id"
-    t.integer "download_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "active"
-    t.integer "download_category_id"
-    t.text "description"
-    t.index ["download_category_id"], name: "index_resource_downloads_on_download_category_id"
-    t.index ["download_id"], name: "index_resource_downloads_on_download_id"
-    t.index ["resource_id"], name: "index_resource_downloads_on_resource_id"
   end
 
   create_table "resource_hierarchies", id: false, force: :cascade do |t|
@@ -393,9 +359,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
   add_foreign_key "reading_assignment_texts", "reading_assignment_authors"
   add_foreign_key "resource_additional_resources", "resources"
   add_foreign_key "resource_additional_resources", "resources", column: "additional_resource_id"
-  add_foreign_key "resource_downloads", "download_categories", on_delete: :nullify
-  add_foreign_key "resource_downloads", "downloads"
-  add_foreign_key "resource_downloads", "resources"
   add_foreign_key "resource_reading_assignments", "reading_assignment_texts", name: "fk_res_rea_asg_rea_asg_txt"
   add_foreign_key "resource_reading_assignments", "resources"
   add_foreign_key "resource_related_resources", "resources"

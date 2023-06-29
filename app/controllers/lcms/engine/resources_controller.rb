@@ -20,23 +20,6 @@ module Lcms
         @resource = MediaPresenter.new(resource)
       end
 
-      def generic
-        resource = Resource.find(params[:id])
-        return redirect_to lcms_engine.resource_path(resource) unless resource.generic?
-
-        @resource = GenericPresenter.new(resource)
-      end
-
-      def pdf_proxy
-        return head(:not_found) if (url = params[:url]).blank?
-
-        uri = URI.parse(url)
-        send_data uri.open.read, disposition: :inline, file_name: url.split('/').last
-      rescue StandardError => e
-        Rails.logger.warn "PDF-proxy failed! Url: #{url}, Error: #{e.message}"
-        head :bad_request
-      end
-
       protected
 
       def find_resource

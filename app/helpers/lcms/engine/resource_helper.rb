@@ -28,13 +28,7 @@ module Lcms
         cc_descriptions.join(' ')
       end
 
-      def download_per_category_limit
-        ResourceDownload::DOWNLOAD_PER_CATEGORY_LIMIT
-      end
-
       def resource_breadcrumbs_with_links(resource)
-        return GenericPresenter.new(resource).generic_title if resource.generic?
-
         breadcrumbs = Breadcrumbs.new(resource)
         pieces = breadcrumbs.full_title.split(' / ')
         short_pieces = breadcrumbs.short_title.split(' / ')
