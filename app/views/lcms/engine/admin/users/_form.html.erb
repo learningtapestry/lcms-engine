@@ -1,5 +1,6 @@
 <div class="col-sm-3">
-  <%= simple_form_for @user, url: @url.presence || lcms_engine.admin_users_path, html: { id: 'user_form' }, data: { turbo: false } do |f| %>
+  <% url = @user.persisted? ? lcms_engine.admin_user_path(@user) : lcms_engine.admin_users_path %>
+  <%= simple_form_for @user, url: url, data: { turbo: false } do |f| %>
     <% if @user.persisted? %>
       <%= f.input :id, disabled: true %>
     <% end %>

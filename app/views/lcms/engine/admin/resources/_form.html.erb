@@ -1,15 +1,15 @@
-<%# url = @resource.new_record? ? lcms_engine.admin_resources_path : lcms_engine.admin_resource_path(@resource) %>
+<% url = @resource.persisted? ? lcms_engine.admin_resource_path(@resource) : lcms_engine.admin_resources_path %>
+<%= simple_form_for @resource, url: url, data: { turbo: false } do |f| %>
+  <%= render partial: 'fields', locals: { f: f, resource: @resource } %>
 
-<%= simple_form_for @resource do |f| %>
-  <div class="large-10 columns">
-    <%= render partial: 'fields', locals: { f: f, resource: @resource } %>
-
-    <% if Lcms::Engine::Settings[:editing_enabled] %>
-      <%= f.button :submit, t('ui.save'), name: nil, class: 'btn btn-primary' %>
-
-      <% if @resource.persisted? %>
-        <%= link_to t('ui.delete'), admin_resource_path(@resource), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, method: :delete %>
+  <div class="row">
+    <div class="col">
+      <% if Lcms::Engine::Settings[:editing_enabled] %>
+        <%= f.button :submit, t('ui.save'), name: nil, class: 'btn btn-primary' %>
+        <% if @resource.persisted? %>
+          <%= link_to t('ui.delete'), lcms_engine.admin_resource_path(@resource), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, method: :delete %>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 <% end %>

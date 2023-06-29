@@ -4,7 +4,7 @@
   <h2 class="text-center">Batch Reimport</h2>
 
   <div class="row">
-    <%= link_to '<- Back', new_admin_batch_reimport_path(query: @query.to_h), class: 'button primary' %>
+    <%= link_to '<- Back', lcms_engine.new_admin_batch_reimport_path(query: @query.to_h), class: 'button primary' %>
   </div>
   <%= render_component('admin/ImportStatus', @props) %>
 </div>

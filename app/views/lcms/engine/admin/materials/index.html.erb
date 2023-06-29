@@ -23,7 +23,7 @@
             operation: 'delete',
             path: delete_selected_admin_materials_path(query: @query_params),
             btn_style: 'alert'} %>
-      <%# link_to t('.new_material_pdf'), new_admin_material_path(source_type: 'pdf'), class: 'button primary' %>
+      <%# link_to t('.new_material_pdf'), lcms_engine.new_admin_material_path(source_type: 'pdf'), class: 'button primary' %>
       <%= link_to t('.new_material'), lcms_engine.new_admin_material_path, class: 'button primary' %>
     </div>
     <div class="materials-table materials-table__wrapper">
@@ -82,8 +82,8 @@
               <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { material: material } %>
               <%= button_to t('ui.delete'), admin_material_path(material, query: @query_params), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
               <% unless material.pdf? %>
-                <%# link_to material.pdf_preview_title, preview_pdf_material_path(material), class: 'button warning', target: '_blank' %>
-                <%# link_to material.gdoc_preview_title, preview_gdoc_material_path(material), class: 'button warning', target: '_blank' %>
+                <%# link_to material.pdf_preview_title, lcms_engine.preview_pdf_material_path(material), class: 'button warning', target: '_blank' %>
+                <%# link_to material.gdoc_preview_title, lcms_engine.preview_gdoc_material_path(material), class: 'button warning', target: '_blank' %>
               <% end %>
             </td>
           </tr>

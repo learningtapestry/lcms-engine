@@ -62,7 +62,7 @@ module Lcms
 
         def update
           unless Settings[:editing_enabled]
-            return redirect_to(lcms_engine.admin_resources_path, alert: t('admin.common.editing_disabled'))
+            return redirect_to(lcms_engine.admin_resources_path, alert: t('lcms.engine.admin.common.editing_disabled'))
           end
 
           create_tags
@@ -104,7 +104,7 @@ module Lcms
         end
 
         #
-        # The result of this method will be splatted into +form_params_ararys+
+        # The result of this method will be splatted into +form_params_arrays+
         # and will be injected into the final +form_params+ call.
         #
         # Should be used to extend the list of permitted parameters
@@ -176,7 +176,8 @@ module Lcms
                 form_params_simple,
                 form_params_arrays
               ).to_h
-              ps[:metadata] = metadata ps.delete(:directory)&.split(',')
+              directory = ps.delete(:directory)
+              ps[:metadata] = metadata directory.split(',') if directory.present?
               ps
             end
         end

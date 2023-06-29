@@ -4,7 +4,7 @@
   <div class="c-ld-page-header">
     <div class="container-fluid o-materials-list">
       <div>
-        <%= link_to 'Go to Materials Admin', admin_materials_path(request.query_parameters), class: 'button primary u-margin-right--base' %>
+        <%= link_to 'Go to Materials Admin', lcms_engine.admin_materials_path(request.query_parameters), class: 'button primary u-margin-right--base' %>
         <%= link_to @material.file_url, class: 'button primary u-margin-right--base', target: '_blank' do %>
           <i class="fab fa-google"></i> Google Doc
         <% end %>
@@ -12,8 +12,8 @@
       </div>
       <% unless @material.pdf? %>
         <div>
-          <%= link_to @material.pdf_preview_title, preview_pdf_material_path(@material), class: 'button warning', target: '_blank' %>
-          <%= link_to @material.gdoc_preview_title, preview_gdoc_material_path(@material), class: 'button warning', target: '_blank' %>
+          <%= link_to @material.pdf_preview_title, lcms_engine.preview_pdf_material_path(@material), class: 'button warning', target: '_blank' %>
+          <%= link_to @material.gdoc_preview_title, lcms_engine.preview_gdoc_material_path(@material), class: 'button warning', target: '_blank' %>
         </div>
       <% end %>
     </div>

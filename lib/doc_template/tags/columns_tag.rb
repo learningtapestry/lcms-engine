@@ -84,7 +84,7 @@ module DocTemplate
       def handle_alignment_for(td)
         {}.tap do |result|
           result[:content] = td.sub ALIGNMENT_RE, ''
-          result[:css_class] = 'text-right' if td =~ ALIGNMENT_RE
+          result[:css_class] = 'text-end' if td =~ ALIGNMENT_RE
         end
       end
 

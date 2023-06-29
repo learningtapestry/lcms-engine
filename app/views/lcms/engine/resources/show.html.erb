@@ -26,7 +26,7 @@
     <div class="o-page__wrap--row">
       <div class="o-page__module u-margin-bottom--gutter">
         <% if user_signed_in? %>
-          <%= link_to edit_admin_resource_path(@resource), class: 'button o-btn--base', target: '_blank' do %>
+          <%= link_to lcms_engine.edit_admin_resource_path(@resource), class: 'button o-btn--base', target: '_blank' do %>
             <%= t('ui.edit') %>
           <% end %>
         <% end %>
@@ -61,7 +61,6 @@
               <h3>Description</h3>
               <%= @resource.description.try(:html_safe) %>
             </div>
-            <%= render partial: 'lcms/engine/resources/prerequisites_standards', locals: { resource: @resource } %>
             <%= render_tag_clouds(@resource) %>
             <% if @resource.engageny_url %>
             <div class="o-resource__item  o-resource__item--credits">
@@ -74,9 +73,6 @@
         <% unless @resource.lesson? %>
           <div class="o-resource-summary--2x u-pd-content--xlarge cs-tint-bg--<%= color_code(@resource) %> u-br-bottom--base">
             <div class="o-resource-summary__map o-resource-summary__map--2x"></div>
-            <div class="o-resource-summary__content--2x">
-              <%= render partial: 'lcms/engine/resources/children_list', locals: { resource: @resource, color_code: color_code(@resource, base: true) } %>
-            </div>
           </div>
         <% end %>
       </div>

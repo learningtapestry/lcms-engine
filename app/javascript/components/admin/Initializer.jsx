@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import CurriculumEditor from './curriculum/CurriculumEditor';
+// import DirectoryPicker from './curriculum/DirectoryPicker';
 import MultiSelectedOperation from './MultiSelectedOperation';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -8,10 +9,10 @@ class Initializer {
   static initialize() {
     // Mount internal components
     Initializer.#initializeCurriculumEditor();
+    // Initializer.#initializeDirectoryPicker();
     Initializer.#initializeMultiSelectedOperation();
 
      // Initialize simple HTML objects
-    Initializer.#initializeResourcesForm();
     Initializer.#initializeResourcesList();
     Initializer.#initializeSelectAll();
   };
@@ -27,6 +28,17 @@ class Initializer {
     })
   };
 
+  static #initializeDirectoryPicker() {
+    document.querySelectorAll('[id="#lcms-engine-DirectoryPicker"]').forEach( e => {
+      const props = JSON.parse(e.dataset.content);
+      e.removeAttribute('data-content');
+      ReactDOM.render(
+          <DirectoryPicker {...props} />,
+          e
+      );
+    })
+  };
+
   static #initializeMultiSelectedOperation() {
     document.querySelectorAll('[id="#lcms-engine-MultiSelectedOperation"]').forEach( e => {
       const props = JSON.parse(e.dataset.content);
@@ -36,21 +48,6 @@ class Initializer {
         e
       );
     })
-  };
-
-  static #initializeResourcesForm() {
-    const form = $('form#resource_form');
-    if (!form.length) return;
-
-    const opr_desc = form.find('.resource_opr_description');
-    form.find('#resource_curriculum_type').change(ev => {
-      const el = $(ev.target);
-      if (el.val() === 'unit') {
-        opr_desc.slideDown();
-      } else {
-        opr_desc.slideUp();
-      }
-    });
   };
 
   static #initializeResourcesList() {

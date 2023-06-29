@@ -7,7 +7,7 @@
       <% end %>
       <% tags.each_with_index do |tag, i| %>
         <li>
-          <%= link_to tag, search_path(search_term: tag.downcase) %><%= ', ' if i != tags.size - 1  %>
+          <%= link_to tag, lcms_engine.search_path(search_term: tag.downcase) %><%= ', ' if i != tags.size - 1  %>
         </li>
       <% end %>
       <% if tags.empty? %>
