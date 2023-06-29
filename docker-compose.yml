@@ -16,13 +16,13 @@ services:
 
   app:
     image: learningtapestry/lcms-engine:ruby-3.2
-    # command to install all gems AND launch yarn
-#    command: bash -c "bundle install && yarn && tail -f /dev/null"
-    # command to install all gems ONLY
+    # to install all gems AND launch yarn
+    command: bash -c "bundle install && yarn && tail -f /dev/null"
+    # to install all gems ONLY
 #    command: bash -c "bundle install && tail -f /dev/null"
-    # command is used to start the container ONLY, can be used to inspect
+    # is used to start the container ONLY, can be used to inspect
     # start up issues, solve gems conflicts etc
-    command: bash -c "tail -f /dev/null"
+#    command: bash -c "tail -f /dev/null"
     env_file:
       - spec/dummy/.env.docker
     environment:
@@ -31,9 +31,6 @@ services:
       - .:/app
       - ./node_modules:/app/node_modules
       - bundle:/usr/local/bundle
-    depends_on:
-      - db
-      - redis
 
 volumes:
   bundle:

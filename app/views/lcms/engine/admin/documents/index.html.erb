@@ -11,7 +11,7 @@
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
       <span class="c-reimport-with-materials__toggle"><%= check_box_tag 'reimport_with_materials', 1 %> Reimport with Materials</span>
     </div>
-    <div class='flex-pull-right'>
+    <div>
       <%= render_component 'MultiSelectedOperation', {
         text: t('.reimport_selected'),
         operation: 'reimport',

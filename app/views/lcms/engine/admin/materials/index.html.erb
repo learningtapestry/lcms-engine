@@ -12,7 +12,7 @@
     <div class="flex-pull-left">
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
     </div>
-    <div class="flex-pull-right">
+    <div>
       <%= render_component 'admin/MultiSelectedOperation', {
             text: t('.reimport_selected'),
             operation: 'reimport',

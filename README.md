@@ -18,9 +18,9 @@ separately, simplifying the client applications in the process.
 
 ## Current development
 
-| Branch | Rails version |
-|--------|---------------|
-| master | Rails 7.0     |
+| Branch    | Rails version |
+|-----------|---------------|
+| master    | Rails 7.0     |
 | rails-6.1 | Rails 6.1     |
 
 ## Guidelines
@@ -193,6 +193,7 @@ All migrations included in the gem are already available for you to run from ins
 
 You need to run special rake task if default routes were overridden
 
+TODO: This seems outdated. JS-Routes are generated another way right now 
 ```bash
 bundle exec rake js-routes:generate
 ```
@@ -219,9 +220,10 @@ Launch the containers
 
 ```shell
 docker compose create
-docker compose start
+docker compose start db redis
 docker compose exec db sh -c "psql -U postgres -d template1 -c 'CREATE EXTENSION IF NOT EXISTS hstore;'"
-docker compose exec app sh -c 'bin/rails db:create'
+docker compose exec db sh -c "psql -U postgres -c 'CREATE DATABASE lcms_engine_test;'"
+docker compose start app
 ```
 
 Start the specs
