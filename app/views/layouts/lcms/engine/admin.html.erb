@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>document.querySelector('html').className = 'js';</script>
     <%= csrf_meta_tags %>
-    <link rel="stylesheet" href="/lcms-engine-assets/application.css"/>
-    <script type="text/javascript" src="/lcms-engine-assets/admin.js" defer></script>
+    <link rel="stylesheet" href="/lcms-engine-assets/application.css" data-turbo-track="reload"/>
+    <script type="text/javascript" src="/lcms-engine-assets/admin.js" data-turbo-track="reload" defer></script>
   </head>
   <body>
     <%= render partial: 'lcms/engine/shared/header' %>

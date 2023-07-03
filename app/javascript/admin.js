@@ -1,5 +1,5 @@
 import '@hotwired/turbo-rails';
-// import * as bootstrap from "bootstrap";
+import * as bootstrap from 'bootstrap'; // eslint-disable-line
 // import './vendor/html.sortable.min';
 import TomSelect from 'tom-select';
 import Initializer from './components/admin/Initializer';
