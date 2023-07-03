@@ -1,18 +1,21 @@
 import '@hotwired/turbo-rails';
-import * as bootstrap from "bootstrap"
-import '@selectize/selectize'
-import './vendor/html.sortable.min'
-import $ from 'jquery';
+// import * as bootstrap from "bootstrap";
+// import './vendor/html.sortable.min';
+import TomSelect from 'tom-select';
 import Initializer from './components/admin/Initializer';
-
-import '@selectize/selectize/dist/css/selectize.bootstrap5.css'
 
 document.addEventListener('turbo:load', () => {
   Initializer.initialize();
 
-  $('.selectize').selectize({
-    allowEmptyOption: true,
-    plugins: ['remove_button'],
+  document.querySelectorAll('.selectize').forEach(el => {
+    let settings = {
+      plugins: {
+        remove_button: {
+          title: 'Remove',
+        },
+      },
+    };
+    new TomSelect(el, settings);
   });
 
   if (typeof CKEDITOR === 'undefined' && document.getElementsByClassName('ckeditor').length) {
@@ -21,5 +24,3 @@ document.addEventListener('turbo:load', () => {
     document.head.append(script);
   }
 });
-
-console.log('Inside admin.js');

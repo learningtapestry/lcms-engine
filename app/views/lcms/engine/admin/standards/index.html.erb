@@ -16,17 +16,17 @@
           <th>Subject</th>
           <th>Grades</th>
           <th>Synonyms</th>
-          <th>Action</th>
+          <th></th>
         </tr>
 
         <% @standards.each do |std| %>
           <% cache std do %>
             <tr id="std<%= std.id %>">
-              <td><b><%= std.name %></b></td>
+              <td><%= link_to std.name, lcms_engine.edit_admin_standard_path(std) %></td>
               <td><%= std.subject %></td>
               <td><%= std.grades.join(', ') %></td>
               <td><%= std.alt_names.join(' / ') %></td>
-              <td><%= link_to 'edit', lcms_engine.edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
+              <td><%= link_to t('ui.delete'), lcms_engine.admin_standard_path(std), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, method: :delete %></td>
             </tr>
           <% end %>
         <% end %>

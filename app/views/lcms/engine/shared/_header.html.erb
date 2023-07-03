@@ -1,8 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light sticky-top">
   <div class="container-fluid">
-    <%= link_to lcms_engine.root_path, class: 'navbar-brand' do %>
-      LCMS Engine
-    <% end %>
+    <%= link_to 'LCMS Engine', lcms_engine.root_path, class: 'navbar-brand' %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,10 +11,10 @@
             <%= link_to t('lcms.engine.admin.nav.curriculum'), lcms_engine.edit_admin_curriculum_path, class: 'nav-link' %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownResources" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= t('lcms.engine.admin.nav.resources') %>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" aria-labelledby="dropdownResources">
               <li><%= link_to t('lcms.engine.admin.nav.resources'), lcms_engine.admin_resources_path, class: 'dropdown-item' %></li>
               <li><%= link_to t('lcms.engine.admin.nav.lessons'), lcms_engine.admin_documents_path, class: 'dropdown-item' %></li>
               <li><%= link_to t('lcms.engine.admin.nav.materials'), lcms_engine.admin_materials_path, class: 'dropdown-item' %></li>
@@ -28,10 +26,10 @@
             <%= link_to t('lcms.engine.admin.nav.standards'), lcms_engine.admin_standards_path, class: 'nav-link' %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownUsers" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <%= t('lcms.engine.admin.nav.users') %>
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" aria-labelledby="dropdownUsers">
               <li><%= link_to t('lcms.engine.admin.nav.users'), lcms_engine.admin_users_path, class: 'dropdown-item' %></li>
               <li><%= link_to t('lcms.engine.admin.nav.access_codes'), lcms_engine.admin_access_codes_path, class: 'dropdown-item' %></li>
             </ul>

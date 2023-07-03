@@ -1,5 +1,5 @@
 <%= simple_form_for @query, url: lcms_engine.admin_resources_path, html: { method: :get } do |f| %>
-  <div class="row">
+  <div class="row mb-lg-4">
     <div class="col">
       <%= f.input :grades, collection: Lcms::Engine::Grades.grades,
                   input_html: { class: 'selectize', multiple: true },
