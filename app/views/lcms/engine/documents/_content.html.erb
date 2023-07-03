@@ -1,11 +1,6 @@
 <% lti = local_assigns[:lti] %>
 <div class="o-page__module u-bg--light c-ld u-padding-bottom--gutter">
   <div class="o-page__wrap--row" <%= 'data-ela' if document.ela? %>>
-    <% unless request[:action].index('export') %>
-      <div class="c-ld__sidebar doc-subject-<%= document.math? ? 'math' : 'ela' %>">
-        <%= render 'lcms/engine/documents/nav', document: document, lti: lti %>
-      </div>
-    <% end %>
     <div id="c-ld-content" class="c-ld__body c-ld__body--general" <%= 'data-assessment' if document.assessment? %>>
       <% if document.description.present? && !document.foundational? %>
         <h2>Summary</h2>

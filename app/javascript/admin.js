@@ -19,7 +19,7 @@ document.addEventListener('turbo:load', () => {
   });
 
   if (typeof CKEDITOR === 'undefined' && document.getElementsByClassName('ckeditor').length) {
-    var script = document.createElement('script');
+    const script = document.createElement('script');
     script.src = 'https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js';
     document.head.append(script);
   }

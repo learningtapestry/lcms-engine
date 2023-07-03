@@ -2,29 +2,47 @@
 
 <div class="container-fluid o-adm-list o-adm-documents">
 
-  <h1 class=text-center><%= t('.title') %></h1>
+  <h1 class="text-center p-4"><%= t('.title') %></h1>
+
+  <hr>
 
   <%= render 'search_form' %>
 
-  <div class=row>
-    <div class="flex-pull-left">
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <p><%= page_entries_info @documents %></p>
+    </div>
+    <div class="col-sm-2">
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
+      <br>
       <span class="c-reimport-with-materials__toggle"><%= check_box_tag 'reimport_with_materials', 1 %> Reimport with Materials</span>
     </div>
-    <div>
+    <div class="col-sm-2">
+      <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'btn btn-primary m-1' %>
+    </div>
+    <div class="col-sm-2">
       <%= render_component 'MultiSelectedOperation', {
         text: t('.reimport_selected'),
         operation: 'reimport',
-        path: reimport_selected_admin_documents_path(query: @query_params),
-        btn_style: '' } %>
+        path: lcms_engine.reimport_selected_admin_documents_path(query: @query_params),
+        btnStyle: 'btn-warning',
+        wrapperClass: 'm-1 col' } %>
+    </div>
+    <div class="col-sm-3">
       <%= render_component 'MultiSelectedOperation', {
         text: t('.delete_selected'),
         operation: 'delete',
-        path: delete_selected_admin_documents_path(query: @query_params),
-        btn_style: '' } %>
-
-      <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'button primary' %>
+        path: lcms_engine.delete_selected_admin_documents_path(query: @query_params),
+        btnStyle: 'btn-danger',
+        wrapperClass: 'm-1 col' } %>
     </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
     <table class="lessons-table table">
       <tr>
         <th></th>
@@ -69,8 +87,8 @@
             <% end %>
           </td>
           <td class="lessons-table__btns">
-            <%= render partial: 'lcms/engine/admin/documents/reimport', locals: {lesson: lesson} %>
-            <%= button_to t('ui.delete'), admin_document_path(lesson), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+            <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', lesson: lesson } %>
+            <%= link_to t('ui.delete'), admin_document_path(lesson), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure') }, method: :delete %>
           </td>
         </tr>
         <% end %>
@@ -79,7 +97,7 @@
   </div>
 
   <div class="row">
-    <div class='col-sm-12 text-center'>
+    <div class="'col-sm-12 text-center'">
       <%= will_paginate @documents %>
     </div>
   </div>

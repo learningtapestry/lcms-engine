@@ -3,6 +3,8 @@
 module Lcms
   module Engine
     class Resource < ApplicationRecord
+      include Filterable
+
       enum resource_type: {
         resource: 1,
         podcast: 2,
@@ -60,9 +62,6 @@ module Lcms
       validates :title, presence: true
       validates :url, presence: true, url: true, if: %i(video? podcast?)
 
-      scope :where_grade, ->(grades) { where_metadata_in :grade, grades }
-      scope :where_module, ->(modules) { where_metadata_in :module, modules }
-      scope :where_subject, ->(subjects) { where_metadata_in :subject, subjects }
       scope :media, -> { where(resource_type: MEDIA_TYPES) }
       scope :generic_resources, -> { where(resource_type: GENERIC_TYPES) }
       scope :ordered, -> { order(:hierarchical_position, :slug) }
@@ -123,12 +122,6 @@ module Lcms
           else
             where(nil)
           end
-        end
-
-        def where_metadata_in(key, arr)
-          arr = Array.wrap arr
-          clauses = Array.new(arr.count) { "metadata->>'#{key}' = ?" }.join(' OR ')
-          where(clauses, *arr)
         end
       end
 

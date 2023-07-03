@@ -6,7 +6,7 @@
       <div>
         <%= link_to 'Go to Materials Admin', lcms_engine.admin_materials_path(request.query_parameters), class: 'button primary u-margin-right--base' %>
         <%= link_to @material.file_url, class: 'button primary u-margin-right--base', target: '_blank' do %>
-          <i class="fab fa-google"></i> Google Doc
+          <i class="fa-brands fa-google"></i> Google Doc
         <% end %>
         <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { material: @material, btn_size: 'default' } %>
       </div>

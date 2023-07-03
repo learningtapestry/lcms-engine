@@ -14,7 +14,7 @@ class MultiSelectedOperation extends React.Component {
   componentDidMount() {
     // eslint-disable-next-line react/no-find-dom-node
     const $this = $(ReactDOM.findDOMNode(this));
-    $this.parent().addClass('c-multi-selected-btn');
+    $this.parent().addClass(`c-multi-selected-btn ${this.props.wrapperClass}`);
   }
 
   onSubmit(evt) {
@@ -30,7 +30,7 @@ class MultiSelectedOperation extends React.Component {
   }
 
   render() {
-    const btnClass = `button ${this.props.btn_style}`;
+    const btnClass = `btn ${this.props.btnStyle}`;
     const method = this.props.operation === 'delete' ? 'delete' : 'post';
     const csrf_token = $('meta[name=csrf-token]').attr('content');
     return (
@@ -57,7 +57,8 @@ class MultiSelectedOperation extends React.Component {
 
 MultiSelectedOperation.propTypes = {
   operation: PropTypes.string,
-  btn_style: PropTypes.string,
+  btnStyle: PropTypes.string,
+  wrapperClass: PropTypes.string,
   path: PropTypes.string,
   text: PropTypes.string,
 };

@@ -16,7 +16,6 @@ require 'will_paginate'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
-require 'font-awesome-sass'
 require 'js-routes'
 
 # LearningTapestry gems
@@ -39,7 +38,8 @@ module Lcms
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
 
       # TODO: Need to think how to handle this inside the engine
-      # config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
+      config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
+      config.assets.paths << config.root.join('node_modules/@fortawesome/fontawesome-free/webfonts')
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque

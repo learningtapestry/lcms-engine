@@ -14,15 +14,15 @@
     </div>
     <div>
       <%= render_component 'admin/MultiSelectedOperation', {
-            text: t('.reimport_selected'),
-            operation: 'reimport',
-            path: reimport_selected_admin_materials_path(query: @query_params),
-            btn_style: 'primary' } %>
+                           text: t('.reimport_selected'),
+                           operation: 'reimport',
+                           path: reimport_selected_admin_materials_path(query: @query_params),
+                           btnStyle: 'primary' } %>
       <%= render_component 'admin/MultiSelectedOperation', {
-            text: t('.delete_selected'),
-            operation: 'delete',
-            path: delete_selected_admin_materials_path(query: @query_params),
-            btn_style: 'alert'} %>
+                           text: t('.delete_selected'),
+                           operation: 'delete',
+                           path: delete_selected_admin_materials_path(query: @query_params),
+                           btnStyle: 'alert'} %>
       <%# link_to t('.new_material_pdf'), lcms_engine.new_admin_material_path(source_type: 'pdf'), class: 'button primary' %>
       <%= link_to t('.new_material'), lcms_engine.new_admin_material_path, class: 'button primary' %>
     </div>
@@ -71,7 +71,7 @@
                 <% material.documents.each do |lesson| %>
                   <% lesson = ::Lcms::Engine::DocumentGenerator.document_presenter.new lesson %>
                   <li class="u-text--small">
-                    <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="fab fa-google"></i></a>
+                    <a href="<%= lesson.file_url%>" target="_blank" class="materials-table__lessons--file"><i class="fa-brands fa-google"></i></a>
                     <%= link_to lesson.title, dynamic_path(:material_path, lesson, request.query_parameters), target: '_blank' %>
                   </li>
                 <% end %>

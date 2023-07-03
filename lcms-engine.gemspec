@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'elasticsearch-persistence', '~> 7.0'
   s.add_dependency 'elasticsearch-rails', '~> 7.0'
   s.add_dependency 'fog-aws', '~> 3.5', '>= 3.5.2'
-  s.add_dependency 'font-awesome-sass', '~> 5.12'
   s.add_dependency 'google-api-client', '< 1'
   s.add_dependency 'hiredis', '~> 0.6.3'
   s.add_dependency 'httparty', '~> 0.18'

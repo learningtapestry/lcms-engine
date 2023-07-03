@@ -30,7 +30,6 @@ PATH
       elasticsearch-persistence (~> 7.0)
       elasticsearch-rails (~> 7.0)
       fog-aws (~> 3.5, >= 3.5.2)
-      font-awesome-sass (~> 5.12)
       google-api-client (< 1)
       hiredis (~> 0.6.3)
       httparty (~> 0.18)
@@ -333,8 +332,6 @@ GEM
     fog-xml (0.1.4)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
-    font-awesome-sass (5.15.1)
-      sassc (>= 1.11)
     formatador (1.1.0)
     fugit (1.8.1)
       et-orbi (~> 1, >= 1.2.7)

@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-sm-3">
-      <p class><%= page_entries_info @resources %></p>
+      <p><%= page_entries_info @resources %></p>
     </div>
     <div class="col-sm-9 text-end">
       <%= link_to lcms_engine.toggle_editing_enabled_admin_settings_path, class: 'btn btn-danger', data: { 'turbo-method': 'patch' } do %>

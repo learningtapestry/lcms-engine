@@ -3,7 +3,7 @@
   <% urls = material_urls(m, lesson) %>
   <li class="u-text--small">
     <% if urls[:gdoc].present? %>
-    <a class="lessons-table__materials--file" href="<%= urls[:gdoc] %>" target="_blank"> <i class="fab fa-google"></i></a>
+    <a class="lessons-table__materials--file" href="<%= urls[:gdoc] %>" target="_blank"> <i class="fa-brands fa-google"></i></a>
     <% end %>
     <% if urls[:pdf].present? %>
     <a class="lessons-table__materials--file" href="<%= urls[:pdf] %>" target="_blank"> <i class="far fa-file-pdf"></i></a>

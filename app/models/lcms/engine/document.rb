@@ -3,7 +3,9 @@
 module Lcms
   module Engine
     class Document < ApplicationRecord
+      include Filterable
       include Partable
+
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 
       belongs_to :resource, optional: true

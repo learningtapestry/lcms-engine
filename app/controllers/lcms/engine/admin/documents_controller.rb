@@ -59,6 +59,7 @@ module Lcms
 
         def create_sync
           reimport_lesson_materials if form_params[:with_materials].present?
+
           if @document.save
             notice = t('lcms.engine.admin.documents.create.success',
                        name: @document.document.name,
@@ -128,8 +129,8 @@ module Lcms
         def set_query_params
           @query_params = params[:query]
             &.permit(
-              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed, :reimport_required,
-              :search_term, :sort_by
+              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed,
+              :reimport_required, :search_term, :sort_by, :subject, :unit, grades: []
             ) || {}
         end
       end
