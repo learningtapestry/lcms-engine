@@ -131,7 +131,6 @@ module Lcms
             time_to_teach
             ell_appropriate
             image_file
-            opr_description
           ).concat(form_params_simple_override)
         end
 

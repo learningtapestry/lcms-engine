@@ -37,7 +37,7 @@ module Lcms
         end
 
         def import_status
-          data = import_status_for DocumentGenerator.material_parse_job
+          data = import_status_for(DocumentGenerator.material_parse_job)
           render json: data, status: :ok
         end
 
@@ -53,7 +53,7 @@ module Lcms
         private
 
         def create_async
-          bulk_import(Array.wrap(form_params[:link]))
+          bulk_import Array.wrap(form_params[:link])
           render :import
         end
 
@@ -67,13 +67,18 @@ module Lcms
           end
         end
 
-        def bulk_import(files)
-          jobs = {}
-          files.each do |url|
-            job_id = DocumentGenerator.material_parse_job.perform_later(url).job_id
-            jobs[job_id] = { link: url, status: 'waiting' }
-          end
-          @props = { jobs:, type: :materials, links: view_links }
+        #
+        # @param [Array<String>] file_urls
+        #
+        def bulk_import(file_urls)
+          jobs =
+            file_urls.each_with_object({}) do |url, jobs_|
+              job_id = DocumentGenerator.material_parse_job.perform_later(url).job_id
+              jobs_[job_id] = { link: url, status: 'waiting' }
+            end
+          polling_path = lcms_engine.import_status_admin_materials_path
+          @props = { jobs:, links: view_links, polling_path:, type: :materials }.
+                     transform_keys! { _1.to_s.camelize(:lower) }
         end
 
         def find_selected
@@ -84,9 +89,13 @@ module Lcms
         end
 
         def form_params
-          params.require(:material_form).permit(:async, :link, :source_type)
+          @form_params ||= params.require(:material_form).permit(:async, :link, :source_type)
         end
 
+        #
+        # @param [String] url
+        # @return [Array<String>]
+        #
         def gdoc_files_from(url)
           folder_id = ::Lt::Google::Api::Drive.folder_id_for(url)
           if form_params[:source_type] == 'pdf'
@@ -104,8 +113,20 @@ module Lcms
         def set_query_params
           @query_params = params[:query]
             &.permit(
-              :course, :lesson, :name_date, :orientation, :search_term, :search_file_name, :sort_by, :title, :type,
-              :unit
+              :header_footer,
+              :guidebook,
+              :section,
+              :activity,
+              :lesson,
+              :name_date,
+              :orientation,
+              :search_term,
+              :search_file_name,
+              :sort_by,
+              :title,
+              :type,
+              :unit,
+              grades: []
             ) || {}
         end
       end

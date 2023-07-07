@@ -23,7 +23,6 @@ describe Lcms::Engine::DocumentBuildService do
         metadata_service: double('service', errors: []),
         parse: parsed_document,
         parts: [],
-        'prereq?' => false,
         render: '',
         toc: double('toc', collect_material_ids: [])
       }

@@ -20,7 +20,7 @@ class MultiSelectedOperation extends React.Component {
   onSubmit(evt) {
     if (this.props.operation === 'delete' && !confirm('Are you sure?')) return; // eslint-disable-line no-restricted-globals
 
-    const entries = $('.o-page .table input[name="selected_ids[]"]');
+    const entries = $('.table input[name="selected_ids[]"]');
     const ids = _.filter(entries, e => e.checked).map(e => e.value);
     if (ids.length === 0) return evt.preventDefault();
 
@@ -43,6 +43,7 @@ class MultiSelectedOperation extends React.Component {
         method="post"
         className="c-reimport-doc-form"
         onSubmit={this.onSubmit}
+        data-turbo={false}
       >
         <input name="utf8" value="✓" type="hidden" />
         <input name="_method" value={method} type="hidden" />

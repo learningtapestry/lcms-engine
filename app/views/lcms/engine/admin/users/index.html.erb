@@ -38,7 +38,7 @@
             <td><%= user.confirmed? ? 'YES' : 'NO' %>
             <td class="u-txt--small"><%= user.created_at.to_s %>
             <td><%= button_to t('.reset_password_btn'), lcms_engine.reset_password_admin_user_path(user), class: 'btn btn-warning', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :post %>
-            <td><%= button_to t('ui.delete'), lcms_engine.admin_user_path(user), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %></td>
+            <td><%= button_to t('ui.delete'), lcms_engine.admin_user_path(user), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline' %></td>
           </tr>
         <% end %>
       <% end %>

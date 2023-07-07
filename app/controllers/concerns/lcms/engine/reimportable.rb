@@ -26,7 +26,7 @@ module Lcms
 
       def prepare_result(job_class, jid)
         jid_res = job_class.fetch_result(jid)
-        return jid_res if jid_res['ok']
+        return jid_res if jid_res&.[]('ok')
 
         {
           ok: false,

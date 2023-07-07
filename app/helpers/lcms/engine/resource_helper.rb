@@ -50,16 +50,6 @@ module Lcms
           end
         end.join(' / ').html_safe
       end
-
-      def prerequisites_standards(resource)
-        ids = StandardLink
-                .where(standard_end_id: resource.standards.pluck(:id))
-                .where.not(link_type: 'c')
-                .pluck(:standard_begin_id)
-        Standard
-          .where(id: ids).pluck(:alt_names).flatten.uniq
-          .map { |n| Standard.filter_ccss_standards(n, resource.subject) }.compact.sort
-      end
     end
   end
 end

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import $ from 'jquery';
 
 class ImportStatus extends React.Component {
   constructor(props) {
@@ -9,12 +10,6 @@ class ImportStatus extends React.Component {
     this.pollingInterval = 5000;
     this.chunkSize = 50;
     this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
-    if (_.isEmpty(props.path)) {
-      const k = `lcms_engine_import_status_admin_${this.props.type}_path`;
-      this.path = Routes[k].call();
-    } else {
-      this.path = props.path;
-    }
     this.withPdf = props.with_pdf || false;
   }
 
@@ -36,7 +31,7 @@ class ImportStatus extends React.Component {
   }
 
   updateChunkStatus(jids) {
-    $.getJSON(this.path, {
+    $.getJSON(this.props.pollingPath, {
       jids: jids,
       type: this.props.type,
       _: Date.now(), // prevent cached response
@@ -56,13 +51,8 @@ class ImportStatus extends React.Component {
   resourceButton(job) {
     if (this.withPdf) {
       return (
-        <a
-          href={job.link}
-          className="o-adm-materials__resource button primary u-margin-left--small u-margin-bottom--zero"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <i className="far fa-file-pdf"></i>
+        <a href={job.link} target="_blank" rel="noreferrer">
+          <i className="fa-regular fa-file-pdf"></i>
         </a>
       );
     }
@@ -76,21 +66,22 @@ class ImportStatus extends React.Component {
     };
 
     return _.map(this.links, (link, idx) => (
-      <a
-        key={`pl-${idx}`}
-        href={typeof job.model === 'undefined' ? link : linkWithParams(link, { id: job.model.id })}
-        className="o-adm-materials__resource button primary u-margin-left--small u-margin-bottom--zero"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <i className="fa fa-eye" aria-hidden="true"></i>
-      </a>
+      <span className="m-2">
+        <a
+          key={`pl-${idx}`}
+          href={typeof job.model === 'undefined' ? link : linkWithParams(link, { id: job.model.id })}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <i className="fa-solid fa-eye"></i>
+        </a>
+      </span>
     ));
   }
 
   spinner() {
     return (
-      <span className="o-adm-materials__spinner button primary u-margin-bottom--zero">
+      <span>
         <i className="fas fa-spin fa-spinner" />
       </span>
     );
@@ -103,56 +94,55 @@ class ImportStatus extends React.Component {
 
     const results = _.map(this.state.jobs, (job, key) => {
       let status;
-      if (job.status === 'done') {
-        status = job.ok ? 'ok' : 'err';
-      } else {
-        status = job.status;
+      switch (job.status) {
+        case 'done':
+          status = job.ok ? 'list-group-item-success' : 'list-group-item-danger';
+          break;
+        case 'running':
+          status = 'list-group-item-warning';
+          break;
+        default:
+          status = '';
       }
       return (
-        <li className={`o-adm-materials__result o-adm-materials__result--${status}`} key={key}>
-          <div className="u-flex align-justify align-middle">
-            <a href={job.link} target="_blank" className="o-adm-materials__link" rel="noreferrer">
+        <li className={`d-flex justify-content-between align-items-start list-group-item ${status}`} key={key}>
+          <div className="me-auto">
+            <a href={job.link} target="_blank" className="" rel="noreferrer">
               {job.status !== 'done' ? job.text || job.link : 'Done'}
             </a>
-            {job.status !== 'done' ? this.spinner() : null}
             {job.status === 'done' && job.ok ? <span>{this.resourceButton(job)}</span> : null}
           </div>
-          {!_.isEmpty(job.errors) ? <p dangerouslySetInnerHTML={{ __html: _.join(job.errors, '<br/>') }}></p> : null}
-          {!_.isEmpty(job.warnings) ? (
-            <p
-              dangerouslySetInnerHTML={{
-                __html: _.join(job.warnings, '<br/>'),
-              }}
-            ></p>
-          ) : null}
+          <div>
+            {!_.isEmpty(job.errors) ? (
+              <p className="mb-0" dangerouslySetInnerHTML={{ __html: _.join(job.errors, '<br/>') }}></p>
+            ) : null}
+            {!_.isEmpty(job.warnings) ? (
+              <p className="mb-0" dangerouslySetInnerHTML={{ __html: _.join(job.warnings, '<br/>') }}></p>
+            ) : null}
+          </div>
+          {job.status !== 'done' ? this.spinner() : null}
         </li>
       );
     });
 
     return (
-      <div>
-        <p className="o-adm-materials__summary">
-          <span className="summary-entry">• {waitingCount} Files(s) Processing</span>
-          <span className="summary-entry">{`✓ ${importedCount} File(s) ${
-            this.withPdf ? 'Generated' : 'Imported'
-          }`}</span>
-          <span className="summary-entry">x {failedCount} File(s) Failed</span>
-        </p>
-        <aside className="o-adm-materials__summary--aside u-margin-bottom--small">
-          After the (re){`${this.withPdf ? 'generation' : 'import'}`} the files for export are still in process of being
-          generated in the background. They will appear soon after.
-        </aside>
-        <ul className="o-adm-materials__results">{results}</ul>
+      <div className="text-center p-1">
+        <div className="row mb-3">
+          <div className="col">{waitingCount} Files(s) Processing</div>
+          <div className="col">{`${importedCount} File(s) ${this.withPdf ? 'Generated' : 'Imported'}`}</div>
+          <div className="col">{failedCount} File(s) Failed</div>
+        </div>
+        <ul className="list-group">{results}</ul>
       </div>
     );
   }
 }
 
 ImportStatus.propTypes = {
-  jobs: PropTypes.object,
+  jobs: PropTypes.object.isRequired,
   links: PropTypes.array,
-  type: PropTypes.string,
-  path: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  pollingPath: PropTypes.string.isRequired,
   with_pdf: PropTypes.bool,
 };
 

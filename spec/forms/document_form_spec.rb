@@ -56,11 +56,8 @@ describe Lcms::Engine::DocumentForm do
       end
 
       context 'when that is re-import operation' do
-        before { params.merge!(link_fs: 'ink_fs', reimport: '1') }
-
-        it 'calls service sequentently to import both type of links' do
+        it 'calls service sequentially to import both type of links' do
           expect(service).to receive(:build_for).with(params[:link])
-          expect(service).to receive(:build_for).with(params[:link_fs], expand: true)
           subject
         end
       end

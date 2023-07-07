@@ -86,19 +86,13 @@ TODO: Update this part about how to build the assets
 Add this to the Gemfile:
 
 ```ruby
-gem 'lcms-engine' # Rails 6.1
+gem 'lcms-engine'
 ```
 
 And then execute:
 
 ```bash
 bundle
-```
-
-Or install it yourself as:
-
-```bash
-gem install lcms-engine
 ```
 
 Copying all required configuration files
@@ -130,6 +124,23 @@ Pay attention that adding route alias is not supported. That said you **can't** 
 ```ruby
 mount Engine, at: '/engine', as: :engine
 ````
+
+Inside environment configuration files explicitly set resque queue adapter and queue prefix if need to separate
+queues across environments:
+
+```ruby
+# config/environments/development.rb
+# config/environments/staging.rb
+# ...
+# config/environments/production.rb
+
+# Use a real queuing backend for Active Job (and separate queues per environment)
+# config.active_job.queue_adapter     = :resque
+# config.active_job.queue_name_prefix = "content_#{Rails.env}"
+# Explicitly set queue adapter (set the same as at lcms-engine)
+config.active_job.queue_adapter = :resque
+config.active_job.queue_name_prefix = ''
+```
 
 If you need to redefine devise routes set up env `DEVISE_ROUTES_REDEFINED` as true and define devise related routes at host app.
 
@@ -192,11 +203,6 @@ All migrations included in the gem are already available for you to run from ins
 ### Using with Host app
 
 You need to run special rake task if default routes were overridden
-
-TODO: This seems outdated. JS-Routes are generated another way right now 
-```bash
-bundle exec rake js-routes:generate
-```
 
 ## Developing and testing
 

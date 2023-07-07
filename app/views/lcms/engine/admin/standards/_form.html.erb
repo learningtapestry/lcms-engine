@@ -22,7 +22,7 @@
     <div class="col">
         <%= f.button :submit, t('ui.save'), name: nil, class: 'btn btn-primary' %>
         <% if @standard.persisted? %>
-          <%= link_to t('ui.delete'), lcms_engine.admin_standard_path(@standard), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure') }, method: :delete %>
+          <%= link_to t('ui.delete'), lcms_engine.admin_standard_path(@standard), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete } %>
         <% end %>
     </div>
   </div>

@@ -47,7 +47,6 @@ en:
             create_resource_type: Create Resource Type
             create_subject: Create Subject
             create_topic: Create Topic
-            opr_description: Optional Prerequisite description line
           downloadable:
             description: 'Short description'
           index:

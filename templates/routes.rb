@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Lcms::Engine::Engine.routes.draw do
-  mount PdfjsViewer::Rails::Engine, at: '/pdfjs', as: 'pdfjs'
-
   resources :documents, only: :show do
     member do
       post 'export', to: 'documents#export'

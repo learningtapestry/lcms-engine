@@ -10,9 +10,7 @@
   "globals": {
     "$": false,
     "ga": false,
-    "Foundation": false,
-    "Modernizr": false,
-    "Routes": false
+    "Modernizr": false
   },
   "plugins": ["react", "jsx-a11y", "prettier"],
   "settings": {

@@ -58,7 +58,6 @@ module DocTemplate
         end
 
         {
-          foundational: opts[:foundational_skills],
           priority_description: priority_description(activity),
           priority_icon: priority_icon(activity),
           react_props: {

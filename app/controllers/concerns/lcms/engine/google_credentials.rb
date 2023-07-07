@@ -9,6 +9,8 @@ module Lcms
 
       def google_credentials
         @google_credentials ||= Lt::Google::Api::Auth::Cli.new.credentials
+      rescue StandardError
+        raise "Can't get file based credentials to access Google Drive!"
       end
     end
   end

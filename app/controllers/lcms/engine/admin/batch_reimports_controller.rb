@@ -10,22 +10,31 @@ module Lcms
 
         def create
           @query = OpenStruct.new params[:query].except(:type) # rubocop:disable Style/OpenStructUse
+
+          # @see lcms.yml
+          # Possible default values:
+          #  - ::Lcms::Engine::AdminDocumentsQuery
+          #  - ::Lcms::Engine::AdminMaterialsQuery
           entries = if materials?
-                      DocTemplate.config['queries']['material'].constantize.call(@query)
+                      DocTemplate.config.dig('queries', 'material').constantize.call(@query)
                     else
-                      DocTemplate.config['queries']['document'].constantize.call(@query)
+                      DocTemplate.config('queries', 'document').constantize.call(@query)
                     end
-          bulk_import entries
+
+          bulk_import entries.map(&:file_url)
           render :import
         end
 
         private
 
-        def bulk_import(docs)
+        #
+        # @param [Array<String>] file_urls
+        #
+        def bulk_import(file_urls)
           jobs = {}
-          docs.each do |doc|
-            job_id = job_class.perform_later(doc).job_id
-            jobs[job_id] = { link: doc.file_url, status: 'waiting' }
+          file_urls.each do |url|
+            job_id = job_class.perform_later(url).job_id
+            jobs[job_id] = { link: url, status: 'waiting' }
           end
           @props = { jobs:, type: params.dig(:query, :type), links: view_links }
         end

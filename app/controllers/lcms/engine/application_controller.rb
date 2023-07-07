@@ -12,7 +12,6 @@ module Lcms
       before_action :authenticate_user!, unless: :pdf_request?
 
       before_action :configure_permitted_parameters, if: :devise_controller?
-      before_action :handle_x_frame_headers
 
       rescue_from ActiveRecord::RecordNotFound do
         render 'lcms/engine/pages/not_found', status: :not_found
@@ -28,10 +27,6 @@ module Lcms
 
       def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:access_code])
-      end
-
-      def handle_x_frame_headers
-        response.headers.delete('X-Frame-Options') if params[:controller].index('pdfjs_viewer').present?
       end
 
       private

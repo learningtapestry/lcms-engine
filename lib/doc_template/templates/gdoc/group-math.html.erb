@@ -1,17 +1,8 @@
 <div class="o-ld-group" data-id="<%= @tmpl[:section].anchor %>" data-tag="<%= @tmpl[:placeholder] %>">
-  <% if @tmpl[:section].title.parameterize == 'foundational-skills' %>
-      <table class="o-simple-table cs-bg--math-activity-foundational o-ld-foundational-divider">
-        <tr>
-          <td class="u-text--centered u-txt--ld-math-foundational-divider o-ld-foundational-divider__item">
-            <h2>FOUNDATIONAL SKILLS LESSON</h2>
-          </td>
-        </tr>
-      </table>
-  <% else %>
-      <div class="o-ld-hr--l1">
-        <hr>
-      </div>
-  <% end %>
+
+  <div class="o-ld-hr--l1">
+    <hr>
+  </div>
 
   <table class="o-simple-table u-pdf-nobreak--around">
     <tr>
@@ -27,21 +18,8 @@
   <% end %>
 
   <% if @tmpl[:section].try(:lesson_objective).present? %>
-    <% unless @tmpl[:foundational_skills] %>
-        <h3>Lesson Summary:</h3>
-    <% end %>
+    <h3>Lesson Summary:</h3>
     <p><%= @tmpl[:section].lesson_objective %></p>
-  <% end %>
-
-  <% if @tmpl[:foundational_skills] %>
-    <% if (standards = @tmpl[:section].section_standard_info).any? %>
-      <p>
-        <strong>Standards: </strong>
-        <% standards.each_with_index do |data, idx| %>
-          <span class="c-ld-keyword"><%= data[:standard] %></span><%= ',' if idx + 1 < standards.size %>
-        <% end %>
-      </p>
-    <% end %>
   <% end %>
 
   <%= @tmpl[:content] %>

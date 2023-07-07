@@ -1,13 +1,20 @@
 <div class="container-fluid">
-  <h2 class="text-center"><%= t('.page_header', type: @material_form.source_type) %></h2>
-
-  <%= simple_form_for @material_form || MaterialForm.new, url: lcms_engine.admin_materials_path do |f| %>
-    <%= f.hidden_field :source_type, value: @material_form.source_type %>
-    <%= f.input :link, label: t('ui.url') %>
-    <p>
-      <%= f.check_box :async, checked: true %>
-      <span><small><%= t('ui.async') %></small></span>
-    </p>
-    <%= f.button :submit, t('.submit') %>
-  <% end %>
+  <h2 class="text-center p-4"><%= t('.page_header', type: @material_form.source_type) %></h2>
+  <hr>
+  <div class="cols-sm">
+    <%= link_to 'Back to list', lcms_engine.admin_materials_path, class: 'btn btn-success' %>
+  </div>
+  <hr>
+    <div class="row">
+      <%= simple_form_for @material_form || MaterialForm.new, url: lcms_engine.admin_materials_path, data: { turbo: false } do |f| %>
+        <%= f.hidden_field :source_type, value: @material_form.source_type %>
+        <%= f.input :link, error: f.object.errors[:link].first.try(:html_safe),
+                    label: false, placeholder: t('ui.url') %>
+        <p>
+          <%= f.check_box :async, checked: true %>
+          <span><small><%= t('ui.async') %></small></span>
+        </p>
+        <%= f.button :submit, t('.submit'), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
 </div>

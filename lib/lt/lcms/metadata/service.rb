@@ -10,10 +10,6 @@ module Lt
             @agenda.data.presence || []
           end
 
-          def foundational_metadata
-            @foundational_metadata.data.presence || {}
-          end
-
           def materials_metadata
             DocTemplate::Objects::MaterialMetadata
           end
@@ -27,7 +23,6 @@ module Lt
                 }
               else
                 {
-                  foundational_metadata: DocTemplate::Objects::BaseMetadata.build_from(@foundational_metadata.data),
                   metadata: DocTemplate::Objects::BaseMetadata.build_from(metadata.data),
                   parts: @target_table.try(:parts)
                 }
@@ -50,14 +45,8 @@ module Lt
               @agenda = DocTemplate::Tables::Agenda.parse content
               @section_metadata = DocTemplate::Tables::Section.parse content,
                                                                      force_inject_section: force_inject_section?
-              @activity_metadata = DocTemplate::Tables::Activity.parse(content, template_type:)
+              @activity_metadata = DocTemplate::Tables::Activity.parse(content)
               @target_table = DocTemplate::Tables::Target.parse(content) if target_table?
-
-              @foundational_metadata = if foundational?
-                                         @metadata
-                                       else
-                                         DocTemplate::Tables::FoundationalMetadata.parse content
-                                       end
             end
 
             self
@@ -72,15 +61,11 @@ module Lt
             @agenda.data.empty? && metadata.data.any?
           end
 
-          def foundational?
-            metadata.data['type'].to_s.casecmp('fs').zero?
-          end
-
           def lesson_options
             {
               activity: DocTemplate::Objects::ActivityMetadata.build_from(@activity_metadata),
               agenda: DocTemplate::Objects::AgendaMetadata.build_from(@agenda.data),
-              sections: DocTemplate::Objects::SectionsMetadata.build_from(@section_metadata, template_type)
+              sections: DocTemplate::Objects::SectionsMetadata.build_from(@section_metadata)
             }
           end
 
@@ -88,10 +73,6 @@ module Lt
             return false unless metadata.present?
 
             metadata.data['subject']&.downcase == 'ela' && metadata.data['grade'] == '6'
-          end
-
-          def template_type
-            foundational? ? 'fs' : 'core'
           end
         end
       end

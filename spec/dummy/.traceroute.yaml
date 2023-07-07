@@ -2,7 +2,6 @@ ignore_unreachable_actions:
   - ^ckeditor
   - ^devise
   - ^foundation
-  - ^pdfjs_viewer
   - lcms_engine
   - rails_info
   - rails_mailers
@@ -11,4 +10,3 @@ ignore_unused_routes:
   - ^lcms/engine/admin\/reading_assignment_texts # accessed via `association_picker_field` helper
   - ^devise
   - ^lcms/engine/pages#forthcoming # Used by `LinkTag`
-  - ^pdfjs_viewer

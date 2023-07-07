@@ -13,7 +13,7 @@ describe Lcms::Engine::Admin::DocumentsController do
       instance_double('Lcms::Engine::DocumentForm', document:, save: valid, service_errors: [])
     end
     let(:link) { 'link' }
-    let(:params) { { link:, link_fs: 'link_fs', reimport: '1' } }
+    let(:params) { { link: } }
     let(:valid) { true }
 
     before { allow(Lcms::Engine::DocumentForm).to receive(:new).and_return(form) }

@@ -1,7 +1,7 @@
 <% title = @document.resource&.title.presence || @document.metadata['title'].to_s.html_safe %>
 <% set_page_title title %>
 
-<style type="text/css">
+<style >
   <%= raw(@document.css_styles) %>
 </style>
 
@@ -22,13 +22,8 @@
     <% end %>
     <hr>
   </div>
-  <div class="row">
-    <%= render 'header', document: @document %>
-  </div>
 </div>
 
-<div class="u-bg--light">
-  <div class="container-fluid o-page--ld c-ld--<%= @document.color_code_grade %> u-padding-bottom--gutter2x doc-subject-<%= @document.metadata['subject'].to_s.downcase %>" data-scroll="ld-page" id="ld-page">
-    <%= render 'content', document: @document %>
-  </div>
+<div class="container-fluid">
+  <%= render 'content', document: @document %>
 </div>

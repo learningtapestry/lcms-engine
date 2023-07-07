@@ -5,8 +5,7 @@ module Lcms
     class ResourceSerializer < ActiveModel::Serializer
       include ResourceHelper
 
-      attributes :breadcrumb_title, :grade, :id, :is_assessment, :is_foundational, :is_opr, :is_prerequisite, :path,
-                 :short_title, :subject, :teaser, :time_to_teach, :title, :type
+      attributes :breadcrumb_title, :grade, :id, :path, :short_title, :subject, :teaser, :time_to_teach, :title, :type
 
       def breadcrumb_title
         Breadcrumbs.new(object).title
@@ -14,22 +13,6 @@ module Lcms
 
       def grade
         object.grades.average
-      end
-
-      def is_assessment # rubocop:disable Naming/PredicateName
-        object&.assessment? || short_title&.index('assessment').present?
-      end
-
-      def is_foundational # rubocop:disable Naming/PredicateName
-        object.document&.foundational?
-      end
-
-      def is_opr # rubocop:disable Naming/PredicateName
-        object.opr?
-      end
-
-      def is_prerequisite # rubocop:disable Naming/PredicateName
-        object.prerequisite?
       end
 
       def path

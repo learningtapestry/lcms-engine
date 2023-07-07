@@ -94,15 +94,6 @@ module Lcms
           where('metadata @> ?', meta).where(curriculum_type: type).first
         end
 
-        def find_podcast_by_url(url)
-          podcast.where(url:).first
-        end
-
-        def find_video_by_url(url)
-          video_id = MediaEmbed.video_id(url)
-          video.where("url ~ '#{video_id}(&|$)'").first
-        end
-
         def hierarchy
           Lcms::Engine::Resource::HIERARCHY
         end
@@ -151,15 +142,6 @@ module Lcms
 
       def generic?
         %w(text_set quick_reference_guide resource_other).include?(resource_type)
-      end
-
-      # `Optional prerequisite` - https://github.com/learningtapestry/unbounded/issues/557
-      def opr?
-        tag_list.include?('opr')
-      end
-
-      def prerequisite?
-        tag_list.include?('prereq')
       end
 
       def directory

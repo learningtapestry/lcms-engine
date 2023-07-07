@@ -8,7 +8,7 @@ module DocTemplate
       def self.build_anchor_from(item)
         [
           item.idx,
-          item.try(:template_type),
+          'core',
           item.try(:level),
           item.title
         ].compact.join('-').parameterize

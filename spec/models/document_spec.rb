@@ -21,31 +21,6 @@ describe Lcms::Engine::Document do
 
   it { expect(document).to have_and_belong_to_many(:materials) }
 
-  describe 'change prereq positioning when type changes' do
-    let(:metadata) { { 'type' => 'fs', 'subject' => 'math', 'grade' => '1', 'unit' => '1', 'topic' => 'A' } }
-
-    let!(:documents) do
-      build_resources_chain(['math', 'grade 1', 'module 1', 'topic A'])
-      Array.new(3) { |i| create :document, metadata: metadata.merge('lesson' => (i + 1).to_s) }
-    end
-
-    let(:document) { documents.last }
-
-    before(:all) { DocTemplate.config['metadata'] = DocTemplate::DEFAULTS[:metadata].stringify_keys }
-
-    it 're-position prereqs at the beginning' do
-      expect(document.metadata['type']).to_not eq 'prereq'
-      expect(document.resource.level_position).to eq 2
-
-      document.metadata['type'] = 'prereq'
-      document.save!
-
-      expect(document.metadata['type']).to eq 'prereq'
-      expect(document.resource.short_title).to eq 'lesson 3'
-      expect(document.reload.resource.level_position).to eq 0
-    end
-  end
-
   describe '#assessment?' do
     subject { document.assessment? }
 
@@ -70,19 +45,6 @@ describe Lcms::Engine::Document do
 
     it 'returns true when metadata is MATH' do
       expect(subject).to be_truthy
-    end
-  end
-
-  describe '#foundational?' do
-    let(:doc_type) { 'fs' }
-
-    it 'returns true for foundational lesson' do
-      expect(document.foundational?).to be_truthy
-    end
-
-    it 'returns false for others' do
-      document.metadata['type'] = 'core'
-      expect(document.foundational?).to be_falsey
     end
   end
 
@@ -137,18 +99,12 @@ describe Lcms::Engine::Document do
   end
 
   context 'File IDs' do
-    let(:document) { build :document, file_id:, foundational_file_id: }
+    let(:document) { build :document, file_id: }
     let(:file_id) { 'file_id' }
-    let(:foundational_file_id) { 'foundational_file_id' }
 
     describe '#file_url' do
       subject { document.file_url }
       it { is_expected.to eq "#{Lcms::Engine::Document::GOOGLE_URL_PREFIX}/#{file_id}" }
-    end
-
-    describe '#file_fs_url' do
-      subject { document.file_fs_url }
-      it { is_expected.to eq "#{Lcms::Engine::Document::GOOGLE_URL_PREFIX}/#{foundational_file_id}" }
     end
   end
 end

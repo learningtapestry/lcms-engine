@@ -49,3 +49,4 @@ sanitizer: '::Lcms::Engine::HtmlSanitizer'
 
 queries:
   document: '::Lcms::Engine::AdminDocumentsQuery'
+  material: '::Lcms::Engine::AdminMaterialsQuery'

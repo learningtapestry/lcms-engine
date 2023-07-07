@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= params.key?('debug') ? stylesheet_link_tag('lcms/engine/pdf_plain', media: 'all') : stylesheet_link_tag(base64_encoded_asset('lcms/engine/pdf_plain.css')) %>
-    <style type="text/css" media="all">
+    <style  media="all">
       .c-pdf-cc-logo {
         background-image: url("<%= base64_encoded_asset('lcms/engine/cc_logo.png') %>");
         background-repeat: no-repeat;

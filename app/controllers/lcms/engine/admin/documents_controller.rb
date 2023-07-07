@@ -18,7 +18,7 @@ module Lcms
         end
 
         def create
-          @document = DocumentForm.new(form_params.except(:async, :with_materials))
+          @document_form = DocumentForm.new(form_params.except(:async, :with_materials))
 
           return create_multiple if form_params[:link].match?(RE_GOOGLE_FOLDER)
 
@@ -42,49 +42,52 @@ module Lcms
         end
 
         def new
-          @document = DocumentForm.new
+          @document_form = DocumentForm.new
         end
 
         def reimport_selected
-          bulk_import @documents
+          bulk_import @documents.map(&:file_url)
           render :import
         end
 
         private
 
         def create_async
-          bulk_import(Array.wrap(form_params[:link]))
+          bulk_import Array.wrap(form_params[:link])
           render :import
         end
 
         def create_sync
           reimport_lesson_materials if form_params[:with_materials].present?
 
-          if @document.save
+          if @document_form.save
             notice = t('lcms.engine.admin.documents.create.success',
-                       name: @document.document.name,
+                       name: @document_form.document.name,
                        errors: collect_errors)
-            redirect_to dynamic_document_path(@document.document), notice:
+            redirect_to dynamic_document_path(@document_form.document), notice: notice
           else
             render :new
           end
         end
 
-        def bulk_import(docs)
+        #
+        # @param [Array<String>] file_urls
+        #
+        def bulk_import(file_urls)
           reimport_materials = params[:with_materials].to_i.nonzero?
-          jobs = docs.each_with_object({}) do |doc, jobs_|
-            job_id = DocumentGenerator.document_parse_job
-                       .perform_later(doc, reimport_materials:).job_id
-            link = doc.is_a?(Document) ? doc.file_url : doc
-            jobs_[job_id] = { link:, status: 'waiting' }
+          jobs = file_urls.each_with_object({}) do |url, jobs_|
+            job_id = DocumentGenerator.document_parse_job.perform_later(url, reimport_materials:).job_id
+            jobs_[job_id] = { link: url, status: 'waiting' }
           end
-          @props = { jobs:, type: :documents, links: view_links }
+          polling_path = lcms_engine.import_status_admin_documents_path
+          @props = { jobs:, links: view_links, polling_path:, type: :documents }.
+            transform_keys! { _1.to_s.camelize(:lower) }
         end
 
         def collect_errors
-          return if @document.service_errors.empty?
+          return if @document_form.service_errors.empty?
 
-          "Errors: #{@document.service_errors.join(' ')}"
+          "Errors: #{@document_form.service_errors.join(' ')}"
         end
 
         def find_selected
@@ -104,7 +107,7 @@ module Lcms
         def form_params
           @form_params ||=
             begin
-              data = params.require(:document_form).permit(:async, :link, :link_fs, :reimport, :with_materials).to_h
+              data = params.require(:document_form).permit(:async, :link, :with_materials).to_h
               data.delete(:with_materials) if data[:with_materials].to_i.zero?
               data
             end
@@ -129,8 +132,19 @@ module Lcms
         def set_query_params
           @query_params = params[:query]
             &.permit(
-              :broken_materials, :course, :grade, :inactive, :locale, :module, :only_failed,
-              :reimport_required, :search_term, :sort_by, :subject, :unit, grades: []
+              :broken_materials,
+              :course,
+              :grade,
+              :inactive,
+              :locale,
+              :module,
+              :only_failed,
+              :reimport_required,
+              :search_term,
+              :sort_by,
+              :subject,
+              :unit,
+              grades: []
             ) || {}
         end
       end

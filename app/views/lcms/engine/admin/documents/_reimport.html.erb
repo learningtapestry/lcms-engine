@@ -1,7 +1,5 @@
-<%= form_tag(lcms_engine.admin_documents_path, method: :post, class: 'u-inline inline-form-btn c-reimport-doc-form', target: '_blank') do %>
+<%= form_tag(lcms_engine.admin_documents_path, method: :post, target: '_blank', data: { turbo: false }) do %>
   <%= hidden_field_tag('document_form[link]', lesson.file_url) %>
-  <%= hidden_field_tag('document_form[link_fs]', lesson.file_fs_url) %>
-  <%= hidden_field_tag('document_form[reimport]', 1) %>
   <%= hidden_field_tag('document_form[with_materials]', 0, class: 'c-reimport-with-materials__field') %>
   <%= submit_tag 'Reimport', class: local_assigns.fetch(:btn_class, 'btn btn-warning'), data: { disable_with: false } %>
 <% end %>

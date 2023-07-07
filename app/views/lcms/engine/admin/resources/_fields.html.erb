@@ -15,8 +15,6 @@
 
   <%= f.input :curriculum_type, as: :select, collection: Lcms::Engine::Resource.hierarchy %>
 
-  <%= f.input :opr_description, label: t('lcms.engine.admin.resources.form.opr_description'), wrapper_html: {class: (resource.unit? ? '': 'c-hidden')} %>
-
   <%# TODO: Enable this back %>
   <%#= render_component('DirectoryPicker', directory_picker_props(resource)) %>
 

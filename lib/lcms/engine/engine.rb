@@ -7,7 +7,6 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
 require 'devise'
-require 'pdfjs_viewer-rails'
 require 'ransack'
 require 'resque/server'
 require 'validate_url'
@@ -16,7 +15,6 @@ require 'will_paginate'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
-require 'js-routes'
 
 # LearningTapestry gems
 require 'lt/google/api'
@@ -37,7 +35,6 @@ module Lcms
 
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
 
-      # TODO: Need to think how to handle this inside the engine
       config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
       config.assets.paths << config.root.join('node_modules/@fortawesome/fontawesome-free/webfonts')
 
@@ -94,11 +91,6 @@ module Lcms
           urls: ['/lcms-engine-assets'],
           root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
         )
-      end
-
-      initializer 'lcms_engine.middleware' do |app|
-        # Setup js-routes middleware
-        app.config.middleware.use(JsRoutes::Middleware)
       end
 
       # NOTE: Sample to customize the layout

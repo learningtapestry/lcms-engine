@@ -1,15 +1,10 @@
 <% set_page_title 'Lessons Manager' %>
 
 <div class="container-fluid o-adm-list o-adm-documents">
-
   <h1 class="text-center p-4"><%= t('.title') %></h1>
-
   <hr>
-
   <%= render 'search_form' %>
-
   <hr>
-
   <div class="row">
     <div class="col-sm-3">
       <p><%= page_entries_info @documents %></p>
@@ -24,24 +19,22 @@
     </div>
     <div class="col-sm-2">
       <%= render_component 'MultiSelectedOperation', {
-        text: t('.reimport_selected'),
-        operation: 'reimport',
-        path: lcms_engine.reimport_selected_admin_documents_path(query: @query_params),
-        btnStyle: 'btn-warning',
-        wrapperClass: 'm-1 col' } %>
+                           text: t('.reimport_selected'),
+                           operation: 'reimport',
+                           path: lcms_engine.reimport_selected_admin_documents_path(query: @query_params),
+                           btnStyle: 'btn-warning',
+                           wrapperClass: 'm-1 col' } %>
     </div>
     <div class="col-sm-3">
       <%= render_component 'MultiSelectedOperation', {
-        text: t('.delete_selected'),
-        operation: 'delete',
-        path: lcms_engine.delete_selected_admin_documents_path(query: @query_params),
-        btnStyle: 'btn-danger',
-        wrapperClass: 'm-1 col' } %>
+                           text: t('.delete_selected'),
+                           operation: 'delete',
+                           path: lcms_engine.delete_selected_admin_documents_path(query: @query_params),
+                           btnStyle: 'btn-danger',
+                           wrapperClass: 'm-1 col' } %>
     </div>
   </div>
-
   <hr>
-
   <div class="row">
     <table class="lessons-table table">
       <tr>
@@ -69,10 +62,6 @@
                 <strong>Core: </strong>
                 <%= link_to lesson.name, lesson.file_url, target: '_blank' %><br/>
               <% end %>
-              <% if lesson.file_fs_url.present? %>
-                <strong>FS: </strong>
-                <%= link_to lesson.fs_name, lesson.file_fs_url, target: '_blank', style: 'word-break: break-word' %>
-              <% end %>
             <% else %>
               <%= link_to lesson.name, lesson.file_url, target: '_blank' %>
             <% end %>
@@ -88,7 +77,7 @@
           </td>
           <td class="lessons-table__btns">
             <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', lesson: lesson } %>
-            <%= link_to t('ui.delete'), admin_document_path(lesson), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure') }, method: :delete %>
+            <%= link_to t('ui.delete'), lcms_engine.admin_document_path(lesson), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete } %>
           </td>
         </tr>
         <% end %>

@@ -75,6 +75,10 @@ module ResqueJob
     Resque.redis.set(key, res.to_json, ex: 1.hour.to_i)
   end
 
+  #
+  # @param [Hash] res
+  # @param [Hash] options
+  #
   def store_result(res, options = {})
     key = if (jid = options[:initial_job_id]).blank?
             result_key
