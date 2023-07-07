@@ -1,10 +1,17 @@
 <% set_page_title 'Batch Import' %>
 
 <div class="container-fluid">
-  <h2 class="text-center">Batch Reimport</h2>
-
+  <h2 class="text-center p-4">Batch Re-import resources</h2>
+  <hr>
   <div class="row">
-    <%= link_to '<- Back', lcms_engine.new_admin_batch_reimport_path(query: @query.to_h), class: 'button primary' %>
+    <div class="cols-sm">
+      <%= link_to 'Back', lcms_engine.new_admin_batch_reimport_path(query: @query.to_h), class: 'btn btn-success' %>
+    </div>
   </div>
-  <%= render_component('admin/ImportStatus', @props) %>
+  <hr>
+  <div class="row p-2">
+    <div class="col">
+      <%= render_component('ImportStatus', @props) %>
+    </div>
+  </div>
 </div>

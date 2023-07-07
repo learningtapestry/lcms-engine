@@ -1,12 +1,8 @@
 <%= simple_form_for :query, url: lcms_engine.admin_documents_path, html: { 'data-turbo-track': 'reload', method: :get } do |f| %>
   <div class="row mb-lg-2">
     <div class="col">
-      <%= f.input :subject, label: 'Subject',
-                  required: false,
-                  as: :select,
-                  include_blank: true,
-                  collection: Lcms::Engine::Resource::SUBJECTS,
-                  label_method: :humanize %>
+      <%= f.input :subject, label: 'Subject', required: false, as: :select, include_blank: true,
+                  collection: Lcms::Engine::Resource::SUBJECTS, label_method: :humanize %>
     </div>
     <div class="col">
       <%= f.input :grades, collection: Lcms::Engine::Grades.grades,
@@ -14,10 +10,10 @@
                   label: t('.grades'), label_method: :humanize, required: false, wrapper: false %>
     </div>
     <div class="col">
-      <%= f.input :module, placeholder: 'Number', required: false, wrapper_html: { class: 'o-admin-module' } %>
+      <%= f.input :module, required: false %>
     </div>
     <div class="col">
-      <%= f.input :unit, label: 'Unit / Topic', placeholder: 'Number or Letter', required: false, wrapper_html: { class: 'o-admin-unit' } %>
+      <%= f.input :unit, label: 'Unit', required: false %>
     </div>
   </div>
   <div class="row">
