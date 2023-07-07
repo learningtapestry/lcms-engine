@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import CurriculumEditor from './curriculum/CurriculumEditor';
 import ImportStatus from './ImportStatus';
-// import DirectoryPicker from './curriculum/DirectoryPicker';
 import MultiSelectedOperation from './MultiSelectedOperation';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -10,7 +9,6 @@ class Initializer {
   static initialize() {
     // Mount internal components
     Initializer.#initializeCurriculumEditor();
-    // Initializer.#initializeDirectoryPicker();
     Initializer.#InitializeImportStatus();
     Initializer.#initializeMultiSelectedOperation();
 
@@ -24,15 +22,6 @@ class Initializer {
       const props = JSON.parse(e.dataset.content);
       e.removeAttribute('data-content');
       ReactDOM.render(<CurriculumEditor {...props} />, e);
-    });
-  }
-
-  // TODO: Implement
-  static #initializeDirectoryPicker() {
-    document.querySelectorAll('[id="#lcms-engine-DirectoryPicker"]').forEach(e => {
-      const props = JSON.parse(e.dataset.content);
-      e.removeAttribute('data-content');
-      ReactDOM.render(<DirectoryPicker {...props} />, e);
     });
   }
 

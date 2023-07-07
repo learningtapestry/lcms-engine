@@ -17,7 +17,7 @@ module Lcms
       MEDIA_TYPES = %i(video podcast).map { |t| resource_types[t] }.freeze
       GENERIC_TYPES = %i(text_set quick_reference_guide resource_other).map { |t| resource_types[t] }.freeze
 
-      SUBJECTS = %w(ela math lead).freeze
+      SUBJECTS = %w(ela math).freeze
       HIERARCHY = %i(subject grade module unit lesson).freeze
 
       include Searchable

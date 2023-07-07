@@ -1,4 +1,24 @@
-<%= simple_form_for :query, url: lcms_engine.admin_batch_reimport_path, html: { class: 'form-inline well o-admin-lessons-search', method: :post } do |f| %>
+<%= simple_form_for :query, url: lcms_engine.admin_batch_reimport_path, html: { 'data-turbo-track': 'reload', method: :post } do |f| %>
+  <div class="row mb-lg-2">
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+
+    </div>
+    <div class="col">
+      <%= f.button :submit, 'Reimport', class: 'btn btn-warning', name: nil, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
 
   <div class="row align-bottom align-justify">
     <button class="button o-admin-search-subject float-right" type="button" data-toggle="subject">Select Subject</button>
@@ -26,7 +46,7 @@
     <%= f.input :type, label: nil, as: :select, include_blank: false,
                 collection: [['Lessons', 'documents'], ['Materials', 'materials']] %>
 
-    <%= f.button :submit, 'Reimport', class: 'o-admin-search-submit primary', name: nil, data: {confirm: 'Are you sure?'} %>
+
   </div>
 
 <% end %>

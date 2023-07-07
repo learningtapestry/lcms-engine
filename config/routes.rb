@@ -30,8 +30,6 @@ Lcms::Engine::Engine.routes.draw do
 
   namespace :admin do
     get '/' => 'welcome#index'
-    get '/association_picker' => 'association_picker#index'
-    get '/resource_picker' => 'resource_picker#index'
     resources :resources, except: :show do
       member do
         post :export_to_lti_cc, path: 'export-lti-cc'
