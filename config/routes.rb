@@ -62,7 +62,9 @@ Lcms::Engine::Engine.routes.draw do
       get :children
     end
     resources :access_codes, except: :show
-    resource :batch_reimport, only: %i(new create)
+    resource :batch_reimport, only: %i(new create) do
+      get :import_status, on: :collection
+    end
   end
 
   get '/oauth2callback' => 'welcome#oauth2callback'
