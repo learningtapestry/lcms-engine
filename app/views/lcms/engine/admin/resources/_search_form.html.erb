@@ -1,21 +1,35 @@
-<%= simple_form_for @query, url: lcms_engine.admin_resources_path, html: { class: 'form-inline well admin-resource-search', method: :get } do |f| %>
-
-  <div class='row align-justify'>
-    <%= f.input :grades, as: :select, collection: Lcms::Engine::Grades.grades, input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.grades'), label_method: :humanize, required: false, wrapper_html: { class: 'resource-search-wrap' } %>
-
-    <%= f.input :resource_standards_standard_id_in, as: :select, collection: Lcms::Engine::Standard.all, input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.standards'), required: false, wrapper_html: { class: 'resource-search-wrap' } %>
-
-    <%= f.input :tags_name_in, as: :select, collection: Lcms::Engine::Tag.where_context('tags').select(:id, :name).distinct(:name), input_html: { class: 'selectize resource-search-select', multiple: true }, label: t('.tags'), value_method: :name, required: false, wrapper_html: { class: 'resource-search-wrap' } %>
+<%= simple_form_for @query, url: lcms_engine.admin_resources_path, html: { method: :get } do |f| %>
+  <div class="row mb-lg-4">
+    <div class="col">
+      <%= f.input :grades, collection: Lcms::Engine::Grades.grades,
+                  input_html: { class: 'selectize', multiple: true },
+                  label: t('.grades'), label_method: :humanize, required: false, wrapper: false %>
+    </div>
+    <div class="col">
+      <%= f.input :resource_standards_standard_id_in, collection: Lcms::Engine::Standard.all,
+                  input_html: { class: 'selectize', multiple: true }, label: t('.standards'),
+                  required: false %>
+    </div>
+    <div class="col">
+      <%= f.input :tags_name_in,collection: Lcms::Engine::Tag.where_context('tags').select(:id, :name).distinct(:name),
+                  input_html: { class: 'selectize', multiple: true }, label: t('.tags'),
+                  value_method: :name, required: false %>
+    </div>
+    <div class="col">
+      <%= f.input :resource_type_eq, as: :select, required: false, label: t('.resource_types'),
+                  collection: Lcms::Engine::Resource.resource_types,
+                  input_html: { allow_blank: true } %>
+    </div>
   </div>
-
-  <div class='row align-justify'>
-    <%= f.input :slug_eq, label: t('.url_slug'), required: false, wrapper_html: { class: 'resource-search-url-slug' }  %>
+  <div class="row">
+    <div class="col">
+      <%= f.input :slug_eq, label: false, required: false, input_html: { class: 'form-control', placeholder: t('.url_slug') } %>
+    </div>
+    <div class="col">
+      <%= f.input :title_cont, label: false, required: false, input_html: { class: 'form-control', placeholder: t('.title') } %>
+    </div>
+    <div class="col">
+      <%= f.button :submit, t('ui.search'), class: 'btn btn-warning', name: nil %>
+    </div>
   </div>
-
-  <div class='row align-bottom align-justify'>
-    <%= f.input :resource_type_eq, as: :select, label: Lcms::Engine::Resource.human_attribute_name(:resource_type), required: false, wrapper_html: { class: 'resource-search-type' }, collection: Lcms::Engine::Resource.resource_types %>
-    <%= f.input :title_cont, label: t('.title'), required: false, wrapper_html: { class: 'resource-search-title' }  %>
-    <%= f.button :submit, t('ui.search'), class: 'resource-search-button', name: nil %>
-  </div>
-
 <% end %>

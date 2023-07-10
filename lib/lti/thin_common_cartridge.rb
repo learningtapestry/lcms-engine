@@ -64,7 +64,7 @@ module Lti
       href = "lti_links/#{item[:identifierref]}.xml"
       create_link item, href
 
-      file_node = create_node 'file', href: href
+      file_node = create_node('file', href:)
       node.add_child file_node
     end
 

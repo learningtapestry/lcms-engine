@@ -11,9 +11,9 @@ describe Lcms::Engine::Admin::MaterialsController do
 
   describe '#create' do
     let(:material) { create :material }
-    let(:form) { instance_double('Lcms::Engine::MaterialForm', material: material, save: valid) }
+    let(:form) { instance_double('Lcms::Engine::MaterialForm', material:, save: valid) }
     let(:link) { 'link' }
-    let(:params) { { link: link, source_type: 'gdoc' } }
+    let(:params) { { link:, source_type: 'gdoc' } }
     let(:valid) { true }
 
     before { allow(Lcms::Engine::MaterialForm).to receive(:new).and_return(form) }
@@ -45,9 +45,9 @@ describe Lcms::Engine::Admin::MaterialsController do
 
       before do
         allow(controller).to receive(:google_credentials).and_return(credentials)
-        allow(::Lt::Google::Api::Drive).to \
+        allow(Lt::Google::Api::Drive).to \
           receive(:folder_id_for).with(link).and_return(folder_id)
-        allow(::Lt::Google::Api::Drive).to \
+        allow(Lt::Google::Api::Drive).to \
           receive_message_chain(:new, :list_file_ids_in, :map).and_return(file_ids)
       end
 
@@ -73,7 +73,7 @@ describe Lcms::Engine::Admin::MaterialsController do
     end
 
     context 'when asynchronous import was requested' do
-      let(:params) { { async: '1', link: link } }
+      let(:params) { { async: '1', link: } }
 
       before { allow(controller).to receive(:bulk_import) }
 
@@ -94,9 +94,9 @@ describe Lcms::Engine::Admin::MaterialsController do
     context 'when there was custom filter' do
       let(:query) { { course: 'value' } }
 
-      subject { delete :destroy, params: { id: material.id, query: query } }
+      subject { delete :destroy, params: { id: material.id, query: } }
 
-      it { is_expected.to redirect_to "/lcms-engine/admin/materials?#{{ query: query }.to_param}" }
+      it { is_expected.to redirect_to "/lcms-engine/admin/materials?#{{ query: }.to_param}" }
     end
   end
 

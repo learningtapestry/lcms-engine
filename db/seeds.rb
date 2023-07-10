@@ -6,7 +6,6 @@ seeds = %w(
   authors.seeds.rb
   curriculums.seeds.rb
   subjects.seeds.rb
-  download_categories.seeds.rb
   development/users.seeds.rb
   development/grades.seeds.rb
 ).freeze

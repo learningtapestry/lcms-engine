@@ -18,11 +18,11 @@ describe Lcms::Engine::Admin::CurriculumsController do
     let(:resource) { create(:resource, :module) }
     let!(:children) { create_list(:resource, 3, parent: resource) }
 
-    subject { get :children, params: { id: id } }
+    subject { get :children, params: { id: } }
 
     it 'returns children of the requested resource' do
       JSON.parse(subject.body).each do |data|
-        child = ::Lcms::Engine::Resource.find(data['id'])
+        child = Lcms::Engine::Resource.find(data['id'])
         expect(child.parent_id).to eq id
       end
     end

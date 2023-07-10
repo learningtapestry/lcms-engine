@@ -8,7 +8,7 @@ describe DocTemplate::Tags::LatexTag do
     html = Nokogiri::HTML original_content
     html.at_xpath('*//ol')
   end
-  let(:options) { { value: value, preserve_color: false } }
+  let(:options) { { value:, preserve_color: false } }
   let(:original_content) do
     <<-HTML
       <ol class="lst-kix_q3dubtijti3v-1" start="2" style="padding:0;margin:0">

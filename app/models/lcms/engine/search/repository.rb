@@ -166,11 +166,9 @@ module Lcms
             query: {
               bool: {
                 filter: [],
-                should: tags.map { |t| { match: { t => term } } }.concat(
-                  [
-                    { match_phrase: { title: term } },
-                    { match_phrase: { teaser: term } }
-                  ]
+                should: tags.map { |t| { match: { t => term } } }.push(
+                  { match_phrase: { title: term } },
+                  { match_phrase: { teaser: term } }
                 ),
                 minimum_should_match: 1
               }
@@ -209,7 +207,7 @@ module Lcms
 
         def multisearch(queries)
           body = queries.map { |query| { search: query } }
-          client.msearch(index: index, type: type, body: body)['responses'].map do |r|
+          client.msearch(index:, type:, body:)['responses'].map do |r|
             Elasticsearch::Persistence::Repository::Response::Results.new(self, r)
           end
         end

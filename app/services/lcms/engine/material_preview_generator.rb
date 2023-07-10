@@ -6,8 +6,8 @@ module Lcms
     # Generates and uploads PDF/GDoc files for material
     #
     class MaterialPreviewGenerator
-      GDOC_RE = %r{docs.google.com/document/d/([^/]*)}i.freeze
-      GDOC_BROKEN_RE = %r{/open\?id=$}i.freeze
+      GDOC_RE = %r{docs.google.com/document/d/([^/]*)}i
+      GDOC_BROKEN_RE = %r{/open\?id=$}i
       PDF_S3_FOLDER = 'temp-materials-pdf'
 
       attr_reader :error, :url
@@ -45,7 +45,7 @@ module Lcms
         folder_id = options[:folder_id]
         file_id = material.preview_links['gdoc'].to_s.match(GDOC_RE)&.[](1)
         @url = DocumentExporter::Gdoc::Material.new(material)
-                 .export_to(folder_id, file_id: file_id)
+                 .export_to(folder_id, file_id:)
                  .url
         return true if @url !~ GDOC_BROKEN_RE
 

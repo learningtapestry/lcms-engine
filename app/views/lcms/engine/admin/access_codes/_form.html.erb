@@ -1,5 +1,7 @@
-<%= simple_form_for @access_code, url: @url.presence || lcms_engine.admin_access_codes_path, html: { id: 'access_code_form' } do |f| %>
-  <%= f.input :code %>
-  <%= f.input :active %>
-  <%= f.button :submit, t('ui.save'), name: nil %>
-<% end %>
+<div class="col-sm-3">
+  <%= simple_form_for @access_code, url: @url.presence || lcms_engine.admin_access_codes_path, html: { id: 'access_code_form' } do |f| %>
+    <%= f.input :code %>
+    <%= f.input :active %>
+    <%= f.button :submit, t('ui.save'), name: nil, class: 'btn btn-primary' %>
+  <% end %>
+</div>

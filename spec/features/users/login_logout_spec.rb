@@ -5,7 +5,7 @@ require 'rails_helper'
 feature 'Login/logout functionality' do
   given(:email) { Faker::Internet.email }
   given(:password) { Faker::Internet.password }
-  given!(:admin) { create :admin, email: email, password: password, password_confirmation: password }
+  given!(:admin) { create :admin, email:, password:, password_confirmation: password }
 
   scenario 'login' do
     visit lcms_engine.admin_path

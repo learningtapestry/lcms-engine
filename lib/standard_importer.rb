@@ -20,7 +20,7 @@ class StandardImporter
 
   private
 
-  RE_EMPHASIS = /^\(\+\)\s?/.freeze
+  RE_EMPHASIS = /^\(\+\)\s?/
 
   attr_reader :source_file, :subject
 
@@ -71,8 +71,8 @@ class StandardImporter
 
     Standard.create!(
       description: data[4].split(' ', 2).last.to_s.squish,
-      name: name,
-      strand: strand,
+      name:,
+      strand:,
       synonyms: data[3].to_s.squish
     )
   end
@@ -93,9 +93,9 @@ class StandardImporter
     Standard.create!(
       description: description&.squish,
       emphasis: emphasis&.squish,
-      name: name,
-      course: course,
-      domain: domain,
+      name:,
+      course:,
+      domain:,
       synonyms: data[3].to_s.squish
     )
   end

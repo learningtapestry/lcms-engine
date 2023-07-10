@@ -7,36 +7,6 @@ xdescribe Lcms::Engine::ResourcesController do
 
   before { sign_in create(:user) }
 
-  describe '#pdf_proxy' do
-    let(:data) { 'data' }
-    let(:filename) { 'filename' }
-    let(:params) { { disposition: :inline, file_name: filename } }
-    let(:url) { "http://host/dir/#{filename}" }
-
-    before { allow(URI).to receive_message_chain(:parse, :open, :read).and_return(data) }
-
-    subject { get :pdf_proxy, params: { url: url } }
-
-    it 'proxies the request' do
-      expect(controller).to receive(:send_data).with(data, params) do
-        controller.render nothing: true
-      end
-      subject
-    end
-
-    context 'when any error occurs' do
-      before { allow(URI).to receive_message_chain(:parse, :open) }
-
-      it { is_expected.to have_http_status 400 }
-    end
-
-    context 'when url has not been passed' do
-      let(:url) { nil }
-
-      it { is_expected.to have_http_status 404 }
-    end
-  end
-
   describe '#show' do
     context 'with slug' do
       before { get :show, slug: resource.slug }
@@ -50,18 +20,6 @@ xdescribe Lcms::Engine::ResourcesController do
       before { get :show, id: resource.id }
 
       it { expect(response).to redirect_to("/lcms-engine#{resource.slug}") }
-    end
-
-    context 'grade' do
-      let(:resource) { create(:resource, :grade) }
-      before { get :show, slug: resource.slug }
-      it { expect(response).to redirect_to lcms_engine(explore_curriculum_index_path(p: resource.slug, e: 1)) }
-    end
-
-    context 'module' do
-      let(:resource) { create(:resource, :module) }
-      before { get :show, slug: resource.slug }
-      it { expect(response).to redirect_to lcms_engine(explore_curriculum_index_path(p: resource.slug, e: 1)) }
     end
   end
 end

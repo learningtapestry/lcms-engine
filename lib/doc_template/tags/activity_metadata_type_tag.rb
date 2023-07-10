@@ -7,7 +7,7 @@ module DocTemplate
       include ERB::Util
 
       TAG_NAME = 'activity-metadata-type'
-      TASK_RE = /(\[task:\s(#)\])/i.freeze
+      TASK_RE = /(\[task:\s(#)\])/i
       TEMPLATES = {
         default: 'activity.html.erb',
         gdoc: 'gdoc/activity.html.erb'
@@ -58,7 +58,6 @@ module DocTemplate
         end
 
         {
-          foundational: opts[:foundational_skills],
           priority_description: priority_description(activity),
           priority_icon: priority_icon(activity),
           react_props: {

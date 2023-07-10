@@ -1,7 +1,0 @@
-<% if additional_resources.any? %>
-  <ul>
-    <% additional_resources.each do |resource| %>
-      <li><%= link_to resource.title, unbounded_resource_path(resource), class: 'additional-material-link', data: { 'resource-id' => resource.id, placement: 'right', toggle: 'tooltip' }, title: resource.title %>
-    <% end %>
-  </ul>
-<% end %>

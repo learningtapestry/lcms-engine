@@ -15,8 +15,9 @@ AllCops:
     - spec/dummy/db/schema.rb
     - spec/dummy/bin/*
     - templates/*
+    - config/initializers/simple_form_bootstrap.rb
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.2
 
 Layout/LineLength:
   Max: 120

@@ -3,14 +3,15 @@
 module Lcms
   module Engine
     class ApplicationController < ActionController::Base
+      # protect_from_forgery with: :null_session, prepend: true
+      protect_from_forgery prepend: true
+
       # store location to use at after sign in or other devise callbacks
       include LocationStorable
 
       before_action :authenticate_user!, unless: :pdf_request?
 
-      before_action :check_user_has_survey_filled_in, if: :user_signed_in?, unless: :devise_controller?
       before_action :configure_permitted_parameters, if: :devise_controller?
-      before_action :handle_x_frame_headers
 
       rescue_from ActiveRecord::RecordNotFound do
         render 'lcms/engine/pages/not_found', status: :not_found
@@ -24,25 +25,14 @@ module Lcms
         translate(key, **options)
       end
 
-      def check_user_has_survey_filled_in
-        return if current_user.ready_to_go?
-
-        store_location_for(:user, request.url) unless devise_controller?
-        redirect_to survey_path
-      end
-
       def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:access_code])
-      end
-
-      def handle_x_frame_headers
-        response.headers.delete('X-Frame-Options') if params[:controller].index('pdfjs_viewer').present?
       end
 
       private
 
       def after_sign_in_path_for(resource_or_scope)
-        stored_location_for(resource_or_scope) || main_app.root_path
+        stored_location_for(resource_or_scope) || lcms_engine.root_path
       end
 
       def after_sign_out_path_for(resource_or_scope)

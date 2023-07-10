@@ -93,7 +93,7 @@ module DocTemplate
         @documents[context_type] = ::DocTemplate::Document.parse(@content.dup, options)
         @documents[context_type].parts << {
           content: render(options),
-          context_type: context_type,
+          context_type:,
           data: {},
           materials: [],
           optional: false,
@@ -109,10 +109,6 @@ module DocTemplate
 
     def parts
       @documents.values.flat_map(&:parts)
-    end
-
-    def prereq?
-      metadata['type'].to_s.casecmp('prereq').zero?
     end
 
     def remove_part(type, context_type)

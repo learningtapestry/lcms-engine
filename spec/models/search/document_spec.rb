@@ -7,13 +7,13 @@ describe Lcms::Engine::Search::Document do
     let(:title) { 'title' }
 
     it 'builds from external page' do
-      object = described_class.build_from Lcms::Engine::ExternalPage.new(title: title)
+      object = described_class.build_from Lcms::Engine::ExternalPage.new(title:)
       expect(object.title).to eq title
       expect(object.doc_type).to eq 'page'
     end
 
     it 'builds from resource' do
-      object = described_class.build_from create(:resource, title: title)
+      object = described_class.build_from create(:resource, title:)
       expect(object.title).to eq title
       expect(object.doc_type).to eq 'lesson'
       expect(object.breadcrumbs).to eq 'ELA / G2 / M1 / U1 / lesson 1'

@@ -1,26 +1,29 @@
 {
   "name": "lcms-engine",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "dependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
-    "@rails/webpacker": "~5.4.3",
+    "@fortawesome/fontawesome-free": "^6.4.0",
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.7",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.3",
     "classnames": "^2.2.6",
-    "foundation-sites": "^6.7.4",
-    "jquery": "^3.6.0",
+    "jquery": "^3.6.4",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-tagsinput": "^3.19.0",
-    "react_ujs": "^2.6.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "sass": "^1.60.0",
+    "tom-select": "^2.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "esbuild": "^0.17.11",
     "eslint": "^7.23.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-react-app": "^6.0.0",
@@ -35,10 +38,11 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-prettier": "^1.2.0",
-    "stylelint-selector-bem-pattern": "^2.1.0",
-    "webpack-dev-server": "^3"
+    "stylelint-selector-bem-pattern": "^2.1.0"
   },
   "scripts": {
+    "build:js": "esbuild app/javascript/*.js --bundle --sourcemap --minify --outdir=public/lcms-engine-assets --loader:.js=jsx",
+    "build:css": "sass ./app/assets/stylesheets/lcms/engine/application.bootstrap.scss:./public/lcms-engine-assets/application.css --no-source-map --load-path=node_modules",
     "lint": "eslint --ext .js --ext .jsx app/javascript && stylelint 'app/assets/stylesheets/**/*.{css,scss}' --quiet",
     "lint:js": "eslint --ext .js --ext .jsx app/javascript",
     "lint:js:fix": "eslint --ext .js --ext .jsx app/javascript --quiet --fix",
@@ -50,7 +54,7 @@
     "url": "git+https://github.com/learningtapestry/lcms-engine.git"
   },
   "engines": {
-    "node": ">=14.17.0",
+    "node": ">=18.15",
     "yarn": ">=1.17.1"
   },
   "author": "Alexander Kuznetsov <paranoic.san@gmail.com>",

@@ -7,7 +7,7 @@ module Lcms
         def toggle_editing_enabled
           Settings[:editing_enabled] = !Settings[:editing_enabled]
           notice = Settings[:editing_enabled] ? t('.enabled') : t('.disabled')
-          redirect_to lcms_engine.admin_resources_path, notice: notice
+          redirect_to lcms_engine.admin_resources_path, notice:
         end
       end
     end

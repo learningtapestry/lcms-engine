@@ -1,5 +1,0 @@
-@function computed-height($typo, $lines) {
-  $font-size: map-get($typo, font-size);
-  $line-height: map-get($typo, line-height);
-  @return $font-size * ($line-height / $font-size) * $lines;
-}

@@ -11,13 +11,13 @@
       </table>
   <% end %>
 
-  <table id="<%= @tmpl[:activity].anchor %>" class="o-simple-table cs-bg--math-activity<%= '-foundational' if @tmpl[:foundational] %>-bg %>">
+  <table id="<%= @tmpl[:activity].anchor %>" class="o-simple-table cs-bg--math-activity-bg %>">
     <tr>
-      <td class="u-table-wrap--l2 cs-border-top--math<%= '-foundational' if @tmpl[:foundational] %>">
+      <td class="u-table-wrap--l2 cs-border-top--math">
         <table class="o-simple-table u-pdf-nobreak u-pdf-nobreak--around">
           <% if @tmpl[:activity].activity_type.present? %>
             <tr>
-              <td colspan="2" class="cs-txt--math-<%= @tmpl[:foundational] ? 'foundational': 'base' %> u-txt--title-type">
+              <td colspan="2" class="cs-txt--math-base u-txt--title-type">
                 <%= @tmpl[:activity].activity_type.upcase %>
               </td>
             </tr>
@@ -43,10 +43,10 @@
         <% end %>
 
         <% if @tmpl[:activity].activity_guidance.present? %>
-          <table class="o-simple-table cs-bg--math-activity<%= '-foundational' if @tmpl[:foundational] %>-guidance-bg">
+          <table class="o-simple-table cs-bg--math-activity-guidance-bg">
             <tr>
               <td class="u-table-wrap">
-                <p class="cs-txt--math-<%= @tmpl[:foundational] ? 'foundational': 'base' %> u-txt--title-type u-padding-bottom--xs">
+                <p class="cs-txt--math-base u-txt--title-type u-padding-bottom--xs">
                   <strong>GUIDANCE</strong>
                 </p>
                 <%= @tmpl[:activity].activity_guidance %>

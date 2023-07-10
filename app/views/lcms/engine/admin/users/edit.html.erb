@@ -2,8 +2,18 @@
 
 <% set_page_title title %>
 
-<div class=o-page>
-  <h2 class=text-center><%= title %></h2>
+<div class="container-fluid">
+  <h2 class=text-center><%= t('.page_title', user: @user.name) %></h2>
 
-  <%= render 'form' %>
+  <hr>
+
+  <div class="cols-sm">
+    <%= link_to 'Back to list', lcms_engine.admin_users_path, class: 'btn btn-success' %>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <%= render 'form' %>
+  </div>
 </div>

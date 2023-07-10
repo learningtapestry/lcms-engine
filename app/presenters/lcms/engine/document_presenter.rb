@@ -12,11 +12,7 @@ module Lcms
       TOPIC_SHORT   = { 'ela' => 'U', 'math' => 'T' }.freeze
 
       def cc_attribution
-        core_cc = ld_metadata.cc_attribution
-        return core_cc if (fs_cc = fs_metadata.cc_attribution).blank?
-        return core_cc if core_cc.casecmp(fs_cc).zero?
-
-        "#{core_cc} #{fs_cc}"
+        ld_metadata.cc_attribution
       end
 
       def color_code
@@ -40,7 +36,7 @@ module Lcms
       end
 
       def doc_type
-        assessment? ? 'assessment' : 'lesson'
+        'lesson'
       end
 
       def ela2?
@@ -51,22 +47,18 @@ module Lcms
         ela? && grade.to_s == '6'
       end
 
-      def fs_metadata
-        @fs_metadata ||= DocTemplate::Objects::BaseMetadata.build_from(foundational_metadata)
-      end
-
       def full_breadcrumb(unit_level: false)
         resource ? Breadcrumbs.new(resource).full_title : full_breadcrumb_from_metadata(unit_level)
       end
 
       def full_breadcrumb_from_metadata(unit_level)
-        lesson_level = assessment? ? 'Assessment' : "Lesson #{lesson}" unless unit_level
+        lesson_level = "Lesson #{lesson}" unless unit_level
         [
           SUBJECT_FULL[subject] || subject,
           grade.to_i.zero? ? grade : "Grade #{grade}",
           ll_strand? ? ld_module : "Module #{ld_module.try(:upcase)}",
           topic.present? ? "#{TOPIC_FULL[subject]} #{topic.try(:upcase)}" : nil,
-          lesson_level
+          lesson_level.to_s,
         ].compact.join(' / ')
       end
 
@@ -135,14 +127,8 @@ module Lcms
 
       # rubocop:disable Metrics/PerceivedComplexity
       def short_breadcrumb(join_with: ' / ', with_short_lesson: false, with_subject: true, unit_level: false)
-        unless unit_level
-          lesson_abbr =
-            if assessment?
-              with_short_lesson ? 'A' : 'Assessment'
-            else
-              with_short_lesson ? "L#{lesson}" : "Lesson #{lesson}"
-            end
-        end
+        lesson_abbr = with_short_lesson ? "L#{lesson}" : "Lesson #{lesson}" \
+          unless unit_level
         [
           with_subject ? SUBJECT_FULL[subject] || subject : nil,
           grade.to_i.zero? ? grade : "G#{grade}",
@@ -154,13 +140,7 @@ module Lcms
       # rubocop:enable Metrics/PerceivedComplexity
 
       def short_title
-        assessment? ? doc_type : "Lesson #{lesson}"
-      end
-
-      def short_url
-        @short_url ||= Bitly.client
-                         .shorten(document_url(self))
-                         .short_url
+        "Lesson #{lesson}"
       end
 
       def standards
@@ -184,8 +164,7 @@ module Lcms
       end
 
       def title
-        title = ld_metadata&.title
-        resource&.prerequisite? ? "Prerequisite -  #{title}" : title
+        ld_metadata&.title
       end
 
       def teacher_materials

@@ -24,7 +24,7 @@ module Lcms
         return unless File.exist?(zip_path.to_s)
 
         begin
-          doc_bundle = find_or_create_by(resource: resource, category: category, content_type: 'pdf')
+          doc_bundle = find_or_create_by(resource:, category:, content_type: 'pdf')
 
           File.open(zip_path) do |f|
             doc_bundle.file = f
@@ -42,7 +42,7 @@ module Lcms
         bundle_path = LessonsGdocBundler.new(resource).bundle
         return unless bundle_path
 
-        doc_bundle = find_or_create_by(resource: resource, category: 'full', content_type: 'gdoc')
+        doc_bundle = find_or_create_by(resource:, category: 'full', content_type: 'gdoc')
         doc_bundle.url = bundle_path
         doc_bundle.save!
       end

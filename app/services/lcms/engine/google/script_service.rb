@@ -48,7 +48,7 @@ module Lcms
         end
 
         def parameters
-          [document.cc_attribution, document.full_breadcrumb, document.short_url]
+          [document.cc_attribution, document.full_breadcrumb, document_url(document)]
         end
 
         def service

@@ -18,4 +18,4 @@ gemspec
 
 gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                   branch: 'puppeteer-support',
-                  ref: '964a090'
+                  ref: 'f4bbc54'

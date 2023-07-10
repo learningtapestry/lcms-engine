@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 # TODO: Need to refactor completely
-describe ::Lt::Lcms::Metadata::Service do
+describe Lt::Lcms::Metadata::Service do
   let(:html_document) do
     <<-HTML
       <html>

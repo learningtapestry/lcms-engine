@@ -16,8 +16,8 @@ module Elasticsearch
             @options = options
           end
 
-          def method_missing(method_name, *arguments, &block) # rubocop:disable Style/MissingRespondToMissing
-            results.respond_to?(method_name) ? results.__send__(method_name, *arguments, &block) : super
+          def method_missing(method_name, *arguments, &) # rubocop:disable Style/MissingRespondToMissing
+            results.respond_to?(method_name) ? results.__send__(method_name, *arguments, &) : super
           end
 
           def respond_to?(method_name, include_private = false) # rubocop:disable Style/OptionalBooleanParameter
@@ -32,12 +32,12 @@ module Elasticsearch
             response['hits']['max_score']
           end
 
-          def each_with_hit(&block)
-            results.zip(response['hits']['hits']).each(&block)
+          def each_with_hit(&)
+            results.zip(response['hits']['hits']).each(&)
           end
 
-          def map_with_hit(&block)
-            results.zip(response['hits']['hits']).map(&block)
+          def map_with_hit(&)
+            results.zip(response['hits']['hits']).map(&)
           end
 
           def results

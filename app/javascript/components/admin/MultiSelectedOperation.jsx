@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -13,13 +14,13 @@ class MultiSelectedOperation extends React.Component {
   componentDidMount() {
     // eslint-disable-next-line react/no-find-dom-node
     const $this = $(ReactDOM.findDOMNode(this));
-    $this.parent().addClass('c-multi-selected-btn');
+    $this.parent().addClass(`c-multi-selected-btn ${this.props.wrapperClass}`);
   }
 
   onSubmit(evt) {
     if (this.props.operation === 'delete' && !confirm('Are you sure?')) return; // eslint-disable-line no-restricted-globals
 
-    const entries = $('.o-page .table input[name="selected_ids[]"]');
+    const entries = $('.table input[name="selected_ids[]"]');
     const ids = _.filter(entries, e => e.checked).map(e => e.value);
     if (ids.length === 0) return evt.preventDefault();
 
@@ -29,7 +30,7 @@ class MultiSelectedOperation extends React.Component {
   }
 
   render() {
-    const btnClass = `button ${this.props.btn_style}`;
+    const btnClass = `btn ${this.props.btnStyle}`;
     const method = this.props.operation === 'delete' ? 'delete' : 'post';
     const csrf_token = $('meta[name=csrf-token]').attr('content');
     return (
@@ -42,6 +43,7 @@ class MultiSelectedOperation extends React.Component {
         method="post"
         className="c-reimport-doc-form"
         onSubmit={this.onSubmit}
+        data-turbo={false}
       >
         <input name="utf8" value="✓" type="hidden" />
         <input name="_method" value={method} type="hidden" />
@@ -56,7 +58,8 @@ class MultiSelectedOperation extends React.Component {
 
 MultiSelectedOperation.propTypes = {
   operation: PropTypes.string,
-  btn_style: PropTypes.string,
+  btnStyle: PropTypes.string,
+  wrapperClass: PropTypes.string,
   path: PropTypes.string,
   text: PropTypes.string,
 };

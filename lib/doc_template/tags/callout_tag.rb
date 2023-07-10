@@ -12,8 +12,8 @@ module DocTemplate
       def parse_table(table)
         header, content = fetch_content(table)
         params = {
-          content: content,
-          header: header,
+          content:,
+          header:,
           subject: @opts[:metadata].resource_subject
         }
         new_content = parse_template params, template_name(@opts)

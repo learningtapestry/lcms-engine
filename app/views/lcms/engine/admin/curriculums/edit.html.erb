@@ -2,15 +2,16 @@
 
 <% set_page_title 'Curriculum Tree Manager' %>
 
-<div class="o-page">
-
-  <% if @curriculum.present? %>
-    <h1 class="text-center">Curriculum Tree</h1>
-    <div class="row">
-      <%= react_component('admin/curriculum/CurriculumEditor',
-                          @curriculum.editor_props.merge(
-                            form_token: form_authenticity_token,
-                            path: lcms_engine.children_admin_curriculum_path)) %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-lg-6 border rounded-3 m-4 p-4 w-50">
+      <% if @curriculum.present? %>
+        <h1 class="text-center">Curriculum Tree</h1>
+        <%= render_component('CurriculumEditor',
+                             @curriculum.editor_props.merge(form_token: form_authenticity_token, path: lcms_engine.children_admin_curriculum_path)) %>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col"></div>
+  </div>
 </div>

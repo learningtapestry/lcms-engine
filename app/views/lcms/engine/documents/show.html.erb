@@ -1,31 +1,29 @@
-<% set_page_title @document.metadata['title'].to_s.html_safe %>
+<% title = @document.resource&.title.presence || @document.metadata['title'].to_s.html_safe %>
+<% set_page_title title %>
 
-<style type="text/css">
+<style >
   <%= raw(@document.css_styles) %>
 </style>
 
-<%= render 'sticky_header', document: @document, props: @props if @props[:results].present? %>
-
-<div class="c-ld-page-header cs-bg--<%= @document.color_code_grade %>">
-  <div class="o-page">
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="text-center p-4"><%= title %></h1>
+    <hr>
     <% if current_user&.admin? %>
-      <div class="o-page__module u-margin-bottom--gutter">
-        <%= link_to admin_documents_path(request.query_parameters), class: 'o-ub-ld-btn o-ub-ld-btn--bordered' do %>
-          Go to Lessons Admin
+      <div class="col">
+        <%= link_to 'Go to Lessons Admin', admin_documents_path(request.query_parameters), class: 'btn btn-success' %>
+        <%= link_to @document.file_url, class: 'btn btn-secondary', target: '_blank' do %>
+          <i class="fa-brands fa-google"></i> Google Doc
         <% end %>
-        <%= link_to @document.file_url, class: 'o-ub-ld-btn o-ub-ld-btn--bordered', target: '_blank' do %>
-          <i class="fab fa-google"></i> Google Doc
-        <% end %>
-        <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { lesson: @document, btn_class: 'o-ub-ld-btn o-ub-ld-btn--bordered' } %>
-
+      </div>
+      <div class="col mb-sm-3 text-end">
+        <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { lesson: @document } %>
       </div>
     <% end %>
-    <%= render 'header', document: @document, props: @props if @props[:results].present? %>
+    <hr>
   </div>
 </div>
-<div class="u-bg--light">
-  <div class="o-page o-page--ld c-ld--<%= @document.color_code_grade %> u-padding-bottom--gutter2x doc-subject-<%= @document.metadata['subject'].to_s.downcase %>" data-scroll="ld-page" id="ld-page">
-    <%= render 'content', document: @document %>
-  </div>
+
+<div class="container-fluid">
+  <%= render 'content', document: @document %>
 </div>
-<a href="#" class="o-top-scroll-button"><i class="ub-angle-down"></i></a>

@@ -12,7 +12,7 @@ module Lcms
       private
 
       def pdf_request?
-        request.path.index('pdfjs').present? || request.path.index('pdf-proxy').present?
+        request.path.index('pdf-proxy').present?
       end
 
       def storable_location?

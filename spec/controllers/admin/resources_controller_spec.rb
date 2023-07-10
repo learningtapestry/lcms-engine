@@ -22,7 +22,7 @@ describe Lcms::Engine::Admin::ResourcesController do
 
   describe '#update' do
     let(:description) { Faker::Lorem.sentence }
-    let(:params) { { description: description, directory: resource.metadata.keys.join(',') } }
+    let(:params) { { description:, directory: resource.metadata.keys.join(',') } }
 
     subject { post :update, params: { id: resource.to_param, resource: params } }
 

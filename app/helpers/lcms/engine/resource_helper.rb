@@ -17,11 +17,6 @@ module Lcms
         resource.curriculum_type&.capitalize
       end
 
-      def back_to_resource_path(resource)
-        slug = resource.lesson? && resource.parent ?  resource.parent.slug : resource.slug
-        CGI.unescape(explore_curriculum_index_path(p: slug, e: 1))
-      end
-
       def copyrights_text(object)
         cc_descriptions = []
         object.copyrights.each do |copyright|
@@ -33,13 +28,7 @@ module Lcms
         cc_descriptions.join(' ')
       end
 
-      def download_per_category_limit
-        ResourceDownload::DOWNLOAD_PER_CATEGORY_LIMIT
-      end
-
       def resource_breadcrumbs_with_links(resource)
-        return GenericPresenter.new(resource).generic_title if resource.generic?
-
         breadcrumbs = Breadcrumbs.new(resource)
         pieces = breadcrumbs.full_title.split(' / ')
         short_pieces = breadcrumbs.short_title.split(' / ')
@@ -60,16 +49,6 @@ module Lcms
             result << link
           end
         end.join(' / ').html_safe
-      end
-
-      def prerequisites_standards(resource)
-        ids = StandardLink
-                .where(standard_end_id: resource.standards.pluck(:id))
-                .where.not(link_type: 'c')
-                .pluck(:standard_begin_id)
-        Standard
-          .where(id: ids).pluck(:alt_names).flatten.uniq
-          .map { |n| Standard.filter_ccss_standards(n, resource.subject) }.compact.sort
       end
     end
   end

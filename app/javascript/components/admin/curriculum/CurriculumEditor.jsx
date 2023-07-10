@@ -126,7 +126,7 @@ class CurriculumEditor extends React.Component {
           <input name="_method" value="patch" type="hidden" />
           <input name="authenticity_token" value={this.props.form_token} type="hidden" />
           <input name="curriculum[change_log]" type="hidden" value={jsonChangeLog} />
-          <input value="Save Changes" className="button primary" type="submit" />
+          <input value="Save Changes" className="btn btn-primary mb-3" type="submit" />
         </form>
         <p className="o-curriculum-tree-editor__menu-info">
           (Click on a node with the right button to add/edit/remove)

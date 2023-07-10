@@ -19,9 +19,9 @@ module DocTemplate
 
         params = {
           content: parse_nested(content, opts),
-          css_class: css_class,
+          css_class:,
           subject: opts[:metadata].subject,
-          title: title
+          title:
         }
 
         @content = parse_template params, template_name(opts)

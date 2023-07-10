@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Lcms::Engine::Breadcrumbs do
   let(:breadcrumbs) { described_class.new(resource) }
   let(:metadata) { Lcms::Engine::Resource.metadata_from_dir(dir) }
-  let(:resource) { create :resource, curriculum_type: type, metadata: metadata }
+  let(:resource) { create :resource, curriculum_type: type, metadata: }
 
   context 'map' do
     let(:type) { 'map' }

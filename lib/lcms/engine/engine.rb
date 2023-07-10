@@ -7,24 +7,14 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'closure_tree'
 require 'devise'
-require 'jquery-rails'
-require 'pdfjs_viewer-rails'
 require 'ransack'
-require 'react-rails'
 require 'resque/server'
-require 'turbolinks'
 require 'validate_url'
 require 'virtus'
 require 'will_paginate'
-require 'will_paginate-bootstrap'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
-require 'font-awesome-sass'
-require 'foundation-rails'
-require 'js-routes'
-require 'nested_form'
-require 'webpacker'
 
 # LearningTapestry gems
 require 'lt/google/api'
@@ -45,14 +35,13 @@ module Lcms
 
       config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml')]
 
-      config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload if ENV['ENABLE_LIVERELOAD']
-
-      config.assets.paths << "#{config.root}/public/javascripts"
+      config.assets.paths << config.root.join('node_modules/bootstrap-icons/font')
+      config.assets.paths << config.root.join('node_modules/@fortawesome/fontawesome-free/webfonts')
 
       config.after_initialize do
         config.active_job.queue_adapter = :resque
 
-        if ::Rails.env.development? || ::Rails.env.test?
+        if Gem.loaded_specs['bullet'].present? && (::Rails.env.development? || ::Rails.env.test?)
           require 'bullet'
 
           ::Bullet.enable = true
@@ -72,10 +61,7 @@ module Lcms
           #{Rails.root}/app/**/lcms/engine/*_decorator*.rb
         ]
 
-        Dir
-          .glob(decorators)
-          .sort
-          .each(&method(:require))
+        Dir.glob(decorators).each(&method(:require))
       rescue ActiveRecord::NoDatabaseError
         puts 'ActiveRecord::NoDatabaseError thrown!'
       end
@@ -98,27 +84,11 @@ module Lcms
         app.config.assets.precompile += %w(lcms_engine_manifest.js ckeditor/config.js)
       end
 
-      initializer 'webpacker.proxy' do |app|
-        insert_middleware =
-          begin
-            Lcms::Engine.webpacker.config.dev_server.present?
-          rescue StandardError
-            nil
-          end
-        next unless insert_middleware
-
-        app.middleware.insert_before(
-          0, Webpacker::DevServerProxy,
-          ssl_verify_none: true,
-          webpacker: Lcms::Engine.webpacker
-        )
-      end
-
-      # Serves the engine's webpack when requested
-      initializer 'webpacker.static' do |app|
+      # Serves the engine's built assets when requested
+      initializer 'lcms_engine.assets.static' do |app|
         app.config.middleware.use(
           Rack::Static,
-          urls: ['/lcms_engine_packs'],
+          urls: ['/lcms-engine-assets'],
           root: File.join(Gem.loaded_specs['lcms-engine'].full_gem_path, 'public')
         )
       end

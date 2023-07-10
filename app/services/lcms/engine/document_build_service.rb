@@ -16,24 +16,23 @@ module Lcms
       end
 
       #
-      # @return Document ActiveRecord::Model
+      # @param [String] url
+      # @return [Lcms::Engine::Document]
       #
-      def build_for(url, expand: false)
+      def build_for(url)
         @content = download url
-        @expand_document = expand
         @template = DocTemplate::Template.parse @content
         @errors = @template.metadata_service.errors
 
-        create_document
+        @document = create_document
+        @document.update!(original_content: content)
+
         clear_preview_link
-
-        content_key = foundational? ? :foundational_content : :original_content
-        @document.update! content_key => content
-
         build
+
         @document.create_parts_for(template)
 
-        ActiveSupport::Notifications.instrument EVENT_BUILT, id: document.id
+        ActiveSupport::Notifications.instrument(EVENT_BUILT, id: document.id)
 
         document.activate!
         document
@@ -41,39 +40,20 @@ module Lcms
 
       private
 
-      attr_reader :credentials, :content, :document, :downloader, :expand_document, :options, :template
+      attr_reader :credentials, :content, :document, :downloader, :options, :template
 
       #
       # Building the document. Handles workflow:
       # Core-first FS-second and FS-first Core-second.
       #
       def build
-        if expand_document
-          combine_layout
-          combine_activity_metadata
-          document.update! build_params
-        else
-          document.document_parts.delete_all
-          document.update! document_params.merge(toc: template.toc, material_ids: template.toc.collect_material_ids)
-        end
+        document.document_parts.delete_all
+        document.update! document_params.merge(toc: template.toc, material_ids: template.toc.collect_material_ids)
       end
 
       def build_params
-        params =
-          if foundational?
-            {
-              foundational_metadata: template.foundational_metadata,
-              fs_name: downloader.file.name
-            }
-          else
-            document_params.merge(
-              foundational_metadata: document.foundational_metadata,
-              fs_name: document.name,
-              name: downloader.file.name
-            )
-          end
-
-        params[:toc] = combine_toc
+        params = document_params.merge(fs_name: document.name, name: downloader.file.name)
+        params[:toc] = document.toc
         params[:material_ids] = params[:toc].collect_material_ids
         params
       end
@@ -84,58 +64,15 @@ module Lcms
         document.links = links
       end
 
-      def combine_activity_metadata
-        old_data = document.activity_metadata
-        new_data =
-          if foundational?
-            old_data.concat template.activity_metadata
-            old_data
-          else
-            template.activity_metadata.concat old_data
-            template.activity_metadata
-          end
-        document.activity_metadata = new_data
-      end
-
-      def combine_layout
-        DocumentPart.context_types.each_key do |context_type|
-          existing_layout = document.layout(context_type)
-          new_layout = template.remove_part :layout, context_type
-          new_layout_content =
-            if foundational?
-              "#{existing_layout.content}#{new_layout[:content]}"
-            else
-              "#{new_layout[:content]}#{existing_layout.content}"
-            end
-          existing_layout.update content: new_layout_content
-        end
-      end
-
-      def combine_toc
-        modifier = foundational? ? :append : :prepend
-        toc = document.toc
-        toc.send modifier, template.toc
-        toc
-      end
-
+      #
       # Initiate or update existing document:
-      # - fills in original or fs contents
-      # - stores specific file_id for each type of a lesson
+      # - fills in original contents
+      # - stores specific file_id
+      #
       def create_document
-        # rubocop:disable Lint/AmbiguousOperatorPrecedence
-        if template.metadata['subject'].presence &&
-           template.metadata['subject'].casecmp('ela').zero? || template.prereq?
-          @document = Document.actives.find_or_initialize_by(file_id: downloader.file_id)
-        else
-          @document = foundational? ? find_core_document : find_fs_document
-          id_field = foundational? ? :foundational_file_id : :file_id
-
-          @expand_document ||= @document.present?
-
-          @document[id_field] = downloader.file_id if @document.present?
-          @document ||= Document.actives.find_or_initialize_by(id_field => downloader.file_id)
-        end
-        # rubocop:enable Lint/AmbiguousOperatorPrecedence
+        doc = find_resource
+        doc[:file_id] = downloader.file_id if doc.present?
+        doc || Document.actives.find_or_initialize_by(file_id: downloader.file_id)
       end
 
       def document_params
@@ -143,7 +80,6 @@ module Lcms
           activity_metadata: template.metadata_service.try(:activity_metadata),
           agenda_metadata: template.metadata_service.try(:agenda),
           css_styles: template.css_styles,
-          foundational_metadata: template.metadata_service.try(:foundational_metadata),
           name: downloader.file.name,
           last_modified_at: downloader.file.modified_time,
           last_author_email: downloader.file.last_modifying_user.try(:email_address),
@@ -160,34 +96,10 @@ module Lcms
         @downloader.content
       end
 
-      #
-      # If there is existing lesson with Core-type - return it. Nil otherwise.
-      #
-      def find_core_document
-        return unless (core_doc = find_resource)
-        return if core_doc.foundational?
-
-        core_doc
-      end
-
-      #
-      # If there is existing lesson with FS-type - return it. Nil otherwise.
-      #
-      def find_fs_document
-        return unless (fs_doc = find_resource)
-        return unless fs_doc.foundational?
-
-        fs_doc
-      end
-
       def find_resource
         context = DocTemplate.config.dig('metadata', 'context').constantize
         dir = context.new(template.metadata.with_indifferent_access).directory
         Resource.find_by_directory(dir)&.document
-      end
-
-      def foundational?
-        !!template.metadata_service.try(:foundational?)
       end
     end
   end

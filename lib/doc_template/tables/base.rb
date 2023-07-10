@@ -3,7 +3,7 @@
 module DocTemplate
   module Tables
     class Base
-      SPLIT_REGEX = /[,;\r\n]/.freeze
+      SPLIT_REGEX = /[,;\r\n]/
 
       attr_reader :errors, :data
 

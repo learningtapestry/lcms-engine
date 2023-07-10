@@ -1,0 +1,34 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= params.key?('debug') ? stylesheet_link_tag('lcms/engine/pdf_plain', media: 'all') : stylesheet_link_tag(base64_encoded_asset('lcms/engine/pdf_plain.css')) %>
+    <style  media="all">
+      .c-pdf-cc-logo {
+        background-image: url("<%= base64_encoded_asset('lcms/engine/cc_logo.png') %>");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .c-pdf-ub-logo {
+        background-image: url("<%= base64_encoded_asset('lcms/engine/logo_pdf.svg') %>");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+    <script>
+    function subst() {
+      var vars={};
+      var x=document.location.search.substring(1).split('&');
+      for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+      var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+      for(var i in x) {
+        var y = document.getElementsByClassName(x[i]);
+        for(var j=0; j<y.length; ++j) y[j].textContent = y[j].textContent + vars[x[i]];
+      }
+    }
+    </script>
+  </head>
+  <%= yield %>
+</html>

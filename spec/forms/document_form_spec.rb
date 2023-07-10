@@ -16,7 +16,7 @@ describe Lcms::Engine::DocumentForm do
 
     context 'when is valid' do
       let(:link) { 'doc-url' }
-      let(:params) { { link: link } }
+      let(:params) { { link: } }
 
       before do
         allow(Lcms::Engine::DocumentGenerator).to receive(:generate_for)
@@ -56,18 +56,15 @@ describe Lcms::Engine::DocumentForm do
       end
 
       context 'when that is re-import operation' do
-        before { params.merge!(link_fs: 'ink_fs', reimport: '1') }
-
-        it 'calls service sequentently to import both type of links' do
+        it 'calls service sequentially to import both type of links' do
           expect(service).to receive(:build_for).with(params[:link])
-          expect(service).to receive(:build_for).with(params[:link_fs], expand: true)
           subject
         end
       end
 
       context 'when there are non-critical errors' do
         let(:errors) { %w(error-1 error-2 error-3) }
-        let(:service) { instance_double('DocumentBuildService', build_for: document, errors: errors) }
+        let(:service) { instance_double('DocumentBuildService', build_for: document, errors:) }
 
         it 'store service errors' do
           subject

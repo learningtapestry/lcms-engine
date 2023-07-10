@@ -1,9 +1,0 @@
-.o-materials-list {
-  @include flex;
-
-  justify-content: space-between;
-
-  div:first-child {
-    @include flex;
-  }
-}

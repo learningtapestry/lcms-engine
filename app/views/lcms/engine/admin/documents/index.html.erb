@@ -1,31 +1,41 @@
 <% set_page_title 'Lessons Manager' %>
 
-<div class="o-page o-adm-list o-adm-documents">
-
-  <h1 class=text-center><%= t('.title') %></h1>
-
+<div class="container-fluid o-adm-list o-adm-documents">
+  <h1 class="text-center p-4"><%= t('.title') %></h1>
+  <hr>
   <%= render 'search_form' %>
-
-  <div class=row>
-    <div class="flex-pull-left">
+  <hr>
+  <div class="row">
+    <div class="col-sm-3">
+      <p><%= page_entries_info @documents %></p>
+    </div>
+    <div class="col-sm-2">
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
+      <br>
       <span class="c-reimport-with-materials__toggle"><%= check_box_tag 'reimport_with_materials', 1 %> Reimport with Materials</span>
     </div>
-    <div class='flex-pull-right'>
-
-      <%= react_component 'admin/MultiSelectedOperation', {
-            text: t('.reimport_selected'),
-            operation: 'reimport',
-            path: reimport_selected_admin_documents_path(query: @query_params),
-            btn_style: 'primary' } %>
-      <%= react_component 'admin/MultiSelectedOperation', {
-            text: t('.delete_selected'),
-            operation: 'delete',
-            path: delete_selected_admin_documents_path(query: @query_params),
-            btn_style: 'alert'} %>
-
-      <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'button primary' %>
+    <div class="col-sm-2">
+      <%= link_to t('.new_lesson'), lcms_engine.new_admin_document_path, class: 'btn btn-primary m-1' %>
     </div>
+    <div class="col-sm-2">
+      <%= render_component 'MultiSelectedOperation', {
+                           text: t('.reimport_selected'),
+                           operation: 'reimport',
+                           path: lcms_engine.reimport_selected_admin_documents_path(query: @query_params),
+                           btnStyle: 'btn-warning',
+                           wrapperClass: 'm-1 col' } %>
+    </div>
+    <div class="col-sm-3">
+      <%= render_component 'MultiSelectedOperation', {
+                           text: t('.delete_selected'),
+                           operation: 'delete',
+                           path: lcms_engine.delete_selected_admin_documents_path(query: @query_params),
+                           btnStyle: 'btn-danger',
+                           wrapperClass: 'm-1 col' } %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
     <table class="lessons-table table">
       <tr>
         <th></th>
@@ -52,10 +62,6 @@
                 <strong>Core: </strong>
                 <%= link_to lesson.name, lesson.file_url, target: '_blank' %><br/>
               <% end %>
-              <% if lesson.file_fs_url.present? %>
-                <strong>FS: </strong>
-                <%= link_to lesson.fs_name, lesson.file_fs_url, target: '_blank', style: 'word-break: break-word' %>
-              <% end %>
             <% else %>
               <%= link_to lesson.name, lesson.file_url, target: '_blank' %>
             <% end %>
@@ -70,8 +76,8 @@
             <% end %>
           </td>
           <td class="lessons-table__btns">
-            <%= render partial: 'lcms/engine/admin/documents/reimport', locals: {lesson: lesson} %>
-            <%= button_to t('ui.delete'), admin_document_path(lesson), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+            <%= render partial: 'lcms/engine/admin/documents/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', lesson: lesson } %>
+            <%= link_to t('ui.delete'), lcms_engine.admin_document_path(lesson), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete } %>
           </td>
         </tr>
         <% end %>
@@ -80,8 +86,8 @@
   </div>
 
   <div class="row">
-    <div class='col-sm-12 text-center'>
-      <%= will_paginate @documents, renderer: BootstrapPagination::Rails %>
+    <div class="'col-sm-12 text-center'">
+      <%= will_paginate @documents %>
     </div>
   </div>
 

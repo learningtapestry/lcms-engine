@@ -1,8 +1,12 @@
-<div class=o-page>
+<div class="container-fluid">
 
   <h2 class=text-center>Standards</h2>
 
-  <%= render 'search_form' %>
+  <div class="row">
+    <%= render 'search_form' %>
+  </div>
+
+  <hr>
 
   <div class=row>
     <div class="col-md-12 o-admin-standards-table">
@@ -12,17 +16,17 @@
           <th>Subject</th>
           <th>Grades</th>
           <th>Synonyms</th>
-          <th>Action</th>
+          <th></th>
         </tr>
 
         <% @standards.each do |std| %>
           <% cache std do %>
             <tr id="std<%= std.id %>">
-              <td><b><%= std.name %></b></td>
+              <td><%= link_to std.name, lcms_engine.edit_admin_standard_path(std) %></td>
               <td><%= std.subject %></td>
               <td><%= std.grades.join(', ') %></td>
               <td><%= std.alt_names.join(' / ') %></td>
-              <td><%= link_to 'edit', lcms_engine.edit_admin_standard_path(std), class: 'button btn o-btn' %></td>
+              <td><%= link_to t('ui.delete'), lcms_engine.admin_standard_path(std), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete } %></td>
             </tr>
           <% end %>
         <% end %>
@@ -32,7 +36,7 @@
 
   <div class="row">
     <div class='col-sm-12 text-center'>
-      <%= will_paginate @standards, renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @standards %>
     </div>
   </div>
 </div>

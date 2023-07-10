@@ -5,7 +5,7 @@ module DocTemplate
     class ColumnsTag < BlockTag
       include ERB::Util
 
-      ALIGNMENT_RE = /^align-right\s/i.freeze
+      ALIGNMENT_RE = /^align-right\s/i
       SPLIT_SYMBOL = ';'
       TAG_NAME = 'columns'
       TEMPLATE = 'columns.html.erb'
@@ -24,7 +24,7 @@ module DocTemplate
           end
         end
 
-        @content = parse_template({ rows: rows }, TEMPLATE) if rows.any?
+        @content = parse_template({ rows: }, TEMPLATE) if rows.any?
         replace_tag node
         self
       end
@@ -84,7 +84,7 @@ module DocTemplate
       def handle_alignment_for(td)
         {}.tap do |result|
           result[:content] = td.sub ALIGNMENT_RE, ''
-          result[:css_class] = 'text-right' if td =~ ALIGNMENT_RE
+          result[:css_class] = 'text-end' if td =~ ALIGNMENT_RE
         end
       end
 

@@ -27,7 +27,7 @@ module Lcms
               .destroy_all
 
             (after.standard_ids - before.standard_ids).each do |standard_id|
-              resource.resource_standards.find_or_create_by!(standard_id: standard_id)
+              resource.resource_standards.find_or_create_by!(standard_id:)
             end
 
             resource.metadata['grade'] = after.metadata['grade']

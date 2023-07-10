@@ -17,7 +17,7 @@ describe DocTemplate::Tables::Base do
     it 'prepares the tag to render correctly' do
       expect(Nokogiri::HTML).to receive(:fragment).with(html).and_return(Nokogiri::HTML.fragment(html))
       expect(DocTemplate::Document).to receive_message_chain(:parse, :render).and_return(html_rendered)
-      expect(::Sanitize).to receive(:fragment).with(html_rendered, elements: opts[:keep_elements]).and_return('')
+      expect(Sanitize).to receive(:fragment).with(html_rendered, elements: opts[:keep_elements]).and_return('')
       subject
     end
 
@@ -27,7 +27,7 @@ describe DocTemplate::Tables::Base do
       it 'skips sanitization' do
         expect(Nokogiri::HTML).to receive(:fragment).with(html).and_return(Nokogiri::HTML.fragment(html))
         expect(DocTemplate::Document).to receive_message_chain(:parse, :render).and_return(html_rendered)
-        expect(::Sanitize).to_not receive(:fragment)
+        expect(Sanitize).to_not receive(:fragment)
         subject
       end
     end
@@ -78,8 +78,8 @@ describe DocTemplate::Tables::Base do
 
   describe '#parse_in_context' do
     let(:contexts) { DocTemplate::DEFAULTS[:context_types] }
-    let(:metadata) { ::DocTemplate::Objects::BaseMetadata.new }
-    let(:opts) { { explicit_render: false, metadata: metadata } }
+    let(:metadata) { DocTemplate::Objects::BaseMetadata.new }
+    let(:opts) { { explicit_render: false, metadata: } }
 
     subject { described_class.new.parse_in_context html, opts }
 

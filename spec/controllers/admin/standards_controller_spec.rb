@@ -32,21 +32,21 @@ describe Lcms::Engine::Admin::StandardsController do
 
       context 'name' do
         let(:name) { 'standard-name' }
-        let(:params) { { name: name } }
+        let(:params) { { name: } }
 
         it { expect(Lcms::Engine::Standard).to receive(:search_by_name).with(name).and_call_original }
       end
 
       context 'pagination' do
         let(:page) { '5' }
-        let(:params) { { page: page } }
+        let(:params) { { page: } }
         let(:scope) { double }
 
         before { allow(Lcms::Engine::Standard).to receive(:order).and_return(scope) }
 
-        subject { get :index, params: params }
+        subject { get :index, params: }
 
-        it { expect(scope).to receive(:paginate).with(page: page) }
+        it { expect(scope).to receive(:paginate).with(page:) }
       end
 
       after { subject }
@@ -55,7 +55,7 @@ describe Lcms::Engine::Admin::StandardsController do
 
   describe '#update' do
     let(:description) { 's-description' }
-    let(:params) { { description: description } }
+    let(:params) { { description: } }
 
     subject { post :update, params: { id: standard.to_param, standard: params } }
 

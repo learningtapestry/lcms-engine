@@ -68,7 +68,7 @@ describe Lcms::Engine::Resource do
     it 'populate metadata on creation' do
       parent = Lcms::Engine::Resource.find_by_directory dir
 
-      res = Lcms::Engine::Resource.create! parent: parent,
+      res = Lcms::Engine::Resource.create! parent:,
                                            title: 'Math-G2-M1-TA-Lesson 1',
                                            short_title: 'lesson 1',
                                            curriculum: Lcms::Engine::Curriculum.default,

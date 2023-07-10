@@ -35,8 +35,8 @@ feature 'Admin adds a material' do
 
     # stub GDoc download
     file_content = File.read File.join(sample_path, data[:file_name])
-    base_klass = ::Lt::Lcms::Lesson::Downloader::Base
-    gdoc_klass = ::Lt::Lcms::Lesson::Downloader::Gdoc
+    base_klass = Lt::Lcms::Lesson::Downloader::Base
+    gdoc_klass = Lt::Lcms::Lesson::Downloader::Gdoc
     allow_any_instance_of(base_klass).to receive(:file).and_return(downloaded_file.new(nil, nil, data[:file_name]))
     allow_any_instance_of(gdoc_klass).to receive_message_chain(:download, :content).and_return(file_content)
 
@@ -57,7 +57,7 @@ feature 'Admin adds a material' do
     expect(page).to have_field :material_form_link
 
     # stub PDF download
-    base_klass = ::Lt::Lcms::Lesson::Downloader::Base
+    base_klass = Lt::Lcms::Lesson::Downloader::Base
     allow_any_instance_of(base_klass).to receive(:file).and_return(downloaded_file.new(nil, nil, data[:file_name]))
 
     file_content = File.read File.join(sample_path, data[:file_name])

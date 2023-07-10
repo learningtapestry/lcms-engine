@@ -5,7 +5,7 @@ require 'doc_template'
 module DocTemplate
   module Tags
     class LatexTag < BaseTag
-      SPACE_RE = /[[:space:]]/.freeze
+      SPACE_RE = /[[:space:]]/
       TAG_NAME = 'latex'
 
       def self.s3_folder
@@ -58,7 +58,7 @@ module DocTemplate
       def generate_image
         svg_path =
           Tempfile.open(%w(tex-eq .svg)) do |svg|
-            svg.write EmbedEquations.tex_to_svg(value, custom_color: custom_color)
+            svg.write EmbedEquations.tex_to_svg(value, custom_color:)
             svg.path
           end
 

@@ -5,7 +5,7 @@ module DocTemplate
     class DefTag < BaseTag
       include ERB::Util
 
-      STYLE_RE = /<span (style=[^.>]*)>[^<]*$/i.freeze
+      STYLE_RE = /<span (style=[^.>]*)>[^<]*$/i
       TAG_NAME = 'def'
       TAG_SEPARATOR = '[separator]'
       TEMPLATES = {
@@ -28,11 +28,11 @@ module DocTemplate
 
         params = {
           append: data[1],
-          definition: definition,
-          description: description,
+          definition:,
+          description:,
           prepend: data[0],
-          preserved_style: preserved_style,
-          subject: subject
+          preserved_style:,
+          subject:
         }
 
         @content = "<p>#{parse_template(params, template_name(opts))}</p>"

@@ -9,9 +9,9 @@ describe Lcms::Engine::DocumentsController do
 
   # TODO: Need to re-new that specs as was done for PDF generation
   xdescribe '#export_gdoc' do
-    let(:exporter) { instance_double 'Lcms::Engine::DocumentExporter::GDoc::Base', url: url }
+    let(:exporter) { instance_double 'Lcms::Engine::DocumentExporter::GDoc::Base', url: }
     let(:file_id) { 'fileid' }
-    let(:metadata) { instance_double 'DocTemplate::Objects::BaseMetadata', title: title }
+    let(:metadata) { instance_double 'DocTemplate::Objects::BaseMetadata', title: }
     let(:title) { 'title' }
     let(:url) { 'url' }
 
@@ -47,7 +47,7 @@ describe Lcms::Engine::DocumentsController do
       let(:job_id) { '10' }
       let(:job_options) do
         {
-          excludes: excludes,
+          excludes:,
           content_type: type
         }
       end
@@ -60,7 +60,7 @@ describe Lcms::Engine::DocumentsController do
         allow(Lcms::Engine::DocumentGeneratePdfJob).to receive_message_chain(:perform_later, :job_id).and_return(job_id)
       end
 
-      subject { post :export, params: { id: document.id, type: type, excludes: excludes, context: 'pdf' } }
+      subject { post :export, params: { id: document.id, type:, excludes:, context: 'pdf' } }
 
       it 'calls S3Service' do
         expect(Lcms::Engine::S3Service).to receive(:url_for)

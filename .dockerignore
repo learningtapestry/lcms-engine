@@ -19,7 +19,6 @@ pdfs
 .DS_Store
 .generators
 .rakeTasks
-public/lcms_engine_packs
 yarn-debug.log*
 yarn-integrity
 yarn-error.log

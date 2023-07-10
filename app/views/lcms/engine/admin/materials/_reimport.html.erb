@@ -1,5 +1,5 @@
-<%= form_tag(lcms_engine.admin_materials_path, method: :post, class: 'inline-form-btn', target: '_blank') do %>
+<%= form_tag(lcms_engine.admin_materials_path, method: :post, target: '_blank', data: { turbo: false }) do %>
   <%= hidden_field_tag('material_form[source_type]', material.source_type) %>
   <%= hidden_field_tag('material_form[link]', material.file_url) %>
-  <%= submit_tag 'Reimport', class: "button primary #{local_assigns.fetch(:btn_size, 'small')}", data: { disable_with: false } %>
+  <%= submit_tag 'Reimport', class: local_assigns.fetch(:btn_class, 'btn btn-warning'), data: { disable_with: false } %>
 <% end %>

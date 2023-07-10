@@ -18,14 +18,11 @@
     # TODO: Check the handle of chained path here
 #    material_path: 'lcms_engine.material_path'
 
-# TODO: Check the default values handling
-# Redefine views
+# Redefine views and paths
 #documents:
 #  index: '/lcms/engine/admin/documents/index'
 #  view_links:
 #    - '/documents/:id'
-
-# TODO: Check the default values handling
 #materials:
 #  index: '/lcms/engine/admin/materials/index'
 #  view_links:

@@ -52,7 +52,7 @@ module DocumentExporter
       field = path.starts_with?('/') ? :file : :template
       Lcms::Engine::ApplicationController.render(
         field => path,
-        layout: layout,
+        layout:,
         assigns: { document: @document, options: @options }
       )
     end

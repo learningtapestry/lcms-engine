@@ -24,17 +24,13 @@ module Lcms
         render json: data, status: :ok
       end
 
-      def show
-        @props = CurriculumMap.new(@document.resource).props
-      end
+      def show; end
 
       def show_lti
         # To allow access from iFrame element
         response.headers.delete 'X-Frame-Options'
 
-        @props = CurriculumMap.new(@document.resource).props.merge(links_new_tab: true)
-
-        render layout: 'lti'
+        render layout: 'application_lti'
       end
 
       private
@@ -57,7 +53,7 @@ module Lcms
         folder = "#{@document.gdoc_folder}_#{SecureRandom.hex(10)}"
         options = {
           bundle: (type == 'full'),
-          excludes: excludes,
+          excludes:,
           gdoc_folder: folder,
           content_type: type
         }
@@ -73,13 +69,13 @@ module Lcms
         filename = "documents-custom/#{SecureRandom.hex(10)}-#{@document.pdf_filename}"
         url = S3Service.url_for(filename)
         options = {
-          excludes: excludes,
-          filename: filename,
+          excludes:,
+          filename:,
           content_type: type
         }
         job_id = DocumentGeneratePdfJob.perform_later(@doc, options).job_id
 
-        render json: { id: job_id, url: url }, status: :ok
+        render json: { id: job_id, url: }, status: :ok
       end
 
       def pdf_key(pdf_type)

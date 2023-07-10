@@ -8,17 +8,22 @@ module Lcms
       include Lcms::Engine::GoogleCredentials
 
       attribute :link, String
-      attribute :link_fs, String
 
-      validates_presence_of :link, if: -> { link_fs.blank? }
-      validates_presence_of :link_fs, if: -> { link.blank? }
+      validates_presence_of :link
 
       attr_reader :document, :service_errors
 
-      def initialize(attributes = {}, opts = {})
-        @is_reimport = attributes.delete(:reimport).present? || false
+      #
+      # Options can be the following:
+      #  - auto_gdoc_generation
+      #  - import_retry
+      #
+      # @param [Hash] attributes
+      # @param [Hash] options
+      #
+      def initialize(attributes = {}, options = {})
         super(attributes)
-        @options = opts
+        @options = options
       end
 
       def save
@@ -36,46 +41,22 @@ module Lcms
 
       private
 
-      attr_reader :is_reimport, :options
+      attr_reader :options
 
       def after_reimport_hook
-        DocumentGenerator.generate_for(@document)
+        DocumentGenerator.generate_for(@document) \
+          if ActiveRecord::Type::Boolean.new.cast(options[:auto_gdoc_generation])
       end
 
       def build_document
         service = document_build_service
-
-        result =
-          if is_reimport
-            doc = service.build_for(link)
-            doc = service.build_for(link_fs, expand: true) if link_fs.present?
-            doc
-          elsif (full_doc = find_full_document)
-            # if there is a document with the same file_id or foundational_file_id
-            # we need to make full re-import to correctly handle expand process
-            service.build_for(full_doc.file_url)
-            service.build_for(full_doc.file_fs_url, expand: true)
-          else
-            service.build_for link
-          end
-
+        result = service.build_for(link)
         @service_errors = service.errors
-
         result
       end
 
       def document_build_service
         DocumentBuildService.new(google_credentials, import_retry: options[:import_retry])
-      end
-
-      def find_full_document
-        id = file_id
-
-        doc = Document.actives.find_by(file_id: id)
-        return doc if doc&.foundational_file_id.present?
-
-        doc = Document.actives.find_by(foundational_file_id: id)
-        doc if doc&.file_id.present?
       end
 
       def file_id

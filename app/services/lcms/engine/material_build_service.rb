@@ -7,7 +7,7 @@ module Lcms
   module Engine
     class MaterialBuildService
       EVENT_BUILT = 'material:built'
-      PDF_EXT_RE = /\.pdf$/.freeze
+      PDF_EXT_RE = /\.pdf$/
 
       attr_reader :errors
 
@@ -34,11 +34,11 @@ module Lcms
         title = @downloader.file.name.sub(PDF_EXT_RE, '')
         identifier = "#{title.downcase}#{ContentPresenter::PDF_EXT}"
 
-        metadata = DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier: identifier, title: title).as_json
+        metadata = DocTemplate::Objects::MaterialMetadata.build_from_pdf(identifier:, title:).as_json
         material.update!(
           material_params.merge(
-            identifier: identifier,
-            metadata: metadata
+            identifier:,
+            metadata:
           )
         )
 

@@ -9,7 +9,7 @@ module Lt
       class Context
         attr_reader :context
 
-        NUM_RE = /\d+/.freeze
+        NUM_RE = /\d+/
 
         class << self
           #
@@ -65,8 +65,7 @@ module Lt
             'grade' => grade,
             'module' => mod,
             'unit' => unit,
-            'lesson' => lesson,
-            'assessment' => (type if assessment?)
+            'lesson' => lesson
           }.compact.stringify_keys
         end
 
@@ -96,15 +95,7 @@ module Lt
                 next
               end
 
-              if mid_assessment?
-                set_mid_assessment_position(parent, resource)
-              elsif prerequisite?
-                set_prerequisite_position(parent, resource)
-              elsif opr?
-                set_opr_position(parent, resource)
-              else
-                set_lesson_position(parent, resource)
-              end
+              set_lesson_position(parent, resource)
             end
 
             update resource
@@ -122,7 +113,7 @@ module Lt
           dir = directory[0..index]
           curriculum_type = parent.nil? ? ::Lcms::Engine::Resource.hierarchy.first : parent.next_hierarchy_level
           resource = ::Lcms::Engine::Resource.new(
-            curriculum_type: curriculum_type,
+            curriculum_type:,
             level_position: parent&.children&.size.to_i,
             metadata: metadata.to_a[0..index].to_h,
             parent_id: parent&.id,
@@ -141,29 +132,14 @@ module Lt
         end
 
         def default_title(curr = nil)
-          if assessment?
-            mid_assessment? ? 'Mid-Unit Assessment' : 'End-Unit Assessment'
-          else
-            # ELA G1 M1 U2 Lesson 1
-            curr ||= directory
-            res = ::Lcms::Engine::Resource.new(metadata: metadata)
-            ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.to_s.titleize).join(' ')
-          end
+          # ELA G1 M1 U2 Lesson 1
+          curr ||= directory
+          res = ::Lcms::Engine::Resource.new(metadata:)
+          ::Lcms::Engine::Breadcrumbs.new(res).title.split(' / ')[0...-1].push(curr.last.to_s.titleize).join(' ')
         end
 
         def ela?
           subject.to_s.casecmp('ela').zero?
-        end
-
-        # TODO: Extract to specific future UnboundEd gem
-        def fix_prereq_position(resource)
-          next_lesson = resource.siblings.detect do |r|
-            break r unless r.prerequisite? # first non-prereq
-
-            # grab the first prereq lesson with a bigger lesson num
-            r.lesson_number > context['lesson'].to_i
-          end
-          next_lesson&.prepend_sibling(resource)
         end
 
         def grade
@@ -179,22 +155,7 @@ module Lt
         end
 
         def lesson
-          @lesson ||=
-            if assessment?
-              # assessment is a unit now, so lesson -> nil
-              nil
-            else
-              num = if ela? && prerequisite?
-                      ::Lcms::Engine::RomanNumerals.to_roman(context[:lesson].to_i)&.downcase
-                    else
-                      context[:lesson].presence
-                    end
-              "lesson #{num}" if num.present?
-            end
-        end
-
-        def mid_assessment?
-          type.to_s.casecmp('assessment-mid').zero?
+          @lesson ||= "lesson #{context[:lesson]}"
         end
 
         def module
@@ -213,13 +174,8 @@ module Lt
           str =~ /^\w+$/
         end
 
-        # `Optional prerequisite` - https://github.com/learningtapestry/unbounded/issues/557
         def opr?
           type.to_s.casecmp('opr').zero?
-        end
-
-        def prerequisite?
-          type.to_s.casecmp('prereq').zero?
         end
 
         def subject
@@ -230,11 +186,11 @@ module Lt
         end
 
         def tag_list
-          assessment? ? ['assessment', type] : [type.presence || 'core'] # lesson => prereq || core
+          [type.presence || 'core']
         end
 
         def teaser
-          context[:teaser].presence || (assessment? ? title : nil)
+          context[:teaser]
         end
 
         def title
@@ -246,49 +202,20 @@ module Lt
         end
 
         def unit
-          @unit ||= if assessment?
-                      type # assessment-mid || assessment-end
-                    else
-                      ela? ? "unit #{context[:unit]}" : "topic #{context[:topic]}"
-                    end
+          "unit #{context[:unit]}"
         end
 
         def update(resource) # rubocop:disable Metrics/AbcSize
           return if resource.nil?
 
-          # if resource changed to prerequisite, fix positioning
-          prereq = context['type'].to_s.casecmp('prereq').to_i.zero?
-          fix_prereq_position(resource) if prereq && !resource.prerequisite?
-
           # Update resource with document metadata
           resource.title = context['title'] if context['title'].present?
           resource.teaser = context['teaser'] if context['teaser'].present?
           resource.description = context['description'] if context['description'].present?
-          resource.tag_list << 'prereq' if prereq
           resource.tag_list << 'opr' if context['type'].to_s.casecmp('opr').to_i.zero?
           resource.save
 
           resource
-        end
-
-        def set_mid_assessment_position(parent, resource)
-          unit = parent.children.detect { |r| r.short_title =~ /topic #{context['after-topic']}/i }
-          unit.append_sibling(resource)
-        end
-
-        def set_prerequisite_position(parent, resource)
-          next_lesson = parent.children.detect do |r|
-            break r unless r.prerequisite? # first non-prereq
-
-            # first prereq lesson with a bigger lesson num
-            r.lesson_number > context[:lesson].to_i
-          end
-          next_lesson&.prepend_sibling(resource)
-        end
-
-        def set_opr_position(parent, resource)
-          first_non_opr = parent.children.detect { |r| !r.opr? }
-          first_non_opr&.prepend_sibling(resource)
         end
 
         def set_lesson_position(parent, resource)

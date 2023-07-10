@@ -4,9 +4,9 @@ module ActionView
   module Helpers
     module FormTagHelper
       alias orig_form_tag form_tag
-      def form_tag(url_for_options = {}, options = {}, &block)
+      def form_tag(url_for_options = {}, options = {}, &)
         options[:enforce_utf8] = false
-        orig_form_tag(url_for_options, options, &block)
+        orig_form_tag(url_for_options, options, &)
       end
     end
   end

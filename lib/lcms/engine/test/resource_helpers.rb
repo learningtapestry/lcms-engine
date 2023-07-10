@@ -53,7 +53,7 @@ module Lcms
                          title: "Test Resource #{dir.join('|')}",
                          short_title: curr[idx],
                          curriculum_type: type,
-                         parent: parent,
+                         parent:,
                          metadata: ::Lcms::Engine::Resource.metadata_from_dir(dir))
             parent = res
           end
@@ -71,7 +71,7 @@ module Lcms
                                     title: "Test Resource #{dir.join('|')}",
                                     short_title: curr[idx],
                                     curriculum_type: type,
-                                    parent: parent,
+                                    parent:,
                                     metadata: ::Lcms::Engine::Resource.metadata_from_dir(dir))
             parent = res
           end

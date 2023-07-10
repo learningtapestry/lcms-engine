@@ -27,9 +27,7 @@ module Lcms
           end
         end
 
-        def edit
-          @url = lcms_engine.admin_user_path(@user)
-        end
+        def edit; end
 
         def update
           if @user.update(user_params)

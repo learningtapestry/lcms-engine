@@ -14,7 +14,7 @@
             <% if (gdoc_bundle =  resource.document_bundles.detect { |b| b.content_type == 'gdoc' }) %>
               <% if cat == 'full' %>
                 <%= link_to gdoc_bundle.url, target: '_blank', data: { no_turbolink: true } do %>
-                  <i class="fab fa-google"></i>
+                  <i class="fa-brands fa-google"></i>
                 <% end %>
               <% else %>
                 <span class="o-unit-bundles__item--placeholder"></span>

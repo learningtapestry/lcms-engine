@@ -203,9 +203,9 @@ module DocTemplate
         end
 
       @opts[:last_tag] = {
-        iteration: iteration,
-        name: name,
-        value: value
+        iteration:,
+        name:,
+        value:
       }
     end
   end

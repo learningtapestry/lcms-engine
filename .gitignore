@@ -1,7 +1,5 @@
 .bundle/
 public/javascripts/
-public/lcms_engine_packs/
-public/packs-test/
 tmp/
 log/*.log
 pkg/

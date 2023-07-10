@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 Lcms::Engine::Engine.routes.draw do
-  mount PdfjsViewer::Rails::Engine, at: '/pdfjs', as: 'pdfjs'
-
   resources :documents, only: :show do
     member do
       post 'export', to: 'documents#export'
@@ -32,9 +30,6 @@ Lcms::Engine::Engine.routes.draw do
 
   namespace :admin do
     get '/' => 'welcome#index'
-    get '/association_picker' => 'association_picker#index'
-    resource :resource_bulk_edits, only: %i(new create)
-    get '/resource_picker' => 'resource_picker#index'
     resources :resources, except: :show do
       member do
         post :export_to_lti_cc, path: 'export-lti-cc'
@@ -49,11 +44,6 @@ Lcms::Engine::Engine.routes.draw do
     end
     resources :standards, only: %i(index edit update)
 
-    resource :sketch_compiler, path: 'sketch-compiler', only: [] do
-      get '/', to: 'sketch_compilers#new', defaults: { version: 'v1' }
-      get '/:version/new', to: 'sketch_compilers#new', as: :new
-      post '/:version/compile', to: 'sketch_compilers#compile', as: :compile
-    end
     resources :documents, except: %i(edit show update) do
       collection do
         delete :delete_selected, to: 'documents#destroy_selected'
@@ -72,7 +62,9 @@ Lcms::Engine::Engine.routes.draw do
       get :children
     end
     resources :access_codes, except: :show
-    resource :batch_reimport, only: %i(new create)
+    resource :batch_reimport, only: %i(new create) do
+      get :import_status, on: :collection
+    end
   end
 
   get '/oauth2callback' => 'welcome#oauth2callback'

@@ -48,7 +48,7 @@ module Lcms
 
           data = LtiExporter.perform @resource
           filename = "#{@resource.slug.parameterize}.zip"
-          send_data data, filename: filename, type: 'application/zip', disposition: 'attachment'
+          send_data data, filename:, type: 'application/zip', disposition: 'attachment'
         end
 
         def bundle
@@ -62,7 +62,7 @@ module Lcms
 
         def update
           unless Settings[:editing_enabled]
-            return redirect_to(lcms_engine.admin_resources_path, alert: t('admin.common.editing_disabled'))
+            return redirect_to(lcms_engine.admin_resources_path, alert: t('lcms.engine.admin.common.editing_disabled'))
           end
 
           create_tags
@@ -86,20 +86,9 @@ module Lcms
         protected
 
         def form_params_arrays
-          download_categories_settings =
-            DownloadCategory.select(:title).map do |category|
-              { category.title.parameterize => %i(show_long_description show_short_description) }
-            end
           {
             additional_resource_ids: [],
             common_core_standard_ids: [],
-            download_categories_settings: download_categories_settings,
-            resource_downloads_attributes: [
-              :_destroy,
-              :description,
-              :id,
-              :download_category_id, { download_attributes: %i(description file main filename_cache id title) }
-            ],
             related_resource_ids: [],
             standard_ids: [],
             new_standard_names: [],
@@ -115,7 +104,7 @@ module Lcms
         end
 
         #
-        # The result of this method will be splatted into +form_params_ararys+
+        # The result of this method will be splatted into +form_params_arrays+
         # and will be injected into the final +form_params+ call.
         #
         # Should be used to extend the list of permitted parameters
@@ -142,7 +131,6 @@ module Lcms
             time_to_teach
             ell_appropriate
             image_file
-            opr_description
           ).concat(form_params_simple_override)
         end
 
@@ -159,6 +147,10 @@ module Lcms
 
         private
 
+        #
+        # @param [Lcms::Engine::Resource] resource
+        # @return [Boolean]
+        #
         def can_bundle?(resource)
           DocTemplate
             .config['bundles'].keys
@@ -169,7 +161,7 @@ module Lcms
         helper_method :can_bundle?
 
         def find_resource
-          @resource = Resource.includes(resource_downloads: :download).find(params[:id])
+          @resource = Resource.find(params[:id])
         end
 
         def grade_params
@@ -183,12 +175,8 @@ module Lcms
                 form_params_simple,
                 form_params_arrays
               ).to_h
-              if ps[:download_categories_settings].present?
-                ps[:download_categories_settings].transform_values! do |settings|
-                  settings.transform_values! { |x| x == '1' }
-                end
-              end
-              ps[:metadata] = metadata ps.delete(:directory)&.split(',')
+              directory = ps.delete(:directory)
+              ps[:metadata] = metadata directory.split(',') if directory.present?
               ps
             end
         end

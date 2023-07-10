@@ -15,7 +15,7 @@ describe Lcms::Engine::Search::ElasticSearchDocument do
   describe '.search' do
     let(:options) { {} }
     let(:repository) { double Lcms::Engine::Search::Repository }
-    let(:term) { ::Faker::Lorem.word }
+    let(:term) { Faker::Lorem.word }
 
     before do
       allow(described_class).to receive(:repository).and_return(repository)

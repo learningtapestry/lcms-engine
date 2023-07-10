@@ -25,25 +25,6 @@ en:
           update:
             success: Curriculum Tree saved successfully.
             error: An error occured trying to save this entry.
-        download_categories:
-          create:
-            success: "Download category created successfully."
-          destroy:
-            success: "Category deleted successfully."
-          edit:
-            bundle: 'Bundles Category? (must be unique)'
-            description: 'Display short description'
-            long_description: 'Display long description'
-            page_title: "Edit download category '%{name}'"
-            position: 'Order'
-            title: 'Display Name'
-          index:
-            page_title: Downloadable Resource Categories
-            new_category: New Category
-          new:
-            page_title: New Downloadable Resource Category
-          update:
-            success: "Category updated successfully."
         resource_bulk_edits:
           create:
             success: "%{count} %{resources_count} updated successfully."
@@ -66,7 +47,6 @@ en:
             create_resource_type: Create Resource Type
             create_subject: Create Subject
             create_topic: Create Topic
-            opr_description: Optional Prerequisite description line
           downloadable:
             description: 'Short description'
           index:
@@ -76,7 +56,7 @@ en:
             export_lti_cartridge: LTI Thin CC
             grade_levels: Grade Levels
             new_resource: Add Resource
-            page_title: Content Administration
+            page_title: Resources
             resource: Resource
             resource_types: Resource Types
             standards: Standards
@@ -199,14 +179,6 @@ en:
             resources: Resources
             staff_members: Staff Members
             users: Users
-        sketch_compilers:
-          compile:
-            compile_error: There was an error during compilation. Please contact administrator
-            error: Please specify the URL
-            success: Lesson has been compiled. You can see it in your <a href='%{url}' target='_blank'>Google Drive</a>
-          new:
-            page_title: Compile lesson sketch %{version}
-            submit: Compile
         documents:
           index:
             delete_selected: Delete selected
@@ -268,7 +240,6 @@ en:
           import_glossary: Import Glossary
           sign_out: Sign out
           standards: Standards
-          sketch_compilation: Compile lesson sketch %{version}
           import_lesson: Import Lesson
           lessons: Lessons
           materials: Materials

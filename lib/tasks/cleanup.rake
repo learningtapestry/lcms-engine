@@ -20,7 +20,7 @@ namespace :cleanup do # rubocop:disable Metrics/BlockLength
 
         links = document.links
         links['pdf']&.delete('preview')
-        document.update_columns links: links
+        document.update_columns links:
       end
 
       batch_delete_in args[:s3_folder]
@@ -52,7 +52,7 @@ namespace :cleanup do # rubocop:disable Metrics/BlockLength
       folder_id = ENV.fetch('GOOGLE_APPLICATION_PREVIEW_FOLDER_ID')
 
       service = Google::Apis::DriveV3::DriveService.new
-      service.authorization = ::Lt::Google::Api::Auth::Cli.new.credentials
+      service.authorization = Lt::Google::Api::Auth::Cli.new.credentials
       service
         .list_files(q: "'#{folder_id}' in parents")
         .files.each { |file| service.delete_file file.id }

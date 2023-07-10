@@ -25,9 +25,9 @@ module DocTemplate
         content = content_until_break node
         content = parse_nested content.to_s, opts
         params = {
-          before_materials: before_materials,
-          content: content,
-          group: group,
+          before_materials:,
+          content:,
+          group:,
           placeholder: placeholder_id,
           react_props: {
             activity: {
@@ -36,7 +36,7 @@ module DocTemplate
             group: true,
             material_ids: group.material_ids
           },
-          with_materials: with_materials
+          with_materials:
         }
         @content = parse_template params, template_name(opts)
         replace_tag node

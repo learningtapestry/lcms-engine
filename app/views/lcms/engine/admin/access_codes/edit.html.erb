@@ -1,8 +1,18 @@
-<% title = t('.page_title') %>
+<div class="container-fluid">
+  <h2 class="text-center"><%= t('.page_title') %></h2>
 
-<% set_page_title title %>
+  <% set_page_title t('.page_title') %>
 
-<div class="o-page">
-  <h2 class="text-center"><%= title %></h2>
-  <%= render 'form' %>
+  <hr>
+
+  <div class="cols-sm">
+    <%= link_to 'Back to list', lcms_engine.admin_access_codes_path,
+                class: 'btn btn-success' %>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <%= render 'form' %>
+  </div>
 </div>

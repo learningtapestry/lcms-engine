@@ -3,6 +3,8 @@
 module Lcms
   module Engine
     class Resource < ApplicationRecord
+      include Filterable
+
       enum resource_type: {
         resource: 1,
         podcast: 2,
@@ -15,7 +17,7 @@ module Lcms
       MEDIA_TYPES = %i(video podcast).map { |t| resource_types[t] }.freeze
       GENERIC_TYPES = %i(text_set quick_reference_guide resource_other).map { |t| resource_types[t] }.freeze
 
-      SUBJECTS = %w(ela math lead).freeze
+      SUBJECTS = %w(ela math).freeze
       HIERARCHY = %i(subject grade module unit lesson).freeze
 
       include Searchable
@@ -37,11 +39,6 @@ module Lcms
 
       has_many :resource_standards, dependent: :destroy
       has_many :standards, through: :resource_standards
-
-      # Downloads.
-      has_many :resource_downloads, dependent: :destroy
-      has_many :downloads, through: :resource_downloads
-      accepts_nested_attributes_for :resource_downloads, allow_destroy: true
 
       # Reading assignments.
       has_many :resource_reading_assignments, dependent: :destroy
@@ -65,9 +62,6 @@ module Lcms
       validates :title, presence: true
       validates :url, presence: true, url: true, if: %i(video? podcast?)
 
-      scope :where_grade, ->(grades) { where_metadata_in :grade, grades }
-      scope :where_module, ->(modules) { where_metadata_in :module, modules }
-      scope :where_subject, ->(subjects) { where_metadata_in :subject, subjects }
       scope :media, -> { where(resource_type: MEDIA_TYPES) }
       scope :generic_resources, -> { where(resource_type: GENERIC_TYPES) }
       scope :ordered, -> { order(:hierarchical_position, :slug) }
@@ -100,15 +94,6 @@ module Lcms
           where('metadata @> ?', meta).where(curriculum_type: type).first
         end
 
-        def find_podcast_by_url(url)
-          podcast.where(url: url).first
-        end
-
-        def find_video_by_url(url)
-          video_id = MediaEmbed.video_id(url)
-          video.where("url ~ '#{video_id}(&|$)'").first
-        end
-
         def hierarchy
           Lcms::Engine::Resource::HIERARCHY
         end
@@ -128,12 +113,6 @@ module Lcms
           else
             where(nil)
           end
-        end
-
-        def where_metadata_in(key, arr)
-          arr = Array.wrap arr
-          clauses = Array.new(arr.count) { "metadata->>'#{key}' = ?" }.join(' OR ')
-          where(clauses, *arr)
         end
       end
 
@@ -165,15 +144,6 @@ module Lcms
         %w(text_set quick_reference_guide resource_other).include?(resource_type)
       end
 
-      # `Optional prerequisite` - https://github.com/learningtapestry/unbounded/issues/557
-      def opr?
-        tag_list.include?('opr')
-      end
-
-      def prerequisite?
-        tag_list.include?('prereq')
-      end
-
       def directory
         @directory ||= Lcms::Engine::Resource.hierarchy.map do |key|
           key == :grade ? grades.average(abbr: false) : metadata[key.to_s]
@@ -203,14 +173,6 @@ module Lcms
                                  .map(&:related_resource)
       end
 
-      def download_categories
-        @download_categories ||=
-          resource_downloads.includes(:download_category).includes(:download)
-            .sort_by { |rd| rd.download_category&.position.to_i }
-            .group_by { |d| d.download_category&.title.to_s }
-            .transform_values { |v| v.sort_by { |d| [d.download.main ? 0 : 1, d.download.title] } }
-      end
-
       def pdf_downloads?(category = nil)
         if category.present?
           resource_downloads.joins(:download)
@@ -230,8 +192,8 @@ module Lcms
       def named_tags
         {
           keywords: (tag_list + topic_list).compact.uniq,
-          resource_type: resource_type,
-          ell_appropriate: ell_appropriate,
+          resource_type:,
+          ell_appropriate:,
           ccss_standards: tag_standards,
           ccss_domain: nil, # resource.standards.map { |std| std.domain.try(:name) }.uniq
           ccss_cluster: nil, #  resource.standards.map { |std| std.cluster.try(:name) }.uniq
@@ -300,7 +262,7 @@ module Lcms
         # update only if a grade author has changed
         return unless grade? && author_id_changed?
 
-        descendants.update_all author_id: author_id
+        descendants.update_all author_id:
       end
 
       def update_descendants_meta

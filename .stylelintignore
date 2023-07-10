@@ -1,7 +1,6 @@
 docs
 coverage
 app/assets/stylesheets/lcms/engine/vendors/*
-app/assets/stylesheets/lcms/engine/utils/_styles_override.scss
 app/assets/stylesheets/lcms/engine/utils/_mixins.scss
 app/assets/stylesheets/lcms/engine/base/_typography.scss
 app/assets/stylesheets/lcms/engine/print/_typography.scss

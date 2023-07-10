@@ -1,6 +1,0 @@
-.o-ld-section {
-  @include e(quote) {
-    @extend %u-pdf-nobreak;
-    @include txt-pdf-element(pullquote);
-  }
-}

@@ -38,10 +38,9 @@ module DocTemplate
       attribute :children, Array[Section]
       attribute :idx, Integer
 
-      def self.build_from(data, template_type)
+      def self.build_from(data)
         copy = Marshal.load Marshal.dump(data)
         sections = copy.map do |metadata|
-          metadata[:template_type] = template_type
           metadata[:summary] = DocTemplate.sanitizer.strip_html_element(metadata[:summary])
           metadata.transform_keys { |k| k.to_s.gsub('section-', '').underscore }
         end

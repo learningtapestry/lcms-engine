@@ -12,7 +12,7 @@ module Lcms
         def index
           @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
 
-          scope = Standard.order(:id)
+          scope = Standard.order('id')
           scope = scope.search_by_name(@query.name) if @query.name.present?
 
           @standards = scope.paginate(page: params[:page])

@@ -1,9 +1,0 @@
-.o-m-list {
-  list-style-type: none;
-  margin-left: 0;
-
-  @include e(wrap) {
-    @include add-column-padding;
-    @include add-gutter(padding, bottom, 2);
-  }
-}

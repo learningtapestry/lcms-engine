@@ -10,10 +10,9 @@ module Lcms
 
         DEFAULTS ||= {
           layout: 'lcms/engine/admin',
-          materials_query: Lcms::Engine::AdminMaterialsQuery
         }.freeze
 
-        RE_GOOGLE_FOLDER = %r{/drive/(.*/)?folders/}.freeze
+        RE_GOOGLE_FOLDER = %r{/drive/(.*/)?folders/}
 
         layout :customized_layout
 
@@ -43,6 +42,10 @@ module Lcms
           render customized_view if customized_view
         end
 
+        #
+        # @see lcms-admin.yml
+        # @return [Array<String>]
+        #
         def view_links
           Array.wrap(AdminController.settings.dig(controller_name.to_sym, :view_links))
         end

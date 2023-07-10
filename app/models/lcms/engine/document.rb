@@ -3,7 +3,9 @@
 module Lcms
   module Engine
     class Document < ApplicationRecord
+      include Filterable
       include Partable
+
       GOOGLE_URL_PREFIX = 'https://docs.google.com/document/d'
 
       belongs_to :resource, optional: true
@@ -13,7 +15,6 @@ module Lcms
       before_save :clean_curriculum_metadata
       before_save :set_resource_from_metadata
 
-      store_accessor :foundational_metadata
       serialize :toc, DocTemplate::Objects::TocMetadata
 
       scope :actives,   -> { where(active: true) }
@@ -47,7 +48,7 @@ module Lcms
       (documents.metadata ->> 'subject' <> 'ela' AND documents.metadata ->> 'unit' = :mod)
         OR (documents.metadata ->> 'subject' = 'ela' AND documents.metadata ->> 'module' = :mod)
         SQL
-        where(sql, mod: mod)
+        where(sql, mod:)
       }
 
       scope :with_broken_materials, lambda {
@@ -64,10 +65,10 @@ module Lcms
 
       def activate!
         self.class.transaction do
-          # deactive all other lessons for this resource
-          self.class.where(resource_id: resource_id).where.not(id: id).update_all active: false
+          # de-active all other lessons for this resource
+          self.class.where(resource_id:).where.not(id:).update_all(active: false)
           # activate this lesson. PS: use a simple sql update, no callbacks
-          update_columns active: true
+          res = update_columns(active: true)
         end
       end
 
@@ -83,16 +84,6 @@ module Lcms
         return unless file_id.present?
 
         "#{GOOGLE_URL_PREFIX}/#{file_id}"
-      end
-
-      def file_fs_url
-        return unless foundational_file_id.present?
-
-        "#{GOOGLE_URL_PREFIX}/#{foundational_file_id}"
-      end
-
-      def foundational?
-        metadata['type'].to_s.casecmp('fs').zero?
       end
 
       def gdoc_material_ids
@@ -122,7 +113,7 @@ module Lcms
         url = links[key]
         with_lock do
           reload.links.delete(key)
-          update links: links
+          update links:
         end
         url
       end

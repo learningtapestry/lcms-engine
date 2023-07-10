@@ -2,7 +2,7 @@
 
 module DocumentRenderer
   class Part
-    PART_RE = /{{[^}]+}}/.freeze
+    PART_RE = /{{[^}]+}}/
 
     class << self
       def call(content, options)

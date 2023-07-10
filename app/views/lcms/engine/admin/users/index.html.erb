@@ -1,25 +1,28 @@
 <% set_page_title 'Users' %>
 
-<div class="o-page">
+<div class="container-fluid">
   <h1 class="text-center"><%= t('.page_title') %></h1>
 
-  <%= render 'search_form' %>
+  <hr>
 
   <div class="row">
-    <div class="flex-pull-right">
-      <%= link_to t('.new_user'), lcms_engine.new_admin_user_path, class: 'button success' %>
-    </div>
+    <div class="col-sm-9"><%= link_to t('.new_user'), lcms_engine.new_admin_user_path, class: 'btn btn-success' %></div>
+    <div class="col-sm-3"><%= render 'search_form' %></div>
+
+  </div>
+
+  <hr>
+
+  <div class="row">
     <table class="table">
       <tr>
         <th><%= t('.id') %>
-        <th><%= t('.first_name') %>
-        <th><%= t('.last_name') %>
+        <th><%= t('.name') %>
         <th><%= t('.email') %>
         <th><%= t('.role') %>
         <th><%= t('.access_code') %>
         <th><%= t('.confirmed') %>
         <th><%= t('.registration') %>
-        <th>
         <th>
         <th>
       </tr>
@@ -28,16 +31,14 @@
         <% cache user do %>
           <tr id="user_<%= user.id %>">
             <td><%= link_to user.id, lcms_engine.edit_admin_user_path(user) %>
-            <td><%= link_to user.survey&.fetch('first_name', nil) || user.name, lcms_engine.edit_admin_user_path(user) %>
-            <td><%= raw user.survey&.fetch('last_name', nil) %>
+            <td><%= link_to user.name, lcms_engine.edit_admin_user_path(user) %>
             <td><%= user.email %>
             <td><%= user.role %>
             <td><%= user.access_code.presence || '-' %>
             <td><%= user.confirmed? ? 'YES' : 'NO' %>
             <td class="u-txt--small"><%= user.created_at.to_s %>
-            <td><%= link_to content_tag(:i, nil, class: 'fas fa-pencil-alt').html_safe, lcms_engine.edit_admin_user_path(user), class: 'button small primary' %>
-            <td><%= button_to t('.reset_password_btn'), lcms_engine.reset_password_admin_user_path(user), class: 'button small', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :post %>
-            <td><%= button_to t('ui.delete'), lcms_engine.admin_user_path(user), class: 'button small alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %></td>
+            <td><%= button_to t('.reset_password_btn'), lcms_engine.reset_password_admin_user_path(user), class: 'btn btn-warning', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :post %>
+            <td><%= button_to t('ui.delete'), lcms_engine.admin_user_path(user), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline' %></td>
           </tr>
         <% end %>
       <% end %>
@@ -46,7 +47,7 @@
 
   <div class="row">
     <div class="col-sm-12 text-center">
-      <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @users %>
     </div>
   </div>
 </div>

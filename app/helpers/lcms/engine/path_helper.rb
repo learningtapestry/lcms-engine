@@ -25,6 +25,8 @@ module Lcms
           main_app.send(host_route.to_sym, *args)
         elsif (engine_route = settings.dig(:redirect, :engine, key)).present?
           lcms_engine.send(engine_route.to_sym, *args)
+        else
+          raise "Please tune up config/lcms-admin.yml and set redirect:host:#{key} or redirect:engine:#{key} values"
         end
       end
     end

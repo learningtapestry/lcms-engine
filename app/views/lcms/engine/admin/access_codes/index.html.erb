@@ -1,11 +1,16 @@
-<div class=o-page>
-  <div class=clearfix>
-    <div class=pull-right>
-      <%= link_to t('.new_access_code'), lcms_engine.new_admin_access_code_path, class: 'button success', 'data-turbolinks' => false %>
+<div class="container-fluid">
+  <h2 class=text-center><%= t('.page_title') %></h2>
+
+  <hr>
+
+  <div class="row">
+    <div class="cols-sm">
+      <%= link_to t('.new_access_code'), lcms_engine.new_admin_access_code_path, class: 'btn btn-success',
+                  'data-turbo' => false %>
     </div>
   </div>
 
-  <h2 class=text-center><%= t('.page_title') %></h2>
+  <hr>
 
   <div class=row>
     <div class="col-md-12">
@@ -22,7 +27,7 @@
               <td><%= link_to access_code.code, lcms_engine.edit_admin_access_code_path(access_code) %>
               <td><%= access_code.active ? 'YES' : 'NO' %>
               <td>
-                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'button alert', data: { confirm: t('ui.are_you_sure') }, form_class: 'inline', method: :delete %>
+                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline' %>
               </td>
             </tr>
           <% end %>
@@ -33,7 +38,7 @@
 
   <div class=row>
     <div class='col-sm-12 text-center'>
-      <%= will_paginate @access_codes, renderer: BootstrapPagination::Rails %>
+      <%= will_paginate @access_codes %>
     </div>
   </div>
 </div>
