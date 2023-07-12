@@ -1,5 +1,5 @@
 <% url = @resource.persisted? ? lcms_engine.admin_resource_path(@resource) : lcms_engine.admin_resources_path %>
-<%= simple_form_for @resource, url: url, data: { turbo: false } do |f| %>
+<%= simple_form_for @resource, url: url do |f| %>
   <%= render partial: 'fields', locals: { f: f, resource: @resource } %>
 
   <div class="row">

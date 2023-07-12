@@ -34,6 +34,11 @@ module DocTemplate
     attr_reader :css_styles, :metadata_service, :toc
 
     class << self
+      #
+      # @param [String] source
+      # @param [Symbol] type
+      # @return [DocTemplate::Template]
+      #
       def parse(source, type: :document)
         new(type).parse(source)
       end

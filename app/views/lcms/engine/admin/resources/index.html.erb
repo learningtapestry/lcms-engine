@@ -43,11 +43,11 @@
         <td><%= check_box_tag 'ids[]', resource.id, false, class: 'resource-checkbox', id: check_box_id %>
         <td><%= label_tag check_box_id, resource.id, class: 'resource-id-label' %>
         <td><%= link_to resource.title, lcms_engine.edit_admin_resource_path(resource) %>
-        <td class="resource-tag-col"><%= resource.standards.filter_map(&:name).join(', ') %>
-        <td class="resource-tag-col"><%= resource.resource_type %>
-        <td class="resource-tag-col"><%= resource.subject %>
-        <td class="resource-tag-col"><%= resource.slug %>
-        <td class="resource-tag-col"><%= resource.tree? ? 'yes' : 'no' %>
+        <td><%= resource.standards.filter_map(&:name).join(', ') %>
+        <td><%= resource.resource_type %>
+        <td><%= resource.subject %>
+        <td><%= resource.slug %>
+        <td><%= resource.tree? ? 'yes' : 'no' %>
         <td><%= resource_status(resource) %>
         <td class="resource-btns-col">
           <% if can_bundle?(resource) %>
