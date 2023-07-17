@@ -12,6 +12,8 @@
                     label: false, placeholder: t('ui.url') %>
         <p>
           <%= f.check_box :async, checked: true %>
+          <%= f.check_box :async,
+                          checked: params.dig(:material_form, :async).nil? || params.dig(:material_form, :async).to_i.positive? %>
           <span><small><%= t('ui.async') %></small></span>
         </p>
         <%= f.button :submit, t('.submit'), class: 'btn btn-primary' %>
