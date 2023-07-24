@@ -2,25 +2,27 @@
 
 module Lcms
   module Engine
-    class MaterialForm
-      include Virtus.model
-      include ActiveModel::Model
-      include Lcms::Engine::GoogleCredentials
-
-      attribute :link, String
+    class MaterialForm < ImportForm
       attribute :source_type, String
-      validates :link, presence: true
 
-      attr_accessor :material, :service_errors
+      attr_reader :material
 
-      def initialize(attributes = {}, opts = {})
-        super(attributes)
-        @options = opts
+      #
+      # Options can be the following:
+      #  - dpi
+      #  - import_retry
+      #
+      # @param [Hash] attributes
+      # @param [Hash] options
+      #
+      def initialize(attributes = {}, options = {})
+        super
       end
 
-      def save
-        return false unless valid?
-
+      #
+      # @return [Boolean]
+      #
+      def perform_save
         params = {
           dpi: options[:dpi],
           import_retry: options[:import_retry],
@@ -31,21 +33,9 @@ module Lcms
         @service_errors = service.errors
 
         material.update preview_links: {}
-        after_reimport_hook
+
         true
-      rescue StandardError => e
-        Rails.logger.error "#{e.message}\n #{e.backtrace.join("\n ")}"
-        errors.add(:link, e.message)
-        false
       end
-
-      private
-
-      attr_reader :options
-
-      protected
-
-      def after_reimport_hook; end
     end
   end
 end

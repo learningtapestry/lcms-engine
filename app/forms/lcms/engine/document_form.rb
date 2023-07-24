@@ -2,16 +2,8 @@
 
 module Lcms
   module Engine
-    class DocumentForm
-      include Virtus.model
-      include ActiveModel::Model
-      include Lcms::Engine::GoogleCredentials
-
-      attribute :link, String
-
-      validates_presence_of :link
-
-      attr_reader :document, :service_errors
+    class DocumentForm < ImportForm
+      attr_reader :document
 
       #
       # Options can be the following:
@@ -22,21 +14,17 @@ module Lcms
       # @param [Hash] options
       #
       def initialize(attributes = {}, options = {})
-        super(attributes)
-        @options = options
+        super
       end
 
-      def save
-        return false unless valid?
-
+      #
+      # @return [Boolean]
+      #
+      def perform_save
         @document = build_document
-        after_reimport_hook
         @document.update(reimported: true)
-      rescue StandardError => e
-        @document&.update(reimported: false)
-        Rails.logger.error "#{e.message}\n #{e.backtrace.join("\n ")}"
-        errors.add(:link, e.message)
-        false
+        after_reimport_hook
+        true
       end
 
       private
