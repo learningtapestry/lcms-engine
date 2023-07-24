@@ -22,19 +22,19 @@ module Lcms
       #
       # @return [Boolean]
       #
-      def perform_save
-        params = {
-          dpi: options[:dpi],
-          import_retry: options[:import_retry],
-          source_type: source_type.presence
-        }.compact
-        service = MaterialBuildService.new google_credentials, params
-        @material = service.build link
-        @service_errors = service.errors
+      def save
+        super do
+          params = {
+            dpi: options[:dpi],
+            import_retry: options[:import_retry],
+            source_type: source_type.presence
+          }.compact
+          service = MaterialBuildService.new google_credentials, params
+          @material = service.build link
+          @service_errors = service.errors
 
-        material.update preview_links: {}
-
-        true
+          material.update preview_links: {}
+        end
       end
     end
   end

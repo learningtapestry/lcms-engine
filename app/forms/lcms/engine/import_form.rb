@@ -25,17 +25,14 @@ module Lcms
       #
       # @return [Boolean]
       #
-      def perform_save
-        raise NotImplementedError
-      end
-
-      #
-      # @return [Boolean]
-      #
       def save
         return false unless valid?
 
-        perform_save
+        yield
+
+        after_reimport_hook
+
+        true
       rescue StandardError => e
         Rails.logger.error "#{e.message}\n #{e.backtrace.join("\n ")}"
         errors.add(:link, e.message)

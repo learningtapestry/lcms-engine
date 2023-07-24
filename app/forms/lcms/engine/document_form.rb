@@ -20,16 +20,14 @@ module Lcms
       #
       # @return [Boolean]
       #
-      def perform_save
-        @document = build_document
-        @document.update(reimported: true)
-        after_reimport_hook
-        true
+      def save
+        super do
+          @document = build_document
+          @document.update(reimported: true)
+        end
       end
 
       private
-
-      attr_reader :options
 
       def after_reimport_hook
         DocumentGenerator.generate_for(@document) \
