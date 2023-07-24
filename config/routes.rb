@@ -42,7 +42,9 @@ Lcms::Engine::Engine.routes.draw do
     resources :users, except: :show do
       post :reset_password, on: :member
     end
-    resources :standards, only: %i(index edit update)
+    resources :standards, only: %i(index edit update) do
+      post :import, on: :collection
+    end
 
     resources :documents, except: %i(edit show update) do
       collection do

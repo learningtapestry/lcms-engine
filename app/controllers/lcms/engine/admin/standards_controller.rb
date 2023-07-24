@@ -4,10 +4,20 @@ module Lcms
   module Engine
     module Admin
       class StandardsController < AdminController
-        before_action :find_standard, except: [:index]
+        before_action :find_standard, except: %i(import index)
         before_action :set_query_params
 
         def edit; end
+
+        def import
+          @standard_form = Lcms::Engine::StandardForm.new(standard_form_params)
+          if @standard_form.save
+            redirect_to lcms_engine.admin_standards_path, notice: t('.success')
+          else
+            @standards = Standard.order('id').paginate(page: 1)
+            render :index
+          end
+        end
 
         def index
           @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
@@ -34,6 +44,10 @@ module Lcms
 
         def set_query_params
           @query_params = params[:query]&.permit(:name) || {}
+        end
+
+        def standard_form_params
+          params.require(:standard_form).permit(:link)
         end
 
         def standard_params

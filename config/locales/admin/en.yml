@@ -219,7 +219,12 @@ en:
             submit: Parse
         standards:
           edit:
-            page_title: "Edit Standard"
+            page_title: Edit Standard
+          index:
+            import: Import
+            placeholder: Enter URL for the Google Spreadsheet
+          import:
+            success: Import completed
           update:
             success: Standard updated
         nav:

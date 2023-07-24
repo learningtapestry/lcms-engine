@@ -1,0 +1,4 @@
+<%= simple_form_for(@standard_form.presence || Lcms::Engine::StandardForm.new, url: lcms_engine.import_admin_standards_path, data: { turbo: false }) do |f| %>
+  <%= f.input :link, label: false, error: f.object.errors[:link].first&.html_safe, placeholder: t("lcms.engine.admin.standards.index.placeholder") %>
+  <%= f.button :submit, t("lcms.engine.admin.standards.index.import"), class: 'btn btn-primary' %>
+<% end %>

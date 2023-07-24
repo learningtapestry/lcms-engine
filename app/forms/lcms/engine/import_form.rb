@@ -14,7 +14,7 @@ module Lcms
       attr_reader :service_errors
 
       #
-      # @param [Hash] attributes
+      # @param [Hash|ActionController::Parameters] attributes
       # @param [Hash] options
       #
       def initialize(attributes = {}, options = {})
