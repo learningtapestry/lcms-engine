@@ -77,8 +77,8 @@ module Lcms
               jobs_[job_id] = { link: url, status: 'waiting' }
             end
           polling_path = lcms_engine.import_status_admin_materials_path
-          @props = { jobs:, links: view_links, polling_path:, type: :materials }.
-                     transform_keys! { _1.to_s.camelize(:lower) }
+          @props = { jobs:, links: view_links, polling_path:, type: :materials }
+                     .transform_keys! { _1.to_s.camelize(:lower) }
         end
 
         def find_selected

@@ -17,7 +17,7 @@ module Lcms
         #
         def self.where_metadata_in(key, arr)
           arr = Array.wrap(arr)
-          clauses = Array.new(arr.count) { "#{self.table_name}.metadata->>'#{key}' = ?" }.join(' OR ')
+          clauses = Array.new(arr.count) { "#{table_name}.metadata->>'#{key}' = ?" }.join(' OR ')
           where(clauses, *arr)
         end
       end

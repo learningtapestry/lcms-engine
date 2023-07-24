@@ -58,7 +58,7 @@ module Lcms
           grade.to_i.zero? ? grade : "Grade #{grade}",
           ll_strand? ? ld_module : "Module #{ld_module.try(:upcase)}",
           topic.present? ? "#{TOPIC_FULL[subject]} #{topic.try(:upcase)}" : nil,
-          lesson_level.to_s,
+          lesson_level.to_s
         ].compact.join(' / ')
       end
 
@@ -125,7 +125,6 @@ module Lcms
         Lcms::Engine::ReactMaterialsResolver.resolve(content, self)
       end
 
-      # rubocop:disable Metrics/PerceivedComplexity
       def short_breadcrumb(join_with: ' / ', with_short_lesson: false, with_subject: true, unit_level: false)
         lesson_abbr = with_short_lesson ? "L#{lesson}" : "Lesson #{lesson}" \
           unless unit_level
@@ -137,7 +136,6 @@ module Lcms
           lesson_abbr
         ].compact.join(join_with)
       end
-      # rubocop:enable Metrics/PerceivedComplexity
 
       def short_title
         "Lesson #{lesson}"

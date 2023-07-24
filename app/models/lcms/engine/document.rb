@@ -68,7 +68,7 @@ module Lcms
           # de-active all other lessons for this resource
           self.class.where(resource_id:).where.not(id:).update_all(active: false)
           # activate this lesson. PS: use a simple sql update, no callbacks
-          res = update_columns(active: true)
+          update_columns(active: true)
         end
       end
 

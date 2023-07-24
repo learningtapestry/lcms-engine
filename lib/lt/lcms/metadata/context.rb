@@ -70,7 +70,6 @@ module Lt
         end
 
         def find_or_create_resource
-          # rubocop:disable Metrics/BlockLength
           ::Lcms::Engine::Resource.with_advisory_lock('find_or_create_resource') do
             # if the resource exists, return it
             resource = ::Lcms::Engine::Resource.tree.find_by_directory(directory)
@@ -100,7 +99,6 @@ module Lt
 
             update resource
           end
-          # rubocop:enable Metrics/BlockLength
         end
 
         private
@@ -205,7 +203,7 @@ module Lt
           "unit #{context[:unit]}"
         end
 
-        def update(resource) # rubocop:disable Metrics/AbcSize
+        def update(resource)
           return if resource.nil?
 
           # Update resource with document metadata

@@ -64,7 +64,7 @@ module Lcms
             notice = t('lcms.engine.admin.documents.create.success',
                        name: @document_form.document.name,
                        errors: collect_errors)
-            redirect_to dynamic_document_path(@document_form.document), notice: notice
+            redirect_to dynamic_document_path(@document_form.document), notice:
           else
             render :new
           end
@@ -80,8 +80,9 @@ module Lcms
             jobs_[job_id] = { link: url, status: 'waiting' }
           end
           polling_path = lcms_engine.import_status_admin_documents_path
-          @props = { jobs:, links: view_links, polling_path:, type: :documents }.
-            transform_keys! { _1.to_s.camelize(:lower) }
+          @props =
+            { jobs:, links: view_links, polling_path:, type: :documents }
+              .transform_keys! { _1.to_s.camelize(:lower) }
         end
 
         def collect_errors

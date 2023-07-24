@@ -9,7 +9,7 @@ module Lcms
         CONFIG_PATH ||= Rails.root.join('config', 'lcms-admin.yml')
 
         DEFAULTS ||= {
-          layout: 'lcms/engine/admin',
+          layout: 'lcms/engine/admin'
         }.freeze
 
         RE_GOOGLE_FOLDER = %r{/drive/(.*/)?folders/}

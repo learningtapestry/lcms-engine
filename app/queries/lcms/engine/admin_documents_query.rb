@@ -20,7 +20,7 @@ module Lcms
 
       private
 
-      def apply_filters # rubocop:disable Metrics/AbcSize
+      def apply_filters # rubocop:todo Metrics/AbcSize,  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
         @scope = q.inactive == '1' ? @scope.unscoped : @scope.actives
         @scope = @scope.failed if q.only_failed == '1'
         @scope = @scope.filter_by_term(q.search_term) if q.search_term.present?

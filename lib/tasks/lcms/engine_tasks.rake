@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :lcms_engine do # rubocop:disable Metrics/BlockLength
+namespace :lcms_engine do
   desc 'Copy routes file'
   task :copy_routes do
     src = File.join Lcms::Engine::Engine.root, 'templates', 'routes.rb'
