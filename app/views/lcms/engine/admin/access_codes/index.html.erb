@@ -36,9 +36,7 @@
     </div>
   </div>
 
-  <div class=row>
-    <div class='col-sm-12 text-center'>
-      <%= will_paginate @access_codes %>
-    </div>
+  <div class="row">
+    <%= will_paginate @access_codes, list_classes: %w(pagination d-flex justify-content-center) %>
   </div>
 </div>

@@ -61,7 +61,7 @@
     <% end %>
   </table>
 
-  <div class=text-center>
-    <%= will_paginate @resources %>
+  <div class="row">
+    <%= will_paginate @resources, list_classes: %w(pagination d-flex justify-content-center) %>
   </div>
 </div>

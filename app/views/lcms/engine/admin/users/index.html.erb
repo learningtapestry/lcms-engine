@@ -46,8 +46,6 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12 text-center">
-      <%= will_paginate @users %>
-    </div>
+    <%= will_paginate @users, list_classes: %w(pagination d-flex justify-content-center) %>
   </div>
 </div>

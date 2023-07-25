@@ -76,7 +76,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'sprockets-rails', '~> 3.4'
   s.add_dependency 'validate_url', '~> 1.0', '>= 1.0.8'
   s.add_dependency 'virtus', '~> 1.0', '>= 1.0.5'
-  s.add_dependency 'will_paginate', '~> 3.2', '>= 3.2.1'
+  s.add_dependency 'will_paginate', '~> 4.0'
+  s.add_dependency 'will_paginate-bootstrap-style', '~> 0.3'
   s.add_dependency 'with_advisory_lock', '~> 4.6'
 
   s.add_development_dependency 'bullet', '~> 7.0'
