@@ -126,10 +126,6 @@ module Lcms
         # downcase subjects
         metadata['subject'] = metadata['subject']&.downcase
 
-        /(\d+)/.match(metadata['grade']) do |m|
-          metadata['grade'] = "grade #{m[1].to_i}"
-        end
-
         # store only the lesson number
         # or alphanumeric - needed by OPR type, see https://github.com/learningtapestry/unbounded/issues/557
         lesson = metadata['lesson']
