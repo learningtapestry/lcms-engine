@@ -88,7 +88,7 @@
             <td><%= material.reimported_at.to_s.presence || material.updated_at.to_s %></td>
             <td>
               <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', material: material } %>
-              <%= button_to t('ui.delete'), lcms_engine.admin_material_path(material, query: @query_params), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline' %>
+              <%= button_to t('ui.delete'), lcms_engine.admin_material_path(material, query: @query_params), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline', method: :delete %>
               <% unless material.pdf? %>
                 <% link_to material.pdf_preview_title, lcms_engine.preview_pdf_material_path(material), class: 'btn btn-warning btn-sm m-1', target: '_blank' %>
                 <% link_to material.gdoc_preview_title, lcms_engine.preview_gdoc_material_path(material), class: 'btn btn-warning btn-sm m-1', target: '_blank' %>

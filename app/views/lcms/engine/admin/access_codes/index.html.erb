@@ -27,7 +27,7 @@
               <td><%= link_to access_code.code, lcms_engine.edit_admin_access_code_path(access_code) %>
               <td><%= access_code.active ? 'YES' : 'NO' %>
               <td>
-                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline' %>
+                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), method: :delete, 'turbo-method': :delete }, form_class: 'inline', method: :delete %>
               </td>
             </tr>
           <% end %>
