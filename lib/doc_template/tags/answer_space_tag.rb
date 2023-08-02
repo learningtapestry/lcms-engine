@@ -11,6 +11,7 @@ module DocTemplate
       TAG_NAME = 'answer-space'
 
       def parse(node, opts = {})
+        @opts = opts
         num_of_lines = SPACE_SIZE[opts[:value].try(:to_sym)]
         if num_of_lines
           space = '<br>' * num_of_lines

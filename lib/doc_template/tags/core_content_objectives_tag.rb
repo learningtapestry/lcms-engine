@@ -7,6 +7,7 @@ module DocTemplate
       TEMPLATE = 'core_content_objectives.html.erb'
 
       def parse(node, opts = {})
+        @opts = opts
         nodes = block_nodes node
         nodes.each(&:remove)
 

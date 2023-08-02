@@ -7,6 +7,7 @@ module DocTemplate
       TEMPLATE = 'source.html.erb'
 
       def parse(node, opts = {})
+        @opts = opts
         # we have to collect all the next siblings until next activity-metadata
         content = content_until_break node
         content = parse_nested content.to_s, opts

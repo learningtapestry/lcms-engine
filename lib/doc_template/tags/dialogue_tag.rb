@@ -10,6 +10,7 @@ module DocTemplate
                     gdoc: 'gdoc/dialogue.html.erb' }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         @tags = []
 
         nodes = block_nodes node

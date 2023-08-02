@@ -6,7 +6,8 @@ module DocTemplate
       STYLE_RE = /text-align:(left|center|right)/i
       TAG_NAME = 'table-preserve-alignment'
 
-      def parse(node, _options = {})
+      def parse(node, opts = {})
+        @opts = opts
         if (table = find_table node)
           # inside cells for each `p` with `text-align` css param we add specific class
           table.xpath('.//p').each do |el|

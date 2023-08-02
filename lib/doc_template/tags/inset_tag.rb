@@ -10,6 +10,7 @@ module DocTemplate
       TAG_NAME = 'inset'
 
       def parse(node, opts = {})
+        @opts = opts
         nodes = block_nodes(node) { |n| preserve_styles n, opts }
         content = parse_nested nodes.map(&:to_html).join, opts
         nodes.each(&:remove)

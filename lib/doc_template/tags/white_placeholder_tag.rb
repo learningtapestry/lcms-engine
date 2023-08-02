@@ -10,6 +10,7 @@ module DocTemplate
       }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         content = block_nodes(node).map do |n|
           n.remove
           n.to_html

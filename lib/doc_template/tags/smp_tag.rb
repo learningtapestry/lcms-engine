@@ -8,6 +8,7 @@ module DocTemplate
                     gdoc: 'gdoc/smp.html.erb' }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         nodes = block_nodes node
         nodes.each(&:remove)
 

@@ -6,6 +6,7 @@ module DocTemplate
       TEMPLATE = 'heading.html.erb'
 
       def parse(node, opts = {})
+        @opts = opts
         # we have to collect all the next siblings until next stop-tag
         params = {
           content: parse_nested(content_until_break(node), opts),

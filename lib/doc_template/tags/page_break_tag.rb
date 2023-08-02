@@ -8,6 +8,7 @@ module DocTemplate
       TAG_SUB = '<p>--GDOC-PAGE-BREAK--</p>'
 
       def parse(node, opts)
+        @opts = opts
         check_tag_soft_return(node)
         @content = if gdoc?(opts)
                      TAG_SUB

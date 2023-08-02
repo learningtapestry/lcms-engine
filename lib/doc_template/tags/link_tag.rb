@@ -6,6 +6,7 @@ module DocTemplate
       FORTHCOMING_PATH = '/forthcoming'
 
       def parse(node, opts = {})
+        @opts = opts
         # preserve the node content and replace only the tag by the link
         content = node.to_s.sub(self.class.tag_with_html_regexp, link(opts))
 

@@ -13,6 +13,7 @@ module DocTemplate
                     gdoc: 'gdoc/standard.html.erb' }.freeze
 
       def parse(node, opts)
+        @opts = opts
         @content = render_template node, opts
         loop do
           break unless STANDARD_RE =~ @content

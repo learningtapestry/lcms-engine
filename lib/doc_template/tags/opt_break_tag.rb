@@ -8,6 +8,7 @@ module DocTemplate
                     gdoc: 'gdoc/opt_break.html.erb' }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         content = content_until_break node
         parsed_template = parse_template content, template_name(opts)
         @content = parse_nested parsed_template, opts

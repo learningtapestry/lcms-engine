@@ -14,6 +14,7 @@ module DocTemplate
       }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         # Need to extract the Tag and preserves all the styling inside it
         node_html = node.inner_html
         start_pos = node_html.index '['

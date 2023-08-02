@@ -12,6 +12,7 @@ module DocTemplate
       }.freeze
 
       def parse(node, opts = {})
+        @opts = opts
         group = opts[:agenda].level1_by_title(opts[:value].parameterize)
         @anchor = group.anchor
         @materials = group.material_ids

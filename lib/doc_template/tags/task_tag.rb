@@ -6,6 +6,7 @@ module DocTemplate
       TAG_NAME = 'task'
 
       def parse(node, opts = {})
+        @opts = opts
         @content = "<h4>Task #{opts[:value]}</h4>"
         replace_tag node
         self

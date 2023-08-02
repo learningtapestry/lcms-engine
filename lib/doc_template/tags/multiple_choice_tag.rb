@@ -6,6 +6,7 @@ module DocTemplate
       TAG_NAME = 'multiple-choice'
 
       def parse(node, opts = {})
+        @opts = opts
         nodes = block_nodes node
         nodes.each(&:remove)
 
