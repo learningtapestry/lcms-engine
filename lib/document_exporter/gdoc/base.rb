@@ -45,7 +45,7 @@ module DocumentExporter
         file_name = "#{@options[:prefix]}#{document.base_filename}"
         file_params = { name: file_name, mime_type: 'application/vnd.google-apps.document' }
         file_params[:parents] = [parent_folder] if parent_folder.present?
-        metadata = Google::Apis::DriveV3::File.new(file_params)
+        metadata = Google::Apis::DriveV3::File.new(**file_params)
 
         params = {
           content_type: 'text/html',
@@ -53,9 +53,9 @@ module DocumentExporter
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
         @id = if file_id.blank?
-                drive_service.service.create_file(metadata, params)
+                drive_service.service.create_file(metadata, **params)
               else
-                drive_service.service.update_file(file_id, metadata, params)
+                drive_service.service.update_file(file_id, metadata, **params)
               end.id
 
         post_processing
@@ -80,9 +80,9 @@ module DocumentExporter
         }.merge(GOOGLE_API_UPLOAD_OPTIONS)
 
         @id = if file_id.present?
-                drive_service.service.update_file(file_id, metadata, params)
+                drive_service.service.update_file(file_id, metadata, **params)
               else
-                drive_service.service.create_file(metadata, params)
+                drive_service.service.create_file(metadata, **params)
               end.id
 
         post_processing
