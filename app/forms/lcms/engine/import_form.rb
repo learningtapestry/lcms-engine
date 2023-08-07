@@ -20,6 +20,7 @@ module Lcms
       def initialize(attributes = {}, options = {})
         super(attributes)
         @options = options
+        @service_errors = []
       end
 
       #
