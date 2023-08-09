@@ -15,9 +15,9 @@ module Lcms
         # @param [Array<String>|Array<Integer>] arr
         # @return [ActiveRecord::QueryMethods::WhereChain]
         #
-        def self.where_metadata_in(key, arr)
-          arr = Array.wrap(arr)
-          clauses = Array.new(arr.count) { "#{table_name}.metadata->>'#{key}' = ?" }.join(' OR ')
+        def where_metadata_in(key, arr)
+          arr = Array.wrap(arr).compact.map(&:downcase)
+          clauses = Array.new(arr.count) { "lower(resources.metadata->>'#{key}') = ?" }.join(' OR ')
           where(clauses, *arr)
         end
       end
