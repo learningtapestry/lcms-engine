@@ -8,8 +8,6 @@ module Lcms
       class Repository
         include Elasticsearch::Persistence::Repository
 
-        include Elasticsearch::Persistence::Repository::DSL
-
         SYNONYMS: ::Hash[::String, "text set" | "expert packs"]
 
         def all_query: (untyped options) -> untyped

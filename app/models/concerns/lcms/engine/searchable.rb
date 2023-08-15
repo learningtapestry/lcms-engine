@@ -8,8 +8,6 @@ module Lcms
       extend ActiveSupport::Concern
 
       included do
-        attr_accessor :skip_indexing
-
         after_commit :index_document,  on: %i(create update), if: :should_index?
         after_commit :delete_document, on: :destroy, if: :should_index?
 

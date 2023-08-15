@@ -1,7 +1,7 @@
 module DocTemplate
   class Template
     class TagRegistry
-      include Enumerable
+      include Enumerable[Tags::BaseTag]
 
       def initialize: () -> void
 

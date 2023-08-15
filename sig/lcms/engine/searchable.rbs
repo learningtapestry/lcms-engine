@@ -3,8 +3,6 @@ module Lcms
     module Searchable
       extend ActiveSupport::Concern
 
-      attr_accessor skip_indexing: untyped
-
       def self.search: (untyped term, ?::Hash[untyped, untyped] options) -> untyped
 
       private

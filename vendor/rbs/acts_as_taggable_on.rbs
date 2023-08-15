@@ -1,0 +1,7 @@
+module ActsAsTaggableOn
+  class Tag
+  end
+
+  class Tagging
+  end
+end

@@ -4,8 +4,6 @@ module Elasticsearch
     module Repository
       module Response
         class Results
-          include Enumerable
-
           attr_reader repository: untyped
 
           attr_reader response: untyped
