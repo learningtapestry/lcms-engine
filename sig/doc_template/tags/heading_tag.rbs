@@ -1,0 +1,63 @@
+module DocTemplate
+  module Tags
+    class HeadingTag < BaseTag
+      TEMPLATE: "heading.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def prefix: () -> untyped
+
+      def heading: (untyped value) -> (untyped | ::String)
+    end
+
+    class RubricTag < HeadingTag
+      TAG_NAME: "rubric"
+
+      TITLE_PREFIX: "Rubric"
+    end
+
+    class JsTag < HeadingTag
+      TAG_NAME: "js"
+
+      TITLE_PREFIX: "Juicy Sentences"
+    end
+
+    class EtTag < HeadingTag
+      TAG_NAME: "et"
+
+      TITLE_PREFIX: "Exit Ticket"
+    end
+
+    class PhotoTag < HeadingTag
+      TAG_NAME: "photo"
+
+      TITLE_PREFIX: "Photograph"
+    end
+
+    class AssessTag < HeadingTag
+      TAG_NAME: "assess"
+
+      TITLE_PREFIX: "Assessment"
+    end
+
+    class ShTag < HeadingTag
+      TAG_NAME: "sh"
+
+      def heading: (untyped value) -> untyped
+    end
+
+    class KeyTag < HeadingTag
+      TAG_NAME: "key"
+
+      def heading: (untyped value) -> ::String
+    end
+
+    class ThTag < HeadingTag
+      TAG_NAME: "th"
+
+      def heading: (untyped value) -> ::String
+    end
+  end
+end

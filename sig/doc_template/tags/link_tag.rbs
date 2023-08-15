@@ -1,0 +1,31 @@
+module DocTemplate
+  module Tags
+    class LinkTag < BaseTag
+      FORTHCOMING_PATH: "/forthcoming"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def link: (untyped opts) -> ::String
+
+      def build_href: (untyped title, untyped metadata) -> (untyped | "#" | ::String)
+    end
+
+    class QrdTag < LinkTag
+      TAG_NAME: "qrd"
+    end
+
+    class ImTag < LinkTag
+      TAG_NAME: "im"
+    end
+
+    class PosTag < LinkTag
+      TAG_NAME: "pos"
+    end
+
+    class SgimTag < LinkTag
+      TAG_NAME: "sgim"
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module DocTemplate
+  module Objects
+    class MaterialMetadata
+      KEY_PARAMS: ::Array["breadcrumb_level" | "sheet_type" | "type"]
+
+      def self.build_from: (untyped data) -> untyped
+
+      def self.build_from_pdf: (identifier: untyped, title: untyped) -> untyped
+
+      def self.dump: (untyped data) -> untyped
+
+      def self.load: (untyped data) -> untyped
+    end
+  end
+end

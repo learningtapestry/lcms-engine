@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class PvTag < BaseTag
+      TAG_NAME: "pv"
+
+      TEMPLATE: "pv.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module DocumentExporter
+  module Gdoc
+    class Material < Gdoc::Base
+      def export: () -> untyped
+
+      private
+
+      def handle_vertical_text: () -> untyped
+
+      def template_path: (untyped name) -> untyped
+
+      def vertical_text_image_data: () -> untyped
+
+      def vertical_text: () -> untyped
+    end
+  end
+end

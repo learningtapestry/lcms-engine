@@ -1,0 +1,48 @@
+module DocTemplate
+  class Document
+    MAX_PARSE_ITERATIONS: 300
+
+    # Contains the list of tags for which no parts should be created
+    TAGS_WITHOUT_PARTS: ::Array[untyped | "#"]
+
+    ELA_TG_TEMPLATE: untyped
+
+    attr_accessor parts: untyped
+
+    def self.parse: (untyped nodes, ?::Hash[untyped, untyped] opts) -> untyped
+
+    def parse: (untyped nodes, ?::Hash[untyped, untyped] opts) -> self
+
+    def render: () -> untyped
+
+    private
+
+    def add_custom_nodes: () -> (nil | untyped)
+
+    #
+    # Check if we're getting the same tag again
+    #
+    def check_loop_tag: (untyped name, untyped value) -> (untyped | nil)
+
+    def ela_teacher_guidance: (untyped metadata, untyped _context_type) -> untyped
+
+    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
+    def ela_teacher_guidance_allowed?: () -> (false | true)
+
+    def find_tag: (untyped name, ?::String value) -> untyped
+
+    #
+    # catch invalid tags and report about them
+    #
+    def handle_invalid_tag: (untyped node) -> (nil | untyped)
+
+    def parse_node: (untyped node) -> (nil | untyped)
+
+    def registered_tags: () -> untyped
+
+    #
+    # Save info about the latest parsed tag
+    #
+    def store_last_tag: (untyped name, untyped value) -> untyped
+  end
+end

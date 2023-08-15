@@ -1,0 +1,23 @@
+module DocTemplate
+  module Objects
+    class AgendaMetadata
+      include DocTemplate::Objects::TocHelpers
+
+      class MetaCognition
+      end
+
+      class MetaData
+      end
+
+      class Section
+      end
+
+      class Group
+      end
+
+      def self.build_from: (untyped data) -> untyped
+
+      def add_break: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module DocTemplate
+  CONFIG_PATH: untyped
+
+  DEFAULTS: { bundles: { unit: "::BundleGenerator" }, context_types: ::Array["default" | "gdoc"], lesson_contexts: ::Array["gdoc" | "pdf"], materials_contexts: ::Array["gdoc" | "pdf"], metadata: { context: "Lt::Lcms::Metadata::Context", service: "Lt::Lcms::Metadata::Service" }, queries: { document: "Lcms::Engine::AdminDocumentsQuery", material: "Lcms::Engine::AdminMaterialsQuery" }, sanitizer: "Lcms::Engine::HtmlSanitizer" }
+
+  FULL_TAG: ::Regexp
+
+  START_TAG: "\\[[^\\]]*"
+
+  STARTTAG_XPATH: "span[contains(., \"[\")]"
+
+  ENDTAG_XPATH: "span[contains(., \"]\")]"
+
+  def self.context_types: () -> untyped
+
+  def self.document_contexts: () -> untyped
+
+  def self.material_contexts: () -> untyped
+
+  def self.sanitizer: () -> untyped
+end

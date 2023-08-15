@@ -1,0 +1,6 @@
+module Lcms
+  module Engine
+    class ApplicationRecord < ActiveRecord::Base
+    end
+  end
+end

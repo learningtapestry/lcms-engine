@@ -1,0 +1,5 @@
+module DocTemplate
+  module Tags
+    CONFIG_PATH: untyped
+  end
+end

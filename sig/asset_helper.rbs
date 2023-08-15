@@ -1,0 +1,13 @@
+class AssetHelper
+  REDIS_PREFIX: "ub-b64-asset"
+
+  def self.base64_encoded: (untyped path, ?cache: bool) -> untyped
+
+  def self.inlined: (untyped path) -> untyped
+
+  private
+
+  def self.encode: (untyped path) -> ::String
+
+  def self.redis: () -> untyped
+end

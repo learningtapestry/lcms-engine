@@ -1,0 +1,7 @@
+module Lcms
+  module Engine
+    class Curriculum < ApplicationRecord
+      def self.default: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tables
+    class Target < Base
+      HEADER_LABEL_PIECE: "Long-Term Targets Addressed"
+
+      TEMPLATE: "target-table.html.erb"
+
+      def parse: (untyped fragment, *untyped _args) -> (nil | untyped)
+
+      private
+
+      def fetch: (untyped table) -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class MaterialsTag < BaseTag
+      TAG_NAME: "materials"
+
+      TEMPLATE: "materials.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] _opts) -> self
+    end
+  end
+end

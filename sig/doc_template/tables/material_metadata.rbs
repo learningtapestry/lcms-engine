@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tables
+    class MaterialMetadata < Base
+      CONFIG_PATH: untyped
+
+      HEADER_LABEL: "material-metadata"
+
+      HTML_VALUE_FIELDS: ::Array[untyped]
+
+      def parse: (untyped fragment, *untyped _args) -> self
+
+      private
+
+      def config: () -> untyped
+    end
+  end
+end

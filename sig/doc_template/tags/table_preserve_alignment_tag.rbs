@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tags
+    class TablePreserveAlignmentTag < BaseTag
+      STYLE_RE: ::Regexp
+
+      TAG_NAME: "table-preserve-alignment"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def find_table: (untyped node) -> untyped
+    end
+  end
+end

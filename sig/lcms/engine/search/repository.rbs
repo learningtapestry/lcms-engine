@@ -1,0 +1,35 @@
+module Lcms
+  module Engine
+    module Search
+      def self.ngrams_multi_field: () -> { type: "string", fields: { full: { type: "string", analyzer: "full_str" }, partial: { type: "string", analyzer: "partial_str" }, key: { type: "string", index: "not_analyzed" } } }
+
+      def self.index_settings: () -> { analysis: { filter: { str_ngrams: { type: "nGram", min_gram: 3, max_gram: 10 }, stop_en: { type: "stop", stopwords: "_english_" } }, analyzer: { keyword_str: { filter: ::Array["lowercase"], type: "custom", tokenizer: "keyword" }, full_str: { filter: ::Array["standard" | "lowercase" | "stop_en" | "asciifolding"], type: "custom", tokenizer: "standard" }, partial_str: { filter: ::Array["standard" | "lowercase" | "stop_en" | "asciifolding" | "str_ngrams"], type: "custom", tokenizer: "standard" } } } }
+
+      class Repository
+        include Elasticsearch::Persistence::Repository
+
+        include Elasticsearch::Persistence::Repository::DSL
+
+        SYNONYMS: ::Hash[::String, "text set" | "expert packs"]
+
+        def all_query: (untyped options) -> untyped
+
+        def fts_query: (untyped term, untyped options) -> untyped
+
+        def standards_query: (untyped term, untyped options) -> untyped
+
+        def tags_query: (untyped term, untyped tags, untyped options) -> untyped
+
+        def accepted_filters: () -> ::Array[:model_type | :subject | :grade | :doc_type]
+
+        def apply_filters: (untyped query, untyped options) -> untyped
+
+        def empty_response: () -> untyped
+
+        def multisearch: (untyped queries) -> untyped
+
+        def replace_synonyms: (untyped term) -> untyped
+      end
+    end
+  end
+end

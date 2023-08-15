@@ -1,0 +1,13 @@
+module Lcms
+  module Engine
+    module Navigable
+      extend ActiveSupport::Concern
+
+      def parents: () -> untyped
+
+      def previous: () -> untyped
+
+      def next: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class SourceTag < BaseTag
+      TAG_NAME: "source"
+
+      TEMPLATE: "source.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

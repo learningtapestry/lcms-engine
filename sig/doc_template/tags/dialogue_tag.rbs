@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tags
+    class DialogueTag < BlockTag
+      include ERB::Util
+
+      TAG_NAME: "dialogue"
+
+      TEMPLATES: { default: "dialogue.html.erb", gdoc: "gdoc/dialogue.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def format_phrases: (untyped nodes) -> untyped
+    end
+  end
+end

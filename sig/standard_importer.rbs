@@ -1,0 +1,27 @@
+#
+# Import standards from db/data/standards_*.csv files
+#
+class StandardImporter
+  # @param [String] subject Should be `math` or `ela`
+  def initialize: (untyped subject) -> void
+
+  def run: () -> untyped
+
+  private
+
+  RE_EMPHASIS: ::Regexp
+
+  attr_reader source_file: untyped
+
+  attr_reader subject: untyped
+
+  def find_grade: (untyped name) -> untyped
+
+  def find_grades: (untyped data) -> untyped
+
+  def import: (untyped row) -> untyped
+
+  def standard_ela: (untyped grade_name, untyped data) -> untyped
+
+  def standard_math: (untyped grade_name, untyped data) -> untyped
+end

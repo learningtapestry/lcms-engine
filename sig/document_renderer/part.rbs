@@ -1,0 +1,18 @@
+module DocumentRenderer
+  class Part
+    PART_RE: ::Regexp
+
+    def self.call: (untyped content, untyped options) -> untyped
+
+    private
+
+    #
+    # If part is optional:
+    # - do not render it if optional have not been requested (not web-view)
+    # - do not render it if optional part was not turned ON (is not inside excludes list)
+    # If part is not optional:
+    # - just ignore it if it has been turned OFF
+    #
+    def self.should_render?: (untyped part, ?omit_optional: bool) -> (false | nil | untyped)
+  end
+end

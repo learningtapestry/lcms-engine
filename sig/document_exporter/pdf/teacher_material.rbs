@@ -1,0 +1,7 @@
+module DocumentExporter
+  module Pdf
+    class TeacherMaterial < Pdf::Base
+      def export: () -> untyped
+    end
+  end
+end

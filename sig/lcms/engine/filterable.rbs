@@ -1,0 +1,14 @@
+module Lcms
+  module Engine
+    module Filterable
+      extend ActiveSupport::Concern
+
+      #
+      # @param [String|Symbol] key
+      # @param [Array<String>|Array<Integer>] arr
+      # @return [ActiveRecord::QueryMethods::WhereChain]
+      #
+      def where_metadata_in: (untyped key, untyped arr) -> untyped
+    end
+  end
+end

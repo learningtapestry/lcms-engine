@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tags
+    class CalloutTag < TableTag
+      TAG_NAME: "callout"
+
+      TEMPLATES: { default: "callout.html.erb", gdoc: "gdoc/callout.html.erb" }
+
+      def parse_table: (untyped table) -> untyped
+
+      private
+
+      def fetch_content: (untyped node) -> ::Array[untyped]
+
+      def previous_non_empty: (untyped node) -> untyped
+    end
+  end
+end

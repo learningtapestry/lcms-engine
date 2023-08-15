@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class GlsTag < BaseTag
+      TAG_NAME: "gls"
+
+      TEMPLATE: "gls.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

@@ -1,0 +1,61 @@
+module DocTemplate
+  class Template
+    class TagRegistry
+      include Enumerable
+
+      def initialize: () -> void
+
+      # returns the default tag if the tag is unknown
+      def []: (untyped tag_name) -> untyped
+
+      def []=: (untyped tag_name, untyped klass) -> untyped
+
+      def keys: () -> untyped
+
+      private
+
+      def load_class: (untyped klass_name) -> untyped
+    end
+
+    attr_reader css_styles: untyped
+
+    attr_reader metadata_service: untyped
+
+    attr_reader toc: untyped
+
+    #
+    # @param [String] source
+    # @param [Symbol] type
+    # @return [DocTemplate::Template]
+    #
+    def self.parse: (untyped source, ?type: ::Symbol) -> untyped
+
+    def self.register_tag: (untyped name, untyped klass) -> untyped
+
+    def self.tags: () -> untyped
+
+    def self.unregister_tag: (untyped name) -> untyped
+
+    private
+
+    attr_accessor self.content: untyped
+
+    def self.key_for: (untyped name) -> untyped
+
+    public
+
+    def initialize: (?::Symbol `type`) -> void
+
+    def material?: () -> untyped
+
+    def metadata: () -> untyped
+
+    def parse: (untyped source) -> self
+
+    def parts: () -> untyped
+
+    def remove_part: (untyped `type`, untyped context_type) -> untyped
+
+    def render: (?::Hash[untyped, untyped] options) -> untyped
+  end
+end

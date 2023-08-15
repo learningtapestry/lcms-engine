@@ -1,0 +1,31 @@
+module DocTemplate
+  module Objects
+    class TocMetadata
+      class Heading
+        def excluded?: (untyped excludes, ?ela: bool) -> (false | untyped | true)
+
+        def time_with: (untyped excludes) -> (untyped | 0)
+      end
+
+      def self.dump: (untyped data) -> untyped
+
+      def self.load: (untyped data) -> untyped
+
+      def append: (untyped toc) -> untyped
+
+      def collect_children: () -> untyped
+
+      def collect_material_ids: () -> untyped
+
+      def ordered_material_ids: () -> untyped
+
+      def prepend: (untyped toc) -> untyped
+
+      def total_time_with: (untyped excludes) -> untyped
+
+      private
+
+      def update_time: () -> untyped
+    end
+  end
+end

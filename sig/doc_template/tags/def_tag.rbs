@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tags
+    class DefTag < BaseTag
+      include ERB::Util
+
+      STYLE_RE: ::Regexp
+
+      TAG_NAME: "def"
+
+      TAG_SEPARATOR: "[separator]"
+
+      TEMPLATES: { default: "def.html.erb", gdoc: "gdoc/def.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

@@ -1,0 +1,21 @@
+module DocTemplate
+  module Tags
+    class ImageStudentWorksheetTag < BaseTag
+      include ERB::Util
+
+      HEIGHT_MOD: ::Float
+
+      TAG_NAME: "image-student-worksheet"
+
+      TEMPLATE: "image-student-worksheet.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] _options) -> self
+
+      private
+
+      def find_image: (untyped node) -> untyped
+
+      def prepare_content: (untyped image) -> untyped
+    end
+  end
+end

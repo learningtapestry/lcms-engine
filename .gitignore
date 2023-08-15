@@ -23,3 +23,4 @@ spec/dummy/public/assets/
 
 coverage
 /yarn-error.log
+/.gem_rbs_collection/

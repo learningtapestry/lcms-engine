@@ -1,0 +1,25 @@
+module DocumentExporter
+  class Base
+    def self.pdf_key: (untyped `type`) -> ("pdf" | ::String)
+
+    def initialize: (untyped document, ?::Hash[untyped, untyped] options) -> void
+
+    def export: () -> untyped
+
+    #
+    # Take into consideration that in one component materilas are uniq. So
+    # just the first occurence of exluded material is removed
+    #
+    def included_materials: (?context_type: ::Symbol) -> untyped
+
+    def ordered_materials: (untyped material_ids) -> untyped
+
+    private
+
+    def base_path: (untyped name) -> untyped
+
+    def render_template: (untyped path, layout: untyped) -> untyped
+
+    def template_path: (untyped name) -> untyped
+  end
+end

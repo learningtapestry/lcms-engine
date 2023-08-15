@@ -1,0 +1,27 @@
+module DocTemplate
+  module Tags
+    class LatexTag < BaseTag
+      SPACE_RE: ::Regexp
+
+      TAG_NAME: "latex"
+
+      def self.s3_folder: () -> untyped
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      def tag_data: () -> { latex: untyped }
+
+      private
+
+      attr_reader parent_node: untyped
+
+      attr_reader value: untyped
+
+      def custom_color: () -> (nil | untyped)
+
+      def generate_image: () { (untyped) -> untyped } -> untyped
+
+      def preserve_color?: () -> (false | untyped)
+    end
+  end
+end

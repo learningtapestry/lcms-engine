@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tags
+    class ImageTag < TableTag
+      TAG_NAME: "image"
+
+      TEMPLATES: { default: "image.html.erb", gdoc: "gdoc/image.html.erb" }
+
+      def parse_table: (untyped table) -> untyped
+
+      private
+
+      def image_src: () -> ::String
+    end
+  end
+end

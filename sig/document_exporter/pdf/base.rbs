@@ -1,0 +1,25 @@
+module DocumentExporter
+  module Pdf
+    class Base < DocumentExporter::Base
+      def self.s3_folder: () -> untyped
+
+      def export: () -> untyped
+
+      def pdf_content: () -> untyped
+
+      def combine_pdf_for: (untyped pdf, untyped material_ids) -> untyped
+
+      private
+
+      TEMPLATE_EXTS: ::Array["erb" | "html.erb"]
+
+      def base_path: (untyped name) -> untyped
+
+      def custom_template_for: (untyped name) -> untyped
+
+      def pdf_custom_params: () -> untyped
+
+      def pdf_params: () -> untyped
+    end
+  end
+end

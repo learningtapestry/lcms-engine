@@ -1,0 +1,15 @@
+module Lcms
+  module Engine
+    class DocumentBundle < ApplicationRecord
+      CATEGORIES: ::Array["full" | "tm" | "sm"]
+
+      CONTENT_TYPES: ::Array["pdf" | "gdoc"]
+
+      def self.update_bundle: (untyped resource, ?::String category) -> untyped
+
+      def self.update_pdf_bundle: (untyped resource, untyped category) -> (nil | untyped)
+
+      def self.update_gdoc_bundle: (untyped resource) -> (nil | untyped)
+    end
+  end
+end

@@ -1,0 +1,29 @@
+module DocTemplate
+  module Tags
+    class ActivityMetadataTypeTag < BaseTag
+      include DocTemplate::Tags::Helpers
+
+      include ERB::Util
+
+      TAG_NAME: "activity-metadata-type"
+
+      TASK_RE: ::Regexp
+
+      TEMPLATES: { default: "activity.html.erb", gdoc: "gdoc/activity.html.erb" }
+
+      def optional?: () -> untyped
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      attr_reader activity: untyped
+
+      attr_reader opts: untyped
+
+      def extended_parse_params: () -> untyped
+
+      def extended_params_default: () -> { priority_description: untyped, priority_icon: untyped, react_props: { activity: { title: untyped, type: untyped }, material_ids: untyped } }
+    end
+  end
+end

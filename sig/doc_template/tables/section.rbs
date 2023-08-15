@@ -1,0 +1,21 @@
+module DocTemplate
+  module Tables
+    class Section < Base
+      FAKE_SECTION_TITLE: "lesson"
+
+      HEADER_LABEL: "section-metadata"
+
+      HTML_VALUE_FIELDS: ::Array["section-summary"]
+
+      MATERIALS_KEY: "section-materials"
+
+      def parse: (untyped fragment, *untyped args) -> untyped
+
+      private
+
+      def fake_section: (untyped fragment) -> ::Array[::Hash[::String, untyped]]
+
+      def section_placeholder: (untyped value) -> ::String
+    end
+  end
+end

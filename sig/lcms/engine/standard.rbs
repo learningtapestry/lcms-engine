@@ -1,0 +1,23 @@
+module Lcms
+  module Engine
+    class Standard < ApplicationRecord
+      # NOTE: #954 - to be removed?
+      ALT_NAME_REGEX: ::Hash[::String, ::Regexp]
+
+      DOMAINS_GRADES: ::Hash[::String, untyped]
+
+      DOMAINS: ::Hash[::String, ::Hash[::String, "Counting & Cardinality" | "Operations & Algebraic Thinking" | "Number & Operations in Base Ten" | "Measurement & Data" | "Geometry" | ::String | "Ratios & Proportional Relationships" | "The Number System" | "Expressions & Equations" | "Statistics & Probability" | "Functions"] | ::Hash[::String, "The Real Number System" | "Quantities*" | "The Complex Number System" | "Vector & Matrix Quantities" | "Seeing Structure in Expressions" | "Arithmetic with Polynomials & Rational Expressions" | "Creating Equations*" | "Reasoning with Equations & Inequalities" | "Interpreting Functions" | "Building Functions" | "Linear, Quadratic, & Exponential Models*" | "Trigonometric Functions" | "Congruence" | "Similarity, Right Triangles, & Trigonometry" | "Circles" | "Expressing Geometric Properties with Equations" | "Geometric Measurement & Dimension" | "Modeling with Geometry" | "Interpreting Categorical & Quantitative Data" | "Making Inferences & Justifying Conclusions" | "Conditional Probability & the Rules of Probability" | "Using Probability to Make Decisions"]]
+
+      STRANDS: ::Hash[::String, "Language" | "Reading: Foundational Skills" | "Reading: Informational Text" | "Reading: Literature" | "Speaking & Listening" | "Writing"]
+
+      # NOTE: #954 - to be removed?
+      def self.search_by_name: (untyped name) -> untyped
+
+      # NOTE: #954 - to be removed?
+      def self.filter_ccss_standards: (untyped name, untyped subject) -> (untyped | nil)
+
+      # NOTE: #954 - to be removed?
+      def short_name: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tags
+    class ExpandTag < TableTag
+      BREAK_TAG_NAME: "break"
+
+      TAG_NAME: "expand"
+
+      TEMPLATES: { default: "expand.html.erb", gdoc: "gdoc/expand.html.erb" }
+
+      def parse_table: (untyped table) -> untyped
+
+      private
+
+      def fetch_content: (untyped node) -> ::Array[untyped]
+    end
+  end
+end

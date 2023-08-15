@@ -1,0 +1,18 @@
+module DocTemplate
+  module Tags
+    class BlockTag < BaseTag
+      END_VALUE: "end"
+
+      def no_end_tag_for: (untyped node) -> untyped
+
+      #
+      # Collects all the nodes before the closing tag
+      #
+      def block_nodes: (untyped node) { (untyped) -> untyped } -> untyped
+
+      private
+
+      def end_tag_re: () -> untyped
+    end
+  end
+end

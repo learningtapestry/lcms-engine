@@ -1,0 +1,11 @@
+module DocTemplate
+  class DocumentToc
+    REGISTERED_METADATA: ::Array[:agenda | :sections]
+
+    #
+    # Build the ToC from the first available metadata.
+    # We're doing that to allow cross-subject data passing.
+    #
+    def self.parse: (?::Hash[untyped, untyped] opts) -> untyped
+  end
+end

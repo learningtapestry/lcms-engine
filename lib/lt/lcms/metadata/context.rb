@@ -69,6 +69,9 @@ module Lt
           }.compact.stringify_keys
         end
 
+        #
+        # @return [Lcms::Engine::Resource]
+        #
         def find_or_create_resource
           ::Lcms::Engine::Resource.with_advisory_lock('find_or_create_resource') do
             # if the resource exists, return it

@@ -1,0 +1,13 @@
+module Lcms
+  module Engine
+    module Test
+      module ResourceHelpers
+        def resources_sample_collection: () -> untyped
+
+        def build_resources_chain: (untyped curr) -> untyped
+
+        def build_or_return_resources_chain: (untyped curr) -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,6 @@
+module Lcms
+  module Engine
+    class CopyrightAttribution < ApplicationRecord
+    end
+  end
+end

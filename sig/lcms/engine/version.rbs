@@ -1,0 +1,7 @@
+module Lcms
+  module Engine
+    VERSION: "0.5.4"
+
+    RAILS_5_VERSION: ::Float
+  end
+end

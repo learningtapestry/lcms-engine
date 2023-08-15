@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class CoreContentObjectivesTag < BlockTag
+      TAG_NAME: "core content objectives"
+
+      TEMPLATE: "core_content_objectives.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

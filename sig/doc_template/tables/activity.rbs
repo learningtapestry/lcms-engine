@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tables
+    class Activity < Base
+      HEADER_LABEL: "activity-metadata"
+
+      HTML_VALUE_FIELDS: ::Array["about-the-activity-student" | "about-the-activity-teacher" | "activity-metacognition" | "activity-guidance" | "alert" | "class-configuration-student" | "reading-purpose"]
+
+      MATERIALS_KEY: "materials"
+
+      def parse: (untyped fragment, *untyped args) -> untyped
+
+      def process_title: (untyped data) -> untyped
+    end
+  end
+end

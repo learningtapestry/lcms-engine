@@ -1,0 +1,9 @@
+module DocTemplate
+  module Tags
+    class DefaultTag < BaseTag
+      TAG_NAME: "default"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] _options) -> (untyped | self)
+    end
+  end
+end

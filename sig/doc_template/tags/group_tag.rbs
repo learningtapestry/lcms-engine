@@ -1,0 +1,13 @@
+module DocTemplate
+  module Tags
+    class GroupTag < BaseTag
+      include DocTemplate::Tags::Helpers
+
+      TAG_NAME: "group"
+
+      TEMPLATES: { default: "group-ela.html.erb", gdoc: "gdoc/group-ela.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

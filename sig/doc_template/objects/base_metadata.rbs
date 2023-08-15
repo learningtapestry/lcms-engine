@@ -1,0 +1,16 @@
+module DocTemplate
+  module Objects
+    class BaseMetadata
+      def self.build_from: (untyped data) -> untyped
+
+      #
+      # Splits the text by separator removing empty parts
+      #
+      # @param text [String] text to be split
+      # @param separator [String]
+      # @return [Array] array of parts
+      #
+      def self.split_field: (untyped text, ?untyped separator) -> untyped
+    end
+  end
+end

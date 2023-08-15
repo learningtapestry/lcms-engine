@@ -1,0 +1,27 @@
+module DocTemplate
+  module Tables
+    class Agenda < Base
+      HEADER_LABEL: "[agenda]"
+
+      ICONS_KEY: "icon"
+
+      MATERIALS_KEY: "materials"
+
+      METADATA_HEADER_LABEL: "metadata"
+
+      GENERAL_TAG: "general"
+
+      def parse: (untyped fragment, *untyped _args) -> self
+
+      def data: () -> untyped
+
+      private
+
+      def fetch_icons: (untyped data) -> untyped
+
+      def parse_metadata: (untyped fragment) -> (::Hash[untyped, untyped] | untyped)
+
+      def parse_metacognition: (untyped fragment) -> { content: untyped, original_content: untyped }
+    end
+  end
+end

@@ -1,0 +1,9 @@
+module DocTemplate
+  class XpathFunctions
+    def case_insensitive_equals: (untyped node_set, untyped str_to_match) -> untyped
+
+    def case_insensitive_contains: (untyped node_set, untyped str_to_match) -> untyped
+
+    def case_regular: (untyped node_set, untyped re_to_match) -> (untyped | ::Array[untyped])
+  end
+end

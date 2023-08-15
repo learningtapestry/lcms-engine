@@ -1,0 +1,30 @@
+module Lcms
+  module Engine
+    module Searchable
+      extend ActiveSupport::Concern
+
+      attr_accessor skip_indexing: untyped
+
+      def self.search: (untyped term, ?::Hash[untyped, untyped] options) -> untyped
+
+      private
+
+      def self.search_model: () -> untyped
+
+      def delete_document: () -> untyped
+
+      def search_doc: () -> untyped
+
+      def index_document: () -> untyped
+
+      def search_repo: () -> untyped
+
+      def should_index?: () -> untyped
+
+      #
+      # Explicitly skip indexing as we do not use it now
+      #
+      def skip_indexing: () -> true
+    end
+  end
+end

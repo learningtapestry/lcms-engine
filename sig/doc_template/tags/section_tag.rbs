@@ -1,0 +1,31 @@
+module DocTemplate
+  module Tags
+    class SectionTag < BaseTag
+      include DocTemplate::Tags::Helpers
+
+      STUDENT_RE: ::Regexp
+
+      TAG_NAME: "section"
+
+      SECTION_REMOVE_RE: ::Regexp
+
+      TEMPLATES: { default: "section.html.erb", gdoc: "gdoc/section.html.erb" }
+
+      def optional?: () -> untyped
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      attr_reader opts: untyped
+
+      attr_reader section: untyped
+
+      def general_params: () -> untyped
+
+      def parse_content: (untyped node, untyped template) -> untyped
+
+      def section_icons: (untyped section) -> (::Array[untyped] | untyped)
+    end
+  end
+end

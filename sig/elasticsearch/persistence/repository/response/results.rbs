@@ -1,0 +1,42 @@
+# monkey patch ES results to handle pagination
+module Elasticsearch
+  module Persistence
+    module Repository
+      module Response
+        class Results
+          include Enumerable
+
+          attr_reader repository: untyped
+
+          attr_reader response: untyped
+
+          def initialize: (untyped repository, untyped response, ?::Hash[untyped, untyped] options) -> void
+
+          def method_missing: (untyped method_name, *untyped arguments) ?{ () -> untyped } -> untyped
+
+          def respond_to?: (untyped method_name, ?bool include_private) -> untyped
+
+          def total: () -> untyped
+
+          def max_score: () -> untyped
+
+          def each_with_hit: () ?{ () -> untyped } -> untyped
+
+          def map_with_hit: () ?{ () -> untyped } -> untyped
+
+          def results: () -> untyped
+
+          def paginate: (untyped options) -> self
+
+          def total_pages: () -> untyped
+
+          def current_page: () -> untyped
+
+          def per_page: () -> untyped
+
+          def total_entries: () -> untyped
+        end
+      end
+    end
+  end
+end

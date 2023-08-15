@@ -1,0 +1,9 @@
+module DocumentExporter
+  module Pdf
+    class Material < Pdf::Base
+      private
+
+      def template_path: (untyped name) -> untyped
+    end
+  end
+end

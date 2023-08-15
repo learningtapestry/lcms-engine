@@ -1,0 +1,11 @@
+module DocumentExporter
+  class Thumbnail
+    THUMBNAIL_RATIO: ::Float
+
+    def initialize: (untyped content) -> void
+
+    def export: () -> untyped
+
+    def orientation: () -> ("portrait" | "landscape")
+  end
+end

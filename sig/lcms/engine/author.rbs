@@ -1,0 +1,6 @@
+module Lcms
+  module Engine
+    class Author < ApplicationRecord
+    end
+  end
+end

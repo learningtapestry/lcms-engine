@@ -1,0 +1,38 @@
+#
+# Exporter in LTI Thin Common Cartridge format
+#
+module Lti
+  class ThinCommonCartridge
+    attr_reader links: untyped
+
+    def initialize: (untyped items) -> void
+
+    def create_nodes: () -> untyped
+
+    def manifest: () -> untyped
+
+    private
+
+    LTI_LINK_RESOURCE_TYPE: "imsbasiclti_xmlv1p0"
+
+    MANIFEST_FILEPATH: untyped
+
+    LTI_LINK_FILEPATH: untyped
+
+    attr_reader items: untyped
+
+    attr_reader link_template: untyped
+
+    attr_reader xml: untyped
+
+    def add_item: (untyped item, untyped parent) -> untyped
+
+    def add_resource: (untyped item) -> untyped
+
+    def create_link: (untyped item, untyped file_href) -> untyped
+
+    def create_node: (untyped name, ?::Hash[untyped, untyped] attrs) -> untyped
+
+    def resources_node: () -> untyped
+  end
+end

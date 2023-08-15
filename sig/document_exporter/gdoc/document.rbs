@@ -1,0 +1,7 @@
+module DocumentExporter
+  module Gdoc
+    class Document < Gdoc::Base
+      def export: () -> untyped
+    end
+  end
+end

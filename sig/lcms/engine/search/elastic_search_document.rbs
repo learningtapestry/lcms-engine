@@ -1,0 +1,34 @@
+module Lcms
+  module Engine
+    module Search
+      class ElasticSearchDocument
+        # return the corresponding repository
+        def self.repository: () -> untyped
+
+        def repository: () -> untyped
+
+        def index!: () -> untyped
+
+        def delete!: () -> untyped
+
+        # Default search
+        #
+        # term: [String || Nil]
+        #   - [Nil]    : return a match_all query
+        #   - [String] : perform a `fts_query` on the repository
+        #
+        # options: [Hash]
+        #   - per_page : number os results per page
+        #   - page     : results page number
+        #   - <filter> : any doc specific filters, e.g: 'grade', 'subject', etc
+        #
+        def self.search: (untyped term, ?::Hash[untyped, untyped] options) -> (::Array[untyped] | untyped)
+
+        # this is necessary for the ActiveModel::Serializer::CollectionSerializer#as_json method to work
+        # (used on the Pagination#serialize_with_pagination)
+        # NOTE: https://github.com/rails-api/active_model_serializers/issues/891
+        def read_attribute_for_serialization: (untyped key) -> untyped
+      end
+    end
+  end
+end

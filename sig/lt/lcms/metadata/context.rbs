@@ -1,0 +1,91 @@
+#
+# Handles Document metadata contexts, to find and/or create corresponding Resources
+#
+module Lt
+  module Lcms
+    module Metadata
+      class Context
+        attr_reader context: untyped
+
+        NUM_RE: ::Regexp
+
+        #
+        # Fix level position for grades
+        # Is used inside `#find_or_create_resource` method
+        #
+        def self.update_grades_level_position_for: (untyped grades) -> untyped
+
+        #
+        # Fix level position for modules
+        # Is used inside `#find_or_create_resource` method
+        #
+        def self.update_modules_level_position_for: (untyped modules) -> untyped
+
+        #
+        # Fix level position for units
+        # Is used inside `#find_or_create_resource` method
+        #
+        def self.update_units_level_position_for: (untyped units) -> untyped
+
+        #
+        # Fix level position for in case when lower curriculum elements have
+        # been created after higher ones: Grade 8 was created before Grade 7
+        #
+        def self.update_level_position_for: (untyped resources) { (untyped) -> untyped } -> untyped
+
+        def initialize: (?::Hash[untyped, untyped] context) -> void
+
+        def directory: () -> untyped
+
+        def metadata: () -> untyped
+
+        #
+        # @return [Lcms::Engine::Resource]
+        #
+        def find_or_create_resource: () -> untyped
+
+        private
+
+        def assessment?: () -> untyped
+
+        def build_new_resource: (untyped parent, untyped name, untyped index) -> untyped
+
+        def default_title: (?untyped? curr) -> untyped
+
+        def ela?: () -> untyped
+
+        def grade: () -> untyped
+
+        def last_item?: (untyped index) -> untyped
+
+        def lesson: () -> untyped
+
+        def module: () -> untyped
+
+        alias mod module
+
+        def number?: (untyped str) -> untyped
+
+        def alnum?: (untyped str) -> untyped
+
+        def opr?: () -> untyped
+
+        def subject: () -> untyped
+
+        def tag_list: () -> ::Array[untyped]
+
+        def teaser: () -> untyped
+
+        def title: () -> untyped
+
+        def type: () -> untyped
+
+        def unit: () -> ::String
+
+        def update: (untyped resource) -> (nil | untyped)
+
+        def set_lesson_position: (untyped parent, untyped resource) -> untyped
+      end
+    end
+  end
+end

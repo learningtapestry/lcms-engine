@@ -1,0 +1,29 @@
+module DocTemplate
+  module Tags
+    class StandardTag < BaseTag
+      include ERB::Util
+
+      STANDARD_RE: ::Regexp
+
+      TAG_NAME: ::Regexp
+
+      TAG_RE: ::Regexp
+
+      TAG_SEPARATOR: "[separator]"
+
+      TEMPLATES: { default: "standard.html.erb", gdoc: "gdoc/standard.html.erb" }
+
+      def parse: (untyped node, untyped opts) -> self
+
+      private
+
+      # Extracting content outside the tag
+      # TODO: Extract to the parent class
+      def fetch_data: (untyped source) -> untyped
+
+      def fetch_description: (untyped text) -> (nil | untyped)
+
+      def render_template: (untyped node, untyped opts) -> untyped
+    end
+  end
+end

@@ -1,0 +1,17 @@
+module DocTemplate
+  module Tags
+    class InsetTag < BlockTag
+      STYLES_REGEXP: { bold: ::Regexp, italic: ::Regexp }
+
+      TAG_NAME: "inset"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def preserve_styles: (untyped node, untyped opts) -> untyped
+
+      def add_css_class: (untyped el, *untyped classes) -> untyped
+    end
+  end
+end

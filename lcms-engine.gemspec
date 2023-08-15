@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
     'bug_tracker_uri' => 'https://github.com/learningtapestry/lcms-engine/issues'
   }
 
-  s.files = Dir['{app,bin,config,db,docs,lib,public,templates, vendor}/**/*', 'LICENSE', 'README.md',
+  s.files = Dir['{app,bin,config,db,docs,lib,public,sig,templates, vendor}/**/*', 'LICENSE', 'README.md',
                 'lcms-engine.gemspec', 'Gemfile', 'Gemfile.lock']
 
   s.required_ruby_version = '~> 3.2'

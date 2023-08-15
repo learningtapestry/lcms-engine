@@ -1,0 +1,19 @@
+module DocTemplate
+  module Tags
+    class IndentTag < BaseTag
+      TAG_NAME: "indent"
+
+      TEMPLATES: { default: "indent.html.erb", gdoc: "gdoc/indent.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      attr_reader node: untyped
+
+      attr_reader opts: untyped
+
+      def parsed_content: () -> ::String
+    end
+  end
+end

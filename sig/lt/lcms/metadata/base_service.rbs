@@ -1,0 +1,28 @@
+# TODO: Move to lt-lcms gem
+module Lt
+  module Lcms
+    module Metadata
+      class BaseService
+        attr_reader self.activity_metadata: untyped
+
+        attr_reader self.errors: untyped
+
+        attr_reader self.metadata: untyped
+
+        attr_reader self.section_metadata: untyped
+
+        def self.materials_metadata: () -> untyped
+
+        def self.options_for: (untyped context) -> untyped
+
+        def self.parse: (untyped _content, *untyped args) -> untyped
+
+        attr_reader self.options: untyped
+
+        def self.lesson_options: () -> untyped
+
+        def self.material?: () -> untyped
+      end
+    end
+  end
+end

@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tables
+    class Metadata < Base
+      HEADER_LABEL: "document-metadata"
+
+      HTML_VALUE_FIELDS: ::Array["description" | "lesson-objective" | "look-fors" | "materials" | "preparation" | "relationship-to-eny1"]
+
+      def parse: (untyped fragment, *untyped _args) -> self
+    end
+  end
+end

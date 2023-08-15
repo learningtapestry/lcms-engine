@@ -1,0 +1,9 @@
+module DocTemplate
+  module Tags
+    class TableTag < BaseTag
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      def parse_table: (untyped _table) -> untyped
+    end
+  end
+end

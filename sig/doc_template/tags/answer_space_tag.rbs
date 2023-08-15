@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class AnswerSpaceTag < BaseTag
+      SPACE_SIZE: { s: 5, m: 10, l: 20 }
+
+      TAG_NAME: "answer-space"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

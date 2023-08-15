@@ -1,0 +1,20 @@
+#
+# Makes an image from the text given
+#
+class TextToImage
+  DEFAULT_OPTS: { format: "png", height: "", width: 600 }
+
+  def initialize: (untyped text, ?::Hash[untyped, untyped] options) -> void
+
+  def raw: () -> untyped
+
+  private
+
+  attr_accessor options: untyped
+
+  attr_accessor text: untyped
+
+  def data: () -> untyped
+
+  def size: () -> untyped
+end

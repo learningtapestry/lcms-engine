@@ -1,0 +1,9 @@
+module DocumentExporter
+  module Gdoc
+    class TeacherMaterial < Gdoc::Base
+      FOLDER_NAME: "Teacher Materials"
+
+      def export: () -> untyped
+    end
+  end
+end

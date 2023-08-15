@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class SmpTag < BlockTag
+      TAG_NAME: "smp"
+
+      TEMPLATES: { default: "smp.html.erb", gdoc: "gdoc/smp.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

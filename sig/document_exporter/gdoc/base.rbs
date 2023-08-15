@@ -1,0 +1,52 @@
+module DocumentExporter
+  module Gdoc
+    class Base < DocumentExporter::Base
+      GOOGLE_API_CLIENT_UPLOAD_RETRIES: untyped
+
+      GOOGLE_API_CLIENT_UPLOAD_TIMEOUT: untyped
+
+      GOOGLE_API_UPLOAD_OPTIONS: { options: { open_timeout_sec: untyped, read_timeout_sec: untyped, retries: untyped, send_timeout_sec: untyped } }
+
+      VERSION_RE: ::Regexp
+
+      attr_reader document: untyped
+
+      attr_reader options: untyped
+
+      def self.gdoc_key: (untyped `type`) -> ::String
+
+      def self.url_for: (untyped file_id) -> ::String
+
+      def create_gdoc_folders: (untyped folder) -> untyped
+
+      def export: () -> self
+
+      #
+      # @param folder_id String ID of folder export file to
+      # @param file_id String ID of existing file
+      #
+      def export_to: (untyped folder_id, ?file_id: untyped?) -> self
+
+      def url: () -> untyped
+
+      private
+
+      def base_path: (untyped name) -> untyped
+
+      def content: () -> untyped
+
+      #
+      # Deletes files of previous versions
+      #
+      def delete_previous_versions_from: (untyped folder) -> untyped
+
+      def drive_service: () -> untyped
+
+      def gdoc_folder: () -> self
+
+      def gdoc_folder_tmp: (untyped material_ids) -> self
+
+      def post_processing: () -> untyped
+    end
+  end
+end

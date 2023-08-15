@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class PositionTag < TableTag
+      TAG_NAME: "position"
+
+      TEMPLATE: "position.html.erb"
+
+      def parse_table: (untyped table) -> (nil | untyped)
+    end
+  end
+end

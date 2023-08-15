@@ -1,0 +1,27 @@
+# TODO: Move to lt-lcms gem
+module Lt
+  module Lcms
+    module Metadata
+      class Service < BaseService
+        def self.agenda: () -> untyped
+
+        def self.materials_metadata: () -> untyped
+
+        def self.options_for: (untyped context) -> untyped
+
+        def self.parse: (untyped content, *untyped args) -> self
+
+        private
+
+        #
+        # Force injecting of Section metadata only if there are no Agenda tables
+        #
+        def self.force_inject_section?: () -> untyped
+
+        def self.lesson_options: () -> { activity: untyped, agenda: untyped, sections: untyped }
+
+        def self.target_table?: () -> (false | untyped)
+      end
+    end
+  end
+end

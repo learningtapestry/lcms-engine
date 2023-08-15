@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tags
+    class WhitePlaceholderTag < BlockTag
+      TAG_NAME: "white-placeholder"
+
+      TEMPLATES: { default: "white-placeholder.html.erb", gdoc: "gdoc/white-placeholder.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def fetch_title: (untyped data) -> ::Array[untyped]
+    end
+  end
+end

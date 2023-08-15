@@ -1,0 +1,13 @@
+module DocTemplate
+  module Tags
+    class PageBreakTag < BaseTag
+      CSS_CLASS: "u-pdf-alwaysbreak"
+
+      TAG_NAME: ::Regexp
+
+      TAG_SUB: "<p>--GDOC-PAGE-BREAK--</p>"
+
+      def parse: (untyped node, untyped opts) -> self
+    end
+  end
+end

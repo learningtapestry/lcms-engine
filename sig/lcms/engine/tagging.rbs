@@ -1,0 +1,9 @@
+module Lcms
+  module Engine
+    #
+    # Comes from acts_as_taggable_on_engine
+    #
+    class Tagging < ActsAsTaggableOn::Tagging
+    end
+  end
+end

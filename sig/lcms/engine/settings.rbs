@@ -1,0 +1,13 @@
+module Lcms
+  module Engine
+    class Settings < ApplicationRecord
+      def self.[]: (untyped key) -> untyped
+
+      def self.[]=: (untyped key, untyped value) -> untyped
+
+      private
+
+      def self.settings: () -> untyped
+    end
+  end
+end

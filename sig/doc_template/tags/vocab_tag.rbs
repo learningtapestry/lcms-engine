@@ -1,0 +1,11 @@
+module DocTemplate
+  module Tags
+    class VocabTag < BlockTag
+      TAG_NAME: "vocab"
+
+      TEMPLATE: "vocab.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

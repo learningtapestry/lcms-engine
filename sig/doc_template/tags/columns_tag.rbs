@@ -1,0 +1,35 @@
+module DocTemplate
+  module Tags
+    class ColumnsTag < BlockTag
+      include ERB::Util
+
+      ALIGNMENT_RE: ::Regexp
+
+      SPLIT_SYMBOL: ";"
+
+      TAG_NAME: "columns"
+
+      TEMPLATE: "columns.html.erb"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      def add_tags_from: (untyped node) -> untyped
+
+      #
+      # Going down the DOM tree until the end tag. Placing own markers
+      # for nested tags and images to revert them back later on
+      #
+      def fetch_content: (untyped node) -> untyped
+
+      def fetch_images: (untyped node) -> untyped
+
+      def handle_alignment_for: (untyped td) -> untyped
+
+      def substitute_images: (untyped data) -> untyped
+
+      def substitute_tags: (untyped content) -> untyped
+    end
+  end
+end

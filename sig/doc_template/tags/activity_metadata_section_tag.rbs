@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tags
+    class ActivityMetadataSectionTag < BaseTag
+      include DocTemplate::Tags::Helpers
+
+      include ERB::Util
+
+      TAG_NAME: "activity-metadata-section"
+
+      TEMPLATES: { default: "group-math.html.erb", gdoc: "gdoc/group-math.html.erb" }
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

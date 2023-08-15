@@ -1,0 +1,57 @@
+module DocTemplate
+  module Tags
+    class PdTag < BaseTag
+      CG_RE: ::Regexp
+
+      PDF_HTTP_RE: ::Regexp
+
+      PDF_HTTP_REPLACE_RE: ::Regexp
+
+      PDF_RE: ::Regexp
+
+      TAG_NAME: "pd"
+
+      TEMPLATES: { default: "pd.html.erb", gdoc: "gdoc/pd.html.erb" }
+
+      TYPE_CG: "cg"
+
+      TYPE_PDF: "pdf"
+
+      TYPE_PODCAST: "podcast"
+
+      TYPE_YOUTUBE: "youtube"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+
+      private
+
+      attr_reader description: untyped
+
+      attr_reader opts: untyped
+
+      attr_reader resource: untyped
+
+      attr_reader start: untyped
+
+      attr_reader stop: untyped
+
+      attr_reader subject: untyped
+
+      attr_reader title: untyped
+
+      attr_reader url: untyped
+
+      def embeded_object: () -> (untyped | untyped | untyped | untyped | nil)
+
+      def embeded_object_cg: (untyped id) -> (nil | { color: ::String, content_guide: untyped, resource_url: untyped, type: untyped, url: untyped })
+
+      def embeded_object_pdf: () -> { type: untyped, url: untyped }
+
+      def embeded_object_soundcloud: () -> { content: untyped, resource_url: untyped, type: untyped }
+
+      def embeded_object_youtube: () -> { resource_url: untyped, type: untyped, url: untyped }
+
+      def fetch_data: () -> untyped
+    end
+  end
+end

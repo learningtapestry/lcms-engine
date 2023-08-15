@@ -1,0 +1,19 @@
+module DocTemplate
+  module Objects
+    class SectionsMetadata
+      include DocTemplate::Objects::TocHelpers
+
+      class Section
+        include DocTemplate::Objects::MetadataHelpers
+
+        def add_activity: (untyped activity) -> untyped
+
+        def section_standard_info: () -> untyped
+      end
+
+      def self.build_from: (untyped data) -> untyped
+
+      def add_break: () -> untyped
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module DocTemplate
+  module Tags
+    class VocabularyTag < TableTag
+      TAG_NAME: "vocabulary"
+
+      TEMPLATE: "vocabulary.html.erb"
+
+      def parse_table: (untyped table) -> untyped
+
+      private
+
+      def fetch_content: (untyped node) -> untyped
+    end
+  end
+end

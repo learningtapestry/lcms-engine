@@ -1,0 +1,9 @@
+module DocTemplate
+  module Tags
+    class MultipleChoiceTag < BlockTag
+      TAG_NAME: "multiple-choice"
+
+      def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module DocTemplate
+  module Objects
+    module TocHelpers
+      extend ActiveSupport::Concern
+
+      def level1_by_title: (untyped title) -> untyped
+
+      def level2_by_title: (untyped title) -> untyped
+
+      def find_by_anchor: (untyped anchor) -> untyped
+
+      def set_index: (untyped data, ?::Hash[untyped, untyped] params) -> untyped
+    end
+  end
+end
