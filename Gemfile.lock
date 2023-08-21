@@ -1,4 +1,17 @@
 GIT
+  remote: https://github.com/learningtapestry/lt-lcms.git
+  revision: d4ecb6f1b7120680b36ded99b9229e98c3d000dc
+  ref: d4ecb6f
+  branch: master
+  specs:
+    lt-lcms (0.5.0)
+      google-api-client (~> 0.38)
+      httparty (~> 0.18)
+      lt-google-api (~> 0.2, >= 0.2.4)
+      nokogiri (~> 1.10, >= 1.10.8)
+      rubyzip (~> 2)
+
+GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
   revision: f4bbc540ed7018703bba46ebbd6e067b603f1db2
   ref: f4bbc54
@@ -35,7 +48,6 @@ PATH
       httparty (~> 0.18)
       jbuilder (~> 2.10)
       lt-google-api (~> 0.2, >= 0.2.3)
-      lt-lcms (~> 0.5)
       mini_magick (~> 4.10, >= 4.10.1)
       nokogiri (~> 1.12, >= 1.12.0)
       oj (~> 3.10, >= 3.10.2)
@@ -406,12 +418,6 @@ GEM
     lt-google-api (0.2.4)
       google-api-client (~> 0.46)
       googleauth (~> 0.14)
-    lt-lcms (0.5.0)
-      google-api-client (~> 0.38)
-      httparty (~> 0.18)
-      lt-google-api (~> 0.2, >= 0.2.4)
-      nokogiri (~> 1.10, >= 1.10.8)
-      rubyzip (~> 2)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
@@ -710,6 +716,7 @@ DEPENDENCIES
   faker (~> 2.1)
   jsbundling-rails (~> 1.1)
   lcms-engine!
+  lt-lcms!
   overcommit (~> 0.57)
   rspec-rails (~> 4.0.2)
   rubocop (~> 1.36)

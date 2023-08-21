@@ -16,6 +16,7 @@ AllCops:
     - spec/dummy/bin/*
     - templates/*
     - config/initializers/simple_form_bootstrap.rb
+    - Steepfile
   NewCops: enable
   TargetRubyVersion: 3.2
 

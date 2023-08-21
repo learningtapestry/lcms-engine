@@ -5,8 +5,8 @@ target :lib do
 
   check "lib"                       # Directory name
   check "Gemfile"                   # File name
-  check "app/models/**/*.rb"        # Glob
-  # ignore "lib/templates/*.rb"
+#  # check "app/models/**/*.rb"        # Glob
+#  # ignore "lib/templates/*.rb"
 #
 #   # library "pathname"              # Standard libraries
 #   # library "strong_json"           # Gems

@@ -52,7 +52,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'httparty', '~> 0.18'
   s.add_dependency 'jbuilder', '~> 2.10'
   s.add_dependency 'lt-google-api', '~> 0.2', '>= 0.2.3'
-  s.add_dependency 'lt-lcms', '~> 0.5'
+  # NOTE: Moved to Gemfile temporary
+  # s.add_dependency 'lt-lcms', '~> 0.5'
   s.add_dependency 'mini_magick', '~> 4.10', '>= 4.10.1'
   s.add_dependency 'nokogiri', '~> 1.12', '>= 1.12.0'
   s.add_dependency 'oj', '~> 3.10', '>= 3.10.2'
