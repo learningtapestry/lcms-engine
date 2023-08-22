@@ -58,7 +58,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.12', '>= 1.12.0'
   s.add_dependency 'oj', '~> 3.10', '>= 3.10.2'
   s.add_dependency 'oj_mimic_json', '~> 1.0', '>= 1.0.1'
-  s.add_dependency 'pandoc-ruby', '~> 2.0', '>= 2.0.2'
   s.add_dependency 'pg', '~> 1.2', '>= 1.2.2'
   s.add_dependency 'pg_search', '~> 2.3', '>= 2.3.2'
   s.add_dependency 'rack-mini-profiler', '~> 2.3', '>= 2.3.3'
