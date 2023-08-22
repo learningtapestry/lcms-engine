@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module DocTemplate
-  CONFIG_PATH ||= Rails.root.join('config', 'lcms.yml')
+  CONFIG_PATH = Rails.root.join('config', 'lcms.yml')
 
-  DEFAULTS ||= {
+  DEFAULTS = {
     bundles: { unit: '::BundleGenerator' },
     context_types: %w(default gdoc),
     lesson_contexts: %w(gdoc pdf),
@@ -19,11 +19,11 @@ module DocTemplate
     sanitizer: 'Lcms::Engine::HtmlSanitizer'
   }.freeze
 
-  FULL_TAG ||= /\[([^\]:\s]*)?\s*:?\s*([^\]]*?)?\]/mo
-  START_TAG ||= '\[[^\]]*'
+  FULL_TAG = /\[([^\]:\s]*)?\s*:?\s*([^\]]*?)?\]/mo
+  START_TAG = '\[[^\]]*'
 
-  STARTTAG_XPATH ||= 'span[contains(., "[")]'
-  ENDTAG_XPATH ||= 'span[contains(., "]")]'
+  STARTTAG_XPATH = 'span[contains(., "[")]'
+  ENDTAG_XPATH = 'span[contains(., "]")]'
 
   mattr_accessor :config
 
