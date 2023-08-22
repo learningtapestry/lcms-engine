@@ -13,7 +13,7 @@ module DocTemplate
     end
 
     def case_regular(node_set, re_to_match)
-      node_set.to_s.match?(Regexp.new(re_to_match, true)) ? node_set : []
+      node_set.to_s.match?(Regexp.new(re_to_match)) ? node_set : []
     end
   end
 end

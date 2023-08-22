@@ -1,12 +1,16 @@
 module DocTemplate
   module Objects
     class ActivityMetadata
-      include DocTemplate::Objects::TocHelpers
+      include Virtus::InstanceMethods::Constructor
+      extend Virtus::InstanceMethods::_Constructor
+      extend _TocHelpers
+      include TocHelpers
 
       class Activity
-        include DocTemplate::Objects::MetadataHelpers
+        include Virtus::InstanceMethods::Constructor
+        extend Virtus::InstanceMethods::_Constructor
 
-        def activity_standard_info: () -> untyped
+        include MetadataHelpers
       end
 
       def self.build_from: (untyped data) -> untyped

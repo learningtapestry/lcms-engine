@@ -1,0 +1,8 @@
+module Resque
+  def self.peek: (*untyped) -> untyped
+  def self.redis: -> untyped
+
+  class Worker
+    def self.working: -> untyped
+  end
+end

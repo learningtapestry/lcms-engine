@@ -3,12 +3,13 @@
 module DocTemplate
   module Objects
     class SectionsMetadata
+      include Virtus::InstanceMethods::Constructor
       include Virtus.model
       include DocTemplate::Objects::TocHelpers
 
       class Section
+        include Virtus::InstanceMethods::Constructor
         include Virtus.model
-        include DocTemplate::Objects::MetadataHelpers
 
         attribute :children, Array[DocTemplate::Objects::ActivityMetadata::Activity]
         attribute :summary, String
@@ -17,7 +18,7 @@ module DocTemplate
         attribute :template_type, String, default: 'core'
 
         # aliases to build toc
-        attribute :handled, Boolean, default: false
+        attribute :handled, Virtus::Attribute::Boolean, default: false
         attribute :idx, Integer
         attribute :level, Integer, default: 1
         attribute :anchor, String, default: ->(a, _) { DocTemplate::Objects::MetadataHelpers.build_anchor_from(a) }

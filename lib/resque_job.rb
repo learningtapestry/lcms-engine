@@ -84,7 +84,7 @@ module ResqueJob
             result_key
           else
             # store result with parent job id to retrieve the result later knowing only parent job id
-            [Resque.redis.namespace, 'result', self.class.name.underscore, jid, job_id].join(':')
+            [Resque.redis.namespace, 'result', self.class.name.to_s.underscore, jid, job_id].join(':')
           end
     Resque.redis.set(key, res.to_json, ex: 1.hour.to_i)
   end

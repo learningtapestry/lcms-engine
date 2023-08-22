@@ -3,6 +3,7 @@
 module DocTemplate
   module Objects
     class BaseMetadata
+      include Virtus::InstanceMethods::Constructor
       include Virtus.model
 
       attribute :cc_attribution, String, default: ''

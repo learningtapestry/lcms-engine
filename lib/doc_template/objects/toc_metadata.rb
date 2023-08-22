@@ -3,6 +3,7 @@
 module DocTemplate
   module Objects
     class TocMetadata
+      include Virtus::InstanceMethods::Constructor
       include Virtus.model
 
       class Heading
@@ -12,7 +13,7 @@ module DocTemplate
         attribute :children, Array[Heading], default: []
         attribute :level, Integer
         attribute :material_ids, Array[Integer], default: []
-        attribute :optional, Boolean, default: false
+        attribute :optional, Virtus::Attribute::Boolean, default: false
         attribute :priority, Integer, default: 0
         attribute :standard, String, default: ''
         attribute :time, Integer, default: 0
@@ -98,7 +99,7 @@ module DocTemplate
       private
 
       def update_time
-        self.total_time = children.sum(&:time)
+        self.total_time = children.sum(&:time).to_i
       end
     end
   end

@@ -1,0 +1,11 @@
+module Lcms
+  module Engine
+    class S3Service
+      def self.create_object: (untyped key) -> untyped
+
+      def self.upload: (untyped key, untyped data, ?::Hash[untyped, untyped] options) -> untyped
+
+      def self.url_for: (untyped key) -> untyped
+    end
+  end
+end

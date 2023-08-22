@@ -3,12 +3,13 @@
 module DocTemplate
   module Objects
     class ActivityMetadata
+      include Virtus::InstanceMethods::Constructor
       include Virtus.model
       include DocTemplate::Objects::TocHelpers
 
       class Activity
+        include Virtus::InstanceMethods::Constructor
         include Virtus.model
-        include DocTemplate::Objects::MetadataHelpers
 
         attribute :activity_type, String
         attribute :activity_title, String
@@ -23,11 +24,11 @@ module DocTemplate
         attribute :activity_guidance, String
         attribute :activity_content_development_notes, String
         attribute :alert, String
-        attribute :optional, Boolean, default: false
+        attribute :optional, Virtus::Attribute::Boolean, default: false
 
         # aliases to build toc
         attribute :anchor, String
-        attribute :handled, Boolean, default: false
+        attribute :handled, Virtus::Attribute::Boolean, default: false
         attribute :idx, Integer
         attribute :level, Integer, default: 2
         attribute :priority, Integer, default: ->(a, _) { a.activity_priority }

@@ -4,8 +4,6 @@ module DocTemplate
       SEPARATOR: ::Regexp
 
       def self.build_anchor_from: (untyped item) -> untyped
-
-      def standard_info: (untyped standards) -> untyped
     end
   end
 end

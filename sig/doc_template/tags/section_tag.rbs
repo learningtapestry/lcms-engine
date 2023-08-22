@@ -24,8 +24,6 @@ module DocTemplate
       def general_params: () -> untyped
 
       def parse_content: (untyped node, untyped template) -> untyped
-
-      def section_icons: (untyped section) -> (::Array[untyped] | untyped)
     end
   end
 end

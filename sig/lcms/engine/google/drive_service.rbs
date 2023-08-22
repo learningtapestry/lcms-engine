@@ -1,0 +1,35 @@
+module Lcms
+  module Engine
+    module Google
+      class DriveService < ::Lt::Google::Api::Drive
+        include GoogleCredentials
+
+        FOLDER_ID: untyped
+
+        attr_reader service: untyped
+
+        def self.build: (untyped document, ?::Hash[untyped, untyped] options) -> untyped
+
+        def copy: (untyped file_ids, ?untyped folder_id) -> untyped
+
+        def create_folder: (String folder_name, ?String parent_id) -> String
+
+        def initialize: (untyped document, untyped options) -> void
+
+        def file_id: -> untyped
+
+        def parent: -> untyped
+
+        private
+
+        attr_reader document: untyped
+
+        attr_reader options: untyped
+
+        def folder_query: (untyped folder_name, untyped parent_id) -> untyped
+
+        def subfolder: (untyped folder_name, ?untyped parent_id) -> untyped
+      end
+    end
+  end
+end

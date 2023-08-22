@@ -1,0 +1,3 @@
+class Sanitize
+  def self.fragment: (*untyped?) -> String
+end

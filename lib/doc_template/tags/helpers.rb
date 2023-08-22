@@ -8,7 +8,7 @@ module DocTemplate
       def materials_container(props)
         return if props.nil?
 
-        content_tag :div, nil, data: { react_class: 'MaterialsContainer', react_props: props }
+        content_tag(:div, nil, data: { react_class: 'MaterialsContainer', react_props: props }) { _1 }
       end
 
       def priority_description(activity)

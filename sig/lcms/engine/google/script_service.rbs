@@ -1,0 +1,27 @@
+module Lcms
+  module Engine
+    module Google
+      class ScriptService
+        include GoogleCredentials
+
+        SCRIPT_ID: untyped
+
+        SCRIPT_FUNCTION: untyped
+
+        def initialize: (untyped document) -> void
+
+        def execute: (untyped id) -> (nil | untyped)
+
+        private
+
+        attr_reader document: untyped
+
+        def gdoc_template_id: -> untyped
+
+        def parameters: -> ::Array[untyped]
+
+        def service: -> untyped
+      end
+    end
+  end
+end

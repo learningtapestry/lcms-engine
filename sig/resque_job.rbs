@@ -1,7 +1,35 @@
+# TODO: Implement this definitions
+interface _ClassMethods
+  def find: (untyped job_id) -> untyped
+
+  def find_in_queue: (untyped job_id) -> untyped
+
+  def find_in_queue_by_payload: (untyped job_class) ?{ () -> untyped } -> untyped
+
+  def find_in_working: (untyped job_id) -> untyped
+
+  def find_in_working_by_payload: (untyped job_class) ?{ () -> untyped } -> untyped
+
+  def fetch_result: (untyped job_id) -> untyped
+
+  def result_key: (untyped job_id) -> String
+
+  def status: (untyped job_id) -> (:waiting | :running | :done)
+end
+
 module ResqueJob
-  def self.included: (untyped base) -> untyped
+  extend _ClassMethods
+
+  def self.included: (ActiveJob::Base) -> untyped
+
+  # From ActiveJob
+  attr_accessor job_id: String
 
   module ClassMethods
+    # From ActiveJob
+    attr_accessor name: String
+    def queue_name: () -> String
+
     def find: (untyped job_id) -> untyped
 
     def find_in_queue: (untyped job_id) -> untyped
@@ -14,12 +42,12 @@ module ResqueJob
 
     def fetch_result: (untyped job_id) -> untyped
 
-    def result_key: (untyped job_id) -> untyped
+    def result_key: (untyped job_id) -> String
 
     def status: (untyped job_id) -> (:waiting | :running | :done)
   end
 
-  def result_key: () -> untyped
+  def result_key: () -> String
 
   def store_initial_result: (untyped res, ?::Hash[untyped, untyped] options) -> untyped
 

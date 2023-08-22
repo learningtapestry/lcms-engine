@@ -1,0 +1,3 @@
+module Retriable
+  def self.retriable: (*untyped?) { () -> untyped } -> untyped
+end

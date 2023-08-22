@@ -3,6 +3,7 @@
 module DocTemplate
   module Tags
     class LinkTag < BaseTag
+      TAG_NAME = ''
       FORTHCOMING_PATH = '/forthcoming'
 
       def parse(node, opts = {})

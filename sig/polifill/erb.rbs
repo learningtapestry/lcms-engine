@@ -1,0 +1,5 @@
+class ERB
+  def initialize: (*untyped) -> self
+
+  def result: (untyped) -> String
+end

@@ -1,0 +1,7 @@
+module Elasticsearch
+  module Model
+    class HashWrapper
+      def initialize: (*untyped?) -> self
+    end
+  end
+end

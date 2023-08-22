@@ -28,6 +28,9 @@ module Lcms
       # if no argument is provided, then it's any curriculum tree.
       def self.tree: (?untyped? name) -> untyped
 
+      # ActiveRecord
+      def self.with_advisory_lock: (*untyped?) ?{ (*untyped?) -> untyped } -> untyped
+
       def tree?: () -> untyped
 
       def assessment?: () -> untyped
@@ -75,6 +78,22 @@ module Lcms
       def update_metadata: () -> untyped
 
       def update_position: () -> untyped
+
+      # Dynamically defined
+      def subject?: -> bool
+      def grade?: -> bool
+      def module?: -> bool
+      def unit?: -> bool
+      def lesson?: -> bool
+
+      # ActiveRecord model
+      def teaser: -> String
+      def teaser=: (String) -> String
+      def title: -> String
+      def title=: (String) -> String
+
+      # acts_as_taggable_on
+      def tag_list=: (*untyped) -> untyped
 
       private
 

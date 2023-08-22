@@ -1,31 +1,48 @@
 module DocTemplate
   module Objects
     class TocMetadata
-      class Heading
-        def excluded?: (untyped excludes, ?ela: bool) -> (false | untyped | true)
+      include Virtus::InstanceMethods::Constructor
+      extend Virtus::InstanceMethods::_Constructor
 
+      class Heading
+        include Virtus::InstanceMethods::Constructor
+        extend Virtus::InstanceMethods::_Constructor
+
+        def anchor: -> String
+        def children: -> Array[Heading]
+        def excluded?: (untyped excludes, ?ela: bool) -> bool
+        def material_ids: -> Array[Integer]
+        def optional: -> bool
+        def time: -> ActiveModel::Type::Integer
         def time_with: (untyped excludes) -> (untyped | 0)
       end
 
       def self.dump: (untyped data) -> untyped
 
+      def self.initialize: (Hash[untyped, untyped]) -> untyped
+
       def self.load: (untyped data) -> untyped
 
       def append: (untyped toc) -> untyped
 
-      def collect_children: () -> untyped
+      def children: -> Array[untyped]
 
-      def collect_material_ids: () -> untyped
+      def collect_children: -> Array[untyped]
 
-      def ordered_material_ids: () -> untyped
+      def collect_material_ids: -> untyped
+
+      def ordered_material_ids: -> untyped
 
       def prepend: (untyped toc) -> untyped
+
+      def total_time: -> Integer
+      def total_time=: (Integer) -> Integer
 
       def total_time_with: (untyped excludes) -> untyped
 
       private
 
-      def update_time: () -> untyped
+      def update_time: -> untyped
     end
   end
 end

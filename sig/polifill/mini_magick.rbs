@@ -1,0 +1,11 @@
+module MiniMagick
+  class Image
+    def self.read: (*untyped?) -> untyped
+  end
+
+  class Tool
+    class Convert
+      def self.new: (*untyped?) ?{ (*untyped?) -> untyped } -> untyped
+    end
+  end
+end

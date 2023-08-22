@@ -1,6 +1,9 @@
 module Lcms
   module Engine
     class Engine < ::Rails::Engine
+      def self.config: -> untyped
+      def self.initializer: (*untyped?) ?{ (untyped?) -> untyped } -> untyped
+      def self.root: -> untyped
     end
   end
 end

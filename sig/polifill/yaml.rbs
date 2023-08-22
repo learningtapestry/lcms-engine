@@ -1,0 +1,3 @@
+module YAML
+  def self.load_file: (untyped) -> Hash[untyped, untyped]
+end

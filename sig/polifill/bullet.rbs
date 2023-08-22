@@ -1,0 +1,6 @@
+module Bullet
+  attr_accessor self.bullet_logger: bool
+  attr_accessor self.console: bool
+  attr_accessor self.enable: bool
+  attr_accessor self.rails_logger: bool
+end

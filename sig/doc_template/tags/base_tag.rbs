@@ -2,7 +2,8 @@ module DocTemplate
   module Tags
     class BaseTag
       SOFT_RETURN_RE: ::Regexp
-
+      TAG_NAME: String
+      TEMPLATES: Hash[Symbol, String]
       UNICODE_SPACES_RE: ::Regexp
 
       attr_reader anchor: untyped

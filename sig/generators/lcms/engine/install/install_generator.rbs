@@ -2,9 +2,11 @@ module Lcms
   module Engine
     module Generators
       class InstallGenerator < Rails::Generators::Base
-        def copy_config_files: () -> untyped
+        def copy_config_files: -> untyped
 
-        def update_gemfile: () -> untyped
+        def directory: (*untyped?) -> untyped
+
+        def update_gemfile: -> untyped
       end
     end
   end

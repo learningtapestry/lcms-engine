@@ -3,6 +3,8 @@ module DocTemplate
     class LinkTag < BaseTag
       FORTHCOMING_PATH: "/forthcoming"
 
+      TAG_NAME: String
+
       def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
 
       private

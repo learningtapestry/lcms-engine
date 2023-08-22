@@ -23,7 +23,7 @@ module DocTemplate
 
       def extended_parse_params: () -> untyped
 
-      def extended_params_default: () -> { priority_description: untyped, priority_icon: untyped, react_props: { activity: { title: untyped, type: untyped }, material_ids: untyped } }
+      def extended_params_default: () -> { priority_description: untyped, react_props: { activity: { title: untyped, type: untyped }, material_ids: untyped } }
     end
   end
 end

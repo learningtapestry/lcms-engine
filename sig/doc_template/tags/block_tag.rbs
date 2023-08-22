@@ -8,7 +8,7 @@ module DocTemplate
       #
       # Collects all the nodes before the closing tag
       #
-      def block_nodes: (untyped node) { (untyped) -> untyped } -> untyped
+      def block_nodes: (untyped node) ?{ (untyped) -> untyped } -> untyped
 
       private
 

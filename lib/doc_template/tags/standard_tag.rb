@@ -52,7 +52,7 @@ module DocTemplate
       def fetch_description(text)
         return unless (matches = STANDARD_RE.match text)
 
-        name = matches[2].downcase.to_sym
+        name = matches[2].to_s.downcase.to_sym
         Lcms::Engine::Standard.search_by_name(name).first.try(:description)
       end
 

@@ -1,6 +1,7 @@
 module DocTemplate
   module Tags
     class HeadingTag < BaseTag
+      TITLE_PREFIX: ::String
       TEMPLATE: "heading.html.erb"
 
       def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self

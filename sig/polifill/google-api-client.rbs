@@ -1,0 +1,11 @@
+module Google
+  module Apis
+    RateLimitError: untyped
+
+    module DriveV3
+      class File
+        def initialize: (*untyped?) -> untyped
+      end
+    end
+  end
+end

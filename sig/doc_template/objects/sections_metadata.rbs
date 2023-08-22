@@ -1,19 +1,30 @@
 module DocTemplate
   module Objects
     class SectionsMetadata
-      include DocTemplate::Objects::TocHelpers
+      include Virtus::InstanceMethods::Constructor
+      extend Virtus::InstanceMethods::_Constructor
+      include TocHelpers
+      extend _TocHelpers
 
       class Section
-        include DocTemplate::Objects::MetadataHelpers
+        include Virtus::InstanceMethods::Constructor
+        extend Virtus::InstanceMethods::_Constructor
 
         def add_activity: (untyped activity) -> untyped
 
-        def section_standard_info: () -> untyped
+        def children: -> Array[ActivityMetadata::Activity]
+
+        def handled: -> Virtus::Attribute::Boolean
+
+        def time: -> Integer
+        def time=: (Integer)-> Integer
       end
 
       def self.build_from: (untyped data) -> untyped
 
       def add_break: () -> untyped
+
+      def children: -> Array[Section]
     end
   end
 end

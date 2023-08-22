@@ -1,0 +1,32 @@
+module Lcms
+  module Engine
+    class Breadcrumbs
+      attr_reader resource: untyped
+
+      def initialize: (untyped resource) -> void
+
+      def full_title: -> untyped
+
+      def pieces: -> untyped
+
+      def short_pieces: -> untyped
+
+      def short_title: -> untyped
+
+      # ex:  "ELA / G2 / M1 / U1 / lesson 8"
+      def title: -> untyped
+
+      private
+
+      def subject_abbrv: (?short: bool) -> ("EL" | "MA" | "ELA" | "Math")
+
+      def grade_abbrv: (*untyped) -> untyped
+
+      def module_abbrv: (*untyped) -> untyped
+
+      def unit_abbrv: (*untyped) -> (nil | ::String)
+
+      def lesson_abbrv: (*untyped) -> (nil | ::String)
+    end
+  end
+end

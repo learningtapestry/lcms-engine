@@ -1,15 +1,17 @@
 # D = Steep::Diagnostic
 
 target :lib do
-  signature "sig", "vendor/rbs"
+  signature "sig"
 
   check "lib"                       # Directory name
-  check "Gemfile"                   # File name
+#  # check "Gemfile"                   # File name
 #  # check "app/models/**/*.rb"        # Glob
 #  # ignore "lib/templates/*.rb"
 #
 #   # library "pathname"              # Standard libraries
 #   # library "strong_json"           # Gems
+  library "base64"
+  library "rbs"
 #
 #   # configure_code_diagnostics(D::Ruby.default)      # `default` diagnostics setting (applies by default)
 #   # configure_code_diagnostics(D::Ruby.strict)       # `strict` diagnostics setting

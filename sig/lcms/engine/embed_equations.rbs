@@ -1,0 +1,23 @@
+module Lcms
+  module Engine
+    class EmbedEquations
+      REDIS_KEY: String
+
+      REDIS_KEY_SVG: String
+
+      def self.call: (untyped content) -> untyped
+
+      def self.tex_to_html: (untyped tex) -> (nil | untyped)
+
+      def self.tex_to_svg: (untyped tex, ?custom_color: untyped?, ?preserve_color: bool) -> (nil | untyped)
+
+      private
+
+      def self.fetch_tex: (untyped url) -> (nil | untyped)
+
+      def self.fix_color: (untyped svg, untyped preserve) -> untyped
+
+      def self.redis: () -> untyped
+    end
+  end
+end

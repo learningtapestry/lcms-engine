@@ -1,11 +1,12 @@
 module DocumentExporter
   module Gdoc
     class Base < DocumentExporter::Base
+      FOLDER_NAME: String
       GOOGLE_API_CLIENT_UPLOAD_RETRIES: untyped
 
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT: untyped
 
-      GOOGLE_API_UPLOAD_OPTIONS: { options: { open_timeout_sec: untyped, read_timeout_sec: untyped, retries: untyped, send_timeout_sec: untyped } }
+      GOOGLE_API_UPLOAD_OPTIONS: ::Hash[untyped, untyped]
 
       VERSION_RE: ::Regexp
 

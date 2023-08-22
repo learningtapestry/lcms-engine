@@ -3,13 +3,11 @@ module DocTemplate
     module Helpers
       include ActionView::Helpers::TagHelper
 
-      ICON_PATH: "http://s3.amazonaws.com/ubpilot-uploads/assets"
+      TAG_NAME: String
 
       def materials_container: (untyped props) -> (nil | untyped)
 
       def priority_description: (untyped activity) -> (nil | untyped)
-
-      def priority_icon: (untyped activity) -> (nil | ::String)
     end
   end
 end

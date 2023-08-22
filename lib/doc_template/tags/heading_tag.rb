@@ -3,6 +3,7 @@
 module DocTemplate
   module Tags
     class HeadingTag < BaseTag
+      TITLE_PREFIX = ''
       TEMPLATE = 'heading.html.erb'
 
       def parse(node, opts = {})

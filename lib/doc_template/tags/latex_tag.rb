@@ -21,7 +21,7 @@ module DocTemplate
             if opts[:context_type]&.to_sym == :gdoc
               key = "#{self.class.s3_folder}/#{SecureRandom.hex(20)}.png"
               generate_image do |png|
-                url = S3Service.upload key, png
+                url = Lcms::Engine::S3Service.upload key, png
                 %(<img class="o-ld-latex" src="#{url}">)
               end
             else
@@ -58,14 +58,14 @@ module DocTemplate
       def generate_image
         svg_path =
           Tempfile.open(%w(tex-eq .svg)) do |svg|
-            svg.write EmbedEquations.tex_to_svg(value, custom_color:)
+            svg.write Lcms::Engine::EmbedEquations.tex_to_svg(value, custom_color:)
             svg.path
           end
 
         png = Tempfile.new %w(tex-eq .png)
         begin
-          system 'svgexport', svg_path, png.path
-          yield File.read(png.path)
+          system('svgexport', svg_path.to_s, png.path.to_s)
+          yield File.read(png.path.to_s)
         ensure
           png.close true
         end

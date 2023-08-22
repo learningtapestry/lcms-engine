@@ -18,10 +18,10 @@ module DocTemplate
       def fetch_content(node)
         [].tap do |result|
           # omit the first row
-          cur_section = nil
+          cur_section = {}
           node.xpath('.//tr[position() > 1]').each do |tr|
             if (td_header = tr.at_xpath "./td[@colspan = '2']")
-              result << cur_section if cur_section.present?
+              result << cur_section unless cur_section.empty?
               cur_section = { title: td_header.text }
             elsif cur_section.present?
               cur_section[:words] ||= []

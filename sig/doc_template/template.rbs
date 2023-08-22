@@ -1,8 +1,6 @@
 module DocTemplate
   class Template
     class TagRegistry
-      include Enumerable[Tags::BaseTag]
-
       def initialize: () -> void
 
       # returns the default tag if the tag is unknown

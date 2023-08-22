@@ -6,6 +6,7 @@ require 'google/apis/script_v1'
 module DocumentExporter
   module Gdoc
     class Base < DocumentExporter::Base
+      FOLDER_NAME = ''
       GOOGLE_API_CLIENT_UPLOAD_RETRIES = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RETRIES', 5).to_i
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_TIMEOUT', 60).to_i
       GOOGLE_API_UPLOAD_OPTIONS = {
@@ -32,7 +33,7 @@ module DocumentExporter
 
       def create_gdoc_folders(folder)
         id = drive_service.create_folder(folder)
-        folders = [id]
+        folders = Array.wrap(id)
         folders << drive_service.create_folder(DocumentExporter::Gdoc::TeacherMaterial::FOLDER_NAME, id)
         folders << drive_service.create_folder(DocumentExporter::Gdoc::StudentMaterial::FOLDER_NAME, id)
         folders.each(&method(:delete_previous_versions_from))
@@ -44,7 +45,7 @@ module DocumentExporter
 
         file_name = "#{@options[:prefix]}#{document.base_filename}"
         file_params = { name: file_name, mime_type: 'application/vnd.google-apps.document' }
-        file_params[:parents] = [parent_folder] if parent_folder.present?
+        file_params[:parents] = Array.wrap(parent_folder) if parent_folder.present?
         metadata = Google::Apis::DriveV3::File.new(**file_params)
 
         params = {

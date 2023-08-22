@@ -1,5 +1,8 @@
 module DocTemplate
   module Tags
     CONFIG_PATH: untyped
+
+    def self.config: (*untyped?) -> Hash[untyped, untyped]
+    def self.config=: (*untyped?) -> untyped
   end
 end

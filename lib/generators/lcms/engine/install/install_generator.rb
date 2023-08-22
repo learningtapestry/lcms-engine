@@ -6,10 +6,10 @@ module Lcms
       class InstallGenerator < Rails::Generators::Base
         desc 'Copies all required configuration files.'
 
-        source_root File.expand_path('templates', __dir__)
+        source_root File.expand_path('templates', __dir__.to_s)
 
         def copy_config_files
-          directory File.expand_path('templates/config', __dir__), Rails.root.join('config')
+          directory File.expand_path('templates/config', __dir__.to_s), Rails.root.join('config')
         end
 
         def update_gemfile

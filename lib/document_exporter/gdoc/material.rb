@@ -21,7 +21,7 @@ module DocumentExporter
       def handle_vertical_text
         data = TextToImage.new(vertical_text, rotate: -90).raw
         filename = "documents/#{document.base_filename}-vtext.png"
-        url = S3Service.upload filename, data
+        url = Lcms::Engine::S3Service.upload filename, data
         @options[:vertical_text_image_url] = url
       end
 

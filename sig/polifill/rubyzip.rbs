@@ -1,0 +1,5 @@
+module Zip
+  class File
+    def self.open: (*untyped) { (untyped) -> untyped } -> untyped
+  end
+end

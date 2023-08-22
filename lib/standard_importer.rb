@@ -34,7 +34,7 @@ class StandardImporter
         "grade #{name}"
       end
     # TODO: Add caching here
-    Resource.find_by_directory([subject, key]).grades.model
+    Lcms::Engine::Resource.find_by_directory([subject, key]).grades.model
   end
 
   def find_grades(data)
@@ -45,10 +45,10 @@ class StandardImporter
 
     return grades if to_name.blank?
 
-    from_idx = Grades.grades_abbrevs.index from_name
-    to_idx = Grades.grades_abbrevs.index from_name
+    from_idx = Lcms::Engine::Grades.grades_abbrevs.index from_name
+    to_idx = Lcms::Engine::Grades.grades_abbrevs.index from_name
 
-    Grades.grades_abbrevs.slice(from_idx..to_idx).each { |name| grades << find_grade(name) }
+    Lcms::Engine::Grades.grades_abbrevs.slice(from_idx..to_idx).each { |name| grades << find_grade(name) }
 
     grades.compact
   end
@@ -69,7 +69,7 @@ class StandardImporter
     number = data[2].to_s.squish
     name = [grade_name, strand, number].join('.')
 
-    Standard.create!(
+    Lcms::Engine::Standard.create!(
       description: data[4].split(' ', 2).last.to_s.squish,
       name:,
       strand:,
@@ -90,7 +90,7 @@ class StandardImporter
     prefix = grade_name.to_i < 9 ? grade_name : course
     name = [prefix, domain, cluster, number].compact.join('.')
 
-    Standard.create!(
+    Lcms::Engine::Standard.create!(
       description: description&.squish,
       emphasis: emphasis&.squish,
       name:,

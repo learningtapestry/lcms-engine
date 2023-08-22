@@ -19,7 +19,7 @@ module DocumentExporter
     # Take into consideration that in one component materilas are uniq. So
     # just the first occurence of exluded material is removed
     #
-    def included_materials(context_type: :default)
+    def included_materials(context_type: :default) # rubocop:todo Metrics/CyclomaticComplexity,  Metrics/PerceivedComplexity
       parts = context_type == :default ? @document.document_parts.default : @document.document_parts.gdoc
 
       @included_materials ||= [].tap do |result|
@@ -32,7 +32,12 @@ module DocumentExporter
           # if it's optional activity - add it
           # otherwise - delete it from result
           part.materials.compact.each do |id|
-            part.optional? ? result.push(id) : result.delete_at(result.index(id))
+            result.push(id) && next if part.optional?
+
+            index = result.index(id)
+            next if index.nil?
+
+            result.delete_at(index)
           end
         end
       end.map(&:to_i)

@@ -1,0 +1,7 @@
+module Lcms
+  module Engine
+    class ApplicationController
+      def self.render: (*untyped) -> String
+    end
+  end
+end

@@ -1,6 +1,9 @@
 module DocTemplate
   module Objects
     class BaseMetadata
+      include Virtus::InstanceMethods::Constructor
+      extend Virtus::InstanceMethods::_Constructor
+
       def self.build_from: (untyped data) -> untyped
 
       #

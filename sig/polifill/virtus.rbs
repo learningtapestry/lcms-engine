@@ -1,0 +1,20 @@
+module Virtus
+  class Attribute
+    class Boolean
+    end
+  end
+
+  module InstanceMethods
+    module Constructor
+      def initialize: (Hash[untyped, untyped] attributes) -> self
+    end
+
+    interface _Constructor
+      def attribute: (*untyped?) -> untyped
+    end
+
+    def self.model: -> untyped
+  end
+
+  def self.model: -> untyped
+end

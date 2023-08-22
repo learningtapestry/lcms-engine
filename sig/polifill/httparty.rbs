@@ -1,0 +1,5 @@
+module HTTParty
+  class Response
+    def content_type: -> String
+  end
+end

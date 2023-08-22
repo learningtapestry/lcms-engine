@@ -1,0 +1,4 @@
+class WickedPdf
+  def self.initialize: (*untyped?) -> untyped
+  def pdf_from_string: (String, *untyped?) -> untyped
+end

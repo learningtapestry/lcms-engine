@@ -162,7 +162,7 @@ module DocTemplate
       return if matches.nil?
 
       tag_name, tag_value = matches.captures
-      return unless (tag = find_tag tag_name.downcase, tag_value.downcase)
+      return unless (tag = find_tag tag_name.to_s.downcase, tag_value.to_s.downcase)
 
       # Did we get the same tag as previous?
       check_loop_tag tag_name, tag_value
@@ -183,7 +183,7 @@ module DocTemplate
         materials: parsed_tag.materials,
         optional: (parsed_tag.try(:optional?) || false),
         placeholder: parsed_tag.placeholder,
-        part_type: tag_name.underscore
+        part_type: tag_name.to_s.underscore
       }
     end
 

@@ -1,6 +1,9 @@
 module DocTemplate
   module Objects
     class MaterialMetadata
+      include Virtus::InstanceMethods::Constructor
+      extend Virtus::InstanceMethods::_Constructor
+
       KEY_PARAMS: ::Array["breadcrumb_level" | "sheet_type" | "type"]
 
       def self.build_from: (untyped data) -> untyped

@@ -1,6 +1,8 @@
 module DocTemplate
   module Tables
     class Base
+      HEADER_LABEL: String
+      HTML_VALUE_FIELDS: String
       SPLIT_REGEX: ::Regexp
 
       attr_reader errors: untyped
