@@ -17,7 +17,6 @@ assess:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -35,7 +34,6 @@ et:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -45,16 +43,13 @@ et:
     - ThTag
 group:
   stop_materials_tags:
-    - GroupTag
     - SectionTag
   stop_tags:
-    - GroupTag
 js:
   stop_tags:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -67,7 +62,6 @@ key:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -81,7 +75,6 @@ materials:
     - ActivityMetadataTypeTag
 optbreak:
   stop_tags:
-    - GroupTag
     - SectionTag
 pdf_templates_path:
 photo:
@@ -89,7 +82,6 @@ photo:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -126,7 +118,6 @@ rubric:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -140,14 +131,12 @@ section:
     - 'This is a Priority 2 activity that can be moved or adapted if running short on time. It is less tightly connected to the focus objective(s) of the lesson or unit.'
   stop_tags:
     - OptBreakTag
-    - GroupTag
     - SectionTag
 sh:
   stop_tags:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
@@ -166,7 +155,6 @@ th:
     - AssessTag
     - EtTag
     - OptBreakTag
-    - GroupTag
     - JsTag
     - KeyTag
     - PhotoTag
