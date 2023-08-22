@@ -18,13 +18,7 @@
           <tr>
             <td class="o-ld-title__title">
               <h3 class="o-ld-title__title--h3">
-                <% @tmpl[:section_icons].each do |icon| %>
-                  <img src="<%= icon %>" class="o-ld-icon"/>
-                <% end %>
                 <%= @tmpl[:section].title %>
-                <% if @tmpl[:section].priority.present? %>
-                  <img src="<%= @tmpl[:priority_icon] %>" class="o-ld-icon"/>
-                <% end %>
               </h3>
             </td>
             <td class="o-ld-title__time o-ld-title__time--h3 u-text--right"><%= @tmpl[:section].time.zero? ? '&mdash;' : "#{@tmpl[:section].time} mins" %></td>

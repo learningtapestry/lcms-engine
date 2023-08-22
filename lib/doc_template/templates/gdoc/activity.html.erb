@@ -27,9 +27,6 @@
               <h3 class="o-ld-title__title--h3">
                 <%= 'Optional: ' if @tmpl[:activity].optional %>
                 <%= @tmpl[:activity].activity_title %>
-                <% if @tmpl[:activity].activity_priority.present? %>
-                  <img src="<%= @tmpl[:priority_icon] %>" class="o-ld-icon"/>
-                <% end %>
               </h3>
             </td>
             <td class="o-ld-title__time o-ld-title__time--h3 u-text--right"><%= @tmpl[:activity].time.zero? ? '&mdash;' : "#{@tmpl[:activity].time} mins" %></td>
@@ -59,9 +56,7 @@
         <% if @tmpl[:activity].activity_standard.present? %>
             <p>
               <strong>Standard: </strong>
-              <% @tmpl[:activity].activity_standard_info.each do |activity| %>
-                  <span class="c-ld-keyword"><%= activity[:standard] %></span>
-              <% end %>
+              <span><%= @tmpl[:activity].activity_standard %></span>
             </p>
         <% end %>
 

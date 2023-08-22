@@ -59,7 +59,6 @@ module DocTemplate
 
         {
           priority_description: priority_description(activity),
-          priority_icon: priority_icon(activity),
           react_props: {
             activity: {
               title: @activity.title,

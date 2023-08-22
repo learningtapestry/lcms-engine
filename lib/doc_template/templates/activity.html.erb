@@ -54,22 +54,7 @@
       <% if @tmpl[:activity].activity_standard.present? %>
         <p>
           <strong>Standards: </strong>
-          <% (standard_infos = @tmpl[:activity].activity_standard_info).each_with_index do |activity, idx| %>
-            <% id = "cg-k_#{SecureRandom.hex(4)}" %>
-            <span class="c-ld-keyword" data-toggle="<%= id %>"><%= activity[:standard] %></span><%= ',' if idx + 1 < standard_infos.size %>
-            <% if activity[:description] %>
-              <span class="dropdown-pane o-ld-dropdown"
-                    data-dropdown
-                    data-hover="true"
-                    data-hover-delay="0"
-                    data-hover-pane="true"
-                    data-v-offset="12"
-                    id="<%= id %>">
-                    <b><%= activity[:standard] %></b><br />
-                    <span><%= h activity[:description] %></span>
-              </span>
-            <% end %>
-          <% end %>
+          <span><%= @tmpl[:activity].activity_standard %></span>
         </p>
       <% end %>
     </div>

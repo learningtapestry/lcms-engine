@@ -42,9 +42,7 @@ module Lt
               @errors.concat @metadata.errors
               raise ::Lcms::Engine::DocumentError, 'No metadata present' unless @metadata&.table_exist?
 
-              @agenda = DocTemplate::Tables::Agenda.parse content
-              @section_metadata = DocTemplate::Tables::Section.parse content,
-                                                                     force_inject_section: force_inject_section?
+              @section_metadata = DocTemplate::Tables::Section.parse content
               @activity_metadata = DocTemplate::Tables::Activity.parse(content)
               @target_table = DocTemplate::Tables::Target.parse(content) if target_table?
             end
@@ -53,13 +51,6 @@ module Lt
           end
 
           private
-
-          #
-          # Force injecting of Section metadata only if there are no Agenda tables
-          #
-          def force_inject_section?
-            @agenda.data.empty? && metadata.data.any?
-          end
 
           def lesson_options
             {

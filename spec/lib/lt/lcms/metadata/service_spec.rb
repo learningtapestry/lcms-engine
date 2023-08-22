@@ -124,15 +124,11 @@ describe Lt::Lcms::Metadata::Service do
     context 'when fragment has empty content' do
       let(:content) { '' }
 
-      before { allow_any_instance_of(described_class).to receive(:force_inject_section?).and_return(true) }
-
       it 'injects fake section placeholder' do
         expect(subject.render).to include(section_placeholder)
       end
 
       context 'when injection is not needed' do
-        before { allow_any_instance_of(described_class).to receive(:force_inject_section?) }
-
         it 'injects nothing' do
           expect(subject.render).to be_empty
         end

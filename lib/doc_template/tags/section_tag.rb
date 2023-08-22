@@ -37,7 +37,6 @@ module DocTemplate
         @general_params ||= {
           placeholder: placeholder_id,
           priority_description: priority_description(section),
-          priority_icon: priority_icon(section),
           react_props: {
             activity: {
               title: section.title
@@ -45,8 +44,7 @@ module DocTemplate
             material_ids: @section.material_ids,
             color: @section[:use_color]
           },
-          section:,
-          section_icons: section_icons(section)
+          section:
         }
       end
 
@@ -55,12 +53,6 @@ module DocTemplate
         params[:metacog] = section.metacognition.original_content&.sub(SECTION_REMOVE_RE, '') if optional?
         parsed_template = parse_template(params, template)
         parse_nested parsed_template, opts
-      end
-
-      def section_icons(section)
-        return [] if section.icons.nil?
-
-        section.icons.map { |icon| "#{ICON_PATH}/#{icon}.png" }
       end
     end
   end
