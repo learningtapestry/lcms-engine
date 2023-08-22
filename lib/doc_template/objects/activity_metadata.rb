@@ -36,10 +36,6 @@ module DocTemplate
         attribute :time, Integer, default: ->(a, _) { a.activity_time }
 
         attribute :material_ids, Array[Integer], default: []
-
-        def activity_standard_info
-          standard_info [activity_standard, activity_mathematical_practice]
-        end
       end
 
       attribute :children, Array[Activity]

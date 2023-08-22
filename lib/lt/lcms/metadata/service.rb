@@ -64,7 +64,6 @@ module Lt
           def lesson_options
             {
               activity: DocTemplate::Objects::ActivityMetadata.build_from(@activity_metadata),
-              agenda: DocTemplate::Objects::AgendaMetadata.build_from(@agenda.data),
               sections: DocTemplate::Objects::SectionsMetadata.build_from(@section_metadata)
             }
           end

@@ -29,10 +29,6 @@ module DocTemplate
           activity.handled = true
           children << activity
         end
-
-        def section_standard_info
-          standard_info lesson_standard
-        end
       end
 
       attribute :children, Array[Section]

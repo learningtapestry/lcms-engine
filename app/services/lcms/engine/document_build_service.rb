@@ -78,7 +78,6 @@ module Lcms
       def document_params
         {
           activity_metadata: template.metadata_service.try(:activity_metadata),
-          agenda_metadata: template.metadata_service.try(:agenda),
           css_styles: template.css_styles,
           name: downloader.file.name,
           last_modified_at: downloader.file.modified_time,
