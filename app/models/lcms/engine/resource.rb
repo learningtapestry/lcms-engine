@@ -25,7 +25,7 @@ module Lcms
 
       mount_uploader :image_file, ResourceImageUploader
 
-      acts_as_taggable_on :content_sources, :download_types, :resource_types, :tags, :topics
+      acts_as_taggable_on :resource_types, :tags
       has_closure_tree order: :level_position, dependent: :destroy, numeric_order: true
 
       belongs_to :parent, class_name: 'Lcms::Engine::Resource', foreign_key: 'parent_id', optional: true
@@ -191,7 +191,7 @@ module Lcms
 
       def named_tags
         {
-          keywords: (tag_list + topic_list).compact.uniq,
+          keywords: tag_list.compact.uniq,
           resource_type:,
           ell_appropriate:,
           ccss_standards: tag_standards,
