@@ -1,3 +1,7 @@
+interface _TocHelpers
+  def set_index: (untyped data, ?::Hash[untyped, untyped] params) -> untyped
+end
+
 module DocTemplate
   module Objects
     module TocHelpers
@@ -11,10 +15,6 @@ module DocTemplate
 
       def find_by_anchor: (untyped anchor) -> untyped
 
-      def set_index: (untyped data, ?::Hash[untyped, untyped] params) -> untyped
-    end
-
-    interface _TocHelpers
       def set_index: (untyped data, ?::Hash[untyped, untyped] params) -> untyped
     end
   end
