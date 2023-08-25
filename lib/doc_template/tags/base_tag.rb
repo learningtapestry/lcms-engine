@@ -4,8 +4,6 @@ module DocTemplate
   module Tags
     class BaseTag
       SOFT_RETURN_RE = /([[:graph:]]+\[|\][[:graph:]]+)/
-      TAG_NAME = ''
-      TEMPLATES = {}.freeze
       UNICODE_SPACES_RE = /(\u0020|\u00A0|\u1680|\u180E|[\u2000-\u200B]|\u202F|\u205F|\u3000|\uFEFF)/
 
       attr_reader :anchor, :content

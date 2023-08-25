@@ -1,7 +1,11 @@
 module DocTemplate
   module Tags
     class HeadingTag < BaseTag
-      TITLE_PREFIX: ::String
+      module ChildrenConstants
+        TITLE_PREFIX: ::String
+      end
+      include ChildrenConstants
+
       TEMPLATE: "heading.html.erb"
 
       def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self

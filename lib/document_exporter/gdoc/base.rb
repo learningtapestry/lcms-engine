@@ -6,7 +6,6 @@ require 'google/apis/script_v1'
 module DocumentExporter
   module Gdoc
     class Base < DocumentExporter::Base
-      FOLDER_NAME = ''
       GOOGLE_API_CLIENT_UPLOAD_RETRIES = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RETRIES', 5).to_i
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_TIMEOUT', 60).to_i
       GOOGLE_API_UPLOAD_OPTIONS = {

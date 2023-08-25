@@ -3,8 +3,6 @@
 module DocTemplate
   module Tables
     class Base
-      HEADER_LABEL = ''
-      HTML_VALUE_FIELDS = ''
       SPLIT_REGEX = /[,;\r\n]/
 
       attr_reader :errors, :data

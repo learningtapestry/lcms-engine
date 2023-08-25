@@ -1,9 +1,12 @@
 module DocTemplate
   module Tags
     class LinkTag < BaseTag
-      FORTHCOMING_PATH: "/forthcoming"
+      module ChildrenConstants
+        TAG_NAME: String
+      end
+      include ChildrenConstants
 
-      TAG_NAME: String
+      FORTHCOMING_PATH: "/forthcoming"
 
       def parse: (untyped node, ?::Hash[untyped, untyped] opts) -> self
 

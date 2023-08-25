@@ -1,7 +1,11 @@
 module DocumentExporter
   module Gdoc
     class Base < DocumentExporter::Base
-      FOLDER_NAME: String
+      module ChildrenConstants
+        FOLDER_NAME: String
+      end
+      include ChildrenConstants
+
       GOOGLE_API_CLIENT_UPLOAD_RETRIES: untyped
 
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT: untyped

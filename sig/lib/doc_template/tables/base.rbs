@@ -1,8 +1,12 @@
 module DocTemplate
   module Tables
     class Base
-      HEADER_LABEL: String
-      HTML_VALUE_FIELDS: String
+      module ChildrenConstants
+        HEADER_LABEL: String
+        HTML_VALUE_FIELDS: Array[String]
+      end
+      include ChildrenConstants
+
       SPLIT_REGEX: ::Regexp
 
       attr_reader errors: untyped
