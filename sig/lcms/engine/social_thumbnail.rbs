@@ -1,7 +1,0 @@
-module Lcms
-  module Engine
-    class SocialThumbnail < ApplicationRecord
-      MEDIAS: ::Array["all" | "facebook" | "pinterest" | "twitter"]
-    end
-  end
-end

@@ -1,0 +1,104 @@
+module Lcms
+  module Engine
+    class Settings < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Settings, ActiveRecord_Relation, Integer]
+
+      def self.[]: (untyped key) -> untyped
+      def self.[]=: (untyped key, untyped value) -> untyped
+      private def self.settings: () -> untyped
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def data: () -> untyped
+
+        def data=: (untyped) -> untyped
+
+        def data?: () -> bool
+
+        def data_changed?: () -> bool
+
+        def data_change: () -> [ untyped?, untyped? ]
+
+        def data_will_change!: () -> void
+
+        def data_was: () -> untyped?
+
+        def data_previously_changed?: () -> bool
+
+        def data_previous_change: () -> Array[untyped?]?
+
+        def data_previously_was: () -> untyped?
+
+        def data_before_last_save: () -> untyped?
+
+        def data_change_to_be_saved: () -> Array[untyped?]?
+
+        def data_in_database: () -> untyped?
+
+        def saved_change_to_data: () -> Array[untyped?]?
+
+        def saved_change_to_data?: () -> bool
+
+        def will_save_change_to_data?: () -> bool
+
+        def restore_data!: () -> void
+
+        def clear_data_change: () -> void
+      end
+      include GeneratedAttributeMethods
+
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Settings, Integer]
+        include Enumerable[Lcms::Engine::Settings]
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Settings, Integer]
+      end
+    end
+  end
+end

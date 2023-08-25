@@ -1,0 +1,3 @@
+class ResourceImageUploader < CarrierWave::Uploader::Base
+  def store_dir: () -> ::String
+end

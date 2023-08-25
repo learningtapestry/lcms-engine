@@ -1,0 +1,38 @@
+module Lcms
+  module Engine
+    class HierarchicalPosition
+      RESOURCE_TYPE_ORDER: ::Array["resource" | "media" | "quick_reference_guide" | "text_set"]
+
+      attr_reader resource: untyped
+
+      def initialize: (untyped resource) -> void
+
+      # Position mask:
+      # - We use 7 blocks of 2 numbers for:
+      #     subject, resource_types, grades (average if more than one), module, unit,
+      #     lesson, num_of_grades
+      # - The last position is the number of different grades covered, i.e:
+      #   a resource with 3 different grades show after one with 2, (more specific
+      #   at the top, more generic at the bottom)
+      def position: () -> untyped
+
+      private
+
+      def dettached_resource?: () -> untyped
+
+      def default_position: () -> untyped
+
+      def subject_position: () -> (99 | untyped)
+
+      def resource_type_position: () -> untyped
+
+      def module_position: () -> untyped
+
+      def unit_position: () -> untyped
+
+      def position_for: (untyped type) -> untyped
+
+      def lesson_position: () -> untyped
+    end
+  end
+end

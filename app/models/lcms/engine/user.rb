@@ -25,7 +25,7 @@ module Lcms
       private
 
       def access_code_valid?
-        return if AccessCode.by_code(access_code).exists?
+        return if AccessCode.by_code(access_code.to_s).exists?
 
         errors.add :access_code, 'not found'
       end

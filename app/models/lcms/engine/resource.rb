@@ -20,9 +20,6 @@ module Lcms
       SUBJECTS = %w(ela math).freeze
       HIERARCHY = %i(subject grade module unit lesson).freeze
 
-      include Searchable
-      include Navigable
-
       mount_uploader :image_file, ResourceImageUploader
 
       acts_as_taggable_on :resource_types, :tags
@@ -86,7 +83,7 @@ module Lcms
         end
 
         def find_by_directory(*dir)
-          dir = dir&.flatten&.select(&:present?)
+          dir = dir.flatten.select(&:present?)
           return unless dir.present?
 
           type = hierarchy[dir.size - 1]
@@ -108,10 +105,8 @@ module Lcms
         def tree(name = nil)
           if name.present?
             joins(:curriculum).where('curriculums.name = ? OR curriculums.slug = ?', name, name)
-          elsif (default = Lcms::Engine::Curriculum.default)
-            where(curriculum_id: default.id)
           else
-            where(nil)
+            where(Lcms::Engine::Curriculum.default&.id)
           end
         end
       end
@@ -125,7 +120,7 @@ module Lcms
       # Define predicate methods for hierarchy levels.
       # I,e: #subject?, #grade?, #lesson?, ...
       HIERARCHY.each do |level|
-        define_method(:"#{level}?") { curriculum_type.present? && curriculum_type.casecmp(level.to_s).zero? }
+        define_method(:"#{level}?") { curriculum_type.present? && curriculum_type.to_s.casecmp(level.to_s).to_i.zero? }
       end
 
       def tree?
@@ -137,11 +132,11 @@ module Lcms
       end
 
       def media?
-        %w(video podcast).include? resource_type
+        %w(video podcast).include?(resource_type.to_s)
       end
 
       def generic?
-        %w(text_set quick_reference_guide resource_other).include?(resource_type)
+        %w(text_set quick_reference_guide resource_other).include?(resource_type.to_s)
       end
 
       def directory
@@ -163,7 +158,7 @@ module Lcms
       end
 
       def lesson_number
-        @lesson_number ||= short_title.match(/(\d+)/)&.[](1).to_i
+        @lesson_number ||= short_title.to_s.match(/(\d+)/)&.[](1).to_i
       end
 
       def related_resources
@@ -171,22 +166,6 @@ module Lcms
                                  .includes(:related_resource)
                                  .order(:position)
                                  .map(&:related_resource)
-      end
-
-      def pdf_downloads?(category = nil)
-        if category.present?
-          resource_downloads.joins(:download)
-            .where(download_category: category)
-            .where(downloads: { content_type: 'application/pdf' })
-            .exists?
-        else
-          downloads.where(content_type: 'application/pdf').exists?
-        end
-      end
-
-      alias do_not_skip_indexing? should_index?
-      def should_index?
-        do_not_skip_indexing? && (tree? || media? || generic?)
       end
 
       def named_tags
@@ -224,9 +203,35 @@ module Lcms
         document.present?
       end
 
+      def next
+        @next ||=
+          if level_position.nil?
+            nil
+          elsif level_position.to_i < siblings.size
+            siblings.where(level_position: level_position.to_i + 1).first
+          else
+            # first element of next node from parent level
+            parent&.next&.children&.first
+          end
+      end
+
       def next_hierarchy_level
-        index = Lcms::Engine::Resource.hierarchy.index(curriculum_type.to_sym)
+        index = Lcms::Engine::Resource.hierarchy.index(curriculum_type.to_s.to_sym)
         Lcms::Engine::Resource.hierarchy[index + 1]
+      end
+
+      def parents
+        ancestors.reverse
+      end
+
+      def previous
+        @previous ||=
+          if level_position.to_i.positive?
+            siblings.where(level_position: level_position.to_i - 1).first
+          else
+            # last element of previous node from parent level
+            parent&.previous&.children&.last
+          end
       end
 
       def unit_bundles?

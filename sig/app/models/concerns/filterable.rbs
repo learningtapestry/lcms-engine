@@ -1,0 +1,13 @@
+module Lcms
+  module Engine
+    module Filterable
+      extend ActiveSupport::Concern
+
+      def self.scope: (*untyped) -> untyped
+      def self.where: (*untyped) -> (Document::ActiveRecord_Associations_CollectionProxy | Resource::ActiveRecord_Associations_CollectionProxy)
+      def where: (*untyped) -> (Document::ActiveRecord_Associations_CollectionProxy | Resource::ActiveRecord_Associations_CollectionProxy)
+      def self.where_metadata_in: (untyped key, untyped arr) -> untyped
+      def where_metadata_in: (untyped key, untyped arr) -> untyped
+    end
+  end
+end

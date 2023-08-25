@@ -1,0 +1,3 @@
+module Devise
+  def self.friendly_token: (*untyped) -> String
+end

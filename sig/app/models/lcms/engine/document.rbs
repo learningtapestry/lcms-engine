@@ -1,0 +1,965 @@
+module Lcms
+  module Engine
+    class Document < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Document, ActiveRecord_Relation, Integer]
+
+      GOOGLE_URL_PREFIX: "https://docs.google.com/document/d"
+
+      module Scopes
+        def actives: -> ActiveRecord::Relation
+        def failed: -> ActiveRecord::Relation
+        def filter_by_term: (String) -> ActiveRecord::Relation
+        def filter_by_subject: (String) -> ActiveRecord::Relation
+        def filter_by_grade: (String) -> ActiveRecord::Relation
+        def filter_by_unit: (String) -> ActiveRecord::Relation
+        def filter_by_module: (String) -> ActiveRecord::Relation
+        def inactives: -> ActiveRecord::Relation
+        def order_by_curriculum: -> ActiveRecord::Relation
+        def where_metadata: ((Symbol | String), untyped) -> ActiveRecord::Relation
+        def with_broken_materials: -> ActiveRecord::Relation
+        def with_updated_materials: -> ActiveRecord::Relation
+      end
+      extend Scopes
+
+      module Associations
+        def materials: -> Material::ActiveRecord_Relation
+
+        def document_parts: () -> Lcms::Engine::DocumentPart::ActiveRecord_Associations_CollectionProxy
+        def document_parts=: (Lcms::Engine::DocumentPart::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::DocumentPart]) -> (Lcms::Engine::DocumentPart::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::DocumentPart])
+        def document_part_ids: () -> Array[Integer]
+        def document_part_ids=: (Array[Integer]) -> Array[Integer]
+
+        def resource: () -> Lcms::Engine::Resource?
+        def resource=: (Lcms::Engine::Resource?) -> Lcms::Engine::Resource?
+        def reload_resource: () -> Lcms::Engine::Resource?
+        def build_resource: (untyped) -> Lcms::Engine::Resource
+        def create_resource: (untyped) -> Lcms::Engine::Resource
+        def create_resource!: (untyped) -> Lcms::Engine::Resource
+      end
+      include Associations
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def file_id: () -> String?
+
+        def file_id=: (String?) -> String?
+
+        def file_id?: () -> bool
+
+        def file_id_changed?: () -> bool
+
+        def file_id_change: () -> [ String?, String? ]
+
+        def file_id_will_change!: () -> void
+
+        def file_id_was: () -> String?
+
+        def file_id_previously_changed?: () -> bool
+
+        def file_id_previous_change: () -> Array[String?]?
+
+        def file_id_previously_was: () -> String?
+
+        def file_id_before_last_save: () -> String?
+
+        def file_id_change_to_be_saved: () -> Array[String?]?
+
+        def file_id_in_database: () -> String?
+
+        def saved_change_to_file_id: () -> Array[String?]?
+
+        def saved_change_to_file_id?: () -> bool
+
+        def will_save_change_to_file_id?: () -> bool
+
+        def restore_file_id!: () -> void
+
+        def clear_file_id_change: () -> void
+
+        def name: () -> String?
+
+        def name=: (String?) -> String?
+
+        def name?: () -> bool
+
+        def name_changed?: () -> bool
+
+        def name_change: () -> [ String?, String? ]
+
+        def name_will_change!: () -> void
+
+        def name_was: () -> String?
+
+        def name_previously_changed?: () -> bool
+
+        def name_previous_change: () -> Array[String?]?
+
+        def name_previously_was: () -> String?
+
+        def name_before_last_save: () -> String?
+
+        def name_change_to_be_saved: () -> Array[String?]?
+
+        def name_in_database: () -> String?
+
+        def saved_change_to_name: () -> Array[String?]?
+
+        def saved_change_to_name?: () -> bool
+
+        def will_save_change_to_name?: () -> bool
+
+        def restore_name!: () -> void
+
+        def clear_name_change: () -> void
+
+        def last_modified_at: () -> ActiveSupport::TimeWithZone?
+
+        def last_modified_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def last_modified_at?: () -> bool
+
+        def last_modified_at_changed?: () -> bool
+
+        def last_modified_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def last_modified_at_will_change!: () -> void
+
+        def last_modified_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def last_modified_at_previously_changed?: () -> bool
+
+        def last_modified_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def last_modified_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def last_modified_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def last_modified_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def last_modified_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_last_modified_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_last_modified_at?: () -> bool
+
+        def will_save_change_to_last_modified_at?: () -> bool
+
+        def restore_last_modified_at!: () -> void
+
+        def clear_last_modified_at_change: () -> void
+
+        def last_author_email: () -> String?
+
+        def last_author_email=: (String?) -> String?
+
+        def last_author_email?: () -> bool
+
+        def last_author_email_changed?: () -> bool
+
+        def last_author_email_change: () -> [ String?, String? ]
+
+        def last_author_email_will_change!: () -> void
+
+        def last_author_email_was: () -> String?
+
+        def last_author_email_previously_changed?: () -> bool
+
+        def last_author_email_previous_change: () -> Array[String?]?
+
+        def last_author_email_previously_was: () -> String?
+
+        def last_author_email_before_last_save: () -> String?
+
+        def last_author_email_change_to_be_saved: () -> Array[String?]?
+
+        def last_author_email_in_database: () -> String?
+
+        def saved_change_to_last_author_email: () -> Array[String?]?
+
+        def saved_change_to_last_author_email?: () -> bool
+
+        def will_save_change_to_last_author_email?: () -> bool
+
+        def restore_last_author_email!: () -> void
+
+        def clear_last_author_email_change: () -> void
+
+        def last_author_name: () -> String?
+
+        def last_author_name=: (String?) -> String?
+
+        def last_author_name?: () -> bool
+
+        def last_author_name_changed?: () -> bool
+
+        def last_author_name_change: () -> [ String?, String? ]
+
+        def last_author_name_will_change!: () -> void
+
+        def last_author_name_was: () -> String?
+
+        def last_author_name_previously_changed?: () -> bool
+
+        def last_author_name_previous_change: () -> Array[String?]?
+
+        def last_author_name_previously_was: () -> String?
+
+        def last_author_name_before_last_save: () -> String?
+
+        def last_author_name_change_to_be_saved: () -> Array[String?]?
+
+        def last_author_name_in_database: () -> String?
+
+        def saved_change_to_last_author_name: () -> Array[String?]?
+
+        def saved_change_to_last_author_name?: () -> bool
+
+        def will_save_change_to_last_author_name?: () -> bool
+
+        def restore_last_author_name!: () -> void
+
+        def clear_last_author_name_change: () -> void
+
+        def original_content: () -> String?
+
+        def original_content=: (String?) -> String?
+
+        def original_content?: () -> bool
+
+        def original_content_changed?: () -> bool
+
+        def original_content_change: () -> [ String?, String? ]
+
+        def original_content_will_change!: () -> void
+
+        def original_content_was: () -> String?
+
+        def original_content_previously_changed?: () -> bool
+
+        def original_content_previous_change: () -> Array[String?]?
+
+        def original_content_previously_was: () -> String?
+
+        def original_content_before_last_save: () -> String?
+
+        def original_content_change_to_be_saved: () -> Array[String?]?
+
+        def original_content_in_database: () -> String?
+
+        def saved_change_to_original_content: () -> Array[String?]?
+
+        def saved_change_to_original_content?: () -> bool
+
+        def will_save_change_to_original_content?: () -> bool
+
+        def restore_original_content!: () -> void
+
+        def clear_original_content_change: () -> void
+
+        def version: () -> String?
+
+        def version=: (String?) -> String?
+
+        def version?: () -> bool
+
+        def version_changed?: () -> bool
+
+        def version_change: () -> [ String?, String? ]
+
+        def version_will_change!: () -> void
+
+        def version_was: () -> String?
+
+        def version_previously_changed?: () -> bool
+
+        def version_previous_change: () -> Array[String?]?
+
+        def version_previously_was: () -> String?
+
+        def version_before_last_save: () -> String?
+
+        def version_change_to_be_saved: () -> Array[String?]?
+
+        def version_in_database: () -> String?
+
+        def saved_change_to_version: () -> Array[String?]?
+
+        def saved_change_to_version?: () -> bool
+
+        def will_save_change_to_version?: () -> bool
+
+        def restore_version!: () -> void
+
+        def clear_version_change: () -> void
+
+        def created_at: () -> ActiveSupport::TimeWithZone
+
+        def created_at=: (ActiveSupport::TimeWithZone) -> ActiveSupport::TimeWithZone
+
+        def created_at?: () -> bool
+
+        def created_at_changed?: () -> bool
+
+        def created_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def created_at_will_change!: () -> void
+
+        def created_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_previously_changed?: () -> bool
+
+        def created_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_created_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_created_at?: () -> bool
+
+        def will_save_change_to_created_at?: () -> bool
+
+        def restore_created_at!: () -> void
+
+        def clear_created_at_change: () -> void
+
+        def updated_at: () -> ActiveSupport::TimeWithZone
+
+        def updated_at=: (ActiveSupport::TimeWithZone) -> ActiveSupport::TimeWithZone
+
+        def updated_at?: () -> bool
+
+        def updated_at_changed?: () -> bool
+
+        def updated_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def updated_at_will_change!: () -> void
+
+        def updated_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_previously_changed?: () -> bool
+
+        def updated_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_updated_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_updated_at?: () -> bool
+
+        def will_save_change_to_updated_at?: () -> bool
+
+        def restore_updated_at!: () -> void
+
+        def clear_updated_at_change: () -> void
+
+        def metadata: () -> untyped
+
+        def metadata=: (untyped) -> untyped
+
+        def metadata?: () -> bool
+
+        def metadata_changed?: () -> bool
+
+        def metadata_change: () -> [ untyped?, untyped? ]
+
+        def metadata_will_change!: () -> void
+
+        def metadata_was: () -> untyped?
+
+        def metadata_previously_changed?: () -> bool
+
+        def metadata_previous_change: () -> Array[untyped?]?
+
+        def metadata_previously_was: () -> untyped?
+
+        def metadata_before_last_save: () -> untyped?
+
+        def metadata_change_to_be_saved: () -> Array[untyped?]?
+
+        def metadata_in_database: () -> untyped?
+
+        def saved_change_to_metadata: () -> Array[untyped?]?
+
+        def saved_change_to_metadata?: () -> bool
+
+        def will_save_change_to_metadata?: () -> bool
+
+        def restore_metadata!: () -> void
+
+        def clear_metadata_change: () -> void
+
+        def activity_metadata: () -> untyped?
+
+        def activity_metadata=: (untyped?) -> untyped?
+
+        def activity_metadata?: () -> bool
+
+        def activity_metadata_changed?: () -> bool
+
+        def activity_metadata_change: () -> [ untyped?, untyped? ]
+
+        def activity_metadata_will_change!: () -> void
+
+        def activity_metadata_was: () -> untyped?
+
+        def activity_metadata_previously_changed?: () -> bool
+
+        def activity_metadata_previous_change: () -> Array[untyped?]?
+
+        def activity_metadata_previously_was: () -> untyped?
+
+        def activity_metadata_before_last_save: () -> untyped?
+
+        def activity_metadata_change_to_be_saved: () -> Array[untyped?]?
+
+        def activity_metadata_in_database: () -> untyped?
+
+        def saved_change_to_activity_metadata: () -> Array[untyped?]?
+
+        def saved_change_to_activity_metadata?: () -> bool
+
+        def will_save_change_to_activity_metadata?: () -> bool
+
+        def restore_activity_metadata!: () -> void
+
+        def clear_activity_metadata_change: () -> void
+
+        def resource_id: () -> Integer?
+
+        def resource_id=: (Integer?) -> Integer?
+
+        def resource_id?: () -> bool
+
+        def resource_id_changed?: () -> bool
+
+        def resource_id_change: () -> [ Integer?, Integer? ]
+
+        def resource_id_will_change!: () -> void
+
+        def resource_id_was: () -> Integer?
+
+        def resource_id_previously_changed?: () -> bool
+
+        def resource_id_previous_change: () -> Array[Integer?]?
+
+        def resource_id_previously_was: () -> Integer?
+
+        def resource_id_before_last_save: () -> Integer?
+
+        def resource_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def resource_id_in_database: () -> Integer?
+
+        def saved_change_to_resource_id: () -> Array[Integer?]?
+
+        def saved_change_to_resource_id?: () -> bool
+
+        def will_save_change_to_resource_id?: () -> bool
+
+        def restore_resource_id!: () -> void
+
+        def clear_resource_id_change: () -> void
+
+        def toc: () -> untyped?
+
+        def toc=: (untyped?) -> untyped?
+
+        def toc?: () -> bool
+
+        def toc_changed?: () -> bool
+
+        def toc_change: () -> [ untyped?, untyped? ]
+
+        def toc_will_change!: () -> void
+
+        def toc_was: () -> untyped?
+
+        def toc_previously_changed?: () -> bool
+
+        def toc_previous_change: () -> Array[untyped?]?
+
+        def toc_previously_was: () -> untyped?
+
+        def toc_before_last_save: () -> untyped?
+
+        def toc_change_to_be_saved: () -> Array[untyped?]?
+
+        def toc_in_database: () -> untyped?
+
+        def saved_change_to_toc: () -> Array[untyped?]?
+
+        def saved_change_to_toc?: () -> bool
+
+        def will_save_change_to_toc?: () -> bool
+
+        def restore_toc!: () -> void
+
+        def clear_toc_change: () -> void
+
+        def active: () -> bool
+
+        def active=: (bool) -> bool
+
+        def active?: () -> bool
+
+        def active_changed?: () -> bool
+
+        def active_change: () -> [ bool?, bool? ]
+
+        def active_will_change!: () -> void
+
+        def active_was: () -> bool?
+
+        def active_previously_changed?: () -> bool
+
+        def active_previous_change: () -> Array[bool?]?
+
+        def active_previously_was: () -> bool?
+
+        def active_before_last_save: () -> bool?
+
+        def active_change_to_be_saved: () -> Array[bool?]?
+
+        def active_in_database: () -> bool?
+
+        def saved_change_to_active: () -> Array[bool?]?
+
+        def saved_change_to_active?: () -> bool
+
+        def will_save_change_to_active?: () -> bool
+
+        def restore_active!: () -> void
+
+        def clear_active_change: () -> void
+
+        def foundational_metadata: () -> untyped?
+
+        def foundational_metadata=: (untyped?) -> untyped?
+
+        def foundational_metadata?: () -> bool
+
+        def foundational_metadata_changed?: () -> bool
+
+        def foundational_metadata_change: () -> [ untyped?, untyped? ]
+
+        def foundational_metadata_will_change!: () -> void
+
+        def foundational_metadata_was: () -> untyped?
+
+        def foundational_metadata_previously_changed?: () -> bool
+
+        def foundational_metadata_previous_change: () -> Array[untyped?]?
+
+        def foundational_metadata_previously_was: () -> untyped?
+
+        def foundational_metadata_before_last_save: () -> untyped?
+
+        def foundational_metadata_change_to_be_saved: () -> Array[untyped?]?
+
+        def foundational_metadata_in_database: () -> untyped?
+
+        def saved_change_to_foundational_metadata: () -> Array[untyped?]?
+
+        def saved_change_to_foundational_metadata?: () -> bool
+
+        def will_save_change_to_foundational_metadata?: () -> bool
+
+        def restore_foundational_metadata!: () -> void
+
+        def clear_foundational_metadata_change: () -> void
+
+        def css_styles: () -> String?
+
+        def css_styles=: (String?) -> String?
+
+        def css_styles?: () -> bool
+
+        def css_styles_changed?: () -> bool
+
+        def css_styles_change: () -> [ String?, String? ]
+
+        def css_styles_will_change!: () -> void
+
+        def css_styles_was: () -> String?
+
+        def css_styles_previously_changed?: () -> bool
+
+        def css_styles_previous_change: () -> Array[String?]?
+
+        def css_styles_previously_was: () -> String?
+
+        def css_styles_before_last_save: () -> String?
+
+        def css_styles_change_to_be_saved: () -> Array[String?]?
+
+        def css_styles_in_database: () -> String?
+
+        def saved_change_to_css_styles: () -> Array[String?]?
+
+        def saved_change_to_css_styles?: () -> bool
+
+        def will_save_change_to_css_styles?: () -> bool
+
+        def restore_css_styles!: () -> void
+
+        def clear_css_styles_change: () -> void
+
+        def links: () -> untyped
+
+        def links=: (untyped) -> untyped
+
+        def links?: () -> bool
+
+        def links_changed?: () -> bool
+
+        def links_change: () -> [ untyped?, untyped? ]
+
+        def links_will_change!: () -> void
+
+        def links_was: () -> untyped?
+
+        def links_previously_changed?: () -> bool
+
+        def links_previous_change: () -> Array[untyped?]?
+
+        def links_previously_was: () -> untyped?
+
+        def links_before_last_save: () -> untyped?
+
+        def links_change_to_be_saved: () -> Array[untyped?]?
+
+        def links_in_database: () -> untyped?
+
+        def saved_change_to_links: () -> Array[untyped?]?
+
+        def saved_change_to_links?: () -> bool
+
+        def will_save_change_to_links?: () -> bool
+
+        def restore_links!: () -> void
+
+        def clear_links_change: () -> void
+
+        def agenda_metadata: () -> untyped?
+
+        def agenda_metadata=: (untyped?) -> untyped?
+
+        def agenda_metadata?: () -> bool
+
+        def agenda_metadata_changed?: () -> bool
+
+        def agenda_metadata_change: () -> [ untyped?, untyped? ]
+
+        def agenda_metadata_will_change!: () -> void
+
+        def agenda_metadata_was: () -> untyped?
+
+        def agenda_metadata_previously_changed?: () -> bool
+
+        def agenda_metadata_previous_change: () -> Array[untyped?]?
+
+        def agenda_metadata_previously_was: () -> untyped?
+
+        def agenda_metadata_before_last_save: () -> untyped?
+
+        def agenda_metadata_change_to_be_saved: () -> Array[untyped?]?
+
+        def agenda_metadata_in_database: () -> untyped?
+
+        def saved_change_to_agenda_metadata: () -> Array[untyped?]?
+
+        def saved_change_to_agenda_metadata?: () -> bool
+
+        def will_save_change_to_agenda_metadata?: () -> bool
+
+        def restore_agenda_metadata!: () -> void
+
+        def clear_agenda_metadata_change: () -> void
+
+        def foundational_file_id: () -> String?
+
+        def foundational_file_id=: (String?) -> String?
+
+        def foundational_file_id?: () -> bool
+
+        def foundational_file_id_changed?: () -> bool
+
+        def foundational_file_id_change: () -> [ String?, String? ]
+
+        def foundational_file_id_will_change!: () -> void
+
+        def foundational_file_id_was: () -> String?
+
+        def foundational_file_id_previously_changed?: () -> bool
+
+        def foundational_file_id_previous_change: () -> Array[String?]?
+
+        def foundational_file_id_previously_was: () -> String?
+
+        def foundational_file_id_before_last_save: () -> String?
+
+        def foundational_file_id_change_to_be_saved: () -> Array[String?]?
+
+        def foundational_file_id_in_database: () -> String?
+
+        def saved_change_to_foundational_file_id: () -> Array[String?]?
+
+        def saved_change_to_foundational_file_id?: () -> bool
+
+        def will_save_change_to_foundational_file_id?: () -> bool
+
+        def restore_foundational_file_id!: () -> void
+
+        def clear_foundational_file_id_change: () -> void
+
+        def foundational_content: () -> String?
+
+        def foundational_content=: (String?) -> String?
+
+        def foundational_content?: () -> bool
+
+        def foundational_content_changed?: () -> bool
+
+        def foundational_content_change: () -> [ String?, String? ]
+
+        def foundational_content_will_change!: () -> void
+
+        def foundational_content_was: () -> String?
+
+        def foundational_content_previously_changed?: () -> bool
+
+        def foundational_content_previous_change: () -> Array[String?]?
+
+        def foundational_content_previously_was: () -> String?
+
+        def foundational_content_before_last_save: () -> String?
+
+        def foundational_content_change_to_be_saved: () -> Array[String?]?
+
+        def foundational_content_in_database: () -> String?
+
+        def saved_change_to_foundational_content: () -> Array[String?]?
+
+        def saved_change_to_foundational_content?: () -> bool
+
+        def will_save_change_to_foundational_content?: () -> bool
+
+        def restore_foundational_content!: () -> void
+
+        def clear_foundational_content_change: () -> void
+
+        def fs_name: () -> String?
+
+        def fs_name=: (String?) -> String?
+
+        def fs_name?: () -> bool
+
+        def fs_name_changed?: () -> bool
+
+        def fs_name_change: () -> [ String?, String? ]
+
+        def fs_name_will_change!: () -> void
+
+        def fs_name_was: () -> String?
+
+        def fs_name_previously_changed?: () -> bool
+
+        def fs_name_previous_change: () -> Array[String?]?
+
+        def fs_name_previously_was: () -> String?
+
+        def fs_name_before_last_save: () -> String?
+
+        def fs_name_change_to_be_saved: () -> Array[String?]?
+
+        def fs_name_in_database: () -> String?
+
+        def saved_change_to_fs_name: () -> Array[String?]?
+
+        def saved_change_to_fs_name?: () -> bool
+
+        def will_save_change_to_fs_name?: () -> bool
+
+        def restore_fs_name!: () -> void
+
+        def clear_fs_name_change: () -> void
+
+        def sections_metadata: () -> untyped?
+
+        def sections_metadata=: (untyped?) -> untyped?
+
+        def sections_metadata?: () -> bool
+
+        def sections_metadata_changed?: () -> bool
+
+        def sections_metadata_change: () -> [ untyped?, untyped? ]
+
+        def sections_metadata_will_change!: () -> void
+
+        def sections_metadata_was: () -> untyped?
+
+        def sections_metadata_previously_changed?: () -> bool
+
+        def sections_metadata_previous_change: () -> Array[untyped?]?
+
+        def sections_metadata_previously_was: () -> untyped?
+
+        def sections_metadata_before_last_save: () -> untyped?
+
+        def sections_metadata_change_to_be_saved: () -> Array[untyped?]?
+
+        def sections_metadata_in_database: () -> untyped?
+
+        def saved_change_to_sections_metadata: () -> Array[untyped?]?
+
+        def saved_change_to_sections_metadata?: () -> bool
+
+        def will_save_change_to_sections_metadata?: () -> bool
+
+        def restore_sections_metadata!: () -> void
+
+        def clear_sections_metadata_change: () -> void
+
+        def reimported: () -> bool
+
+        def reimported=: (bool) -> bool
+
+        def reimported?: () -> bool
+
+        def reimported_changed?: () -> bool
+
+        def reimported_change: () -> [ bool?, bool? ]
+
+        def reimported_will_change!: () -> void
+
+        def reimported_was: () -> bool?
+
+        def reimported_previously_changed?: () -> bool
+
+        def reimported_previous_change: () -> Array[bool?]?
+
+        def reimported_previously_was: () -> bool?
+
+        def reimported_before_last_save: () -> bool?
+
+        def reimported_change_to_be_saved: () -> Array[bool?]?
+
+        def reimported_in_database: () -> bool?
+
+        def saved_change_to_reimported: () -> Array[bool?]?
+
+        def saved_change_to_reimported?: () -> bool
+
+        def will_save_change_to_reimported?: () -> bool
+
+        def restore_reimported!: () -> void
+
+        def clear_reimported_change: () -> void
+
+        def reimported_at: () -> ActiveSupport::TimeWithZone?
+
+        def reimported_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def reimported_at?: () -> bool
+
+        def reimported_at_changed?: () -> bool
+
+        def reimported_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def reimported_at_will_change!: () -> void
+
+        def reimported_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def reimported_at_previously_changed?: () -> bool
+
+        def reimported_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def reimported_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def reimported_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def reimported_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def reimported_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_reimported_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_reimported_at?: () -> bool
+
+        def will_save_change_to_reimported_at?: () -> bool
+
+        def restore_reimported_at!: () -> void
+
+        def clear_reimported_at_change: () -> void
+      end
+      include GeneratedAttributeMethods
+
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Document, Integer]
+        include Enumerable[Lcms::Engine::Document]
+        include Scopes
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Document, Integer]
+        include Scopes
+      end
+    end
+  end
+end

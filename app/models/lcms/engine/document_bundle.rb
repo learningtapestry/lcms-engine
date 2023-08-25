@@ -20,8 +20,8 @@ module Lcms
       end
 
       def self.update_pdf_bundle(resource, category)
-        zip_path = LessonsPdfBundler.new(resource, category).bundle
-        return unless File.exist?(zip_path.to_s)
+        zip_path = LessonsPdfBundler.new(resource, category).bundle.to_s
+        return unless File.exist?(zip_path)
 
         begin
           doc_bundle = find_or_create_by(resource:, category:, content_type: 'pdf')

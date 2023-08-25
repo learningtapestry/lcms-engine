@@ -1,0 +1,1306 @@
+module Lcms
+  module Engine
+    class Resource < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Resource, ActiveRecord_Relation, Integer]
+
+      MEDIA_TYPES: untyped
+
+      GENERIC_TYPES: untyped
+
+      SUBJECTS: ::Array["ela" | "math"]
+
+      HIERARCHY: ::Array[:subject | :grade | :module | :unit | :lesson]
+
+      include Filterable
+
+      module Scopes
+        def generic_resources: -> ActiveRecord_Relation
+        def media: -> ActiveRecord_Relation
+        def ordered: -> ActiveRecord_Relation
+      end
+      extend Scopes
+
+      module Associations
+        def ancestors: -> ActiveRecord_Relation
+        def taggings: -> ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy
+        def taggings=: (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging]) -> (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging])
+        def tagging_ids: -> Array[Integer]
+        def tagging_ids=: (Array[Integer]) -> Array[Integer]
+        def base_tags: -> ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy
+        def base_tags=: (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag]) -> (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag])
+        def base_tag_ids: -> Array[Integer]
+        def base_tag_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_type_taggings: -> ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy
+        def resource_type_taggings=: (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging]) -> (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging])
+        def resource_type_tagging_ids: -> Array[Integer]
+        def resource_type_tagging_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_types: -> ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy
+        def resource_types=: (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag]) -> (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag])
+        def resource_type_ids: -> Array[Integer]
+        def resource_type_ids=: (Array[Integer]) -> Array[Integer]
+        def tag_taggings: -> ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy
+        def tag_taggings=: (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging]) -> (ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tagging])
+        def tag_tagging_ids: -> Array[Integer]
+        def tag_tagging_ids=: (Array[Integer]) -> Array[Integer]
+        def tags: -> ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy
+        def tags=: (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag]) -> (ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy | Array[ActsAsTaggableOn::Tag])
+        def tag_ids: -> Array[Integer]
+        def tag_ids=: (Array[Integer]) -> Array[Integer]
+        def children: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+        def children=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+        def child_ids: -> Array[Integer]
+        def child_ids=: (Array[Integer]) -> Array[Integer]
+        def ancestor_hierarchies: -> Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy
+        def ancestor_hierarchies=: (Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceHierarchy]) -> (Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceHierarchy])
+        def ancestor_hierarchy_ids: -> Array[Integer]
+        def ancestor_hierarchy_ids=: (Array[Integer]) -> Array[Integer]
+        def self_and_ancestors: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+        def self_and_ancestors=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+        def self_and_ancestor_ids: -> Array[Integer]
+        def self_and_ancestor_ids=: (Array[Integer]) -> Array[Integer]
+        def descendant_hierarchies: -> Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy
+        def descendant_hierarchies=: (Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceHierarchy]) -> (Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceHierarchy])
+        def descendant_hierarchy_ids: -> Array[Integer]
+        def descendant_hierarchy_ids=: (Array[Integer]) -> Array[Integer]
+        def self_and_descendants: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+        def self_and_descendants=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+        def self_and_descendant_ids: -> Array[Integer]
+        def self_and_descendant_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_additional_resources: -> Lcms::Engine::ResourceAdditionalResource::ActiveRecord_Associations_CollectionProxy
+        def resource_additional_resources=: (Lcms::Engine::ResourceAdditionalResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceAdditionalResource]) -> (Lcms::Engine::ResourceAdditionalResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceAdditionalResource])
+        def resource_additional_resource_ids: -> Array[Integer]
+        def resource_additional_resource_ids=: (Array[Integer]) -> Array[Integer]
+        def additional_resources: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+        def additional_resources=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+        def additional_resource_ids: -> Array[Integer]
+        def additional_resource_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_standards: -> Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy
+        def resource_standards=: (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard]) -> (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard])
+        def resource_standard_ids: -> Array[Integer]
+        def resource_standard_ids=: (Array[Integer]) -> Array[Integer]
+        def standards: -> Lcms::Engine::Standard::ActiveRecord_Associations_CollectionProxy
+        def standards=: (Lcms::Engine::Standard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Standard]) -> (Lcms::Engine::Standard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Standard])
+        def standard_ids: -> Array[Integer]
+        def standard_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_reading_assignments: -> Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy
+        def resource_reading_assignments=: (Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceReadingAssignment]) -> (Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceReadingAssignment])
+        def resource_reading_assignment_ids: -> Array[Integer]
+        def resource_reading_assignment_ids=: (Array[Integer]) -> Array[Integer]
+        def reading_assignment_texts: -> Lcms::Engine::ReadingAssignmentText::ActiveRecord_Associations_CollectionProxy
+        def reading_assignment_texts=: (Lcms::Engine::ReadingAssignmentText::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ReadingAssignmentText]) -> (Lcms::Engine::ReadingAssignmentText::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ReadingAssignmentText])
+        def reading_assignment_text_ids: -> Array[Integer]
+        def reading_assignment_text_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_related_resources: -> Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy
+        def resource_related_resources=: (Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceRelatedResource]) -> (Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceRelatedResource])
+        def resource_related_resource_ids: -> Array[Integer]
+        def resource_related_resource_ids=: (Array[Integer]) -> Array[Integer]
+        def related_resources: -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[untyped])
+        def related_resources=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+        def related_resource_ids: -> Array[Integer]
+        def related_resource_ids=: (Array[Integer]) -> Array[Integer]
+        def resource_related_resources_as_related: -> Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy
+        def resource_related_resources_as_related=: (Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceRelatedResource]) -> (Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceRelatedResource])
+        def resource_related_resources_as_related_ids: -> Array[Integer]
+        def resource_related_resources_as_related_ids=: (Array[Integer]) -> Array[Integer]
+        def copyright_attributions: -> Lcms::Engine::CopyrightAttribution::ActiveRecord_Associations_CollectionProxy
+        def copyright_attributions=: (Lcms::Engine::CopyrightAttribution::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::CopyrightAttribution]) -> (Lcms::Engine::CopyrightAttribution::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::CopyrightAttribution])
+        def copyright_attribution_ids: -> Array[Integer]
+        def copyright_attribution_ids=: (Array[Integer]) -> Array[Integer]
+        def social_thumbnails: -> Lcms::Engine::SocialThumbnail::ActiveRecord_Associations_CollectionProxy
+        def social_thumbnails=: (Lcms::Engine::SocialThumbnail::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::SocialThumbnail]) -> (Lcms::Engine::SocialThumbnail::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::SocialThumbnail])
+        def social_thumbnail_ids: -> Array[Integer]
+        def social_thumbnail_ids=: (Array[Integer]) -> Array[Integer]
+        def documents: -> Lcms::Engine::Document::ActiveRecord_Associations_CollectionProxy
+        def documents=: (Lcms::Engine::Document::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Document]) -> (Lcms::Engine::Document::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Document])
+        def document_ids: -> Array[Integer]
+        def document_ids=: (Array[Integer]) -> Array[Integer]
+        def document_bundles: -> Lcms::Engine::DocumentBundle::ActiveRecord_Associations_CollectionProxy
+        def document_bundles=: (Lcms::Engine::DocumentBundle::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::DocumentBundle]) -> (Lcms::Engine::DocumentBundle::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::DocumentBundle])
+        def document_bundle_ids: -> Array[Integer]
+        def document_bundle_ids=: (Array[Integer]) -> Array[Integer]
+
+        def parent: -> Lcms::Engine::Resource?
+        def parent=: (Lcms::Engine::Resource?) -> Lcms::Engine::Resource?
+        def reload_parent: -> Lcms::Engine::Resource?
+        def siblings: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+        def build_parent: (untyped) -> Lcms::Engine::Resource
+        def create_parent: (untyped) -> Lcms::Engine::Resource
+        def create_parent!: (untyped) -> Lcms::Engine::Resource
+        def author: -> Lcms::Engine::Author?
+        def author=: (Lcms::Engine::Author?) -> Lcms::Engine::Author?
+        def reload_author: -> Lcms::Engine::Author?
+        def build_author: (untyped) -> Lcms::Engine::Author
+        def create_author: (untyped) -> Lcms::Engine::Author
+        def create_author!: (untyped) -> Lcms::Engine::Author
+        def curriculum: -> Lcms::Engine::Curriculum?
+        def curriculum=: (Lcms::Engine::Curriculum?) -> Lcms::Engine::Curriculum?
+        def reload_curriculum: -> Lcms::Engine::Curriculum?
+        def build_curriculum: (untyped) -> Lcms::Engine::Curriculum
+        def create_curriculum: (untyped) -> Lcms::Engine::Curriculum
+        def create_curriculum!: (untyped) -> Lcms::Engine::Curriculum
+      end
+      include Associations
+
+      module GeneratedAttributeMethods
+        def id: -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: -> bool
+
+        def id_changed?: -> bool
+
+        def id_change: -> [ Integer?, Integer? ]
+
+        def id_will_change!: -> void
+
+        def id_was: -> Integer?
+
+        def id_previously_changed?: -> bool
+
+        def id_previous_change: -> Array[Integer?]?
+
+        def id_previously_was: -> Integer?
+
+        def id_before_last_save: -> Integer?
+
+        def id_change_to_be_saved: -> Array[Integer?]?
+
+        def id_in_database: -> Integer?
+
+        def saved_change_to_id: -> Array[Integer?]?
+
+        def saved_change_to_id?: -> bool
+
+        def will_save_change_to_id?: -> bool
+
+        def restore_id!: -> void
+
+        def clear_id_change: -> void
+
+        def created_at: -> ActiveSupport::TimeWithZone?
+
+        def created_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def created_at?: -> bool
+
+        def created_at_changed?: -> bool
+
+        def created_at_change: -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def created_at_will_change!: -> void
+
+        def created_at_was: -> ActiveSupport::TimeWithZone?
+
+        def created_at_previously_changed?: -> bool
+
+        def created_at_previous_change: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_previously_was: -> ActiveSupport::TimeWithZone?
+
+        def created_at_before_last_save: -> ActiveSupport::TimeWithZone?
+
+        def created_at_change_to_be_saved: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_in_database: -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_created_at: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_created_at?: -> bool
+
+        def will_save_change_to_created_at?: -> bool
+
+        def restore_created_at!: -> void
+
+        def clear_created_at_change: -> void
+
+        def updated_at: -> ActiveSupport::TimeWithZone?
+
+        def updated_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def updated_at?: -> bool
+
+        def updated_at_changed?: -> bool
+
+        def updated_at_change: -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def updated_at_will_change!: -> void
+
+        def updated_at_was: -> ActiveSupport::TimeWithZone?
+
+        def updated_at_previously_changed?: -> bool
+
+        def updated_at_previous_change: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_previously_was: -> ActiveSupport::TimeWithZone?
+
+        def updated_at_before_last_save: -> ActiveSupport::TimeWithZone?
+
+        def updated_at_change_to_be_saved: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_in_database: -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_updated_at: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_updated_at?: -> bool
+
+        def will_save_change_to_updated_at?: -> bool
+
+        def restore_updated_at!: -> void
+
+        def clear_updated_at_change: -> void
+
+        def indexed_at: -> ActiveSupport::TimeWithZone?
+
+        def indexed_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def indexed_at?: -> bool
+
+        def indexed_at_changed?: -> bool
+
+        def indexed_at_change: -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def indexed_at_will_change!: -> void
+
+        def indexed_at_was: -> ActiveSupport::TimeWithZone?
+
+        def indexed_at_previously_changed?: -> bool
+
+        def indexed_at_previous_change: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def indexed_at_previously_was: -> ActiveSupport::TimeWithZone?
+
+        def indexed_at_before_last_save: -> ActiveSupport::TimeWithZone?
+
+        def indexed_at_change_to_be_saved: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def indexed_at_in_database: -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_indexed_at: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_indexed_at?: -> bool
+
+        def will_save_change_to_indexed_at?: -> bool
+
+        def restore_indexed_at!: -> void
+
+        def clear_indexed_at_change: -> void
+
+        def hidden: -> bool?
+
+        def hidden=: (bool?) -> bool?
+
+        def hidden?: -> bool
+
+        def hidden_changed?: -> bool
+
+        def hidden_change: -> [ bool?, bool? ]
+
+        def hidden_will_change!: -> void
+
+        def hidden_was: -> bool?
+
+        def hidden_previously_changed?: -> bool
+
+        def hidden_previous_change: -> Array[bool?]?
+
+        def hidden_previously_was: -> bool?
+
+        def hidden_before_last_save: -> bool?
+
+        def hidden_change_to_be_saved: -> Array[bool?]?
+
+        def hidden_in_database: -> bool?
+
+        def saved_change_to_hidden: -> Array[bool?]?
+
+        def saved_change_to_hidden?: -> bool
+
+        def will_save_change_to_hidden?: -> bool
+
+        def restore_hidden!: -> void
+
+        def clear_hidden_change: -> void
+
+        def engageny_url: -> String?
+
+        def engageny_url=: (String?) -> String?
+
+        def engageny_url?: -> bool
+
+        def engageny_url_changed?: -> bool
+
+        def engageny_url_change: -> [ String?, String? ]
+
+        def engageny_url_will_change!: -> void
+
+        def engageny_url_was: -> String?
+
+        def engageny_url_previously_changed?: -> bool
+
+        def engageny_url_previous_change: -> Array[String?]?
+
+        def engageny_url_previously_was: -> String?
+
+        def engageny_url_before_last_save: -> String?
+
+        def engageny_url_change_to_be_saved: -> Array[String?]?
+
+        def engageny_url_in_database: -> String?
+
+        def saved_change_to_engageny_url: -> Array[String?]?
+
+        def saved_change_to_engageny_url?: -> bool
+
+        def will_save_change_to_engageny_url?: -> bool
+
+        def restore_engageny_url!: -> void
+
+        def clear_engageny_url_change: -> void
+
+        def engageny_title: -> String?
+
+        def engageny_title=: (String?) -> String?
+
+        def engageny_title?: -> bool
+
+        def engageny_title_changed?: -> bool
+
+        def engageny_title_change: -> [ String?, String? ]
+
+        def engageny_title_will_change!: -> void
+
+        def engageny_title_was: -> String?
+
+        def engageny_title_previously_changed?: -> bool
+
+        def engageny_title_previous_change: -> Array[String?]?
+
+        def engageny_title_previously_was: -> String?
+
+        def engageny_title_before_last_save: -> String?
+
+        def engageny_title_change_to_be_saved: -> Array[String?]?
+
+        def engageny_title_in_database: -> String?
+
+        def saved_change_to_engageny_title: -> Array[String?]?
+
+        def saved_change_to_engageny_title?: -> bool
+
+        def will_save_change_to_engageny_title?: -> bool
+
+        def restore_engageny_title!: -> void
+
+        def clear_engageny_title_change: -> void
+
+        def description: -> String?
+
+        def description=: (String?) -> String?
+
+        def description?: -> bool
+
+        def description_changed?: -> bool
+
+        def description_change: -> [ String?, String? ]
+
+        def description_will_change!: -> void
+
+        def description_was: -> String?
+
+        def description_previously_changed?: -> bool
+
+        def description_previous_change: -> Array[String?]?
+
+        def description_previously_was: -> String?
+
+        def description_before_last_save: -> String?
+
+        def description_change_to_be_saved: -> Array[String?]?
+
+        def description_in_database: -> String?
+
+        def saved_change_to_description: -> Array[String?]?
+
+        def saved_change_to_description?: -> bool
+
+        def will_save_change_to_description?: -> bool
+
+        def restore_description!: -> void
+
+        def clear_description_change: -> void
+
+        def title: -> String?
+
+        def title=: (String?) -> String?
+
+        def title?: -> bool
+
+        def title_changed?: -> bool
+
+        def title_change: -> [ String?, String? ]
+
+        def title_will_change!: -> void
+
+        def title_was: -> String?
+
+        def title_previously_changed?: -> bool
+
+        def title_previous_change: -> Array[String?]?
+
+        def title_previously_was: -> String?
+
+        def title_before_last_save: -> String?
+
+        def title_change_to_be_saved: -> Array[String?]?
+
+        def title_in_database: -> String?
+
+        def saved_change_to_title: -> Array[String?]?
+
+        def saved_change_to_title?: -> bool
+
+        def will_save_change_to_title?: -> bool
+
+        def restore_title!: -> void
+
+        def clear_title_change: -> void
+
+        def short_title: -> String?
+
+        def short_title=: (String?) -> String?
+
+        def short_title?: -> bool
+
+        def short_title_changed?: -> bool
+
+        def short_title_change: -> [ String?, String? ]
+
+        def short_title_will_change!: -> void
+
+        def short_title_was: -> String?
+
+        def short_title_previously_changed?: -> bool
+
+        def short_title_previous_change: -> Array[String?]?
+
+        def short_title_previously_was: -> String?
+
+        def short_title_before_last_save: -> String?
+
+        def short_title_change_to_be_saved: -> Array[String?]?
+
+        def short_title_in_database: -> String?
+
+        def saved_change_to_short_title: -> Array[String?]?
+
+        def saved_change_to_short_title?: -> bool
+
+        def will_save_change_to_short_title?: -> bool
+
+        def restore_short_title!: -> void
+
+        def clear_short_title_change: -> void
+
+        def subtitle: -> String?
+
+        def subtitle=: (String?) -> String?
+
+        def subtitle?: -> bool
+
+        def subtitle_changed?: -> bool
+
+        def subtitle_change: -> [ String?, String? ]
+
+        def subtitle_will_change!: -> void
+
+        def subtitle_was: -> String?
+
+        def subtitle_previously_changed?: -> bool
+
+        def subtitle_previous_change: -> Array[String?]?
+
+        def subtitle_previously_was: -> String?
+
+        def subtitle_before_last_save: -> String?
+
+        def subtitle_change_to_be_saved: -> Array[String?]?
+
+        def subtitle_in_database: -> String?
+
+        def saved_change_to_subtitle: -> Array[String?]?
+
+        def saved_change_to_subtitle?: -> bool
+
+        def will_save_change_to_subtitle?: -> bool
+
+        def restore_subtitle!: -> void
+
+        def clear_subtitle_change: -> void
+
+        def teaser: -> String?
+
+        def teaser=: (String?) -> String?
+
+        def teaser?: -> bool
+
+        def teaser_changed?: -> bool
+
+        def teaser_change: -> [ String?, String? ]
+
+        def teaser_will_change!: -> void
+
+        def teaser_was: -> String?
+
+        def teaser_previously_changed?: -> bool
+
+        def teaser_previous_change: -> Array[String?]?
+
+        def teaser_previously_was: -> String?
+
+        def teaser_before_last_save: -> String?
+
+        def teaser_change_to_be_saved: -> Array[String?]?
+
+        def teaser_in_database: -> String?
+
+        def saved_change_to_teaser: -> Array[String?]?
+
+        def saved_change_to_teaser?: -> bool
+
+        def will_save_change_to_teaser?: -> bool
+
+        def restore_teaser!: -> void
+
+        def clear_teaser_change: -> void
+
+        def time_to_teach: -> Integer?
+
+        def time_to_teach=: (Integer?) -> Integer?
+
+        def time_to_teach?: -> bool
+
+        def time_to_teach_changed?: -> bool
+
+        def time_to_teach_change: -> [ Integer?, Integer? ]
+
+        def time_to_teach_will_change!: -> void
+
+        def time_to_teach_was: -> Integer?
+
+        def time_to_teach_previously_changed?: -> bool
+
+        def time_to_teach_previous_change: -> Array[Integer?]?
+
+        def time_to_teach_previously_was: -> Integer?
+
+        def time_to_teach_before_last_save: -> Integer?
+
+        def time_to_teach_change_to_be_saved: -> Array[Integer?]?
+
+        def time_to_teach_in_database: -> Integer?
+
+        def saved_change_to_time_to_teach: -> Array[Integer?]?
+
+        def saved_change_to_time_to_teach?: -> bool
+
+        def will_save_change_to_time_to_teach?: -> bool
+
+        def restore_time_to_teach!: -> void
+
+        def clear_time_to_teach_change: -> void
+
+        def ell_appropriate: -> bool
+
+        def ell_appropriate=: (bool) -> bool
+
+        def ell_appropriate?: -> bool
+
+        def ell_appropriate_changed?: -> bool
+
+        def ell_appropriate_change: -> [ bool?, bool? ]
+
+        def ell_appropriate_will_change!: -> void
+
+        def ell_appropriate_was: -> bool?
+
+        def ell_appropriate_previously_changed?: -> bool
+
+        def ell_appropriate_previous_change: -> Array[bool?]?
+
+        def ell_appropriate_previously_was: -> bool?
+
+        def ell_appropriate_before_last_save: -> bool?
+
+        def ell_appropriate_change_to_be_saved: -> Array[bool?]?
+
+        def ell_appropriate_in_database: -> bool?
+
+        def saved_change_to_ell_appropriate: -> Array[bool?]?
+
+        def saved_change_to_ell_appropriate?: -> bool
+
+        def will_save_change_to_ell_appropriate?: -> bool
+
+        def restore_ell_appropriate!: -> void
+
+        def clear_ell_appropriate_change: -> void
+
+        def deleted_at: -> ActiveSupport::TimeWithZone?
+
+        def deleted_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def deleted_at?: -> bool
+
+        def deleted_at_changed?: -> bool
+
+        def deleted_at_change: -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def deleted_at_will_change!: -> void
+
+        def deleted_at_was: -> ActiveSupport::TimeWithZone?
+
+        def deleted_at_previously_changed?: -> bool
+
+        def deleted_at_previous_change: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def deleted_at_previously_was: -> ActiveSupport::TimeWithZone?
+
+        def deleted_at_before_last_save: -> ActiveSupport::TimeWithZone?
+
+        def deleted_at_change_to_be_saved: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def deleted_at_in_database: -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_deleted_at: -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_deleted_at?: -> bool
+
+        def will_save_change_to_deleted_at?: -> bool
+
+        def restore_deleted_at!: -> void
+
+        def clear_deleted_at_change: -> void
+
+        def resource_type: -> Integer
+
+        def resource_type=: (Integer) -> Integer
+
+        def resource_type?: -> bool
+
+        def resource_type_changed?: -> bool
+
+        def resource_type_change: -> [ Integer?, Integer? ]
+
+        def resource_type_will_change!: -> void
+
+        def resource_type_was: -> Integer?
+
+        def resource_type_previously_changed?: -> bool
+
+        def resource_type_previous_change: -> Array[Integer?]?
+
+        def resource_type_previously_was: -> Integer?
+
+        def resource_type_before_last_save: -> Integer?
+
+        def resource_type_change_to_be_saved: -> Array[Integer?]?
+
+        def resource_type_in_database: -> Integer?
+
+        def saved_change_to_resource_type: -> Array[Integer?]?
+
+        def saved_change_to_resource_type?: -> bool
+
+        def will_save_change_to_resource_type?: -> bool
+
+        def restore_resource_type!: -> void
+
+        def clear_resource_type_change: -> void
+
+        def url: -> String?
+
+        def url=: (String?) -> String?
+
+        def url?: -> bool
+
+        def url_changed?: -> bool
+
+        def url_change: -> [ String?, String? ]
+
+        def url_will_change!: -> void
+
+        def url_was: -> String?
+
+        def url_previously_changed?: -> bool
+
+        def url_previous_change: -> Array[String?]?
+
+        def url_previously_was: -> String?
+
+        def url_before_last_save: -> String?
+
+        def url_change_to_be_saved: -> Array[String?]?
+
+        def url_in_database: -> String?
+
+        def saved_change_to_url: -> Array[String?]?
+
+        def saved_change_to_url?: -> bool
+
+        def will_save_change_to_url?: -> bool
+
+        def restore_url!: -> void
+
+        def clear_url_change: -> void
+
+        def image_file: -> String?
+
+        def image_file=: (String?) -> String?
+
+        def image_file?: -> bool
+
+        def image_file_changed?: -> bool
+
+        def image_file_change: -> [ String?, String? ]
+
+        def image_file_will_change!: -> void
+
+        def image_file_was: -> String?
+
+        def image_file_previously_changed?: -> bool
+
+        def image_file_previous_change: -> Array[String?]?
+
+        def image_file_previously_was: -> String?
+
+        def image_file_before_last_save: -> String?
+
+        def image_file_change_to_be_saved: -> Array[String?]?
+
+        def image_file_in_database: -> String?
+
+        def saved_change_to_image_file: -> Array[String?]?
+
+        def saved_change_to_image_file?: -> bool
+
+        def will_save_change_to_image_file?: -> bool
+
+        def restore_image_file!: -> void
+
+        def clear_image_file_change: -> void
+
+        def curriculum_type: -> String?
+
+        def curriculum_type=: (String?) -> String?
+
+        def curriculum_type?: -> bool
+
+        def curriculum_type_changed?: -> bool
+
+        def curriculum_type_change: -> [ String?, String? ]
+
+        def curriculum_type_will_change!: -> void
+
+        def curriculum_type_was: -> String?
+
+        def curriculum_type_previously_changed?: -> bool
+
+        def curriculum_type_previous_change: -> Array[String?]?
+
+        def curriculum_type_previously_was: -> String?
+
+        def curriculum_type_before_last_save: -> String?
+
+        def curriculum_type_change_to_be_saved: -> Array[String?]?
+
+        def curriculum_type_in_database: -> String?
+
+        def saved_change_to_curriculum_type: -> Array[String?]?
+
+        def saved_change_to_curriculum_type?: -> bool
+
+        def will_save_change_to_curriculum_type?: -> bool
+
+        def restore_curriculum_type!: -> void
+
+        def clear_curriculum_type_change: -> void
+
+        def hierarchical_position: -> String?
+
+        def hierarchical_position=: (String?) -> String?
+
+        def hierarchical_position?: -> bool
+
+        def hierarchical_position_changed?: -> bool
+
+        def hierarchical_position_change: -> [ String?, String? ]
+
+        def hierarchical_position_will_change!: -> void
+
+        def hierarchical_position_was: -> String?
+
+        def hierarchical_position_previously_changed?: -> bool
+
+        def hierarchical_position_previous_change: -> Array[String?]?
+
+        def hierarchical_position_previously_was: -> String?
+
+        def hierarchical_position_before_last_save: -> String?
+
+        def hierarchical_position_change_to_be_saved: -> Array[String?]?
+
+        def hierarchical_position_in_database: -> String?
+
+        def saved_change_to_hierarchical_position: -> Array[String?]?
+
+        def saved_change_to_hierarchical_position?: -> bool
+
+        def will_save_change_to_hierarchical_position?: -> bool
+
+        def restore_hierarchical_position!: -> void
+
+        def clear_hierarchical_position_change: -> void
+
+        def slug: -> String?
+
+        def slug=: (String?) -> String?
+
+        def slug?: -> bool
+
+        def slug_changed?: -> bool
+
+        def slug_change: -> [ String?, String? ]
+
+        def slug_will_change!: -> void
+
+        def slug_was: -> String?
+
+        def slug_previously_changed?: -> bool
+
+        def slug_previous_change: -> Array[String?]?
+
+        def slug_previously_was: -> String?
+
+        def slug_before_last_save: -> String?
+
+        def slug_change_to_be_saved: -> Array[String?]?
+
+        def slug_in_database: -> String?
+
+        def saved_change_to_slug: -> Array[String?]?
+
+        def saved_change_to_slug?: -> bool
+
+        def will_save_change_to_slug?: -> bool
+
+        def restore_slug!: -> void
+
+        def clear_slug_change: -> void
+
+        def parent_id: -> Integer?
+
+        def parent_id=: (Integer?) -> Integer?
+
+        def parent_id?: -> bool
+
+        def parent_id_changed?: -> bool
+
+        def parent_id_change: -> [ Integer?, Integer? ]
+
+        def parent_id_will_change!: -> void
+
+        def parent_id_was: -> Integer?
+
+        def parent_id_previously_changed?: -> bool
+
+        def parent_id_previous_change: -> Array[Integer?]?
+
+        def parent_id_previously_was: -> Integer?
+
+        def parent_id_before_last_save: -> Integer?
+
+        def parent_id_change_to_be_saved: -> Array[Integer?]?
+
+        def parent_id_in_database: -> Integer?
+
+        def saved_change_to_parent_id: -> Array[Integer?]?
+
+        def saved_change_to_parent_id?: -> bool
+
+        def will_save_change_to_parent_id?: -> bool
+
+        def restore_parent_id!: -> void
+
+        def clear_parent_id_change: -> void
+
+        def level_position: -> Integer?
+
+        def level_position=: (Integer?) -> Integer?
+
+        def level_position?: -> bool
+
+        def level_position_changed?: -> bool
+
+        def level_position_change: -> [ Integer?, Integer? ]
+
+        def level_position_will_change!: -> void
+
+        def level_position_was: -> Integer?
+
+        def level_position_previously_changed?: -> bool
+
+        def level_position_previous_change: -> Array[Integer?]?
+
+        def level_position_previously_was: -> Integer?
+
+        def level_position_before_last_save: -> Integer?
+
+        def level_position_change_to_be_saved: -> Array[Integer?]?
+
+        def level_position_in_database: -> Integer?
+
+        def saved_change_to_level_position: -> Array[Integer?]?
+
+        def saved_change_to_level_position?: -> bool
+
+        def will_save_change_to_level_position?: -> bool
+
+        def restore_level_position!: -> void
+
+        def clear_level_position_change: -> void
+
+        def tree: -> bool
+
+        def tree=: (bool) -> bool
+
+        def tree?: -> bool
+
+        def tree_changed?: -> bool
+
+        def tree_change: -> [ bool?, bool? ]
+
+        def tree_will_change!: -> void
+
+        def tree_was: -> bool?
+
+        def tree_previously_changed?: -> bool
+
+        def tree_previous_change: -> Array[bool?]?
+
+        def tree_previously_was: -> bool?
+
+        def tree_before_last_save: -> bool?
+
+        def tree_change_to_be_saved: -> Array[bool?]?
+
+        def tree_in_database: -> bool?
+
+        def saved_change_to_tree: -> Array[bool?]?
+
+        def saved_change_to_tree?: -> bool
+
+        def will_save_change_to_tree?: -> bool
+
+        def restore_tree!: -> void
+
+        def clear_tree_change: -> void
+
+        def opr_description: -> String?
+
+        def opr_description=: (String?) -> String?
+
+        def opr_description?: -> bool
+
+        def opr_description_changed?: -> bool
+
+        def opr_description_change: -> [ String?, String? ]
+
+        def opr_description_will_change!: -> void
+
+        def opr_description_was: -> String?
+
+        def opr_description_previously_changed?: -> bool
+
+        def opr_description_previous_change: -> Array[String?]?
+
+        def opr_description_previously_was: -> String?
+
+        def opr_description_before_last_save: -> String?
+
+        def opr_description_change_to_be_saved: -> Array[String?]?
+
+        def opr_description_in_database: -> String?
+
+        def saved_change_to_opr_description: -> Array[String?]?
+
+        def saved_change_to_opr_description?: -> bool
+
+        def will_save_change_to_opr_description?: -> bool
+
+        def restore_opr_description!: -> void
+
+        def clear_opr_description_change: -> void
+
+        def download_categories_settings: -> untyped
+
+        def download_categories_settings=: (untyped) -> untyped
+
+        def download_categories_settings?: -> bool
+
+        def download_categories_settings_changed?: -> bool
+
+        def download_categories_settings_change: -> [ untyped?, untyped? ]
+
+        def download_categories_settings_will_change!: -> void
+
+        def download_categories_settings_was: -> untyped?
+
+        def download_categories_settings_previously_changed?: -> bool
+
+        def download_categories_settings_previous_change: -> Array[untyped?]?
+
+        def download_categories_settings_previously_was: -> untyped?
+
+        def download_categories_settings_before_last_save: -> untyped?
+
+        def download_categories_settings_change_to_be_saved: -> Array[untyped?]?
+
+        def download_categories_settings_in_database: -> untyped?
+
+        def saved_change_to_download_categories_settings: -> Array[untyped?]?
+
+        def saved_change_to_download_categories_settings?: -> bool
+
+        def will_save_change_to_download_categories_settings?: -> bool
+
+        def restore_download_categories_settings!: -> void
+
+        def clear_download_categories_settings_change: -> void
+
+        def metadata: -> untyped
+
+        def metadata=: (untyped) -> untyped
+
+        def metadata?: -> bool
+
+        def metadata_changed?: -> bool
+
+        def metadata_change: -> [ untyped?, untyped? ]
+
+        def metadata_will_change!: -> void
+
+        def metadata_was: -> untyped?
+
+        def metadata_previously_changed?: -> bool
+
+        def metadata_previous_change: -> Array[untyped?]?
+
+        def metadata_previously_was: -> untyped?
+
+        def metadata_before_last_save: -> untyped?
+
+        def metadata_change_to_be_saved: -> Array[untyped?]?
+
+        def metadata_in_database: -> untyped?
+
+        def saved_change_to_metadata: -> Array[untyped?]?
+
+        def saved_change_to_metadata?: -> bool
+
+        def will_save_change_to_metadata?: -> bool
+
+        def restore_metadata!: -> void
+
+        def clear_metadata_change: -> void
+
+        def author_id: -> Integer?
+
+        def author_id=: (Integer?) -> Integer?
+
+        def author_id?: -> bool
+
+        def author_id_changed?: -> bool
+
+        def author_id_change: -> [ Integer?, Integer? ]
+
+        def author_id_will_change!: -> void
+
+        def author_id_was: -> Integer?
+
+        def author_id_previously_changed?: -> bool
+
+        def author_id_previous_change: -> Array[Integer?]?
+
+        def author_id_previously_was: -> Integer?
+
+        def author_id_before_last_save: -> Integer?
+
+        def author_id_change_to_be_saved: -> Array[Integer?]?
+
+        def author_id_in_database: -> Integer?
+
+        def saved_change_to_author_id: -> Array[Integer?]?
+
+        def saved_change_to_author_id?: -> bool
+
+        def will_save_change_to_author_id?: -> bool
+
+        def restore_author_id!: -> void
+
+        def clear_author_id_change: -> void
+
+        def curriculum_id: -> Integer?
+
+        def curriculum_id=: (Integer?) -> Integer?
+
+        def curriculum_id?: -> bool
+
+        def curriculum_id_changed?: -> bool
+
+        def curriculum_id_change: -> [ Integer?, Integer? ]
+
+        def curriculum_id_will_change!: -> void
+
+        def curriculum_id_was: -> Integer?
+
+        def curriculum_id_previously_changed?: -> bool
+
+        def curriculum_id_previous_change: -> Array[Integer?]?
+
+        def curriculum_id_previously_was: -> Integer?
+
+        def curriculum_id_before_last_save: -> Integer?
+
+        def curriculum_id_change_to_be_saved: -> Array[Integer?]?
+
+        def curriculum_id_in_database: -> Integer?
+
+        def saved_change_to_curriculum_id: -> Array[Integer?]?
+
+        def saved_change_to_curriculum_id?: -> bool
+
+        def will_save_change_to_curriculum_id?: -> bool
+
+        def restore_curriculum_id!: -> void
+
+        def clear_curriculum_id_change: -> void
+
+        def links: -> untyped?
+
+        def links=: (untyped?) -> untyped?
+
+        def links?: -> bool
+
+        def links_changed?: -> bool
+
+        def links_change: -> [ untyped?, untyped? ]
+
+        def links_will_change!: -> void
+
+        def links_was: -> untyped?
+
+        def links_previously_changed?: -> bool
+
+        def links_previous_change: -> Array[untyped?]?
+
+        def links_previously_was: -> untyped?
+
+        def links_before_last_save: -> untyped?
+
+        def links_change_to_be_saved: -> Array[untyped?]?
+
+        def links_in_database: -> untyped?
+
+        def saved_change_to_links: -> Array[untyped?]?
+
+        def saved_change_to_links?: -> bool
+
+        def will_save_change_to_links?: -> bool
+
+        def restore_links!: -> void
+
+        def clear_links_change: -> void
+      end
+      include GeneratedAttributeMethods
+
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Resource, Integer]
+        include Enumerable[Lcms::Engine::Resource]
+        include Scopes
+
+        def reverse: -> ActiveRecord_Relation
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Resource, Integer]
+        include Scopes
+      end
+
+      # Are used to bypass dynamic define_method call
+      def self.curriculum_type: -> String?
+      def self.subject: -> String?
+
+      # to bypass gems
+      def self.acts_as_taggable_on: (*untyped) -> untyped
+
+      def self.metadata_from_dir: (untyped dir) -> untyped
+      def self.find_by_directory: (*untyped dir) -> (nil | untyped)
+      def self.hierarchy: -> untyped
+      def self.ransackable_scopes: (?untyped? _auth_object) -> ::Array[:grades]
+      def self.tree: (?untyped? name) -> untyped
+      def self.with_advisory_lock: (*untyped?) ?{ (*untyped?) -> untyped } -> untyped
+      def self.resource_types: (*untyped)-> untyped
+
+      def next: -> ::Lcms::Engine::Resource?
+      def parents: -> ActiveRecord_Relation
+      def previous: -> ::Lcms::Engine::Resource?
+
+      def tree?: -> untyped
+      def assessment?: -> untyped
+      def media?: -> untyped
+      def generic?: -> untyped
+      def directory: -> untyped
+      def subject: -> untyped
+      def grades: -> untyped
+      def grades=: (untyped gds) -> untyped
+      def lesson_number: -> untyped
+      def pdf_downloads?: (?untyped? category) -> untyped
+      def named_tags: -> { keywords: untyped, resource_type: untyped, ell_appropriate: untyped, ccss_standards: untyped, ccss_domain: nil, ccss_cluster: nil, authors: untyped, texts: untyped }
+      def filtered_named_tags: -> untyped
+      def tag_standards: -> untyped
+      def copyrights: -> untyped
+      def document: -> untyped
+      def document?: -> untyped
+      def next_hierarchy_level: -> untyped
+      def unit_bundles?: -> untyped
+      def self_and_ancestors_not_persisted: -> untyped
+      def update_metadata: -> untyped
+      def update_position: -> untyped
+
+      # Dynamically defined
+      def subject?: -> bool
+      def grade?: -> bool
+      def module?: -> bool
+      def unit?: -> bool
+      def lesson?: -> bool
+
+      # acts_as_taggable_on
+      def tag_list: -> untyped
+      def tag_list=: (*untyped) -> untyped
+      def descendants: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+
+      # closure_tree
+      def self.has_closure_tree: (*untyped) -> untyped
+    end
+  end
+end

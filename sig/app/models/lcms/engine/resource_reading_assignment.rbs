@@ -1,0 +1,148 @@
+module Lcms
+  module Engine
+    class ResourceReadingAssignment < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::ResourceReadingAssignment, ActiveRecord_Relation, Integer]
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def resource_id: () -> Integer
+
+        def resource_id=: (Integer) -> Integer
+
+        def resource_id?: () -> bool
+
+        def resource_id_changed?: () -> bool
+
+        def resource_id_change: () -> [ Integer?, Integer? ]
+
+        def resource_id_will_change!: () -> void
+
+        def resource_id_was: () -> Integer?
+
+        def resource_id_previously_changed?: () -> bool
+
+        def resource_id_previous_change: () -> Array[Integer?]?
+
+        def resource_id_previously_was: () -> Integer?
+
+        def resource_id_before_last_save: () -> Integer?
+
+        def resource_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def resource_id_in_database: () -> Integer?
+
+        def saved_change_to_resource_id: () -> Array[Integer?]?
+
+        def saved_change_to_resource_id?: () -> bool
+
+        def will_save_change_to_resource_id?: () -> bool
+
+        def restore_resource_id!: () -> void
+
+        def clear_resource_id_change: () -> void
+
+        def reading_assignment_text_id: () -> Integer
+
+        def reading_assignment_text_id=: (Integer) -> Integer
+
+        def reading_assignment_text_id?: () -> bool
+
+        def reading_assignment_text_id_changed?: () -> bool
+
+        def reading_assignment_text_id_change: () -> [ Integer?, Integer? ]
+
+        def reading_assignment_text_id_will_change!: () -> void
+
+        def reading_assignment_text_id_was: () -> Integer?
+
+        def reading_assignment_text_id_previously_changed?: () -> bool
+
+        def reading_assignment_text_id_previous_change: () -> Array[Integer?]?
+
+        def reading_assignment_text_id_previously_was: () -> Integer?
+
+        def reading_assignment_text_id_before_last_save: () -> Integer?
+
+        def reading_assignment_text_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def reading_assignment_text_id_in_database: () -> Integer?
+
+        def saved_change_to_reading_assignment_text_id: () -> Array[Integer?]?
+
+        def saved_change_to_reading_assignment_text_id?: () -> bool
+
+        def will_save_change_to_reading_assignment_text_id?: () -> bool
+
+        def restore_reading_assignment_text_id!: () -> void
+
+        def clear_reading_assignment_text_id_change: () -> void
+      end
+      include GeneratedAttributeMethods
+
+      def reading_assignment_text: () -> Lcms::Engine::ReadingAssignmentText
+      def reading_assignment_text=: (Lcms::Engine::ReadingAssignmentText?) -> Lcms::Engine::ReadingAssignmentText?
+      def reload_reading_assignment_text: () -> Lcms::Engine::ReadingAssignmentText?
+      def build_reading_assignment_text: (untyped) -> Lcms::Engine::ReadingAssignmentText
+      def create_reading_assignment_text: (untyped) -> Lcms::Engine::ReadingAssignmentText
+      def create_reading_assignment_text!: (untyped) -> Lcms::Engine::ReadingAssignmentText
+      def resource: () -> Lcms::Engine::Resource
+      def resource=: (Lcms::Engine::Resource?) -> Lcms::Engine::Resource?
+      def reload_resource: () -> Lcms::Engine::Resource?
+      def build_resource: (untyped) -> Lcms::Engine::Resource
+      def create_resource: (untyped) -> Lcms::Engine::Resource
+      def create_resource!: (untyped) -> Lcms::Engine::Resource
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::ResourceReadingAssignment, Integer]
+        include Enumerable[Lcms::Engine::ResourceReadingAssignment]
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::ResourceReadingAssignment, Integer]
+      end
+    end
+  end
+end

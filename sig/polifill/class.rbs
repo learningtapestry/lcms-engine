@@ -1,0 +1,7 @@
+class ::Class
+  # This is to bypass dynamically created methods inside Resource:
+  #  HIERARCHY.map(&:to_s).each do |level|
+  #    define_method(:"#{level.pluralize}") { where(curriculum_type: level) }
+  #  end
+  def self.where: (*untyped) -> untyped
+end

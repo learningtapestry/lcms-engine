@@ -1,0 +1,326 @@
+module ActsAsTaggableOn
+  class Tagging < ::ActiveRecord::Base
+    extend _ActiveRecord_Relation_ClassMethods[ActsAsTaggableOn::Tagging, ActiveRecord_Relation, Integer]
+
+    module GeneratedAttributeMethods
+      def id: () -> Integer
+
+      def id=: (Integer) -> Integer
+
+      def id?: () -> bool
+
+      def id_changed?: () -> bool
+
+      def id_change: () -> [ Integer?, Integer? ]
+
+      def id_will_change!: () -> void
+
+      def id_was: () -> Integer?
+
+      def id_previously_changed?: () -> bool
+
+      def id_previous_change: () -> Array[Integer?]?
+
+      def id_previously_was: () -> Integer?
+
+      def id_before_last_save: () -> Integer?
+
+      def id_change_to_be_saved: () -> Array[Integer?]?
+
+      def id_in_database: () -> Integer?
+
+      def saved_change_to_id: () -> Array[Integer?]?
+
+      def saved_change_to_id?: () -> bool
+
+      def will_save_change_to_id?: () -> bool
+
+      def restore_id!: () -> void
+
+      def clear_id_change: () -> void
+
+      def tag_id: () -> Integer?
+
+      def tag_id=: (Integer?) -> Integer?
+
+      def tag_id?: () -> bool
+
+      def tag_id_changed?: () -> bool
+
+      def tag_id_change: () -> [ Integer?, Integer? ]
+
+      def tag_id_will_change!: () -> void
+
+      def tag_id_was: () -> Integer?
+
+      def tag_id_previously_changed?: () -> bool
+
+      def tag_id_previous_change: () -> Array[Integer?]?
+
+      def tag_id_previously_was: () -> Integer?
+
+      def tag_id_before_last_save: () -> Integer?
+
+      def tag_id_change_to_be_saved: () -> Array[Integer?]?
+
+      def tag_id_in_database: () -> Integer?
+
+      def saved_change_to_tag_id: () -> Array[Integer?]?
+
+      def saved_change_to_tag_id?: () -> bool
+
+      def will_save_change_to_tag_id?: () -> bool
+
+      def restore_tag_id!: () -> void
+
+      def clear_tag_id_change: () -> void
+
+      def taggable_id: () -> Integer?
+
+      def taggable_id=: (Integer?) -> Integer?
+
+      def taggable_id?: () -> bool
+
+      def taggable_id_changed?: () -> bool
+
+      def taggable_id_change: () -> [ Integer?, Integer? ]
+
+      def taggable_id_will_change!: () -> void
+
+      def taggable_id_was: () -> Integer?
+
+      def taggable_id_previously_changed?: () -> bool
+
+      def taggable_id_previous_change: () -> Array[Integer?]?
+
+      def taggable_id_previously_was: () -> Integer?
+
+      def taggable_id_before_last_save: () -> Integer?
+
+      def taggable_id_change_to_be_saved: () -> Array[Integer?]?
+
+      def taggable_id_in_database: () -> Integer?
+
+      def saved_change_to_taggable_id: () -> Array[Integer?]?
+
+      def saved_change_to_taggable_id?: () -> bool
+
+      def will_save_change_to_taggable_id?: () -> bool
+
+      def restore_taggable_id!: () -> void
+
+      def clear_taggable_id_change: () -> void
+
+      def taggable_type: () -> String?
+
+      def taggable_type=: (String?) -> String?
+
+      def taggable_type?: () -> bool
+
+      def taggable_type_changed?: () -> bool
+
+      def taggable_type_change: () -> [ String?, String? ]
+
+      def taggable_type_will_change!: () -> void
+
+      def taggable_type_was: () -> String?
+
+      def taggable_type_previously_changed?: () -> bool
+
+      def taggable_type_previous_change: () -> Array[String?]?
+
+      def taggable_type_previously_was: () -> String?
+
+      def taggable_type_before_last_save: () -> String?
+
+      def taggable_type_change_to_be_saved: () -> Array[String?]?
+
+      def taggable_type_in_database: () -> String?
+
+      def saved_change_to_taggable_type: () -> Array[String?]?
+
+      def saved_change_to_taggable_type?: () -> bool
+
+      def will_save_change_to_taggable_type?: () -> bool
+
+      def restore_taggable_type!: () -> void
+
+      def clear_taggable_type_change: () -> void
+
+      def tagger_id: () -> Integer?
+
+      def tagger_id=: (Integer?) -> Integer?
+
+      def tagger_id?: () -> bool
+
+      def tagger_id_changed?: () -> bool
+
+      def tagger_id_change: () -> [ Integer?, Integer? ]
+
+      def tagger_id_will_change!: () -> void
+
+      def tagger_id_was: () -> Integer?
+
+      def tagger_id_previously_changed?: () -> bool
+
+      def tagger_id_previous_change: () -> Array[Integer?]?
+
+      def tagger_id_previously_was: () -> Integer?
+
+      def tagger_id_before_last_save: () -> Integer?
+
+      def tagger_id_change_to_be_saved: () -> Array[Integer?]?
+
+      def tagger_id_in_database: () -> Integer?
+
+      def saved_change_to_tagger_id: () -> Array[Integer?]?
+
+      def saved_change_to_tagger_id?: () -> bool
+
+      def will_save_change_to_tagger_id?: () -> bool
+
+      def restore_tagger_id!: () -> void
+
+      def clear_tagger_id_change: () -> void
+
+      def tagger_type: () -> String?
+
+      def tagger_type=: (String?) -> String?
+
+      def tagger_type?: () -> bool
+
+      def tagger_type_changed?: () -> bool
+
+      def tagger_type_change: () -> [ String?, String? ]
+
+      def tagger_type_will_change!: () -> void
+
+      def tagger_type_was: () -> String?
+
+      def tagger_type_previously_changed?: () -> bool
+
+      def tagger_type_previous_change: () -> Array[String?]?
+
+      def tagger_type_previously_was: () -> String?
+
+      def tagger_type_before_last_save: () -> String?
+
+      def tagger_type_change_to_be_saved: () -> Array[String?]?
+
+      def tagger_type_in_database: () -> String?
+
+      def saved_change_to_tagger_type: () -> Array[String?]?
+
+      def saved_change_to_tagger_type?: () -> bool
+
+      def will_save_change_to_tagger_type?: () -> bool
+
+      def restore_tagger_type!: () -> void
+
+      def clear_tagger_type_change: () -> void
+
+      def context: () -> String?
+
+      def context=: (String?) -> String?
+
+      def context?: () -> bool
+
+      def context_changed?: () -> bool
+
+      def context_change: () -> [ String?, String? ]
+
+      def context_will_change!: () -> void
+
+      def context_was: () -> String?
+
+      def context_previously_changed?: () -> bool
+
+      def context_previous_change: () -> Array[String?]?
+
+      def context_previously_was: () -> String?
+
+      def context_before_last_save: () -> String?
+
+      def context_change_to_be_saved: () -> Array[String?]?
+
+      def context_in_database: () -> String?
+
+      def saved_change_to_context: () -> Array[String?]?
+
+      def saved_change_to_context?: () -> bool
+
+      def will_save_change_to_context?: () -> bool
+
+      def restore_context!: () -> void
+
+      def clear_context_change: () -> void
+
+      def created_at: () -> ActiveSupport::TimeWithZone?
+
+      def created_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+      def created_at?: () -> bool
+
+      def created_at_changed?: () -> bool
+
+      def created_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+      def created_at_will_change!: () -> void
+
+      def created_at_was: () -> ActiveSupport::TimeWithZone?
+
+      def created_at_previously_changed?: () -> bool
+
+      def created_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+      def created_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+      def created_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+      def created_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+      def created_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+      def saved_change_to_created_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+      def saved_change_to_created_at?: () -> bool
+
+      def will_save_change_to_created_at?: () -> bool
+
+      def restore_created_at!: () -> void
+
+      def clear_created_at_change: () -> void
+    end
+    include GeneratedAttributeMethods
+
+    def tag: () -> ActsAsTaggableOn::Tag
+    def tag=: (ActsAsTaggableOn::Tag?) -> ActsAsTaggableOn::Tag?
+    def reload_tag: () -> ActsAsTaggableOn::Tag?
+    def build_tag: (untyped) -> ActsAsTaggableOn::Tag
+    def create_tag: (untyped) -> ActsAsTaggableOn::Tag
+    def create_tag!: (untyped) -> ActsAsTaggableOn::Tag
+    def taggable: () -> untyped
+    def taggable=: (untyped?) -> untyped?
+    def reload_taggable: () -> untyped?
+    def tagger: () -> untyped?
+    def tagger=: (untyped?) -> untyped?
+    def reload_tagger: () -> untyped?
+    module GeneratedAssociationMethods
+    end
+    include GeneratedAssociationMethods
+
+    module GeneratedRelationMethods
+    end
+
+    class ActiveRecord_Relation < ::ActiveRecord::Relation
+      include GeneratedRelationMethods
+      include _ActiveRecord_Relation[ActsAsTaggableOn::Tagging, Integer]
+      include Enumerable[ActsAsTaggableOn::Tagging]
+    end
+
+    class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+      include GeneratedRelationMethods
+      include _ActiveRecord_Relation[ActsAsTaggableOn::Tagging, Integer]
+    end
+  end
+end

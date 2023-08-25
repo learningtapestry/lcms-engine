@@ -1,7 +1,0 @@
-module Lcms
-  module Engine
-    # @type module: ActsAsTaggableOn::Tag.class
-    class Tag < ActsAsTaggableOn::Tag
-    end
-  end
-end

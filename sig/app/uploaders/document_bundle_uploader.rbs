@@ -1,0 +1,5 @@
+class DocumentBundleUploader < CarrierWave::Uploader::Base
+  def store_dir: () -> ::String
+
+  def fog_attributes: () -> ::Hash[::String, "attachment"]
+end

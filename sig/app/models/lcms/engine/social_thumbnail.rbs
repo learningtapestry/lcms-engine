@@ -1,0 +1,213 @@
+module Lcms
+  module Engine
+    class SocialThumbnail < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::SocialThumbnail, ActiveRecord_Relation, Integer]
+
+      MEDIAS: ::Array["all" | "facebook" | "pinterest" | "twitter"]
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def target_id: () -> Integer
+
+        def target_id=: (Integer) -> Integer
+
+        def target_id?: () -> bool
+
+        def target_id_changed?: () -> bool
+
+        def target_id_change: () -> [ Integer?, Integer? ]
+
+        def target_id_will_change!: () -> void
+
+        def target_id_was: () -> Integer?
+
+        def target_id_previously_changed?: () -> bool
+
+        def target_id_previous_change: () -> Array[Integer?]?
+
+        def target_id_previously_was: () -> Integer?
+
+        def target_id_before_last_save: () -> Integer?
+
+        def target_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def target_id_in_database: () -> Integer?
+
+        def saved_change_to_target_id: () -> Array[Integer?]?
+
+        def saved_change_to_target_id?: () -> bool
+
+        def will_save_change_to_target_id?: () -> bool
+
+        def restore_target_id!: () -> void
+
+        def clear_target_id_change: () -> void
+
+        def target_type: () -> String
+
+        def target_type=: (String) -> String
+
+        def target_type?: () -> bool
+
+        def target_type_changed?: () -> bool
+
+        def target_type_change: () -> [ String?, String? ]
+
+        def target_type_will_change!: () -> void
+
+        def target_type_was: () -> String?
+
+        def target_type_previously_changed?: () -> bool
+
+        def target_type_previous_change: () -> Array[String?]?
+
+        def target_type_previously_was: () -> String?
+
+        def target_type_before_last_save: () -> String?
+
+        def target_type_change_to_be_saved: () -> Array[String?]?
+
+        def target_type_in_database: () -> String?
+
+        def saved_change_to_target_type: () -> Array[String?]?
+
+        def saved_change_to_target_type?: () -> bool
+
+        def will_save_change_to_target_type?: () -> bool
+
+        def restore_target_type!: () -> void
+
+        def clear_target_type_change: () -> void
+
+        def image: () -> String
+
+        def image=: (String) -> String
+
+        def image?: () -> bool
+
+        def image_changed?: () -> bool
+
+        def image_change: () -> [ String?, String? ]
+
+        def image_will_change!: () -> void
+
+        def image_was: () -> String?
+
+        def image_previously_changed?: () -> bool
+
+        def image_previous_change: () -> Array[String?]?
+
+        def image_previously_was: () -> String?
+
+        def image_before_last_save: () -> String?
+
+        def image_change_to_be_saved: () -> Array[String?]?
+
+        def image_in_database: () -> String?
+
+        def saved_change_to_image: () -> Array[String?]?
+
+        def saved_change_to_image?: () -> bool
+
+        def will_save_change_to_image?: () -> bool
+
+        def restore_image!: () -> void
+
+        def clear_image_change: () -> void
+
+        def media: () -> String
+
+        def media=: (String) -> String
+
+        def media?: () -> bool
+
+        def media_changed?: () -> bool
+
+        def media_change: () -> [ String?, String? ]
+
+        def media_will_change!: () -> void
+
+        def media_was: () -> String?
+
+        def media_previously_changed?: () -> bool
+
+        def media_previous_change: () -> Array[String?]?
+
+        def media_previously_was: () -> String?
+
+        def media_before_last_save: () -> String?
+
+        def media_change_to_be_saved: () -> Array[String?]?
+
+        def media_in_database: () -> String?
+
+        def saved_change_to_media: () -> Array[String?]?
+
+        def saved_change_to_media?: () -> bool
+
+        def will_save_change_to_media?: () -> bool
+
+        def restore_media!: () -> void
+
+        def clear_media_change: () -> void
+      end
+      include GeneratedAttributeMethods
+
+      def target: () -> untyped
+      def target=: (untyped?) -> untyped?
+      def reload_target: () -> untyped?
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::SocialThumbnail, Integer]
+        include Enumerable[Lcms::Engine::SocialThumbnail]
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::SocialThumbnail, Integer]
+      end
+    end
+  end
+end

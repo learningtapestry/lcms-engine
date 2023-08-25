@@ -1,0 +1,27 @@
+module Lcms
+  module Engine
+    class LessonsGdocBundler
+      PDF_LINKS_KEYS: { full: "gdoc_full", tm: "gdoc_tm", sm: "gdoc_sm" }
+
+      def initialize: (untyped unit) -> void
+
+      def bundle: () -> untyped
+
+      private
+
+      attr_reader unit: untyped
+
+      def build_lesson_folder: (untyped resource, untyped unit_folder) -> untyped
+
+      def build_materials_folder: (untyped document, untyped lesson_bundle, untyped type) -> untyped
+
+      def dirname: (untyped res) -> untyped
+
+      def drive_id: (untyped url) -> (nil | untyped)
+
+      def drive_service: () -> untyped
+
+      def root_folder: () -> untyped
+    end
+  end
+end

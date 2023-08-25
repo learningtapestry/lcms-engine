@@ -1,0 +1,552 @@
+module Lcms
+  module Engine
+    class Standard < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Standard, ActiveRecord_Relation, Integer]
+
+      ALT_NAME_REGEX: ::Hash[::String, ::Regexp]
+
+      DOMAINS_GRADES: ::Hash[::String, untyped]
+
+      DOMAINS: ::Hash[::String, ::Hash[::String, "Counting & Cardinality" | "Operations & Algebraic Thinking" | "Number & Operations in Base Ten" | "Measurement & Data" | "Geometry" | ::String | "Ratios & Proportional Relationships" | "The Number System" | "Expressions & Equations" | "Statistics & Probability" | "Functions"] | ::Hash[::String, "The Real Number System" | "Quantities*" | "The Complex Number System" | "Vector & Matrix Quantities" | "Seeing Structure in Expressions" | "Arithmetic with Polynomials & Rational Expressions" | "Creating Equations*" | "Reasoning with Equations & Inequalities" | "Interpreting Functions" | "Building Functions" | "Linear, Quadratic, & Exponential Models*" | "Trigonometric Functions" | "Congruence" | "Similarity, Right Triangles, & Trigonometry" | "Circles" | "Expressing Geometric Properties with Equations" | "Geometric Measurement & Dimension" | "Modeling with Geometry" | "Interpreting Categorical & Quantitative Data" | "Making Inferences & Justifying Conclusions" | "Conditional Probability & the Rules of Probability" | "Using Probability to Make Decisions"]]
+
+      STRANDS: ::Hash[::String, "Language" | "Reading: Foundational Skills" | "Reading: Informational Text" | "Reading: Literature" | "Speaking & Listening" | "Writing"]
+
+      def self.search_by_name: (untyped name) -> untyped
+      def self.filter_ccss_standards: (untyped name, untyped subject) -> (untyped | nil)
+      def short_name: () -> untyped
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def name: () -> String
+
+        def name=: (String) -> String
+
+        def name?: () -> bool
+
+        def name_changed?: () -> bool
+
+        def name_change: () -> [ String?, String? ]
+
+        def name_will_change!: () -> void
+
+        def name_was: () -> String?
+
+        def name_previously_changed?: () -> bool
+
+        def name_previous_change: () -> Array[String?]?
+
+        def name_previously_was: () -> String?
+
+        def name_before_last_save: () -> String?
+
+        def name_change_to_be_saved: () -> Array[String?]?
+
+        def name_in_database: () -> String?
+
+        def saved_change_to_name: () -> Array[String?]?
+
+        def saved_change_to_name?: () -> bool
+
+        def will_save_change_to_name?: () -> bool
+
+        def restore_name!: () -> void
+
+        def clear_name_change: () -> void
+
+        def created_at: () -> ActiveSupport::TimeWithZone?
+
+        def created_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def created_at?: () -> bool
+
+        def created_at_changed?: () -> bool
+
+        def created_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def created_at_will_change!: () -> void
+
+        def created_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_previously_changed?: () -> bool
+
+        def created_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def created_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def created_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_created_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_created_at?: () -> bool
+
+        def will_save_change_to_created_at?: () -> bool
+
+        def restore_created_at!: () -> void
+
+        def clear_created_at_change: () -> void
+
+        def updated_at: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at=: (ActiveSupport::TimeWithZone?) -> ActiveSupport::TimeWithZone?
+
+        def updated_at?: () -> bool
+
+        def updated_at_changed?: () -> bool
+
+        def updated_at_change: () -> [ ActiveSupport::TimeWithZone?, ActiveSupport::TimeWithZone? ]
+
+        def updated_at_will_change!: () -> void
+
+        def updated_at_was: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_previously_changed?: () -> bool
+
+        def updated_at_previous_change: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_previously_was: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_before_last_save: () -> ActiveSupport::TimeWithZone?
+
+        def updated_at_change_to_be_saved: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def updated_at_in_database: () -> ActiveSupport::TimeWithZone?
+
+        def saved_change_to_updated_at: () -> Array[ActiveSupport::TimeWithZone?]?
+
+        def saved_change_to_updated_at?: () -> bool
+
+        def will_save_change_to_updated_at?: () -> bool
+
+        def restore_updated_at!: () -> void
+
+        def clear_updated_at_change: () -> void
+
+        def subject: () -> String?
+
+        def subject=: (String?) -> String?
+
+        def subject?: () -> bool
+
+        def subject_changed?: () -> bool
+
+        def subject_change: () -> [ String?, String? ]
+
+        def subject_will_change!: () -> void
+
+        def subject_was: () -> String?
+
+        def subject_previously_changed?: () -> bool
+
+        def subject_previous_change: () -> Array[String?]?
+
+        def subject_previously_was: () -> String?
+
+        def subject_before_last_save: () -> String?
+
+        def subject_change_to_be_saved: () -> Array[String?]?
+
+        def subject_in_database: () -> String?
+
+        def saved_change_to_subject: () -> Array[String?]?
+
+        def saved_change_to_subject?: () -> bool
+
+        def will_save_change_to_subject?: () -> bool
+
+        def restore_subject!: () -> void
+
+        def clear_subject_change: () -> void
+
+        def description: () -> String?
+
+        def description=: (String?) -> String?
+
+        def description?: () -> bool
+
+        def description_changed?: () -> bool
+
+        def description_change: () -> [ String?, String? ]
+
+        def description_will_change!: () -> void
+
+        def description_was: () -> String?
+
+        def description_previously_changed?: () -> bool
+
+        def description_previous_change: () -> Array[String?]?
+
+        def description_previously_was: () -> String?
+
+        def description_before_last_save: () -> String?
+
+        def description_change_to_be_saved: () -> Array[String?]?
+
+        def description_in_database: () -> String?
+
+        def saved_change_to_description: () -> Array[String?]?
+
+        def saved_change_to_description?: () -> bool
+
+        def will_save_change_to_description?: () -> bool
+
+        def restore_description!: () -> void
+
+        def clear_description_change: () -> void
+
+        def grades: () -> String
+
+        def grades=: (String) -> String
+
+        def grades?: () -> bool
+
+        def grades_changed?: () -> bool
+
+        def grades_change: () -> [ String?, String? ]
+
+        def grades_will_change!: () -> void
+
+        def grades_was: () -> String?
+
+        def grades_previously_changed?: () -> bool
+
+        def grades_previous_change: () -> Array[String?]?
+
+        def grades_previously_was: () -> String?
+
+        def grades_before_last_save: () -> String?
+
+        def grades_change_to_be_saved: () -> Array[String?]?
+
+        def grades_in_database: () -> String?
+
+        def saved_change_to_grades: () -> Array[String?]?
+
+        def saved_change_to_grades?: () -> bool
+
+        def will_save_change_to_grades?: () -> bool
+
+        def restore_grades!: () -> void
+
+        def clear_grades_change: () -> void
+
+        def label: () -> String?
+
+        def label=: (String?) -> String?
+
+        def label?: () -> bool
+
+        def label_changed?: () -> bool
+
+        def label_change: () -> [ String?, String? ]
+
+        def label_will_change!: () -> void
+
+        def label_was: () -> String?
+
+        def label_previously_changed?: () -> bool
+
+        def label_previous_change: () -> Array[String?]?
+
+        def label_previously_was: () -> String?
+
+        def label_before_last_save: () -> String?
+
+        def label_change_to_be_saved: () -> Array[String?]?
+
+        def label_in_database: () -> String?
+
+        def saved_change_to_label: () -> Array[String?]?
+
+        def saved_change_to_label?: () -> bool
+
+        def will_save_change_to_label?: () -> bool
+
+        def restore_label!: () -> void
+
+        def clear_label_change: () -> void
+
+        def alt_names: () -> String
+
+        def alt_names=: (String) -> String
+
+        def alt_names?: () -> bool
+
+        def alt_names_changed?: () -> bool
+
+        def alt_names_change: () -> [ String?, String? ]
+
+        def alt_names_will_change!: () -> void
+
+        def alt_names_was: () -> String?
+
+        def alt_names_previously_changed?: () -> bool
+
+        def alt_names_previous_change: () -> Array[String?]?
+
+        def alt_names_previously_was: () -> String?
+
+        def alt_names_before_last_save: () -> String?
+
+        def alt_names_change_to_be_saved: () -> Array[String?]?
+
+        def alt_names_in_database: () -> String?
+
+        def saved_change_to_alt_names: () -> Array[String?]?
+
+        def saved_change_to_alt_names?: () -> bool
+
+        def will_save_change_to_alt_names?: () -> bool
+
+        def restore_alt_names!: () -> void
+
+        def clear_alt_names_change: () -> void
+
+        def course: () -> String?
+
+        def course=: (String?) -> String?
+
+        def course?: () -> bool
+
+        def course_changed?: () -> bool
+
+        def course_change: () -> [ String?, String? ]
+
+        def course_will_change!: () -> void
+
+        def course_was: () -> String?
+
+        def course_previously_changed?: () -> bool
+
+        def course_previous_change: () -> Array[String?]?
+
+        def course_previously_was: () -> String?
+
+        def course_before_last_save: () -> String?
+
+        def course_change_to_be_saved: () -> Array[String?]?
+
+        def course_in_database: () -> String?
+
+        def saved_change_to_course: () -> Array[String?]?
+
+        def saved_change_to_course?: () -> bool
+
+        def will_save_change_to_course?: () -> bool
+
+        def restore_course!: () -> void
+
+        def clear_course_change: () -> void
+
+        def domain: () -> String?
+
+        def domain=: (String?) -> String?
+
+        def domain?: () -> bool
+
+        def domain_changed?: () -> bool
+
+        def domain_change: () -> [ String?, String? ]
+
+        def domain_will_change!: () -> void
+
+        def domain_was: () -> String?
+
+        def domain_previously_changed?: () -> bool
+
+        def domain_previous_change: () -> Array[String?]?
+
+        def domain_previously_was: () -> String?
+
+        def domain_before_last_save: () -> String?
+
+        def domain_change_to_be_saved: () -> Array[String?]?
+
+        def domain_in_database: () -> String?
+
+        def saved_change_to_domain: () -> Array[String?]?
+
+        def saved_change_to_domain?: () -> bool
+
+        def will_save_change_to_domain?: () -> bool
+
+        def restore_domain!: () -> void
+
+        def clear_domain_change: () -> void
+
+        def emphasis: () -> String?
+
+        def emphasis=: (String?) -> String?
+
+        def emphasis?: () -> bool
+
+        def emphasis_changed?: () -> bool
+
+        def emphasis_change: () -> [ String?, String? ]
+
+        def emphasis_will_change!: () -> void
+
+        def emphasis_was: () -> String?
+
+        def emphasis_previously_changed?: () -> bool
+
+        def emphasis_previous_change: () -> Array[String?]?
+
+        def emphasis_previously_was: () -> String?
+
+        def emphasis_before_last_save: () -> String?
+
+        def emphasis_change_to_be_saved: () -> Array[String?]?
+
+        def emphasis_in_database: () -> String?
+
+        def saved_change_to_emphasis: () -> Array[String?]?
+
+        def saved_change_to_emphasis?: () -> bool
+
+        def will_save_change_to_emphasis?: () -> bool
+
+        def restore_emphasis!: () -> void
+
+        def clear_emphasis_change: () -> void
+
+        def strand: () -> String?
+
+        def strand=: (String?) -> String?
+
+        def strand?: () -> bool
+
+        def strand_changed?: () -> bool
+
+        def strand_change: () -> [ String?, String? ]
+
+        def strand_will_change!: () -> void
+
+        def strand_was: () -> String?
+
+        def strand_previously_changed?: () -> bool
+
+        def strand_previous_change: () -> Array[String?]?
+
+        def strand_previously_was: () -> String?
+
+        def strand_before_last_save: () -> String?
+
+        def strand_change_to_be_saved: () -> Array[String?]?
+
+        def strand_in_database: () -> String?
+
+        def saved_change_to_strand: () -> Array[String?]?
+
+        def saved_change_to_strand?: () -> bool
+
+        def will_save_change_to_strand?: () -> bool
+
+        def restore_strand!: () -> void
+
+        def clear_strand_change: () -> void
+
+        def synonyms: () -> String?
+
+        def synonyms=: (String?) -> String?
+
+        def synonyms?: () -> bool
+
+        def synonyms_changed?: () -> bool
+
+        def synonyms_change: () -> [ String?, String? ]
+
+        def synonyms_will_change!: () -> void
+
+        def synonyms_was: () -> String?
+
+        def synonyms_previously_changed?: () -> bool
+
+        def synonyms_previous_change: () -> Array[String?]?
+
+        def synonyms_previously_was: () -> String?
+
+        def synonyms_before_last_save: () -> String?
+
+        def synonyms_change_to_be_saved: () -> Array[String?]?
+
+        def synonyms_in_database: () -> String?
+
+        def saved_change_to_synonyms: () -> Array[String?]?
+
+        def saved_change_to_synonyms?: () -> bool
+
+        def will_save_change_to_synonyms?: () -> bool
+
+        def restore_synonyms!: () -> void
+
+        def clear_synonyms_change: () -> void
+      end
+      include GeneratedAttributeMethods
+      def resource_standards: () -> Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy
+      def resource_standards=: (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard]) -> (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard])
+      def resource_standard_ids: () -> Array[Integer]
+      def resource_standard_ids=: (Array[Integer]) -> Array[Integer]
+      def resources: () -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+      def resources=: (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource]) -> (Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::Resource])
+      def resource_ids: () -> Array[Integer]
+      def resource_ids=: (Array[Integer]) -> Array[Integer]
+
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Standard, Integer]
+        include Enumerable[Lcms::Engine::Standard]
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::Standard, Integer]
+      end
+    end
+  end
+end

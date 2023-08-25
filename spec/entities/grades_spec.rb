@@ -22,16 +22,10 @@ describe Lcms::Engine::Grades do
 
   describe 'list' do
     let(:dir) { ['grade 2'] }
-    let(:search_doc) { Lcms::Engine::Search::Document.new(grade: ['kindergarten']) }
 
     it 'gets the grade list for resources' do
       grades = described_class.new(resource)
       expect(grades.list).to eq ['grade 2']
-    end
-
-    it 'gets the grade list for search document' do
-      grades = described_class.new(search_doc)
-      expect(grades.list).to eq ['kindergarten']
     end
   end
 

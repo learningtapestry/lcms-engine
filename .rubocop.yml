@@ -40,7 +40,6 @@ Metrics/BlockLength:
     - '**/*_spec.rb'
     - 'config/routes.rb'
     - 'lcms-engine.gemspec'
-    - 'lib/tasks/elasticsearch.rake'
   AllowedMethods: ['guard', 'included', 'class_eval']
 
 Metrics/ClassLength:

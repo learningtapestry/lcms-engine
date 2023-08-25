@@ -1,0 +1,9 @@
+module Lcms
+  module Engine
+    module Partable
+      def create_parts_for: (untyped template) -> untyped
+      def document_parts: -> DocumentPart::ActiveRecord_Associations_CollectionProxy
+      def layout: (untyped context_type) -> untyped
+    end
+  end
+end

@@ -1,0 +1,5 @@
+class IPAddr
+  def initialize: (String address) -> void
+  def to_s: -> String
+  # define other methods here
+end

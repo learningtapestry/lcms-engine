@@ -1,4 +1,8 @@
 module Elasticsearch
+  class Client
+    def self.new: (*untyped?) -> self
+  end
+
   module Model
     class HashWrapper
       def initialize: (*untyped?) -> self

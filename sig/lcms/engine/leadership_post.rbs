@@ -1,7 +1,0 @@
-module Lcms
-  module Engine
-    class LeadershipPost < ApplicationRecord
-      def name: () -> ::String
-    end
-  end
-end

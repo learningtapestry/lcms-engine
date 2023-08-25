@@ -1,0 +1,49 @@
+module ActsAsTaggableOn
+end
+class ActsAsTaggableOn::Tagging::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ApplicationRecord < ActiveRecord::Base
+  def self.mount_uploader: (*untyped) -> untyped
+end
+module Lcms::Engine
+end
+class Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class ActsAsTaggableOn::Tag::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ResourceHierarchy::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ResourceAdditionalResource::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::Standard::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ReadingAssignmentText::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::ResourceRelatedResource::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::CopyrightAttribution::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::SocialThumbnail::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::Document::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::DocumentBundle::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::DocumentPart::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::Author::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class Lcms::Engine::Curriculum::ActiveRecord_Associations_CollectionProxy < ActiveRecord::Associations::CollectionProxy
+end
+class ActiveRecord::Associations::CollectionProxy < ActiveRecord::Relation
+end
+module Lcms
+end
+class ActiveRecord::Relation < Object
+end
+module ActiveRecord::Associations
+end

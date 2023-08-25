@@ -1,6 +1,0 @@
-module Lcms
-  module Engine
-    class ResourceRelatedResource < ApplicationRecord
-    end
-  end
-end

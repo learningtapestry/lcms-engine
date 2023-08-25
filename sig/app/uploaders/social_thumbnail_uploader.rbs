@@ -1,0 +1,3 @@
+class SocialThumbnailUploader < CarrierWave::Uploader::Base
+  def store_dir: () -> ::String
+end

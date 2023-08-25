@@ -30,8 +30,6 @@ module Lcms
         @list ||= case model
                   when Resource
                     Array.wrap model.metadata['grade']
-                  when Search::Document
-                    Array.wrap model.grade.presence
                   else
                     model.grade_list
                   end.sort_by { |g| self.class.grades.index(g) }

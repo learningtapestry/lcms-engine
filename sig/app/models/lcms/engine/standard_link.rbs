@@ -1,0 +1,220 @@
+module Lcms
+  module Engine
+    class StandardLink < ::Lcms::Engine::ApplicationRecord
+      extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::StandardLink, ActiveRecord_Relation, Integer]
+
+      module GeneratedAttributeMethods
+        def id: () -> Integer
+
+        def id=: (Integer) -> Integer
+
+        def id?: () -> bool
+
+        def id_changed?: () -> bool
+
+        def id_change: () -> [ Integer?, Integer? ]
+
+        def id_will_change!: () -> void
+
+        def id_was: () -> Integer?
+
+        def id_previously_changed?: () -> bool
+
+        def id_previous_change: () -> Array[Integer?]?
+
+        def id_previously_was: () -> Integer?
+
+        def id_before_last_save: () -> Integer?
+
+        def id_change_to_be_saved: () -> Array[Integer?]?
+
+        def id_in_database: () -> Integer?
+
+        def saved_change_to_id: () -> Array[Integer?]?
+
+        def saved_change_to_id?: () -> bool
+
+        def will_save_change_to_id?: () -> bool
+
+        def restore_id!: () -> void
+
+        def clear_id_change: () -> void
+
+        def standard_begin_id: () -> Integer
+
+        def standard_begin_id=: (Integer) -> Integer
+
+        def standard_begin_id?: () -> bool
+
+        def standard_begin_id_changed?: () -> bool
+
+        def standard_begin_id_change: () -> [ Integer?, Integer? ]
+
+        def standard_begin_id_will_change!: () -> void
+
+        def standard_begin_id_was: () -> Integer?
+
+        def standard_begin_id_previously_changed?: () -> bool
+
+        def standard_begin_id_previous_change: () -> Array[Integer?]?
+
+        def standard_begin_id_previously_was: () -> Integer?
+
+        def standard_begin_id_before_last_save: () -> Integer?
+
+        def standard_begin_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def standard_begin_id_in_database: () -> Integer?
+
+        def saved_change_to_standard_begin_id: () -> Array[Integer?]?
+
+        def saved_change_to_standard_begin_id?: () -> bool
+
+        def will_save_change_to_standard_begin_id?: () -> bool
+
+        def restore_standard_begin_id!: () -> void
+
+        def clear_standard_begin_id_change: () -> void
+
+        def standard_end_id: () -> Integer
+
+        def standard_end_id=: (Integer) -> Integer
+
+        def standard_end_id?: () -> bool
+
+        def standard_end_id_changed?: () -> bool
+
+        def standard_end_id_change: () -> [ Integer?, Integer? ]
+
+        def standard_end_id_will_change!: () -> void
+
+        def standard_end_id_was: () -> Integer?
+
+        def standard_end_id_previously_changed?: () -> bool
+
+        def standard_end_id_previous_change: () -> Array[Integer?]?
+
+        def standard_end_id_previously_was: () -> Integer?
+
+        def standard_end_id_before_last_save: () -> Integer?
+
+        def standard_end_id_change_to_be_saved: () -> Array[Integer?]?
+
+        def standard_end_id_in_database: () -> Integer?
+
+        def saved_change_to_standard_end_id: () -> Array[Integer?]?
+
+        def saved_change_to_standard_end_id?: () -> bool
+
+        def will_save_change_to_standard_end_id?: () -> bool
+
+        def restore_standard_end_id!: () -> void
+
+        def clear_standard_end_id_change: () -> void
+
+        def link_type: () -> String
+
+        def link_type=: (String) -> String
+
+        def link_type?: () -> bool
+
+        def link_type_changed?: () -> bool
+
+        def link_type_change: () -> [ String?, String? ]
+
+        def link_type_will_change!: () -> void
+
+        def link_type_was: () -> String?
+
+        def link_type_previously_changed?: () -> bool
+
+        def link_type_previous_change: () -> Array[String?]?
+
+        def link_type_previously_was: () -> String?
+
+        def link_type_before_last_save: () -> String?
+
+        def link_type_change_to_be_saved: () -> Array[String?]?
+
+        def link_type_in_database: () -> String?
+
+        def saved_change_to_link_type: () -> Array[String?]?
+
+        def saved_change_to_link_type?: () -> bool
+
+        def will_save_change_to_link_type?: () -> bool
+
+        def restore_link_type!: () -> void
+
+        def clear_link_type_change: () -> void
+
+        def description: () -> String?
+
+        def description=: (String?) -> String?
+
+        def description?: () -> bool
+
+        def description_changed?: () -> bool
+
+        def description_change: () -> [ String?, String? ]
+
+        def description_will_change!: () -> void
+
+        def description_was: () -> String?
+
+        def description_previously_changed?: () -> bool
+
+        def description_previous_change: () -> Array[String?]?
+
+        def description_previously_was: () -> String?
+
+        def description_before_last_save: () -> String?
+
+        def description_change_to_be_saved: () -> Array[String?]?
+
+        def description_in_database: () -> String?
+
+        def saved_change_to_description: () -> Array[String?]?
+
+        def saved_change_to_description?: () -> bool
+
+        def will_save_change_to_description?: () -> bool
+
+        def restore_description!: () -> void
+
+        def clear_description_change: () -> void
+      end
+      include GeneratedAttributeMethods
+
+      def standard_begin: () -> Lcms::Engine::Standard
+      def standard_begin=: (Lcms::Engine::Standard?) -> Lcms::Engine::Standard?
+      def reload_standard_begin: () -> Lcms::Engine::Standard?
+      def build_standard_begin: (untyped) -> Lcms::Engine::Standard
+      def create_standard_begin: (untyped) -> Lcms::Engine::Standard
+      def create_standard_begin!: (untyped) -> Lcms::Engine::Standard
+      def standard_end: () -> Lcms::Engine::Standard
+      def standard_end=: (Lcms::Engine::Standard?) -> Lcms::Engine::Standard?
+      def reload_standard_end: () -> Lcms::Engine::Standard?
+      def build_standard_end: (untyped) -> Lcms::Engine::Standard
+      def create_standard_end: (untyped) -> Lcms::Engine::Standard
+      def create_standard_end!: (untyped) -> Lcms::Engine::Standard
+      module GeneratedAssociationMethods
+      end
+      include GeneratedAssociationMethods
+
+      module GeneratedRelationMethods
+      end
+
+      class ActiveRecord_Relation < ::ActiveRecord::Relation
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::StandardLink, Integer]
+        include Enumerable[Lcms::Engine::StandardLink]
+      end
+
+      class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+        include GeneratedRelationMethods
+        include _ActiveRecord_Relation[Lcms::Engine::StandardLink, Integer]
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Lcms
+  module Engine
+    class Slug
+      attr_reader resource: untyped
+
+      def initialize: (untyped resource) -> void
+
+      def value: () -> untyped
+
+      def self.build_from: (untyped chain) -> untyped
+
+      def self.generate_resources_slugs: () -> untyped
+    end
+  end
+end

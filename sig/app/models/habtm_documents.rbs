@@ -1,0 +1,114 @@
+module Lcms
+  module Engine
+    class Material < ::Lcms::Engine::ApplicationRecord
+      class HABTM_Documents < ::ActiveRecord::Base
+        extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Material::HABTM_Documents, ActiveRecord_Relation, top]
+
+        module GeneratedAttributeMethods
+          def document_id: () -> Integer?
+
+          def document_id=: (Integer?) -> Integer?
+
+          def document_id?: () -> bool
+
+          def document_id_changed?: () -> bool
+
+          def document_id_change: () -> [ Integer?, Integer? ]
+
+          def document_id_will_change!: () -> void
+
+          def document_id_was: () -> Integer?
+
+          def document_id_previously_changed?: () -> bool
+
+          def document_id_previous_change: () -> Array[Integer?]?
+
+          def document_id_previously_was: () -> Integer?
+
+          def document_id_before_last_save: () -> Integer?
+
+          def document_id_change_to_be_saved: () -> Array[Integer?]?
+
+          def document_id_in_database: () -> Integer?
+
+          def saved_change_to_document_id: () -> Array[Integer?]?
+
+          def saved_change_to_document_id?: () -> bool
+
+          def will_save_change_to_document_id?: () -> bool
+
+          def restore_document_id!: () -> void
+
+          def clear_document_id_change: () -> void
+
+          def material_id: () -> Integer?
+
+          def material_id=: (Integer?) -> Integer?
+
+          def material_id?: () -> bool
+
+          def material_id_changed?: () -> bool
+
+          def material_id_change: () -> [ Integer?, Integer? ]
+
+          def material_id_will_change!: () -> void
+
+          def material_id_was: () -> Integer?
+
+          def material_id_previously_changed?: () -> bool
+
+          def material_id_previous_change: () -> Array[Integer?]?
+
+          def material_id_previously_was: () -> Integer?
+
+          def material_id_before_last_save: () -> Integer?
+
+          def material_id_change_to_be_saved: () -> Array[Integer?]?
+
+          def material_id_in_database: () -> Integer?
+
+          def saved_change_to_material_id: () -> Array[Integer?]?
+
+          def saved_change_to_material_id?: () -> bool
+
+          def will_save_change_to_material_id?: () -> bool
+
+          def restore_material_id!: () -> void
+
+          def clear_material_id_change: () -> void
+        end
+        include GeneratedAttributeMethods
+
+        def left_side: () -> Lcms::Engine::Material?
+        def left_side=: (Lcms::Engine::Material?) -> Lcms::Engine::Material?
+        def reload_left_side: () -> Lcms::Engine::Material?
+        def build_left_side: (untyped) -> Lcms::Engine::Material
+        def create_left_side: (untyped) -> Lcms::Engine::Material
+        def create_left_side!: (untyped) -> Lcms::Engine::Material
+        def document: () -> Lcms::Engine::Document?
+        def document=: (Lcms::Engine::Document?) -> Lcms::Engine::Document?
+        def reload_document: () -> Lcms::Engine::Document?
+        def build_document: (untyped) -> Lcms::Engine::Document
+        def create_document: (untyped) -> Lcms::Engine::Document
+        def create_document!: (untyped) -> Lcms::Engine::Document
+        module GeneratedAssociationMethods
+        end
+        include GeneratedAssociationMethods
+
+        module GeneratedRelationMethods
+        end
+
+        class ActiveRecord_Relation < ::ActiveRecord::Relation
+          include GeneratedRelationMethods
+          include _ActiveRecord_Relation[Lcms::Engine::Material::HABTM_Documents, top]
+          include Enumerable[Lcms::Engine::Material::HABTM_Documents]
+        end
+
+        class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
+          include GeneratedRelationMethods
+          include _ActiveRecord_Relation[Lcms::Engine::Material::HABTM_Documents, top]
+        end
+      end
+    end
+  end
+end

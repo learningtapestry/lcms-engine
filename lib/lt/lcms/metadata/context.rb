@@ -120,7 +120,7 @@ module Lt
             parent_id: parent&.id,
             resource_type: :resource,
             short_title: name,
-            curriculum_id: ::Lcms::Engine::Curriculum.default.id
+            curriculum_id: ::Lcms::Engine::Curriculum.default&.id
           )
           if last_item?(index)
             resource.tag_list = tag_list if resource.lesson?

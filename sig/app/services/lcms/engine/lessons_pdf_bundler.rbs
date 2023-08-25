@@ -1,0 +1,30 @@
+module Lcms
+  module Engine
+    class LessonsPdfBundler
+      attr_reader unit: untyped
+
+      PDF_LINKS_KEYS: { full: "pdf", tm: "pdf_tm", sm: "pdf_sm" }
+
+      # tmp folder for downloaded pdfs and bundled zip
+      TMP_FOLDER: untyped
+
+      def initialize: (untyped unit, ?::Symbol type) -> void
+
+      def bundle: () -> (nil | ::String)
+
+      private
+
+      def dirname: () -> untyped
+
+      def documents: () -> untyped
+
+      def download: (untyped url, untyped path) -> untyped
+
+      def filename: (untyped uri) -> untyped
+
+      def files: () -> untyped
+
+      def zip_files: () -> untyped
+    end
+  end
+end

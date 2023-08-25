@@ -12,10 +12,6 @@ module Lcms
         grade_code = grade_avg.include?('k') ? grade_avg : "G#{grade_avg}"
         "#{subject.try(:upcase)} #{grade_code.try(:upcase)}: #{title}"
       end
-
-      def downloads_indent(opts = {})
-        pdf_downloads?(opts[:category]) ? 'u-li-indent' : ''
-      end
     end
   end
 end
