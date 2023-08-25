@@ -1,0 +1,121 @@
+module Lcms
+  module Engine
+    class HtmlSanitizer
+      LIST_STYLE_RE: ::Regexp
+
+      CLEAN_ELEMENTS: untyped
+
+      GDOC_REMOVE_EMPTY_SELECTOR: ".o-ld-activity"
+
+      LINK_UNDERLINE_REGEX: ::Regexp
+
+      SKIP_P_CHECK: ::Array["ul" | "ol" | "table"]
+
+      STRIP_ELEMENTS: ::Array["a" | "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "table"]
+
+      def self.clean_content: (untyped html, untyped context_type) -> untyped
+
+      def self.sanitize: (untyped html) -> untyped
+
+      def self.sanitize_css: (untyped css) -> untyped
+
+      #
+      # Removes all empty nodes before first one filled in
+      #
+      def self.strip_content: (untyped nodes) -> untyped
+
+      def self.strip_html: (untyped html) -> ("" | untyped)
+
+      def self.strip_html_element: (untyped element) -> ("" | untyped)
+
+      def self.post_processing: (untyped html, untyped options) -> untyped
+
+      def self.process_list_styles: (untyped html) -> untyped
+
+      #
+      # Config to keep list-style-type bc gdoc is doing this trough content/counter
+      #
+      def self.css_config: () -> { css: { properties: ::Array["content" | "counter-increment" | "counter-reset" | "counter-set" | "list-style-type"] } }
+
+      #
+      # List of attributes we need to keep when all parsing jobs have been completed
+      #
+      def self.css_inline_config: () -> { css: { properties: ::Array["font-style" | "font-weight" | "text-decoration"] } }
+
+      def self.default_config: () -> { elements: ::Array["table" | "td" | "th" | "tr" | "tbody" | "thead" | "span" | "a" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "ol" | "ul" | "li" | "div" | "img" | "hr" | "abbr" | "b" | "blockquote" | "br" | "cite" | "code" | "dd" | "dfn" | "dl" | "dt" | "em" | "i" | "kbd" | "mark" | "pre" | "q" | "s" | "samp" | "small" | "strike" | "strong" | "sub" | "sup" | "time" | "u" | "var"], attributes: ::Hash[::String, ::Array["href" | "title" | "data-toggle" | "id"] | ::Array["data-json-field" | "data-json-type"] | ::Array["alt" | "src" | "style" | "drawing_url"] | ::Array["type" | "style" | "start" | "list-style-type"] | ::Array["class"] | ::Array["class" | "style"] | ::Array["style"] | ::Array["colspan" | "rowspan" | "style"] | ::Array["colspan" | "rowspan"]], protocols: ::Hash[::String, ::Hash[::String, ::Array["http" | "https" | :relative]]], css: { properties: ::Array["background-color" | "border-bottom-width" | "border-left-width" | "border-right-width" | "border-top-width" | "border-bottom" | "border-left" | "border-right" | "border-top" | "height" | "font-style" | "font-weight" | "list-style-type" | "text-align" | "text-decoration" | "vertical-align" | "width"] }, transformers: ::Array[untyped] }
+
+      def self.post_clean_styles: (untyped nodes) -> untyped
+
+      private
+
+      FONT_STYLES_RE: ::Array[::Regexp]
+
+      BORDER_RE: ::Regexp
+
+      BORDER_REPLACE_RE: { bottom: ::Regexp, left: ::Regexp, right: ::Regexp, top: ::Regexp }
+
+      SUB_SUP_RE: ::Array[{ el: "sub", re: ".//span[case_regular(@style, 'vertical-align:\\s*sub;?')]" } | { el: "sup", re: ".//span[case_regular(@style, 'vertical-align:\\s*super;?')]" }]
+
+      SUB_SUP_STYLE_RE: ::Regexp
+
+      def self.add_css_class: (untyped el, *untyped classes) -> untyped
+
+      def self.clean_double_margin_elements: (untyped nodes) -> untyped
+
+      def self.clean_dropdowns: (untyped nodes) -> untyped
+
+      def self.clean_empty_elements: (untyped nodes) -> (nil | untyped)
+
+      def self.fix_external_target: (untyped node) -> (nil | untyped)
+
+      def self.fix_inline_img: (untyped node) -> (untyped | nil)
+
+      def self.fix_googlechart_img: (untyped node) -> (untyped | nil)
+
+      def self.fix_table_styles: (untyped nodes, untyped param, untyped selector) -> untyped
+
+      def self.keep_bullets_level: (untyped env) -> (nil | untyped)
+
+      def self.post_processing_default: (untyped nodes) -> untyped
+
+      def self.post_processing_gdoc: (untyped nodes) -> untyped
+
+      def self.post_processing_base: (untyped nodes) -> untyped
+
+      def self.post_processing_drawings: (untyped nodes) -> untyped
+
+      def self.post_processing_images: (untyped nodes) -> (nil | untyped)
+
+      def self.post_processing_images_gdoc: (untyped nodes) -> (nil | untyped)
+
+      def self.post_processing_hr: (untyped nodes) -> untyped
+
+      # add style to table for consistent view
+      # wrap for horizontal scrolling on small screens
+      def self.post_processing_tables: (untyped nodes) -> untyped
+
+      def self.post_processing_tables_gdoc: (untyped nodes) -> untyped
+
+      # Replace '<span>text</span>' with 'text'
+      def self.remove_spans_wo_attrs: (untyped env) -> untyped
+
+      # Remove '<p></p>' or '<span></span>'
+      def self.remove_empty_paragraphs: (untyped env) -> untyped
+
+      # replace inline borders style with width = 0 as they're not processing correct for pdf
+      def self.replace_table_border_styles: (untyped env) -> (nil | untyped)
+
+      def self.remove_meanless_styles: (untyped env) -> (nil | untyped)
+
+      def self.remove_gdocs_pagebreaks: (untyped env) -> untyped
+
+      def self.remove_gdocs_suggestions: (untyped env) -> untyped
+
+      def self.replace_charts_urls: (untyped env) -> untyped
+
+      def self.replace_supsub: (untyped env) -> untyped
+
+      def self.keep_node?: (untyped node) -> (true | untyped)
+    end
+  end
+end
