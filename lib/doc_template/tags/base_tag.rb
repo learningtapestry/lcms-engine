@@ -138,10 +138,7 @@ module DocTemplate
       # tag if requested
       #
       def replace_tag(node)
-        puts ":> opts #{@opts}"
-        # puts ":> @opts&.[](:explicit_render) #{@opts&.[](:explicit_render)}"
         replacement = @opts&.[](:explicit_render) ? content : Nokogiri::HTML.fragment(placeholder)
-        # puts ":> replacement #{replacement}"
         node.replace replacement
       end
 
