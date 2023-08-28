@@ -7,8 +7,13 @@ module DocTemplate
       end
       include ChildrenConstants
 
+      TAG_NAME: String
+
       SOFT_RETURN_RE: ::Regexp
       UNICODE_SPACES_RE: ::Regexp
+
+      @tag_with_html_regexp: Regexp
+      @tag_with_html_regexp_array: Array[Regexp]
 
       attr_reader anchor: untyped
 
@@ -16,13 +21,12 @@ module DocTemplate
 
       def self.parse: (untyped node, ?::Hash[untyped, untyped] opts) -> untyped
 
-      def self.tag_with_html_regexp: () -> untyped
+      def self.tag_with_html_regexp: () -> Regexp
 
-      def self.template_path_for: (untyped name) -> untyped
+      def self.tag_with_html_regexp_array: (Integer min_char) -> Array[Regexp]
 
-      #
-      # Precede the specified element with tag's placeholder
-      #
+      def self.template_path_for: (String name) -> String
+
       def before_tag: (untyped node) -> untyped
 
       def check_tag_soft_return: (untyped node) -> (nil | untyped)
@@ -55,18 +59,10 @@ module DocTemplate
 
       def render: () -> untyped
 
-      #
-      # Replace the tag element with its placeholder. Or inline the
-      # tag if requested
-      #
       def replace_tag: (untyped node) -> untyped
 
       def tag_data: () -> ::Hash[untyped, untyped]
 
-      #
-      # First look for the template override inside possible gems
-      # And use standard one if not found
-      #
       def template_name: (untyped opts) -> untyped
 
       def template_path: (untyped name) -> untyped

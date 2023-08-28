@@ -8,20 +8,55 @@ module DocTemplate
 
       attr_reader :anchor, :content
 
-      class << self
-        def parse(node, opts = {})
-          new.parse(node, opts)
-        end
+      def self.parse(node, opts = {})
+        new.parse(node, opts)
+      end
 
-        def tag_with_html_regexp
-          raise NotImplementedError unless const_defined?(:TAG_NAME)
+      def self.tag_with_html_regexp
+        @tag_with_html_regexp ||=
+          begin
+            raise 'TAG_NAME is not specified' unless self.const_defined?(:TAG_NAME)
 
-          @tag_with_html_regexp ||= /\[[^\]]*#{TAG_NAME}[[^:,;.]]*:?\s?[^\]]*\]/i
-        end
+            /\[[^\]]*#{self::TAG_NAME}[[^:,;.]]*:?\s?[^\]]*\]/i
+          end
+      end
 
-        def template_path_for(name)
-          File.join ::Lcms::Engine::Engine.root.join('lib', 'doc_template', 'templates'), name
-        end
+      #
+      # There can be situations when Google Document is exported
+      # in a broken way:
+      #   <span>[imag</span><span>e: OP.LE.L1.004</span><span>]
+      # In this case we need to guess the part which should be substituted
+      #
+      # As a result for the tag with name `image` will be the following
+      #   [
+      #     /\[[^\]]*image[[^:,;.]]*(<\/span><span\s?[^>]>)?:?\s?[^\]]*\]/i,
+      #     /\[[^\]]*imag[[^:,;.]]*(<\/span><span\s?[^>]>)?e:?\s?[^\]]*\]/i,
+      #     /\[[^\]]*ima[[^:,;.]]*(<\/span><span\s?[^>]>)?ge:?\s?[^\]]*\]/i
+      #   ]
+      #
+      # @param [Integer] min_char Minimum number of character by which we guess the tag
+      # @return [Array<Regexp>]
+      def self.tag_with_html_regexp_array(min_char = 3)
+        @tag_with_html_regexp_array ||=
+          begin
+            raise 'TAG_NAME is not specified' unless self.const_defined?(:TAG_NAME)
+
+            tag_name = self::TAG_NAME
+            (tag_name.length - 1).downto(min_char - 1).map do |idx|
+              first_part = tag_name[0..idx]
+              last_part = tag_name[(idx + 1)..]
+
+              %r{\[[^\]]*#{first_part}[[^:,;.]]*(</span><span\s?[^>]>)?#{last_part}:?\s?[^\]]*\]}i
+            end
+          end
+      end
+
+      #
+      # @param [String] name
+      # @return [String] path to the template
+      #
+      def self.template_path_for(name)
+        File.join ::Lcms::Engine::Engine.root.join('lib', 'doc_template', 'templates'), name
       end
 
       #
@@ -170,7 +205,7 @@ module DocTemplate
         end_tag_index = @result.children.index(@result.at_xpath(ENDTAG_XPATH))
         @result.children[start_tag_index..end_tag_index].each do |node|
           if node.content.match?(/.+\[[^\]]+\]|\[[^\]]+\].+/)
-            # a tag followed or preceeded by anything else
+            # a tag followed or preceded by anything else
             # removes the tag itself - everything between `[` and `]`
             node.content = node.content.sub(/\[[^\[\]]+\]/, '')
           elsif (data = node.content.match(/^([^\[]*)\[|\]([^\[]*)$/))
