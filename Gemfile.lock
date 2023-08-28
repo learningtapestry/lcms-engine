@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/learningtapestry/lt-lcms.git
-  revision: d4ecb6f1b7120680b36ded99b9229e98c3d000dc
-  ref: d4ecb6f
+  revision: 3e997dbf8b72f949b776ab0b8059de73d09a11e5
+  ref: 3e997db
   branch: master
   specs:
     lt-lcms (0.5.0)

@@ -22,4 +22,4 @@ gem 'wicked_pdf', github: 'learningtapestry/wicked_pdf',
 
 gem 'lt-lcms', github: 'learningtapestry/lt-lcms',
                branch: 'master',
-               ref: 'd4ecb6f'
+               ref: '3e997db'
