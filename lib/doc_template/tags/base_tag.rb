@@ -15,7 +15,7 @@ module DocTemplate
       def self.tag_with_html_regexp
         @tag_with_html_regexp ||=
           begin
-            raise 'TAG_NAME is not specified' unless self.const_defined?(:TAG_NAME)
+            raise 'TAG_NAME is not specified' unless const_defined?(:TAG_NAME)
 
             /\[[^\]]*#{self::TAG_NAME}[[^:,;.]]*:?\s?[^\]]*\]/i
           end
@@ -39,7 +39,7 @@ module DocTemplate
       def self.tag_with_html_regexp_array(min_char = 3)
         @tag_with_html_regexp_array ||=
           begin
-            raise 'TAG_NAME is not specified' unless self.const_defined?(:TAG_NAME)
+            raise 'TAG_NAME is not specified' unless const_defined?(:TAG_NAME)
 
             tag_name = self::TAG_NAME
             (tag_name.length - 1).downto(min_char - 1).map do |idx|

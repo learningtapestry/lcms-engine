@@ -106,7 +106,7 @@ module Lcms
           if name.present?
             joins(:curriculum).where('curriculums.name = ? OR curriculums.slug = ?', name, name)
           else
-            where(Lcms::Engine::Curriculum.default&.id)
+            where(curriculum_id: Lcms::Engine::Curriculum.default&.id)
           end
         end
       end
