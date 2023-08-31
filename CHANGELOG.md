@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Enhance error handling for job result fetching - [@paranoicsan](https://github.com/paranoicsan)
 - Normalize metadata search in Resource model - [@paranoicsan](https://github.com/paranoicsan)
 
 ## [0.5.4](https://github.com/learningtapestry/lcms-engine/compare/v0.5.3...v0.5.4) - 2022.12.30

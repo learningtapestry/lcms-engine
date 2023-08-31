@@ -26,11 +26,18 @@ module Lcms
 
       def prepare_result(job_class, jid)
         jid_res = job_class.fetch_result(jid)
-        return jid_res if jid_res['ok']
+        return jid_res if jid_res&.[]('ok')
+
+        error =
+          if jid_res.present?
+            "<a href=\"#{jid_res['link']}\">Source</a>: #{jid_res['errors'].join(', ')}"
+          else
+            "Error fetching result for #{jid}"
+          end
 
         {
           ok: false,
-          errors: Array.wrap("<a href=\"#{jid_res['link']}\">Source</a>: #{jid_res['errors'].join(', ')}")
+          errors: Array.wrap(error)
         }
       end
     end
