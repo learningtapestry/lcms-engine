@@ -3,6 +3,12 @@ module Lcms
     class Standard < ::Lcms::Engine::ApplicationRecord
       extend _ActiveRecord_Relation_ClassMethods[Lcms::Engine::Standard, ActiveRecord_Relation, Integer]
 
+      module Scopes
+        def by_grade: (::Lcms::Engine::Resource grade) -> ActiveRecord_Relation
+        def by_grades: (Array[::Lcms::Engine::Resource] grade) -> ActiveRecord_Relation
+      end
+      extend Scopes
+
       ALT_NAME_REGEX: ::Hash[::String, ::Regexp]
 
       DOMAINS_GRADES: ::Hash[::String, untyped]

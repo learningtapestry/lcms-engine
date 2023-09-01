@@ -5,6 +5,7 @@ module DocTemplate
         TAG_NAME: String
         TEMPLATES: Hash[Symbol, String]
       end
+      extend ChildrenConstants
       include ChildrenConstants
 
       TAG_NAME: String

@@ -1,0 +1,3 @@
+module CSV
+  def self.parse: (*untyped) ?{ (*untyped) -> untyped } -> untyped
+end

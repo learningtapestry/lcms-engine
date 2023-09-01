@@ -17,8 +17,6 @@ module DocTemplate
 
       private
 
-      # Extracting content outside the tag
-      # TODO: Extract to the parent class
       def fetch_data: (untyped source) -> untyped
 
       def fetch_description: (untyped text) -> (nil | untyped)

@@ -31,7 +31,7 @@ module Lcms
             doc_bundle.save!
           end
         ensure
-          FileUtils.rm(zip_path)
+          Bundler::FileUtils.rm(zip_path)
         end
       end
       private_class_method :update_pdf_bundle

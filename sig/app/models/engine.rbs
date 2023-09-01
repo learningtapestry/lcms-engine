@@ -1,6 +1,5 @@
 module Lcms
   module Engine
-    # TODO: Set the correct prefix after renaming all the tables?
-    def self.table_name_prefix: () -> ""
+    def self.table_name_prefix: -> String
   end
 end

@@ -2,7 +2,7 @@
 sources:
 - type: git
   name: ruby/gem_rbs_collection
-  revision: 8a678b2ec20e9d594055f53745399814e3a887dc
+  revision: 5666e737d2b27a8425b4e3855c1a38cae54989f7
   remote: https://github.com/ruby/gem_rbs_collection.git
   repo_dir: gems
 path: ".gem_rbs_collection"
@@ -131,10 +131,6 @@ gems:
     revision: 8a678b2ec20e9d594055f53745399814e3a887dc
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
-- name: csv
-  version: '0'
-  source:
-    type: stdlib
 - name: date
   version: '0'
   source:
@@ -155,10 +151,6 @@ gems:
     revision: 8a678b2ec20e9d594055f53745399814e3a887dc
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
-- name: fileutils
-  version: '0'
-  source:
-    type: stdlib
 - name: forwardable
   version: '0'
   source:
@@ -209,14 +201,6 @@ gems:
     type: stdlib
 - name: jwt
   version: '2.5'
-  source:
-    type: git
-    name: ruby/gem_rbs_collection
-    revision: 8a678b2ec20e9d594055f53745399814e3a887dc
-    remote: https://github.com/ruby/gem_rbs_collection.git
-    repo_dir: gems
-- name: listen
-  version: '3.2'
   source:
     type: git
     name: ruby/gem_rbs_collection
@@ -327,6 +311,14 @@ gems:
     revision: 8a678b2ec20e9d594055f53745399814e3a887dc
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: rubyzip
+  version: '2.3'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 5666e737d2b27a8425b4e3855c1a38cae54989f7
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: securerandom
   version: '0'
   source:
@@ -344,14 +336,6 @@ gems:
   source:
     type: stdlib
 - name: socket
-  version: '0'
-  source:
-    type: stdlib
-- name: steep
-  version: 1.5.3
-  source:
-    type: rubygems
-- name: strscan
   version: '0'
   source:
     type: stdlib

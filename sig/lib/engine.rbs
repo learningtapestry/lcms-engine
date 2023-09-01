@@ -4,6 +4,7 @@ module Lcms
       def self.config: -> untyped
       def self.initializer: (*untyped?) ?{ (untyped?) -> untyped } -> untyped
       def self.root: -> untyped
+      def self.routes: -> ActionDispatch::Routing::RouteSet
     end
   end
 end

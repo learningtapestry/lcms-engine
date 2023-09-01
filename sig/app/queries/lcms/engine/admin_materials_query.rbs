@@ -1,0 +1,23 @@
+module Lcms
+  module Engine
+    class AdminMaterialsQuery < BaseQuery
+      STRICT_METADATA: ::Array["grade" | "subject"]
+
+      @scope: Material::ActiveRecord_Relation
+
+      def call: -> Material::ActiveRecord_Relation
+
+      private
+
+      def filter_by_metadata: -> Material::ActiveRecord_Relation
+
+      def metadata_keys: -> untyped
+
+      def search_by_identifier: -> (Material::ActiveRecord_Relation | nil)
+
+      def search_by_file_name: -> (Material::ActiveRecord_Relation | nil)
+
+      def sorted_scope: -> Material::ActiveRecord_Relation
+    end
+  end
+end

@@ -16,5 +16,5 @@ module Virtus
     def self.model: -> untyped
   end
 
-  def self.model: -> untyped
+  def self.model: ?{ (untyped) -> untyped } -> untyped
 end

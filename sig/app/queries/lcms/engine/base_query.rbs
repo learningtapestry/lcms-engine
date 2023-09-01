@@ -1,0 +1,17 @@
+module Lcms
+  module Engine
+    class BaseQuery
+      @pagination: Hash[String | Symbol, untyped]
+
+      def self.call: (untyped query, ?Hash[String | Symbol, untyped]? pagination) -> ActiveRecord::Relation
+
+      def initialize: (untyped query, ?Hash[String | Symbol, untyped]? pagination) -> void
+
+      def call:  -> ActiveRecord::Relation
+
+      private
+
+      attr_reader q: OpenStruct
+    end
+  end
+end

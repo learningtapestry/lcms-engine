@@ -92,7 +92,7 @@ module Lcms
 
       # NOTE: #954 - to be removed?
       def short_name
-        alt_names.map { |n| self.class.filter_ccss_standards(n, subject) }.compact.try(:first) || name
+        Array.wrap(alt_names).map { |n| self.class.filter_ccss_standards(n, subject) }.compact.try(:first) || name
       end
     end
   end

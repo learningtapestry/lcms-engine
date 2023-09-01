@@ -1,0 +1,15 @@
+module Lcms
+  module Engine
+    class AdminDocumentsQuery < BaseQuery
+      @scope: Document::ActiveRecord_Relation
+
+      def call: -> Document::ActiveRecord_Relation
+
+      private
+
+      def apply_filters: -> Document::ActiveRecord_Relation
+
+      def sorted_scope: -> Document::ActiveRecord_Relation
+    end
+  end
+end

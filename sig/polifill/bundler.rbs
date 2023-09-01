@@ -1,0 +1,5 @@
+module Bundler
+  module FileUtils
+    def self.rm: (*untyped) -> untyped
+  end
+end
