@@ -5,10 +5,7 @@ module DocTemplate
         TAG_NAME: String
         TEMPLATES: Hash[Symbol, String]
       end
-      extend ChildrenConstants
       include ChildrenConstants
-
-      TAG_NAME: String
 
       SOFT_RETURN_RE: ::Regexp
       UNICODE_SPACES_RE: ::Regexp

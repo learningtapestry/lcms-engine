@@ -17,7 +17,7 @@ module DocTemplate
           begin
             raise 'TAG_NAME is not specified' unless const_defined?(:TAG_NAME)
 
-            /\[[^\]]*#{TAG_NAME}[[^:,;.]]*:?\s?[^\]]*\]/i
+            /\[[^\]]*#{const_get(:TAG_NAME)}[[^:,;.]]*:?\s?[^\]]*\]/i
           end
       end
 
@@ -41,7 +41,7 @@ module DocTemplate
           begin
             raise 'TAG_NAME is not specified' unless const_defined?(:TAG_NAME)
 
-            tag_name = TAG_NAME
+            tag_name = const_get(:TAG_NAME)
             (tag_name.length - 1).downto(min_char - 1).map do |idx|
               first_part = tag_name[0..idx]
               last_part = tag_name[(idx + 1)..]
