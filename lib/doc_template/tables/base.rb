@@ -7,6 +7,7 @@ module DocTemplate
 
       attr_reader :errors, :data
 
+      # @type method self.parse: (Nokogiri::HTML::DocumentFragment, ?(Integer | String, Hash[untyped, untyped])) -> self
       def self.parse(fragment, *)
         new.parse(fragment, *)
       end
@@ -58,6 +59,7 @@ module DocTemplate
         data
       end
 
+      # @type method parse: (Nokogiri::HTML::DocumentFragment, ?(Integer | String, Hash[untyped, untyped])) -> self
       def parse(fragment, *args)
         @options = args.extract_options!
 

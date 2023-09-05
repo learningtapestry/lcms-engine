@@ -1,13 +1,22 @@
 GIT
+  remote: https://github.com/learningtapestry/lt-google-api.git
+  revision: 74c9baa3cb73775ccb2f9dfeedce04baed163398
+  ref: 74c9baa
+  branch: master
+  specs:
+    lt-google-api (0.2.4)
+      google-api-client (~> 0.46)
+      googleauth (~> 0.14)
+
+GIT
   remote: https://github.com/learningtapestry/lt-lcms.git
-  revision: 3e997dbf8b72f949b776ab0b8059de73d09a11e5
-  ref: 3e997db
+  revision: 0d6ee08d55333d04fd30f6640412d9012b5db3ed
+  ref: 0d6ee08
   branch: master
   specs:
     lt-lcms (0.5.0)
       google-api-client (~> 0.38)
       httparty (~> 0.18)
-      lt-google-api (~> 0.2, >= 0.2.4)
       nokogiri (~> 1.10, >= 1.10.8)
       rubyzip (~> 2)
 
@@ -47,7 +56,6 @@ PATH
       hiredis (~> 0.6.3)
       httparty (~> 0.18)
       jbuilder (~> 2.10)
-      lt-google-api (~> 0.2, >= 0.2.3)
       mini_magick (~> 4.10, >= 4.10.1)
       nokogiri (~> 1.12, >= 1.12.0)
       oj (~> 3.10, >= 3.10.2)
@@ -271,10 +279,10 @@ GEM
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
-    elasticsearch (7.17.7)
-      elasticsearch-api (= 7.17.7)
-      elasticsearch-transport (= 7.17.7)
-    elasticsearch-api (7.17.7)
+    elasticsearch (7.17.8)
+      elasticsearch-api (= 7.17.8)
+      elasticsearch-transport (= 7.17.8)
+    elasticsearch-api (7.17.8)
       multi_json
     elasticsearch-dsl (0.1.10)
     elasticsearch-model (7.2.1)
@@ -288,7 +296,7 @@ GEM
       elasticsearch-model (= 7.2.1)
       hashie
     elasticsearch-rails (7.2.1)
-    elasticsearch-transport (7.17.7)
+    elasticsearch-transport (7.17.8)
       faraday (~> 1)
       multi_json
     email_spec (2.2.0)
@@ -350,7 +358,7 @@ GEM
       et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
     gems (1.2.0)
-    globalid (1.2.0)
+    globalid (1.2.1)
       activesupport (>= 6.1)
     google-api-client (0.53.0)
       google-apis-core (~> 0.1)
@@ -415,9 +423,6 @@ GEM
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    lt-google-api (0.2.4)
-      google-api-client (~> 0.46)
-      googleauth (~> 0.14)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
       net-imap
@@ -720,6 +725,7 @@ DEPENDENCIES
   faker (~> 2.1)
   jsbundling-rails (~> 1.1)
   lcms-engine!
+  lt-google-api!
   lt-lcms!
   overcommit (~> 0.57)
   rspec-rails (~> 4.0.2)

@@ -16,52 +16,16 @@ module DocTemplate
       def self.parse: (untyped fragment, *untyped) -> untyped
 
       def initialize: () -> void
-
-      #
-      # Inside each field in `fields` +Array+ splits the string by `separator` +String+ or
-      # +RegExp+. Clean the each chunk and keep only clear fragment:
-      # `<p><span>[tag]</span></p>`
-      #
-      # options:
-      #   :skip_sanitize - to skip sanitization
-      #   :separator - separator to split the input
-      #   :keep_elements - +Array+ of HTML elements to keep during sanitizing
-      #
-      # Used when field contain only tags separated with separator. If there is any other
-      # text content - use #parse_in_context
-      #
-      # @param data [Hash] resulting hash of #parse method
-      # @param fields [Array] array of fields to clean tags in
-      # @param opts [Hash] Additional options
-      # @return modified `data` parameter
-      #
       def collect_and_render_tags: (untyped data, untyped fields, ?::Hash[untyped, untyped] opts) -> untyped
-
       def parse: (untyped fragment, *untyped args) -> self
-
-      #
-      # Update content of the field with parsed data
-      # Generates nested +Hash+ for each of supported context types.
-      #
-      # Use case: In case when nested Tags should be parsed differently for different context
-      # types we need explicitly specify each supported context type.
-      #
-      # @param content [String] HTML content to parse and render tags from
-      # @param opts [Hash] Additional options
-      # @return [Hash] nested Hash for each of supported context types
-      #
       def parse_in_context: (untyped content, ?::Hash[untyped, untyped] opts) -> untyped
-
       def fetch_materials: (untyped data, untyped key) -> untyped
-
       def table_exist?: () -> untyped
 
       attr_reader options: untyped
-
       attr_reader table_exists: untyped
 
       def fetch: (untyped table) -> untyped
-
       def xpath_meta_headers: () -> ::String
     end
   end

@@ -3,6 +3,7 @@
 target :lib do
   signature "sig"
 
+  # check "lib/doc_template/tables/base.rb"
   check "lib"
   check "app/models/**/*.rb"
 #  # check "Gemfile"                   # File name
