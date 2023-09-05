@@ -22,6 +22,7 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
+    - .codeship/*
     - bin/*
     - spec/dummy/bin/*
 
@@ -39,7 +40,12 @@ PreCommit:
   TypeCheck:
     enabled: true
     description: RBS check
-    command: [ 'bundle', 'exec', 'steep', 'check' ]
+    command: [ 'steep', 'check' ]
+
+  ShellCheck:
+    enabled: true
+    exclude:
+      - node_modules/**/*
 
 PostCheckout:
   ALL:
