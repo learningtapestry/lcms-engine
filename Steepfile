@@ -1,7 +1,7 @@
 # D = Steep::Diagnostic
 
 target :lib do
-  signature "sig"
+  signature "sig", "vendor/rbs"
 
   # check "lib/doc_template/tables/base.rb"
   check "lib"

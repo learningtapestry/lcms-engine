@@ -1,0 +1,34 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Downloader
+        class Gdoc < Base
+          GOOGLE_DRAWING_RE: ::Regexp
+
+          GOOGLE_URL_RE: ::Regexp
+
+          MIME_TYPE: "application/vnd.google-apps.document"
+
+          MIME_TYPE_EXPORT: "text/html"
+
+          def self.gdoc_file_url: (untyped id) -> ::String
+
+          def download: () -> untyped
+
+          private
+
+          attr_reader options: untyped
+
+          BASE_DPI: ::Float
+
+          def fix_links: (untyped html) -> untyped
+
+          def handle_google_drawings: (untyped html) -> untyped
+
+          # Update drawing url w/h parameters to download in better quality than default 72 dpi
+          def updated_drawing_url_for: (untyped url) -> untyped
+        end
+      end
+    end
+  end
+end

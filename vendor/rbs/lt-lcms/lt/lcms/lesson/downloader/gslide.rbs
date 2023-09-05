@@ -1,0 +1,19 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Downloader
+        class Gslide < Lt::Lcms::Lesson::Downloader::Base
+          MIME_TYPE: "application/vnd.google-apps.presentation"
+
+          MIME_TYPE_EXPORT: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+
+          def self.gdoc_file_url: (untyped id) -> ::String
+
+          def initialize: (untyped credentials, untyped file_url, ?::Hash[untyped, untyped] opts) -> void
+
+          def file_id: () -> untyped
+        end
+      end
+    end
+  end
+end

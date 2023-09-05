@@ -6,6 +6,7 @@ gem install bundler:2.4.12
 bundle _2.4.12_ install
 
 rbs collection install
+rbs collection update
 
 bin/overcommit --sign
 if ! GIT_AUTHOR_EMAIL=ci@test.com GIT_AUTHOR_NAME='ci user' bundle exec overcommit --run; then

@@ -1,0 +1,15 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Downloader
+        class PDF < Base
+          MIME_TYPE: "application/pdf"
+
+          def self.gdoc_file_url: (untyped id) -> ::String
+
+          def pdf_content: () -> untyped
+        end
+      end
+    end
+  end
+end

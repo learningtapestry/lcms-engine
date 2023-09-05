@@ -1,0 +1,22 @@
+module Lt
+  module Google
+    module Api
+      module Auth
+        class Cli
+          self.@authorizer: untyped
+
+          @credentials: untyped
+
+          CONFIG_SECRET_FILE: untyped
+          CONFIG_TOKEN_FILE: untyped
+          SCOPE: ::Array["https://www.googleapis.com/auth/drive" | "https://www.googleapis.com/auth/documents"]
+          USER_ID: "default"
+
+          def self.authorizer: -> untyped
+          def authorizer: -> untyped
+          def credentials: -> untyped
+        end
+      end
+    end
+  end
+end

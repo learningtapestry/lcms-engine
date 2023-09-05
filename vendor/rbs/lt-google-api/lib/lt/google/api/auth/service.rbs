@@ -1,0 +1,36 @@
+module Lt
+  module Google
+    module Api
+      module Auth
+        class Service
+          self.@authorizer_for: untyped
+
+          @context: untyped
+          @options: untyped
+          @credentials: untyped
+          @user_id: untyped
+          @user_token: untyped
+
+          REDIS_PREFIX: "lt-google-api"
+
+          def self.authorizer_for: (untyped callback_path) -> untyped
+          def self.redis: -> untyped
+
+          attr_reader context: untyped
+
+          def initialize: (untyped context, ?::Hash[untyped, untyped] options) -> void
+          def authorization_url: -> untyped
+          def authorizer: -> untyped
+          def credentials: -> untyped
+          def user_id: -> untyped
+
+          private
+
+          def redis: -> untyped
+          def remove_expired_token: -> (nil | untyped)
+          def user_token: -> untyped
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,6 @@
+module Lt
+  module Google
+    module Api
+    end
+  end
+end

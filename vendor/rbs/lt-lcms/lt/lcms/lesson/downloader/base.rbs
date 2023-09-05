@@ -1,0 +1,33 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Downloader
+        class Base
+          RETRY_DELAYES: ::Array[untyped]
+
+          MAX_RETRY_COUNT: untyped
+
+          MIME_TYPE_EXPORT: "text/plain"
+
+          def self.file_id_for: (untyped url) -> untyped
+
+          attr_reader content: untyped
+
+          def initialize: (untyped credentials, untyped file_url, ?::Hash[untyped, untyped] opts) -> void
+
+          def download: (?mime_type: untyped) ?{ (untyped) -> untyped } -> untyped
+
+          def file: () -> untyped
+
+          def file_id: () -> untyped
+
+          private
+
+          attr_reader options: untyped
+
+          def service: () -> untyped
+        end
+      end
+    end
+  end
+end

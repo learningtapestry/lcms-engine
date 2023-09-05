@@ -13,6 +13,10 @@ gems:
   # It's unnecessary if you don't use rbs as a library.
   - name: concurrent-ruby
     ignore: true
+  - name: lt-lcms
+    ignore: true
+  - name: lt-google-api
+    ignore: true
   - name: rbs
     ignore: true
   - name: steep

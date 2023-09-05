@@ -1,0 +1,17 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Uploader
+        class Gdoc
+          def initialize: (untyped credentials) -> void
+
+          def upload: (untyped name, untyped content, untyped content_type, ?untyped? parent_folder_id) -> untyped
+
+          private
+
+          def service: () -> untyped
+        end
+      end
+    end
+  end
+end

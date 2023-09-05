@@ -1,0 +1,31 @@
+module Google
+  module Auth
+    class ClientId
+      def self.from_file: (*untyped?) -> untyped
+      def initialize: (*untyped?) -> untyped
+    end
+
+    class TokenStore
+    end
+
+    class UserAuthorizer
+      def initialize: (*untyped?) -> untyped
+    end
+
+    class WebUserAuthorizer
+      def initialize: (*untyped?) -> untyped
+    end
+
+    module Stores
+      class FileTokenStore
+        def initialize: (*untyped?) -> untyped
+      end
+
+      class RedisTokenStore < TokenStore
+        DEFAULT_KEY_PREFIX: untyped
+
+        def initialize: (*untyped?) -> untyped
+      end
+    end
+  end
+end

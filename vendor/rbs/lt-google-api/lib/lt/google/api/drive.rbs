@@ -1,0 +1,30 @@
+module Lt
+  module Google
+    module Api
+      class Drive
+        @service: untyped
+
+        FOLDER_RE: ::Regexp
+        MIME_FILE: "application/vnd.google-apps.document"
+        MIME_FOLDER: "application/vnd.google-apps.folder"
+
+        attr_reader service: untyped
+
+        def self.build: (untyped credentials) -> untyped
+        def self.file_url_for: (untyped file_id) -> ::String
+        def self.folder_id_for: (untyped url) -> untyped
+
+        def initialize: (untyped credentials) -> void
+        def copy: (untyped file_ids, untyped folder_id) -> untyped
+        def copy_files: (untyped folder_id, untyped target_id) -> untyped
+        def create_folder: (untyped name, ?untyped? parent_id) -> untyped
+        def list_file_ids_in: (untyped folder_id, ?mime_type: untyped, ?with_subfolders: bool) -> untyped
+        def fetch_folders: (untyped name, untyped folder_id) -> untyped
+
+        private
+
+        def list: (untyped folder_id) -> untyped
+      end
+    end
+  end
+end

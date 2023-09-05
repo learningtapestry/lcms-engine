@@ -1,0 +1,17 @@
+module Lt
+  module Lcms
+    module Lesson
+      module Downloader
+        class Gspreadsheet < Lt::Lcms::Lesson::Downloader::Base
+          MIME_TYPE: "application/vnd.google-apps.spreadsheet"
+
+          MIME_TYPE_EXPORT: "application/x-vnd.oasis.opendocument.spreadsheet"
+
+          def self.gdoc_file_url: (untyped id) -> ::String
+
+          def download_sheet: (untyped sheet_name) -> untyped
+        end
+      end
+    end
+  end
+end
