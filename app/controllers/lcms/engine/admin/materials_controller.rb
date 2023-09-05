@@ -52,6 +52,15 @@ module Lcms
 
         private
 
+        def collect_errors
+          @collect_errors ||=
+            if @material_form.service_errors.empty?
+              []
+            else
+              @material_form.service_errors.map { "<li>#{_1}</li>" }.join
+            end
+        end
+
         def create_async
           bulk_import Array.wrap(form_params[:link])
           render :import
@@ -60,8 +69,15 @@ module Lcms
         def create_sync
           if @material_form.save
             material = @material_form.material
-            redirect_to dynamic_material_path(material),
-                        notice: t('lcms.engine.admin.materials.create.success', name: material.name)
+            flash_message =
+              if collect_errors.empty?
+                { notice: t('lcms.engine.admin.materials.create.success', name: material.name) }
+              else
+                { alert: t('lcms.engine.admin.materials.create.error',
+                           name: material.name,
+                           errors: collect_errors) }
+              end
+            redirect_to dynamic_material_path(material), **flash_message
           else
             render :new
           end

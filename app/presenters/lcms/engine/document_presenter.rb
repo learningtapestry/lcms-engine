@@ -39,14 +39,6 @@ module Lcms
         'lesson'
       end
 
-      def ela2?
-        ela? && grade.to_s == '2'
-      end
-
-      def ela6?
-        ela? && grade.to_s == '6'
-      end
-
       def full_breadcrumb(unit_level: false)
         resource ? Breadcrumbs.new(resource).full_title : full_breadcrumb_from_metadata(unit_level)
       end

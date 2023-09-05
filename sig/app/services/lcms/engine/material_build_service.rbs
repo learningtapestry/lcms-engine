@@ -1,0 +1,37 @@
+module Lcms
+  module Engine
+    class MaterialBuildService
+      EVENT_BUILT: String
+
+      PDF_EXT_RE: ::Regexp
+
+      attr_reader errors: Array[String]
+
+      def initialize: (untyped credentials, ?::Hash[untyped, untyped] opts) -> void
+
+      def build: (untyped url) -> untyped
+
+      private
+
+      attr_reader credentials: untyped
+
+      attr_reader material: untyped
+
+      attr_reader downloader: untyped
+
+      attr_reader options: untyped
+
+      attr_reader url: untyped
+
+      def build_from_pdf: -> untyped
+
+      def build_from_gdoc: -> untyped
+
+      def create_material: -> untyped
+
+      def material_params: -> { last_modified_at: untyped, last_author_email: untyped, last_author_name: untyped, name: untyped, reimported_at: untyped, version: untyped }
+
+      def pdf?: -> untyped
+    end
+  end
+end

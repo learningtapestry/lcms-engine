@@ -61,10 +61,15 @@ module Lcms
           reimport_lesson_materials if form_params[:with_materials].present?
 
           if @document_form.save
-            notice = t('lcms.engine.admin.documents.create.success',
-                       name: @document_form.document.name,
-                       errors: collect_errors)
-            redirect_to dynamic_document_path(@document_form.document), notice:
+            flash_message =
+              if collect_errors.empty?
+                { notice: t('lcms.engine.admin.documents.create.success', name: @document_form.document.name) }
+              else
+                { alert: t('lcms.engine.admin.documents.create.error',
+                           name: @document_form.document.name,
+                           errors: collect_errors) }
+              end
+            redirect_to dynamic_document_path(@document_form.document), **flash_message
           else
             render :new
           end
@@ -86,9 +91,12 @@ module Lcms
         end
 
         def collect_errors
-          return if @document_form.service_errors.empty?
-
-          "Errors: #{@document_form.service_errors.join(' ')}"
+          @collect_errors ||=
+            if @document_form.service_errors.empty?
+              []
+            else
+              @document_form.service_errors.map { "<li>#{_1}</li>" }.join
+            end
         end
 
         def find_selected

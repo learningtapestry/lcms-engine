@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/learningtapestry/lcms-engine/compare/v0.5.4...HEAD)
 
+### Added
+
+- Parse error propagation: errors in tags and inside metadata tables are now displayed after import - [@paranoicsan](https://github.com/paranoicsan)
+
 ### Changed
 
 - Normalize metadata search in Resource model - [@paranoicsan](https://github.com/paranoicsan)

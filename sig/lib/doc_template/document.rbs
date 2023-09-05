@@ -7,7 +7,11 @@ module DocTemplate
 
     ELA_TG_TEMPLATE: untyped
 
-    attr_accessor parts: untyped
+    @nodes: ::Nokogiri::XML::NodeSet
+    @opts: Hash[Symbol | String, untyped]
+
+    attr_accessor errors: Array[String]
+    attr_accessor parts: Array[untyped]
 
     def self.parse: (untyped nodes, ?::Hash[untyped, untyped] opts) -> untyped
 
@@ -17,17 +21,10 @@ module DocTemplate
 
     private
 
-    def add_custom_nodes: () -> (nil | untyped)
-
     #
     # Check if we're getting the same tag again
     #
     def check_loop_tag: (untyped name, untyped value) -> (untyped | nil)
-
-    def ela_teacher_guidance: (untyped metadata, untyped _context_type) -> untyped
-
-    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
-    def ela_teacher_guidance_allowed?: () -> (false | true)
 
     def find_tag: (untyped name, ?::String value) -> untyped
 

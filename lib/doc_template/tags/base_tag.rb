@@ -6,7 +6,7 @@ module DocTemplate
       SOFT_RETURN_RE = /([[:graph:]]+\[|\][[:graph:]]+)/
       UNICODE_SPACES_RE = /(\u0020|\u00A0|\u1680|\u180E|[\u2000-\u200B]|\u202F|\u205F|\u3000|\uFEFF)/
 
-      attr_reader :anchor, :content
+      attr_reader :anchor, :content, :errors
 
       def self.parse(node, opts = {})
         new.parse(node, opts)
@@ -59,6 +59,10 @@ module DocTemplate
         File.join ::Lcms::Engine::Engine.root.join('lib', 'doc_template', 'templates'), name
       end
 
+      def initialize
+        @errors = []
+      end
+
       #
       # Precede the specified element with tag's placeholder
       #
@@ -98,14 +102,6 @@ module DocTemplate
         end.join
       end
 
-      def ela2?(metadata)
-        metadata.resource_subject == 'ela' && metadata.grade == '2'
-      end
-
-      def ela6?(metadata)
-        metadata.resource_subject == 'ela' && metadata.grade == '6'
-      end
-
       def gdoc?(opts)
         opts[:context_type].to_s.casecmp('gdoc').zero?
       end
@@ -143,6 +139,7 @@ module DocTemplate
           end
         end
         parsed = ::DocTemplate::Document.parse(Nokogiri::HTML.fragment(node), opts.merge(level: 1))
+        @errors.push(*parsed.errors) if parsed.errors.any?
         # add the parts to the parent document
         opts[:parent_document].parts += parsed.parts if opts[:parent_document]
         parsed.render

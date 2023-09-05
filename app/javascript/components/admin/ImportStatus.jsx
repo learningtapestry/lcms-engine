@@ -96,10 +96,14 @@ class ImportStatus extends React.Component {
       let status;
       switch (job.status) {
         case 'done':
-          status = job.ok ? 'list-group-item-success' : 'list-group-item-danger';
+          if (job.ok) {
+            status = _.isEmpty(job.warnings) ? 'list-group-item-success' : 'list-group-item-warning';
+          } else {
+            status = 'list-group-item-danger';
+          }
           break;
         case 'running':
-          status = 'list-group-item-warning';
+          status = 'list-group-item-primary';
           break;
         default:
           status = '';
@@ -117,7 +121,7 @@ class ImportStatus extends React.Component {
               <p className="mb-0" dangerouslySetInnerHTML={{ __html: _.join(job.errors, '<br/>') }}></p>
             ) : null}
             {!_.isEmpty(job.warnings) ? (
-              <p className="mb-0" dangerouslySetInnerHTML={{ __html: _.join(job.warnings, '<br/>') }}></p>
+              <p className="mb-0 text-start" dangerouslySetInnerHTML={{ __html: _.join(job.warnings, '<br/>') }}></p>
             ) : null}
           </div>
           {job.status !== 'done' ? this.spinner() : null}

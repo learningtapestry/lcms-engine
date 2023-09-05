@@ -22,7 +22,7 @@ module Lcms
       def build_for(url)
         @content = download url
         @template = DocTemplate::Template.parse @content
-        @errors = @template.metadata_service.errors
+        @errors = @template.metadata_service.errors + @template.documents.values.flat_map(&:errors)
 
         @document = create_document
         @document.update!(original_content: content)

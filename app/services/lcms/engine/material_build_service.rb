@@ -63,7 +63,7 @@ module Lcms
         create_material
         content = @downloader.download.content
         template = DocTemplate::Template.parse(content, type: :material)
-        @errors = template.metadata_service.errors
+        @errors = template.metadata_service.errors + template.documents.values.flat_map(&:errors)
 
         metadata = template.metadata_service.options_for(:default)[:metadata]
         material.update!(

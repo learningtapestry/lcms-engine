@@ -29,9 +29,9 @@ module Lcms
             import_retry: options[:import_retry],
             source_type: source_type.presence
           }.compact
-          service = MaterialBuildService.new google_credentials, params
+          service = MaterialBuildService.new(google_credentials, params)
           @material = service.build link
-          @service_errors = service.errors
+          @service_errors.push(*service.errors.uniq)
 
           material.update preview_links: {}
         end

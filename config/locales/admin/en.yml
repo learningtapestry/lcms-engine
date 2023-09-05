@@ -187,8 +187,12 @@ en:
             title: Lesson Manager
             unit_bundles: Generate Unit Bundles
           create:
-            error: Error
-            success: Lesson %{name} parsed successfully. %{errors}
+            error: |
+              <p>Lesson %{name} has been parsed. The following errors were found:</p>
+              <ul>
+                %{errors}
+              </ul>
+            success: Lesson %{name} parsed successfully.
           new:
             page_title: Add a lesson
             submit: Parse
@@ -201,7 +205,11 @@ en:
         materials:
           create:
             bulk_import: Imported %{count} Materials from %{folder}
-            error: Error
+            error: |
+              <p>Material %{name} has been parsed. The following errors were found:</p>
+              <ul>
+                %{errors}
+              </ul>
             success: Material %{name} parsed successfully.
           destroy:
             success: Material deleted successfully.

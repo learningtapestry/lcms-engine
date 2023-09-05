@@ -21,8 +21,6 @@
 <hr class="o-ld-hr--l2">
 <h3 class="c-ld-toc" id="<%= t('document.toc.tm').parameterize %>"><%= t('document.toc.tm') %></h3>
 <%= t('document.tm_html') %>
-<%= t('document.tm_math_ela6_html') if document.math? || document.ela6? %>
-<%= t('document.tm_ela2_html', unit_dsc: document.unit.title, unit_href: show_resource_path(document.unit)) if document.ela2? && document.unit.present? %>
 <div>
   <% %w(pdf gdoc).each do |c_type| %>
     <% if document.links["#{c_type}_tm"].present? %>

@@ -1,0 +1,41 @@
+module Lcms
+  module Engine
+    class DocumentBuildService
+      EVENT_BUILT: String
+
+      attr_reader errors: Array[String]
+
+      def initialize: (untyped credentials, ?::Hash[untyped, untyped] opts) -> void
+
+      def build_for: (untyped url) -> untyped
+
+      private
+
+      attr_reader credentials: untyped
+
+      attr_reader content: untyped
+
+      attr_reader document: untyped
+
+      attr_reader downloader: untyped
+
+      attr_reader options: untyped
+
+      attr_reader template: untyped
+
+      def build: -> untyped
+
+      def build_params: -> untyped
+
+      def clear_preview_link: -> untyped
+
+      def create_document: -> untyped
+
+      def document_params: -> { activity_metadata: untyped, css_styles: untyped, name: untyped, last_modified_at: untyped, last_author_email: untyped, last_author_name: untyped, metadata: untyped, reimported_at: untyped, sections_metadata: untyped, version: untyped }
+
+      def download: (untyped url) -> untyped
+
+      def find_resource: -> untyped
+    end
+  end
+end

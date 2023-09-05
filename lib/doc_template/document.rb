@@ -14,10 +14,15 @@ module DocTemplate
 
     ELA_TG_TEMPLATE = Lcms::Engine::Engine.root.join 'lib', 'doc_template', 'templates', 'ela-teacher-guidance.html.erb'
 
-    attr_accessor :parts
+    attr_accessor :errors, :parts
 
     def self.parse(nodes, opts = {})
       new.parse(nodes, opts)
+    end
+
+    def initialize
+      @errors = []
+      @parts = []
     end
 
     def parse(nodes, opts = {})
@@ -37,8 +42,6 @@ module DocTemplate
         parse_node tag_node
       end
 
-      add_custom_nodes unless @opts.key?(:level) || @opts.key?(:material)
-
       self
     end
 
@@ -47,14 +50,6 @@ module DocTemplate
     end
 
     private
-
-    def add_custom_nodes
-      return unless @opts[:metadata].try(:subject).to_s.casecmp('ela').zero?
-      return unless ela_teacher_guidance_allowed?
-
-      ::DocTemplate.sanitizer.strip_content(@nodes)
-      @nodes.prepend_child ela_teacher_guidance(@opts[:metadata], @opts[:context_type])
-    end
 
     #
     # Check if we're getting the same tag again
@@ -65,77 +60,6 @@ module DocTemplate
         raise ::Lcms::Engine::DocumentError, "Loop detected for tag #{name} with value #{value}"
       end
     end
-
-    def ela_teacher_guidance(metadata, _context_type)
-      @data = metadata
-      @data.preparation = ::DocTemplate.sanitizer.strip_html_element(@data.preparation)
-      template = File.read ELA_TG_TEMPLATE
-      ERB.new(template).result(binding)
-    end
-
-    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
-    def ela_teacher_guidance_allowed?
-      # only for G6 and G2
-      # As stated on issue #240 and here https://github.com/learningtapestry/unbounded/pull/267#issuecomment-307870881
-      g2 = @opts[:metadata]['grade'] == '2'
-      g6 = @opts[:metadata]['grade'] == '6'
-      return false unless g2 || g6
-
-      # Additional filter for lessons
-      # https://github.com/learningtapestry/unbounded/issues/311
-      # https://github.com/learningtapestry/unbounded/issues/240
-
-      # G2 Unit 1 apart from for Lessons: 6,10,11,12
-      g2_u1 = g2 && @opts[:metadata]['unit'] == '1'
-      return false if g2_u1 && %w(6 10 11 12).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 2 apart from for Lessons: 8,16,17,18
-      g2_u2 = g2 && @opts[:metadata]['unit'] == '2'
-      return false if g2_u2 && %w(8 16 17 18).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 3 apart from for Lessons: 8,14,15,16
-      g2_u3 = g2 && @opts[:metadata]['unit'] == '3'
-      return false if g2_u3 && %w(8 14 15 16).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 4 apart from for Lessons: 8,13,14,15
-      g2_u4 = g2 && @opts[:metadata]['unit'] == '4'
-      return false if g2_u4 && %w(8 13 14 15).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 5 apart from for Lessons: 5,10,11,12
-      g2_u5 = g2 && @opts[:metadata]['unit'] == '5'
-      return false if g2_u5 && %w(5 10 11 12).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 6 apart from for Lessons: 6,11,12,13
-      g2_u6 = g2 && @opts[:metadata]['unit'] == '6'
-      return false if g2_u6 && %w(6 11 12 13).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 7 apart from for Lessons: 6,11,12,13
-      g2_u7 = g2 && @opts[:metadata]['unit'] == '7'
-      return false if g2_u7 && %w(6 11 12 13).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 8 apart from for Lessons: 5,12,11,10
-      g2_u8 = g2 && @opts[:metadata]['unit'] == '8'
-      return false if g2_u8 && %w(5 12 11 10).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 9 apart from for Lessons: 15,14,13,6
-      g2_u9 = g2 && @opts[:metadata]['unit'] == '9'
-      return false if g2_u9 && %w(15 14 13 6).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 10 apart from for Lessons: 11,13,5,12
-      g2_u10 = g2 && @opts[:metadata]['unit'] == '10'
-      return false if g2_u10 && %w(11 13 5 12).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 11 apart from for Lessons: 14,12,7,13
-      g2_u11 = g2 && @opts[:metadata]['unit'] == '11'
-      return false if g2_u11 && %w(14 12 7 13).include?(@opts[:metadata]['lesson'])
-
-      # G2 Unit 12 apart from for Lessons: 12,13,6,11
-      g2_u12 = g2 && @opts[:metadata]['unit'] == '12'
-      return false if g2_u12 && %w(12 13 6 11).include?(@opts[:metadata]['lesson'])
-
-      true
-    end
-    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 
     def find_tag(name, value = '')
       key = registered_tags.keys.detect do |k|
@@ -168,6 +92,7 @@ module DocTemplate
       check_loop_tag tag_name, tag_value
 
       parsed_tag = tag.parse(node, @opts.merge(parent_document: self, value: tag_value))
+      @errors.push(*parsed_tag.errors) if parsed_tag.errors.any?
       store_last_tag tag_name, tag_value
 
       parsed_content = parsed_tag.content.presence || parsed_tag.render.to_s

@@ -1,9 +1,10 @@
 module DocTemplate
   class Template
     class TagRegistry
+      @tags: untyped
+
       def initialize: () -> void
 
-      # returns the default tag if the tag is unknown
       def []: (untyped tag_name) -> untyped
 
       def []=: (untyped tag_name, untyped klass) -> untyped
@@ -15,10 +16,14 @@ module DocTemplate
       def load_class: (untyped klass_name) -> untyped
     end
 
+    self.@tags: TagRegistry
+
+    @content: Nokogiri::HTML::DocumentFragment
+    @type: Symbol
+
     attr_reader css_styles: untyped
-
+    attr_reader documents: Hash[Symbol | String, ::DocTemplate::Document]
     attr_reader metadata_service: untyped
-
     attr_reader toc: untyped
 
     #

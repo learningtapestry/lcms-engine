@@ -17,6 +17,8 @@ module DocTemplate
 
       attr_reader content: untyped
 
+      attr_reader errors: Array[String]
+
       def self.parse: (untyped node, ?::Hash[untyped, untyped] opts) -> untyped
 
       def self.tag_with_html_regexp: () -> Regexp
@@ -32,10 +34,6 @@ module DocTemplate
       def content_until_break: (untyped node) -> untyped
 
       def content_until_materials: (untyped node) -> untyped
-
-      def ela2?: (untyped metadata) -> untyped
-
-      def ela6?: (untyped metadata) -> untyped
 
       def gdoc?: (untyped opts) -> untyped
 

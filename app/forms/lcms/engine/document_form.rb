@@ -35,14 +35,10 @@ module Lcms
       end
 
       def build_document
-        service = document_build_service
+        service = DocumentBuildService.new(google_credentials, import_retry: options[:import_retry])
         result = service.build_for(link)
-        @service_errors = service.errors
+        @service_errors.push(*service.errors.uniq)
         result
-      end
-
-      def document_build_service
-        DocumentBuildService.new(google_credentials, import_retry: options[:import_retry])
       end
 
       def file_id
