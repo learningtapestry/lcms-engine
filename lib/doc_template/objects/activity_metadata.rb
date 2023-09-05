@@ -36,12 +36,12 @@ module DocTemplate
         attribute :title, String, default: ->(a, _) { a.activity_title }
         attribute :time, Integer, default: ->(a, _) { a.activity_time }
 
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, Array, default: []
       end
 
-      attribute :children, Array[Activity]
+      attribute :children, Array
       attribute :idx, Integer
-      attribute :task_counter, Hash[String => Integer], default: {} # rubocop:disable Style/HashConversion
+      attribute :task_counter, Hash, default: {}
 
       def self.build_from(data)
         copy = Marshal.load Marshal.dump(data)

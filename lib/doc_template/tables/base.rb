@@ -7,8 +7,8 @@ module DocTemplate
 
       attr_reader :errors, :data
 
-      def self.parse(fragment, *args)
-        new.parse(fragment, *args)
+      def self.parse(fragment, *)
+        new.parse(fragment, *)
       end
 
       def initialize

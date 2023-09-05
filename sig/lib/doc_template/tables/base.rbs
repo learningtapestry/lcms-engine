@@ -13,7 +13,7 @@ module DocTemplate
 
       attr_reader data: untyped
 
-      def self.parse: (untyped fragment, *untyped args) -> untyped
+      def self.parse: (untyped fragment, *untyped) -> untyped
 
       def initialize: () -> void
 

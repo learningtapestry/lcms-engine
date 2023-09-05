@@ -11,7 +11,7 @@ module Lcms
       attribute :description, String
       attribute :permalink, String
       attribute :slug, String
-      attribute :keywords, Array[String], default: []
+      attribute :keywords, Array, default: []
       attribute :teaser, String
       attribute :title, String
 

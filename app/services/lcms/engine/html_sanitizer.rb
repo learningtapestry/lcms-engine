@@ -12,7 +12,7 @@ module Lcms
       SKIP_P_CHECK = %w(ul ol table).freeze
       STRIP_ELEMENTS = %w(a div h1 h2 h3 h4 h5 h6 p span table).freeze
 
-      class << self
+      class << self # rubocop:todo Metrics/ClassLength
         def clean_content(html, context_type)
           return html unless context_type.to_s.casecmp('gdoc').zero?
 

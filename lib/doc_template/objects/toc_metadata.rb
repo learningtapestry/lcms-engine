@@ -10,9 +10,9 @@ module DocTemplate
         include Virtus.model
 
         attribute :anchor, String
-        attribute :children, Array[Heading], default: []
+        attribute :children, Array, default: [] # Array[Heading]
         attribute :level, Integer
-        attribute :material_ids, Array[Integer], default: []
+        attribute :material_ids, Array, default: []
         attribute :optional, Virtus::Attribute::Boolean, default: false
         attribute :priority, Integer, default: 0
         attribute :standard, String, default: ''
@@ -46,7 +46,7 @@ module DocTemplate
         end
       end
 
-      attribute :children, Array[Heading], default: []
+      attribute :children, Array, default: [] # Array[Heading]
       attribute :priority, Integer, default: 0
       attribute :total_time, Integer, default: ->(t, _) { t.children.sum(&:time) }
 

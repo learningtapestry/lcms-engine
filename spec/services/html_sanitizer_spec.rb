@@ -57,9 +57,9 @@ describe Lcms::Engine::HtmlSanitizer do
       it 'replace sup/sub aligned spans to sup/sub' do
         expect(subject).to include('80</sub>', '79</sup>', '24</sup>', '23</sub>', 'font-style')
         expect(subject).not_to include('vertical-align')
-        expect(subject.scan(/span/).size).to eq 10
-        expect(subject.scan(/sub/).size).to eq 4
-        expect(subject.scan(/sup/).size).to eq 4
+        expect(subject.scan('span').size).to eq 10
+        expect(subject.scan('sub').size).to eq 4
+        expect(subject.scan('sup').size).to eq 4
       end
     end
   end

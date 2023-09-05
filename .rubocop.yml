@@ -20,6 +20,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.2
 
+Gemspec/DevelopmentDependencies:
+  EnforcedStyle: gemspec
+
 Layout/LineLength:
   Max: 120
 
