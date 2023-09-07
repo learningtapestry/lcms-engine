@@ -11,7 +11,9 @@ describe Lcms::Engine::Admin::MaterialsController do
 
   describe '#create' do
     let(:material) { create :material }
-    let(:form) { instance_double('Lcms::Engine::MaterialForm', material:, save: valid) }
+    let(:form) do
+      instance_double('Lcms::Engine::MaterialForm', material:, save: valid, service_errors: [])
+    end
     let(:link) { 'link' }
     let(:params) { { link:, source_type: 'gdoc' } }
     let(:valid) { true }
@@ -92,7 +94,7 @@ describe Lcms::Engine::Admin::MaterialsController do
     it { expect { subject }.to change { Lcms::Engine::Material.count }.by(-1) }
 
     context 'when there was custom filter' do
-      let(:query) { { course: 'value' } }
+      let(:query) { { guidebook: 'value' } }
 
       subject { delete :destroy, params: { id: material.id, query: } }
 

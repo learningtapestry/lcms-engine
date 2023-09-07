@@ -9,7 +9,9 @@ module Lcms
         scope :where_grade, ->(grades) { where_metadata_in :grade, grades }
         scope :where_module, ->(modules) { where_metadata_in :module, modules }
         scope :where_subject, ->(subjects) { where_metadata_in :subject, subjects }
+      end
 
+      class_methods do
         #
         # @param [String|Symbol] key
         # @param [Array<String>|Array<Integer>] arr

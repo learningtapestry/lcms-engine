@@ -13,6 +13,6 @@ feature 'Welcome Page' do
   scenario 'visit welcome page and see the shout out panel' do
     login_as user
     visit lcms_engine.root_path
-    expect(page).to have_css('.text-center')
+    expect(page).to have_css('.container-fluid div#root')
   end
 end

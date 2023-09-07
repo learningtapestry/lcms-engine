@@ -10,7 +10,7 @@ module DocTemplate
         include Virtus.model
 
         attribute :anchor, String
-        attribute :children, Array, default: [] # Array[Heading]
+        attribute :children, Array[Heading], default: [] # rubocop:disable Style/RedundantArrayConstructor
         attribute :level, Integer
         attribute :material_ids, Array, default: []
         attribute :optional, Virtus::Attribute::Boolean, default: false
@@ -46,7 +46,7 @@ module DocTemplate
         end
       end
 
-      attribute :children, Array, default: [] # Array[Heading]
+      attribute :children, Array[Heading], default: [] # rubocop:disable Style/RedundantArrayConstructor
       attribute :priority, Integer, default: 0
       attribute :total_time, Integer, default: ->(t, _) { t.children.sum(&:time) }
 

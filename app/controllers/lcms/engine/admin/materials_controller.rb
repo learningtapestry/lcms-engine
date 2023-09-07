@@ -18,7 +18,7 @@ module Lcms
         end
 
         def create
-          @material_form = DocumentGenerator.material_form.new(form_params.except(:async))
+          @material_form = DocumentGenerator.material_form.new(form_params.except(:async).to_h)
 
           return create_multiple if form_params[:link].match?(RE_GOOGLE_FOLDER)
 
@@ -26,7 +26,7 @@ module Lcms
         end
 
         def destroy
-          material = Material.find(params[:id])
+          material = Material.find(params[:id].to_i)
           material.destroy
           redirect_to lcms_engine.admin_materials_path(query: @query_params), notice: t('.success')
         end
@@ -94,7 +94,7 @@ module Lcms
             end
           polling_path = lcms_engine.import_status_admin_materials_path
           @props = { jobs:, links: view_links, polling_path:, type: :materials }
-                     .transform_keys! { _1.to_s.camelize(:lower) }
+                     .transform_keys! { _1.to_s.camelize(:lower).to_sym }
         end
 
         def find_selected

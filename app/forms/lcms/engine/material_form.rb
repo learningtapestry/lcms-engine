@@ -36,6 +36,10 @@ module Lcms
           material.update preview_links: {}
         end
       end
+
+      protected
+
+      def after_reimport_hook; end
     end
   end
 end

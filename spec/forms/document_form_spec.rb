@@ -4,7 +4,8 @@ require 'rails_helper'
 
 describe Lcms::Engine::DocumentForm do
   let(:credentials) { double }
-  let(:form) { described_class.new params }
+  let(:form) { described_class.new(params, options) }
+  let(:options) { {} }
 
   before { allow_any_instance_of(described_class).to receive(:google_credentials).and_return(credentials) }
 
@@ -34,18 +35,24 @@ describe Lcms::Engine::DocumentForm do
         expect(form.document).to eq document
       end
 
-      it 'queues job to generate PDF and GDoc' do
-        expect(Lcms::Engine::DocumentGenerator).to receive(:generate_for).with(document)
-        subject
-      end
-
       it 'marks the document as reimported' do
         document.update reimported: false
         subject
         expect(document.reload.reimported).to be_truthy
       end
 
+      context 'when auto_gdoc_generation is set to true' do
+        let(:options) { { auto_gdoc_generation: true } }
+
+        it 'queues job to generate PDF and GDoc' do
+          expect(Lcms::Engine::DocumentGenerator).to receive(:generate_for).with(document)
+          subject
+        end
+      end
+
       context 'when save operation failed' do
+        let(:options) { { auto_gdoc_generation: true } }
+
         before { allow(Lcms::Engine::DocumentGenerator).to receive(:generate_for).and_raise(StandardError) }
 
         it 'marks the document as not reimported' do

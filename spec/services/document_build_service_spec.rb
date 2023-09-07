@@ -19,6 +19,7 @@ describe Lcms::Engine::DocumentBuildService do
     let(:template) do
       stubs = {
         css_styles: '',
+        documents: {},
         metadata: {},
         metadata_service: double('service', errors: []),
         parse: parsed_document,

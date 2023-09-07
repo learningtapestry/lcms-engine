@@ -11,7 +11,7 @@ module DocTemplate
         include Virtus::InstanceMethods::Constructor
         include Virtus.model
 
-        attribute :children, Array # Array[DocTemplate::Objects::ActivityMetadata::Activity]
+        attribute :children, Array[DocTemplate::Objects::ActivityMetadata::Activity] # rubocop:disable Style/RedundantArrayConstructor
         attribute :summary, String
         attribute :time, Integer, default: 0
         attribute :title, String
@@ -32,7 +32,7 @@ module DocTemplate
         end
       end
 
-      attribute :children, Array # Array[Section]
+      attribute :children, Array[Section] # rubocop:disable Style/RedundantArrayConstructor
       attribute :idx, Integer
 
       def self.build_from(data)

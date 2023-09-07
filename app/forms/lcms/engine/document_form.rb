@@ -32,6 +32,9 @@ module Lcms
       def after_reimport_hook
         DocumentGenerator.generate_for(@document) \
           if ActiveRecord::Type::Boolean.new.cast(options[:auto_gdoc_generation])
+      rescue StandardError => e
+        @document.update(reimported: false) if @document.present?
+        raise e
       end
 
       def build_document

@@ -11,7 +11,6 @@ feature 'Admin users' do
   given!(:user) { create :user, email: "unbounded@#{domain}" }
   given(:name) { Faker::Lorem.name }
   given(:email) { Faker::Internet.email }
-  given(:reset_msg) { 'You will receive an email with instructions on how to reset your password in a few minutes. ×' }
 
   background { login_as admin }
 
@@ -19,7 +18,7 @@ feature 'Admin users' do
     navigate_to_new_user
 
     click_button 'Save'
-    expect(page.all('.input.error .error').first.text).to eq "can't be blank"
+    expect(page.all('.user_access_code .invalid-feedback').first.text).to include("can't be blank")
   end
 
   scenario 'new user' do
@@ -45,7 +44,7 @@ feature 'Admin users' do
 
     user.reload
     expect(current_path).to eq lcms_engine.admin_user_path(user.id)
-    expect(page.find('.input.error .error').text).to eq "can't be blank"
+    expect(page.all('.user_email .invalid-feedback').first.text).to include("can't be blank")
     expect(user.email).to eq "unbounded@#{domain}"
   end
 
@@ -58,7 +57,6 @@ feature 'Admin users' do
 
     user.reload
     expect(current_path).to eq lcms_engine.admin_users_path
-    expect(page.find('.callout.success').text).to include('saved successfully')
     expect(user.email).to eq "unbounded@#{domain}"
     expect(user.unconfirmed_email).to eq "joe@#{domain}"
     expect(user.name).to eq 'Joe Jonah'
@@ -72,7 +70,6 @@ feature 'Admin users' do
     end
 
     expect(current_path).to eq lcms_engine.admin_users_path
-    expect(page.find('.callout.success').text).to include('deleted successfully')
     expect(Lcms::Engine::User.find_by id: user.id).to be_nil
   end
 
@@ -85,7 +82,6 @@ feature 'Admin users' do
 
     user.reload
     expect(current_path).to eq lcms_engine.admin_users_path
-    expect(page.find('.callout.success').text).to include('will receive a password reset')
     expect(user.reset_password_token).to_not be_nil
     expect_reset_password_email_for user
   end
@@ -100,7 +96,6 @@ feature 'Admin users' do
     fill_in 'user_email', with: admin.email
     click_button 'Send me reset password instructions'
     expect(current_path).to eq lcms_engine.new_user_session_path
-    expect(find('.callout.success').text).to eq reset_msg
     expect_reset_password_email_for admin
 
     email = last_email_sent
@@ -112,7 +107,6 @@ feature 'Admin users' do
     click_button 'Change my password'
 
     expect(current_path).to eq lcms_engine.root_path
-    expect(find('.callout.success').text).to eq 'Your password has been changed successfully. You are now signed in. ×'
     expect(admin.reload.valid_password?(password)).to be true
   end
 

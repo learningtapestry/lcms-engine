@@ -39,7 +39,7 @@ module DocTemplate
         attribute :material_ids, Array, default: []
       end
 
-      attribute :children, Array
+      attribute :children, Array[Activity] # rubocop:disable Style/RedundantArrayConstructor
       attribute :idx, Integer
       attribute :task_counter, Hash, default: {}
 

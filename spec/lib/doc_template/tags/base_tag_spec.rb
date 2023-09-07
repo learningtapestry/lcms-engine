@@ -4,6 +4,10 @@ require 'rails_helper'
 
 class BaseSpecTag < DocTemplate::Tags::BaseTag
   TAG_NAME = 'image'
+
+  def self.clean_tag_with_html_regexp
+    @tag_with_html_regexp = nil
+  end
 end
 
 describe DocTemplate::Tags::BaseTag do
@@ -18,6 +22,8 @@ describe DocTemplate::Tags::BaseTag do
       HTML
     end
 
+    before { BaseSpecTag.clean_tag_with_html_regexp }
+
     subject { BaseSpecTag.tag_with_html_regexp }
 
     it 'returns RegExp for a single match only' do
@@ -29,7 +35,7 @@ describe DocTemplate::Tags::BaseTag do
       before { BaseSpecTag.send :remove_const, :TAG_NAME }
 
       it 'raises an error' do
-        expect { subject }.to raise_error(NotImplementedError)
+        expect { subject }.to raise_error(StandardError, 'TAG_NAME is not specified')
       end
     end
   end

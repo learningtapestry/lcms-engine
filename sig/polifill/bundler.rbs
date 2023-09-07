@@ -1,5 +1,5 @@
 module Bundler
   module FileUtils
-    def self.rm: (*untyped) -> untyped
+    def self.rm_f: (*untyped) -> untyped
   end
 end

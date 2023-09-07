@@ -89,7 +89,6 @@ describe Lcms::Engine::DocumentBundle do
       allow(File).to receive(:exist?).and_return(true)
       allow(File).to receive(:open).and_yield('zip content')
       allow_any_instance_of(described_class).to receive(:save!)
-      allow(FileUtils).to receive(:rm)
     end
 
     subject { described_class.send :update_pdf_bundle, resource, category }
@@ -112,7 +111,7 @@ describe Lcms::Engine::DocumentBundle do
     end
 
     it 'removes temporary zip file' do
-      expect(FileUtils).to receive(:rm)
+      expect(Bundler::FileUtils).to receive(:rm_f)
       subject
     end
   end
