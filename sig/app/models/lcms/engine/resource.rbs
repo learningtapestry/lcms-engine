@@ -1249,6 +1249,7 @@ module Lcms
       # Are used to bypass dynamic define_method call
       def self.curriculum_type: -> String?
       def self.subject: -> String?
+      def self.subjects: -> ActiveRecord_Associations_CollectionProxy
 
       # to bypass gems
       def self.acts_as_taggable_on: (*untyped) -> untyped
@@ -1297,7 +1298,7 @@ module Lcms
       # acts_as_taggable_on
       def tag_list: -> untyped
       def tag_list=: (*untyped) -> untyped
-      def descendants: -> Lcms::Engine::Resource::ActiveRecord_Associations_CollectionProxy
+      def descendants: -> ActiveRecord_Associations_CollectionProxy
 
       # closure_tree
       def self.has_closure_tree: (*untyped) -> untyped
