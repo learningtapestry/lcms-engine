@@ -8,7 +8,6 @@ class ImportStatus extends React.Component {
     this.state = { jobs: props.jobs };
     this.pollingInterval = 5000;
     this.chunkSize = 50;
-    this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
     if (_.isEmpty(props.path)) {
       const k = `lcms_engine_import_status_admin_${this.props.type}_path`;
       this.path = Routes[k].call();
@@ -75,7 +74,13 @@ class ImportStatus extends React.Component {
       return path;
     };
 
-    return _.map(this.links, (link, idx) => (
+    let { links } = this.props;
+
+    if (_.isEmpty(links)) {
+      links = [job.model ? `${this.props.type}/:id` : job.link];
+    }
+
+    return _.map(links, (link, idx) => (
       <a
         key={`pl-${idx}`}
         href={typeof job.model === 'undefined' ? link : linkWithParams(link, { id: job.model.id })}
