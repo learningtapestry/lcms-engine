@@ -1,0 +1,9 @@
+module Lcms
+  module Engine
+    class BasePresenter < SimpleDelegator
+      def initialize: (untyped obj, ?::Hash[untyped, untyped] opts) -> void
+
+      def t: (untyped key, ?::Hash[untyped, untyped] options) -> untyped
+    end
+  end
+end
