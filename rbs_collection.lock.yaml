@@ -2,7 +2,7 @@
 sources:
 - type: git
   name: ruby/gem_rbs_collection
-  revision: b42e4de88058603a34446942143b3ac197b9685c
+  revision: 267dd270bb5aabcc1e21c87f44360f0680a8501c
   remote: https://github.com/ruby/gem_rbs_collection.git
   repo_dir: gems
 path: ".gem_rbs_collection"
@@ -123,18 +123,18 @@ gems:
     revision: b42e4de88058603a34446942143b3ac197b9685c
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: carrierwave
+  version: '3.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 267dd270bb5aabcc1e21c87f44360f0680a8501c
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: cgi
   version: '0'
   source:
     type: stdlib
-- name: concurrent-ruby
-  version: '1.1'
-  source:
-    type: git
-    name: ruby/gem_rbs_collection
-    revision: b42e4de88058603a34446942143b3ac197b9685c
-    remote: https://github.com/ruby/gem_rbs_collection.git
-    repo_dir: gems
 - name: date
   version: '0'
   source:
@@ -351,6 +351,14 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: thor
+  version: '1.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: 267dd270bb5aabcc1e21c87f44360f0680a8501c
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: time
   version: '0'
   source:

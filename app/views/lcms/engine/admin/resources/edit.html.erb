@@ -1,21 +1,14 @@
 <% title = t('.page_title', resource: @resource.title) %>
-
 <% set_page_title title %>
-
 <div class="container-fluid p-3">
   <h2 class="text-center"><%= title %></h2>
-
   <hr>
-
   <% unless Lcms::Engine::Settings[:editing_enabled] %>
     <div class='alert alert-warning'><%= t('admin.common.editing_disabled') %></div>
   <% end %>
-
-  <div class="cols-sm">
+  <div class="col-sm">
     <%= link_to 'Back to list', lcms_engine.admin_resources_path, class: 'btn btn-success' %>
   </div>
-
   <hr>
-
   <%= render 'form' %>
 </div>

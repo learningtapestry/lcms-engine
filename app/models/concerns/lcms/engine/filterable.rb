@@ -19,7 +19,8 @@ module Lcms
         #
         def where_metadata_in(key, arr)
           arr = Array.wrap(arr).compact.map(&:downcase)
-          clauses = Array.new(arr.count) { "lower(resources.metadata->>'#{key}') = ?" }.join(' OR ')
+          base_table = name == 'Lcms::Engine::Material' ? 'materials' : 'resources'
+          clauses = Array.new(arr.count) { "lower(#{base_table}.metadata->>'#{key}') = ?" }.join(' OR ')
           where(clauses, *arr)
         end
       end

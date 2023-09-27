@@ -45,7 +45,7 @@ module Lcms
       def average_number
         return nil if list.empty?
 
-        list.map { |g| self.class.grades.index(g) }.sum / (list.size.nonzero? || 1)
+        list.map { |g| self.class.grades.index(g) }.compact.sum(0) / (list.size.nonzero? || 1) # rubocop:disable Style/RedundantArgument
       end
 
       def grade_abbr(abbr)

@@ -1,15 +1,14 @@
 <% set_page_title 'Bulk Import' %>
-
 <div class="container-fluid">
   <h2 class="text-center p-4">Import Materials</h2>
   <hr>
   <div class="row">
-    <div class="cols-sm">
+    <div class="col-sm">
       <%= link_to 'Back to list', lcms_engine.admin_materials_path, class: 'btn btn-success' %>
     </div>
   </div>
   <hr>
-  <div class="row p-2">
+  <div class="row py-2">
     <div class="col">
       <%= render_component('ImportStatus', @props) %>
     </div>

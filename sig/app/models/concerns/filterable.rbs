@@ -3,6 +3,7 @@ module Lcms
     module Filterable
       extend ActiveSupport::Concern
 
+      def name: () -> String
       def self.scope: (*untyped) -> untyped
       def self.where: (*untyped) -> (Document::ActiveRecord_Associations_CollectionProxy | Resource::ActiveRecord_Associations_CollectionProxy)
       def where: (*untyped) -> (Document::ActiveRecord_Associations_CollectionProxy | Resource::ActiveRecord_Associations_CollectionProxy)

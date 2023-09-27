@@ -889,31 +889,31 @@ progress {
   .col-sm {
     flex: 1 0 0%;
   }
-  .row-cols-sm-auto > * {
+  .row-col-sm-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-  .row-cols-sm-1 > * {
+  .row-col-sm-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-  .row-cols-sm-2 > * {
+  .row-col-sm-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-  .row-cols-sm-3 > * {
+  .row-col-sm-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-  .row-cols-sm-4 > * {
+  .row-col-sm-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-  .row-cols-sm-5 > * {
+  .row-col-sm-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-  .row-cols-sm-6 > * {
+  .row-col-sm-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }

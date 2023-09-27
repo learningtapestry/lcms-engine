@@ -1,0 +1,2 @@
+class Lcms::Engine::DocumentPresenter < Lcms::Engine::BasePresenter
+end

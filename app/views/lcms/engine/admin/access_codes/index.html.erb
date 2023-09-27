@@ -1,42 +1,36 @@
 <div class="container-fluid">
   <h2 class=text-center><%= t('.page_title') %></h2>
-
   <hr>
-
   <div class="row">
-    <div class="cols-sm">
+    <div class="col-sm">
       <%= link_to t('.new_access_code'), lcms_engine.new_admin_access_code_path, class: 'btn btn-success',
                   'data-turbo' => false %>
     </div>
   </div>
-
   <hr>
-
   <div class=row>
     <div class="col-md-12">
       <table class=table>
         <tr>
           <th><%= t('.code') %>
-          <th><%= t('.active') %>
-          <th><%= t('ui.actions') %></th>
-        </tr>
-
-        <% @access_codes.each do |access_code| %>
-          <% cache access_code do %>
-            <tr id="access_code_<%= access_code.id %>">
-              <td><%= link_to access_code.code, lcms_engine.edit_admin_access_code_path(access_code) %>
-              <td><%= access_code.active ? 'YES' : 'NO' %>
-              <td>
-                <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), method: :delete, 'turbo-method': :delete }, form_class: 'inline', method: :delete %>
-              </td>
+            <th><%= t('.active') %>
+              <th><%= t('ui.actions') %></th>
             </tr>
-          <% end %>
-        <% end %>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <%= will_paginate @access_codes, list_classes: %w(pagination d-flex justify-content-center) %>
-  </div>
-</div>
+            <% @access_codes.each do |access_code| %>
+              <% cache access_code do %>
+                <tr id="access_code_<%= access_code.id %>">
+                  <td><%= link_to access_code.code, lcms_engine.edit_admin_access_code_path(access_code) %>
+                    <td><%= access_code.active ? 'YES' : 'NO' %>
+                      <td>
+                        <%= button_to t('ui.delete'), lcms_engine.admin_access_code_path(access_code), class: 'btn btn-danger', data: { confirm: t('ui.are_you_sure'), method: :delete, 'turbo-method': :delete }, form_class: 'inline', method: :delete %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <%= will_paginate @access_codes, list_classes: %w(pagination d-flex justify-content-center) %>
+          </div>
+        </div>
