@@ -6,7 +6,7 @@ module DocTemplate
 
     mattr_accessor :config
 
-    self.config = YAML.load_file(Tags::CONFIG_PATH) || {}
+    self.config = YAML.load_file(Tags::CONFIG_PATH, aliases: true) || {}
 
     # By default we remove unknown tags (`DefaultTag`)
     config['default'] ||= { 'remove' => true }

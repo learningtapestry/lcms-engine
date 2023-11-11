@@ -19,7 +19,7 @@ module DocTemplate
       private
 
       def config
-        @config ||= YAML.load_file(CONFIG_PATH)['sheet_types']
+        @config ||= YAML.load_file(CONFIG_PATH, aliases: true)['sheet_types']
       end
     end
   end

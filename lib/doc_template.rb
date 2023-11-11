@@ -27,7 +27,7 @@ module DocTemplate
 
   mattr_accessor :config
 
-  self.config = YAML.load_file(CONFIG_PATH) || {}
+  self.config = YAML.load_file(CONFIG_PATH, aliases: true) || {}
 
   config['bundles'] ||= DEFAULTS[:bundles]
 

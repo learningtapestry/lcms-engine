@@ -10,11 +10,11 @@ module Lcms
       THUMB_EXT = '.jpg'
 
       def self.base_config
-        @base_config ||= YAML.load_file(CONFIG_PATH).deep_symbolize_keys
+        @base_config ||= YAML.load_file(CONFIG_PATH, aliases: true).deep_symbolize_keys
       end
 
       def self.materials_config
-        @materials_config ||= YAML.load_file(MATERIALS_CONFIG_PATH).deep_symbolize_keys
+        @materials_config ||= YAML.load_file(MATERIALS_CONFIG_PATH, aliases: true).deep_symbolize_keys
       end
 
       def base_filename

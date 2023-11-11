@@ -19,7 +19,7 @@ module Lcms
         before_action :authenticate_admin!
 
         def self.settings
-          @settings ||= DEFAULTS.merge((YAML.load_file(CONFIG_PATH) || {}).deep_symbolize_keys)
+          @settings ||= DEFAULTS.merge((YAML.load_file(CONFIG_PATH, aliases: true) || {}).deep_symbolize_keys)
         end
 
         private
