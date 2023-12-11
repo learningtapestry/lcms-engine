@@ -462,9 +462,9 @@ GEM
       nokogiri
       tzinfo
     nio4r (2.5.8)
-    nokogiri (1.13.10-arm64-darwin)
+    nokogiri (1.14.3-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.14.3-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
@@ -504,7 +504,7 @@ GEM
       stringio
     public_suffix (5.0.0)
     raabro (1.4.0)
-    racc (1.6.1)
+    racc (1.6.2)
     rack (2.2.6.3)
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
