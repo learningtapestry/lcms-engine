@@ -1,32 +1,32 @@
 GIT
   remote: https://github.com/learningtapestry/lt-google-api.git
-  revision: 74c9baa3cb73775ccb2f9dfeedce04baed163398
-  ref: 74c9baa
-  branch: master
+  revision: 3dd76b67695ce6ddf91c80512eb3cb096b810b4b
+  ref: 3dd76b6
+  branch: ruby-3-upgrade
   specs:
-    lt-google-api (0.2.4)
-      google-api-client (~> 0.46)
-      googleauth (~> 0.14)
+    lt-google-api (0.3.0)
+      google-apis-drive_v3 (~> 0.46)
+      googleauth (~> 1.9)
 
 GIT
   remote: https://github.com/learningtapestry/lt-lcms.git
-  revision: 0d6ee08d55333d04fd30f6640412d9012b5db3ed
-  ref: 0d6ee08
-  branch: master
+  revision: 2be14639b321ca6cefe4a59c1559053a4dc760d3
+  ref: 2be1463
+  branch: ruby-3-upgrade
   specs:
-    lt-lcms (0.5.0)
-      google-api-client (~> 0.38)
+    lt-lcms (0.6.0)
+      google-apis-core (~> 0.11, >= 0.11.1)
       httparty (~> 0.18)
       nokogiri (~> 1.10, >= 1.10.8)
       rubyzip (~> 2)
 
 GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
-  revision: f4bbc540ed7018703bba46ebbd6e067b603f1db2
-  ref: f4bbc54
+  revision: 137815db43fa81b4b85cdbdb8e5faec82e43f9b4
+  ref: 137815d
   branch: puppeteer-support
   specs:
-    wicked_pdf (2.0.2)
+    wicked_pdf (2.0.3)
       activesupport
 
 PATH
@@ -374,19 +374,23 @@ GEM
       webrick
     google-apis-discovery_v1 (0.14.0)
       google-apis-core (>= 0.11.0, < 2.a)
+    google-apis-drive_v3 (0.46.0)
+      google-apis-core (>= 0.11.0, < 2.a)
     google-apis-generator (0.12.0)
       activesupport (>= 5.0)
       gems (~> 1.2)
       google-apis-core (>= 0.11.0, < 2.a)
       google-apis-discovery_v1 (~> 0.5)
       thor (>= 0.20, < 2.a)
-    googleauth (0.17.1)
-      faraday (>= 0.17.3, < 2.0)
+    google-cloud-env (2.1.0)
+      faraday (>= 1.0, < 3.a)
+    googleauth (1.9.1)
+      faraday (>= 1.0, < 3.a)
+      google-cloud-env (~> 2.1)
       jwt (>= 1.4, < 3.0)
-      memoist (~> 0.16)
       multi_json (~> 1.11)
       os (>= 0.9, < 2.0)
-      signet (~> 0.15)
+      signet (>= 0.16, < 2.a)
     hashie (5.0.0)
     hiredis (0.6.3)
     htmlentities (4.3.4)
@@ -430,7 +434,6 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
-    memoist (0.16.2)
     method_source (1.0.0)
     mime-types (3.5.1)
       mime-types-data (~> 3.2015)

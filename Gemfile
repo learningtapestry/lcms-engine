@@ -17,13 +17,13 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'lt-google-api', github: 'learningtapestry/lt-google-api',
-                     branch: 'master',
-                     ref: '74c9baa'
+                     branch: 'ruby-3-upgrade',
+                     ref: '3dd76b6'
 
 gem 'lt-lcms', github: 'learningtapestry/lt-lcms',
-               branch: 'master',
-               ref: '0d6ee08'
+               branch: 'ruby-3-upgrade',
+               ref: '2be1463'
 
 gem 'wicked_pdf', github: 'learningtapestry/wicked_pdf',
                   branch: 'puppeteer-support',
-                  ref: 'f4bbc54'
+                  ref: '137815d'
