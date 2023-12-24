@@ -24,6 +24,7 @@ PreCommit:
     exclude:
     - bin/*
     - spec/dummy/bin/*
+    - .codeship/*
 
   YamlSyntax:
     enabled: true
