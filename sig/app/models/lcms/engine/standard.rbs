@@ -527,6 +527,7 @@ module Lcms
         def clear_synonyms_change: () -> void
       end
       include GeneratedAttributeMethods
+
       def resource_standards: () -> Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy
       def resource_standards=: (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard]) -> (Lcms::Engine::ResourceStandard::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceStandard])
       def resource_standard_ids: () -> Array[Integer]
@@ -547,6 +548,7 @@ module Lcms
         include GeneratedRelationMethods
         include _ActiveRecord_Relation[Lcms::Engine::Standard, Integer]
         include Enumerable[Lcms::Engine::Standard]
+        include Scopes
       end
 
       class ActiveRecord_Associations_CollectionProxy < ::ActiveRecord::Associations::CollectionProxy
