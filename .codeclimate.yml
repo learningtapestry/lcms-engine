@@ -74,6 +74,7 @@ ratings:
 exclude_paths:
   - app/assets/javascripts/lcms/engine/vendor/**/*
   - features/**/*
+  - public/lcms-engine-assets/**/*.map
   - spec/**/*
   - vendor/**/*
   - node_modules/**/*
