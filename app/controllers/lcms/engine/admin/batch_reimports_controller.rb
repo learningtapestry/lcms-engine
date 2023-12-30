@@ -61,7 +61,7 @@ module Lcms
         end
 
         def materials?
-          params.dig(:query, :type) == 'materials'
+          params.dig(:query, :type) == 'materials' || params[:type].to_s == 'materials'
         end
 
         #
