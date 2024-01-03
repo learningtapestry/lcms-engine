@@ -3,7 +3,7 @@
 namespace :db do # rubocop:disable Metrics/BlockLength
   desc 'Backs up the database.'
   task backup: [:environment] do
-    config = ActiveRecord::Base.connection_config
+    config = ActiveRecord::Base.connection_db_config.configuration_hash
 
     backup_cmd = <<-BASH
       BACKUP_FOLDER=$HOME/database_backups/`date +%Y_%m_%d`
@@ -32,7 +32,7 @@ namespace :db do # rubocop:disable Metrics/BlockLength
 
   desc 'Dumps the database.'
   task dump: :environment do
-    config = ActiveRecord::Base.connection_config
+    config = ActiveRecord::Base.connection_db_config.configuration_hash
 
     dump_cmd = <<-BASH
       PGPASSWORD=#{config[:password]} \
@@ -55,7 +55,7 @@ namespace :db do # rubocop:disable Metrics/BlockLength
 
   desc 'Runs pg_restore.'
   task pg_restore: [:environment] do
-    config = ActiveRecord::Base.connection_config
+    config = ActiveRecord::Base.connection_db_config.configuration_hash
 
     restore_cmd = <<-BASH
       PGPASSWORD=#{config[:password]} \
