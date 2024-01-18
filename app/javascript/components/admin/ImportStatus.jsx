@@ -10,7 +10,7 @@ class ImportStatus extends React.Component {
     this.pollingInterval = 5000;
     this.chunkSize = 50;
     this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
-    this.withPdf = props.with_pdf || false;
+    this.withPdf = props.with_pdf || props.withPdf || false;
   }
 
   componentDidMount() {
@@ -31,7 +31,7 @@ class ImportStatus extends React.Component {
   }
 
   updateChunkStatus(jids) {
-    $.getJSON(this.props.pollingPath, {
+    $.getJSON(this.props.pollingPath || this.props.polling_path, {
       jids: jids,
       type: this.props.type,
       _: Date.now(), // prevent cached response
@@ -114,7 +114,7 @@ class ImportStatus extends React.Component {
             <a href={job.link} target="_blank" className="" rel="noreferrer">
               {job.status !== 'done' ? job.text || job.link : 'Done'}
             </a>
-            {job.status === 'done' && job.ok ? <span>{this.resourceButton(job)}</span> : null}
+            {job.status === 'done' && job.ok ? <span className="m-2">{this.resourceButton(job)}</span> : null}
           </div>
           <div>
             {!_.isEmpty(job.errors) ? (
@@ -146,8 +146,10 @@ ImportStatus.propTypes = {
   jobs: PropTypes.object.isRequired,
   links: PropTypes.array,
   type: PropTypes.string.isRequired,
+  polling_path: PropTypes.string.isRequired,
   pollingPath: PropTypes.string.isRequired,
   with_pdf: PropTypes.bool,
+  withPdf: PropTypes.bool,
 };
 
 export default ImportStatus;
