@@ -15,6 +15,8 @@ separately, simplifying the client applications in the process.
 - Rails 6.1 or higher
 - Postgres 9.6 or higher
 
+Note: if you're using Node version >= 17.x you'll need to set `NODE_OPTIONS=--openssl-legacy-provider` to be able to compile lcms-engine assets.
+
 ## Current development
 
 | Branch | Rails version |
