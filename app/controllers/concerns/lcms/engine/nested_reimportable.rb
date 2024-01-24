@@ -17,9 +17,11 @@ module Lcms
 
       def flatten_result(job_class, jid)
         jid_res = job_class.fetch_result(jid)
-        return jid_res if (failed = job_class.fetch_result_nested(jid).reject { |j| j['ok'] }).blank?
+        result_nested = job_class.fetch_result_nested(jid)
+        # Return in case of no errors
+        return jid_res unless result_nested.any? { _1['ok'] == false }
 
-        { ok: false, errors: jid_res&.dig('errors') || [] }.tap do |failed_result|
+        { ok: false, errors: jid_res&.[]('errors') || [] }.tap do |failed_result|
           failed.each do |e|
             failed_result[:errors] << "<a href=\"#{e['link']}\">Source</a>: #{e['errors'].join(', ')}"
           end
