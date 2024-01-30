@@ -1,5 +1,0 @@
-module Lcms
-  module Engine
-    def self.table_name_prefix: -> String
-  end
-end

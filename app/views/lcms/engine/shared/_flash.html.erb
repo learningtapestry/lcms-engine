@@ -1,8 +1,12 @@
 <% flash.to_hash.slice('alert', 'notice').each do |name, message| %>
   <% if message.present? %>
     <% css_class = name == 'alert' ? 'alert-danger' : 'alert-success' %>
-    <div class="alert alert-dismissible fade show <%= css_class %>" role="alert">
-      <%= raw message %>
+    <div class="alert alert-dismissible fade show <%= css_class %> text-break" role="alert">
+      <% if message.start_with?(Lcms::Engine::FLASH_REDIS_PREFIX) %>
+        <%= raw Rails.application.config.redis&.get(message).presence || "Message is inside Redis: #{message}" %>
+      <% else %>
+        <%= raw message %>
+      <% end %>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>

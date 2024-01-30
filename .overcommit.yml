@@ -13,8 +13,8 @@ PreCommit:
   BundleCheck:
     enabled: true
 
-  BundleOutdated:
-    enabled: true
+#  BundleOutdated:
+#    enabled: true
 
   LocalPathsInGemfile:
     enabled: true

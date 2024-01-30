@@ -1,5 +1,10 @@
 module Lcms
   module Engine
+    FLASH_MESSAGE_MAX_CHAR: Integer
+    FLASH_REDIS_PREFIX: ::String
+
+    def self.table_name_prefix: -> ::String
+
     class Engine < ::Rails::Engine
       def self.config: -> untyped
       def self.initializer: (*untyped?) ?{ (untyped?) -> untyped } -> untyped
