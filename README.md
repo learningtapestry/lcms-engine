@@ -235,7 +235,7 @@ docker compose start app
 Start the specs
 
 ```shell
-docker compose exec app sh -c 'bundle exec rspec'
+docker compose run --rm app sh -c 'bundle exec rspec'
 ```
 
 In case you need to rebuild the image, use buildx command to create multi-arch image and push it to the registry

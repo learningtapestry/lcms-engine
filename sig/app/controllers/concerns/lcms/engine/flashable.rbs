@@ -1,0 +1,7 @@
+module Lcms
+  module Engine
+    module Flashable
+      def store_flash_message: (::String original_message) -> ::String
+    end
+  end
+end
