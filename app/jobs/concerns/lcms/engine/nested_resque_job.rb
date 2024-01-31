@@ -25,6 +25,19 @@ module Lcms
           :done
         end
 
+        # Fetches the results of nested jobs in Resque.
+        #
+        # This method iterates over each job class in the `NESTED_JOBS` constant,
+        # constructs a Redis key pattern for the nested job results, and retrieves
+        # the value from Redis. It attempts to parse the value as JSON and adds it
+        # to the result array. If the parsing fails, it adds the original value
+        # to the result array instead.
+        #
+        # @param jid [String] The job ID of the parent job.
+        # @return [Array] An array containing the results of all nested jobs of the parent job.
+        #
+        # @example
+        #   fetch_result_nested('1234')
         def fetch_result_nested(jid)
           [].tap do |result|
             self::NESTED_JOBS.each do |job_klass|
