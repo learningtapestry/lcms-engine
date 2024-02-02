@@ -22,8 +22,8 @@ gem 'lt-google-api', github: 'learningtapestry/lt-google-api',
 
 gem 'lt-lcms', github: 'learningtapestry/lt-lcms',
                branch: 'ruby-3-upgrade',
-               ref: '2be1463'
+               ref: '9394667'
 
 gem 'wicked_pdf', github: 'learningtapestry/wicked_pdf',
                   branch: 'puppeteer-support',
-                  ref: '137815d'
+                  ref: '2c3c474'

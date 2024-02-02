@@ -10,8 +10,8 @@ GIT
 
 GIT
   remote: https://github.com/learningtapestry/lt-lcms.git
-  revision: 2be14639b321ca6cefe4a59c1559053a4dc760d3
-  ref: 2be1463
+  revision: 93946677b63120c132c7c2005a8f0e49700553ac
+  ref: 9394667
   branch: ruby-3-upgrade
   specs:
     lt-lcms (0.6.0)
@@ -22,11 +22,11 @@ GIT
 
 GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
-  revision: 137815db43fa81b4b85cdbdb8e5faec82e43f9b4
-  ref: 137815d
+  revision: 2c3c474a5110aa4cd43c64684242d82394a86de4
+  ref: 2c3c474
   branch: puppeteer-support
   specs:
-    wicked_pdf (2.0.3)
+    wicked_pdf (2.0.6)
       activesupport
 
 PATH
