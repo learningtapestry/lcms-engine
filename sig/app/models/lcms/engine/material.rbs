@@ -6,11 +6,11 @@ module Lcms
       include Partable
 
       module Scopes
-        def gdoc: -> ActiveRecord::Relation
-        def pdf: -> ActiveRecord::Relation
-        def where_metadata: (Hash[untyped, untyped]) -> ActiveRecord::Relation
-        def where_metadata_like: ((Symbol | String), untyped) -> ActiveRecord::Relation
-        def where_metadata_not: (Hash[untyped, untyped]) -> ActiveRecord::Relation
+        def gdoc: -> Material::ActiveRecord_Relation
+        def pdf: -> Material::ActiveRecord_Relation
+        def where_metadata: (Hash[untyped, untyped]) -> Material::ActiveRecord_Relation
+        def where_metadata_like: ((Symbol | String), untyped) -> Material::ActiveRecord_Relation
+        def where_metadata_not: (Hash[untyped, untyped]) -> Material::ActiveRecord_Relation
       end
       extend Scopes
 

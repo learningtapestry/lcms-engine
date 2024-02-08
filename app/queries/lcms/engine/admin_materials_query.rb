@@ -48,12 +48,16 @@ module Lcms
       end
 
       def search_by_file_name
-        @scope = @scope.search_name(q.search_file_name).with_pg_search_rank if q.search_file_name.present?
+        return if q.search_file_name.blank?
+
+        ActiveSupport::Deprecation
+          .warn('Lcms::Engine::Material.search_name has been removed. Refactor your calls accordingly.')
+        # @scope = @scope.search_name(q.search_file_name).with_pg_search_rank
       end
 
       def sorted_scope
-        @scope = @scope.reorder(:identifier) if q.sort_by.blank? || q.sort_by == 'identifier'
-        @scope = @scope.reorder(updated_at: :desc) if q.sort_by == 'last_update'
+        @scope = @scope.reorder('identifier') if q.sort_by.blank? || q.sort_by == 'identifier'
+        @scope = @scope.reorder('updated_at DESC') if q.sort_by == 'last_update'
         @scope.distinct
       end
     end
