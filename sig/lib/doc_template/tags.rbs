@@ -1,8 +1,15 @@
 module DocTemplate
   module Tags
-    CONFIG_PATH: untyped
+    CONFIG_PATH: Pathname
+
+    RE_BOLD: Regexp
+    RE_ITALIC: Regexp
+    RE_LINE_BREAK: Regexp
+
+    TAG_LINE_BREAK: String
 
     def self.config: (*untyped?) -> Hash[untyped, untyped]
     def self.config=: (*untyped?) -> untyped
+    def self.substitute_tags_in: (String | nil) -> String
   end
 end
