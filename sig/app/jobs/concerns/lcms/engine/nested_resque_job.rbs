@@ -1,0 +1,17 @@
+module Lcms
+  module Engine
+    module NestedResqueJob
+      @initial_job_id: String
+
+      extend ActiveSupport::Concern
+
+      def queued_or_running_nested?: (String job_id, ?String current_job_id) -> bool
+      def status_nested: (String jid) -> (untyped | :running | :done)
+      def fetch_result_nested: (String jid) -> untyped
+
+      private
+
+      def initial_job_id: -> String
+    end
+  end
+end
