@@ -1,0 +1,6 @@
+module WillPaginate
+  module ActionView
+    class BootstrapLinkRenderer
+    end
+  end
+end

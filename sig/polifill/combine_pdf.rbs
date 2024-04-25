@@ -1,5 +1,8 @@
 module CombinePDF
-  def self.parse: (*untyped?) -> untyped
+  class PDF
+    def <<: (PDF) -> PDF
+  end
 
+  def self.parse: (*untyped?) -> untyped
   def self.new: (*untyped?) -> untyped
 end
