@@ -1,0 +1,16 @@
+ module Lcms
+  module Engine
+    module RetryDelayed
+      extend ActiveSupport::Concern
+
+      module RetryBackoffStrategy
+        MIN_DELAY_MULTIPLIER: ::Float
+        MAX_DELAY_MULTIPLIER: ::Float
+        RETRY_DELAYES: ::Array[ActiveSupport::Duration]
+
+        def self.should_retry?: (Integer retry_attempt, StandardError exception) -> bool
+        def self.retry_delay: (Integer retry_attempt, StandardError _exception) -> Float
+      end
+    end
+  end
+end
