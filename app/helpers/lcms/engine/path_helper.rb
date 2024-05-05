@@ -3,8 +3,6 @@
 module Lcms
   module Engine
     module PathHelper
-      include Rails.application.routes.url_helpers
-
       def dynamic_path(path, *)
         host_engine_path(path, *).presence || main_app.send(path.to_sym, *)
       end
@@ -22,9 +20,9 @@ module Lcms
       def host_engine_path(key, *)
         settings = Lcms::Engine::Admin::AdminController.settings
         if (host_route = settings.dig(:redirect, :host, key)).present?
-          main_app.send(host_route.to_sym, *)
+          Rails.application.routes.url_helpers.send(host_route.to_sym, *)
         elsif (engine_route = settings.dig(:redirect, :engine, key)).present?
-          lcms_engine.send(engine_route.to_sym, *)
+          Lcms::Engine::Engine.routes.url_helpers.send(engine_route.to_sym, *)
         else
           raise "Please tune up config/lcms-admin.yml and set redirect:host:#{key} or redirect:engine:#{key} values"
         end
