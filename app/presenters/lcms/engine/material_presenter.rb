@@ -25,8 +25,8 @@ module Lcms
         metadata['cc_attribution'].presence || document&.cc_attribution
       end
 
-      def content_for(context_type)
-        render_content(context_type)
+      def content_for(context_type, options = {})
+        render_content(context_type, options)
       end
 
       def content_type
