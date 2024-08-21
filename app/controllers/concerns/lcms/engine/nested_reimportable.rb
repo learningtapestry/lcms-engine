@@ -32,8 +32,8 @@ module Lcms
         return jid_res unless result_nested.any? { _1['ok'] == false }
 
         { ok: false, errors: jid_res&.[]('errors') || [] }.tap do |failed_result|
-          result_nested.each do |e|
-            failed_result[:errors] << "<a href=\"#{e['link']}\">Source</a>: #{e['errors'].join(', ')}"
+          result_nested.select { _1['ok'] == false }.each do |e|
+            failed_result[:errors] << "<a href=\"#{e['link']}\">Source</a>: #{(e['errors'] || []).join(', ')}"
           end
         end
       end
