@@ -1,4 +1,3 @@
-version: '3'
 services:
   db:
     image: postgres:13.7-alpine
@@ -21,7 +20,7 @@ services:
     # to install all gems ONLY
 #    command: bash -c "bundle install && tail -f /dev/null"
     # is used to start the container ONLY, can be used to inspect
-    # start up issues, solve gems conflicts etc
+    # startup issues, solve gems conflicts etc
 #    command: bash -c "tail -f /dev/null"
     env_file:
       - spec/dummy/.env.docker
