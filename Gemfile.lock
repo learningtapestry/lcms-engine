@@ -22,11 +22,11 @@ GIT
 
 GIT
   remote: https://github.com/learningtapestry/wicked_pdf.git
-  revision: 2c3c474a5110aa4cd43c64684242d82394a86de4
-  ref: 2c3c474
+  revision: 50d961ed2e0b48846d871a00471247ad7584d6fe
+  ref: 50d961e
   branch: puppeteer-support
   specs:
-    wicked_pdf (2.0.6)
+    wicked_pdf (2.0.7)
       activesupport
 
 PATH

@@ -16,7 +16,7 @@ module Lcms
           # Required by lcms-engine because of unpublished gems are not automatically installed with the parent gem
           gem 'wicked_pdf', git: 'https://github.com/learningtapestry/wicked_pdf.git',
                             branch: 'puppeteer-support',
-                            ref: '964a090'
+                            ref: '50d961e'
         end
       end
     end
