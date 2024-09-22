@@ -23,6 +23,13 @@ separately, simplifying the client applications in the process.
 | master    | Rails 7.0     |
 | rails-6.1 | Rails 6.1     |
 
+## Detailed information
+
+- [Environment variables](docs/env-variables.md)
+- [Google Cloud setup](docs/google-cloud-platform-setup.md)
+- [Building and publishing](docs/how-to-build-and-publish.md)
+- [PDF generation](docs/pdf-generation.md)
+
 ## Guidelines
 
 The following are a few recommendations and guidelines to keep in mind when modifying code in the
