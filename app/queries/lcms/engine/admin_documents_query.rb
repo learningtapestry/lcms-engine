@@ -21,16 +21,17 @@ module Lcms
       private
 
       def apply_filters # rubocop:todo Metrics/AbcSize,  Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-        @scope = q.inactive == '1' ? @scope.unscoped : @scope.actives
-        @scope = @scope.failed if q.only_failed == '1'
-        @scope = @scope.filter_by_term(q.search_term) if q.search_term.present?
+        @scope = q.respond_to?(:inactive) && q.inactive == '1' ? @scope.unscoped : @scope.actives
+        @scope = @scope.failed if q.respond_to?(:only_failed) && q.only_failed == '1'
+        @scope = @scope.filter_by_term(q.search_term) if q.respond_to?(:search_term) && q.search_term.present?
         @scope = @scope.filter_by_subject(q.subject) if q.subject.present?
-        @scope = @scope.filter_by_grade(q.grade) if q.grade.present?
-        @scope = @scope.where_grade(q.grades&.compact) if Array.wrap(q.grades).reject(&:blank?).present?
+        @scope = @scope.filter_by_grade(q.grade) if q.respond_to?(:grade) && q.grade.present?
+        @scope = @scope.where_grade(q.grades&.compact) \
+          if q.respond_to?(:grades) && Array.wrap(q.grades).reject(&:blank?).present?
         @scope = @scope.filter_by_module(q.module) if q.module.present?
         @scope = @scope.filter_by_unit(q.unit) if q.unit.present?
-        @scope = @scope.with_broken_materials if q.broken_materials == '1'
-        @scope = @scope.with_updated_materials if q.reimport_required == '1'
+        @scope = @scope.with_broken_materials if q.respond_to?(:broken_materials) && q.broken_materials == '1'
+        @scope = @scope.with_updated_materials if q.respond_to?(:reimport_required) && q.reimport_required == '1'
         @scope
       end
 

@@ -10,7 +10,8 @@ module Lcms
       # query : query params (Hash or OpenStruct)
       # pagination : pagination params, if pagination is nil whe return all results
       def initialize(query, pagination = nil)
-        @q = OpenStruct.new(query) # rubocop:disable Style/OpenStructUse
+        # query is a type of `Struct` with pre-defined and pre-populated fields
+        @q = query
         @pagination = pagination
       end
 

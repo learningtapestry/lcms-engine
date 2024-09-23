@@ -5,13 +5,26 @@ module Lcms
     module Admin
       class BatchReimportsController < AdminController
         include Reimportable
+        include Lcms::Engine::Queryable
+
+        before_action :set_query_params
+
+        QUERY_ATTRS = %i(
+          grade
+          module
+          subject
+          type
+          unit
+        ).freeze
+        QUERY_ATTRS_NESTED = {}.freeze
+        QUERY_ATTRS_KEYS = QUERY_ATTRS + QUERY_ATTRS_NESTED.keys
 
         def new
-          @query = OpenStruct.new(params[:query]) # rubocop:todo Style/OpenStructUse
+          @query = query_struct(@query_params)
         end
 
         def create
-          @query = OpenStruct.new params[:query].except(:type) # rubocop:todo Style/OpenStructUse
+          @query = query_struct(@query_params.except(:type))
 
           # @see lcms.yml
           # Possible default values:
@@ -70,6 +83,16 @@ module Lcms
         def view_links
           type = materials? ? :materials : :documents
           Array.wrap(AdminController.settings.dig(type, :view_links))
+        end
+
+        def set_query_params
+          super
+          @query_params[:grade] = adjust_grade_value(@query_params[:grade])
+        end
+
+        def adjust_grade_value(val)
+          number_val = val.to_s[/\d+/]
+          number_val.nil? ? val : number_val
         end
       end
     end

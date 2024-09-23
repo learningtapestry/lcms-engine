@@ -5,7 +5,7 @@
                   collection: Lcms::Engine::Resource::SUBJECTS, label_method: :humanize %>
     </div>
     <div class="col">
-      <%= f.input :grades, collection: Lcms::Engine::Grades.grades,
+      <%= f.input :grade, collection: Lcms::Engine::Grades.grades,
                   label: 'Grade', label_method: :humanize, required: false, wrapper: false %>
     </div>
     <div class="col">

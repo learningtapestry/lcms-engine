@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [BREAKING] Refactor query handling in admin controllers - [@paranoicsan](https://github.com/paranoicsan)
 - [BREAKING] Rename `import_status_for` to `import_status_for_nested` inside `Lcms::Engine::NestedReimportable` - [@paranoicsan](https://github.com/paranoicsan)
 - Normalize metadata search in Resource model - [@paranoicsan](https://github.com/paranoicsan)
 
