@@ -8,6 +8,7 @@ seeds = %w(
   subjects.seeds.rb
   development/users.seeds.rb
   development/grades.seeds.rb
+  development/standards.seeds.rb
 ).freeze
 
 seeds.map { |s| File.join dir, s }.each(&method(:load))
