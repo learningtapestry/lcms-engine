@@ -7,12 +7,32 @@ module Lcms
         include Lcms::Engine::GoogleCredentials
         include Lcms::Engine::PathHelper
         include Reimportable
+        include Lcms::Engine::Queryable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)
-        before_action :set_query_params
+        before_action :set_query_params # from Lcms::Engine::Queryable
+
+        QUERY_ATTRS = %i(
+          broken_materials
+          course
+          grade
+          inactive
+          locale
+          module
+          only_failed
+          reimport_required
+          search_term
+          sort_by
+          subject
+          unit
+        ).freeze
+        QUERY_ATTRS_NESTED = {
+          grades: []
+        }.freeze
+        QUERY_ATTRS_KEYS = QUERY_ATTRS + QUERY_ATTRS_NESTED.keys
 
         def index
-          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
+          @query = query_struct(@query_params)
           @documents = DocTemplate.config['queries']['document'].constantize.call(@query, page: params[:page])
           render_customized_view
         end
@@ -26,7 +46,7 @@ module Lcms
         end
 
         def destroy
-          @document = Document.find(params[:id])
+          @document = Document.find(params[:id].to_i)
           @document.destroy
           redirect_to lcms_engine.admin_documents_path(query: @query_params), notice: t('.success')
         end
@@ -87,7 +107,7 @@ module Lcms
           polling_path = lcms_engine.import_status_admin_documents_path
           @props =
             { jobs:, links: view_links, polling_path:, type: :documents }
-              .transform_keys! { _1.to_s.camelize(:lower) }
+              .transform_keys! { _1.to_s.camelize(:lower).to_sym }
         end
 
         def collect_errors
@@ -134,27 +154,8 @@ module Lcms
           return unless doc
 
           doc.materials.each do |material|
-            MaterialForm.new({ link: material.file_url, source_type: material.source_type }, google_credentials).save
+            MaterialForm.new({ link: material.file_url, source_type: material.source_type }).save
           end
-        end
-
-        def set_query_params
-          @query_params = params[:query]
-            &.permit(
-              :broken_materials,
-              :course,
-              :grade,
-              :inactive,
-              :locale,
-              :module,
-              :only_failed,
-              :reimport_required,
-              :search_term,
-              :sort_by,
-              :subject,
-              :unit,
-              grades: []
-            ) || {}
         end
       end
     end

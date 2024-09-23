@@ -4,11 +4,19 @@ module Lcms
   module Engine
     module Admin
       class UsersController < AdminController
+        include Lcms::Engine::Queryable
+
         before_action :find_user, except: %i(index new create)
-        before_action :set_query_params
+        before_action :set_query_params # from Lcms::Engine::Queryable
+
+        QUERY_ATTRS = %i(
+          access_code
+          email
+        ).freeze
+        QUERY_ATTRS_KEYS = QUERY_ATTRS
 
         def index
-          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
+          @query = query_struct(@query_params)
           @users = users(@query)
         end
 
@@ -52,10 +60,6 @@ module Lcms
 
         def find_user
           @user = User.find(params[:id])
-        end
-
-        def set_query_params
-          @query_params = params[:query]&.permit(:access_code, :email) || {}
         end
 
         def user_params

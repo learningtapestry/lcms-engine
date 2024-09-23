@@ -4,8 +4,16 @@ module Lcms
   module Engine
     module Admin
       class StandardsController < AdminController
+        include Lcms::Engine::Queryable
+
         before_action :find_standard, except: %i(import index)
-        before_action :set_query_params
+        before_action :set_query_params # from Lcms::Engine::Queryable
+
+        QUERY_ATTRS = %i(
+          name
+        ).freeze
+        QUERY_ATTRS_NESTED = {}.freeze
+        QUERY_ATTRS_KEYS = QUERY_ATTRS + QUERY_ATTRS_NESTED.keys
 
         def edit; end
 
@@ -20,7 +28,7 @@ module Lcms
         end
 
         def index
-          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
+          @query = query_struct(@query_params)
 
           scope = Standard.order('id')
           scope = scope.search_by_name(@query.name) if @query.name.present?
@@ -40,10 +48,6 @@ module Lcms
 
         def find_standard
           @standard = Standard.find(params[:id])
-        end
-
-        def set_query_params
-          @query_params = params[:query]&.permit(:name) || {}
         end
 
         def standard_form_params

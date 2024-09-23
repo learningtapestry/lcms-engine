@@ -6,13 +6,34 @@ module Lcms
       class MaterialsController < AdminController
         include Lcms::Engine::GoogleCredentials
         include Lcms::Engine::PathHelper
-        include Reimportable
+        include Lcms::Engine::Reimportable
+        include Lcms::Engine::Queryable
 
         before_action :find_selected, only: %i(destroy_selected reimport_selected)
-        before_action :set_query_params
+        before_action :set_query_params # from Lcms::Engine::Queryable
+
+        QUERY_ATTRS = %i(
+          header_footer
+          guidebook
+          section
+          activity
+          lesson
+          name_date
+          orientation
+          search_term
+          search_file_name
+          sort_by
+          title
+          type
+          unit
+        ).freeze
+        QUERY_ATTRS_NESTED = {
+          grades: []
+        }.freeze
+        QUERY_ATTRS_KEYS = QUERY_ATTRS + QUERY_ATTRS_NESTED.keys
 
         def index
-          @query = OpenStruct.new @query_params # rubocop:disable Style/OpenStructUse
+          @query = query_struct(@query_params)
           @materials = DocTemplate.config['queries']['material'].constantize.call(@query, page: params[:page])
           render_customized_view
         end
@@ -124,26 +145,6 @@ module Lcms
               .list_file_ids_in(folder_id)
               .map { |id| ::Lt::Lcms::Lesson::Downloader::Gdoc.gdoc_file_url(id) }
           end
-        end
-
-        def set_query_params
-          @query_params = params[:query]
-            &.permit(
-              :header_footer,
-              :guidebook,
-              :section,
-              :activity,
-              :lesson,
-              :name_date,
-              :orientation,
-              :search_term,
-              :search_file_name,
-              :sort_by,
-              :title,
-              :type,
-              :unit,
-              grades: []
-            ) || {}
         end
       end
     end
