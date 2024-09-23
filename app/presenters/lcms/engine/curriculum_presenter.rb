@@ -31,7 +31,7 @@ module Lcms
         case resource.curriculum_type
         when 'subject'
           resource.title
-        when 'unit'
+        when 'module', 'unit'
           resource.short_title&.upcase.presence || 'N/A'
         when 'grade'
           resource.short_title&.capitalize.presence || 'N/A'

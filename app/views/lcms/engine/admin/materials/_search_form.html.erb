@@ -11,7 +11,8 @@
                   as: :select,
                   include_blank: true,
                   collection: %w(landscape portrait),
-                  label_method: :upcase %>
+                  label_method: :upcase,
+                  value_method: ->(val) { val[0].downcase } %>
     </div>
     <div class="col">
       <%= f.input :name_date, label: 'Name Date',
