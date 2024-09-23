@@ -1,7 +1,7 @@
 module Lcms
   module Engine
     class AdminMaterialsQuery < BaseQuery
-      STRICT_METADATA: ::Array["grade" | "subject"]
+      STRICT_METADATA: ::Array[String]
 
       @scope: Material::ActiveRecord_Relation |
               ActiveRecord::Relation

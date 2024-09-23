@@ -5,6 +5,7 @@ require 'pg_search'
 module Lcms
   module Engine
     class Material < ApplicationRecord
+      include Filterable
       include PgSearch::Model
       include Partable
 

@@ -5,7 +5,7 @@ module Lcms
     # Usage:
     #   @materials = AdminMaterialsQuery.call(query_params, page: params[:page])
     class AdminMaterialsQuery < BaseQuery
-      STRICT_METADATA = %w(grade subject).freeze
+      STRICT_METADATA = %w(subject).freeze
 
       # Returns: ActiveRecord relation
       def call
@@ -29,7 +29,10 @@ module Lcms
           next unless q[key].present?
 
           @scope =
-            if STRICT_METADATA.include?(key.to_s)
+            if key.to_s == 'grades' && (grades = Array.wrap(q.grades).reject(&:blank?)).present?
+              values = grades.map { _1[/\d+/].nil? ? _1 : _1[/\d+/] }
+              @scope = @scope.where_grade(values)
+            elsif STRICT_METADATA.include?(key.to_s)
               @scope.where_metadata(key => q[key].to_s.downcase)
             else
               @scope.where_metadata_like(key, q[key])
@@ -38,7 +41,11 @@ module Lcms
       end
 
       def metadata_keys
-        DocTemplate.config.dig('metadata', 'service').constantize.materials_metadata.attribute_set.map(&:name)
+        default_keys = DocTemplate.config.dig('metadata', 'service')
+                         .constantize.materials_metadata.attribute_set.map(&:name)
+        # From search form comes `grades` field which can contain multiple values
+        default_keys.delete('grade')
+        default_keys.push('grades')
       end
 
       def search_by_identifier
