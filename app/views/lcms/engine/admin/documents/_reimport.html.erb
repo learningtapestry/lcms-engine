@@ -1,4 +1,4 @@
-<%= form_tag(lcms_engine.admin_documents_path, method: :post, target: '_blank', data: { turbo: false }) do %>
+<%= form_tag(lcms_engine.admin_documents_path(query: local_assigns.fetch(:query, {})), method: :post, target: '_blank', data: { turbo: false }) do %>
   <%= hidden_field_tag('document_form[link]', lesson.file_url) %>
   <%= hidden_field_tag('document_form[with_materials]', 0, class: 'c-reimport-with-materials__field') %>
   <%= hidden_field_tag('document_form[async]', local_assigns[:async].to_i) %>

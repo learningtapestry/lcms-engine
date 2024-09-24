@@ -13,7 +13,7 @@
       <span class="c-multi-selected--select-all"><%= check_box_tag 'selected_all', 'true' %> Select All on this page</span>
     </div>
     <div class="col-sm-2">
-      <%= link_to t('.new_material'), lcms_engine.new_admin_material_path, class: 'btn btn-primary m-1' %>
+      <%= link_to t('.new_material'), lcms_engine.new_admin_material_path(query: @query_params), class: 'btn btn-primary m-1' %>
       <%# link_to t('.new_material_pdf'), lcms_engine.new_admin_material_path(source_type: 'pdf'), class: 'btn btn-primary m-1' %>
     </div>
     <div class="col-sm-2">
@@ -87,7 +87,7 @@
             </td>
             <td><%= material.reimported_at.to_s.presence || material.updated_at.to_s %></td>
             <td>
-              <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', material: material } %>
+              <%= render partial: 'lcms/engine/admin/materials/reimport', locals: { btn_class: 'btn btn-warning btn-sm m-1', material: material, query: @query_params } %>
               <%= button_to t('ui.delete'), lcms_engine.admin_material_path(material, query: @query_params), class: 'btn btn-danger btn-sm m-1', data: { confirm: t('ui.are_you_sure'), 'turbo-method': :delete }, form_class: 'inline', method: :delete %>
               <% unless material.pdf? %>
                 <% link_to material.pdf_preview_title, lcms_engine.preview_pdf_material_path(material), class: 'btn btn-warning btn-sm m-1', target: '_blank' %>

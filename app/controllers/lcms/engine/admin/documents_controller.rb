@@ -89,7 +89,7 @@ module Lcms
                            name: @document_form.document.name,
                            errors: collect_errors) }
               end
-            redirect_to dynamic_document_path(@document_form.document), **flash_message
+            redirect_to dynamic_document_path(@document_form.document, query: @query_params), **flash_message
           else
             render :new
           end

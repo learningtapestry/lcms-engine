@@ -98,7 +98,7 @@ module Lcms
                            name: material.name,
                            errors: collect_errors) }
               end
-            redirect_to dynamic_material_path(material), **flash_message
+            redirect_to dynamic_material_path(material, query: @query_params), **flash_message
           else
             render :new
           end
