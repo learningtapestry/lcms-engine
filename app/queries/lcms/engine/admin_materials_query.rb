@@ -26,12 +26,14 @@ module Lcms
 
       def filter_by_metadata
         metadata_keys.each do |key|
+          next unless q.respond_to?(key)
           next unless q[key].present?
 
           @scope =
-            if key.to_s == 'grades' && (grades = Array.wrap(q.grades).reject(&:blank?)).present?
+            if key.to_s == 'grades'
+              grades = Array.wrap(q.grades).reject(&:blank?)
               values = grades.map { _1[/\d+/].nil? ? _1 : _1[/\d+/] }
-              @scope = @scope.where_grade(values)
+              values.any? ? @scope = @scope.where_grade(values) : @scope
             elsif STRICT_METADATA.include?(key.to_s)
               @scope.where_metadata(key => q[key].to_s.downcase)
             else
