@@ -9,6 +9,7 @@
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="/lcms-engine-assets/application.css" data-turbo-track="reload"/>
     <script type="text/javascript" src="/lcms-engine-assets/admin.js" data-turbo-track="reload" defer></script>
+    <%= javascript_include_tag Ckeditor.cdn_url, "data-turbo-track": "reload", defer: true %>
   </head>
   <body>
     <%= render partial: 'lcms/engine/shared/header' %>

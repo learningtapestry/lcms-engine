@@ -889,31 +889,31 @@ progress {
   .col-sm {
     flex: 1 0 0%;
   }
-  .row-col-sm-auto > * {
+  .row-cols-sm-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-  .row-col-sm-1 > * {
+  .row-cols-sm-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-  .row-col-sm-2 > * {
+  .row-cols-sm-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-  .row-col-sm-3 > * {
+  .row-cols-sm-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-  .row-col-sm-4 > * {
+  .row-cols-sm-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-  .row-col-sm-5 > * {
+  .row-cols-sm-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-  .row-col-sm-6 > * {
+  .row-cols-sm-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
@@ -32538,3 +32538,10 @@ readers do not read off random characters that represent icons */
   font-family: "Font Awesome 6 Brands";
   font-weight: 400;
 }
+
+/* stylelint-disable selector-class-pattern */
+.cke_notifications_area {
+  display: none;
+}
+
+/* stylelint-enable selector-class-pattern */

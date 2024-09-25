@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'aws-sdk-rails', '~> 3.1'
   s.add_dependency 'aws-sdk-s3', '~> 1'
   s.add_dependency 'carrierwave', '~> 2.1'
-  s.add_dependency 'ckeditor', '~> 5.1'
+  s.add_dependency 'ckeditor', '~> 5.1', '>= 5.1.3'
   s.add_dependency 'closure_tree', '~> 7.1'
   s.add_dependency 'combine_pdf', '~> 1.0'
   s.add_dependency 'cssbundling-rails', '~> 1.1'

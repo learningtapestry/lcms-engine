@@ -30,6 +30,7 @@ separately, simplifying the client applications in the process.
 - [Building and publishing](docs/how-to-build-and-publish.md)
 - [PDF generation](docs/pdf-generation.md)
 - [Override controllers for Rails 7 application](docs/override-controllers-for-rails-7.md)
+- [CKEditor usage](docs/ckeditor-usage.md)
 
 ## Guidelines
 
