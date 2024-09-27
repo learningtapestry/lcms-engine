@@ -11,7 +11,8 @@ module Lcms
         end
 
         def lcms_engine(path)
-          "/lcms-engine#{path}"
+          # "/lcms-engine#{path}"
+          path
         end
       end
     end
