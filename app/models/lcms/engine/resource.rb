@@ -57,7 +57,7 @@ module Lcms
       has_many :document_bundles, dependent: :destroy
 
       validates :title, presence: true
-      validates :url, presence: true, url: true, if: %i(video? podcast?)
+      validates :url, presence: true, url: true, if: -> { video? || podcast? }
 
       scope :media, -> { where(resource_type: MEDIA_TYPES) }
       scope :generic_resources, -> { where(resource_type: GENERIC_TYPES) }
@@ -71,12 +71,6 @@ module Lcms
       before_destroy :destroy_additional_resources
 
       class << self
-        # Define dynamic scopes for hierarchy levels.
-        # I,e: `grades`, `units`, etc
-        HIERARCHY.map(&:to_s).each do |level|
-          define_method(:"#{level.pluralize}") { where(curriculum_type: level) }
-        end
-
         def metadata_from_dir(dir)
           pairs = hierarchy[0...dir.size].zip(dir)
           pairs.to_h.compact.stringify_keys
@@ -121,6 +115,12 @@ module Lcms
       # I,e: #subject?, #grade?, #lesson?, ...
       HIERARCHY.each do |level|
         define_method(:"#{level}?") { curriculum_type.present? && curriculum_type.to_s.casecmp(level.to_s).to_i.zero? }
+
+        # Define dynamic scopes for hierarchy levels.
+        # I.e., `grades`, `units`, etc.
+        define_singleton_method(level.to_s.pluralize) do
+          where(curriculum_type: level)
+        end
       end
 
       def tree?

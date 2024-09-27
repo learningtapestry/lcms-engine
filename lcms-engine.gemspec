@@ -103,7 +103,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '< 0.18'
   s.add_development_dependency 'spring', '~> 3.1'
   s.add_development_dependency 'spring-commands-rspec', '~> 1.0'
-  s.add_development_dependency 'steep', '~> 1.5.3'
+  s.add_development_dependency 'steep', '~> 1.0'
   s.add_development_dependency 'traceroute', '~> 0.8'
   s.add_development_dependency 'webdrivers', '~> 4.0'
 end

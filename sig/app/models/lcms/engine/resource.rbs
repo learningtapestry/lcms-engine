@@ -1272,7 +1272,7 @@ module Lcms
       def generic?: -> untyped
       def directory: -> untyped
       def subject: -> untyped
-      def grades: -> untyped
+      def grades: -> ::Lcms::Engine::Grades
       def grades=: (untyped gds) -> untyped
       def lesson_number: -> untyped
       def pdf_downloads?: (?untyped? category) -> untyped
@@ -1294,6 +1294,10 @@ module Lcms
       def module?: -> bool
       def unit?: -> bool
       def lesson?: -> bool
+
+      # resource type
+      def video?: -> bool
+      def podcast?: -> bool
 
       # acts_as_taggable_on
       def tag_list: -> untyped
