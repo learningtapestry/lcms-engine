@@ -12,6 +12,8 @@ module Lcms
       has_many :document_parts, as: :renderer, dependent: :delete_all
       has_and_belongs_to_many :materials
 
+      after_destroy :destroy_connected_resource
+
       before_save :clean_curriculum_metadata
       before_save :set_resource_from_metadata
 
@@ -130,6 +132,10 @@ module Lcms
         # or alphanumeric - needed by OPR type, see https://github.com/learningtapestry/unbounded/issues/557
         lesson = metadata['lesson']
         metadata['lesson'] = lesson.match(/lesson (\w+)/i).try(:[], 1) || lesson if lesson.present?
+      end
+
+      def destroy_connected_resource
+        resource&.destroy if active?
       end
 
       def set_resource_from_metadata

@@ -107,4 +107,40 @@ describe Lcms::Engine::Document do
       it { is_expected.to eq "#{Lcms::Engine::Document::GOOGLE_URL_PREFIX}/#{file_id}" }
     end
   end
+
+  context 'when is destroyed' do
+    let!(:active_document) { create :document, resource: }
+    let!(:another_document) { create :document, resource:, active: false }
+    let!(:one_more_document) { create :document, resource:, active: false }
+    let(:resource) { create :resource }
+
+    context 'when the document is the active one' do
+      it 'destroys connected resource' do
+        expect(resource.document_ids.count).to eq 3
+        expect(active_document.active?).to be_truthy
+        expect(another_document.active?).to be_falsey
+        expect(one_more_document.active?).to be_falsey
+
+        active_document.destroy
+        expect(resource.destroyed?).to be_truthy
+
+        expect(Lcms::Engine::Document.count).to be_zero
+        expect(Lcms::Engine::Resource.count).to be_zero
+      end
+    end
+
+    context 'when document is not active' do
+      it 'deletes itself but not the other documents and connected resource' do
+        expect(resource.document_ids.count).to eq 3
+        expect(active_document.active?).to be_truthy
+        expect(another_document.active?).to be_falsey
+        expect(one_more_document.active?).to be_falsey
+
+        another_document.destroy
+
+        expect(resource.reload.destroyed?).to be_falsey
+        expect(resource.reload.document_ids.count).to eq 2
+      end
+    end
+  end
 end

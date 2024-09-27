@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   get '/oauth2callback', to: redirect(path: '/lcms-engine/oauth2callback')
 
-  # Used for testing only
-  direct(:document) { '/' }
-  direct(:material) { '/' }
+  scope 'lcms-engine' do
+    resources :documents, only: :show
+    resources :materials, only: :show
+  end
 
   get '/admin', to: 'welcome#index', as: :admin
 end

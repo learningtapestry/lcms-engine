@@ -15,8 +15,8 @@ module DocTemplate
 
     def self.parse: (untyped nodes, ?::Hash[untyped, untyped] opts) -> untyped
 
+    def initialize: -> void
     def parse: (untyped nodes, ?::Hash[untyped, untyped] opts) -> self
-
     def render: () -> untyped
 
     private

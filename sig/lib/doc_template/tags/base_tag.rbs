@@ -40,6 +40,7 @@ module DocTemplate
       def include_break?: (untyped node) -> untyped
 
       def include_break_for?: (untyped node, untyped key) -> (false | untyped)
+      def initialize: -> void
 
       def materials: () -> untyped
 

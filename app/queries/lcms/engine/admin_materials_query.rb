@@ -51,13 +51,15 @@ module Lcms
       end
 
       def search_by_identifier
+        return unless q.respond_to?(:search_term) && q.search_term.present?
+
         # we need the `with_pg_search_rank` scope for this to work with DISTINCT
         # See more on: https://github.com/Casecommons/pg_search/issues/238
-        @scope = @scope.search_identifier(q.search_term).with_pg_search_rank if q.search_term.present?
+        @scope = @scope.search_identifier(q.search_term).with_pg_search_rank
       end
 
       def search_by_file_name
-        return if q.search_file_name.blank?
+        return unless q.respond_to?(:search_file_name) && q.search_file_name.present?
 
         ActiveSupport::Deprecation
           .warn('Lcms::Engine::Material.search_name has been removed. Refactor your calls accordingly.')
