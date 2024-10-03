@@ -19,7 +19,17 @@ module Lcms
         #
         def where_metadata_in(key, arr)
           arr = Array.wrap(arr).compact.map(&:downcase)
-          base_table = name == 'Lcms::Engine::Material' ? 'materials' : 'resources'
+          base_table =
+            case name
+            when 'Lcms::Engine::Material'
+              'materials'
+            when 'Lcms::Engine::Resource'
+              'resources'
+            when 'Lcms::Engine::Document'
+              'documents'
+            else
+              raise "Unknown table name: #{name}"
+            end
           clauses = Array.new(arr.count) { "lower(#{base_table}.metadata->>'#{key}') = ?" }.join(' OR ')
           where(clauses, *arr)
         end
