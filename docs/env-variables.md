@@ -85,3 +85,8 @@ Obs: if you're setting a local dev machine on OSX and getting small fonts when g
 | POSTGRESQL_USERNAME |
 | POSTGRESQL_PASSWORD |
 | POSTGRESQL_PORT     |
+
+### API config
+| Name                | Description                                                                   |
+|---------------------|-------------------------------------------------------------------------------|
+| API_SECRET_KEY      | Secret key used  with HMAC  to authenticate server to server calls to the API |

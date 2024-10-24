@@ -72,6 +72,18 @@ module Lcms
       scope :generic_resources, -> { where(resource_type: GENERIC_TYPES) }
       scope :ordered, -> { order(:hierarchical_position, :slug) }
 
+      # @param link_path [String] when nested, use a dot to separate the levels, eg "level1.level2"
+      # @param datetime [DateTime, Time]
+      scope :where_link_updated_after, lambda { |link_path, datetime|
+        path_elements = link_path.split('.')
+        jsonb_path = path_elements.map(&:to_s).join(',')
+
+        # Convert datetime to Unix timestamp for comparison
+        timestamp = datetime.to_i
+
+        where("(links #>> '{#{jsonb_path},timestamp}')::bigint >= ?", timestamp)
+      }
+
       before_save :update_metadata, :update_slug, :update_position
 
       after_save :update_descendants_meta, :update_descendants_position,
