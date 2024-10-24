@@ -1,0 +1,9 @@
+module Lcms
+  module Engine
+    module Api
+      module AuthHelper
+        def self.compute_hmac_signature: (untyped timestamp, untyped path, untyped body, untyped secret_key) -> untyped
+      end
+    end
+  end
+end

@@ -253,6 +253,29 @@ In case you need to rebuild the image, use buildx command to create multi-arch i
 docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine:ruby-3.2 --push .
 ```
 
+### RBS type checking
+To run type checks locally:
+
+```shell
+bundle exec steep check
+```
+
+To generate RBS files for a new model, go to spec/dummy and run the following command:
+
+```shell
+bundle exec rails rbs_rails:generate_rbs_for_models
+```
+
+You can then copy the relevant files to the correct sig subdirectory from root, and delete the other non-relevant files
+under spec/dummy/sig
+
+To generate a single non-model file signature, follow this example. You may need to manually create the sig subdirectories
+if not already there
+
+```shell
+bundle exec rbs prototype rb app/jobs/lcms/engine/integrations/webhook_call_job.rb > sig/app/jobs/lcms/engine/integrations/webhook_call_job.rbs
+```
+
 ## License
 
 The gem is available as open source under the terms of the [Apache License](https://github.com/learningtapestry/lcms-engine/blob/master/LICENSE).

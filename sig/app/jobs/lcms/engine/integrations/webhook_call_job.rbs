@@ -1,0 +1,13 @@
+module Lcms
+  module Engine
+    module Integrations
+      class WebhookCallJob < Lcms::Engine::ApplicationJob
+        extend ResqueJob
+
+        include Lcms::Engine::RetryDelayed
+
+        def perform: (untyped config_id, untyped payload) -> untyped
+      end
+    end
+  end
+end

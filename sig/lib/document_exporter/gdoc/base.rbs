@@ -22,7 +22,7 @@ module DocumentExporter
 
       def self.url_for: (untyped file_id) -> ::String
 
-      def create_gdoc_folders: (untyped folder) -> untyped
+      def create_gdoc_folders: (untyped folder) -> Array[untyped]
 
       def export: () -> self
 
@@ -43,7 +43,7 @@ module DocumentExporter
       #
       # Deletes files of previous versions
       #
-      def delete_previous_versions_from: (untyped folder) -> untyped
+      def delete_previous_versions_from: (untyped folder) -> boolish
 
       def drive_service: () -> untyped
 
