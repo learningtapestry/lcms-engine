@@ -27,12 +27,13 @@ module DocTemplate
     def self.substitute_tags_in(content)
       return '' if content.blank?
 
-      # @type var content: String
-      content
-        .gsub("\n", '<br/>')
-        .gsub(RE_LINE_BREAK, TAG_LINE_BREAK)
-        .gsub(RE_ITALIC, '<i>\2</i>')
-        .gsub(RE_BOLD, '<b>\2</b>')
+      # do gsub and mark if any matches
+      parsed_content = content
+                         .gsub(RE_LINE_BREAK, TAG_LINE_BREAK)
+                         .gsub(RE_ITALIC, '<i>\2</i>')
+                         .gsub(RE_BOLD, '<b>\2</b>')
+      # if there are any matches, call recursively
+      parsed_content == content ? parsed_content.gsub("\n", '<br/>') : substitute_tags_in(parsed_content)
     end
   end
 end
