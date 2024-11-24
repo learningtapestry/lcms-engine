@@ -28,7 +28,7 @@ module DocTemplate
       return '' if content.blank?
 
       # do gsub and mark if any matches
-      parsed_content = content
+      parsed_content = content.to_s
                          .gsub(RE_LINE_BREAK, TAG_LINE_BREAK)
                          .gsub(RE_ITALIC, '<i>\2</i>')
                          .gsub(RE_BOLD, '<b>\2</b>')
