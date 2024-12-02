@@ -35,7 +35,7 @@ module DocumentExporter
         folders = Array.wrap(id)
         folders << drive_service.create_folder(DocumentExporter::Gdoc::TeacherMaterial::FOLDER_NAME, id)
         folders << drive_service.create_folder(DocumentExporter::Gdoc::StudentMaterial::FOLDER_NAME, id)
-        folders.each(&method(:delete_previous_versions_from))
+        folders.each { |f| delete_previous_versions_from(f) }
       end
 
       def export

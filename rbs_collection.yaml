@@ -23,3 +23,11 @@ gems:
     ignore: true
   - name: steep
     ignore: true
+  - name: parser
+    ignore: true
+  - name: ast
+    ignore: true
+  - name: rubocop
+    ignore: true
+  - name: httparty
+    ignore: true

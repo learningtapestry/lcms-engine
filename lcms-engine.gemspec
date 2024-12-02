@@ -91,6 +91,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'jsbundling-rails', '~> 1.1'
   s.add_development_dependency 'mock_redis', '~> 0.44'
   s.add_development_dependency 'overcommit', '~> 0.57'
+  s.add_development_dependency 'rbs_rails', '~> 0.12'
   s.add_development_dependency 'rspec-rails', '~> 4.0.2'
   s.add_development_dependency 'rubocop', '~> 1.36'
   s.add_development_dependency 'sdoc', '~> 2'

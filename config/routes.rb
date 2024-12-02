@@ -71,6 +71,10 @@ Lcms::Engine::Engine.routes.draw do
 
   get '/oauth2callback' => 'welcome#oauth2callback'
 
+  namespace :api do
+    resources :resources, only: [:index]
+  end
+
   get '/*slug' => 'resources#show', as: :show_with_slug
 
   root to: 'welcome#index'

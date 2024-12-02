@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_29_130353) do
-
+ActiveRecord::Schema[7.0].define(version: 2024_10_24_102540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
   enable_extension "plpgsql"
@@ -133,6 +132,18 @@ ActiveRecord::Schema.define(version: 2020_04_29_130353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "main", default: false, null: false
+  end
+
+  create_table "lcms_engine_integrations_webhook_configurations", force: :cascade do |t|
+    t.string "event_name", null: false
+    t.boolean "active", default: true
+    t.string "endpoint_url", null: false
+    t.string "action", default: "post", null: false
+    t.string "auth_type"
+    t.jsonb "auth_credentials"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_name"], name: "index_webhook_configurations_on_event_name"
   end
 
   create_table "leadership_posts", id: :serial, force: :cascade do |t|

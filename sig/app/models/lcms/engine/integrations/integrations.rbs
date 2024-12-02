@@ -1,0 +1,7 @@
+module Lcms
+  module Engine
+    module Integrations
+      # Additional method or class signatures if required
+    end
+  end
+end

@@ -1,32 +1,15 @@
 # D = Steep::Diagnostic
 
-target :lib do
+target :app do
   signature "sig", "vendor/rbs"
 
-  # check "lib/doc_template/tables/base.rb"
-  check "lib"
   check "app/models/**/*.rb"
-#  # check "Gemfile"                   # File name
-#  # check "app/models/**/*.rb"        # Glob
-#  # ignore "lib/templates/*.rb"
-#
-#   # library "pathname"              # Standard libraries
-#   # library "strong_json"           # Gems
-  library "base64", "rbs"
-#
-#   # configure_code_diagnostics(D::Ruby.default)      # `default` diagnostics setting (applies by default)
-#   # configure_code_diagnostics(D::Ruby.strict)       # `strict` diagnostics setting
-#   # configure_code_diagnostics(D::Ruby.lenient)      # `lenient` diagnostics setting
-#   # configure_code_diagnostics(D::Ruby.silent)       # `silent` diagnostics setting
-#   # configure_code_diagnostics do |hash|             # You can setup everything yourself
-#   #   hash[D::Ruby::NoMethod] = :information
-#   # end
-end
+  check "lib"
 
-# target :test do
-#   signature "sig", "sig-private"
-#
-#   check "test"
-#
-#   # library "pathname"              # Standard libraries
-# end
+  ignore "lib/resque_job.rb"
+  ignore "lib/document_exporter/gdoc/base.rb"
+
+  library "base64"
+  library "activerecord"
+  library "activesupport"
+end

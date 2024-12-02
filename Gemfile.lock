@@ -336,7 +336,9 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
-    ffi (1.17.0)
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
     fileutils (1.7.2)
     fog-aws (3.19.0)
       fog-core (~> 2.1)
@@ -532,6 +534,9 @@ GEM
       ffi (~> 1.0)
     rbs (3.5.3)
       logger
+    rbs_rails (0.12.0)
+      parser
+      rbs (>= 1)
     rbtree3 (0.7.1)
     rdoc (6.5.0)
       psych (>= 4.0.0)
@@ -718,6 +723,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin-21
+  arm64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
@@ -734,6 +740,7 @@ DEPENDENCIES
   lt-lcms!
   mock_redis (~> 0.44)
   overcommit (~> 0.57)
+  rbs_rails (~> 0.12)
   rspec-rails (~> 4.0.2)
   rubocop (~> 1.36)
   sdoc (~> 2)
