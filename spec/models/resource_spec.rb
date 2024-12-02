@@ -60,6 +60,50 @@ describe Lcms::Engine::Resource do
     end
   end
 
+  describe '.where_link_updated_after' do
+    let!(:resource1) do
+      create :resource, links: {
+        level1: {
+          level2: {
+            url: 'http://example.com',
+            timestamp: 1.day.ago.to_i
+          }
+        }
+      }
+    end
+
+    let!(:resource2) do
+      create :resource, links: {
+        level1: {
+          level2: {
+            url: 'http://example.com',
+            timestamp: 2.days.ago.to_i
+          }
+        }
+      }
+    end
+
+    subject(:found_resources) { Lcms::Engine::Resource.where_link_updated_after(link_path, time) }
+
+    let(:link_path) { 'level1.level2' }
+
+    context 'when one resource should be found' do
+      let(:time) { 25.hours.ago }
+
+      it 'returns the correct resource' do
+        expect(found_resources).to eq [resource1]
+      end
+    end
+
+    context 'when no resources should be found' do
+      let(:time) { 1.hour.ago }
+
+      it 'returns an empty array' do
+        expect(found_resources).to eq []
+      end
+    end
+  end
+
   describe 'update metadata on save' do
     let(:dir) { ['math', 'grade 2', 'module 1', 'topic a'] }
 
