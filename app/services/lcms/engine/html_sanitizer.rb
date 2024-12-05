@@ -35,8 +35,10 @@ module Lcms
         # Removes all empty nodes before first one filled in
         #
         def strip_content(nodes)
-          nodes.xpath('./*').each do |node|
-            break if keep_node?(node)
+          # we need to remove empty nodes unless we meet some node we need to keep
+          # or text (tag placeholder)
+          nodes.xpath('./node()').each do |node|
+            break if node.text? || keep_node?(node)
 
             node.remove
           end
