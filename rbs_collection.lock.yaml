@@ -30,14 +30,6 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 0a6ea105a0afc7eaee4494585a7775f47eea6145
-    remote: https://github.com/ruby/gem_rbs_collection.git
-    repo_dir: gems
-- name: actiontext
-  version: '7.2'
-  source:
-    type: git
-    name: ruby/gem_rbs_collection
     revision: 6cbb0d2b0240b4989e1ade8f878805c927df59e5
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
@@ -383,14 +375,6 @@ gems:
     repo_dir: gems
 - name: rails-dom-testing
   version: '2.0'
-  source:
-    type: git
-    name: ruby/gem_rbs_collection
-    revision: 0a6ea105a0afc7eaee4494585a7775f47eea6145
-    remote: https://github.com/ruby/gem_rbs_collection.git
-    repo_dir: gems
-- name: rails-html-sanitizer
-  version: '1.6'
   source:
     type: git
     name: ruby/gem_rbs_collection
