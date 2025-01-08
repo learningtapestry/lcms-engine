@@ -14,7 +14,10 @@ module Lcms
             Lcms::Engine::Standard.destroy_all
             CSV.parse(super, headers: true, &method(:create_from_csv_row))
           end
+          after_reimport_hook
         end
+
+        def after_reimport_hook; end
 
         private
 
