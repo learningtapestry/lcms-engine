@@ -10,6 +10,8 @@ module Lcms
 
         def self.build: (untyped document, ?::Hash[untyped, untyped] options) -> untyped
 
+        def self.escape_double_quotes: (String | nil file_name) -> String
+
         def copy: (untyped file_ids, ?untyped folder_id) -> untyped
 
         def create_folder: (String folder_name, ?String parent_id) -> String

@@ -14,16 +14,20 @@ module Lcms
           new document, options
         end
 
+        def self.escape_double_quotes(file_name)
+          file_name.to_s.gsub('"', '\"')
+        end
+
         def copy(file_ids, folder_id = parent)
-          super file_ids, folder_id
+          super
         end
 
         def create_folder(folder_name, parent_id = FOLDER_ID)
-          super folder_name, parent_id
+          super
         end
 
         def initialize(document, options)
-          super google_credentials
+          super(google_credentials)
           @document = document
           @options = options
         end
@@ -32,8 +36,12 @@ module Lcms
           @file_id ||= begin
             folder = @options[:folder_id] || parent
             file_name = document.base_filename
+            # Escape double quotes
+            escaped_name = self.class.escape_double_quotes(file_name)
+
             response = service.list_files(
-              q: %("#{folder}" in parents and name = "#{file_name}" and mimeType = "#{MIME_FILE}" and trashed = false),
+              q: %("#{folder}" in parents and name = "#{escaped_name}" and mimeType = "#{MIME_FILE}" \
+                and trashed = false),
               fields: 'files(id)'
             )
             files = Array.wrap(response&.files)
