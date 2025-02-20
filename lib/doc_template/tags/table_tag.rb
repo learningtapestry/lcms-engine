@@ -4,7 +4,7 @@ module DocTemplate
   module Tags
     class TableTag < BaseTag
       def parse(node, opts = {})
-        unless (table = node.ancestors('table').first)
+        unless (table = ::DocTemplate::Tables::Base.flatten_table(node.ancestors('table').first))
           raise ::Lcms::Engine::DocumentError, "Tag #{self.class::TAG_NAME.upcase} placed outside table"
         end
 
