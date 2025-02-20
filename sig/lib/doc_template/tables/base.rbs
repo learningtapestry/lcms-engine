@@ -14,6 +14,7 @@ module DocTemplate
       attr_reader data: untyped
 
       def self.parse: (untyped fragment, *untyped) -> untyped
+      def self.flatten_table: (untyped table) -> untyped
 
       def initialize: () -> void
       def collect_and_render_tags: (untyped data, untyped fields, ?::Hash[untyped, untyped] opts) -> untyped

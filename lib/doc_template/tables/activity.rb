@@ -13,7 +13,7 @@ module DocTemplate
         idx = 0
         [].tap do |result|
           fragment.xpath(xpath_meta_headers, XpathFunctions.new).each do |el|
-            table = el.ancestors('table').first
+            table = self.class.flatten_table(el.ancestors('table').first)
             data = fetch table
 
             data = process_title(data)

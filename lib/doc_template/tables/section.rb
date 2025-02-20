@@ -16,7 +16,7 @@ module DocTemplate
 
         [].tap do |result|
           section_tables.each do |el|
-            table = el.ancestors('table').first
+            table = self.class.flatten_table(el.ancestors('table').first)
             data = fetch table
 
             value = data['section-title'].parameterize

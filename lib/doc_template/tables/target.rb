@@ -9,7 +9,7 @@ module DocTemplate
       def parse(fragment, *_args)
         path = ".//table/*/tr[1]/td[1][case_insensitive_contains(.//*/text(), '#{HEADER_LABEL_PIECE}')]"
         return unless (element = fragment.at_xpath path, XpathFunctions.new)
-        return unless (table = element.ancestors('table').first)
+        return unless (table = self.class.flatten_table(element.ancestors('table').first))
 
         @target_data = fetch table
 

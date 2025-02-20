@@ -12,6 +12,20 @@ module DocTemplate
         new.parse(fragment, *)
       end
 
+      def self.flatten_table(table)
+        return unless table.present?
+
+        # remove blank tbody
+        table.xpath('.//tbody').each { |tbody| tbody.remove if tbody.text.blank? }
+        # move data from thead to tbody (first children)
+        table.xpath('.//thead').each do |thead|
+          tbody = table.at_xpath('.//tbody').presence || table.add_child('<tbody></tbody>').first
+          thead.children.reverse.each { |child| tbody.prepend_child child }
+          thead.remove
+        end
+        table
+      end
+
       def initialize
         @data = {}
         @errors = []
@@ -65,7 +79,8 @@ module DocTemplate
 
         # get the table
         table_key_cell = fragment.at_xpath("table//tr[1]/td[1][contains(., '#{self.class::HEADER_LABEL}')]")
-        table = table_key_cell&.ancestors('table')&.first
+        # flatten table to simple structure with tbody only
+        table = self.class.flatten_table(table_key_cell&.ancestors('table')&.first)
         @table_exists = table.present?
         return self unless @table_exists
 
