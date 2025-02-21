@@ -6,29 +6,50 @@ import $ from 'jquery';
 class ImportStatus extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { jobs: props.jobs };
-    this.pollingInterval = 5000;
+    this.state = { jobs: props.jobs || [] };
+    this.pollingInterval = props.pollingInterval || props.polling_interval || 5000;
     this.chunkSize = 50;
     this.links = _.isEmpty(props.links) ? [`${props.type}/:id`] : props.links;
     this.withPdf = props.with_pdf || props.withPdf || false;
   }
 
   componentDidMount() {
-    this.intervalFn = setInterval(this.poll.bind(this), this.pollingInterval);
+    this.startPolling();
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalFn);
+    this.poll();
   }
+
+  hasPendingJobs = () => {
+    return _.some(this.state.jobs, job => job.status !== 'done');
+  };
 
   poll() {
     const pendingJobs = _.compact(_.map(this.state.jobs, (job, jid) => (job.status !== 'done' ? jid : null)));
     if (pendingJobs.length > 0) {
-      _.each(_.chunk(pendingJobs, this.chunkSize), jids => this.updateChunkStatus(jids));
+      const promises = _.map(_.chunk(pendingJobs, this.chunkSize), jids => this.updateChunkStatus(jids));
+      Promise.allSettled(promises).then(() => {
+        this.timeoutFn = setTimeout(() => this.poll(), this.pollingInterval); // Schedule the next poll
+      });
     } else {
-      clearInterval(this.intervalFn);
+      this.stopPolling();
     }
   }
+
+  startPolling = () => {
+    this.stopPolling(); // Clear any existing timeout
+    if (this.hasPendingJobs()) {
+      this.poll();
+    }
+  };
+
+  stopPolling = () => {
+    if (this.timeoutFn) {
+      clearTimeout(this.timeoutFn);
+      this.timeoutFn = null;
+    }
+  };
 
   updateChunkStatus(jids) {
     $.getJSON(this.props.pollingPath || this.props.polling_path, {
@@ -148,6 +169,8 @@ ImportStatus.propTypes = {
   type: PropTypes.string.isRequired,
   polling_path: PropTypes.string.isRequired,
   pollingPath: PropTypes.string.isRequired,
+  pollingInterval: PropTypes.number,
+  polling_interval: PropTypes.number,
   with_pdf: PropTypes.bool,
   withPdf: PropTypes.bool,
 };
