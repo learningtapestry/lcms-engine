@@ -30,9 +30,10 @@ namespace :db do # rubocop:disable Metrics/BlockLength
     raise unless system(backup_cmd)
   end
 
-  desc 'Dumps the database.'
-  task dump: :environment do
+  desc 'Dumps the database. Will create a dump file in db/dump/content.dump or a custom path.'
+  task :dump, [:dump_path] do |_t, args|
     config = ActiveRecord::Base.connection_db_config.configuration_hash
+    dump_path = args[:dump_path] || "#{Rails.root}/db/dump/content.dump"
 
     dump_cmd = <<-BASH
       PGPASSWORD=#{config[:password]} \
@@ -45,17 +46,18 @@ namespace :db do # rubocop:disable Metrics/BlockLength
         --no-acl \
         --format=c \
         -n public \
-        #{config[:database]} > #{Rails.root}/db/dump/content.dump
+        #{config[:database]} > #{dump_path}
     BASH
 
-    puts "Dumping #{Rails.env} database."
+    puts "Dumping #{Rails.env} database to #{dump_path}."
 
     raise unless system(dump_cmd)
   end
 
-  desc 'Runs pg_restore.'
-  task pg_restore: [:environment] do
+  desc 'Runs pg_restore. Requires a dump file in db/dump/content.dump or a custom path.'
+  task :pg_restore, [:dump_path] do |_t, args|
     config = ActiveRecord::Base.connection_db_config.configuration_hash
+    dump_path = args[:dump_path] || "#{Rails.root}/db/dump/content.dump"
 
     restore_cmd = <<-BASH
       PGPASSWORD=#{config[:password]} \
@@ -66,10 +68,10 @@ namespace :db do # rubocop:disable Metrics/BlockLength
         --no-owner \
         --no-acl \
         -n public \
-        --dbname=#{config[:database]} #{Rails.root}/db/dump/content.dump
+        --dbname=#{config[:database]} #{dump_path}
     BASH
 
-    puts "Restoring #{Rails.env} database."
+    puts "Restoring #{Rails.env} database from #{dump_path}."
 
     raise unless system(restore_cmd)
   end
