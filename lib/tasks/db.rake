@@ -31,7 +31,7 @@ namespace :db do # rubocop:disable Metrics/BlockLength
   end
 
   desc 'Dumps the database. Will create a dump file in db/dump/content.dump or a custom path.'
-  task :dump, [:dump_path] do |_t, args|
+  task :dump, [:dump_path] => [:environment] do |_t, args|
     config = ActiveRecord::Base.connection_db_config.configuration_hash
     dump_path = args[:dump_path] || "#{Rails.root}/db/dump/content.dump"
 
@@ -55,7 +55,7 @@ namespace :db do # rubocop:disable Metrics/BlockLength
   end
 
   desc 'Runs pg_restore. Requires a dump file in db/dump/content.dump or a custom path.'
-  task :pg_restore, [:dump_path] do |_t, args|
+  task :pg_restore, [:dump_path] => [:environment] do |_t, args|
     config = ActiveRecord::Base.connection_db_config.configuration_hash
     dump_path = args[:dump_path] || "#{Rails.root}/db/dump/content.dump"
 
