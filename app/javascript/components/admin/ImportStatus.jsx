@@ -18,7 +18,7 @@ class ImportStatus extends React.Component {
   }
 
   componentWillUnmount() {
-    this.poll();
+    this.stopPolling();
   }
 
   hasPendingJobs = () => {
