@@ -25,8 +25,7 @@ module Lcms
         object = create_object key
         options = options.merge(
           body: data,
-          cache_control: 'public, max-age=0, must-revalidate',
-          metadata_directive: 'REPLACE'
+          cache_control: 'public, max-age=0, must-revalidate'
         )
         object.put(options)
         object.public_url
