@@ -24,7 +24,8 @@ module Lcms
       def self.upload(key, data, options = {})
         object = create_object key
         options = options.merge(
-          body: data
+          body: data,
+          cache_control: 'public, max-age=0, must-revalidate'
         )
         object.put(options)
         object.public_url

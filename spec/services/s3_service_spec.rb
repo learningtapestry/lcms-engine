@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Lcms::Engine::S3Service do
   describe '.upload' do
     let(:data) { StringIO.new('data to be uploaded') }
-    let(:full_options) { options.merge(body: data) }
+    let(:full_options) { options.merge(body: data, cache_control: 'public, max-age=0, must-revalidate') }
     let(:key) { 'path/to/file' }
     let(:object) do
       params = {
