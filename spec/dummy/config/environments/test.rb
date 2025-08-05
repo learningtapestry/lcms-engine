@@ -22,7 +22,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = :none
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -35,6 +35,9 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  # NOTE: Use this to raise the deprecation warnings as exceptions
+  #       with extra information.
+  # config.active_support.deprecation = CustomDeprecationHandler.new
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
