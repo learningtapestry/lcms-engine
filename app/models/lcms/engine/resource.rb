@@ -5,7 +5,7 @@ module Lcms
     class Resource < ApplicationRecord
       include Filterable
 
-      enum resource_type: {
+      enum :resource_type, {
         resource: 1,
         podcast: 2,
         video: 3,

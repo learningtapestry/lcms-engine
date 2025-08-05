@@ -5,7 +5,7 @@ module Lcms
     class DocumentPart < ApplicationRecord
       belongs_to :renderer, polymorphic: true
 
-      enum context_type: { default: 0, gdoc: 1 }
+      enum :context_type, { default: 0, gdoc: 1 }
 
       default_scope { active }
 
