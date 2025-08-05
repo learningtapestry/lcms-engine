@@ -69,13 +69,13 @@ module Lcms
         self.class.transaction do
           # de-active all other lessons for this resource
           self.class.where(resource_id:).where.not(id:).update_all(active: false)
-          # activate this lesson. PS: use a simple sql update, no callbacks
+          # activate this lesson. PS: use a simple SQL update, no callbacks
           update_columns(active: true)
         end
       end
 
       def assessment?
-        resource&.assessment?
+        resource&.assessment? || false
       end
 
       def ela?
@@ -93,6 +93,8 @@ module Lcms
       end
 
       def materials_anchors
+        return {} if toc.blank?
+
         {}.tap do |materials_with_anchors| # steep:ignore
           toc.collect_children.each do |x|
             x.material_ids.each do |m|
@@ -108,7 +110,7 @@ module Lcms
       end
 
       def ordered_material_ids
-        toc.ordered_material_ids
+        Array.wrap(toc&.ordered_material_ids)
       end
 
       def tmp_link(key)
@@ -128,7 +130,7 @@ module Lcms
         # downcase subjects
         metadata['subject'] = metadata['subject']&.downcase
 
-        # store only the lesson number
+        # to store only the lesson number
         # or alphanumeric - needed by OPR type, see https://github.com/learningtapestry/unbounded/issues/557
         lesson = metadata['lesson']
         metadata['lesson'] = lesson.match(/lesson (\w+)/i).try(:[], 1) || lesson if lesson.present?
