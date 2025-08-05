@@ -86,7 +86,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'will_paginate-bootstrap-style', '~> 0.3'
   s.add_dependency 'with_advisory_lock', '~> 4.6'
 
-  s.add_development_dependency 'bullet', '~> 7.0'
+  s.add_development_dependency 'bullet', '~> 8.0'
   s.add_development_dependency 'capybara', '~> 3.31'
   s.add_development_dependency 'database_cleaner-active_record', '~> 2.2'
   # s.add_development_dependency 'debug', '>= 1.0.0'

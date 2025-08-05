@@ -222,7 +222,7 @@ GEM
     benchmark (0.4.1)
     bigdecimal (3.3.1)
     builder (3.3.0)
-    bullet (7.2.0)
+    bullet (8.0.8)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     capybara (3.40.0)
@@ -768,7 +768,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bullet (~> 7.0)
+  bullet (~> 8.0)
   capybara (~> 3.31)
   database_cleaner-active_record (~> 2.2)
   debug (>= 1.0.0)
