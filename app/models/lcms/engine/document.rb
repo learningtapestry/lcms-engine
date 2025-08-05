@@ -17,7 +17,7 @@ module Lcms
       before_save :clean_curriculum_metadata
       before_save :set_resource_from_metadata
 
-      serialize :toc, DocTemplate::Objects::TocMetadata
+      serialize :toc, coder: DocTemplate::Objects::TocMetadata
 
       scope :actives,   -> { where(active: true) }
       scope :inactives, -> { where(active: false) }
