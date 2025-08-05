@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Bump Rails to 7.2.2.1
 - Bump ruby to 3.3.9
 - Bump ruby to 3.3.8
 - Bump ruby to 3.2.9

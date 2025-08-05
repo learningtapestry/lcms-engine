@@ -13,6 +13,7 @@ require 'validate_url'
 require 'virtus'
 require 'will_paginate'
 require 'will_paginate-bootstrap-style'
+require 'sprockets/railtie'
 
 # UI and asset specific gems have to be required for host app to have access to its assets
 require 'ckeditor'
