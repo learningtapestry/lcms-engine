@@ -7,7 +7,7 @@ module Lcms
       has_many :resources, through: :resource_reading_assignments
 
       belongs_to :reading_assignment_author
-      alias_attribute :author, :reading_assignment_author
+      alias author reading_assignment_author
     end
   end
 end
