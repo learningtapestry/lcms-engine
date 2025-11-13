@@ -14,7 +14,7 @@ services:
       - '6379'
 
   app:
-    image: learningtapestry/lcms-engine:ruby-3.3.9
+    image: learningtapestry/lcms-engine:ruby-3.3.9-rails-8.0
     # to install all gems AND launch yarn
     command: bash -c "bundle install && yarn && tail -f /dev/null"
     # to install all gems ONLY

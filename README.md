@@ -250,7 +250,7 @@ docker compose run --rm app sh -c 'bundle exec rspec'
 In case you need to rebuild the image, use buildx command to create multi-arch image and push it to the registry
 
 ```shell
-docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine:ruby-3.3.9 --push .
+docker buildx build --platform linux/arm64/v8,linux/amd64 -t learningtapestry/lcms-engine:ruby-3.3.9-rails-8.0 --push .
 ```
 
 ### RBS type checking

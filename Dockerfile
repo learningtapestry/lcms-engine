@@ -16,16 +16,6 @@ RUN apt-get autoclean \
     tzdata \
     && rm -r /var/lib/apt/lists/* /var/cache/apt/*
 
-# install specific wkhtmltopdf binary
-RUN apt-get update -qqy \
-    && WK_VERSION=0.12.6.1-3 \
-    && ARCH=$(dpkg --print-architecture) \
-    && CODENAME=$(. /etc/os-release; echo $VERSION_CODENAME) \
-    && curl -LSfso wkhtmltopdf.deb https://github.com/wkhtmltopdf/packaging/releases/download/$WK_VERSION/wkhtmltox_$WK_VERSION.${CODENAME}_$ARCH.deb \
-    && apt-get install -qy xfonts-75dpi xfonts-base ./wkhtmltopdf.deb \
-    && rm wkhtmltopdf.deb \
-    && rm -r /var/lib/apt/lists/* /var/cache/apt/*
-
 # Add codebase
 COPY . $APP_PATH
 
