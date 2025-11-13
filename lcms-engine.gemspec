@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,bin,config,db,docs,lib,public,sig,templates, vendor}/**/*', 'LICENSE', 'README.md',
                 'lcms-engine.gemspec', 'Gemfile', 'Gemfile.lock']
 
-  s.required_ruby_version = '~> 3.2', '< 3.4'
+  s.required_ruby_version = '~> 3.2', '< 3.5'
 
   s.add_dependency 'activejob-retry', '~> 0.6.3'
   s.add_dependency 'active_model_serializers', '~> 0.10.10'
