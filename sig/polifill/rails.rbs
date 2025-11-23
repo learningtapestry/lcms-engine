@@ -1,0 +1,5 @@
+module Rails
+  class Application
+    def assets_manifest: -> untyped
+  end
+end
