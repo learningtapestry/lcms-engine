@@ -134,7 +134,8 @@ module DocTemplate
 
       def fetch(table)
         {}.tap do |result| # steep:ignore
-          table.xpath('.//tr[position() > 1]').each do |row|
+          # select direct tr children from tbody, thead, or table itself, excluding nested tables
+          table.xpath('./tbody/tr[position() > 1] | ./thead/tr[position() > 1] | ./tr[position() > 1]').each do |row|
             key = row.at_xpath('./td[1]')&.text.to_s.squish.downcase
             next if key.blank?
 
@@ -144,7 +145,8 @@ module DocTemplate
                       row.at_xpath('./td[2]').text
                     end.squish
 
-            result[key] = value
+            result[key] =
+              value
           end
         end
       end
