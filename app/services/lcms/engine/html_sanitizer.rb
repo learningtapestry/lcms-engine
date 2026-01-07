@@ -236,7 +236,7 @@ module Lcms
 
         def fix_inline_img(node)
           # TODO: test if it's working fine with all inline images
-          node['src'] = node['src'].gsub!(/%(20|0A)/, '') if node['src'].to_s.start_with?('data:')
+          node['src'] = node['src'].gsub(/%(20|0A)/, '') if node['src'].to_s.start_with?('data:')
         end
 
         def fix_googlechart_img(node)
