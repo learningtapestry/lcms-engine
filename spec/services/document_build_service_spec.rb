@@ -62,9 +62,10 @@ describe Lcms::Engine::DocumentBuildService do
     end
 
     it 'sends ActiveSupport notification' do
-      expect(ActiveSupport::Notifications).to \
-        receive(:instrument).with(Lcms::Engine::DocumentBuildService::EVENT_BUILT, id: document.id)
+      allow(ActiveSupport::Notifications).to receive(:instrument)
       subject
+      expect(ActiveSupport::Notifications).to \
+        have_received(:instrument).with(Lcms::Engine::DocumentBuildService::EVENT_BUILT, id: document.id)
     end
 
     it 'activates the document' do

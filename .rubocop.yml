@@ -12,7 +12,9 @@ AllCops:
     - bin/*
     - db/schema.rb
     - node_modules/**/*
+    - spec/dummy/config/**/*
     - spec/dummy/db/schema.rb
+    - spec/dummy/db/migrate/*
     - spec/dummy/bin/*
     - templates/*
     - config/initializers/simple_form_bootstrap.rb
@@ -92,3 +94,8 @@ Style/RescueModifier:
 
 Style/SafeNavigationChainLength:
   Max: 3
+
+Style/SymbolArray:
+  Exclude:
+    - 'Gemfile'
+    - 'lcms-engine.gemspec'

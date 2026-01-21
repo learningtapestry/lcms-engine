@@ -1265,6 +1265,8 @@ module Lcms
       def parents: -> ActiveRecord_Relation
       def previous: -> ::Lcms::Engine::Resource?
 
+      alias reading_assignments resource_reading_assignments
+
       def tree?: -> untyped
       def assessment?: -> untyped
       def media?: -> untyped

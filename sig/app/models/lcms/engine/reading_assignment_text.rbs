@@ -185,6 +185,9 @@ module Lcms
         def clear_updated_at_change: () -> void
       end
       include GeneratedAttributeMethods
+
+      alias author reading_assignment_author
+
       def resource_reading_assignments: () -> Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy
       def resource_reading_assignments=: (Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceReadingAssignment]) -> (Lcms::Engine::ResourceReadingAssignment::ActiveRecord_Associations_CollectionProxy | Array[Lcms::Engine::ResourceReadingAssignment])
       def resource_reading_assignment_ids: () -> Array[Integer]

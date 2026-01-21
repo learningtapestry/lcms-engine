@@ -5,7 +5,7 @@ module Lcms
     class StaffMember < ApplicationRecord
       validates :first_name, :last_name, presence: true
       validates :bio, length: { maximum: 4096 }
-      enum staff_type: { staff: 1, board: 2 }
+      enum :staff_type, { staff: 1, board: 2 }
 
       scope :order_by_name, -> { order(:last_name) }
       scope :order_by_name_with_precedence, -> { order(:order, :last_name) }

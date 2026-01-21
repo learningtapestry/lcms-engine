@@ -10,7 +10,7 @@ module Lcms
       devise :database_authenticatable, :registerable, :confirmable,
              :recoverable, :rememberable, :trackable, :validatable
 
-      enum role: { admin: 1, user: 0 }
+      enum :role, { admin: 1, user: 0 }
 
       validates_presence_of :access_code, on: :create, unless: :admin?
       validates_presence_of :email, :role
