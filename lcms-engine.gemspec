@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on', '~> 9.0'
   s.add_dependency 'airbrake', '~> 13.0'
   s.add_dependency 'autoprefixer-rails', '~> 9.7'
-  s.add_dependency 'aws-sdk-rails', '~> 3.1'
+  s.add_dependency 'aws-sdk-rails', '~> 4'
   s.add_dependency 'aws-sdk-s3', '~> 1'
   s.add_dependency 'carrierwave', '~> 2.1'
   s.add_dependency 'ckeditor', '~> 5.1', '>= 5.1.3'
