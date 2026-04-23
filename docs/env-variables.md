@@ -58,6 +58,8 @@ The project uses several Google products, including analytics, OAuth for allowin
 | GOOGLE_API_CLIENT_UPLOAD_TIMEOUT      | Upload timeout, default is 60 seconds |     |
 | GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL      | Initial interval in seconds between tries for rate limit errors on upload, default is 2|     |
 | GOOGLE_API_CLIENT_UPLOAD_RATE_MAX_INTERVAL      | The maximum amount of total time in seconds that code is allowed to keep being retried, default 900 (15 min)|     |
+| GOOGLE_API_FONT_ISSUE_RETRIES        | Number of attempts to re-upload a Google Doc if a font issue is detected (default: 1)                                      |
+
 
 ### Miscellaneous settings
 | Name                  | Description                                                                                                |
