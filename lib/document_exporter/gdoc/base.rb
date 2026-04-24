@@ -8,9 +8,6 @@ module DocumentExporter
     class Base < DocumentExporter::Base
       GOOGLE_API_CLIENT_UPLOAD_RETRIES = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RETRIES', 5).to_i
       GOOGLE_API_CLIENT_UPLOAD_TIMEOUT = ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_TIMEOUT', 60).to_i
-      # Number of retries for Google API font issues. This is a workaround for the issue when uploaded file has Arial
-      # as base font even if css specifies different font.
-      GOOGLE_API_FONT_ISSUE_RETRIES = ENV.fetch('GOOGLE_API_FONT_ISSUE_RETRIES', 1).to_i
       GOOGLE_API_UPLOAD_OPTIONS = {
         options: {
           open_timeout_sec: GOOGLE_API_CLIENT_UPLOAD_TIMEOUT,
@@ -21,6 +18,8 @@ module DocumentExporter
       }.freeze
       GOOGLE_API_RATE_RETRIABLE_ERRORS = [Google::Apis::ServerError, Google::Apis::RateLimitError].freeze
       VERSION_RE = /_v\d+$/i
+
+      class GoogleFontsValidationError < StandardError; end
 
       attr_reader :document, :options
 
@@ -42,7 +41,7 @@ module DocumentExporter
         folders.each { |f| delete_previous_versions_from(f) }
       end
 
-      def export # rubocop:disable Metrics/AbcSize
+      def export
         file_id = @options[:file_id] || drive_service.file_id
         parent_folder = file_id.blank? ? @options[:folder_id] || drive_service.parent : nil
 
@@ -58,7 +57,7 @@ module DocumentExporter
 
         # Try to upload google file till success of verify or retries are over. This is a workaround for the issue when
         # uploaded file has Arial as base font even if css specifies different font.
-        GOOGLE_API_FONT_ISSUE_RETRIES.times do |attempt|
+        retry_upload_with_correct_font_for do
           @id = Retriable.retriable(base_interval: ENV.fetch('GOOGLE_API_CLIENT_UPLOAD_RATE_BASE_INTERVAL', 5).to_i,
                                     multiplier: ENV.fetch(
                                       'GOOGLE_API_CLIENT_UPLOAD_RATE_MULTIPLIER', 2
@@ -74,9 +73,7 @@ module DocumentExporter
               drive_service.service.create_file(metadata, **params)
             end.id
           end
-          break if valid_uploaded_file?(@id, left_tries: GOOGLE_API_FONT_ISSUE_RETRIES - (attempt + 1))
-
-          Rails.logger.warn "Google API font issue detected for file #{@id}, retrying upload (attempt #{attempt + 1})"
+          raise GoogleFontsValidationError unless valid_uploaded_file?(@id)
         end
 
         post_processing
@@ -102,7 +99,7 @@ module DocumentExporter
 
         # Try to upload google file till success of verify or retries are over. This is a workaround for the issue when
         # uploaded file has Arial as base font even if css specifies different font.
-        GOOGLE_API_FONT_ISSUE_RETRIES.times do |attempt|
+        retry_upload_with_correct_font_for do
           @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
             if file_id.present?
               drive_service.service.update_file(file_id, metadata, **params)
@@ -110,14 +107,18 @@ module DocumentExporter
               drive_service.service.create_file(metadata, **params)
             end.id
           end
-          break if valid_uploaded_file?(@id, left_tries: GOOGLE_API_FONT_ISSUE_RETRIES - (attempt + 1))
-
-          Rails.logger.warn "Google API font issue detected for file #{@id}, retrying upload (attempt #{attempt + 1})"
+          raise GoogleFontsValidationError unless valid_uploaded_file?(@id)
         end
 
         post_processing
 
         self
+      end
+
+      # Number of retries for Google API font issues. This is a workaround for the issue when uploaded file has Arial
+      # as base font even if css specifies different font.
+      def google_api_font_issue_retries
+        ENV.fetch('GOOGLE_API_FONT_ISSUE_RETRIES', 1).to_i
       end
 
       def url
@@ -172,8 +173,23 @@ module DocumentExporter
         end
       end
 
-      def valid_uploaded_file?(file_id, left_tries: GOOGLE_API_FONT_ISSUE_RETRIES)
-        Rails.logger.debug "Google API font check detected for file #{file_id}, retrying upload (attempt #{left_tries})"
+      def retry_upload_with_correct_font_for(&)
+        Retriable.retriable(tries: ENV.fetch('GOOGLE_API_FONT_ISSUE_RETRIES', 1).to_i,
+                            on: [GoogleFontsValidationError],
+                            &)
+      rescue GoogleFontsValidationError => e
+        additional_info = {
+          caller: 'export',
+          object_id: document.respond_to?(:identifier) ? document.identifier : document.id,
+          error_message: e.message
+        }
+        msg = "Failed to validate fonts for #{@id} after " \
+              "#{ENV.fetch('GOOGLE_API_FONT_ISSUE_RETRIES', 1).to_i} attempts"
+        Rails.logger.error msg
+        ::Airbrake.notify_sync(msg, additional_info) if defined?(Airbrake)
+      end
+
+      def valid_uploaded_file?(_file_id)
         true
       end
     end
