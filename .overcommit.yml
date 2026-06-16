@@ -22,7 +22,6 @@ PreCommit:
   ExecutePermissions:
     enabled: true
     exclude:
-    - .codeship/*
     - bin/*
     - script/hooks/*
     - spec/dummy/bin/*
