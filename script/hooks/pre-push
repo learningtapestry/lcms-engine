@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Pre-push hook that runs overcommit pre_push checks inside Docker container.
+# Install: ln -sf ../../script/hooks/pre-push .git/hooks/pre-push
+#
+# The overcommit pre_push hook runs the RSpec suite (see .overcommit.yml).
+
+set -e
+
+echo "Starting db and redis..."
+docker compose up -d db redis
+
+echo "Running pre-push checks inside Docker..."
+docker compose run --rm app overcommit --run pre_push

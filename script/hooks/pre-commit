@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Pre-commit hook that runs overcommit checks inside Docker container.
+# Install: ln -sf ../../script/hooks/pre-commit .git/hooks/pre-commit
+#
+# The overcommit configuration lives in .overcommit.yml and covers
+# RuboCop, BundleCheck, LocalPathsInGemfile, ExecutePermissions,
+# YamlSyntax, yarn lint, TrailingWhitespace, Steep (RBS) and ShellCheck.
+
+set -e
+
+echo "Running pre-commit checks inside Docker..."
+docker compose run --rm app overcommit --run

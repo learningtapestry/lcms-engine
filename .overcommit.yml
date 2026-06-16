@@ -24,6 +24,7 @@ PreCommit:
     exclude:
     - .codeship/*
     - bin/*
+    - script/hooks/*
     - spec/dummy/bin/*
 
   YamlSyntax:
