@@ -44,7 +44,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'combine_pdf', '~> 1.0'
   s.add_dependency 'concurrent-ruby', '~> 1.3'
   s.add_dependency 'cssbundling-rails', '~> 1.4'
-  s.add_dependency 'devise', '~> 4.9'
+  s.add_dependency 'devise', '~> 5.0'
   s.add_dependency 'elasticsearch-dsl', '~> 0.1.9'
   s.add_dependency 'elasticsearch-model', '~> 8.0'
   s.add_dependency 'elasticsearch-persistence', '~> 8.0'

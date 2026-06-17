@@ -207,6 +207,29 @@ end
 
 All migrations included in the gem are already available for you to run from inside host application.
 
+### Upgrading Devise from 4.x to 5.0 (host app notes)
+
+Starting with `lcms-engine` `1.x` (the `rails-8.1` branch), the engine depends on
+`devise ~> 5.0`. Devise 5.0 changed how the secret key used to sign tokens is
+resolved: it now always uses `Rails.application.secret_key_base` and ignores
+`credentials.secret_key_base` and `secrets.secret_key_base`.
+
+For host apps that previously relied on `credentials.secret_key_base`, this
+means that all outstanding `confirmable`, `recoverable` and `lockable` tokens
+will be invalidated after the upgrade.
+
+To preserve existing tokens during the migration window, set an explicit
+`config.secret_key` in `config/initializers/devise.rb` of the host app:
+
+```ruby
+Devise.setup do |config|
+  config.secret_key = Rails.application.credentials.secret_key_base
+end
+```
+
+After all users have rotated their tokens (or you have accepted the
+invalidation), remove the explicit `config.secret_key` line again.
+
 ### Using with Host app
 
 You need to run special rake task if default routes were overridden
