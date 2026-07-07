@@ -47,7 +47,7 @@ module Lcms
       def average_number
         return nil if list.empty?
 
-        list.map { |g| self.class.grades.index(g) }.sum / (list.size.nonzero? || 1)
+        list.filter_map { |g| self.class.grades.index(g) }.sum / (list.size.nonzero? || 1)
       end
 
       def grade_abbr(abbr)
