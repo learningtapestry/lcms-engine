@@ -130,7 +130,7 @@ feature 'Admin users' do
 
   def expect_reset_password_email_for(user)
     email = last_email_sent
-    expect(email.from).to eq "no-reply@#{domain}"
+    expect(email.from).to eq ["no-reply@#{domain}"]
     expect(email.subject).to eq 'Reset password instructions'
     expect(email.to).to include user.email
   end

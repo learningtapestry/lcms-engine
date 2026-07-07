@@ -1,4 +1,4 @@
-FROM ruby:2.7.7
+FROM ruby:3.0.7
 
 ENV APP_PATH=/app/
 ENV LANG=C.UTF-8
