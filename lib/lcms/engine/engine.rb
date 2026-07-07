@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# Sprockets is no longer loaded via the rails meta-gem in Rails 7. It must be
+# loaded before any gem whose railtie checks `config.respond_to?(:assets)` at
+# require time (e.g. turbolinks), or those gems skip registering their assets.
+require 'sprockets/railtie'
+
 require 'active_job'
 require 'acts-as-taggable-on'
 require 'active_model_serializers'
