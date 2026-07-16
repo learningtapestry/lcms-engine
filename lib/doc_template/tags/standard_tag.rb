@@ -5,9 +5,9 @@ module DocTemplate
     class StandardTag < BaseTag
       include ERB::Util
 
-      STANDARD_RE = /[^\[\]]*\[(ela\.)?((rl|ri|rf|w|sl|l)\.[^\]]+)\]/i.freeze # [rl.2.2a.2]
-      TAG_NAME = /(ela\.)?((rl|ri|rf|w|sl|l)\.[^\]]+)/.freeze # RL.2.4 or ELA.RL.2.4
-      TAG_RE = /\[[^\]]*\]/.freeze
+      STANDARD_RE = /[^\[\]]*\[(ela\.)?((rl|ri|rf|w|sl|l)\.[^\]]+)\]/i # [rl.2.2a.2]
+      TAG_NAME = /(ela\.)?((rl|ri|rf|w|sl|l)\.[^\]]+)/ # RL.2.4 or ELA.RL.2.4
+      TAG_RE = /\[[^\]]*\]/
       TAG_SEPARATOR = '[separator]'
       TEMPLATES = { default: 'standard.html.erb',
                     gdoc: 'gdoc/standard.html.erb' }.freeze

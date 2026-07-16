@@ -20,7 +20,7 @@ class StandardImporter
 
   private
 
-  RE_EMPHASIS = /^\(\+\)\s?/.freeze
+  RE_EMPHASIS = /^\(\+\)\s?/
   private_constant :RE_EMPHASIS
 
   attr_reader :source_file, :subject

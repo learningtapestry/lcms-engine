@@ -79,7 +79,6 @@ module Lcms
 
         Dir
           .glob(decorators)
-          .sort
           .each(&method(:require))
       rescue ActiveRecord::NoDatabaseError
         puts 'ActiveRecord::NoDatabaseError thrown!'

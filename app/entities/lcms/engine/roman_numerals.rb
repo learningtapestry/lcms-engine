@@ -3,7 +3,7 @@
 module Lcms
   module Engine
     class RomanNumerals
-      ROMAN_NUMERALS_RE = /^(M|CM|D|CD|C|XC|L|XL|X|IX|V|IV|I)/.freeze
+      ROMAN_NUMERALS_RE = /^(M|CM|D|CD|C|XC|L|XL|X|IX|V|IV|I)/
       SYMBOLS = [
         [1000, 'M'],
         [900, 'CM'],

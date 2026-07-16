@@ -4,7 +4,7 @@ module DocTemplate
   module Tags
     class PageBreakTag < BaseTag
       CSS_CLASS = 'u-pdf-alwaysbreak'
-      TAG_NAME = /page(-|\s*)break/.freeze
+      TAG_NAME = /page(-|\s*)break/
       TAG_SUB = '<p>--GDOC-PAGE-BREAK--</p>'
 
       def parse(node, opts)

@@ -7,7 +7,7 @@ module Lcms
   module Engine
     class MaterialBuildService
       EVENT_BUILT = 'material:built'
-      PDF_EXT_RE = /\.pdf$/.freeze
+      PDF_EXT_RE = /\.pdf$/
 
       attr_reader :errors
 

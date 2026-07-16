@@ -5,7 +5,7 @@ module DocTemplate
     class DefTag < BaseTag
       include ERB::Util
 
-      STYLE_RE = /<span (style=[^.>]*)>[^<]*$/i.freeze
+      STYLE_RE = /<span (style=[^.>]*)>[^<]*$/i
       TAG_NAME = 'def'
       TAG_SEPARATOR = '[separator]'
       TEMPLATES = {

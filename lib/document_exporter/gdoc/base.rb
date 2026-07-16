@@ -16,7 +16,7 @@ module DocumentExporter
         }
       }.freeze
       GOOGLE_API_RATE_RETRIABLE_ERRORS = [Google::Apis::ServerError, Google::Apis::RateLimitError].freeze
-      VERSION_RE = /_v\d+$/i.freeze
+      VERSION_RE = /_v\d+$/i
 
       attr_reader :document, :options
 
