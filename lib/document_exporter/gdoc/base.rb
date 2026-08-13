@@ -67,11 +67,15 @@ module DocumentExporter
                                     ).to_i,
                                     on: GOOGLE_API_RATE_RETRIABLE_ERRORS,
                                     tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
-            if file_id.present?
-              drive_service.service.update_file(file_id, metadata, **params)
-            else
-              drive_service.service.create_file(metadata, **params)
-            end.id
+            # need to get the file id from the drive service because it may have been created in a previous attempt and
+            # the file_id option may not be present
+            file_id = if file_id.present?
+                        # remove parents from metadata as it is not allowed when updating a file
+                        metadata.parents = []
+                        drive_service.service.update_file(file_id, metadata, **params)
+                      else
+                        drive_service.service.create_file(metadata, **params)
+                      end.id
           end
           raise GoogleFontsValidationError unless valid_uploaded_file?(@id)
         end
@@ -101,11 +105,15 @@ module DocumentExporter
         # uploaded file has Arial as base font even if css specifies different font.
         retry_upload_with_correct_font_for do
           @id = Retriable.retriable(base_interval: 1, tries: GOOGLE_API_CLIENT_UPLOAD_RETRIES) do
-            if file_id.present?
-              drive_service.service.update_file(file_id, metadata, **params)
-            else
-              drive_service.service.create_file(metadata, **params)
-            end.id
+            # need to get the file id from the drive service because it may have been created in a previous attempt and
+            # the file_id option may not be present
+            file_id = if file_id.present?
+                        # remove parents from metadata as it is not allowed when updating a file
+                        metadata.parents = []
+                        drive_service.service.update_file(file_id, metadata, **params)
+                      else
+                        drive_service.service.create_file(metadata, **params)
+                      end.id
           end
           raise GoogleFontsValidationError unless valid_uploaded_file?(@id)
         end
