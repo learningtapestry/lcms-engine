@@ -61,11 +61,25 @@ module DocTemplate
       end
     end
 
-    def find_tag(name, value = '')
-      key = registered_tags.keys.detect do |k|
+    #
+    # Looks for the class registered for the tag, all arguments
+    # are expected to be downcased
+    #
+    # @param [String] name the part of the tag before the first whitespace or colon
+    # @param [String] value the rest of the tag
+    # @param [String] content the whole tag without the brackets
+    # @return [Class] the default tag is returned when nothing is found
+    #
+    def find_tag(name, value = '', content = '')
+      # the tag written with a space, like `[section break]`, is checked
+      # first as its name can belong to another tag, like `section`
+      key = regexp_key_for(content) if value.present?
+      key ||= registered_tags.keys.detect do |k|
         if k.is_a?(Regexp)
+          # tags registered with Regexp are matched by the name only
           name =~ k
         else
+          # tags registered with String can consist of two words
           k == name or k == [name, value].join(' ')
         end
       end
@@ -86,7 +100,7 @@ module DocTemplate
       return if matches.nil?
 
       tag_name, tag_value = matches.captures
-      return unless (tag = find_tag tag_name.to_s.downcase, tag_value.to_s.downcase)
+      return unless (tag = tag_for matches)
 
       # Did we get the same tag as previous?
       check_loop_tag tag_name, tag_value
@@ -112,6 +126,17 @@ module DocTemplate
       }
     end
 
+    #
+    # the name of a tag is split at the first whitespace, so `[page break]`
+    # comes as the name `page` with the value `break`. Matches the whole
+    # content of the tag against the tags registered with Regexp
+    #
+    def regexp_key_for(content)
+      registered_tags.keys.detect do |k|
+        k.is_a?(Regexp) && content.match?(Regexp.new("\\A(?:#{k.source})\\z", k.options))
+      end
+    end
+
     def registered_tags
       Template.tags
     end
@@ -132,6 +157,14 @@ module DocTemplate
         name:,
         value:
       }
+    end
+
+    #
+    # @param [MatchData] matches the result of matching against FULL_TAG
+    #
+    def tag_for(matches)
+      content = matches[0].to_s.delete_prefix('[').delete_suffix(']').squish
+      find_tag matches[1].to_s.downcase, matches[2].to_s.downcase, content.downcase
     end
   end
 end
