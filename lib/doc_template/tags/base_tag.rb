@@ -114,7 +114,12 @@ module DocTemplate
         stop_tags = Array.wrap ::DocTemplate::Tags.config[self.class::TAG_NAME.downcase][key]
         return false if stop_tags.empty?
 
-        tags = stop_tags.map { |t| ::DocTemplate::Tags.const_get(t)::TAG_NAME }.join('|')
+        # TAG_NAME can be a Regexp: interpolating it as is embeds its own flags
+        # and turns off the case-insensitive matching, so use its source instead
+        tags = stop_tags.map do |t|
+          tag_name = ::DocTemplate::Tags.const_get(t)::TAG_NAME
+          tag_name.is_a?(Regexp) ? tag_name.source : tag_name
+        end.join('|')
 
         result = node.content =~ /\[\s*(#{tags})/i
         check_tag_soft_return(node) if result
