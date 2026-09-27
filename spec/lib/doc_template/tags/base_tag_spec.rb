@@ -15,6 +15,36 @@ class BaseSpecTag < DocTemplate::Tags::BaseTag
 end
 
 describe DocTemplate::Tags::BaseTag do
+  describe '#include_break?' do
+    let(:config) { { 'image' => { 'stop_tags' => %w(ImageTag PageBreakTag) } } }
+    let(:node) { Nokogiri::HTML.fragment("<p><span>#{content}</span></p>").at_xpath('p') }
+
+    before { allow(DocTemplate::Tags).to receive(:config).and_return(config) }
+
+    subject { BaseSpecTag.new.include_break?(node) }
+
+    ['[page-break]', '[Page-Break]', '[PAGE BREAK]', '[ PageBreak]', '[IMAGE: 1]'].each do |tag|
+      context "when node contains #{tag}" do
+        let(:content) { tag }
+
+        it { is_expected.to be_truthy }
+      end
+    end
+
+    context 'when node does not contain a stop tag' do
+      let(:content) { '[section: 1]' }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context 'when there are no stop tags' do
+      let(:config) { { 'image' => {} } }
+      let(:content) { '[page-break]' }
+
+      it { is_expected.to be_falsey }
+    end
+  end
+
   describe '.tag_with_html_regexp' do
     let(:content) do
       <<~HTML
