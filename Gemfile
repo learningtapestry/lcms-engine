@@ -19,3 +19,10 @@ gem 'debug', '>= 1.0.0', group: [:development, :test]
 gem 'wicked_pdf', github: 'learningtapestry/wicked_pdf',
                   branch: 'puppeteer-support',
                   ref: '50d961e'
+
+gem 'lt-google-api', github: 'learningtapestry/lt-google-api',
+                     branch: 'master',
+                     ref: 'a91e66b'
+gem 'lt-lcms', github: 'learningtapestry/lt-lcms',
+               branch: 'master',
+               ref: '339bda8'
