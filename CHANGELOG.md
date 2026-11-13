@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [BREAKING] Removed wkhtmltopdf binaries from Docker, as we do not use them explicitly anymore
+- Allow `rubyzip` 3.x (`>= 2, < 4`); `lt-lcms` and `lt-google-api` temporarily installed from git branches
 - Bump Rails to 8.0.4
 - Ruby 3.5 set as a top-level border for dependency
 - Bump ruby to 3.3.9
